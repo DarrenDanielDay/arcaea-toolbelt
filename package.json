@@ -1,0 +1,12 @@
+{
+  "name": "arcaea-toolbelt",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "parcel src/index.html"
+  },
+  "private": true,
+  "devDependencies": {
+    "parcel": "^2.8.3",
+    "typescript": "^5.0.4"
+  }
+}

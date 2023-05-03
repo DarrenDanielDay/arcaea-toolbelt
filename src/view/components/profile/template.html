@@ -1,0 +1,66 @@
+<div class="row m-3" id="greet"></div>
+<div class="row m-3">
+  <button type="button" class="btn btn-outline-secondary create-profile">创建存档</button>
+  <button type="button" class="btn btn-outline-secondary switch-profile">切换存档</button>
+  <button type="button" class="btn btn-outline-secondary update-profile">修改存档</button>
+  <button type="button" class="btn btn-outline-secondary export-profile">导出当前存档</button>
+  <button type="button" class="btn btn-outline-secondary import-profile">导入存档</button>
+</div>
+<dialog id="create-profile">
+  <form>
+    <div class="h4">创建存档</div>
+    <div class="mb-3">
+      <label for="username" class="form-label">用户名（仅用于区分存档和b30生成）</label>
+      <input class="form-control" id="username" name="username" required autofocus />
+    </div>
+    <div class="mb-3">
+      <label for="potential" class="form-label">潜力值</label>
+      <input class="form-control" id="potential" name="potential" required />
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary cancel">取消</button>
+      <button type="button" class="btn btn-primary confirm">确认</button>
+    </div>
+  </form>
+</dialog>
+<dialog id="edit-profile">
+  <form>
+    <div class="h4">修改存档</div>
+    <div class="mb-3">
+      <label for="ptt" class="form-label">潜力值</label>
+      <input class="form-control" id="ptt" name="ptt" required autofocus />
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary cancel">取消</button>
+      <button type="button" class="btn btn-primary confirm">确认</button>
+    </div>
+  </form>
+</dialog>
+<dialog id="switch-profile">
+  <form>
+    <div class="h4">切换存档</div>
+    <div class="row">
+      <div class="col">
+        <select class="form-select" name="profile" required></select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary cancel">取消</button>
+      <button type="button" class="btn btn-primary confirm">确认</button>
+    </div>
+  </form>
+</dialog>
+<dialog id="import-profile">
+  <form>
+    <div class="h4">导入存档</div>
+    <div class="row">
+      <div class="col">
+        <input type="file" accept=".json" name="file" />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary cancel">取消</button>
+      <button type="button" class="btn btn-primary confirm">确认</button>
+    </div>
+  </form>
+</dialog>

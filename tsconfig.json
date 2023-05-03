@@ -17,8 +17,11 @@
     "noFallthroughCasesInSwitch": true,
     "downlevelIteration": true,
     "moduleResolution": "node",
-    "target": "ESNext",
+    "target": "ES2022",
     "module": "ESNext",
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": false,
     "lib": [
       "ESNext",

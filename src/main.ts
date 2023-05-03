@@ -1,2 +1,4 @@
+import type {} from 'typed-query-selector'
 import "./styles.css";
-console.log("world!");
+import "./view/app";
+

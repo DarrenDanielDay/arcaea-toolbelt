@@ -1,0 +1,76 @@
+<div class="m-3">
+  <form>
+    <div class="row my-2">
+      <div class="col">
+        <chart-select name="chartId"></chart-select>
+      </div>
+    </div>
+    <div class="mx-3">
+      <div>对于成绩信息……</div>
+      <div class="row my-2">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="type" id="detailed" value="detailed" checked />
+          <label class="form-check-label" for="detailed"> 有大P的详细成绩信息（如bot生成b30） </label>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="type" id="screenshot" value="screenshot" />
+          <label class="form-check-label" for="screenshot"> 有游戏内成绩截图但没显示大P </label>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="type" id="score-only" value="score-only" />
+          <label class="form-check-label" for="score-only"> 只知道分数（好友/世界榜可查看） </label>
+        </div>
+      </div>
+    </div>
+    <div class="row my-2">
+      <div class="col-2">
+        <label for="perfect" class="col-form-label">大P</label>
+      </div>
+      <div class="col-4">
+        <input type="number" class="form-control" id="perfect" name="perfect" min="0" />
+      </div>
+      <div class="col-1">
+        <label for="far" class="col-form-label">Far</label>
+      </div>
+      <div class="col-2">
+        <input type="number" class="form-control" id="far" name="far" min="0" />
+      </div>
+      <div class="col-1">
+        <label for="lost" class="col-form-label">Lost</label>
+      </div>
+      <div class="col-2">
+        <input type="number" class="form-control" id="lost" name="lost" min="0" />
+      </div>
+    </div>
+    <div class="row my-2">
+      <div class="col-2">
+        <label for="score" class="col-form-label">分数</label>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control" id="score" name="score" min="0" />
+      </div>
+    </div>
+    <div class="row my-2">
+      <div class="col-auto">
+        <label for="clear" class="col-form-label">通关类型（看搭档）</label>
+      </div>
+      <div class="col">
+        <select class="form-select" name="clear" id="clear">
+          <option value="">不知道</option>
+          <option value="HC">Hard Clear</option>
+          <option value="NC">Normal Clear</option>
+          <option value="EC">Easy Clear</option>
+          <option value="TL">Track Lost</option>
+        </select>
+      </div>
+    </div>
+    <div class="my-2">
+      <p>谱面成绩预览：</p>
+      <result-card></result-card>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,113 @@
+:host {
+  display: block;
+  --title-length: 664;
+}
+.card {
+  background-color: white;
+  zoom: var(--card-zoom, 1);
+  box-sizing: border-box;
+  border-radius: 16px;
+  box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.12);
+  width: 1000px;
+  height: 320px;
+  display: flex;
+  padding: 16px;
+  gap: 16px;
+}
+.details {
+  position: relative;
+  width: 100%;
+}
+.data-badge {
+  height: 60px;
+  background-color: #dddddd;
+  border-radius: 8px;
+}
+.data-badge > div {
+  box-sizing: border-box;
+  position: absolute;
+  padding-top: 4px;
+  border-radius: 8px;
+  height: 60px;
+  font-size: 40px;
+}
+.potential {
+  z-index: 5;
+  color: white;
+  width: 192px;
+  padding-left: 12px;
+  background-color: var(--potential-color);
+}
+.constant {
+  z-index: 4;
+  color: white;
+  left: 180px;
+  width: calc(315px - 180px);
+  padding-left: 32px;
+  background-color: var(--constant-color);
+}
+
+.rank {
+  z-index: 3;
+  background-color: #dddddd;
+  position: absolute;
+  display: flex;
+  left: 300px;
+  width: 240px;
+  gap: 8px;
+  justify-content: center;
+}
+
+.rank img {
+  visibility: hidden;
+  transform: translateY(-20px);
+  width: 96px;
+  height: 96px;
+}
+
+.no-badge {
+  font-weight: 600;
+  width: 144px;
+  left: 520px;
+  padding-left: 48px;
+  background-color: var(--no-color);
+}
+
+.song-title {
+  font-size: 48px;
+  white-space: nowrap;
+  width: 664px;
+  transform: scaleX(calc(664 / var(--title-length)));
+  transform-origin: 0 0;
+  line-height: 80px;
+  font-weight: 600;
+}
+
+.score {
+  font-size: 90px;
+  line-height: 100px;
+}
+
+.score.max {
+  text-shadow: 4px 4px #0f7185dd;
+}
+
+.play-result {
+  display: grid;
+  width: 100%;
+  font-size: 32px;
+  line-height: 48px;
+  grid-template-columns: 6fr 3fr 3fr;
+}
+
+.pure {
+  color: #cc22ee;
+}
+
+.far {
+  color: #ffaa11;
+}
+
+.lost {
+  color: #dd4444;
+}

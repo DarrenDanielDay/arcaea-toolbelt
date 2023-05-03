@@ -1,0 +1,15 @@
+/* styles here */
+:root {
+  --1: #f8c507;
+  --2: #d1d4e2;
+  --3: #f39b77;
+  --no-color: #dddddd;
+  --pst: #5cbad3;
+  --pst-light: #5cbad3dd;
+  --prs: #b5c76f;
+  --prs-light: #b5c76f99;
+  --ftr: #913a79;
+  --ftr-light: #913a79dd;
+  --byd: #bf0d25;
+  --byd-light: #bf0d25dd;
+}

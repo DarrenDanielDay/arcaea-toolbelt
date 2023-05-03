@@ -21,6 +21,7 @@
     "module": "ESNext",
     "isolatedModules": true,
     "resolveJsonModule": true,
+    "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": false,
     "lib": [

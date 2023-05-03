@@ -1,9 +1,9 @@
 import { SongData } from "../models/music-play";
 import { searchMatch } from "../utils/string";
 import { ChartService, SearchResult } from "./declarations";
-
+import staticData from "../data/chart-data.json";
 // @ts-expect-error string as enum
-const getStaticSongData = (): Promise<SongData[]> => import("../data/chart-data.json");
+const getStaticSongData = async (): Promise<SongData[]> => staticData;
 
 export class ChartServiceImpl implements ChartService {
   getSongData(): Promise<SongData[]> {

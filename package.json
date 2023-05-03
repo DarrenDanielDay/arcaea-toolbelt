@@ -4,19 +4,27 @@
   "scripts": {
     "start:parcel": "parcel src/index.html",
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
-    "start": "run-p --print-label \"start:**\""
+    "start": "run-p --print-label \"start:**\"",
+    "purge": "node ./scripts/purge.js",
+    "build:parcel": "parcel build src/index.html --public-url /arcaea-toolbelt --dist-dir arcaea-toolbelt --no-optimize --no-source-maps",
+    "build:sheetly": "sheetly build --dir src",
+    "minify": "node ./scripts/minify.js",
+    "build": "run-s purge build:sheetly build:parcel minify"
   },
   "private": true,
   "devDependencies": {
     "@parcel/transformer-inline-string": "^2.8.3",
     "@parcel/transformer-typescript-tsc": "^2.8.3",
+    "esbuild": "^0.17.18",
     "npm-run-all": "^4.1.5",
     "parcel": "^2.8.3",
+    "purgecss": "^5.0.0",
     "typed-query-selector": "^2.10.1",
     "typescript": "^5.0.4"
   },
   "dependencies": {
     "@fluentui/web-components": "^2.5.14",
-    "sheetly": "^0.3.0"
+    "sheetly": "^0.3.0",
+    "tslib": "^2.5.0"
   }
 }

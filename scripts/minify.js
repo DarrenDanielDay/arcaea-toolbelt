@@ -1,0 +1,13 @@
+const esbuild = require("esbuild");
+const fs = require("fs");
+const path = require("path");
+const cwd = process.cwd();
+const dist = "arcaea-toolbelt";
+const children = fs.readdirSync(path.resolve(cwd, dist));
+const js = children.find((f) => f.endsWith(".js"));
+const bundle = path.resolve(cwd, dist, js);
+const content = fs.readFileSync(bundle);
+console.log(bundle);
+const { code } = esbuild.transformSync(content, { minify: true });
+fs.writeFileSync(bundle, code, {});
+console.log(`✨minified`);

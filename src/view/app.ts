@@ -1,4 +1,5 @@
 import app from "bundle-text:./app.html";
+import { sheet } from "./app.css.js";
 import { PlayResultForm } from "./components/play-result-form";
 import { ProfilePage } from "./components/profile";
 import { Best30 } from "./components/b30";
@@ -11,7 +12,7 @@ import { ProfileServiceImpl } from "../services/player-profile";
 import { check } from "../utils/component";
 import { ChartSelect } from "./components/chart-select";
 import { ResultCard } from "./components/result-card";
-document.adoptedStyleSheets = [bootstrap];
+document.adoptedStyleSheets = [bootstrap, sheet];
 
 const chart = new ChartServiceImpl();
 provide($ChartService, document.body, chart);

@@ -3,3 +3,4 @@
 .parcel-cache
 *.css.js
 *.css.d.ts
+/arcaea-toolbelt

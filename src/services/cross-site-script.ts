@@ -192,7 +192,7 @@ export async function queryFriendsB39(type: string): Promise<Profile[]> {
 
 async function main() {
   const url = new URL(import.meta.url);
-  const querySelf = url.searchParams.get("type") || 'friendonly';
+  const querySelf = url.searchParams.get("type") || "friendonly";
   const profiles = await queryFriendsB39(querySelf);
   console.log(profiles);
   handleProfiles(profiles);
@@ -208,6 +208,7 @@ form#export-profile .row {
     ""
   );
   document.adoptedStyleSheets = document.adoptedStyleSheets.concat(sheet);
+  const container = document.createElement("div");
   const dialog = document.createElement("dialog");
   dialog.id = "export-profile";
   dialog.innerHTML = `
@@ -251,9 +252,12 @@ form#export-profile .row {
     iframe.src = targetURL.toString();
     iframe.onload = () => {
       iframe.contentWindow!.postMessage(profiles, "*");
+      dialog.close();
     };
   };
-  document.body.appendChild(dialog);
+  const shadow = container.attachShadow({ mode: "open" });
+  shadow.appendChild(dialog);
+  document.body.appendChild(container);
   dialog.showModal();
 }
 

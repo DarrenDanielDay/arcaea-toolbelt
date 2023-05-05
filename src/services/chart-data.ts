@@ -1,10 +1,12 @@
-import { SongData } from "../models/music-play";
+import { Difficulty, SongData } from "../models/music-play";
 import { searchMatch } from "../utils/string";
 import { ChartService, SearchResult } from "./declarations";
 import staticData from "../data/chart-data.json";
 // @ts-expect-error string as enum
 const getStaticSongData = async (): Promise<SongData[]> => staticData;
 
+// 对于同个名称匹配系数，按照ftr，byd，prs，pst排序
+const difficultyOrder = [Difficulty.Future, Difficulty.Beyond, Difficulty.Present, Difficulty.Past];
 export class ChartServiceImpl implements ChartService {
   getSongData(): Promise<SongData[]> {
     return getStaticSongData();
@@ -17,7 +19,7 @@ export class ChartServiceImpl implements ChartService {
     const matches: SearchResult[] = [];
     for (const song of songs) {
       for (const chart of song.charts) {
-        candidateMatch: for (const candidate of [song.name, chart.id, chart.byd?.song ?? ""]) {
+        candidateMatch: for (const candidate of [song.name, chart.id, chart.byd?.song ?? "", ...song.alias]) {
           const match = searchMatch(searchText, candidate);
           if (match != null) {
             matches.push({
@@ -33,6 +35,11 @@ export class ChartServiceImpl implements ChartService {
         }
       }
     }
-    return matches.sort((a, b) => a.sort - b.sort);
+    return matches.sort((a, b) => {
+      if (a.sort !== b.sort) {
+        return a.sort - b.sort;
+      }
+      return difficultyOrder.indexOf(a.difficulty) - difficultyOrder.indexOf(b.difficulty);
+    });
   }
 }

@@ -62,9 +62,11 @@ class Best30 extends HTMLElement implements OnConnected {
     const now = new Date();
     this.time.dateTime = now.toISOString();
     this.time.textContent = now.toLocaleString();
-    this.requestFullscreen({
-      navigationUI: "hide",
-    });
+    this.ondblclick = () => {
+      this.requestFullscreen({
+        navigationUI: "hide",
+      });
+    }
   }
 
   private renderBest(best: BestResultItem, col: HTMLDivElement) {

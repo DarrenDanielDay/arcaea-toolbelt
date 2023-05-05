@@ -9,6 +9,6 @@ const path = require("path");
     css: [pathToCwd],
   });
   fs.writeFile(bootstrap, purgeCSSResult[0].css, () => {
-    console.log(`✨Purged.`)
+    console.log(`✨Purged.`);
   });
 })();

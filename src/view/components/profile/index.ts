@@ -76,6 +76,14 @@ class ProfilePage extends HTMLElement implements OnConnected {
         }
       });
     };
+    const url = new URL("./services/cross-site-script.js", location.href);
+    const getScript = (type: string) => {
+      url.searchParams.set("type", type);
+      return `import("${url}")`;
+    };
+    shadow.querySelector("blockquote#friends-and-me")!.textContent = getScript("both");
+    shadow.querySelector("blockquote#friends-only")!.textContent = getScript("friendonly");
+    shadow.querySelector("blockquote#self-only")!.textContent = getScript("selfonly");
 
     this.updateGreet();
   }

@@ -4,12 +4,14 @@
   "scripts": {
     "start:parcel": "parcel src/index.html",
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
+    "start:cross-site": "node ./scripts/cross-site.js",
     "start": "run-p --print-label \"start:**\"",
     "purge": "node ./scripts/purge.js",
     "build:parcel": "parcel build src/index.html --public-url /arcaea-toolbelt --dist-dir arcaea-toolbelt --no-optimize --no-source-maps",
     "build:sheetly": "sheetly build --dir src",
+    "build:cross-site": "node ./scripts/cross-site.js --build",
     "minify": "node ./scripts/minify.js",
-    "build": "run-s purge build:sheetly build:parcel minify"
+    "build": "run-s purge build:sheetly build:parcel minify build:cross-site"
   },
   "private": true,
   "devDependencies": {

@@ -8,6 +8,17 @@ const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
 
+const isValidProfileV1 = (value: any): value is Profile => {
+  return (
+    value != null &&
+    typeof value === "object" &&
+    value.version === 1 &&
+    typeof value.username === "string" &&
+    typeof value.potential === "string" &&
+    typeof value.best === "object"
+  );
+};
+
 export class ProfileServiceImpl implements ProfileService {
   currentUsername: string | null = sessionStorage.getItem(KEY_CURRENT_USERNAME);
 
@@ -34,6 +45,14 @@ export class ProfileServiceImpl implements ProfileService {
 
   async getProfileList(): Promise<string[]> {
     return Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i)!);
+  }
+
+  async syncProfiles(data: unknown[]): Promise<void> {
+    if (data.every(isValidProfileV1)) {
+      for (const profile of data) {
+        this.saveProfile(profile, profile.username);
+      }
+    }
   }
 
   async importProfile(file: File): Promise<void> {

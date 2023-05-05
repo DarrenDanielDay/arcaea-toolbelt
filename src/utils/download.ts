@@ -4,3 +4,8 @@ export function download(url: string, filename: string) {
   link.href = url;
   link.click();
 }
+
+export function downloadJSON(json: object, filename: string) {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(json)], { type: "application/json" }));
+  download(url, filename);
+}

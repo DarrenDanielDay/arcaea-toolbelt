@@ -95,5 +95,11 @@ for (const page of pages) {
     page.setup();
   };
 }
+window.addEventListener("message", (e) => {
+  const data = e.data;
+  if (Array.isArray(data)) {
+    profile.syncProfiles(data);
+  }
+});
 
 profileLink.click();

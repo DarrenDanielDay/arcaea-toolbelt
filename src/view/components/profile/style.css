@@ -5,3 +5,9 @@ dialog {
   box-shadow: var(--bs-box-shadow);
   --bs-modal-footer-gap: 4px;
 }
+
+blockquote {
+  padding: 8px;
+  border-radius: 4px;
+  background-color:var(--bs-gray-200);
+}

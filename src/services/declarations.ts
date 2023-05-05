@@ -45,6 +45,7 @@ export interface ProfileService {
   readonly profile: Profile | null;
   createOrUpdateProfile(username: string, potential: number): Promise<void>;
   getProfileList(): Promise<string[]>;
+  syncProfiles(data: any[]): Promise<void>;
   importProfile(file: File): Promise<void>;
   exportProfile(): Promise<void>;
   useProfile(username: string): Promise<void>;

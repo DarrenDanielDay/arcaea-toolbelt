@@ -1,10 +1,12 @@
 :host {
   display: block;
+  box-sizing: border-box;
   --title-length: 664;
 }
 .card {
   background-color: white;
-  zoom: var(--card-zoom, 1);
+  transform: scale(var(--card-scale, 1));
+  transform-origin: 0 0;
   box-sizing: border-box;
   border-radius: 16px;
   box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.12);

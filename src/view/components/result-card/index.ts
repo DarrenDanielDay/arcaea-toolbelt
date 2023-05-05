@@ -45,7 +45,8 @@ const ctx = canvas.getContext("2d")!;
 ctx.font = `600 48px / 80px ${getComputedStyle(document.body).fontFamily}`;
 
 const measureSongTitle = (name: string): number => {
-  return ctx.measureText(name).width;
+  const measure = ctx.measureText(name);
+  return measure.width;
 };
 
 export
@@ -140,6 +141,7 @@ class ResultCard extends HTMLElement implements OnConnected, OnDisconnected, Dis
     noBadge.textContent = `#${bestNo}`;
   }
   private resizeCard() {
-    this.style.setProperty("--card-zoom", `${this.offsetWidth / 1000}`);
+    this.style.setProperty("--card-scale", `${this.offsetWidth / 1000}`);
+    this.style.height = `${this.offsetWidth * 0.32}px`;
   }
 }

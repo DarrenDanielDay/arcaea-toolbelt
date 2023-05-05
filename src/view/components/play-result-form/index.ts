@@ -84,7 +84,7 @@ class PlayResultForm extends HTMLElement implements OnConnected {
 
   private updateCardSize() {
     const zoom = this.form.clientWidth / 1000;
-    this.style.setProperty("--card-zoom", `${zoom}`);
+    this.style.setProperty("--card-scale", `${zoom}`);
   }
 
   private handleFormChange(e: Event) {

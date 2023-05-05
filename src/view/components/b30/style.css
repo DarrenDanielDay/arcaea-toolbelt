@@ -11,7 +11,8 @@ result-card {
   width: 240px;
 }
 .card {
-  zoom: calc(var(--inner-width, 800) / 800);
+  transform: scale(calc(var(--inner-width, 800) / 800));
+  transform-origin: 0 0;
   box-sizing: border-box;
   width: 800px;
   padding: 16px 31px;

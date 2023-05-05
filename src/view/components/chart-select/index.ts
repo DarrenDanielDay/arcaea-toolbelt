@@ -51,6 +51,9 @@ class ChartSelect extends HTMLElement implements OnConnected, OnDisconnected, Di
         this.renderSearchResults(result);
       }
     };
+    input.onfocus = () => {
+      input.select();
+    }
     input.onkeydown = (e) => {
       if (e.key.toLowerCase() === "arrowdown") {
         this.panel.querySelector("div[tabindex]")?.focus();

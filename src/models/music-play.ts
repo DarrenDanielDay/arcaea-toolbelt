@@ -1,5 +1,10 @@
 export interface Song {
   id: string;
+  alias: string[];
+  /**
+   * 616的歌曲id
+   */
+  sid: string;
   name: string;
   cover: string;
   /**

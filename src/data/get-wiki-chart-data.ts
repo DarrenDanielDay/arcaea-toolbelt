@@ -30,7 +30,9 @@ interface ConstantChartData {
   byd: number | null;
   link: string;
 }
-
+/**
+ * 从wiki爬数据的主要出于使用wiki上曲绘的考虑
+ */
 async function getWikiChartTable() {
   await initPageDocument(wikiConstantTable);
   const constantTableEl = htmlDocument.querySelector("table")!;
@@ -57,11 +59,75 @@ async function getWikiChartTable() {
       pst: +past.textContent!,
       prs: +present.textContent!,
       ftr: +future.textContent!,
-      byd: +beyond.textContent!,
+      byd: beyond.textContent!.trim() ? +beyond.textContent! : null,
       link: new URL(name.querySelector("a")!.href).pathname,
     });
   }
   return songs;
+}
+
+async function getArcInfData() {
+  const res = await fetch("https://raw.githubusercontent.com/Arcaea-Infinity/ArcaeaSongDatabase/main/arcsong.json");
+  type ArcInfChartData = {
+    name_en: string;
+    /**
+     * 曲包名
+     */
+    set_friendly: string;
+    /**
+     * 定数的十倍
+     */
+    rating: number;
+  };
+
+  type ArcInfSongData = {
+    song_id: string;
+    alias: string[];
+    difficulties: ArcInfChartData[];
+  };
+
+  const arcInfinityData: ArcInfSongData[] = (await res.json()).songs;
+  const indexed = arcInfinityData.reduce<{ [name: string]: ArcInfSongData[] }>((map, song) => {
+    const chart = song.difficulties[0]!;
+    const songName = chart.name_en;
+    if (map[songName]) {
+      console.log(`重名歌曲：${songName}`);
+    }
+    const songs: ArcInfSongData[] = (map[songName] ??= []);
+    songs.push(song);
+    return map;
+  }, {});
+  return {
+    getSong(name: string, { pst, prs, ftr, byd }: ConstantChartData): ArcInfSongData {
+      const songs = indexed[name];
+      if (!songs) {
+        throw new Error(`曲目 ${name} 未找到`);
+      }
+      if (songs.length === 1) {
+        return songs[0]!;
+      }
+      // 重名曲目，看谱面定数区分
+      const song = songs.filter((song) =>
+        [pst, prs, ftr, byd].every((c, i) => {
+          if (c == null) {
+            return true;
+          }
+          const difficulty = song.difficulties[i];
+          if (!difficulty) {
+            throw new Error(`${name} ${[pst, prs, ftr, byd]} 没有难度 ${i}`);
+          }
+          // 浮点误差
+          return Math.abs(difficulty!.rating / 10 - c) < 0.01;
+        })
+      );
+
+      if (song.length !== 1) {
+        throw new Error(`这都能重复，没救了`);
+      }
+      return song[0]!;
+    },
+    raw: arcInfinityData,
+  };
 }
 
 function getWikiTableItemsByLabel(label: Element) {
@@ -74,10 +140,12 @@ function getWikiTableItemsByLabel(label: Element) {
 
 export async function fetchWikiChartData(): Promise<SongData[]> {
   const songs = await getWikiChartTable();
+  const arcInf = await getArcInfData();
   const songsData: SongData[] = [];
   const difficulties = [Difficulty.Past, Difficulty.Present, Difficulty.Future] satisfies Difficulty[];
   for (const song of songs) {
     const { name, link, byd } = song;
+    const arcInfSong = arcInf.getSong(name, song);
     // 由于歌曲wiki链接是唯一的，因此wiki链接可以作为歌曲id使用
     const songId = link.slice(1);
     const detailPageURL = wikiURL(link);
@@ -94,7 +162,6 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
     const notes: number[] = getWikiTableItemsByLabel(noteLabel).map((el) => +el.textContent!);
     const levelLabel = labels.find((label) => label.textContent!.match(/等级/i))!;
     const levels: string[] = getWikiTableItemsByLabel(levelLabel).map((el) => el.textContent!);
-
     const charts = difficulties.map<Chart>((difficulty, i) => ({
       constant: song[difficulty],
       difficulty,
@@ -109,9 +176,12 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
       if (beyond) {
         addon.cover = wikiURL(beyond.src).toString();
       }
-      const lineBreak = htmlDocument.querySelector("#title br");
-      if (lineBreak) {
-        addon.song = lineBreak.nextSibling?.textContent ?? undefined;
+      const bydDifficulty = arcInfSong.difficulties[3];
+      if (!bydDifficulty) {
+        throw new Error(`Arcaea Infinity的数据不包含 ${name} 的byd谱`);
+      }
+      if (bydDifficulty.name_en !== name) {
+        addon.song = bydDifficulty.name_en;
       }
       const bydChart: Chart = {
         constant: byd,
@@ -129,6 +199,8 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
       cover,
       name,
       id: songId,
+      sid: arcInfSong.song_id,
+      alias: arcInfSong.alias,
       charts,
     };
     songsData.push(songData);
@@ -143,11 +215,15 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
     const notes = [674, 777, 831];
     const songId = "Last";
     const levels = ["4", "7", "9"];
+    const last = "last";
+    const lasteternity = "lasteternity";
     songsData.push({
       bpm: "175",
       cover: wikiURL("/images/thumb/a/a2/Songs_last.jpg/256px-Songs_last.jpg").toString(),
       id: "Last",
+      sid: last,
       name: "Last",
+      alias: arcInf.raw.find((s) => s.song_id === last)!.alias,
       charts: difficulties
         .map<Chart>((difficulty, i) => ({
           constant: song[difficulty]!,
@@ -170,19 +246,28 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
               cover: wikiURL("/images/thumb/1/1e/Songs_last_byd.jpg/256px-Songs_last_byd.jpg").toString(),
             },
           },
-          {
-            id: `Last | Eternity@${Difficulty.Beyond}`,
-            constant: 9.7,
-            difficulty: Difficulty.Beyond,
-            level: "9+",
-            note: 786,
-            songId,
-            byd: {
-              song: `Last | Eternity`,
-              cover: wikiURL("/images/thumb/9/92/Songs_lasteternity.jpg/256px-Songs_lasteternity.jpg").toString(),
-            },
-          },
         ]),
+    });
+    songsData.push({
+      bpm: "175",
+      cover: wikiURL("/images/thumb/9/92/Songs_lasteternity.jpg/256px-Songs_lasteternity.jpg").toString(),
+      id: "Last | Eternity",
+      name: "Last | Eternity",
+      sid: lasteternity,
+      alias: arcInf.raw.find((s) => s.song_id === lasteternity)!.alias,
+      charts: [
+        {
+          id: `Last | Eternity@${Difficulty.Beyond}`,
+          constant: 9.7,
+          difficulty: Difficulty.Beyond,
+          level: "9+",
+          note: 786,
+          songId,
+          byd: {
+            song: `Last | Eternity`,
+          },
+        },
+      ],
     });
   })();
   return songsData;

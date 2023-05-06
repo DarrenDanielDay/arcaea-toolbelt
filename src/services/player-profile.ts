@@ -162,8 +162,9 @@ export class ProfileServiceImpl implements ProfileService {
     const ptt30 = b30.map((r) => r.score.potential);
     const b30Sum = sum(ptt30);
     const b10Sum = sum(ptt30.slice(0, 10));
-    const maxPotential = b30.length < 30 ? NaN : (b10Sum + b30Sum) / 40;
-    const r10Average = (+p.potential * 40 - b30Sum) / 10;
+    const maxPotential = (b10Sum + b30Sum) / 40;
+    // 如果成绩少于10个，recent 10的平均值应当按照成绩个数取平均
+    const r10Average = (+p.potential * 40 - b30Sum) / Math.min(playResults.length, 10);
 
     return {
       username: p.username,

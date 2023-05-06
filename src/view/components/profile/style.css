@@ -11,3 +11,7 @@ blockquote {
   border-radius: 4px;
   background-color:var(--bs-gray-200);
 }
+
+.cross-site-script > div > div {
+  margin: 8px 0;
+}

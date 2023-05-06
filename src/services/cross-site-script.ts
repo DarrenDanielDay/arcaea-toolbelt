@@ -108,26 +108,31 @@ type QueryBests = {
   };
 };
 
-export async function queryFriendsB39(type: string): Promise<Profile[]> {
+export async function queryFriendsB39(type: string, only: string | null): Promise<Profile[]> {
   const profile = await getSelfProfile();
   const friends = profile.friends;
   const limit = 39;
-
-  let friendBestsMinPtt = new Map(friends.map((f) => [f.name, -Infinity]));
-  if (type === "both") {
-    // @ts-expect-error 要用的字段都有，类型没问题
-    friends.push(profile);
-    friendBestsMinPtt.set(profile.name, -Infinity);
-  } else if (type === "selfonly") {
-    friends.length = 0;
-    // @ts-expect-error
-    friends.push(profile);
-  }
+  const queryPlayers = (() => {
+    if (only) {
+      return [...friends, profile].filter((player) => player.name === only);
+    }
+    if (type === "both") {
+      return [...friends, profile];
+    } else if (type === "selfonly") {
+      return [profile];
+    }
+    return friends;
+  })();
+  console.log(
+    `查询目标玩家：`,
+    queryPlayers.map((p) => p.name)
+  );
+  const friendBestsMinPtt = new Map(queryPlayers.map((f) => [f.name, -Infinity]));
   interface PlayResultWithPtt {
     result: PlayResult;
     ptt: number;
   }
-  const friendsPlayResults = Object.fromEntries(friends.map<[string, PlayResultWithPtt[]]>((f) => [f.name, []]));
+  const friendsPlayResults = Object.fromEntries(queryPlayers.map<[string, PlayResultWithPtt[]]>((f) => [f.name, []]));
   for (const { song, chart } of flattenData) {
     console.log(
       `正在查询 ${chart.byd?.song ?? song.name} 的 ${chart.difficulty}难度（${chart.constant.toFixed(1)}）好友榜……`
@@ -174,7 +179,7 @@ export async function queryFriendsB39(type: string): Promise<Profile[]> {
     }
   }
   const result: QueryBests = Object.fromEntries(
-    friends.map((friend) => [
+    queryPlayers.map((friend) => [
       friend.name,
       friendsPlayResults[friend.name]!.reduce<{ [chartId: string]: PlayResult }>((map, curr) => {
         map[curr.result.chartId] = curr.result;
@@ -186,14 +191,16 @@ export async function queryFriendsB39(type: string): Promise<Profile[]> {
     best,
     username: name,
     version: 1,
-    potential: (friends.find((f) => f.name === name)!.rating / 100).toFixed(2),
+    potential: (queryPlayers.find((f) => f.name === name)!.rating / 100).toFixed(2),
   }));
 }
 
 async function main() {
   const url = new URL(import.meta.url);
-  const querySelf = url.searchParams.get("type") || "friendonly";
-  const profiles = await queryFriendsB39(querySelf);
+  const search = url.searchParams;
+  const queryType = search.get("type") || "friendonly";
+  const queryOnly = search.get("only");
+  const profiles = await queryFriendsB39(queryType, queryOnly);
   console.log(profiles);
   handleProfiles(profiles);
 }

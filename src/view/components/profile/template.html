@@ -6,7 +6,7 @@
   <button type="button" class="btn btn-outline-secondary export-profile">导出当前存档</button>
   <button type="button" class="btn btn-outline-secondary import-profile">导入存档</button>
 </div>
-<div class="row m-3">
+<div class="cross-site-script row m-3">
   <p>
     b30相关的功能主要是手动录入计算并生成看板，类似excel算分表格的在线版。下面也提供一个无需订阅的查分脚本，所有的查分操作都会在浏览器内进行，原理和大多数bot一样是查好友榜，使用此功能的封号风险请自行承担。
   </p>
@@ -14,15 +14,32 @@
     在Chrome/Edge浏览器打开登录官网，按F12打开开发者工具，找到控制台（Console），复制并执行以下代码可以在官网查分（将以下代码写进油猴脚本也可以用）。
   </p>
   <div>
-    <p>只查自己</p>
+    <div>只查自己</div>
     <blockquote id="self-only"></blockquote>
   </div>
   <div>
-    <p>只查好友（适用于低ptt小号，因为ptt越小需要查的分越多，会很慢）</p>
+    <div>只查好友（适用于低ptt小号，因为ptt越小需要查的分越多，会很慢）</div>
     <blockquote id="friends-only"></blockquote>
   </div>
   <div>
-    <p>查自己和好友</p>
+    <div class="row">
+      <div class="col-auto">
+        <label for="only-player" class="col-form-label"> 只查特定玩家： </label>
+      </div>
+      <div class="col-auto">
+        <input
+          type="text"
+          id="only-player"
+          class="form-control"
+          placeholder="输入玩家名"
+          oninput="this.getRootNode().host.updatePlayerQuery(this.value)"
+        />
+      </div>
+    </div>
+    <blockquote id="only">（请先输入）</blockquote>
+  </div>
+  <div>
+    <div>查自己和好友</div>
     <blockquote id="friends-and-me"></blockquote>
   </div>
   <div>

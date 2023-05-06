@@ -76,14 +76,9 @@ class ProfilePage extends HTMLElement implements OnConnected {
         }
       });
     };
-    const url = new URL("./services/cross-site-script.js", location.href);
-    const getScript = (type: string) => {
-      url.searchParams.set("type", type);
-      return `import("${url}")`;
-    };
-    shadow.querySelector("blockquote#friends-and-me")!.textContent = getScript("both");
-    shadow.querySelector("blockquote#friends-only")!.textContent = getScript("friendonly");
-    shadow.querySelector("blockquote#self-only")!.textContent = getScript("selfonly");
+    shadow.querySelector("blockquote#friends-and-me")!.textContent = this.getScript("both");
+    shadow.querySelector("blockquote#friends-only")!.textContent = this.getScript("friendonly");
+    shadow.querySelector("blockquote#self-only")!.textContent = this.getScript("selfonly");
 
     this.updateGreet();
   }
@@ -110,6 +105,26 @@ class ProfilePage extends HTMLElement implements OnConnected {
       this.greet.textContent = `当前存档：${profile.username}（${profile.potential}）`;
     } else {
       this.greet.textContent = "未选择存档";
+    }
+  }
+
+  private getScript(type: string, only?: string) {
+    const url = new URL("./services/cross-site-script.js", location.href);
+    const searchParams = url.searchParams;
+    if (only) {
+      searchParams.set("only", only);
+    } else {
+      searchParams.set("type", type);
+    }
+    return `import("${url}")`;
+  }
+
+  protected updatePlayerQuery(name: string) {
+    const onlyCode = this.shadowRoot!.querySelector("blockquote#only")!;
+    if (name) {
+      onlyCode.textContent = this.getScript("", name);
+    } else {
+      onlyCode.textContent = "（请先输入）";
     }
   }
 }

@@ -2,6 +2,7 @@ import { PlayResult } from "../models/music-play";
 import { B30Response, BestResultItem, Profile } from "../models/profile";
 import { download } from "../utils/download";
 import { readFile } from "../utils/read-file";
+import { alert, confirm } from "../view/components/global-message";
 import { ChartService, MusicPlayService, ProfileService } from "./declarations";
 
 const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);
@@ -63,7 +64,7 @@ export class ProfileServiceImpl implements ProfileService {
       const username: string = json.username;
       const oldProfile = localStorage.getItem(username);
       if (oldProfile != null) {
-        if (!confirm("已存在同名存档，是否覆盖？")) {
+        if (!(await confirm("已存在同名存档，是否覆盖？"))) {
           return;
         }
       }
@@ -85,6 +86,7 @@ export class ProfileServiceImpl implements ProfileService {
   async addResult(playResult: PlayResult, replace?: boolean | undefined): Promise<void> {
     const p = this.profile;
     if (!p) {
+      alert("未选择存档");
       return;
     }
     if (!replace) {
@@ -96,7 +98,10 @@ export class ProfileServiceImpl implements ProfileService {
             res.type === "score" ? res.score : this.musicPlay.computeScore(chart, res.result);
           const oldScore = getScore(oldResult);
           const newScore = getScore(playResult);
-          if (newScore <= oldScore && !confirm(`当前分数（${newScore}）未超过现有分数（${oldScore}），是否替换？`)) {
+          if (
+            newScore <= oldScore &&
+            !(await confirm(`当前分数（${newScore}）未超过现有分数（${oldScore}），是否替换？`))
+          ) {
             return;
           }
         }

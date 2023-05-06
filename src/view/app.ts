@@ -12,6 +12,7 @@ import { ProfileServiceImpl } from "../services/player-profile";
 import { check } from "../utils/component";
 import { ChartSelect } from "./components/chart-select";
 import { ResultCard } from "./components/result-card";
+import { alert } from "./components/global-message";
 document.adoptedStyleSheets = [bootstrap, sheet];
 
 const chart = new ChartServiceImpl();
@@ -71,6 +72,9 @@ const pages: {
   {
     link: b30Link,
     setup() {
+      if (!profile.currentUsername) {
+        alert("未选择存档");
+      }
       const b30Card = new Best30();
       const width = window.innerWidth;
       if (width < 800) {

@@ -4,6 +4,7 @@ import { sheet as bootstrap } from "../../styles/bootstrap.part.css.js";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
 import { $ProfileService, ProfileService } from "../../../services/declarations";
+import { alert } from "../global-message";
 
 export
 @Component({

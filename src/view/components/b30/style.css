@@ -13,11 +13,21 @@ result-card {
 .card {
   transform: scale(calc(var(--inner-width, 800) / 800));
   transform-origin: 0 0;
+  background-image: url("https://wiki.arcaea.cn/images/2/2b/Songs_lovelessdress.jpg");
+  background-repeat: no-repeat;
+  background-position: 30% 0;
+  background-size: cover;
   box-sizing: border-box;
   width: 800px;
-  padding: 16px 31px;
   border: 1px solid var(--bs-border-color);
   border-radius: 16px;
+}
+
+.mask {
+  padding: 16px 31px;
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .username, .banner {

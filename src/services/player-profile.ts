@@ -21,7 +21,7 @@ const isValidProfileV1 = (value: any): value is Profile => {
 };
 
 export class ProfileServiceImpl implements ProfileService {
-  currentUsername: string | null = sessionStorage.getItem(KEY_CURRENT_USERNAME);
+  currentUsername: string | null = this.getInitCurrentUsername();
 
   constructor(private readonly musicPlay: MusicPlayService, private readonly chartService: ChartService) {}
 
@@ -45,7 +45,7 @@ export class ProfileServiceImpl implements ProfileService {
   }
 
   async getProfileList(): Promise<string[]> {
-    return Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i)!);
+    return this.getProfileListSync();
   }
 
   async syncProfiles(data: unknown[]): Promise<void> {
@@ -188,5 +188,27 @@ export class ProfileServiceImpl implements ProfileService {
 
   private saveProfile(profile: Profile, key = this.currentUsername!) {
     localStorage.setItem(key, JSON.stringify(profile));
+  }
+
+  private getInitCurrentUsername(): string | null {
+    const sessionUsername = sessionStorage.getItem(KEY_CURRENT_USERNAME);
+    if (sessionUsername) {
+      return sessionUsername;
+    }
+    const profiles = this.getProfileListSync();
+    if (profiles.length === 1) {
+      return profiles[0]!;
+    }
+    return null;
+  }
+
+  private getProfileListSync(): string[] {
+    return Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i)!).filter((key) => {
+      const profile = this.getProfile(key);
+      if (!profile) {
+        return false;
+      }
+      return isValidProfileV1(profile);
+    });
   }
 }

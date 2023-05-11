@@ -1,0 +1,12 @@
+.cover-container {
+  display: flex;
+  justify-content: center;
+}
+
+.cover {
+  box-sizing: content-box;
+  width: 128px;
+  height: 128px;
+  border: 8px solid var(--difficulty);
+  width: fit-content;
+}

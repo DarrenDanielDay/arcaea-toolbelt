@@ -1,0 +1,41 @@
+<template id="chart-query-panel">
+  <form class="chart-query-form">
+    <div class="row m-3">
+      <div class="col-4">
+        <input name="min-constant" type="number" step="0.1" placeholder="默认1.0" class="form-control" />
+      </div>
+      <div class="col-1">
+        <label for="min-constant" class="col-form-label">≤</label>
+      </div>
+      <div class="col col-form-label">定数</div>
+      <div class="col-1">
+        <label for="max-constant" class="col-form-label">≤</label>
+      </div>
+      <div class="col-4">
+        <input name="max-constant" type="number" step="0.1" placeholder="默认12.0" class="form-control" />
+      </div>
+    </div>
+    <div class="row m-3">
+      <div class="col">
+        <button type="button" class="btn btn-primary query">查询</button>
+        <button type="button" class="btn btn-secondary roll">roll一个</button>
+      </div>
+    </div>
+  </form>
+  <div class="result-table"></div>
+</template>
+
+<template id="query-result-item">
+  <div class="p-3 border">
+    <div class="result-item row">
+      <div class="constant col-2"></div>
+      <div class="charts col-10"></div>
+    </div>
+  </div>
+</template>
+
+<template id="chart-display">
+  <div class="cover-container">
+    <img class="cover" loading="lazy" />
+  </div>
+</template>

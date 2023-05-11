@@ -1,0 +1,21 @@
+{
+  "Component": {
+    "scope": "javascript,typescript",
+    "prefix": "comp",
+    "body": [
+      "import html from \"bundle-text:./template.html\";",
+      "import { sheet } from \"./style.css.js\";",
+      "import { Component } from \"../../../utils/component\";",
+      "import { bootstrap } from \"../../styles/index.js\";",
+      "",
+      "export",
+      "@Component({",
+      "  selector: \"$1\",",
+      "  html,",
+      "  css: [bootstrap, sheet],",
+      "})",
+      "class $2 extends HTMLElement {}"
+    ],
+    "description": "Log output to console"
+  }
+}

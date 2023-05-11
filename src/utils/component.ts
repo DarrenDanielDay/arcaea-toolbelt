@@ -1,4 +1,5 @@
 import { create } from "sheetly";
+import { ParseSelector } from "typed-query-selector/parser";
 
 export interface ComponentOptions {
   selector: string;
@@ -39,7 +40,7 @@ export const Component = ({ html, selector, css }: ComponentOptions) => {
 export const check = (components: CustomElementConstructor[]) => {
   // 强制产生副作用
   components.length = 0;
-}
+};
 
 export interface OnConnected {
   connectedCallback(): void;
@@ -62,6 +63,26 @@ export const fragment = (html: string): DocumentFragment => {
   t.innerHTML = html;
   return t.content;
 };
+
+export const query =
+  <T extends Record<string, string>>(queries: T): Query<T> =>
+  (host) =>
+    // @ts-expect-error Dynamic Implementation
+    Object.fromEntries(Object.entries(queries).map(([key, value]) => [key, host.querySelector(value)]));
+
+export const textContent = <T extends Record<string, string>>(refs: Refs<T>, texts: Partial<Record<keyof T, string>>) => {
+  for (const key in texts) {
+    refs[key]!.textContent = texts[key]!;
+  }
+};
+
+export type Query<T extends Record<string, string>> = (host: ParentNode) => Refs<T>;
+
+export type Refs<T extends Record<string, string>> = {
+  [K in keyof T]: ParseSelector<T[K]>;
+};
+
+export type RefsOf<Q> = Q extends Query<infer T> ? Refs<T> : never;
 
 export const clone = <T extends Node>(el: T): T => el.cloneNode(true) as T;
 

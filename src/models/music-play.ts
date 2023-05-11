@@ -7,6 +7,7 @@ export interface Song {
   sid: string;
   name: string;
   cover: string;
+  pack: string;
   /**
    * bpm不是数字，因为有会变节奏的曲子
    */

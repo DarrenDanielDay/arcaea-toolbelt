@@ -7,6 +7,7 @@ import {
   PartnerClearRank,
   PlayResult,
   ScoreResult,
+  Song,
   SongData,
 } from "../models/music-play";
 import { B30Response, Profile } from "../models/profile";
@@ -14,6 +15,7 @@ import { token } from "./di";
 
 export interface SearchResult {
   chart: Chart;
+  song: Song;
   sort: number;
   title: string;
   cover: string;
@@ -24,6 +26,8 @@ export interface SearchResult {
 export interface ChartService {
   getSongData(): Promise<SongData[]>;
   searchChart(searchText: string): Promise<SearchResult[]>;
+  queryChartsByConstant(min: number, max: number): Promise<SearchResult[]>;
+  roll(min: number, max: number): Promise<SearchResult | null>;
 }
 
 export interface MusicPlayService {

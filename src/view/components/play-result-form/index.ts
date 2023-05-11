@@ -1,9 +1,9 @@
-import { CleanUp, Component, Disposable, OnConnected, OnDisconnected, cleanup, effect } from "../../../utils/component";
+import { Component, OnConnected } from "../../../utils/component";
 import css from "bundle-text:./style.css";
 import html from "bundle-text:./template.html";
 import { ResultCard } from "../result-card";
 import { ChartSelect } from "../chart-select";
-import { sheet as bootstrap } from "../../styles/bootstrap.part.css.js";
+import { bootstrap } from "../../styles";
 import { create } from "sheetly";
 import { Inject } from "../../../services/di";
 import { $ChartService, $MusicPlayService, ChartService, MusicPlayService } from "../../../services/declarations";

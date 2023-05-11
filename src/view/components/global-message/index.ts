@@ -1,7 +1,7 @@
 import html from "bundle-text:./template.html";
 import { sheet } from "./style.css.js";
 import { Component, OnConnected, clone } from "../../../utils/component";
-import { sheet as bootstrap } from "../../styles/bootstrap.part.css.js";
+import { bootstrap } from "../../styles";
 
 export
 @Component({

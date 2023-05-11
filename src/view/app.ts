@@ -3,7 +3,7 @@ import { sheet } from "./app.css.js";
 import { PlayResultForm } from "./components/play-result-form";
 import { ProfilePage } from "./components/profile";
 import { Best30 } from "./components/b30";
-import { sheet as bootstrap } from "./styles/bootstrap.part.css.js";
+import { bootstrap } from "./styles";
 import { provide } from "../services/di";
 import { $ChartService, $MusicPlayService, $ProfileService } from "../services/declarations";
 import { ChartServiceImpl } from "../services/chart-data";
@@ -13,6 +13,7 @@ import { check } from "../utils/component";
 import { ChartSelect } from "./components/chart-select";
 import { ResultCard } from "./components/result-card";
 import { alert } from "./components/global-message";
+import { ChartQuery } from "./pages/chart-query";
 document.adoptedStyleSheets = [bootstrap, sheet];
 
 const chart = new ChartServiceImpl();
@@ -31,6 +32,7 @@ const main = document.querySelector("main")!;
 const profileLink = document.querySelector("a#profile")!;
 const b30Link = document.querySelector("a#b30")!;
 const addResultLink = document.querySelector("a#add-result")!;
+const chartsLink = document.querySelector("a#charts")!;
 const show = "show";
 toggler.onclick = () => {
   if (collapsePanel.classList.contains(show)) {
@@ -81,6 +83,12 @@ const pages: {
         document.body.style.setProperty("--inner-width", `${width}`);
       }
       main.appendChild(b30Card);
+    },
+  },
+  {
+    link: chartsLink,
+    setup() {
+      main.appendChild(new ChartQuery());
     },
   },
 ];

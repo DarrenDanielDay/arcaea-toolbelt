@@ -126,6 +126,13 @@ async function getArcInfData() {
       }
       return song[0]!;
     },
+    getPack(song: ArcInfSongData) {
+      const packNames = song.difficulties.map((d) => d.set_friendly);
+      if (new Set(packNames).size !== 1) {
+        throw new Error(`${song.song_id} 曲包名不唯一？`);
+      }
+      return packNames[0]!;
+    },
     raw: arcInfinityData,
   };
 }
@@ -202,6 +209,7 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
       sid: arcInfSong.song_id,
       alias: arcInfSong.alias,
       charts,
+      pack: arcInf.getPack(arcInfSong),
     };
     songsData.push(songData);
   }
@@ -217,12 +225,14 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
     const levels = ["4", "7", "9"];
     const last = "last";
     const lasteternity = "lasteternity";
+    const pack = "Silent Answer";
     songsData.push({
       bpm: "175",
       cover: wikiURL("/images/thumb/a/a2/Songs_last.jpg/256px-Songs_last.jpg").toString(),
       id: "Last",
       sid: last,
       name: "Last",
+      pack,
       alias: arcInf.raw.find((s) => s.song_id === last)!.alias,
       charts: difficulties
         .map<Chart>((difficulty, i) => ({
@@ -253,6 +263,7 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
       cover: wikiURL("/images/thumb/9/92/Songs_lasteternity.jpg/256px-Songs_lasteternity.jpg").toString(),
       id: "Last | Eternity",
       name: "Last | Eternity",
+      pack,
       sid: lasteternity,
       alias: arcInf.raw.find((s) => s.song_id === lasteternity)!.alias,
       charts: [

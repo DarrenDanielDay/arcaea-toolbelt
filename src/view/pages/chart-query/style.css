@@ -1,0 +1,24 @@
+.chart-query-form {
+  min-width: 320px;
+  max-width: 800px;
+}
+
+.result-item {
+  box-sizing: border-box;
+}
+
+.cover-container {
+  border: 8px solid var(--difficulty);
+  cursor: pointer;
+}
+
+.cover-container img.cover {
+  width: 64px;
+  height: 64px;
+}
+
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

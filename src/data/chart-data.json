@@ -31,7 +31,8 @@
         "note": 1450,
         "songId": "Grievous_Lady"
       }
-    ]
+    ],
+    "pack": "Vicious Labyrinth"
   },
   {
     "bpm": "200",
@@ -77,7 +78,8 @@
         "note": 1279,
         "songId": "Fracture_Ray"
       }
-    ]
+    ],
+    "pack": "Luminous Sky"
   },
   {
     "bpm": "234",
@@ -111,7 +113,8 @@
         "note": 1568,
         "songId": "Aegleseeker"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "205",
@@ -145,7 +148,8 @@
         "note": 1384,
         "songId": "SAIKYO_STRONGER"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "190",
@@ -179,7 +183,8 @@
         "note": 1522,
         "songId": "Misdeed_-la_bont%C3%A9_de_Dieu_et_l%27origine_du_mal-"
       }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "199",
@@ -192,7 +197,8 @@
       { "constant": 5, "difficulty": "pst", "id": "LAMIA@pst", "level": "5", "note": 826, "songId": "LAMIA" },
       { "constant": 8.3, "difficulty": "prs", "id": "LAMIA@prs", "level": "8", "note": 885, "songId": "LAMIA" },
       { "constant": 10.9, "difficulty": "ftr", "id": "LAMIA@ftr", "level": "10+", "note": 1385, "songId": "LAMIA" }
-    ]
+    ],
+    "pack": "O.N.G.E.K.I. Collaboration"
   },
   {
     "bpm": "186",
@@ -212,7 +218,8 @@
         "note": 1476,
         "songId": "Dantalion"
       }
-    ]
+    ],
+    "pack": "Black Fate"
   },
   {
     "bpm": "160",
@@ -239,7 +246,8 @@
         "note": 1099,
         "songId": "TEmPTaTiON"
       }
-    ]
+    ],
+    "pack": "maimai Collaboration"
   },
   {
     "bpm": "181",
@@ -273,7 +281,8 @@
         "note": 1576,
         "songId": "%EF%BC%831f1e33"
       }
-    ]
+    ],
+    "pack": "Black Fate"
   },
   {
     "bpm": "200",
@@ -307,7 +316,8 @@
         "note": 1412,
         "songId": "BUCHiGiRE_Berserker"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "170",
@@ -341,7 +351,8 @@
         "note": 1452,
         "songId": "World_Vanquisher"
       }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "178",
@@ -363,7 +374,8 @@
         "songId": "Testify",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "Final Verdict"
   },
   {
     "bpm": "172",
@@ -397,7 +409,8 @@
         "note": 1021,
         "songId": "Divine_Light_of_Myriad"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "71-192",
@@ -410,7 +423,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "%CE%A94@pst", "level": "3", "note": 816, "songId": "%CE%A94" },
       { "constant": 7.5, "difficulty": "prs", "id": "%CE%A94@prs", "level": "7", "note": 943, "songId": "%CE%A94" },
       { "constant": 10.8, "difficulty": "ftr", "id": "%CE%A94@ftr", "level": "10+", "note": 1393, "songId": "%CE%A94" }
-    ]
+    ],
+    "pack": "O.N.G.E.K.I. Collaboration"
   },
   {
     "bpm": "180",
@@ -444,7 +458,8 @@
         "note": 1203,
         "songId": "Spider%27s_Thread"
       }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "160",
@@ -478,7 +493,8 @@
         "note": 1146,
         "songId": "Ringed_Genesis"
       }
-    ]
+    ],
+    "pack": "Adverse Prelude"
   },
   {
     "bpm": "180",
@@ -491,7 +507,8 @@
       { "constant": 4.5, "difficulty": "pst", "id": "Stasis@pst", "level": "4", "note": 848, "songId": "Stasis" },
       { "constant": 7, "difficulty": "prs", "id": "Stasis@prs", "level": "7", "note": 935, "songId": "Stasis" },
       { "constant": 10.7, "difficulty": "ftr", "id": "Stasis@ftr", "level": "10+", "note": 1521, "songId": "Stasis" }
-    ]
+    ],
+    "pack": "Lanota Collaboration"
   },
   {
     "bpm": "205",
@@ -525,7 +542,8 @@
         "note": 1524,
         "songId": "PRIMITIVE_LIGHTS"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "170",
@@ -559,7 +577,8 @@
         "note": 1094,
         "songId": "Axium_Crisis"
       }
-    ]
+    ],
+    "pack": "Vicious Labyrinth"
   },
   {
     "bpm": "188",
@@ -593,7 +612,8 @@
         "note": 1369,
         "songId": "Ouroboros_-twin_stroke_of_the_end-"
       }
-    ]
+    ],
+    "pack": "Groove Coaster Collaboration"
   },
   {
     "bpm": "200",
@@ -606,7 +626,8 @@
       { "constant": 5.5, "difficulty": "pst", "id": "Cyaegha@pst", "level": "5", "note": 760, "songId": "Cyaegha" },
       { "constant": 8.4, "difficulty": "prs", "id": "Cyaegha@prs", "level": "8", "note": 984, "songId": "Cyaegha" },
       { "constant": 10.7, "difficulty": "ftr", "id": "Cyaegha@ftr", "level": "10+", "note": 1368, "songId": "Cyaegha" }
-    ]
+    ],
+    "pack": "Absolute Reason"
   },
   {
     "bpm": "240",
@@ -640,7 +661,8 @@
         "note": 1212,
         "songId": "REKKA_RESONANCE"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "185",
@@ -674,7 +696,8 @@
         "note": 1249,
         "songId": "AMAZING_MIGHTYYYY!!!!"
       }
-    ]
+    ],
+    "pack": "maimai Collaboration"
   },
   {
     "bpm": "250-390",
@@ -701,7 +724,8 @@
         "note": 1483,
         "songId": "GENOCIDER"
       }
-    ]
+    ],
+    "pack": "WACCA Collaboration"
   },
   {
     "bpm": "175",
@@ -747,7 +771,8 @@
           "song": "Singularity VVVIP"
         }
       }
-    ]
+    ],
+    "pack": "Binary Enfold"
   },
   {
     "bpm": "231",
@@ -792,7 +817,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/a/ab/Songs_tempestissimo_byd.jpg/256px-Songs_tempestissimo_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Black Fate"
   },
   {
     "bpm": "191",
@@ -805,7 +831,8 @@
       { "constant": 5.5, "difficulty": "pst", "id": "Halcyon@pst", "level": "5", "note": 662, "songId": "Halcyon" },
       { "constant": 8.2, "difficulty": "prs", "id": "Halcyon@prs", "level": "8", "note": 943, "songId": "Halcyon" },
       { "constant": 10.7, "difficulty": "ftr", "id": "Halcyon@ftr", "level": "10+", "note": 1227, "songId": "Halcyon" }
-    ]
+    ],
+    "pack": "Luminous Sky"
   },
   {
     "bpm": "200",
@@ -832,7 +859,8 @@
         "note": 1251,
         "songId": "Overwhelm"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "177",
@@ -866,7 +894,8 @@
         "note": 1299,
         "songId": "NULL_APOPHENIA"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "105",
@@ -900,7 +929,8 @@
         "note": 1077,
         "songId": "Corps-sans-organes"
       }
-    ]
+    ],
+    "pack": "Ambivalent Vision"
   },
   {
     "bpm": "202",
@@ -927,7 +957,8 @@
         "note": 1433,
         "songId": "AttraqtiA"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "250",
@@ -961,7 +992,8 @@
         "note": 1479,
         "songId": "GLORY%EF%BC%9AROAD"
       }
-    ]
+    ],
+    "pack": "Crimson Solace"
   },
   {
     "bpm": "182",
@@ -974,7 +1006,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Cyanine@pst", "level": "4", "note": 661, "songId": "Cyanine" },
       { "constant": 7.5, "difficulty": "prs", "id": "Cyanine@prs", "level": "7", "note": 947, "songId": "Cyanine" },
       { "constant": 10.6, "difficulty": "ftr", "id": "Cyanine@ftr", "level": "10", "note": 1171, "songId": "Cyanine" }
-    ]
+    ],
+    "pack": "Lanota Collaboration"
   },
   {
     "bpm": "200",
@@ -1008,7 +1041,8 @@
         "note": 1134,
         "songId": "Sheriruth_(Laur_Remix)"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "175",
@@ -1028,7 +1062,8 @@
         "note": 1132,
         "songId": "Seclusion"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "153",
@@ -1062,7 +1097,8 @@
         "note": 1292,
         "songId": "Live_Fast_Die_Young"
       }
-    ]
+    ],
+    "pack": "Binary Enfold"
   },
   {
     "bpm": "195",
@@ -1089,7 +1125,8 @@
         "note": 1286,
         "songId": "Manic_Jeer"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "190",
@@ -1123,7 +1160,8 @@
         "note": 1192,
         "songId": "Lightning_Screw"
       }
-    ]
+    ],
+    "pack": "Divided Heart"
   },
   {
     "bpm": "122-230",
@@ -1143,7 +1181,8 @@
         "note": 1100,
         "songId": "Aurgelmir"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "185",
@@ -1177,7 +1216,8 @@
         "note": 1084,
         "songId": "Good_bye,_Merry-Go-Round."
       }
-    ]
+    ],
+    "pack": "O.N.G.E.K.I. Collaboration"
   },
   {
     "bpm": "238",
@@ -1211,7 +1251,8 @@
         "note": 1475,
         "songId": "Last_Celebration"
       }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "211",
@@ -1254,7 +1295,8 @@
         "songId": "Arcana_Eden",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "Final Verdict"
   },
   {
     "bpm": "87-110",
@@ -1288,7 +1330,8 @@
         "note": 1093,
         "songId": "GIMME_DA_BLOOD"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "256",
@@ -1322,7 +1365,8 @@
         "note": 1035,
         "songId": "Garakuta_Doll_Play"
       }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "190",
@@ -1335,7 +1379,8 @@
       { "constant": 4.5, "difficulty": "pst", "id": "Climax@pst", "level": "4", "note": 773, "songId": "Climax" },
       { "constant": 7.5, "difficulty": "prs", "id": "Climax@prs", "level": "7", "note": 988, "songId": "Climax" },
       { "constant": 10.4, "difficulty": "ftr", "id": "Climax@ftr", "level": "10", "note": 1367, "songId": "Climax" }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "202",
@@ -1348,7 +1393,8 @@
       { "constant": 4, "difficulty": "pst", "id": "PUPA@pst", "level": "4", "note": 374, "songId": "PUPA" },
       { "constant": 7.5, "difficulty": "prs", "id": "PUPA@prs", "level": "7", "note": 684, "songId": "PUPA" },
       { "constant": 10.4, "difficulty": "ftr", "id": "PUPA@ftr", "level": "10", "note": 1099, "songId": "PUPA" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "162-180",
@@ -1382,7 +1428,8 @@
         "note": 1190,
         "songId": "%EF%BC%BBX%EF%BC%BD"
       }
-    ]
+    ],
+    "pack": "maimai Collaboration"
   },
   {
     "bpm": "200",
@@ -1395,7 +1442,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "Ikazuchi@pst", "level": "3", "note": 656, "songId": "Ikazuchi" },
       { "constant": 7.5, "difficulty": "prs", "id": "Ikazuchi@prs", "level": "7", "note": 976, "songId": "Ikazuchi" },
       { "constant": 10.4, "difficulty": "ftr", "id": "Ikazuchi@ftr", "level": "10", "note": 1347, "songId": "Ikazuchi" }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "155",
@@ -1408,7 +1456,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Felis@pst", "level": "4", "note": 463, "songId": "Felis" },
       { "constant": 7.5, "difficulty": "prs", "id": "Felis@prs", "level": "7", "note": 624, "songId": "Felis" },
       { "constant": 10.4, "difficulty": "ftr", "id": "Felis@ftr", "level": "10", "note": 1153, "songId": "Felis" }
-    ]
+    ],
+    "pack": "Ephemeral Page"
   },
   {
     "bpm": "200",
@@ -1435,7 +1484,8 @@
         "note": 1173,
         "songId": "Valhalla:0"
       }
-    ]
+    ],
+    "pack": "Sunset Radiance"
   },
   {
     "bpm": "170",
@@ -1469,7 +1519,8 @@
         "note": 1183,
         "songId": "Kissing_Lucifer"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "221",
@@ -1496,7 +1547,8 @@
         "note": 1264,
         "songId": "Chronicle"
       }
-    ]
+    ],
+    "pack": "World Extend"
   },
   {
     "bpm": "210",
@@ -1530,7 +1582,8 @@
         "note": 1313,
         "songId": "Crimson_Throne"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "140?",
@@ -1543,7 +1596,8 @@
       { "constant": 4.5, "difficulty": "pst", "id": "Tiferet@pst", "level": "4", "note": 450, "songId": "Tiferet" },
       { "constant": 7.5, "difficulty": "prs", "id": "Tiferet@prs", "level": "7", "note": 720, "songId": "Tiferet" },
       { "constant": 10.4, "difficulty": "ftr", "id": "Tiferet@ftr", "level": "10", "note": 1086, "songId": "Tiferet" }
-    ]
+    ],
+    "pack": "Tone Sphere Collaboration"
   },
   {
     "bpm": "202",
@@ -1577,7 +1631,8 @@
         "note": 1120,
         "songId": "%CE%93uar%CE%B4ina"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "150",
@@ -1611,7 +1666,8 @@
         "note": 1126,
         "songId": "Hiiro_Gekka,_Kyoushou_no_Zetsu_(nayuta_2017_ver.)"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "200-222",
@@ -1647,7 +1703,8 @@
         "songId": "Pentiment",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "Final Verdict"
   },
   {
     "bpm": "156",
@@ -1681,7 +1738,8 @@
         "note": 1170,
         "songId": "Ether_Strike"
       }
-    ]
+    ],
+    "pack": "Luminous Sky"
   },
   {
     "bpm": "218",
@@ -1715,7 +1773,8 @@
         "note": 1403,
         "songId": "Viyella%27s_Tears"
       }
-    ]
+    ],
+    "pack": "O.N.G.E.K.I. Collaboration"
   },
   {
     "bpm": "222",
@@ -1728,7 +1787,8 @@
       { "constant": 5, "difficulty": "pst", "id": "IZANA@pst", "level": "5", "note": 609, "songId": "IZANA" },
       { "constant": 8.3, "difficulty": "prs", "id": "IZANA@prs", "level": "8", "note": 836, "songId": "IZANA" },
       { "constant": 10.3, "difficulty": "ftr", "id": "IZANA@ftr", "level": "10", "note": 976, "songId": "IZANA" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "222",
@@ -1762,7 +1822,8 @@
         "note": 998,
         "songId": "To:_Alice_Liddell"
       }
-    ]
+    ],
+    "pack": "Ephemeral Page"
   },
   {
     "bpm": "260",
@@ -1782,7 +1843,8 @@
         "note": 980,
         "songId": "Nirv_lucE"
       }
-    ]
+    ],
+    "pack": "Crimson Solace"
   },
   {
     "bpm": "165",
@@ -1816,7 +1878,8 @@
         "note": 1238,
         "songId": "Metallic_Punisher"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "155",
@@ -1850,7 +1913,8 @@
         "note": 1126,
         "songId": "Malicious_Mischance"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "202",
@@ -1884,7 +1948,8 @@
         "note": 1030,
         "songId": "%CE%91terl%CE%B2us"
       }
-    ]
+    ],
+    "pack": "Dynamix Collaboration"
   },
   {
     "bpm": "210",
@@ -1897,7 +1962,8 @@
       { "constant": 4.5, "difficulty": "pst", "id": "Capella@pst", "level": "4", "note": 884, "songId": "Capella" },
       { "constant": 7.5, "difficulty": "prs", "id": "Capella@prs", "level": "7", "note": 904, "songId": "Capella" },
       { "constant": 10.2, "difficulty": "ftr", "id": "Capella@ftr", "level": "10", "note": 1159, "songId": "Capella" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "181",
@@ -1931,7 +1997,8 @@
         "note": 1235,
         "songId": "L%C3%B6schen"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "150",
@@ -1965,7 +2032,8 @@
         "note": 1088,
         "songId": "Redolent_Shape"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "168",
@@ -1985,7 +2053,8 @@
         "note": 1328,
         "songId": "NEO_WINGS"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "165",
@@ -1998,7 +2067,8 @@
       { "constant": 4.5, "difficulty": "pst", "id": "Medusa@pst", "level": "4", "note": 550, "songId": "Medusa" },
       { "constant": 7, "difficulty": "prs", "id": "Medusa@prs", "level": "7", "note": 645, "songId": "Medusa" },
       { "constant": 10.2, "difficulty": "ftr", "id": "Medusa@ftr", "level": "10", "note": 931, "songId": "Medusa" }
-    ]
+    ],
+    "pack": "Muse Dash Collaboration"
   },
   {
     "bpm": "160",
@@ -2011,7 +2081,8 @@
       { "constant": 4.5, "difficulty": "pst", "id": "Conflict@pst", "level": "4", "note": 520, "songId": "Conflict" },
       { "constant": 7.5, "difficulty": "prs", "id": "Conflict@prs", "level": "7", "note": 731, "songId": "Conflict" },
       { "constant": 10.2, "difficulty": "ftr", "id": "Conflict@ftr", "level": "10", "note": 1056, "songId": "Conflict" }
-    ]
+    ],
+    "pack": "Vicious Labyrinth"
   },
   {
     "bpm": "153",
@@ -2045,7 +2116,8 @@
         "note": 1353,
         "songId": "G_e_n_g_a_o_z_o"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "185",
@@ -2065,7 +2137,8 @@
         "note": 1151,
         "songId": "Sheriruth"
       }
-    ]
+    ],
+    "pack": "Eternal Core"
   },
   {
     "bpm": "155",
@@ -2099,7 +2172,8 @@
         "note": 1183,
         "songId": "Trrricksters!!"
       }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "174",
@@ -2145,7 +2219,8 @@
           "song": "PRAGMATISM -RESURRECTION-"
         }
       }
-    ]
+    ],
+    "pack": "Eternal Core"
   },
   {
     "bpm": "185",
@@ -2179,7 +2254,8 @@
         "note": 1130,
         "songId": "Scarlet_Lance"
       }
-    ]
+    ],
+    "pack": "Groove Coaster Collaboration"
   },
   {
     "bpm": "5-315",
@@ -2192,7 +2268,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Bamboo@pst", "level": "3", "note": 499, "songId": "Bamboo" },
       { "constant": 6.5, "difficulty": "prs", "id": "Bamboo@prs", "level": "6", "note": 631, "songId": "Bamboo" },
       { "constant": 10, "difficulty": "ftr", "id": "Bamboo@ftr", "level": "10", "note": 1050, "songId": "Bamboo" }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "170",
@@ -2205,7 +2282,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Xanatos@pst", "level": "4", "note": 735, "songId": "Xanatos" },
       { "constant": 7.5, "difficulty": "prs", "id": "Xanatos@prs", "level": "7", "note": 938, "songId": "Xanatos" },
       { "constant": 10, "difficulty": "ftr", "id": "Xanatos@ftr", "level": "10", "note": 1232, "songId": "Xanatos" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "153",
@@ -2239,7 +2317,8 @@
         "note": 1132,
         "songId": "Free_Myself"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "252",
@@ -2252,7 +2331,8 @@
       { "constant": 4, "difficulty": "pst", "id": "HIVEMIND@pst", "level": "4", "note": 995, "songId": "HIVEMIND" },
       { "constant": 7.5, "difficulty": "prs", "id": "HIVEMIND@prs", "level": "7", "note": 988, "songId": "HIVEMIND" },
       { "constant": 10, "difficulty": "ftr", "id": "HIVEMIND@ftr", "level": "10", "note": 1252, "songId": "HIVEMIND" }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "190",
@@ -2286,7 +2366,8 @@
         "note": 1073,
         "songId": "Oshama_Scramble!"
       }
-    ]
+    ],
+    "pack": "maimai Collaboration"
   },
   {
     "bpm": "165",
@@ -2299,7 +2380,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "Modelista@pst", "level": "3", "note": 418, "songId": "Modelista" },
       { "constant": 7.5, "difficulty": "prs", "id": "Modelista@prs", "level": "7", "note": 691, "songId": "Modelista" },
       { "constant": 10, "difficulty": "ftr", "id": "Modelista@ftr", "level": "10", "note": 1010, "songId": "Modelista" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "146",
@@ -2333,7 +2415,8 @@
         "note": 1040,
         "songId": "Alexandrite"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "256",
@@ -2367,7 +2450,8 @@
         "note": 1150,
         "songId": "Vicious_Heroism"
       }
-    ]
+    ],
+    "pack": "Absolute Reason"
   },
   {
     "bpm": "190",
@@ -2412,7 +2496,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/8/8b/Songs_trappola_byd.jpg/256px-Songs_trappola_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Vicious Labyrinth"
   },
   {
     "bpm": "201",
@@ -2425,7 +2510,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Mirzam@pst", "level": "4", "note": 662, "songId": "Mirzam" },
       { "constant": 7, "difficulty": "prs", "id": "Mirzam@prs", "level": "7", "note": 885, "songId": "Mirzam" },
       { "constant": 10, "difficulty": "ftr", "id": "Mirzam@ftr", "level": "10", "note": 1303, "songId": "Mirzam" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "160",
@@ -2459,7 +2545,8 @@
         "note": 1091,
         "songId": "New_York_Back_Raise"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "191",
@@ -2472,7 +2559,8 @@
       { "constant": 4.5, "difficulty": "pst", "id": "Arcahv@pst", "level": "4", "note": 818, "songId": "Arcahv" },
       { "constant": 7.5, "difficulty": "prs", "id": "Arcahv@prs", "level": "7", "note": 884, "songId": "Arcahv" },
       { "constant": 9.9, "difficulty": "ftr", "id": "Arcahv@ftr", "level": "9+", "note": 1065, "songId": "Arcahv" }
-    ]
+    ],
+    "pack": "Black Fate"
   },
   {
     "bpm": "198",
@@ -2515,7 +2603,8 @@
         "songId": "Infinite_Strife,",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "Final Verdict"
   },
   {
     "bpm": "225",
@@ -2549,7 +2638,8 @@
         "note": 1191,
         "songId": "Astra_walkthrough"
       }
-    ]
+    ],
+    "pack": "World Extend"
   },
   {
     "bpm": "132",
@@ -2583,7 +2673,8 @@
         "note": 1100,
         "songId": "The_Survivor_(Game_Edit)"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "240",
@@ -2628,7 +2719,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/5/54/Songs_heavensdoor_byd.jpg/256px-Songs_heavensdoor_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Adverse Prelude"
   },
   {
     "bpm": "150",
@@ -2662,7 +2754,8 @@
         "note": 867,
         "songId": "Genesis_(Morrigan)"
       }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "222",
@@ -2675,7 +2768,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "MAXRAGE@pst", "level": "3", "note": 696, "songId": "MAXRAGE" },
       { "constant": 6.5, "difficulty": "prs", "id": "MAXRAGE@prs", "level": "6", "note": 760, "songId": "MAXRAGE" },
       { "constant": 9.9, "difficulty": "ftr", "id": "MAXRAGE@ftr", "level": "9+", "note": 1184, "songId": "MAXRAGE" }
-    ]
+    ],
+    "pack": "maimai Collaboration"
   },
   {
     "bpm": "150",
@@ -2688,7 +2782,8 @@
       { "constant": 3, "difficulty": "pst", "id": "7thSense@pst", "level": "3", "note": 360, "songId": "7thSense" },
       { "constant": 7.5, "difficulty": "prs", "id": "7thSense@prs", "level": "7", "note": 739, "songId": "7thSense" },
       { "constant": 9.9, "difficulty": "ftr", "id": "7thSense@ftr", "level": "9+", "note": 925, "songId": "7thSense" }
-    ]
+    ],
+    "pack": "maimai Collaboration"
   },
   {
     "bpm": "80",
@@ -2708,7 +2803,8 @@
         "note": 1074,
         "songId": "Trap_Crow"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "174.59",
@@ -2721,7 +2817,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Nhelv@pst", "level": "3", "note": 647, "songId": "Nhelv" },
       { "constant": 6.5, "difficulty": "prs", "id": "Nhelv@prs", "level": "6", "note": 913, "songId": "Nhelv" },
       { "constant": 9.9, "difficulty": "ftr", "id": "Nhelv@ftr", "level": "9+", "note": 1108, "songId": "Nhelv" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "170",
@@ -2755,7 +2852,8 @@
         "note": 785,
         "songId": "SOUNDWiTCH"
       }
-    ]
+    ],
+    "pack": "Vicious Labyrinth"
   },
   {
     "bpm": "160",
@@ -2789,7 +2887,8 @@
         "note": 1088,
         "songId": "Summer_Fireworks_of_Love"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "160",
@@ -2823,7 +2922,8 @@
         "note": 1142,
         "songId": "Antagonism"
       }
-    ]
+    ],
+    "pack": "Black Fate"
   },
   {
     "bpm": "190-280",
@@ -2866,7 +2966,8 @@
         "songId": "World_Ender",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "Final Verdict"
   },
   {
     "bpm": "200",
@@ -2900,7 +3001,8 @@
         "note": 1387,
         "songId": "World_Fragments_III(radio_edit)"
       }
-    ]
+    ],
+    "pack": "World Extend"
   },
   {
     "bpm": "160",
@@ -2920,7 +3022,8 @@
         "note": 1141,
         "songId": "Defection"
       }
-    ]
+    ],
+    "pack": "Final Verdict"
   },
   {
     "bpm": "175",
@@ -2933,7 +3036,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "Ai_Drew@pst", "level": "3", "note": 694, "songId": "Ai_Drew" },
       { "constant": 6.5, "difficulty": "prs", "id": "Ai_Drew@prs", "level": "6", "note": 732, "songId": "Ai_Drew" },
       { "constant": 9.8, "difficulty": "ftr", "id": "Ai_Drew@ftr", "level": "9+", "note": 1066, "songId": "Ai_Drew" }
-    ]
+    ],
+    "pack": "O.N.G.E.K.I. Collaboration"
   },
   {
     "bpm": "146",
@@ -2967,7 +3071,8 @@
         "note": 1048,
         "songId": "Xeraphinite"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "200",
@@ -3001,7 +3106,8 @@
         "note": 1304,
         "songId": "THE_ULTIMACY"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "145",
@@ -3014,7 +3120,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Ascent@pst", "level": "3", "note": 455, "songId": "Ascent" },
       { "constant": 6, "difficulty": "prs", "id": "Ascent@prs", "level": "6", "note": 626, "songId": "Ascent" },
       { "constant": 9.8, "difficulty": "ftr", "id": "Ascent@ftr", "level": "9+", "note": 1023, "songId": "Ascent" }
-    ]
+    ],
+    "pack": "Binary Enfold"
   },
   {
     "bpm": "180",
@@ -3027,7 +3134,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Init()@pst", "level": "4", "note": 713, "songId": "Init()" },
       { "constant": 7, "difficulty": "prs", "id": "Init()@prs", "level": "7", "note": 957, "songId": "Init()" },
       { "constant": 9.8, "difficulty": "ftr", "id": "Init()@ftr", "level": "9+", "note": 1204, "songId": "Init()" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "170",
@@ -3054,7 +3162,8 @@
         "note": 1293,
         "songId": "Corruption"
       }
-    ]
+    ],
+    "pack": "Absolute Reason"
   },
   {
     "bpm": "180",
@@ -3088,7 +3197,8 @@
         "note": 1077,
         "songId": "Haze_of_Autumn"
       }
-    ]
+    ],
+    "pack": "Muse Dash Collaboration"
   },
   {
     "bpm": "170",
@@ -3122,7 +3232,8 @@
         "note": 1154,
         "songId": "Lost_Desire"
       }
-    ]
+    ],
+    "pack": "Black Fate"
   },
   {
     "bpm": "180-216",
@@ -3156,7 +3267,8 @@
         "note": 1322,
         "songId": "Far_Away_Light"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "170",
@@ -3190,7 +3302,8 @@
         "note": 1117,
         "songId": "Macrocosmic_Modulation"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "252",
@@ -3224,7 +3337,8 @@
         "note": 1329,
         "songId": "FLUFFY_FLASH"
       }
-    ]
+    ],
+    "pack": "O.N.G.E.K.I. Collaboration"
   },
   {
     "bpm": "300",
@@ -3258,7 +3372,8 @@
         "note": 1013,
         "songId": "Galaxy_Friends"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "95",
@@ -3292,7 +3407,8 @@
         "note": 1222,
         "songId": "Callima_Karma"
       }
-    ]
+    ],
+    "pack": "Silent Answer"
   },
   {
     "bpm": "200-211.9",
@@ -3326,7 +3442,8 @@
         "note": 905,
         "songId": "Linear_Accelerator"
       }
-    ]
+    ],
+    "pack": "Tone Sphere Collaboration"
   },
   {
     "bpm": "241",
@@ -3360,7 +3477,8 @@
         "note": 1560,
         "songId": "Heavenly_caress"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "178",
@@ -3394,7 +3512,8 @@
         "note": 978,
         "songId": "Memory_Forest"
       }
-    ]
+    ],
+    "pack": "Binary Enfold"
   },
   {
     "bpm": "222",
@@ -3428,7 +3547,8 @@
         "note": 1159,
         "songId": "Einherjar_Joker"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "268",
@@ -3462,7 +3582,8 @@
         "note": 794,
         "songId": "Got_hive_of_Ra"
       }
-    ]
+    ],
+    "pack": "Groove Coaster Collaboration"
   },
   {
     "bpm": "166",
@@ -3496,7 +3617,8 @@
         "note": 1195,
         "songId": "Scarlet_Cage"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "140",
@@ -3530,7 +3652,8 @@
         "note": 1042,
         "songId": "Protoflicker"
       }
-    ]
+    ],
+    "pack": "Lanota Collaboration"
   },
   {
     "bpm": "200",
@@ -3564,7 +3687,8 @@
         "note": 1195,
         "songId": "Black_Territory"
       }
-    ]
+    ],
+    "pack": "Absolute Reason"
   },
   {
     "bpm": "160",
@@ -3598,7 +3722,8 @@
         "note": 808,
         "songId": "DX_Choseinou_Full_Metal_Shojo"
       }
-    ]
+    ],
+    "pack": "Groove Coaster Collaboration"
   },
   {
     "bpm": "115",
@@ -3611,7 +3736,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "BLRINK@pst", "level": "3", "note": 400, "songId": "BLRINK" },
       { "constant": 7.5, "difficulty": "prs", "id": "BLRINK@prs", "level": "7", "note": 683, "songId": "BLRINK" },
       { "constant": 9.7, "difficulty": "ftr", "id": "BLRINK@ftr", "level": "9+", "note": 1015, "songId": "BLRINK" }
-    ]
+    ],
+    "pack": "Adverse Prelude"
   },
   {
     "bpm": "200",
@@ -3645,7 +3771,8 @@
         "note": 1042,
         "songId": "BATTLE_NO.1"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "155",
@@ -3658,7 +3785,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "Lethaeus@pst", "level": "3", "note": 480, "songId": "Lethaeus" },
       { "constant": 6.5, "difficulty": "prs", "id": "Lethaeus@prs", "level": "6", "note": 717, "songId": "Lethaeus" },
       { "constant": 9.7, "difficulty": "ftr", "id": "Lethaeus@ftr", "level": "9+", "note": 900, "songId": "Lethaeus" }
-    ]
+    ],
+    "pack": "Ambivalent Vision"
   },
   {
     "bpm": "133",
@@ -3692,7 +3820,8 @@
         "note": 1326,
         "songId": "Goldenslaughterer"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "140-190",
@@ -3705,7 +3834,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "%CE%9C@pst", "level": "3", "note": 825, "songId": "%CE%9C" },
       { "constant": 7, "difficulty": "prs", "id": "%CE%9C@prs", "level": "7", "note": 986, "songId": "%CE%9C" },
       { "constant": 9.7, "difficulty": "ftr", "id": "%CE%9C@ftr", "level": "9+", "note": 1256, "songId": "%CE%9C" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "220-245",
@@ -3718,7 +3848,8 @@
       { "constant": 3, "difficulty": "pst", "id": "AlterAle@pst", "level": "3", "note": 728, "songId": "AlterAle" },
       { "constant": 6, "difficulty": "prs", "id": "AlterAle@prs", "level": "6", "note": 881, "songId": "AlterAle" },
       { "constant": 9.7, "difficulty": "ftr", "id": "AlterAle@ftr", "level": "9+", "note": 1277, "songId": "AlterAle" }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "182",
@@ -3731,7 +3862,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Sulfur@pst", "level": "4", "note": 458, "songId": "Sulfur" },
       { "constant": 6, "difficulty": "prs", "id": "Sulfur@prs", "level": "6", "note": 608, "songId": "Sulfur" },
       { "constant": 9.7, "difficulty": "ftr", "id": "Sulfur@ftr", "level": "9+", "note": 1045, "songId": "Sulfur" }
-    ]
+    ],
+    "pack": "Luminous Sky"
   },
   {
     "bpm": "190",
@@ -3765,7 +3897,8 @@
         "note": 979,
         "songId": "N%CE%AD%CE%BF_%CE%BA%CF%8Csmo"
       }
-    ]
+    ],
+    "pack": "Divided Heart"
   },
   {
     "bpm": "160",
@@ -3799,7 +3932,8 @@
         "note": 1112,
         "songId": "Heart_Jackin%27"
       }
-    ]
+    ],
+    "pack": "Ephemeral Page"
   },
   {
     "bpm": "220",
@@ -3826,7 +3960,8 @@
         "note": 1022,
         "songId": "Dazzle_hop"
       }
-    ]
+    ],
+    "pack": "O.N.G.E.K.I. Collaboration"
   },
   {
     "bpm": "96-384",
@@ -3860,7 +3995,8 @@
         "note": 1099,
         "songId": "Dreadnought"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "83-90",
@@ -3873,7 +4009,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "Altale@pst", "level": "2", "note": 357, "songId": "Altale" },
       { "constant": 5.5, "difficulty": "prs", "id": "Altale@prs", "level": "5", "note": 424, "songId": "Altale" },
       { "constant": 9.7, "difficulty": "ftr", "id": "Altale@ftr", "level": "9+", "note": 690, "songId": "Altale" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "160",
@@ -3907,7 +4044,8 @@
         "note": 974,
         "songId": "Monochrome_Princess"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "202",
@@ -3941,7 +4079,8 @@
         "note": 992,
         "songId": "The_Message"
       }
-    ]
+    ],
+    "pack": "Luminous Sky"
   },
   {
     "bpm": "170",
@@ -3954,7 +4093,8 @@
       { "constant": 4.5, "difficulty": "pst", "id": "Filament@pst", "level": "4", "note": 582, "songId": "Filament" },
       { "constant": 7.5, "difficulty": "prs", "id": "Filament@prs", "level": "7", "note": 780, "songId": "Filament" },
       { "constant": 9.7, "difficulty": "ftr", "id": "Filament@ftr", "level": "9+", "note": 991, "songId": "Filament" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "150",
@@ -3974,7 +4114,8 @@
         "note": 1123,
         "songId": "SUPERNOVA"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "190",
@@ -3987,7 +4128,8 @@
       { "constant": 4, "difficulty": "pst", "id": "BADTEK@pst", "level": "4", "note": 532, "songId": "BADTEK" },
       { "constant": 7, "difficulty": "prs", "id": "BADTEK@prs", "level": "7", "note": 595, "songId": "BADTEK" },
       { "constant": 9.7, "difficulty": "ftr", "id": "BADTEK@ftr", "level": "9+", "note": 916, "songId": "BADTEK" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "155",
@@ -4021,7 +4163,8 @@
         "note": 952,
         "songId": "Mazy_Metroplex"
       }
-    ]
+    ],
+    "pack": "WACCA Collaboration"
   },
   {
     "bpm": "154",
@@ -4034,7 +4177,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Amygdata@pst", "level": "4", "note": 504, "songId": "Amygdata" },
       { "constant": 7.5, "difficulty": "prs", "id": "Amygdata@prs", "level": "7", "note": 711, "songId": "Amygdata" },
       { "constant": 9.7, "difficulty": "ftr", "id": "Amygdata@ftr", "level": "9+", "note": 1199, "songId": "Amygdata" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "210",
@@ -4068,7 +4212,8 @@
         "note": 1177,
         "songId": "Let%27s_Rock_(Arcaea_mix)"
       }
-    ]
+    ],
+    "pack": "World Extend"
   },
   {
     "bpm": "194",
@@ -4088,7 +4233,8 @@
         "note": 1087,
         "songId": "Vandalism"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "200",
@@ -4122,7 +4268,8 @@
         "note": 965,
         "songId": "Black_Lotus"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "192",
@@ -4156,7 +4303,8 @@
         "note": 1058,
         "songId": "LunarOrbit_-believe_in_the_Espebranch_road-"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "174",
@@ -4190,7 +4338,8 @@
         "note": 1075,
         "songId": "Vindication"
       }
-    ]
+    ],
+    "pack": "Adverse Prelude"
   },
   {
     "bpm": "99",
@@ -4224,7 +4373,8 @@
         "note": 850,
         "songId": "Loveless_Dress"
       }
-    ]
+    ],
+    "pack": "Silent Answer"
   },
   {
     "bpm": "170",
@@ -4258,7 +4408,8 @@
         "note": 1023,
         "songId": "Purple_Verse"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "160",
@@ -4292,7 +4443,8 @@
         "note": 922,
         "songId": "ENERGY_SYNERGY_MATRIX"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "165",
@@ -4326,7 +4478,8 @@
         "note": 1164,
         "songId": "Carmine:scythe"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "99",
@@ -4360,7 +4513,8 @@
         "note": 703,
         "songId": "Fallensquare"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "200",
@@ -4394,7 +4548,8 @@
         "note": 1125,
         "songId": "Avant_Raze"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "210",
@@ -4416,7 +4571,8 @@
         "songId": "IMPACT",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "189",
@@ -4450,7 +4606,8 @@
         "note": 991,
         "songId": "Quon_(Feryquitous)"
       }
-    ]
+    ],
+    "pack": "Lanota Collaboration"
   },
   {
     "bpm": "185",
@@ -4484,7 +4641,8 @@
         "note": 1031,
         "songId": "Lazy_Addiction"
       }
-    ]
+    ],
+    "pack": "O.N.G.E.K.I. Collaboration"
   },
   {
     "bpm": "165",
@@ -4518,7 +4676,8 @@
         "note": 931,
         "songId": "A_Wandering_Melody_of_Love"
       }
-    ]
+    ],
+    "pack": "Sunset Radiance"
   },
   {
     "bpm": "134",
@@ -4552,7 +4711,8 @@
         "note": 884,
         "songId": "Astral_tale"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "184",
@@ -4586,7 +4746,8 @@
         "note": 946,
         "songId": "Cybernecia_Catharsis"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "240",
@@ -4629,7 +4790,8 @@
         "songId": "OMAKENO_Stroke",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "Groove Coaster Collaboration"
   },
   {
     "bpm": "100",
@@ -4642,7 +4804,8 @@
       { "constant": 3, "difficulty": "pst", "id": "NULCTRL@pst", "level": "3", "note": 407, "songId": "NULCTRL" },
       { "constant": 6, "difficulty": "prs", "id": "NULCTRL@prs", "level": "6", "note": 410, "songId": "NULCTRL" },
       { "constant": 9.5, "difficulty": "ftr", "id": "NULCTRL@ftr", "level": "9", "note": 715, "songId": "NULCTRL" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "179",
@@ -4655,7 +4818,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "Specta@pst", "level": "3", "note": 390, "songId": "Specta" },
       { "constant": 6.5, "difficulty": "prs", "id": "Specta@prs", "level": "6", "note": 706, "songId": "Specta" },
       { "constant": 9.5, "difficulty": "ftr", "id": "Specta@ftr", "level": "9", "note": 1096, "songId": "Specta" }
-    ]
+    ],
+    "pack": "Lanota Collaboration"
   },
   {
     "bpm": "143",
@@ -4668,7 +4832,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "GIMMICK@pst", "level": "2", "note": 421, "songId": "GIMMICK" },
       { "constant": 6.5, "difficulty": "prs", "id": "GIMMICK@prs", "level": "6", "note": 598, "songId": "GIMMICK" },
       { "constant": 9.5, "difficulty": "ftr", "id": "GIMMICK@ftr", "level": "9", "note": 733, "songId": "GIMMICK" }
-    ]
+    ],
+    "pack": "World Extend"
   },
   {
     "bpm": "168",
@@ -4702,7 +4867,8 @@
         "note": 1061,
         "songId": "Illegal_Paradise"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "145",
@@ -4736,7 +4902,8 @@
         "note": 1004,
         "songId": "STAGER_(ALL_STAGE_CLEAR)"
       }
-    ]
+    ],
+    "pack": "Tone Sphere Collaboration"
   },
   {
     "bpm": "195",
@@ -4749,7 +4916,8 @@
       { "constant": 3, "difficulty": "pst", "id": "MAHOROBA@pst", "level": "3", "note": 422, "songId": "MAHOROBA" },
       { "constant": 6.5, "difficulty": "prs", "id": "MAHOROBA@prs", "level": "6", "note": 632, "songId": "MAHOROBA" },
       { "constant": 9.5, "difficulty": "ftr", "id": "MAHOROBA@ftr", "level": "9", "note": 828, "songId": "MAHOROBA" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "174",
@@ -4783,7 +4951,8 @@
         "note": 1092,
         "songId": "%CE%9F%CE%94%CE%A5%CE%A3%CE%A3%CE%95%CE%99%CE%91"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "170",
@@ -4817,7 +4986,8 @@
         "note": 922,
         "songId": "Evening_in_Scarlet"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "180",
@@ -4830,7 +5000,8 @@
       { "constant": 3, "difficulty": "pst", "id": "DataErr0r@pst", "level": "3", "note": 502, "songId": "DataErr0r" },
       { "constant": 7, "difficulty": "prs", "id": "DataErr0r@prs", "level": "7", "note": 785, "songId": "DataErr0r" },
       { "constant": 9.5, "difficulty": "ftr", "id": "DataErr0r@ftr", "level": "9", "note": 955, "songId": "DataErr0r" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "128",
@@ -4852,7 +5023,8 @@
         "songId": "Teriqma",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "145",
@@ -4886,7 +5058,8 @@
         "note": 989,
         "songId": "AI%EF%BC%BBUE%EF%BC%BDOON"
       }
-    ]
+    ],
+    "pack": "Sunset Radiance"
   },
   {
     "bpm": "155",
@@ -4899,7 +5072,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "With_U@pst", "level": "2", "note": 448, "songId": "With_U" },
       { "constant": 6.5, "difficulty": "prs", "id": "With_U@prs", "level": "6", "note": 649, "songId": "With_U" },
       { "constant": 9.4, "difficulty": "ftr", "id": "With_U@ftr", "level": "9", "note": 932, "songId": "With_U" }
-    ]
+    ],
+    "pack": "WACCA Collaboration"
   },
   {
     "bpm": "180",
@@ -4933,7 +5107,8 @@
         "note": 951,
         "songId": "Equilibrium"
       }
-    ]
+    ],
+    "pack": "Black Fate"
   },
   {
     "bpm": "200",
@@ -4967,7 +5142,8 @@
         "note": 1094,
         "songId": "CROSS%E2%80%A0OVER"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "172",
@@ -5001,7 +5177,8 @@
         "note": 931,
         "songId": "Yosakura_Fubuki"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "200",
@@ -5035,7 +5212,8 @@
         "note": 1299,
         "songId": "VECTO%D0%AF"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "200",
@@ -5069,7 +5247,8 @@
         "note": 1081,
         "songId": "CROSS%E2%80%A0SOUL"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "176",
@@ -5103,7 +5282,8 @@
         "note": 1013,
         "songId": "Your_voice_so..._feat._Such"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "164",
@@ -5116,7 +5296,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Be_There@pst", "level": "4", "note": 592, "songId": "Be_There" },
       { "constant": 7.5, "difficulty": "prs", "id": "Be_There@prs", "level": "7", "note": 792, "songId": "Be_There" },
       { "constant": 9.4, "difficulty": "ftr", "id": "Be_There@ftr", "level": "9", "note": 982, "songId": "Be_There" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "132",
@@ -5161,7 +5342,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/f/f0/Songs_partyvinyl_byd.jpg/256px-Songs_partyvinyl_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Crimson Solace"
   },
   {
     "bpm": "150 / 160 [Beyond]",
@@ -5207,7 +5389,8 @@
           "song": "Red and Blue and Green"
         }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "146",
@@ -5220,7 +5403,8 @@
       { "constant": 2, "difficulty": "pst", "id": "Lapis@pst", "level": "2", "note": 391, "songId": "Lapis" },
       { "constant": 6, "difficulty": "prs", "id": "Lapis@prs", "level": "6", "note": 520, "songId": "Lapis" },
       { "constant": 9.4, "difficulty": "ftr", "id": "Lapis@ftr", "level": "9", "note": 920, "songId": "Lapis" }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "180",
@@ -5254,7 +5438,8 @@
         "note": 1056,
         "songId": "Final_Step!"
       }
-    ]
+    ],
+    "pack": "Muse Dash Collaboration"
   },
   {
     "bpm": "184",
@@ -5288,7 +5473,8 @@
         "note": 805,
         "songId": "Impure_Bird"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "178",
@@ -5322,7 +5508,8 @@
         "note": 872,
         "songId": "Crystal_Gravity"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "205",
@@ -5356,7 +5543,8 @@
         "note": 1129,
         "songId": "Dreamin%27_Attraction!!"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "185",
@@ -5390,7 +5578,8 @@
         "note": 1049,
         "songId": "Let_you_DIVE!_(nitro_rmx)"
       }
-    ]
+    ],
+    "pack": "WACCA Collaboration"
   },
   {
     "bpm": "139",
@@ -5433,7 +5622,8 @@
         "songId": "Lastendconductor",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "132-165[1]",
@@ -5467,7 +5657,8 @@
         "note": 1061,
         "songId": "Head_BONK_ache"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "183",
@@ -5480,7 +5671,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "Auxesia@pst", "level": "3", "note": 385, "songId": "Auxesia" },
       { "constant": 6.5, "difficulty": "prs", "id": "Auxesia@prs", "level": "6", "note": 648, "songId": "Auxesia" },
       { "constant": 9.3, "difficulty": "ftr", "id": "Auxesia@ftr", "level": "9", "note": 1000, "songId": "Auxesia" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "172",
@@ -5514,7 +5706,8 @@
         "note": 1123,
         "songId": "Lost_Emotion_feat._nomico"
       }
-    ]
+    ],
+    "pack": "World Extend"
   },
   {
     "bpm": "165",
@@ -5527,7 +5720,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Glow@pst", "level": "4", "note": 504, "songId": "Glow" },
       { "constant": 7, "difficulty": "prs", "id": "Glow@prs", "level": "7", "note": 666, "songId": "Glow" },
       { "constant": 9.3, "difficulty": "ftr", "id": "Glow@ftr", "level": "9", "note": 916, "songId": "Glow" }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "80",
@@ -5540,7 +5734,8 @@
       { "constant": 1, "difficulty": "pst", "id": "Heart@pst", "level": "1", "note": 428, "songId": "Heart" },
       { "constant": 5, "difficulty": "prs", "id": "Heart@prs", "level": "5", "note": 575, "songId": "Heart" },
       { "constant": 9.3, "difficulty": "ftr", "id": "Heart@ftr", "level": "9", "note": 872, "songId": "Heart" }
-    ]
+    ],
+    "pack": "O.N.G.E.K.I. Collaboration"
   },
   {
     "bpm": "152",
@@ -5553,7 +5748,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Oracle@pst", "level": "3", "note": 425, "songId": "Oracle" },
       { "constant": 5.5, "difficulty": "prs", "id": "Oracle@prs", "level": "5", "note": 508, "songId": "Oracle" },
       { "constant": 9.3, "difficulty": "ftr", "id": "Oracle@ftr", "level": "9", "note": 963, "songId": "Oracle" }
-    ]
+    ],
+    "pack": "Dynamix Collaboration"
   },
   {
     "bpm": "170",
@@ -5578,7 +5774,8 @@
           "song": "Ignotus Afterburn"
         }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "148",
@@ -5612,7 +5809,8 @@
         "note": 850,
         "songId": "Blocked_Library"
       }
-    ]
+    ],
+    "pack": "Divided Heart"
   },
   {
     "bpm": "180",
@@ -5625,7 +5823,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Blaster@pst", "level": "4", "note": 571, "songId": "Blaster" },
       { "constant": 7, "difficulty": "prs", "id": "Blaster@prs", "level": "7", "note": 635, "songId": "Blaster" },
       { "constant": 9.3, "difficulty": "ftr", "id": "Blaster@ftr", "level": "9", "note": 1002, "songId": "Blaster" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "190",
@@ -5668,7 +5867,8 @@
         "songId": "GOODTEK_(Arcaea_Edit)",
         "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/6/60/Songs_goodtek_byd.jpg/256px-Songs_goodtek_byd.jpg" }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "128",
@@ -5702,7 +5902,8 @@
         "note": 861,
         "songId": "Can_I_Friend_You_on_Bassbook%3F_Lol"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "175",
@@ -5736,7 +5937,8 @@
         "note": 837,
         "songId": "Sakura_Fubuki"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "185",
@@ -5770,7 +5972,8 @@
         "note": 1049,
         "songId": "PICO-Pico-Translation!"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "178",
@@ -5783,7 +5986,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "Syro@pst", "level": "3", "note": 535, "songId": "Syro" },
       { "constant": 6.5, "difficulty": "prs", "id": "Syro@prs", "level": "6", "note": 829, "songId": "Syro" },
       { "constant": 9.3, "difficulty": "ftr", "id": "Syro@ftr", "level": "9", "note": 1150, "songId": "Syro" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "155",
@@ -5817,7 +6021,8 @@
         "note": 969,
         "songId": "False_Embellishment"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "135",
@@ -5851,7 +6056,8 @@
         "note": 1014,
         "songId": "MANTIS_(Arcaea_Ultra-Bloodrush_VIP)"
       }
-    ]
+    ],
+    "pack": "World Extend"
   },
   {
     "bpm": "180",
@@ -5885,7 +6091,8 @@
         "note": 947,
         "songId": "Feels_So_Right_feat._Renko"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "186",
@@ -5919,7 +6126,8 @@
         "note": 851,
         "songId": "An%C3%B6kumene"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "160",
@@ -5932,7 +6140,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "Libertas@pst", "level": "3", "note": 476, "songId": "Libertas" },
       { "constant": 5.5, "difficulty": "prs", "id": "Libertas@prs", "level": "5", "note": 514, "songId": "Libertas" },
       { "constant": 9.2, "difficulty": "ftr", "id": "Libertas@ftr", "level": "9", "note": 947, "songId": "Libertas" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "153",
@@ -5945,7 +6154,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Phantasia@pst", "level": "4", "note": 544, "songId": "Phantasia" },
       { "constant": 5.5, "difficulty": "prs", "id": "Phantasia@prs", "level": "5", "note": 579, "songId": "Phantasia" },
       { "constant": 9.2, "difficulty": "ftr", "id": "Phantasia@ftr", "level": "9", "note": 952, "songId": "Phantasia" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "144",
@@ -5979,7 +6189,8 @@
         "note": 1025,
         "songId": "Cocoro*cosmetic"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "191",
@@ -5992,7 +6203,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Rugie@pst", "level": "3", "note": 566, "songId": "Rugie" },
       { "constant": 6, "difficulty": "prs", "id": "Rugie@prs", "level": "6", "note": 754, "songId": "Rugie" },
       { "constant": 9.2, "difficulty": "ftr", "id": "Rugie@ftr", "level": "9", "note": 975, "songId": "Rugie" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "75-210",
@@ -6037,7 +6249,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/a/a7/Songs_lostcivilization_byd.jpg/256px-Songs_lostcivilization_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "80-134",
@@ -6071,7 +6284,8 @@
         "note": 872,
         "songId": "Alice_%C3%A0_la_mode"
       }
-    ]
+    ],
+    "pack": "Ephemeral Page"
   },
   {
     "bpm": "105",
@@ -6105,7 +6319,8 @@
         "note": 922,
         "songId": "Strongholds"
       }
-    ]
+    ],
+    "pack": "Binary Enfold"
   },
   {
     "bpm": "155",
@@ -6139,7 +6354,8 @@
         "note": 886,
         "songId": "Redraw_the_Colorless_World"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "148",
@@ -6173,7 +6389,8 @@
         "note": 891,
         "songId": "Dancin%27_on_a_Cat%27s_Paw"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "190",
@@ -6207,7 +6424,8 @@
         "note": 999,
         "songId": "Alice%27s_Suitcase"
       }
-    ]
+    ],
+    "pack": "Ephemeral Page"
   },
   {
     "bpm": "220",
@@ -6241,7 +6459,8 @@
         "note": 919,
         "songId": "Small_Cloud_Sugar_Candy"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "144",
@@ -6284,7 +6503,8 @@
         "songId": "Qualia_-ideaesthesia-",
         "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/4/4b/Songs_qualia_byd.jpg/256px-Songs_qualia_byd.jpg" }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "140",
@@ -6304,7 +6524,8 @@
         "note": 795,
         "songId": "Iconoclast"
       }
-    ]
+    ],
+    "pack": "Vicious Labyrinth"
   },
   {
     "bpm": "250-295",
@@ -6317,7 +6538,8 @@
       { "constant": 2, "difficulty": "pst", "id": "Blue_Rose@pst", "level": "2", "note": 595, "songId": "Blue_Rose" },
       { "constant": 5.5, "difficulty": "prs", "id": "Blue_Rose@prs", "level": "5", "note": 669, "songId": "Blue_Rose" },
       { "constant": 9.1, "difficulty": "ftr", "id": "Blue_Rose@ftr", "level": "9", "note": 955, "songId": "Blue_Rose" }
-    ]
+    ],
+    "pack": "Divided Heart"
   },
   {
     "bpm": "168",
@@ -6360,7 +6582,8 @@
         "songId": "La%27qryma_of_the_Wasteland",
         "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/0/0b/Songs_laqryma_byd.jpg/256px-Songs_laqryma_byd.jpg" }
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "133",
@@ -6394,7 +6617,8 @@
         "note": 809,
         "songId": "Faint_Light_(Arcaea_Edit)"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "164",
@@ -6428,7 +6652,8 @@
         "note": 1204,
         "songId": "Essence_of_Twilight"
       }
-    ]
+    ],
+    "pack": "Eternal Core"
   },
   {
     "bpm": "133",
@@ -6462,7 +6687,8 @@
         "note": 674,
         "songId": "Life_is_PIANO"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "50 / 500 [Beyond]",
@@ -6487,7 +6713,8 @@
           "song": "overdead."
         }
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "128-170",
@@ -6521,7 +6748,8 @@
         "note": 979,
         "songId": "Turbocharger"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "175",
@@ -6555,7 +6783,8 @@
         "note": 920,
         "songId": "Empire_of_Winter"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "180",
@@ -6600,7 +6829,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/4/46/Songs_kanagawa_byd.jpg/256px-Songs_kanagawa_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "133",
@@ -6613,7 +6843,8 @@
       { "constant": 4, "difficulty": "pst", "id": "Jump@pst", "level": "4", "note": 531, "songId": "Jump" },
       { "constant": 6, "difficulty": "prs", "id": "Jump@prs", "level": "6", "note": 622, "songId": "Jump" },
       { "constant": 9, "difficulty": "ftr", "id": "Jump@ftr", "level": "9", "note": 841, "songId": "Jump" }
-    ]
+    ],
+    "pack": "Ephemeral Page"
   },
   {
     "bpm": "115-185",
@@ -6626,7 +6857,8 @@
       { "constant": 3, "difficulty": "pst", "id": "ReviXy@pst", "level": "3", "note": 538, "songId": "ReviXy" },
       { "constant": 6, "difficulty": "prs", "id": "ReviXy@prs", "level": "6", "note": 729, "songId": "ReviXy" },
       { "constant": 9, "difficulty": "ftr", "id": "ReviXy@ftr", "level": "9", "note": 1047, "songId": "ReviXy" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "180",
@@ -6660,7 +6892,8 @@
         "note": 930,
         "songId": "Flyburg_and_Endroll"
       }
-    ]
+    ],
+    "pack": "Crimson Solace"
   },
   {
     "bpm": "180",
@@ -6682,7 +6915,8 @@
         "songId": "MERLIN",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "Groove Coaster Collaboration"
   },
   {
     "bpm": "95-190",
@@ -6716,7 +6950,8 @@
         "note": 948,
         "songId": "Give_Me_a_Nightmare"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "100",
@@ -6750,7 +6985,8 @@
         "note": 672,
         "songId": "Memoryfactory.lzh"
       }
-    ]
+    ],
+    "pack": "Eternal Core"
   },
   {
     "bpm": "159",
@@ -6763,7 +6999,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Maze_No.9@pst", "level": "3", "note": 494, "songId": "Maze_No.9" },
       { "constant": 3.5, "difficulty": "prs", "id": "Maze_No.9@prs", "level": "3", "note": 445, "songId": "Maze_No.9" },
       { "constant": 8.9, "difficulty": "ftr", "id": "Maze_No.9@ftr", "level": "8", "note": 775, "songId": "Maze_No.9" }
-    ]
+    ],
+    "pack": "Luminous Sky"
   },
   {
     "bpm": "196",
@@ -6797,7 +7034,8 @@
         "note": 916,
         "songId": "Chronostasis"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "205",
@@ -6831,7 +7069,8 @@
         "note": 775,
         "songId": "Evoltex_(poppi%27n_mix)"
       }
-    ]
+    ],
+    "pack": "Dynamix Collaboration"
   },
   {
     "bpm": "135",
@@ -6844,7 +7083,8 @@
       { "constant": 2, "difficulty": "pst", "id": "CYCLES@pst", "level": "2", "note": 389, "songId": "CYCLES" },
       { "constant": 5, "difficulty": "prs", "id": "CYCLES@prs", "level": "5", "note": 430, "songId": "CYCLES" },
       { "constant": 8.8, "difficulty": "ftr", "id": "CYCLES@ftr", "level": "8", "note": 695, "songId": "CYCLES" }
-    ]
+    ],
+    "pack": "maimai Collaboration"
   },
   {
     "bpm": "162-175",
@@ -6878,7 +7118,8 @@
         "note": 925,
         "songId": "Particle_Arts"
       }
-    ]
+    ],
+    "pack": "Adverse Prelude"
   },
   {
     "bpm": "165",
@@ -6923,7 +7164,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/1/12/Songs_nexttoyou_byd.jpg/256px-Songs_nexttoyou_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Binary Enfold"
   },
   {
     "bpm": "195",
@@ -6936,7 +7178,8 @@
       { "constant": 2, "difficulty": "pst", "id": "Flashback@pst", "level": "2", "note": 356, "songId": "Flashback" },
       { "constant": 5, "difficulty": "prs", "id": "Flashback@prs", "level": "5", "note": 488, "songId": "Flashback" },
       { "constant": 8.8, "difficulty": "ftr", "id": "Flashback@ftr", "level": "8", "note": 856, "songId": "Flashback" }
-    ]
+    ],
+    "pack": "Crimson Solace"
   },
   {
     "bpm": "110",
@@ -6970,7 +7213,8 @@
         "note": 732,
         "songId": "Coastal_Highway"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "129",
@@ -7004,7 +7248,8 @@
         "note": 809,
         "songId": "Cosmo_Pop_Funclub"
       }
-    ]
+    ],
+    "pack": "CHUNITHM Collaboration"
   },
   {
     "bpm": "178",
@@ -7038,7 +7283,8 @@
         "note": 885,
         "songId": "Vivid_Theory"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "162",
@@ -7072,7 +7318,8 @@
         "note": 972,
         "songId": "Solitary_Dream"
       }
-    ]
+    ],
+    "pack": "Eternal Core"
   },
   {
     "bpm": "200",
@@ -7085,7 +7332,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Journey@pst", "level": "3", "note": 551, "songId": "Journey" },
       { "constant": 6, "difficulty": "prs", "id": "Journey@prs", "level": "6", "note": 778, "songId": "Journey" },
       { "constant": 8.8, "difficulty": "ftr", "id": "Journey@ftr", "level": "8", "note": 997, "songId": "Journey" }
-    ]
+    ],
+    "pack": "Lanota Collaboration"
   },
   {
     "bpm": "152",
@@ -7098,7 +7346,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Surrender@pst", "level": "3", "note": 550, "songId": "Surrender" },
       { "constant": 6.5, "difficulty": "prs", "id": "Surrender@prs", "level": "6", "note": 721, "songId": "Surrender" },
       { "constant": 8.8, "difficulty": "ftr", "id": "Surrender@ftr", "level": "8", "note": 925, "songId": "Surrender" }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "172",
@@ -7122,7 +7371,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/c/c8/Songs_antithese_byd.jpg/256px-Songs_antithese_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Absolute Reason"
   },
   {
     "bpm": "175",
@@ -7156,7 +7406,8 @@
         "note": 921,
         "songId": "Call_My_Name_feat._Yukacco"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "170",
@@ -7199,7 +7450,8 @@
         "songId": "Quon_(DJ_Noriken)",
         "byd": {}
       }
-    ]
+    ],
+    "pack": "WACCA Collaboration"
   },
   {
     "bpm": "180",
@@ -7233,7 +7485,8 @@
         "note": 580,
         "songId": "Lights_of_Muse"
       }
-    ]
+    ],
+    "pack": "Muse Dash Collaboration"
   },
   {
     "bpm": "90",
@@ -7246,7 +7499,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Senkyou@pst", "level": "3", "note": 627, "songId": "Senkyou" },
       { "constant": 5.5, "difficulty": "prs", "id": "Senkyou@prs", "level": "5", "note": 722, "songId": "Senkyou" },
       { "constant": 8.7, "difficulty": "ftr", "id": "Senkyou@ftr", "level": "8", "note": 964, "songId": "Senkyou" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "130",
@@ -7280,7 +7534,8 @@
         "note": 793,
         "songId": "Paper_Witch"
       }
-    ]
+    ],
+    "pack": "Esoteric Order"
   },
   {
     "bpm": "181",
@@ -7307,7 +7562,8 @@
         "note": 703,
         "songId": "Beside_You"
       }
-    ]
+    ],
+    "pack": "Ephemeral Page"
   },
   {
     "bpm": "132",
@@ -7341,7 +7597,8 @@
         "note": 817,
         "songId": "Gekka_(Short_Version)"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "170",
@@ -7354,7 +7611,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "Grimheart@pst", "level": "2", "note": 728, "songId": "Grimheart" },
       { "constant": 5, "difficulty": "prs", "id": "Grimheart@prs", "level": "5", "note": 699, "songId": "Grimheart" },
       { "constant": 8.6, "difficulty": "ftr", "id": "Grimheart@ftr", "level": "8", "note": 959, "songId": "Grimheart" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "158",
@@ -7388,7 +7646,8 @@
         "note": 941,
         "songId": "Silent_Rush"
       }
-    ]
+    ],
+    "pack": "Binary Enfold"
   },
   {
     "bpm": "170",
@@ -7412,7 +7671,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/d/da/Songs_freefall_byd.jpg/256px-Songs_freefall_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "136",
@@ -7425,7 +7685,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Babaroque@pst", "level": "3", "note": 402, "songId": "Babaroque" },
       { "constant": 6.5, "difficulty": "prs", "id": "Babaroque@prs", "level": "6", "note": 645, "songId": "Babaroque" },
       { "constant": 8.5, "difficulty": "ftr", "id": "Babaroque@ftr", "level": "8", "note": 808, "songId": "Babaroque" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "185",
@@ -7459,7 +7720,8 @@
         "note": 1061,
         "songId": "Harutopia_~Utopia_of_Spring~"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "174",
@@ -7472,7 +7734,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Chelsea@pst", "level": "3", "note": 388, "songId": "Chelsea" },
       { "constant": 6, "difficulty": "prs", "id": "Chelsea@prs", "level": "6", "note": 503, "songId": "Chelsea" },
       { "constant": 8.5, "difficulty": "ftr", "id": "Chelsea@ftr", "level": "8", "note": 650, "songId": "Chelsea" }
-    ]
+    ],
+    "pack": "Sunset Radiance"
   },
   {
     "bpm": "138",
@@ -7485,7 +7748,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "DDD@pst", "level": "2", "note": 363, "songId": "DDD" },
       { "constant": 6.5, "difficulty": "prs", "id": "DDD@prs", "level": "6", "note": 484, "songId": "DDD" },
       { "constant": 8.5, "difficulty": "ftr", "id": "DDD@ftr", "level": "8", "note": 653, "songId": "DDD" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "169",
@@ -7498,7 +7762,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "Dandelion@pst", "level": "2", "note": 391, "songId": "Dandelion" },
       { "constant": 6, "difficulty": "prs", "id": "Dandelion@prs", "level": "6", "note": 698, "songId": "Dandelion" },
       { "constant": 8.5, "difficulty": "ftr", "id": "Dandelion@ftr", "level": "8", "note": 921, "songId": "Dandelion" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "75-180",
@@ -7532,7 +7797,8 @@
         "note": 791,
         "songId": "Cry_of_viyella"
       }
-    ]
+    ],
+    "pack": "Eternal Core"
   },
   {
     "bpm": "174",
@@ -7545,7 +7811,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "Reinvent@pst", "level": "2", "note": 570, "songId": "Reinvent" },
       { "constant": 6.5, "difficulty": "prs", "id": "Reinvent@prs", "level": "6", "note": 703, "songId": "Reinvent" },
       { "constant": 8.5, "difficulty": "ftr", "id": "Reinvent@ftr", "level": "8", "note": 852, "songId": "Reinvent" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "110",
@@ -7558,7 +7825,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "Cosmica@pst", "level": "2", "note": 428, "songId": "Cosmica" },
       { "constant": 5, "difficulty": "prs", "id": "Cosmica@prs", "level": "5", "note": 566, "songId": "Cosmica" },
       { "constant": 8.5, "difficulty": "ftr", "id": "Cosmica@ftr", "level": "8", "note": 773, "songId": "Cosmica" }
-    ]
+    ],
+    "pack": "Binary Enfold"
   },
   {
     "bpm": "180",
@@ -7580,7 +7848,8 @@
         "songId": "Lumia",
         "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/0/0f/Songs_lumia_byd.jpg/256px-Songs_lumia_byd.jpg" }
       }
-    ]
+    ],
+    "pack": "Eternal Core"
   },
   {
     "bpm": "165",
@@ -7614,7 +7883,8 @@
         "note": 825,
         "songId": "REconstruction"
       }
-    ]
+    ],
+    "pack": "Dynamix Collaboration"
   },
   {
     "bpm": "132",
@@ -7648,7 +7918,8 @@
         "note": 732,
         "songId": "Eccentric_Tale"
       }
-    ]
+    ],
+    "pack": "Ephemeral Page"
   },
   {
     "bpm": "150",
@@ -7675,7 +7946,8 @@
         "note": 978,
         "songId": "Snow_White"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "270",
@@ -7709,7 +7981,8 @@
         "note": 772,
         "songId": "Rabbit_In_The_Black_Room"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "95",
@@ -7743,7 +8016,8 @@
         "note": 759,
         "songId": "Enchanted_love"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "163",
@@ -7777,7 +8051,8 @@
         "note": 657,
         "songId": "INTERNET_OVERDOSE"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "180",
@@ -7801,7 +8076,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/d/d1/Songs_moonheart_byd.jpg/256px-Songs_moonheart_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Ambivalent Vision"
   },
   {
     "bpm": "160",
@@ -7835,7 +8111,8 @@
         "note": 740,
         "songId": "Tsuki_ni_Murakumo,_Hana_ni_Kaze"
       }
-    ]
+    ],
+    "pack": "World Extend"
   },
   {
     "bpm": "150",
@@ -7880,7 +8157,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/f/f6/Songs_purgatorium_byd.jpg/256px-Songs_purgatorium_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "174",
@@ -7914,7 +8192,8 @@
         "note": 739,
         "songId": "Dot_to_Dot_feat._shully"
       }
-    ]
+    ],
+    "pack": "Memory Archive"
   },
   {
     "bpm": "175",
@@ -7959,7 +8238,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/2/2f/Songs_bookmaker_byd.jpg/256px-Songs_bookmaker_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "191",
@@ -7993,7 +8273,8 @@
         "note": 724,
         "songId": "Tie_me_down_gently"
       }
-    ]
+    ],
+    "pack": "Sunset Radiance"
   },
   {
     "bpm": "79",
@@ -8027,7 +8308,8 @@
         "note": 697,
         "songId": "April_showers"
       }
-    ]
+    ],
+    "pack": "maimai Collaboration"
   },
   {
     "bpm": "180",
@@ -8040,7 +8322,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "Oblivia@pst", "level": "3", "note": 574, "songId": "Oblivia" },
       { "constant": 5, "difficulty": "prs", "id": "Oblivia@prs", "level": "5", "note": 517, "songId": "Oblivia" },
       { "constant": 8.3, "difficulty": "ftr", "id": "Oblivia@ftr", "level": "8", "note": 956, "songId": "Oblivia" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "170",
@@ -8053,7 +8336,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "San_skia@pst", "level": "3", "note": 670, "songId": "San_skia" },
       { "constant": 6, "difficulty": "prs", "id": "San_skia@prs", "level": "6", "note": 783, "songId": "San_skia" },
       { "constant": 8.3, "difficulty": "ftr", "id": "San_skia@ftr", "level": "8", "note": 1046, "songId": "San_skia" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "130",
@@ -8087,7 +8371,8 @@
         "note": 851,
         "songId": "%C3%84vril_-Flicka_i_krans-"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "170",
@@ -8121,7 +8406,8 @@
         "note": 830,
         "songId": "Altair_(feat._*spiLa*)"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "170",
@@ -8166,7 +8452,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/7/79/Songs_shadesoflight_byd.jpg/256px-Songs_shadesoflight_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "132",
@@ -8200,7 +8487,8 @@
         "note": 713,
         "songId": "Genesis_(Iris)"
       }
-    ]
+    ],
+    "pack": "Ambivalent Vision"
   },
   {
     "bpm": "130",
@@ -8234,7 +8522,8 @@
         "note": 758,
         "songId": "1F%E2%88%9A"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "100-172",
@@ -8261,7 +8550,8 @@
         "note": 776,
         "songId": "Blue_comet"
       }
-    ]
+    ],
+    "pack": "Extend Archive"
   },
   {
     "bpm": "165",
@@ -8274,7 +8564,8 @@
       { "constant": 3.5, "difficulty": "pst", "id": "Lucifer@pst", "level": "3", "note": 424, "songId": "Lucifer" },
       { "constant": 5.5, "difficulty": "prs", "id": "Lucifer@prs", "level": "5", "note": 506, "songId": "Lucifer" },
       { "constant": 8.2, "difficulty": "ftr", "id": "Lucifer@ftr", "level": "8", "note": 861, "songId": "Lucifer" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "147",
@@ -8308,7 +8599,8 @@
         "note": 898,
         "songId": "Hall_of_Mirrors"
       }
-    ]
+    ],
+    "pack": "Tone Sphere Collaboration"
   },
   {
     "bpm": "154-175",
@@ -8342,7 +8634,8 @@
         "note": 885,
         "songId": "One_Last_Drive"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "130",
@@ -8355,7 +8648,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "Hikari@pst", "level": "2", "note": 237, "songId": "Hikari" },
       { "constant": 6, "difficulty": "prs", "id": "Hikari@prs", "level": "6", "note": 450, "songId": "Hikari" },
       { "constant": 8.1, "difficulty": "ftr", "id": "Hikari@ftr", "level": "8", "note": 684, "songId": "Hikari" }
-    ]
+    ],
+    "pack": "Tone Sphere Collaboration"
   },
   {
     "bpm": "165",
@@ -8389,7 +8683,8 @@
         "note": 864,
         "songId": "I%27ve_heard_it_said"
       }
-    ]
+    ],
+    "pack": "Eternal Core"
   },
   {
     "bpm": "132",
@@ -8402,7 +8697,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "Diode@pst", "level": "2", "note": 452, "songId": "Diode" },
       { "constant": 5.5, "difficulty": "prs", "id": "Diode@prs", "level": "5", "note": 472, "songId": "Diode" },
       { "constant": 8.1, "difficulty": "ftr", "id": "Diode@ftr", "level": "8", "note": 709, "songId": "Diode" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "130",
@@ -8415,7 +8711,8 @@
       { "constant": 3, "difficulty": "pst", "id": "Dialnote@pst", "level": "3", "note": 393, "songId": "Dialnote" },
       { "constant": 6, "difficulty": "prs", "id": "Dialnote@prs", "level": "6", "note": 548, "songId": "Dialnote" },
       { "constant": 8.1, "difficulty": "ftr", "id": "Dialnote@ftr", "level": "8", "note": 684, "songId": "Dialnote" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "174",
@@ -8442,7 +8739,8 @@
         "songId": "Relentless"
       },
       { "constant": 8, "difficulty": "ftr", "id": "Relentless@ftr", "level": "8", "note": 1015, "songId": "Relentless" }
-    ]
+    ],
+    "pack": "Eternal Core"
   },
   {
     "bpm": "130",
@@ -8476,7 +8774,8 @@
         "note": 851,
         "songId": "World.execute(me);"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "107-109",
@@ -8489,7 +8788,8 @@
       { "constant": 2, "difficulty": "pst", "id": "Prism@pst", "level": "2", "note": 476, "songId": "Prism" },
       { "constant": 5, "difficulty": "prs", "id": "Prism@prs", "level": "5", "note": 544, "songId": "Prism" },
       { "constant": 8, "difficulty": "ftr", "id": "Prism@ftr", "level": "8", "note": 785, "songId": "Prism" }
-    ]
+    ],
+    "pack": "Lanota Collaboration"
   },
   {
     "bpm": "210",
@@ -8532,7 +8832,8 @@
         "songId": "Dement_~after_legend~",
         "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/5/57/Songs_dement_byd.jpg/256px-Songs_dement_byd.jpg" }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "160",
@@ -8577,7 +8878,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/9/99/Songs_infinityheaven_byd.jpg/256px-Songs_infinityheaven_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "126",
@@ -8590,7 +8892,8 @@
       { "constant": 1, "difficulty": "pst", "id": "Paradise@pst", "level": "1", "note": 253, "songId": "Paradise" },
       { "constant": 4, "difficulty": "prs", "id": "Paradise@prs", "level": "4", "note": 349, "songId": "Paradise" },
       { "constant": 7.5, "difficulty": "ftr", "id": "Paradise@ftr", "level": "7", "note": 729, "songId": "Paradise" }
-    ]
+    ],
+    "pack": "Crimson Solace"
   },
   {
     "bpm": "102",
@@ -8603,7 +8906,8 @@
       { "constant": 2, "difficulty": "pst", "id": "Inkar-usi@pst", "level": "2", "note": 276, "songId": "Inkar-usi" },
       { "constant": 4, "difficulty": "prs", "id": "Inkar-usi@prs", "level": "4", "note": 326, "songId": "Inkar-usi" },
       { "constant": 7.5, "difficulty": "ftr", "id": "Inkar-usi@ftr", "level": "7", "note": 463, "songId": "Inkar-usi" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "140",
@@ -8616,7 +8920,8 @@
       { "constant": 2.5, "difficulty": "pst", "id": "Rise@pst", "level": "2", "note": 322, "songId": "Rise" },
       { "constant": 4, "difficulty": "prs", "id": "Rise@prs", "level": "4", "note": 599, "songId": "Rise" },
       { "constant": 7.5, "difficulty": "ftr", "id": "Rise@ftr", "level": "7", "note": 788, "songId": "Rise" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "125",
@@ -8629,7 +8934,8 @@
       { "constant": 2, "difficulty": "pst", "id": "Suomi@pst", "level": "2", "note": 368, "songId": "Suomi" },
       { "constant": 5, "difficulty": "prs", "id": "Suomi@prs", "level": "5", "note": 550, "songId": "Suomi" },
       { "constant": 7.5, "difficulty": "ftr", "id": "Suomi@ftr", "level": "7", "note": 818, "songId": "Suomi" }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "174",
@@ -8663,7 +8969,8 @@
         "note": 719,
         "songId": "Dream_goes_on"
       }
-    ]
+    ],
+    "pack": "Lanota Collaboration"
   },
   {
     "bpm": "88",
@@ -8697,7 +9004,8 @@
         "note": 578,
         "songId": "First_Snow"
       }
-    ]
+    ],
+    "pack": "Divided Heart"
   },
   {
     "bpm": "187",
@@ -8731,7 +9039,8 @@
         "note": 641,
         "songId": "Romance_Wars"
       }
-    ]
+    ],
+    "pack": "Ambivalent Vision"
   },
   {
     "bpm": "160",
@@ -8765,7 +9074,8 @@
         "note": 645,
         "songId": "Moonlight_of_Sand_Castle"
       }
-    ]
+    ],
+    "pack": "Dynamix Collaboration"
   },
   {
     "bpm": "230",
@@ -8799,7 +9109,8 @@
         "note": 1021,
         "songId": "Clotho_and_the_stargazer"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "160",
@@ -8833,7 +9144,8 @@
         "note": 787,
         "songId": "Brand_new_world"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "189",
@@ -8857,7 +9169,8 @@
           "cover": "https://wiki.arcaea.cn/images/thumb/8/8c/Songs_fairytale_byd.jpg/256px-Songs_fairytale_byd.jpg"
         }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "180",
@@ -8879,7 +9192,8 @@
         "songId": "Vexaria",
         "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/2/29/Songs_vexaria_byd.jpg/256px-Songs_vexaria_byd.jpg" }
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "138",
@@ -8892,7 +9206,8 @@
       { "constant": 1, "difficulty": "pst", "id": "Blossoms@pst", "level": "1", "note": 275, "songId": "Blossoms" },
       { "constant": 4, "difficulty": "prs", "id": "Blossoms@prs", "level": "4", "note": 383, "songId": "Blossoms" },
       { "constant": 7, "difficulty": "ftr", "id": "Blossoms@ftr", "level": "7", "note": 655, "songId": "Blossoms" }
-    ]
+    ],
+    "pack": "Ambivalent Vision"
   },
   {
     "bpm": "178",
@@ -8926,7 +9241,8 @@
         "note": 666,
         "songId": "Sayonara_Hatsukoi"
       }
-    ]
+    ],
+    "pack": "Arcaea"
   },
   {
     "bpm": "175",
@@ -8934,6 +9250,7 @@
     "id": "Last",
     "sid": "last",
     "name": "Last",
+    "pack": "Silent Answer",
     "alias": ["终章", "光和对立贴贴", "Last时刻"],
     "charts": [
       { "constant": 4, "difficulty": "pst", "id": "Last@pst", "level": "4", "note": 674, "songId": "Last" },
@@ -8958,6 +9275,7 @@
     "cover": "https://wiki.arcaea.cn/images/thumb/9/92/Songs_lasteternity.jpg/256px-Songs_lasteternity.jpg",
     "id": "Last | Eternity",
     "name": "Last | Eternity",
+    "pack": "Silent Answer",
     "sid": "lasteternity",
     "alias": ["Last永恒", "永恒终局"],
     "charts": [

@@ -173,7 +173,7 @@ export class ProfileServiceImpl implements ProfileService {
       b31_39: ordered.slice(30, 39),
       maxPotential,
       r10Average,
-      b30Average: b30Sum / 30,
+      b30Average: b30Sum / ptt30.length,
     };
   }
 

@@ -43,14 +43,22 @@ class GlobalMessage extends HTMLElement implements OnConnected {
       content.append(message);
       this.dialog.appendChild(confirm);
       ok.onclick = () => {
-        this.dialog.close();
-        resolve(true);
+        this.dialog.close("confirm");
       };
       cancel.onclick = () => {
-        this.dialog.close();
-        resolve(false);
+        this.dialog.close("cancel");
       };
-      this.dialog.show();
+      this.dialog.onclose = () => {
+        switch (this.dialog.returnValue) {
+          case "confirm":
+            resolve(true);
+            break;
+          default:
+            resolve(false);
+            break;
+        }
+      };
+      this.dialog.showModal();
     });
   }
 }

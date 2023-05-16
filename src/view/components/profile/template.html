@@ -7,44 +7,28 @@
   <button type="button" class="btn btn-outline-secondary import-profile">导入存档</button>
 </div>
 <div class="cross-site-script row m-3">
+  <p>b30相关的功能主要是手动录入成绩进行计算并生成看板，类似excel算分表格的在线版。</p>
   <p>
-    b30相关的功能主要是手动录入计算并生成看板，类似excel算分表格的在线版。下面也提供一个无需订阅的查分脚本，所有的查分操作都会在浏览器内进行，原理和大多数bot一样是查好友榜，使用此功能的封号风险请自行承担。
+    为了减少手动录入成绩的麻烦，下面也提供一个无需订阅 <code>Arcaea Online</code>
+    即可用的自助查分脚本工具，可用于在Arcaea官网爬取这些成绩数据。
   </p>
   <p>
-    在Chrome/Edge浏览器打开登录官网，按F12打开开发者工具，找到控制台（Console），复制并执行以下代码可以在官网查分（将以下代码写进油猴脚本也可以用）。
+    所有的查分操作都会在浏览器内进行，数据也存在浏览器内。查分原理和 <code>Arcaea Unlimited API</code>
+    一样是查好友榜，使用此功能的封号风险请自行承担（建议注册小号加大号好友来查，无需互相关注）。
+  </p>
+  <p>通常来说被查玩家的潜力值越低，查分越慢，最坏情况是查完将近1000个谱面的好友榜，大约需要5分钟。</p>
+  <div class="divider"></div>
+  <p>
+    在电脑上，使用Chrome/Edge浏览器打开登录官网，按F12打开开发者工具，找到控制台（Console），复制并执行以下脚本代码即可调用插件。
   </p>
   <div>
-    <div>只查自己</div>
-    <blockquote id="self-only"></blockquote>
+    <blockquote id="the-script"></blockquote>
   </div>
-  <div>
-    <div>只查好友（适用于低ptt小号，因为ptt越小需要查的分越多，会很慢）</div>
-    <blockquote id="friends-only"></blockquote>
-  </div>
-  <div>
-    <div class="row">
-      <div class="col-auto">
-        <label for="only-player" class="col-form-label"> 只查特定玩家： </label>
-      </div>
-      <div class="col-auto">
-        <input
-          type="text"
-          id="only-player"
-          class="form-control"
-          placeholder="输入玩家名"
-          oninput="this.getRootNode().host.updatePlayerQuery(this.value)"
-        />
-      </div>
-    </div>
-    <blockquote id="only">（请先输入）</blockquote>
-  </div>
-  <div>
-    <div>查自己和好友</div>
-    <blockquote id="friends-and-me"></blockquote>
-  </div>
-  <div>
-    <p>查分只会查到best 39，完成后将弹出一个对话框。</p>
-  </div>
+  <p>若需要频繁使用此脚本，可以使用油猴插件实现在访问Arcaea官网时自动执行。</p>
+  <p>若要在手机上执行此脚本，可以参考这篇文章：</p>
+  <p>
+    <a href="https://www.zhihu.com/question/411017015" target="_blank">https://www.zhihu.com/question/411017015</a>
+  </p>
 </div>
 <dialog id="create-profile">
   <form>
@@ -95,7 +79,7 @@
     <div class="h4">导入存档</div>
     <div class="row">
       <div class="col">
-        <input type="file" accept=".json" name="file" />
+        <input type="file" class="form-control" accept=".json" name="file" />
       </div>
     </div>
     <div class="modal-footer">

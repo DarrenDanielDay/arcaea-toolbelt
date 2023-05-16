@@ -9,11 +9,12 @@ import { $ChartService, $MusicPlayService, $ProfileService } from "../services/d
 import { ChartServiceImpl } from "../services/chart-data";
 import { MusicPlayServiceImpl } from "../services/music-play";
 import { ProfileServiceImpl } from "../services/player-profile";
-import { check } from "../utils/component";
+import { check, element } from "../utils/component";
 import { ChartSelect } from "./components/chart-select";
 import { ResultCard } from "./components/result-card";
-import { alert } from "./components/global-message";
-import { ChartQuery } from "./pages/chart-query";
+import { $Router, Router } from "./pages/router";
+import { routes } from "./pages";
+import { NavBar } from "./components/nav-bar";
 document.adoptedStyleSheets = [bootstrap, sheet];
 
 const chart = new ChartServiceImpl();
@@ -22,96 +23,10 @@ const music = new MusicPlayServiceImpl();
 provide($MusicPlayService, document.body, music);
 const profile = new ProfileServiceImpl(music, chart);
 provide($ProfileService, document.body, profile);
+const main = element("main");
+const router = new Router(main, routes, routes[0]!);
+provide($Router, document.body, router);
 
-check([Best30, ChartSelect, PlayResultForm, ProfilePage, ResultCard]);
+check([Best30, ChartSelect, PlayResultForm, ProfilePage, ResultCard, NavBar]);
+document.body.append(new NavBar(), main);
 
-document.body.innerHTML = app;
-const toggler = document.querySelector("button.navbar-toggler")!;
-const collapsePanel = document.querySelector("div.collapse")!;
-const main = document.querySelector("main")!;
-const profileLink = document.querySelector("a#profile")!;
-const b30Link = document.querySelector("a#b30")!;
-const addResultLink = document.querySelector("a#add-result")!;
-const chartsLink = document.querySelector("a#charts")!;
-const show = "show";
-toggler.onclick = () => {
-  if (collapsePanel.classList.contains(show)) {
-    collapsePanel.classList.remove(show);
-  } else {
-    collapsePanel.classList.add(show);
-  }
-};
-
-const pages: {
-  link: HTMLElement;
-  setup(): void;
-}[] = [
-  {
-    link: profileLink,
-    setup() {
-      main.appendChild(new ProfilePage());
-    },
-  },
-  {
-    link: addResultLink,
-    setup() {
-      const form = new PlayResultForm();
-      main.appendChild(form);
-      const row = document.createElement("div");
-      row.classList.add("row", "my-2");
-      row.innerHTML = `<div class="col m-3"><button type="button" class="btn btn-primary">添加成绩</button></div>`;
-      const add = row.querySelector("button")!;
-      add.onclick = () => {
-        const res = form.getPlayResult();
-        if (res) {
-          profile.addResult(res);
-          form.chartSelect.searchInput.focus();
-        }
-      };
-      main.appendChild(row);
-    },
-  },
-  {
-    link: b30Link,
-    setup() {
-      if (!profile.currentUsername) {
-        alert("未选择存档");
-      }
-      const b30Card = new Best30();
-      const width = window.innerWidth;
-      if (width < 800) {
-        document.body.style.setProperty("--inner-width", `${width}`);
-      }
-      main.appendChild(b30Card);
-    },
-  },
-  {
-    link: chartsLink,
-    setup() {
-      main.appendChild(new ChartQuery());
-    },
-  },
-];
-
-for (const page of pages) {
-  page.link.onclick = () => {
-    collapsePanel.classList.remove(show);
-    for (const others of pages) {
-      if (others === page) {
-        others.link.classList.add("active");
-      } else {
-        others.link.classList.remove("active");
-      }
-    }
-    main.innerHTML = "";
-    page.setup();
-  };
-}
-window.addEventListener("message", (e) => {
-  const data = e.data;
-  if (Array.isArray(data)) {
-    profile.syncProfiles(data);
-  }
-});
-
-profileLink.click();

@@ -2,10 +2,16 @@ import { create } from "sheetly";
 import data from "../data/chart-data.json";
 import { Chart, ClearRank, Difficulty, PlayResult, SongData } from "../models/music-play";
 import { Profile } from "../models/profile";
-import { MusicPlayService } from "./declarations";
+import { $CrossSiteScriptPluginService, CrossSiteScriptPluginService, MusicPlayService } from "./declarations";
 import { MusicPlayServiceImpl } from "./music-play";
 import * as lowiro from "./web-api";
 import { downloadJSON } from "../utils/download";
+import { ToolPanel } from "../view/components/plugin-panel";
+import { addSheet } from "sheetly";
+import { bootstrap } from "../view/styles";
+import { sheet as dialogSheet } from "../view/components/global-message/style.css.js";
+import { provide } from "./di";
+import { element } from "../utils/component";
 const musicPlay: MusicPlayService = new MusicPlayServiceImpl();
 const flattenData = (data as SongData[])
   .flatMap((song) =>
@@ -108,21 +114,16 @@ type QueryBests = {
   };
 };
 
-export async function queryFriendsB39(type: string, only: string | null): Promise<Profile[]> {
-  const profile = await getSelfProfile();
+async function queryBest(
+  profile: lowiro.UserProfile,
+  usernames: string[],
+  onProgress: (msg: string) => void,
+  signal: AbortSignal,
+  limit: number = 3
+): Promise<Profile[]> {
   const friends = profile.friends;
-  const limit = 39;
-  const queryPlayers = (() => {
-    if (only) {
-      return [...friends, profile].filter((player) => player.name === only);
-    }
-    if (type === "both") {
-      return [...friends, profile];
-    } else if (type === "selfonly") {
-      return [profile];
-    }
-    return friends;
-  })();
+  const names = new Set(usernames);
+  const queryPlayers = [...friends, profile].filter((p) => names.has(p.name));
   console.log(
     `查询目标玩家：`,
     queryPlayers.map((p) => p.name)
@@ -132,9 +133,21 @@ export async function queryFriendsB39(type: string, only: string | null): Promis
     result: PlayResult;
     ptt: number;
   }
+  let aborted = false;
+  const handleAbort = () => {
+    aborted = true;
+  };
+  const message = (msg: string) => {
+    console.log(msg);
+    onProgress(msg);
+  };
+  signal.addEventListener("abort", handleAbort);
   const friendsPlayResults = Object.fromEntries(queryPlayers.map<[string, PlayResultWithPtt[]]>((f) => [f.name, []]));
   for (const { song, chart } of flattenData) {
-    console.log(
+    if (aborted) {
+      throw new Error(`用户取消。`);
+    }
+    message(
       `正在查询 ${chart.byd?.song ?? song.name} 的 ${chart.difficulty}难度（${chart.constant.toFixed(1)}）好友榜……`
     );
     const friendBests = await getFriendsBest(song.sid, mapDifficulty(chart.difficulty));
@@ -178,6 +191,7 @@ export async function queryFriendsB39(type: string, only: string | null): Promis
       }
     }
   }
+  signal.removeEventListener("abort", handleAbort);
   const result: QueryBests = Object.fromEntries(
     queryPlayers.map((friend) => [
       friend.name,
@@ -195,77 +209,81 @@ export async function queryFriendsB39(type: string, only: string | null): Promis
   }));
 }
 
-async function main() {
-  const url = new URL(import.meta.url);
-  const search = url.searchParams;
-  const queryType = search.get("type") || "friendonly";
-  const queryOnly = search.get("only");
-  const profiles = await queryFriendsB39(queryType, queryOnly);
-  console.log(profiles);
-  handleProfiles(profiles);
+class CrossSiteScriptPluginServiceImpl implements CrossSiteScriptPluginService {
+  async getProfile(): Promise<lowiro.UserProfile> {
+    return await getSelfProfile();
+  }
+  startQueryBests(
+    profile: lowiro.UserProfile,
+    targetPlayers: string[],
+    onProgress: (message: string) => void,
+    onResult: (profiles: Profile[]) => void
+  ): AbortController {
+    const controller = new AbortController();
+    queryBest(profile, targetPlayers, onProgress, controller.signal).then(onResult);
+    return controller;
+  }
+  syncProfiles(profiles: Profile[]): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      // const baseURI = new URL("..", import.meta.url);
+      const baseURI = "http://localhost:1234/";
+      const targetURL = new URL("services/cross-site-frame.html", baseURI);
+      const iframe = element("iframe");
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+      iframe.src = targetURL.toString();
+      iframe.onload = () => {
+        const win = iframe.contentWindow!;
+        win.postMessage({ type: "sync-profiles", payload: profiles }, "*");
+        window.addEventListener("message", (e) => {
+          const message = e.data;
+          switch (message.type) {
+            case "sync-success":
+              resolve();
+              break;
+            case "sync-profile-error":
+              reject(message.error);
+              break;
+          }
+          document.body.removeChild(iframe);
+        });
+      };
+      iframe.onerror = reject;
+    });
+  }
 }
 
-function handleProfiles(profiles: Profile[]) {
-  const sheet = create(
-    `
-form#export-profile .row {
-  margin: 8px;
-}
-`,
-    ""
-  );
-  document.adoptedStyleSheets = document.adoptedStyleSheets.concat(sheet);
-  const container = document.createElement("div");
-  const dialog = document.createElement("dialog");
-  dialog.id = "export-profile";
-  dialog.innerHTML = `
-<form id="export-profile">
-  <div class="row">
-    <select id="profile" name="profile"></select>
-  </div>
-  <div class="row">
-    <button type="button" class="sync">一键同步</button>
-    <button type="button" class="export">导出所选存档</button>
-    <button type="button" class="close">关闭</button>
-  </div>
-</form>  
-`;
-  const select = dialog.querySelector("select#profile")!;
-  const exportBtn = dialog.querySelector("button.export")!;
-  const closeBtn = dialog.querySelector("button.close")!;
-  const syncBtn = dialog.querySelector("button.sync")!;
-  select.append(
-    ...profiles.map((p) => {
-      const option = document.createElement("option");
-      option.textContent = option.value = p.username;
-      return option;
-    })
-  );
-  exportBtn.onclick = () => {
-    const profile = profiles.find((p) => p.username === select.value);
-    if (profile) {
-      downloadJSON(profile, `profile_${profile.username}.json`);
+const createOrGetDialog = (() => {
+  let dialog: HTMLDialogElement | null = null;
+  let panel: ToolPanel | null = null;
+  return () => {
+    if (!dialog || !panel) {
+      dialog = element("dialog");
+      document.body.appendChild(dialog);
+      addSheet(bootstrap);
+      const container = element("div");
+      provide($CrossSiteScriptPluginService, container, new CrossSiteScriptPluginServiceImpl());
+      document.body.appendChild(container);
+      const wrapper = container.attachShadow({ mode: "open" });
+      addSheet(dialogSheet, wrapper);
+      panel = new ToolPanel();
+      panel.addEventListener("panel-close", () => {
+        dialog?.close();
+      });
+      wrapper.appendChild(dialog);
+      dialog.appendChild(panel);
     }
+    return dialog;
   };
-  closeBtn.onclick = () => {
-    dialog.close();
-  };
-  syncBtn.onclick = () => {
-    // const targetURL = "http://localhost:1234/";
-    const targetURL = new URL("..", import.meta.url);
-    const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    document.body.appendChild(iframe);
-    iframe.src = targetURL.toString();
-    iframe.onload = () => {
-      iframe.contentWindow!.postMessage(profiles, "*");
-      dialog.close();
-    };
-  };
-  const shadow = container.attachShadow({ mode: "open" });
-  shadow.appendChild(dialog);
-  document.body.appendChild(container);
-  dialog.showModal();
+})();
+
+async function main() {
+  window.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key.toUpperCase() === "B") {
+      createOrGetDialog().showModal();
+    }
+  });
+  createOrGetDialog().showModal();
 }
 
 main();

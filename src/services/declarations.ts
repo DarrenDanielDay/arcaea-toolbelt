@@ -1,3 +1,4 @@
+import * as lowiro from "./web-api";
 import {
   Chart,
   ClearRank,
@@ -58,6 +59,18 @@ export interface ProfileService {
   b30(): Promise<B30Response>;
 }
 
+export interface CrossSiteScriptPluginService {
+  getProfile(): Promise<lowiro.UserProfile>;
+  startQueryBests(
+    profile: lowiro.UserProfile,
+    targetPlayers: string[],
+    onProgress: (message: string) => void,
+    onResult: (profiles: Profile[]) => void
+  ): AbortController;
+  syncProfiles(profiles: Profile[]): Promise<void>;
+}
+
 export const $ChartService = token<ChartService>("chart");
 export const $MusicPlayService = token<MusicPlayService>("music-play");
 export const $ProfileService = token<ProfileService>("profile");
+export const $CrossSiteScriptPluginService = token<CrossSiteScriptPluginService>("cross-site-script");

@@ -3,7 +3,7 @@ import { ParseSelector } from "typed-query-selector/parser";
 
 export interface ComponentOptions {
   selector: string;
-  html?: string;
+  html?: string | HTMLTemplateElement;
   css?: string | CSSStyleSheet | CSSStyleSheet[];
 }
 
@@ -21,7 +21,11 @@ export const Component = ({ html, selector, css }: ComponentOptions) => {
           mode: "open",
         });
         if (html) {
-          shadow.innerHTML = html;
+          if (typeof html === "string") {
+            shadow.innerHTML = html;
+          } else {
+            shadow.appendChild(clone(html.content));
+          }
         }
         if (css instanceof CSSStyleSheet) {
           shadow.adoptedStyleSheets = [css];
@@ -58,8 +62,10 @@ export interface OnAttributeChanged {
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void;
 }
 
+export const element = document.createElement.bind(document);
+
 export const fragment = (html: string): DocumentFragment => {
-  const t = document.createElement("template");
+  const t = element("template");
   t.innerHTML = html;
   return t.content;
 };
@@ -70,7 +76,10 @@ export const query =
     // @ts-expect-error Dynamic Implementation
     Object.fromEntries(Object.entries(queries).map(([key, value]) => [key, host.querySelector(value)]));
 
-export const textContent = <T extends Record<string, string>>(refs: Refs<T>, texts: Partial<Record<keyof T, string>>) => {
+export const textContent = <T extends Record<string, string>>(
+  refs: Refs<T>,
+  texts: Partial<Record<keyof T, string>>
+) => {
   for (const key in texts) {
     refs[key]!.textContent = texts[key]!;
   }

@@ -1,17 +1,29 @@
 {
   "name": "arcaea-toolbelt",
   "version": "0.0.0",
+  "type": "module",
+  "targets": {
+    "default": {
+      "context": "browser",
+      "scopeHoist": false,
+      "source": [
+        "src/index.html",
+        "src/services/cross-site-script.ts",
+        "src/services/cross-site-frame.html"
+      ],
+      "outputFormat": "esmodule"
+    }
+  },
+  "browserslist": "Chrome 100",
   "scripts": {
-    "start:parcel": "parcel src/index.html",
+    "start:parcel": "parcel --target default --host localhost",
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
-    "start:cross-site": "node ./scripts/cross-site.js",
     "start": "run-p --print-label \"start:**\"",
     "purge": "node ./scripts/purge.js",
-    "build:parcel": "parcel build src/index.html --public-url /arcaea-toolbelt --dist-dir arcaea-toolbelt --no-optimize --no-source-maps",
+    "build:parcel": "parcel build --target default --public-url /arcaea-toolbelt --no-optimize --no-source-maps",
     "build:sheetly": "sheetly build --dir src",
-    "build:cross-site": "node ./scripts/cross-site.js --build",
     "minify": "node ./scripts/minify.js",
-    "build": "run-s purge build:sheetly build:parcel minify build:cross-site"
+    "build": "run-s purge build:sheetly build:parcel minify"
   },
   "private": true,
   "devDependencies": {

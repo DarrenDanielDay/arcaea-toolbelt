@@ -6,7 +6,7 @@
       "import html from \"bundle-text:./template.html\";",
       "import { sheet } from \"./style.css.js\";",
       "import { Component } from \"../../../utils/component\";",
-      "import { bootstrap } from \"../../styles/index.js\";",
+      "import { bootstrap } from \"../../styles\";",
       "",
       "export",
       "@Component({",

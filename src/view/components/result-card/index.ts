@@ -1,4 +1,4 @@
-import { CleanUp, Component, Disposable, OnConnected, OnDisconnected, cleanup, effect } from "../../../utils/component";
+import { CleanUp, Component, Disposable, OnConnected, OnDisconnected, cleanup, effect, element } from "../../../utils/component";
 import { sheet } from "./style.css.js";
 import html from "bundle-text:./template.html";
 import { Chart, Grade, ScoreResult, Song, ClearRank, NoteResult } from "../../../models/music-play";
@@ -40,7 +40,7 @@ function formatScore(score: number) {
   return `${padded.slice(0, 2)}'${padded.slice(2, 5)}'${padded.slice(5, 8)}`;
 }
 
-const canvas = document.createElement("canvas");
+const canvas = element("canvas");
 const ctx = canvas.getContext("2d")!;
 ctx.font = `600 48px / 80px ${getComputedStyle(document.body).fontFamily}`;
 

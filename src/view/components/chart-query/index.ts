@@ -5,8 +5,8 @@ import { sheet } from "./style.css.js";
 import { $ChartService, ChartService, SearchResult } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
 import { getFormData } from "../../../utils/form";
-import { alert } from "../../components/global-message";
-import { ChartInfo } from "../../components/chart-info";
+import { alert } from "../global-message";
+import { ChartInfo } from "../chart-info";
 
 const templates = query({
   panel: "template#chart-query-panel",

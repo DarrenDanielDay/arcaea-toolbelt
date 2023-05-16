@@ -119,7 +119,7 @@ async function queryBest(
   usernames: string[],
   onProgress: (msg: string) => void,
   signal: AbortSignal,
-  limit: number = 3
+  limit: number = 39
 ): Promise<Profile[]> {
   const friends = profile.friends;
   const names = new Set(usernames);

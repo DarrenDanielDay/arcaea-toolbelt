@@ -225,8 +225,9 @@ class CrossSiteScriptPluginServiceImpl implements CrossSiteScriptPluginService {
   }
   syncProfiles(profiles: Profile[]): Promise<void> {
     return new Promise<void>((resolve, reject) => {
+      // TODO 支持打包成ESM直接用import.meta.url，不再需要环境变量
       // const baseURI = new URL("..", import.meta.url);
-      const baseURI = "http://localhost:1234/";
+      const baseURI = process.env.BASE_URI;
       const targetURL = new URL("services/cross-site-frame.html", baseURI);
       const iframe = element("iframe");
       iframe.style.display = "none";

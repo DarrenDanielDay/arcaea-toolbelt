@@ -1,17 +1,17 @@
 import { $ProfileService, ProfileService } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
-import { Component, OnConnected, element } from "../../../utils/component";
+import { Component, OnConnected } from "../../../utils/component";
 import { PlayResultForm } from "../../components/play-result-form";
+import { bootstrap } from "../../styles";
 import { Route } from "../router";
 
 @Component({
   selector: "chart-potential",
+  css: [bootstrap],
   html: `\
 <play-result-form></play-result-form>
-<div class="row">
-  <div class="col m-3">
-    <button type="button" class="btn btn-primary">添加成绩</button>
-  </div>
+<div class="m-3">
+  <button type="button" class="btn btn-primary" name="add-result">添加成绩</button>
 </div>
   `,
 })
@@ -22,8 +22,7 @@ class ChartPotentialPage extends HTMLElement implements OnConnected {
   connectedCallback(): void {
     const shadow = this.shadowRoot!;
     const form = shadow.querySelector<PlayResultForm>("play-result-form")!;
-    const row = shadow.querySelector("div.row")!;
-    const add = row.querySelector("button")!;
+    const add = shadow.querySelector(`button[name="add-result"]`)!;
     add.onclick = () => {
       const res = form.getPlayResult();
       if (res) {
@@ -31,7 +30,6 @@ class ChartPotentialPage extends HTMLElement implements OnConnected {
         form.chartSelect.searchInput.focus();
       }
     };
-    this.appendChild(row);
   }
 }
 

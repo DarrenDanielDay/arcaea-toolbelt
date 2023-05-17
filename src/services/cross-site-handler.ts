@@ -14,10 +14,13 @@ window.addEventListener("message", async (e) => {
           await profile.syncProfiles(data.payload);
           parent.postMessage({ type: "sync-success" }, "*");
         } catch (error) {
-          parent.postMessage({
-            type: "sync-profile-error",
-            error: error instanceof Error ? error.message : JSON.stringify(error),
-          });
+          parent.postMessage(
+            {
+              type: "sync-profile-error",
+              error: error instanceof Error ? error.message : JSON.stringify(error),
+            },
+            "*"
+          );
         }
       }
       break;

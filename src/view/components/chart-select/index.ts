@@ -8,6 +8,8 @@ import {
   cleanup,
   clone,
   fragment,
+  query,
+  textContent,
 } from "../../../utils/component";
 import { sheet } from "./style.css.js";
 import { Chart } from "../../../models/music-play";
@@ -15,11 +17,20 @@ import { onClickElsewhere } from "../../../utils/click-elsewhere";
 import { Inject } from "../../../services/di";
 import { $ChartService, ChartService, SearchResult } from "../../../services/declarations";
 
-const frag = fragment(html);
-const searchItem = frag.querySelector("template#search-item")!.content.querySelector("div.search-item")!;
-const inputTemplate = frag.querySelector("template#auto-complete-input")!;
-const tooMuch = frag.querySelector("template#too-much-results")!.content.firstElementChild!;
-const noResult = frag.querySelector("template#no-result")!.content.firstElementChild!;
+const templates = query({
+  searchItem: "template#search-item",
+  input: "template#auto-complete-input",
+  tooMuch: "template#too-much-results",
+  noResult: "template#no-result",
+} as const)(fragment(html));
+
+const getSearchItemRefs = query({
+  cover: "img.cover",
+  constant: "span.constant",
+  pack: "span.pack-name",
+  song: "span.song-name",
+  notes: "span.notes",
+} as const);
 
 export
 @Component({
@@ -39,7 +50,7 @@ class ChartSelect extends HTMLElement implements OnConnected, OnDisconnected, Di
   cleanups: CleanUp[] = [];
 
   connectedCallback() {
-    const host = clone(inputTemplate.content);
+    const host = clone(templates.input.content);
     const input = (this.searchInput = host.querySelector("input")!);
     this.syncAttributesToSearchInput();
     let count = 0;
@@ -53,7 +64,7 @@ class ChartSelect extends HTMLElement implements OnConnected, OnDisconnected, Di
     };
     input.onfocus = () => {
       input.select();
-    }
+    };
     input.onkeydown = (e) => {
       if (e.key.toLowerCase() === "arrowdown") {
         this.panel.querySelector("div[tabindex]")?.focus();
@@ -91,23 +102,28 @@ class ChartSelect extends HTMLElement implements OnConnected, OnDisconnected, Di
     this.togglePanelVisible(true);
     this.panel.innerHTML = "";
     if (results.length > 30) {
-      this.panel.appendChild(clone(tooMuch));
+      this.panel.appendChild(clone(templates.tooMuch.content));
       return;
     }
     if (!results.length) {
-      this.panel.appendChild(clone(noResult));
+      this.panel.appendChild(clone(templates.noResult.content));
       return;
     }
+    const searchItem = templates.searchItem.content.querySelector("div.search-item")!;
     const items: HTMLDivElement[] = [];
     for (const [i, result] of results.entries()) {
       const item = clone(searchItem);
       items.push(item);
-      item.querySelector("img.cover")!.src = result.cover;
-      const c = item.querySelector("span.constant")!;
-      c.style.backgroundColor = `var(--${result.difficulty})`;
-      c.textContent = result.constant.toFixed(1);
-      const n = item.querySelector("span.song-name")!;
-      n.textContent = result.title;
+      const itemRefs = getSearchItemRefs(item);
+      const { cover, constant } = itemRefs;
+      cover.src = result.cover;
+      constant.style.backgroundColor = `var(--${result.difficulty})`;
+      textContent(itemRefs, {
+        pack: result.song.pack,
+        song: result.title,
+        constant: result.constant.toFixed(1),
+        notes: result.chart.note.toString(),
+      });
       const handleSelect = () => {
         this.selectChart(result.chart);
         this.togglePanelVisible(false);

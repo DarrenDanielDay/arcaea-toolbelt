@@ -163,6 +163,7 @@ export class ProfileServiceImpl implements ProfileService {
     const b30Sum = sum(ptt30);
     const b10Sum = sum(ptt30.slice(0, 10));
     const maxPotential = (b10Sum + b30Sum) / 40;
+    const minPotential = b30Sum / 40;
     // 如果成绩少于10个，recent 10的平均值应当按照成绩个数取平均
     const r10Average = (+p.potential * 40 - b30Sum) / Math.min(playResults.length, 10);
 
@@ -172,6 +173,7 @@ export class ProfileServiceImpl implements ProfileService {
       b30: b30,
       b31_39: ordered.slice(30, 39),
       maxPotential,
+      minPotential,
       r10Average,
       b30Average: b30Sum / ptt30.length,
     };

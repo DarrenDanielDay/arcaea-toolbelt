@@ -22,6 +22,7 @@ export interface B30Response {
   username: string;
   potential: string;
   maxPotential: number;
+  minPotential: number;
   b30: BestResultItem[];
   b31_39: BestResultItem[];
   b30Average: number;

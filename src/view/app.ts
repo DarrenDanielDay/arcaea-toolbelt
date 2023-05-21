@@ -1,4 +1,3 @@
-import app from "bundle-text:./app.html";
 import { sheet } from "./app.css.js";
 import { PlayResultForm } from "./components/play-result-form";
 import { ProfilePage } from "./components/profile";

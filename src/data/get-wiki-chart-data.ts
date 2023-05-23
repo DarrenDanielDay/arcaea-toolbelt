@@ -1,24 +1,6 @@
 import { BeyondAddon, Chart, Difficulty, SongData } from "../models/music-play";
 import { download } from "../utils/download";
-
-const htmlDocument = document.implementation.createHTMLDocument();
-
-async function initPageDocument(url: string | URL) {
-  const response = await fetch(url);
-  const page = await response.text();
-  htmlDocument.open();
-  htmlDocument.write(page);
-  htmlDocument.close();
-  const base = htmlDocument.createElement("base");
-  base.href = new URL(url).origin;
-  htmlDocument.head.appendChild(base);
-}
-
-const wikiBaseURL = new URL("https://wiki.arcaea.cn");
-
-const pathName = (path: string): string => new URL(path, location.href).pathname;
-
-const wikiURL = (path: string) => new URL(pathName(path), wikiBaseURL);
+import { wikiURL, initPageDocument, htmlDocument } from "./wiki-util";
 
 const wikiConstantTable = wikiURL("定数详表");
 

@@ -9,22 +9,23 @@
 <div class="cross-site-script row m-3">
   <p>b30相关的功能主要是手动录入成绩进行计算并生成看板，类似excel算分表格的在线版。</p>
   <p>
-    为了减少手动录入成绩的麻烦，下面也提供一个无需订阅 <code>Arcaea Online</code>
-    即可用的自助查分脚本工具，可用于在Arcaea官网爬取这些成绩数据。
+    为了减少手动录入成绩的麻烦，下面也提供一个无需订阅
+    <code>Arcaea Online</code> 即可用的自助查分脚本工具，可用于在Arcaea官网爬取这些成绩数据，并生成存档同步至本站。
+    所有的查分操作都会在浏览器内进行，数据也存在浏览器内。查分原理和
+    <code>Arcaea Unlimited API</code>
+    一样是查好友榜，并且可以同时查多个玩家。<strong>使用此功能的封号风险请自行承担（建议注册小号加大号好友，用小号执行脚本来查，无需互相关注）</strong>。
+    目前的QQ bot基本都有<code>ptt &GreaterEqual; 10</code> 才能查b30的限制，但<strong>此脚本无此限制</strong>。
+    通常来说被查玩家的潜力值越低，查分越慢，最坏情况是查完将近1000个谱面的好友榜，大约需要5分钟。
   </p>
+  <p>关于此脚本更详细的使用方法，请参考<a href="../../../docs/plugin-usage.html" target="_blank">使用说明</a>。</p>
   <p>
-    所有的查分操作都会在浏览器内进行，数据也存在浏览器内。查分原理和 <code>Arcaea Unlimited API</code>
-    一样是查好友榜，使用此功能的封号风险请自行承担（建议注册小号加大号好友来查，无需互相关注）。
-  </p>
-  <p>通常来说被查玩家的潜力值越低，查分越慢，最坏情况是查完将近1000个谱面的好友榜，大约需要5分钟。</p>
-  <div class="divider"></div>
-  <p>
-    在电脑上，使用Chrome/Edge浏览器打开 <a href="https://arcaea.lowiro.com/zh/" target="_blank">Arcaea官网</a>
-    并登录，按F12打开开发者工具，找到控制台（Console），复制并执行以下脚本代码即可调用插件。
+    在电脑上，使用<code>Chrome/Edge</code>浏览器打开 <a href="https://arcaea.lowiro.com/zh/" target="_blank">Arcaea官网</a>
+    并登录，按F12打开开发者工具，找到控制台（Console），复制并执行以下脚本代码即可调用此脚本。
   </p>
   <div>
     <blockquote id="the-script"></blockquote>
   </div>
+  <p>脚本执行后会弹出一个弹框，根据弹框内提示操作即可。关闭弹框后可通过<kbd>Ctrl + B</kbd>重新唤起弹框。</p>
   <p>若需要频繁使用此脚本，可以使用油猴插件实现在访问Arcaea官网时自动执行。</p>
   <p>若要在手机上执行此脚本，可以参考这篇文章：</p>
   <p>

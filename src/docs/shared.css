@@ -1,0 +1,51 @@
+pre {
+  padding: 8px;
+  border-radius: var(--bs-border-radius);
+  background-color: var(--bs-gray-200);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 240px min-content;
+  justify-content: center;
+  gap: 32px;
+  position: static;
+}
+
+.toc-content {
+  position: sticky;
+  max-width: fit-content;
+  top: 3em;
+  left: 3em;
+  background-color: #ffffff88;
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+}
+
+.imgs img {
+  object-fit: scale-down;
+  max-width: 100%;
+  margin: 8px 0;
+}
+
+* {
+  word-break: break-all;
+}
+
+summary {
+  font-size: 1.25em;
+}
+
+summary::marker {
+  border: 1px solid var(--bs-border-color);
+  display: inline-block;
+  color: var(--bs-link-color);
+  right: 0;
+}
+
+details:not([open]) summary::marker {
+  content: "展开";
+}
+details[open] summary::marker {
+  content: "折叠";
+}

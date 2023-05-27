@@ -13011,6 +13011,307 @@
           },
           { "length": 0, "reward": { "type": 1, "id": "GIMMICK" } }
         ]
+      },
+      {
+        "id": "限时：To_the_Milky_Way",
+        "platforms": [
+          { "length": 13, "special": { "type": 2, "range": ["IZANA", "REKKA RESONANCE", "To the Milky Way"] } },
+          { "length": 24 },
+          { "length": 13, "reward": { "type": 0, "text": "73 残片" } },
+          { "length": 24 },
+          { "length": 13, "reward": { "type": 0, "text": "73 残片" } },
+          { "length": 24 },
+          { "length": 13, "reward": { "type": 0, "text": "73 残片" } },
+          { "length": 24 },
+          { "length": 14, "special": { "type": 2, "range": ["IZANA", "REKKA RESONANCE", "To the Milky Way"] } },
+          { "length": 23 },
+          { "length": 14, "reward": { "type": 0, "text": "186 残片" } },
+          { "length": 23 },
+          { "length": 14, "reward": { "type": 0, "text": "186 残片" } },
+          { "length": 23 },
+          { "length": 14, "reward": { "type": 0, "text": "186 残片" } },
+          { "length": 23 },
+          { "length": 24, "special": { "type": 2, "range": ["IZANA", "REKKA RESONANCE", "To the Milky Way"] } },
+          { "length": 13 },
+          { "length": 24, "reward": { "type": 0, "text": "73 残片" } },
+          { "length": 13 },
+          { "length": 24, "reward": { "type": 0, "text": "73 残片" } },
+          { "length": 13 },
+          { "length": 24, "reward": { "type": 0, "text": "73 残片" } },
+          { "length": 13 },
+          { "length": 23, "special": { "type": 2, "range": ["IZANA", "REKKA RESONANCE", "To the Milky Way"] } },
+          { "length": 14 },
+          { "length": 23, "reward": { "type": 0, "text": "186 残片" } },
+          { "length": 14 },
+          { "length": 23, "reward": { "type": 0, "text": "186 残片" } },
+          { "length": 14 },
+          { "length": 23, "reward": { "type": 0, "text": "186 残片" } },
+          { "length": 14 },
+          { "length": 14, "special": { "type": 2, "range": ["IZANA", "REKKA RESONANCE", "To the Milky Way"] } },
+          { "length": 24 },
+          { "length": 34, "reward": { "type": 0, "text": "73 残片" } },
+          { "length": 24 },
+          { "length": 14, "reward": { "type": 0, "text": "73 残片" } },
+          { "length": 24 },
+          { "length": 34, "reward": { "type": 0, "text": "73 残片" } },
+          { "length": 24 },
+          { "length": 14, "special": { "type": 2, "range": ["IZANA", "REKKA RESONANCE", "To the Milky Way"] } },
+          { "length": 13 },
+          { "length": 12, "reward": { "type": 0, "text": "186 残片" } },
+          { "length": 13 },
+          { "length": 14, "reward": { "type": 0, "text": "186 残片" } },
+          { "length": 13 },
+          { "length": 12, "reward": { "type": 0, "text": "186 残片" } },
+          { "length": 13 },
+          { "length": 23, "reward": { "type": 0, "text": "以太之滴 × 1" } },
+          { "length": 23, "special": { "type": 2, "range": ["IZANA", "REKKA RESONANCE", "To the Milky Way"] } },
+          { "length": 23, "reward": { "type": 0, "text": "以太之滴 × 1" } },
+          { "length": 23, "special": { "type": 2, "range": ["IZANA", "REKKA RESONANCE", "To the Milky Way"] } },
+          { "length": 23, "reward": { "type": 0, "text": "以太之滴 × 1" } },
+          { "length": 23, "special": { "type": 2, "range": ["IZANA", "REKKA RESONANCE", "To the Milky Way"] } },
+          { "length": 23, "reward": { "type": 0, "text": "以太之滴 × 1" } },
+          { "length": 23, "special": { "type": 2, "range": ["IZANA", "REKKA RESONANCE", "To the Milky Way"] } },
+          { "length": 0, "reward": { "type": 2, "id": 68 } }
+        ]
+      },
+      {
+        "id": "限时：Lawless_Point",
+        "platforms": [
+          { "length": 10 },
+          { "length": 10 },
+          { "length": 10 },
+          { "length": 10 },
+          { "length": 10 },
+          { "length": 10, "reward": { "type": 0, "text": "100 残片" } },
+          { "length": 10 },
+          { "length": 10 },
+          {
+            "length": 10,
+            "special": {
+              "type": 2,
+              "range": [
+                "Lawless Point",
+                "Galactic Love",
+                "Maze No.9",
+                "Sulfur",
+                "The Message",
+                "Halcyon",
+                "Grimheart",
+                "Vivid Theory",
+                "enchanted love",
+                "Life is PIANO",
+                "Phantasia",
+                "MAHOROBA",
+                "AttraqtiA"
+              ]
+            }
+          },
+          {
+            "length": 10,
+            "special": {
+              "type": 2,
+              "range": [
+                "Lawless Point",
+                "Galactic Love",
+                "Maze No.9",
+                "Sulfur",
+                "The Message",
+                "Halcyon",
+                "Grimheart",
+                "Vivid Theory",
+                "enchanted love",
+                "Life is PIANO",
+                "Phantasia",
+                "MAHOROBA",
+                "AttraqtiA"
+              ]
+            }
+          },
+          { "length": 10, "reward": { "type": 0, "text": "100 残片" } },
+          { "length": 10, "reward": { "type": 0, "text": "100 残片" } },
+          {
+            "length": 10,
+            "special": {
+              "type": 2,
+              "range": [
+                "Lawless Point",
+                "Galactic Love",
+                "Genesis",
+                "LunarOrbit -believe in the Espebranch road-",
+                "VECTOЯ",
+                "Fallensquare"
+              ]
+            }
+          },
+          {
+            "length": 10,
+            "special": {
+              "type": 2,
+              "range": [
+                "Lawless Point",
+                "Galactic Love",
+                "Genesis",
+                "LunarOrbit -believe in the Espebranch road-",
+                "VECTOЯ",
+                "Fallensquare"
+              ]
+            }
+          },
+          { "length": 10, "reward": { "type": 0, "text": "100 残片" } },
+          { "length": 10, "reward": { "type": 0, "text": "100 残片" } },
+          {
+            "length": 10,
+            "special": {
+              "type": 2,
+              "range": [
+                "Lawless Point",
+                "Galactic Love",
+                "Paradise",
+                "Flashback",
+                "Flyburg and Endroll",
+                "Party Vinyl",
+                "Clotho and the stargazer",
+                "Diode",
+                "Brand new world",
+                "Harutopia ~Utopia of Spring~",
+                "Call My Name feat. Yukacco"
+              ]
+            }
+          },
+          {
+            "length": 10,
+            "special": {
+              "type": 2,
+              "range": [
+                "Lawless Point",
+                "Galactic Love",
+                "Paradise",
+                "Flashback",
+                "Flyburg and Endroll",
+                "Party Vinyl",
+                "Clotho and the stargazer",
+                "Diode",
+                "Brand new world",
+                "Harutopia ~Utopia of Spring~",
+                "Call My Name feat. Yukacco"
+              ]
+            }
+          },
+          { "length": 10 },
+          { "length": 10 },
+          { "length": 10 },
+          { "length": 10 },
+          { "length": 10 },
+          { "length": 100, "reward": { "type": 0, "text": "以太之滴 × 4" } },
+          { "length": 0, "reward": { "type": 1, "id": "Lawless_Point" } }
+        ]
+      },
+      {
+        "id": "限时：Hybris_(The_one_who_shattered)",
+        "platforms": [
+          {
+            "length": 10,
+            "special": {
+              "type": 2,
+              "range": [
+                "Fairytale",
+                "Sakura Fubuki",
+                "DataErr0r",
+                "Anökumene",
+                "conflict",
+                "GOODTEK (Arcaea Edit)",
+                "Illegal Paradise",
+                "Dreamin' Attraction!!",
+                "Clotho and the stargazer",
+                "Infinity Heaven",
+                "STAGER (ALL STAGE CLEAR)",
+                "Dancin' on a Cat's Paw",
+                "Chronostasis",
+                "ReviXy",
+                "VECTOЯ",
+                "enchanted love",
+                "Redraw the Colorless World",
+                "GIMMICK",
+                "qualia -ideaesthesia-",
+                "Dreadnought",
+                "Black Lotus",
+                "Snow White",
+                "Grimheart",
+                "Bamboo",
+                "Altale",
+                "Lapis",
+                "Nhelv",
+                "Reinvent",
+                "Life is PIANO",
+                "ENERGY SYNERGY MATRIX",
+                "Halcyon",
+                "NULCTRL",
+                "DDD",
+                "Head BONK ache",
+                "PUPA",
+                "New York Back Raise",
+                "Hybris (The one who shattered)"
+              ]
+            }
+          },
+          { "length": 15 },
+          { "length": 20, "reward": { "type": 0, "text": "100 残片" } },
+          { "length": 25 },
+          { "length": 30 },
+          { "length": 35, "reward": { "type": 0, "text": "以太之滴 × 2" } },
+          { "length": 40 },
+          { "length": 45, "reward": { "type": 0, "text": "700 残片" } },
+          { "length": 50 },
+          { "length": 55 },
+          { "length": 60, "reward": { "type": 0, "text": "以太之滴 × 2" } },
+          { "length": 65 },
+          {
+            "length": 70,
+            "special": {
+              "type": 2,
+              "range": [
+                "Fairytale",
+                "Sakura Fubuki",
+                "DataErr0r",
+                "Anökumene",
+                "conflict",
+                "GOODTEK (Arcaea Edit)",
+                "Illegal Paradise",
+                "Dreamin' Attraction!!",
+                "Clotho and the stargazer",
+                "Infinity Heaven",
+                "STAGER (ALL STAGE CLEAR)",
+                "Dancin' on a Cat's Paw",
+                "Chronostasis",
+                "ReviXy",
+                "VECTOЯ",
+                "enchanted love",
+                "Redraw the Colorless World",
+                "GIMMICK",
+                "qualia -ideaesthesia-",
+                "Dreadnought",
+                "Black Lotus",
+                "Snow White",
+                "Grimheart",
+                "Bamboo",
+                "Altale",
+                "Lapis",
+                "Nhelv",
+                "Reinvent",
+                "Life is PIANO",
+                "ENERGY SYNERGY MATRIX",
+                "Halcyon",
+                "NULCTRL",
+                "DDD",
+                "Head BONK ache",
+                "PUPA",
+                "New York Back Raise",
+                "Hybris (The one who shattered)"
+              ]
+            }
+          },
+          { "length": 0, "reward": { "type": 1, "id": "Hybris_(The_one_who_shattered)" } }
+        ]
       }
     ]
   }

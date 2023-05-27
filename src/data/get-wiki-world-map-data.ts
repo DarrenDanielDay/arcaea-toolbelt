@@ -1,4 +1,4 @@
-import { ChapterData, MapPlatform, NormalWorldMap, PlatformType, RewardType } from "../models/world-mode";
+import { ChapterData, MapPlatformData, NormalWorldMapData, PlatformType, RewardType } from "../models/world-mode";
 import { downloadJSON } from "../utils/download";
 import characters from "./character-data.json";
 import songs from "./chart-data.json";
@@ -56,14 +56,14 @@ async function getWikiWorldMapTable() {
   return chapters;
 }
 
-function getWorldMap(doc: Document, map: WikiChapterData["maps"][number]): NormalWorldMap {
+function getWorldMap(doc: Document, map: WikiChapterData["maps"][number]): NormalWorldMapData {
   const anchor = doc.getElementById(map.id)!;
   const table = findNextElWhere(anchor.parentElement!, (el) => el.matches("table"));
   if (!(table instanceof HTMLTableElement)) {
     throw new Error(`表格 ${map.title} 未找到`);
   }
-  const platforms: MapPlatform[] = [];
-  const result: NormalWorldMap = {
+  const platforms: MapPlatformData[] = [];
+  const result: NormalWorldMapData = {
     id: map.id,
     platforms,
   };
@@ -76,7 +76,7 @@ function getWorldMap(doc: Document, map: WikiChapterData["maps"][number]): Norma
       const step = row.cells[1]!;
       const special = row.cells[2]!;
       const reward = row.cells[3]!;
-      const platform: MapPlatform = {
+      const platform: MapPlatformData = {
         length: parseFloat(step.textContent!),
       };
       const specialText = special.textContent!.trim();

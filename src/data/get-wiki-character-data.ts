@@ -132,7 +132,7 @@ export async function fetchWikiCharacterData(): Promise<CharacterData[]> {
       levels,
     });
   }
-  return result;
+  return result.sort((a, b) => a.id - b.id);
 }
 
 export async function generateCharacterDataFile() {

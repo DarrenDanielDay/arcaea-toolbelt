@@ -28,7 +28,7 @@ export enum RewardType {
 /**
  * 主要用于通过奖励搜索，不包含残片奖励和以太之滴奖励
  */
-type WorldMapReward =
+export type WorldMapRewardData =
   | {
       type: RewardType.Song;
       id: string;
@@ -46,20 +46,49 @@ type WorldMapReward =
       text: string;
     };
 
+export type WorldMapReward =
+  | {
+      type: RewardType.Song;
+      id: string;
+      img: string;
+    }
+  | {
+      type: RewardType.Character;
+      id: number;
+      img: string;
+    }
+  | {
+      type: RewardType.Background;
+      text: string;
+    }
+  | {
+      type: RewardType.Item;
+      text: string;
+    };
+
 export interface ChapterData {
   chapter: string;
-  maps: NormalWorldMap[];
+  maps: NormalWorldMapData[];
+}
+
+export interface Chapter extends ChapterData {
+  maps: NormalWorldMap[]
 }
 
 /**
  * 爬梯的地图
  */
-export interface NormalWorldMap {
+export interface NormalWorldMapData {
   /**
    * 暂时就用wiki上的id，同时也用作显示名称
    */
   id: string;
   legacy?: true;
+  platforms: { [level: number]: MapPlatformData | undefined | null };
+}
+
+export interface NormalWorldMap extends NormalWorldMapData {
+  
   platforms: { [level: number]: MapPlatform | undefined | null };
 }
 
@@ -73,14 +102,8 @@ export enum PlatformType {
 /**
  * 爬梯地图格子，也可以叫平台
  */
-export interface MapPlatform {
-  /**
-   * length
-   */
+export interface MapPlatformData {
   length: number;
-  /**
-   * special
-   */
   special?:
     | {
         type: PlatformType.Stamina;
@@ -101,5 +124,9 @@ export interface MapPlatform {
         type: PlatformType.Random;
         range: string | string[];
       };
+  reward?: WorldMapRewardData;
+}
+
+export interface MapPlatform extends MapPlatformData {
   reward?: WorldMapReward;
 }

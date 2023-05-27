@@ -2449,6 +2449,46 @@
     },
     {
         "skill_id_text": {
+          "en": "EASY + Recollection Rate cannot decrease\nRecollection Rate gain is heavily reduced",
+          "ja": "EASY + 想起率が減少しない\n想起率の増加が大幅に減少",
+          "ko": "EASY + 기억회상률이 감소하지 않지만\n증가량이 현격히 줄어듭니다",
+          "zh-Hans": "简单 + 回忆率不会减少\n但回忆率增加速度大幅放缓",
+          "zh-Hant": "簡單 + 回憶率不會減少\n但回憶率增加速度大幅放緩"
+        },
+        "variant": {
+          "en": "Twilight",
+          "ja": "宵闇",
+          "ko": "황혼",
+          "zh-Hans": "暮光",
+          "zh-Hant": "暮光"
+        },
+        "display_name": {
+          "en": "Nami",
+          "ja": "奈実",
+          "ko": "나미",
+          "zh-Hans": "奈美",
+          "zh-Hant": "奈美"
+        },
+        "base_character": false,
+        "is_uncapped_override": false,
+        "is_uncapped": false,
+        "uncap_cores": [],
+        "char_type": 1,
+        "skill_id_uncap": "",
+        "skill_requires_uncap": false,
+        "skill_unlock_level": 0,
+        "skill_id": "skill_nami_twilight",
+        "overdrive": 48.29012975652427,
+        "prog": 59.131068668902174,
+        "frag": 44.251348593089375,
+        "level_exp": 1200,
+        "exp": 1250,
+        "level": 10,
+        "name": "nami_twilight",
+        "character_id": 68
+    },
+    {
+        "skill_id_text": {
             "en": "Earn +10 Fragments\nupon clearing a preferred song",
             "ja": "白姫の気まぐれ曲をクリア時\n欠片を+10獲得",
             "ko": "선택곡을 클리어할 경우 \n+10 조각을 얻게됩니다",

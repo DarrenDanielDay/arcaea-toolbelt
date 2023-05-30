@@ -3493,7 +3493,7 @@
         "difficulty": "pst",
         "id": "Hybris_(The_one_who_shattered)@pst",
         "level": "4",
-        "note": null,
+        "note": 757,
         "songId": "Hybris_(The_one_who_shattered)"
       },
       {
@@ -3501,7 +3501,7 @@
         "difficulty": "prs",
         "id": "Hybris_(The_one_who_shattered)@prs",
         "level": "7",
-        "note": null,
+        "note": 973,
         "songId": "Hybris_(The_one_who_shattered)"
       },
       {
@@ -4326,7 +4326,7 @@
         "difficulty": "pst",
         "id": "Lost_in_the_Abyss@pst",
         "level": "3",
-        "note": null,
+        "note": 907,
         "songId": "Lost_in_the_Abyss"
       },
       {
@@ -4334,7 +4334,7 @@
         "difficulty": "prs",
         "id": "Lost_in_the_Abyss@prs",
         "level": "6",
-        "note": null,
+        "note": 908,
         "songId": "Lost_in_the_Abyss"
       },
       {
@@ -6978,7 +6978,7 @@
         "difficulty": "pst",
         "id": "Galactic_Love@pst",
         "level": "3",
-        "note": null,
+        "note": 513,
         "songId": "Galactic_Love"
       },
       {
@@ -6986,7 +6986,7 @@
         "difficulty": "prs",
         "id": "Galactic_Love@prs",
         "level": "6",
-        "note": null,
+        "note": 694,
         "songId": "Galactic_Love"
       },
       {
@@ -7225,7 +7225,7 @@
         "difficulty": "pst",
         "id": "Lawless_Point@pst",
         "level": "3",
-        "note": null,
+        "note": 476,
         "songId": "Lawless_Point"
       },
       {
@@ -7233,7 +7233,7 @@
         "difficulty": "prs",
         "id": "Lawless_Point@prs",
         "level": "6",
-        "note": null,
+        "note": 630,
         "songId": "Lawless_Point"
       },
       {

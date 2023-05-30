@@ -1,51 +1,87 @@
+:root {
+  --toc-display: none;
+}
+.page {
+  width: 100%;
+}
+.toc-wrapper,
+.toc-content {
+  top: 0;
+  position: sticky;
+}
+@media screen and (min-width: 768px) {
+  .page {
+    display: grid;
+    grid-template-columns: 240px minmax(auto, 1200px);
+    gap: 1.5em;
+    padding: 1.5em 1.5em 0 1.5em;
+  }
+  .toc-wrapper {
+    width: 240px;
+    flex-shrink: 0;
+  }
+  .toc-content {
+    padding: 1.5em;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+  }
+  main {
+    overflow: auto;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .page {
+    display: block;
+  }
+  .toc-wrapper, #toc {
+    background-color: #ffffff;
+  }
+  .toc-wrapper, #toc {
+    box-shadow: var(--bs-box-shadow);
+  }
+  .toc-content header {
+    padding: 1em 1.5em;
+    cursor: pointer;
+    user-select: none;
+  }
+  #toc {
+    display: none;
+    position: absolute;
+    padding: 0 3em 1em 3em;
+    width: 100%;
+  }
+  #toc.visible {
+    display: block;
+  }
+  main {
+    padding: 0.5em 1.5em 0 1.5em;
+  }
+  html {
+    scroll-padding-top: 4em;
+  }
+}
+
 pre {
+  overflow-x: auto;
   padding: 8px;
   border-radius: var(--bs-border-radius);
   background-color: var(--bs-gray-200);
 }
 
-.content {
-  display: grid;
-  grid-template-columns: 240px min-content;
-  justify-content: center;
-  gap: 32px;
-  position: static;
+.imgs {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
-.toc-content {
-  position: sticky;
-  max-width: fit-content;
-  top: 3em;
-  left: 3em;
-  background-color: #ffffff88;
-  border: 1px solid var(--bs-border-color);
-  border-radius: var(--bs-border-radius);
-}
-
-.imgs img {
+.imgs > img {
   object-fit: scale-down;
-  max-width: 100%;
+  max-width: 400px;
   margin: 8px 0;
 }
 
 * {
   word-break: break-all;
-}
-
-summary {
-  font-size: 1.25em;
-}
-
-summary::marker {
-  border: 1px solid var(--bs-border-color);
-  display: inline-block;
-  color: var(--bs-link-color);
-  right: 0;
-}
-
-details:not([open]) summary::marker {
-  content: "展开";
-}
-details[open] summary::marker {
-  content: "折叠";
 }

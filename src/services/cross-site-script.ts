@@ -5,7 +5,6 @@ import { Profile } from "../models/profile";
 import { $CrossSiteScriptPluginService, CrossSiteScriptPluginService, MusicPlayService } from "./declarations";
 import { MusicPlayServiceImpl } from "./music-play";
 import * as lowiro from "./web-api";
-import { downloadJSON } from "../utils/download";
 import { ToolPanel } from "../view/components/plugin-panel";
 import { addSheet } from "sheetly";
 import { bootstrap } from "../view/styles";
@@ -152,6 +151,7 @@ async function queryBest(
     );
     const friendBests = await getFriendsBest(song.sid, mapDifficulty(chart.difficulty));
     if (!friendBests) {
+      message(`寄了，接口改了，需要订阅Arcaea Online才能用`);
       break;
     }
     const pttPM = chart.constant + 2;
@@ -161,18 +161,26 @@ async function queryBest(
     }
     for (const best of restFriends) {
       const friendName = best.name;
-      const playResult: PlayResult = {
-        type: "note",
-        chartId: chart.id,
-        // clear_type是最高分那次的，best_clear_type是排行榜显示的通关类型
-        clear: mapClearType(best.clear_type, best.shiny_perfect_count, chart),
-        result: {
-          pure: best.perfect_count,
-          perfect: best.shiny_perfect_count,
-          far: best.near_count,
-          lost: best.miss_count,
-        },
-      };
+      const playResult: PlayResult = best.perfect_count
+        ? {
+            type: "note",
+            chartId: chart.id,
+            // clear_type是最高分那次的，best_clear_type是排行榜显示的通关类型
+            clear: mapClearType(best.clear_type, best.shiny_perfect_count, chart),
+            result: {
+              pure: best.perfect_count,
+              perfect: best.shiny_perfect_count,
+              far: best.near_count,
+              lost: best.miss_count,
+            },
+          }
+        : {
+            // 接口字段也删了点，没有note判定信息
+            type: "score",
+            chartId: chart.id,
+            clear: null,
+            score: best.score,
+          };
       const ptt = musicPlay.computePotential(best.score, chart);
       const oneFriendBests = friendsPlayResults[friendName];
       if (!oneFriendBests) {

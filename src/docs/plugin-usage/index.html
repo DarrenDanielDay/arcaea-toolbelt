@@ -1,89 +1,63 @@
-<!DOCTYPE html>
-<html lang="zh-Hans">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
-    <link rel="stylesheet" href="../../view/styles/bootstrap.part.css" />
-    <link rel="stylesheet" href="../shared.css" />
-    <title>Arcaea Toolbelt Plugin使用说明</title>
-  </head>
-  <body>
-    <div class="content">
-      <div class="toc-wrapper">
-        <div class="p-3 toc-content">
-          <header>目录</header>
-          <ol>
-            <li>
-              <a href="#use-on-computer"> 在电脑上使用 </a>
-            </li>
-            <li>
-              <a href="#use-on-mobile"> 在手机上使用 </a>
-            </li>
-            <li>
-              <a href="#query-b39"> 查分功能 </a>
-            </li>
-          </ol>
-        </div>
-      </div>
-      <main>
-        <section>
-          <header>
-            <h3 id="use-on-computer">在电脑上使用</h3>
-          </header>
-          <details open>
-            <summary>
-              1. 使用<code>Chrome/Edge</code>浏览器打开
-              <a href="https://arcaea.lowiro.com/zh/" target="_blank">Arcaea官网</a>， 并登录账号。
-            </summary>
-            <p>
-              其他的现代浏览器理论上也可以，但操作可能不同，也可能会有奇怪的bug。
-              <strong>为了避免被封号，使用查分功能建议登录小号，并添加大号为好友</strong
-              >，确保需要查b30的账号是好友或登录的账号即可。
-            </p>
-          </details>
-          <details open>
-            <summary>
-              2. 打开浏览器的开发者工具，找到控制台，粘贴以下<code>JavaScript</code>代码，按<kbd>Enter</kbd>键执行。
-              <pre>import("https://darrendanielday.github.io/arcaea-toolbelt/services/cross-site-script.js");</pre>
-            </summary>
-            <p>可通过快捷键<kbd>F12</kbd>打开开发者工具，也可通过在空白处<code>右键菜单</code> &gt; <code>检查</code>打开</p>
-            <div class="imgs">
-              <img src="../img/friends.png" loading="lazy" />
-              <img src="../img/paste-code.png" loading="lazy" />
-            </div>
-          </details>
-          <details>
-            <summary>
-              2.1 如果需要经常使用此脚本，可以安装<code>油猴插件</code>更方便地执行<code>JavaScript</code>脚本。
-            </summary>
-            <p>
-              官方插件商店地址：<br />
-              <code>Chrome</code>（有墙）：<br />
-              <a
-                target="_blank"
-                href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo"
-                >https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo</a
-              >
-              <br />
-              <code>Edge</code>（没墙）：<br />
-              <a
-                target="_blank"
-                href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd?hl=zh-CN"
-              >
-                https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd?hl=zh-CN
-              </a>
-            </p>
-            <p>
-              关于油猴插件的下载与安装也可以参考：<a href="https://zhuanlan.zhihu.com/p/387251122" target="_blank">
-                https://zhuanlan.zhihu.com/p/387251122
-              </a>
-            </p>
-            <p>
-              下面是可用的油猴脚本代码（只在好友列表页可用）。在油猴脚本管理面板中新建一个脚本，用以下内容全部替换并保存即可：
-            </p>
-            <pre>
+<div class="page">
+  <div class="toc-wrapper">
+    <aside class="toc-content">
+      <header>目录</header>
+      <ul id="toc">
+        <li>
+          <a href="#use-on-computer"> 在电脑上使用 </a>
+        </li>
+        <li>
+          <a href="#use-on-mobile"> 在手机上使用 </a>
+        </li>
+        <li>
+          <a href="#query-b39"> 查分功能 </a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+  <main>
+    <h3 id="use-on-computer">在电脑上使用</h3>
+    <p>
+      1. 使用<code>Chrome/Edge</code>浏览器打开
+      <a href="https://arcaea.lowiro.com/zh/" target="_blank">Arcaea官网</a>， 并登录账号。
+    </p>
+    <p>
+      其他的现代浏览器理论上也可以，但操作可能不同，也可能会有奇怪的bug。
+      <strong>目前，616给Web API好友榜查询添加了订阅的限制，仅订阅用户可用</strong
+      >，使用此功能确保需要查b30的账号是好友或登录的账号即可。
+    </p>
+    <p>2. 打开浏览器的开发者工具，找到控制台，粘贴以下<code>JavaScript</code>代码，按 <kbd>Enter</kbd> 键执行。</p>
+    <pre>import("https://darrendanielday.github.io/arcaea-toolbelt/services/cross-site-script.js");</pre>
+    <p>可通过快捷键 <kbd>F12</kbd> 打开开发者工具，也可通过在空白处<code>右键菜单</code> &gt; <code>检查</code>打开</p>
+    <div class="imgs">
+      <img src="../img/friends.png" loading="lazy" />
+      <img src="../img/paste-code.png" loading="lazy" />
+    </div>
+    <p>2.1 如果需要经常使用此脚本，可以安装<code>油猴插件</code>更方便地执行<code>JavaScript</code>脚本。</p>
+    <p>
+      官方插件商店地址：<br />
+      <code>Chrome</code>（有墙）：<br />
+      <a target="_blank" href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo"
+        >https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo</a
+      >
+      <br />
+      <code>Edge</code>（没墙）：<br />
+      <a
+        target="_blank"
+        href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd?hl=zh-CN"
+      >
+        https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd?hl=zh-CN
+      </a>
+    </p>
+    <p>
+      关于油猴插件的下载与安装也可以参考：<a href="https://zhuanlan.zhihu.com/p/387251122" target="_blank">
+        https://zhuanlan.zhihu.com/p/387251122
+      </a>
+    </p>
+    <p>
+      下面是可用的油猴脚本代码（只在好友列表页可用）。在油猴脚本管理面板中新建一个脚本，用以下内容全部替换并保存即可：
+    </p>
+    <pre>
 // ==UserScript==
 // @name         Arcaea Toolbelt Plugin
 // @namespace    http://tampermonkey.net/
@@ -96,70 +70,44 @@
 // ==/UserScript==
 
 (async () => {
-await import("https://darrendanielday.github.io/arcaea-toolbelt/services/cross-site-script.js");
+  await import("https://darrendanielday.github.io/arcaea-toolbelt/services/cross-site-script.js");
 })();</pre
-            >
-            <div class="imgs">
-              <img loading="lazy" src="../img/create-script.png" />
-            </div>
-          </details>
-          <details open>
-            <summary>
-              3. 执行脚本后，将会弹出类似下图的弹窗。关闭弹框后可通过<kbd>Ctrl + B</kbd>重新打开弹窗。
-            </summary>
-            <div class="imgs">
-              <img loading="lazy" src="../img/modal.png" />
-            </div>
-          </details>
-        </section>
-        <section>
-          <header>
-            <h3 id="use-on-mobile">在手机上使用</h3>
-          </header>
-          <p>参考这篇文章安装油猴插件：</p>
-          <p>
-            <a href="https://www.zhihu.com/question/411017015" target="_blank">
-              https://www.zhihu.com/question/411017015
-            </a>
-          </p>
-          <p>剩下的操作和<a href="#">在电脑上使用</a>的方法一样。</p>
-        </section>
-        <section>
-          <header>
-            <h3 id="query-b39">查分功能</h3>
-          </header>
-          <details>
-            <summary>
-              1. 选中需要查分的玩家（可多选），点击<code>开查</code>按钮进行查分。
-            </summary>
-            <p>
-              查询按谱面定数从高到低查询，直到当前定数的谱面PM也无法进入任何一个玩家当前的best
-              39后停止。通常来说查询所需总时间取决于被查的潜力值最低的玩家，最坏情况是查完所有谱面的好友榜，大约需要5分钟。
-            </p>
-          </details>
-          <details open>
-            <summary>
-              2. 显示查询完毕后，点击<code>同步</code>按钮即可将查分结果生成存档并导入到
-              <a href="https://darrendanielday.github.io/arcaea-toolbelt/"> 主站 </a>。
-            </summary>
-            <div class="imgs">
-              <img loading="lazy" src="../img/sync-ok.png" />
-            </div>
-          </details>
-          <details open>
-            <summary>
-              3. 在主站的
-              <code>存档</code>
-              页面选择玩家的存档后，切换到<code>b30</code>页面即可查看该玩家的查分结果
-            </summary>
-            <p>图片中的结果是小号的，为了控分所以没打满30个谱。双击卡片可以全屏查看。</p>
-            <div class="imgs">
-              <img loading="lazy" src="../img/select-profile.png" />
-              <img loading="lazy" src="../img/result.png" />
-            </div>
-          </details>
-        </section>
-      </main>
+    >
+    <div class="imgs">
+      <img loading="lazy" src="../img/create-script.png" />
     </div>
-  </body>
-</html>
+    <p>3. 执行脚本后，将会弹出类似下图的弹窗。关闭弹框后可通过 <kbd>Ctrl + B</kbd> 重新打开弹窗。</p>
+    <div class="imgs">
+      <img loading="lazy" src="../img/modal.png" />
+    </div>
+    <h3 id="use-on-mobile">在手机上使用</h3>
+    <p>参考这篇文章安装油猴插件：</p>
+    <p>
+      <a href="https://www.zhihu.com/question/411017015" target="_blank"> https://www.zhihu.com/question/411017015 </a>
+    </p>
+    <p>剩下的操作和<a href="#">在电脑上使用</a>的方法一样。</p>
+    <h3 id="query-b39">查分功能</h3>
+    <p>1. 选中需要查分的玩家（可多选），点击<code>开查</code>按钮进行查分。</p>
+    <p>
+      查询按谱面定数从高到低查询，直到当前定数的谱面PM也无法进入任何一个玩家当前的best
+      39后停止。通常来说查询所需总时间取决于被查的潜力值最低的玩家，最坏情况是查完所有谱面的好友榜，大约需要5分钟。
+    </p>
+    <p>
+      2. 显示查询完毕后，点击<code>同步</code>按钮即可将查分结果生成存档并导入到
+      <a href="https://darrendanielday.github.io/arcaea-toolbelt/"> 主站 </a>。
+    </p>
+    <div class="imgs">
+      <img loading="lazy" src="../img/sync-ok.png" />
+    </div>
+    <p>
+      3. 在主站的
+      <code>存档</code>
+      页面选择玩家的存档后，切换到<code>b30</code>页面即可查看该玩家的查分结果
+    </p>
+    <p>图片中的结果是小号的，为了控分所以没打满30个谱。双击卡片可以全屏查看。</p>
+    <div class="imgs">
+      <img loading="lazy" src="../img/select-profile.png" />
+      <img loading="lazy" src="../img/result.png" />
+    </div>
+  </main>
+</div>

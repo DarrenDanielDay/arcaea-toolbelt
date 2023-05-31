@@ -13,6 +13,7 @@ import {
 } from "../models/music-play";
 import { B30Response, Profile } from "../models/profile";
 import { token } from "./di";
+import { Chapter, NormalWorldMap, RewardType } from "../models/world-mode";
 
 export interface SearchResult {
   chart: Chart;
@@ -59,6 +60,15 @@ export interface ProfileService {
   b30(): Promise<B30Response>;
 }
 
+export interface WorldModeService {
+  getLongtermMaps(): Promise<Chapter[]>;
+  getEventMaps(): Promise<NormalWorldMap[]>;
+  getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, string[]>>;
+  computeBasicProgress(step: number, potential: number): number;
+  computeProgress(step: number, potential: number, fragment?: number, x4?: boolean): number;
+  antiBasicProgress(progress: number, step: number): number;
+}
+
 export interface CrossSiteScriptPluginService {
   getProfile(): Promise<lowiro.UserProfile>;
   startQueryBests(
@@ -73,4 +83,5 @@ export interface CrossSiteScriptPluginService {
 export const $ChartService = token<ChartService>("chart");
 export const $MusicPlayService = token<MusicPlayService>("music-play");
 export const $ProfileService = token<ProfileService>("profile");
+export const $WorldModeService = token<WorldModeService>("world-mode");
 export const $CrossSiteScriptPluginService = token<CrossSiteScriptPluginService>("cross-site-script");

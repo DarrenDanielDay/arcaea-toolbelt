@@ -18,6 +18,14 @@ export interface CharacterData {
   levels: { [level: number]: CharacterFactors | undefined | null };
 }
 
+/**
+ * 道具
+ */
+export interface ItemData {
+  name: string;
+  img: string;
+}
+
 export enum RewardType {
   Item,
   Song,
@@ -39,11 +47,13 @@ export type WorldMapRewardData =
     }
   | {
       type: RewardType.Background;
-      text: string;
+      name: string;
+      img: string;
     }
   | {
       type: RewardType.Item;
-      text: string;
+      name: string;
+      count: number;
     };
 
 export type WorldMapReward =
@@ -59,11 +69,14 @@ export type WorldMapReward =
     }
   | {
       type: RewardType.Background;
-      text: string;
+      img: string;
+      name: string;
     }
   | {
       type: RewardType.Item;
-      text: string;
+      img: string;
+      name: string;
+      count: number;
     };
 
 export interface ChapterData {

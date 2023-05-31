@@ -1,0 +1,16 @@
+main {
+  margin: 1em 1em 0 1em;
+}
+
+.row > .col-auto {
+  margin-bottom: 1em;
+}
+
+world-map-select {
+  display: block;
+  margin: 1em 1em;
+}
+
+#calc-progress, #anti-progress {
+  display: none;
+}

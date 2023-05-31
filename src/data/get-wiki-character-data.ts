@@ -1,6 +1,6 @@
 import { findNextElWhere, htmlDocument, initPageDocument, wikiURL } from "./wiki-util";
 import characters from "./characters.json";
-import { CharacterData, CharacterFactors } from "../models/world-mode";
+import { CharacterData, CharacterFactors, ItemData } from "../models/world-mode";
 import { downloadJSON } from "../utils/download";
 const wikiCharacterTable = wikiURL("搭档");
 
@@ -70,9 +70,21 @@ function isFactor(key: string): key is keyof CharacterFactors {
   return key in defaultFactors;
 }
 
-export async function fetchWikiCharacterData(): Promise<CharacterData[]> {
+export async function fetchWikiCharacterAndCharacterCoreItemData(): Promise<{
+  characters: CharacterData[];
+  cores: ItemData[];
+}> {
   const tableData = await getWikiCharacterTable();
-  const result: CharacterData[] = [];
+  const charactersData: CharacterData[] = [];
+  const itemTable = htmlDocument.querySelector(`#mw-content-text > div.mw-parser-output > table:nth-child(46)`)!;
+  const itemImgs = Array.from(itemTable.querySelectorAll("img"));
+  const items = itemImgs.map<ItemData>((img) => {
+    return {
+      name: img.parentElement!.parentElement!.parentElement!.textContent!.trim(),
+      img: img.src,
+    };
+  });
+
   for (const item of tableData) {
     const { ref, imgs, link } = item;
     await initPageDocument(link);
@@ -121,7 +133,7 @@ export async function fetchWikiCharacterData(): Promise<CharacterData[]> {
     }
     const variantEn = ref.variant?.en.trim();
     const variantZh = ref.variant?.["zh-Hans"].trim();
-    result.push({
+    charactersData.push({
       id: ref.character_id,
       image: imgs.at(0)!,
       awakenImage: imgs.at(1) || null,
@@ -132,10 +144,34 @@ export async function fetchWikiCharacterData(): Promise<CharacterData[]> {
       levels,
     });
   }
-  return result.sort((a, b) => a.id - b.id);
+  return {
+    characters: charactersData.sort((a, b) => a.id - b.id),
+    cores: items,
+  };
+}
+
+function getOtherItemsData(): ItemData[] {
+  return [
+    {
+      name: "以太之滴",
+      img: "https://wiki.arcaea.cn/images/thumb/0/00/Ether_Drop.png/40px-Ether_Drop.png",
+    },
+    // TODO 整个次元结晶图片
+    {
+      name: "次元结晶",
+      img: "",
+    },
+    // TODO 整个残片图片
+    {
+      name: "残片",
+      img: "",
+    },
+  ];
 }
 
 export async function generateCharacterDataFile() {
-  const data = await fetchWikiCharacterData();
-  downloadJSON(data, "character-data.json");
+  const { characters, cores } = await fetchWikiCharacterAndCharacterCoreItemData();
+  downloadJSON(characters, "character-data.json");
+  const items = [...cores, ...getOtherItemsData()];
+  downloadJSON(items, "item-data.json");
 }

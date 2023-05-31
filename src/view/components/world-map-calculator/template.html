@@ -1,0 +1,68 @@
+<form id="jump-platform" class="mx-3">
+  <div class="row">
+    <div class="col-auto">
+      <label for="complete" class="col-form-label">已完成阶梯数</label>
+    </div>
+    <div class="col-auto">
+      <input type="number" name="complete" step="1" min="0" class="form-control" required />
+    </div>
+    <div class="col-auto">
+      <label for="progress" class="col-form-label">阶梯内剩余进度</label>
+    </div>
+    <div class="col-auto">
+      <input type="number" name="progress" step="0.1" min="0" class="form-control" required />
+    </div>
+    <div class="col-auto">
+      <button type="button" name="jump" class="btn btn-primary">设为当前</button>
+      <button type="button" name="focus" class="btn btn-secondary">跳转当前</button>
+    </div>
+  </div>
+</form>
+<form id="calc-progress" name="calc" class="mx-3">
+  <div class="row">
+    <div class="col-auto">
+      <label for="step" class="col-form-label">角色Step值</label>
+    </div>
+    <div class="col-auto">
+      <input type="number" name="step" id="step" step="any" min="0" class="form-control" required />
+    </div>
+    <div class="col-auto">
+      <label for="potential" class="col-form-label">结算单曲ptt</label>
+    </div>
+    <div class="col-auto">
+      <input type="number" name="potential" step="any" id="potential" min="0" class="form-control" required />
+    </div>
+    <div class="col-auto">
+      <label for="fragment" class="col-form-label">残片加成</label>
+    </div>
+    <div class="col-auto">
+      <select name="fragment" id="fragment" class="form-select">
+        <option value="1">无</option>
+        <option value="1.1">100 (x1.1)</option>
+        <option value="1.25">250 (x1.25)</option>
+        <option value="1.5">500 (x1.5)</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <div class="form-check col-form-label">
+        <input type="checkbox" name="memory-x4" id="memory-x4" class="form-check-input" />
+        <label for="memory-x4" class="form-check-label">源韵强化 (x4)</label>
+      </div>
+    </div>
+    <div class="col-auto">
+      <span class="calc-result"></span>
+      <button type="button" name="calc" class="btn btn-primary">查看结果格子</button>
+    </div>
+  </div>
+</form>
+<form id="anti-progress">
+  <div class="row mx-3">
+    <div class="col-auto">
+      <input type="number" name="low" step="0.1" min="0" class="form-control" required />
+    </div>
+    <div class="col-auto">≤ 期望前进步数 ≤</div>
+    <div class="col-auto">
+      <input type="number" name="high" step="0.1" min="0" class="form-control" required />
+    </div>
+  </div>
+</form>

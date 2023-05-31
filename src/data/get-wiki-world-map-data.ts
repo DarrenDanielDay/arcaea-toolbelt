@@ -56,7 +56,11 @@ async function getWikiWorldMapTable() {
   return chapters;
 }
 
-function getWorldMap(doc: Document, map: WikiChapterData["maps"][number]): NormalWorldMapData {
+function getWorldMap(
+  doc: Document,
+  map: WikiChapterData["maps"][number],
+  backgrounds: Backgrounds
+): NormalWorldMapData {
   const anchor = doc.getElementById(map.id)!;
   const table = findNextElWhere(anchor.parentElement!, (el) => el.matches("table"));
   if (!(table instanceof HTMLTableElement)) {
@@ -121,7 +125,7 @@ function getWorldMap(doc: Document, map: WikiChapterData["maps"][number]): Norma
         }
       }
       const rewardText = reward.textContent!.trim();
-      if (rewardText !== "-") {
+      if (rewardText && rewardText !== "-") {
         const links = reward.querySelectorAll("a");
         if (links.length > 1) {
           throw new Error(`超过一个链接`);
@@ -147,17 +151,42 @@ function getWorldMap(doc: Document, map: WikiChapterData["maps"][number]): Norma
               id: character.id,
             };
           } else {
-            console.log(`剩下的链接应当是背景图: ${linkText}`);
+            const img = backgrounds[linkText];
+            if (!img) {
+              throw new Error(`背景图 ${linkText} 未找到`);
+            }
             platform.reward = {
               type: RewardType.Background,
-              text: linkText,
+              name: linkText,
+              img,
             };
           }
         } else {
-          platform.reward = {
-            type: RewardType.Item,
-            text: rewardText,
-          };
+          if (rewardText.includes("×")) {
+            const [nameText, countText] = rewardText.split("×");
+            platform.reward = {
+              type: RewardType.Item,
+              name: [...nameText!].filter((t) => !/\s/.test(t)).join(""),
+              count: +countText!,
+            };
+          } else {
+            const match = /(\d+) 残片/.exec(rewardText);
+            if (match) {
+              const [, fragmentCount] = match!;
+              platform.reward = {
+                type: RewardType.Item,
+                name: "残片",
+                count: +fragmentCount!,
+              };
+            } else {
+              console.log(`特殊道具 ${rewardText}`);
+              platform.reward = {
+                type: RewardType.Item,
+                count: 1,
+                name: rewardText,
+              };
+            }
+          }
         }
       }
       platforms.push(platform);
@@ -166,11 +195,30 @@ function getWorldMap(doc: Document, map: WikiChapterData["maps"][number]): Norma
   return result;
 }
 
+type Backgrounds = {
+  [name: string]: string;
+};
+
+async function getBackgounds(): Promise<Backgrounds> {
+  const map: Backgrounds = {};
+  await initPageDocument(wikiURL("背景列表"));
+  const anchor = htmlDocument.querySelector("#场景")!;
+  const table = findNextElWhere(anchor.parentElement!, (el) => el.matches("table")) as HTMLTableElement;
+  for (const tbody of Array.from(table.tBodies)) {
+    for (const row of Array.from(tbody.rows).slice(1)) {
+      const name = row.cells[2]!.textContent!;
+      map[name] = row.cells[1]!.querySelector("img")!.src;
+    }
+  }
+  return map;
+}
+
 export async function fetchWikiWorldMapData(): Promise<ChapterData[]> {
+  const backgrounds = await getBackgounds();
   const mainTableData = await getWikiWorldMapTable();
   return mainTableData.map((d) => ({
     chapter: d.name,
-    maps: d.maps.map((map) => getWorldMap(htmlDocument, map)),
+    maps: d.maps.map((map) => getWorldMap(htmlDocument, map, backgrounds)),
   }));
 }
 

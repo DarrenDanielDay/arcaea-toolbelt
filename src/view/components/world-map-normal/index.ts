@@ -195,7 +195,7 @@ class WorldMapNormal extends HTMLElement {
           rewardImg.className = `reward item`;
           const rewardCount = element("span");
           rewardCount.textContent = `${reward.name} × ${reward.count}`;
-          rewardCount.className = `item-info`;
+          rewardCount.className = `item-info text-banner`;
           cell.appendChild(rewardImg);
           cell.appendChild(rewardCount);
         }

@@ -4,3 +4,4 @@
 *.css.js
 *.css.d.ts
 /arcaea-toolbelt
+.env

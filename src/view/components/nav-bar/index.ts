@@ -15,6 +15,7 @@ import { bootstrap } from "../../styles";
 import { Inject } from "../../../services/di";
 import { $Router, Router } from "../../pages/router";
 import { onClickElsewhere } from "../../../utils/click-elsewhere";
+import { alert } from "../global-message";
 
 const templates = query({
   nav: "template#nav-bar",
@@ -33,6 +34,10 @@ class NavBar extends HTMLElement implements OnConnected, OnDisconnected, Disposa
   cleanups: CleanUp[] = [];
   connectedCallback(): void {
     const shadow = this.shadowRoot!;
+    const icon = shadow.querySelector("a.navbar-brand")!;
+    icon.ondblclick = () => {
+      alert(process.env.COMMIT_SHA);
+    };
     const toggler = shadow.querySelector("button.navbar-toggler")!;
     const collapsePanel = shadow.querySelector("div.collapse")!;
     const routesContainer = shadow.querySelector("ul.navbar-nav:first-child")!;

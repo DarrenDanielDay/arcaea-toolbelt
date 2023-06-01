@@ -1,3 +1,8 @@
+.panel-root {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 .platforms {
   min-width: 600px;
   max-width: 800px;
@@ -20,6 +25,10 @@
   cursor: pointer;
 }
 
+.text-banner {
+  background-image: linear-gradient(90deg, #ffffff, rgba(0, 0, 0, 0.53125) 50%, #ffffff 100%);
+}
+
 .length {
   position: absolute;
   display: inline-block;
@@ -31,7 +40,6 @@
   font-size: 0.8em;
   color: white;
   text-shadow: #00000088;
-  background-image: linear-gradient(90deg, #ffffff, #00000088, #ffffff);
 }
 
 .banner {
@@ -74,7 +82,6 @@
   top: 2em;
   color: white;
   font-weight: 600;
-  background-image: linear-gradient(90deg, #ffffff, #00000088, #ffffff);
   width: 8em;
   display: inline-block;
   text-align: center;

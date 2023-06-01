@@ -6,5 +6,6 @@ declare module "bundle-text:*" {
 declare var process: {
   env: {
     BASE_URI: string;
+    COMMIT_SHA: string;
   };
 };

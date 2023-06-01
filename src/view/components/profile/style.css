@@ -15,3 +15,8 @@ blockquote {
 .cross-site-script > div > div {
   margin: 8px 0;
 }
+
+#the-script {
+  overflow-x: scroll;
+  white-space: pre;
+}

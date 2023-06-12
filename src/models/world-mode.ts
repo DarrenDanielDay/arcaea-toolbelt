@@ -60,6 +60,7 @@ export type WorldMapReward =
   | {
       type: RewardType.Song;
       id: string;
+      name: string;
       img: string;
     }
   | {

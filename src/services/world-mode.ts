@@ -30,7 +30,7 @@ export class WorldModeServiceImpl implements WorldModeService {
     return this.withRewardImgs(maps, characters, await this.chart.getSongData()).at(-1)!.maps;
   }
 
-  getMapRewards(map: NormalWorldMapData): Partial<Record<RewardType, string[]>> {
+  getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, string[]>> {
     const res: Partial<Record<RewardType, string[]>> = {};
     const { platforms } = map;
     for (const key in platforms) {
@@ -47,7 +47,7 @@ export class WorldModeServiceImpl implements WorldModeService {
           ? reward.name
           : reward.type === RewardType.Character
           ? characters.find((c) => c.id === reward.id)!.name.zh
-          : reward.id
+          : reward.name
       );
     }
     return res;
@@ -119,7 +119,8 @@ export class WorldModeServiceImpl implements WorldModeService {
                         img: this.findItemImage(reward.name)!,
                       };
                     case RewardType.Song:
-                      return { ...reward, img: songMap.get(reward.id)!.cover };
+                      const song = songMap.get(reward.id)!;
+                      return { ...reward, img: song.cover, name: song.name };
                     default:
                       throw new Error(`Unknown reward type: ${type}`);
                   }

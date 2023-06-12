@@ -8,6 +8,7 @@ import { alert } from "../global-message";
 const templates = query({
   panel: "template#panel",
   platform: "template#platform",
+  frag: "template#frag",
 } as const)(fragment(html));
 
 const getPanelRefs = query({
@@ -185,19 +186,34 @@ class WorldMapNormal extends HTMLElement {
           {
             const rewardImg = element("img");
             rewardImg.src = reward.img;
+            rewardImg.referrerPolicy = "no-referrer";
             rewardImg.className = `reward`;
             cell.appendChild(rewardImg);
           }
           break;
         case RewardType.Item: {
-          const rewardImg = element("img");
-          rewardImg.src = reward.img;
-          rewardImg.className = `reward item`;
-          const rewardCount = element("span");
-          rewardCount.textContent = `${reward.name} × ${reward.count}`;
-          rewardCount.className = `item-info text-banner`;
-          cell.appendChild(rewardImg);
-          cell.appendChild(rewardCount);
+          if (reward.name === "残片") {
+            const fragmentSVG = clone(templates.frag.content);
+            const count = element("span");
+            count.textContent = `${reward.count}`;
+            count.className = `fragment-count`;
+            cell.appendChild(fragmentSVG);
+            cell.appendChild(count);
+            const banner = element("span");
+            banner.textContent = `${reward.name}`;
+            banner.className = `fragment-banner`;
+            cell.appendChild(banner);
+          } else {
+            const rewardImg = element("img");
+            rewardImg.src = reward.img;
+            rewardImg.referrerPolicy = "no-referrer";
+            rewardImg.className = `reward item`;
+            cell.appendChild(rewardImg);
+            const rewardCount = element("span");
+            rewardCount.textContent = `${reward.name} × ${reward.count}`;
+            rewardCount.className = `item-info text-banner`;
+            cell.appendChild(rewardCount);
+          }
         }
       }
     }

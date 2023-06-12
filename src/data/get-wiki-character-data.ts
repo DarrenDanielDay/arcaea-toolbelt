@@ -160,11 +160,6 @@ function getOtherItemsData(): ItemData[] {
       name: "次元结晶",
       img: "https://static.wikia.nocookie.net/iowiro/images/1/16/Core_bypass.png/revision/latest",
     },
-    // TODO 整个残片图片
-    {
-      name: "残片",
-      img: "",
-    },
   ];
 }
 

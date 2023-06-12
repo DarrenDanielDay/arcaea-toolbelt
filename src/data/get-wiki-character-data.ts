@@ -156,10 +156,9 @@ function getOtherItemsData(): ItemData[] {
       name: "以太之滴",
       img: "https://wiki.arcaea.cn/images/thumb/0/00/Ether_Drop.png/40px-Ether_Drop.png",
     },
-    // TODO 整个次元结晶图片
     {
       name: "次元结晶",
-      img: "",
+      img: "https://static.wikia.nocookie.net/iowiro/images/1/16/Core_bypass.png/revision/latest",
     },
     // TODO 整个残片图片
     {

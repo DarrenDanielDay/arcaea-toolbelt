@@ -81,11 +81,7 @@ export class WorldModeServiceImpl implements WorldModeService {
 
   private findItemImage(name: string): string {
     const result = this.itemImages[name];
-    if (!result) {
-      console.error(`物品 ${name} 图片未找到`);
-      console.log(this.itemImages);
-    }
-    return result!;
+    return result || "";
   }
 
   private withRewardImgs(chapters: ChapterData[], characters: CharacterData[], songs: SongData[]): Chapter[] {

@@ -4,4 +4,5 @@
 *.css.js
 *.css.d.ts
 /arcaea-toolbelt
+/parcel-bundle-reports
 .env

@@ -20,12 +20,13 @@
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
     "start": "run-p --print-label \"start:**\"",
     "purge": "node ./scripts/purge.js",
-    "build:parcel": "parcel build --target default --public-url /arcaea-toolbelt --dist-dir ./arcaea-toolbelt",
+    "build:parcel": "parcel build --target default --public-url /arcaea-toolbelt --dist-dir ./arcaea-toolbelt --reporter @parcel/reporter-bundle-analyzer",
     "build:sheetly": "sheetly build --dir src",
     "build": "run-s purge build:sheetly build:parcel"
   },
   "private": true,
   "devDependencies": {
+    "@parcel/reporter-bundle-analyzer": "^2.8.3",
     "@parcel/transformer-inline-string": "^2.8.3",
     "@parcel/transformer-typescript-tsc": "^2.8.3",
     "@types/bootstrap": "^5.2.6",

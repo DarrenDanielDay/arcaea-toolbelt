@@ -186,7 +186,7 @@
   },
   {
     "id": 5,
-    "image": "https://wiki.arcaea.cn/images/thumb/e/e8/Partner_hikari_and_tairitsu_icon.png/95px-Partner_hikari_and_tairitsu_icon.png",
+    "image": "https://wiki.arcaea.cn/images/thumb/8/86/Partner_hikari_%26_tairitsu_reunion_icon.png/95px-Partner_hikari_%26_tairitsu_reunion_icon.png",
     "awakenImage": null,
     "name": { "en": "Hikari & Tairitsu (Reunion)", "zh": "光 & 对立（Reunion）" },
     "levels": [
@@ -1979,7 +1979,7 @@
   },
   {
     "id": 62,
-    "image": "https://wiki.arcaea.cn/images/thumb/5/5d/Partner_shama_icon.png/95px-Partner_shama_icon.png",
+    "image": "https://wiki.arcaea.cn/images/thumb/3/3d/Partner_shama_universe_icon.png/95px-Partner_shama_universe_icon.png",
     "awakenImage": null,
     "name": { "en": "Shama (UNiVERSE)", "zh": "霞玛（大～宇～宙）" },
     "levels": [
@@ -2008,7 +2008,7 @@
   },
   {
     "id": 63,
-    "image": "https://wiki.arcaea.cn/images/thumb/0/02/Partner_milk_icon.png/95px-Partner_milk_icon.png",
+    "image": "https://wiki.arcaea.cn/images/thumb/2/21/Partner_milk_universe_icon.png/95px-Partner_milk_universe_icon.png",
     "awakenImage": null,
     "name": { "en": "Milk (UNiVERSE)", "zh": "米露可（大～宇～宙）" },
     "levels": [
@@ -2188,6 +2188,35 @@
       { "frag": 49, "over": 59, "step": 84 },
       { "frag": 49, "over": 59, "step": 84 },
       { "frag": 50, "over": 60, "step": 85 }
+    ]
+  },
+  {
+    "id": 69,
+    "image": "https://wiki.arcaea.cn/images/thumb/c/c1/Partner_ilith_%26_ivy_icon.png/95px-Partner_ilith_%26_ivy_icon.png",
+    "awakenImage": null,
+    "name": { "en": "Ilith & Ivy", "zh": "Ilith & Ivy" },
+    "levels": [
+      null,
+      { "frag": 33, "over": 33, "step": 33 },
+      { "frag": 33, "over": 33, "step": 33 },
+      { "frag": 33, "over": 33, "step": 33 },
+      { "frag": 33, "over": 33, "step": 33 },
+      { "frag": 34, "over": 34, "step": 34 },
+      { "frag": 35, "over": 35, "step": 35 },
+      { "frag": 36, "over": 36, "step": 36 },
+      { "frag": 38, "over": 38, "step": 38 },
+      { "frag": 40, "over": 40, "step": 40 },
+      { "frag": 44, "over": 44, "step": 44 },
+      { "frag": 47, "over": 47, "step": 47 },
+      { "frag": 51, "over": 51, "step": 51 },
+      { "frag": 53, "over": 53, "step": 53 },
+      { "frag": 55, "over": 55, "step": 55 },
+      { "frag": 56, "over": 56, "step": 56 },
+      { "frag": 57, "over": 57, "step": 57 },
+      { "frag": 58, "over": 58, "step": 58 },
+      { "frag": 58, "over": 58, "step": 58 },
+      { "frag": 58, "over": 58, "step": 58 },
+      { "frag": 58, "over": 58, "step": 58 }
     ]
   },
   {

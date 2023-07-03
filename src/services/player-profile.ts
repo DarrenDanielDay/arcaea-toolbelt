@@ -9,14 +9,16 @@ const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
 
-const isValidProfileV1 = (value: any): value is Profile => {
+const isValidProfileV1 = (input: any): input is Profile => {
+  const value: Partial<Profile> = input;
   return (
     value != null &&
     typeof value === "object" &&
     value.version === 1 &&
     typeof value.username === "string" &&
     typeof value.potential === "string" &&
-    typeof value.best === "object"
+    typeof value.best === "object" &&
+    (value.characters == null || Array.isArray(value.characters))
   );
 };
 
@@ -33,12 +35,7 @@ export class ProfileServiceImpl implements ProfileService {
   }
 
   async createOrUpdateProfile(username: string, potential: number): Promise<void> {
-    const profile: Profile = this.getProfile(username) ?? {
-      version: 1,
-      best: {},
-      potential: 0,
-      username: "",
-    };
+    const profile: Profile = this.getProfile(username) ?? this.createEmptyProfile(username);
     profile.potential = potential.toFixed(2);
     profile.username = username;
     this.saveProfile(profile, username);
@@ -48,11 +45,9 @@ export class ProfileServiceImpl implements ProfileService {
     return this.getProfileListSync();
   }
 
-  async syncProfiles(data: unknown[]): Promise<void> {
-    if (data.every(isValidProfileV1)) {
-      for (const profile of data) {
-        this.saveProfile(profile, profile.username);
-      }
+  async syncProfiles(data: Partial<Profile>[]): Promise<void> {
+    for (const profile of data) {
+      this.saveProfile(profile, profile.username);
     }
   }
 
@@ -179,7 +174,16 @@ export class ProfileServiceImpl implements ProfileService {
     };
   }
 
-  private getProfile(username: string) {
+  private createEmptyProfile(username: string): Profile {
+    return {
+      best: {},
+      potential: "0",
+      username,
+      version: 1,
+    };
+  }
+
+  private getProfile(username: string): Profile | null {
     try {
       const profile = JSON.parse(localStorage.getItem(username)!);
       return profile;
@@ -188,8 +192,10 @@ export class ProfileServiceImpl implements ProfileService {
     }
   }
 
-  private saveProfile(profile: Profile, key = this.currentUsername!) {
-    localStorage.setItem(key, JSON.stringify(profile));
+  private saveProfile(profile: Partial<Profile>, key = this.currentUsername!) {
+    const original = this.getProfile(key) ?? this.createEmptyProfile(key);
+    const newProfile = Object.assign({}, original, profile);
+    localStorage.setItem(key, JSON.stringify(newProfile));
   }
 
   private getInitCurrentUsername(): string | null {

@@ -1,4 +1,11 @@
-import { Chart, ClearRank, Grade, NoteResult, PartnerClearRank, ScoreResult } from "../models/music-play";
+import {
+  Chart,
+  ClearRank,
+  Grade,
+  NoteResult,
+  PartnerClearRank,
+  ScoreResult,
+} from "../models/music-play";
 import { MusicPlayService } from "./declarations";
 
 const MAX_BASE_SCORE = 1000_0000;
@@ -72,7 +79,9 @@ export class MusicPlayServiceImpl implements MusicPlayService {
   }
   computeScore(chart: Chart, playResult: NoteResult): number {
     const { perfect, far, lost } = playResult;
-    return Math.floor(MAX_BASE_SCORE * (1 - (far / 2 + lost) / chart.note)) + perfect;
+    return (
+      Math.floor(MAX_BASE_SCORE * (1 - (far / 2 + lost) / chart.note)) + perfect
+    );
   }
 
   computeGrade(score: number): Grade {
@@ -93,7 +102,11 @@ export class MusicPlayServiceImpl implements MusicPlayService {
         return Grade.D;
     }
   }
-  computeClearRank(noteResult: NoteResult, chart: Chart, clear: PartnerClearRank | null): ClearRank | null {
+  computeClearRank(
+    noteResult: NoteResult,
+    chart: Chart,
+    clear: PartnerClearRank | null
+  ): ClearRank | null {
     const { far, lost, perfect } = noteResult;
     const { note } = chart;
     if (!lost) {
@@ -107,7 +120,7 @@ export class MusicPlayServiceImpl implements MusicPlayService {
       // 即使全连也可能因为far太多被特殊角色在最后一个note给TL……
       // 不知道用啥角色的情况不考虑了，但是选了Track Lost就算他TL
       if (clear !== ClearRank.TrackLost) {
-        return ClearRank.FullRecall
+        return ClearRank.FullRecall;
       }
     }
     return clear;
@@ -130,5 +143,10 @@ export class MusicPlayServiceImpl implements MusicPlayService {
       score,
       potential: this.computePotential(score, chart),
     };
+  }
+  computePMConstant(potential: number, overflow: boolean): number {
+    const target = potential - 2;
+    const gapFactor = target >= 8 ? 10 : 2;
+    return (overflow ? Math.ceil : Math.floor)(target * gapFactor) / gapFactor;
   }
 }

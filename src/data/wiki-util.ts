@@ -1,8 +1,6 @@
 export const htmlDocument = document.implementation.createHTMLDocument();
 
-export async function initPageDocument(url: string | URL) {
-  const response = await fetch(url);
-  const page = await response.text();
+export function prepareDocument(page: string, url: string | URL) {
   htmlDocument.open();
   htmlDocument.write(page);
   htmlDocument.close();
@@ -11,11 +9,18 @@ export async function initPageDocument(url: string | URL) {
   htmlDocument.head.appendChild(base);
 }
 
+export async function initPageDocument(url: string | URL) {
+  const response = await fetch(url);
+  const page = await response.text();
+  prepareDocument(page, url);
+}
+
 export const wikiBaseURL = new URL("https://wiki.arcaea.cn");
 
 export const pathName = (path: string): string => new URL(path, location.href).pathname;
 
 export const wikiURL = (path: string) => new URL(pathName(path), wikiBaseURL);
+
 
 export function findNextElWhere(start: Element, where: (el: Element) => boolean): Element | null {
   let node: Element | null = start;

@@ -10,7 +10,8 @@ import { addSheet } from "sheetly";
 import { bootstrap } from "../view/styles";
 import { sheet as dialogSheet } from "../view/components/global-message/style.css.js";
 import { provide } from "./di";
-import { element } from "../utils/component";
+import { element } from "hyplate";
+
 const musicPlay: MusicPlayService = new MusicPlayServiceImpl();
 const flattenData = (data as SongData[])
   .flatMap((song) =>
@@ -59,7 +60,10 @@ async function get<T>(path: string): Promise<T> {
 }
 
 export async function getSelfProfile() {
-  return await get<lowiro.UserProfile>("user/me");
+  const promise = xhrProxy.waitForRequest<{ value: lowiro.UserProfile }>("user/me");
+  window.dispatchEvent(new FocusEvent("focus"));
+  const { value } = await promise;
+  return value;
 }
 
 export async function getFriendsBest(sid: string, difficulty: number) {
@@ -151,8 +155,7 @@ async function queryBest(
     );
     const friendBests = await getFriendsBest(song.sid, mapDifficulty(chart.difficulty));
     if (!friendBests) {
-      message(`寄了，接口改了，需要订阅Arcaea Online才能用`);
-      break;
+      throw new Error(`寄了，接口改了，需要订阅Arcaea Online才能用`);
     }
     const pttPM = chart.constant + 2;
     const restFriends = friendBests.filter((b) => friendBestsMinPtt.get(b.name)! < pttPM);
@@ -218,6 +221,8 @@ async function queryBest(
 }
 
 class CrossSiteScriptPluginServiceImpl implements CrossSiteScriptPluginService {
+  private iframe: HTMLIFrameElement | null = null;
+
   async getProfile(): Promise<lowiro.UserProfile> {
     return await getSelfProfile();
   }
@@ -225,14 +230,27 @@ class CrossSiteScriptPluginServiceImpl implements CrossSiteScriptPluginService {
     profile: lowiro.UserProfile,
     targetPlayers: string[],
     onProgress: (message: string) => void,
-    onResult: (profiles: Profile[]) => void
+    onResult: (profiles: Profile[]) => void,
+    onError?: (message: string) => void
   ): AbortController {
     const controller = new AbortController();
-    queryBest(profile, targetPlayers, onProgress, controller.signal).then(onResult);
+    queryBest(profile, targetPlayers, onProgress, controller.signal)
+      .then(onResult)
+      .catch((error) => {
+        if (error instanceof Error) {
+          onError?.(error.message);
+        } else {
+          onError?.(`${error}`);
+        }
+      });
     return controller;
   }
-  syncProfiles(profiles: Profile[]): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
+
+  private createOrGetIFrame(): Promise<HTMLIFrameElement> {
+    return new Promise<HTMLIFrameElement>((resolve, reject) => {
+      if (this.iframe) {
+        return resolve(this.iframe);
+      }
       // TODO 支持打包成ESM直接用import.meta.url，不再需要环境变量
       // const baseURI = new URL("..", import.meta.url);
       const baseURI = process.env.BASE_URI;
@@ -242,23 +260,52 @@ class CrossSiteScriptPluginServiceImpl implements CrossSiteScriptPluginService {
       document.body.appendChild(iframe);
       iframe.src = targetURL.toString();
       iframe.onload = () => {
-        const win = iframe.contentWindow!;
-        win.postMessage({ type: "sync-profiles", payload: profiles }, "*");
-        window.addEventListener("message", (e) => {
-          const message = e.data;
-          switch (message.type) {
-            case "sync-success":
-              resolve();
-              break;
-            case "sync-profile-error":
-              reject(message.error);
-              break;
-          }
-          document.body.removeChild(iframe);
-        });
+        this.iframe = iframe;
+        resolve(iframe);
       };
+    });
+  }
+
+  private async postMessage(type: string, payload: unknown): Promise<void> {
+    const iframe = await this.createOrGetIFrame();
+    return new Promise<void>((resolve, reject) => {
+      const win = iframe.contentWindow!;
+      win.postMessage({ type, payload }, "*");
+      window.addEventListener("message", function handler(e) {
+        const message = e.data;
+        switch (message.type) {
+          case `${type}-success`:
+            resolve();
+            break;
+          case `${type}-error`:
+            reject(message.error);
+            break;
+        }
+        window.removeEventListener("message", handler);
+      });
       iframe.onerror = reject;
     });
+  }
+
+  syncProfiles(profiles: Profile[]): Promise<void> {
+    return this.postMessage("sync-profiles", profiles);
+  }
+  syncMe(profile: lowiro.UserProfile): Promise<void> {
+    const myProfile: Partial<Profile> = {
+      username: profile.display_name,
+      potential: (profile.rating / 100).toFixed(2),
+      characters: profile.character_stats.map((c) => ({
+        exp: c.exp,
+        factors: {
+          frag: c.frag,
+          over: c.overdrive,
+          step: c.prog,
+        },
+        id: c.character_id,
+        level: c.level,
+      })),
+    };
+    return this.postMessage("sync-me", myProfile);
   }
 }
 
@@ -269,11 +316,11 @@ const createOrGetDialog = (() => {
     if (!dialog || !panel) {
       dialog = element("dialog");
       document.body.appendChild(dialog);
-      addSheet(bootstrap);
       const container = element("div");
       provide($CrossSiteScriptPluginService, container, new CrossSiteScriptPluginServiceImpl());
       document.body.appendChild(container);
       const wrapper = container.attachShadow({ mode: "open" });
+      addSheet(bootstrap, wrapper);
       addSheet(dialogSheet, wrapper);
       panel = new ToolPanel();
       panel.addEventListener("panel-close", () => {
@@ -286,7 +333,42 @@ const createOrGetDialog = (() => {
   };
 })();
 
+class XHRProxy extends EventTarget {
+  waitForRequest<T>(path: string): Promise<T> {
+    const that = this;
+    return new Promise<T>((resolve, reject) => {
+      this.addEventListener("XHR Response", function hander(e) {
+        if (e instanceof CustomEvent) {
+          const xhr: HackedXHR = e.detail;
+          if (new URL(xhr.responseURL).pathname.includes(path)) {
+            const response = xhr.response;
+            if (typeof response === "string") {
+              resolve(JSON.parse(response));
+              that.removeEventListener("XHR Response", hander);
+            } else {
+              reject(new Error(`Unknown response type`));
+            }
+          }
+        }
+      });
+    });
+  }
+}
+const xhrProxy = new XHRProxy();
+
+class HackedXHR extends XMLHttpRequest {
+  constructor() {
+    super();
+    this.addEventListener("loadend", () => {
+      queueMicrotask(() => {
+        xhrProxy.dispatchEvent(new CustomEvent("XHR Response", { detail: this }));
+      });
+    });
+  }
+}
+
 async function main() {
+  window.XMLHttpRequest = HackedXHR;
   window.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key.toUpperCase() === "B") {
       createOrGetDialog().showModal();

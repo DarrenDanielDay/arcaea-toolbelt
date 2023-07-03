@@ -1,0 +1,42 @@
+.details {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.pack-name, .notes {
+  font-size: 8px;
+}
+
+.song-name, .constant {
+  font-weight: 600;
+}
+
+.notes {
+  text-align: center;
+  color: #cc22ee;
+}
+
+.notes::before {
+  content: "+";
+}
+
+.constant {
+  color: white;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.cover {
+  width: 72px;
+  height: 72px;
+}

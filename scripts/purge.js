@@ -5,7 +5,7 @@ import { resolve } from "path";
   const pathToCwd = "./src/view/styles/bootstrap.part.css";
   const bootstrap = resolve(process.cwd(), pathToCwd);
   const purgeCSSResult = await new PurgeCSS().purge({
-    content: ["**/*.html", "**/*.ts"],
+    content: ["**/*.html", "**/*.ts", "**/*.tsx"],
     css: [pathToCwd],
   });
   writeFile(bootstrap, purgeCSSResult[0].css, () => {

@@ -8,4 +8,10 @@ dialog {
 
 .modal-root {
   width: 240px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content {
+  flex-grow: 1;
 }

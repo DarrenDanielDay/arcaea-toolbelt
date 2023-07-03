@@ -18,6 +18,13 @@ export interface CharacterData {
   levels: { [level: number]: CharacterFactors | undefined | null };
 }
 
+export interface CharacterInstanceData {
+  id: number;
+  level: number;
+  exp: number;
+  factors: CharacterFactors;
+}
+
 /**
  * 道具
  */

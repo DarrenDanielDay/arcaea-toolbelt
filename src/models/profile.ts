@@ -1,4 +1,5 @@
 import { Chart, ClearRank, NoteResult, PlayResult, ScoreResult, Song } from "./music-play";
+import { CharacterData, CharacterInstanceData } from "./world-mode";
 
 export interface Profile {
   version: number;
@@ -7,6 +8,7 @@ export interface Profile {
   best: {
     [chartId: string]: PlayResult;
   };
+  characters?: CharacterInstanceData[];
 }
 
 export interface BestResultItem {

@@ -17,6 +17,6 @@ blockquote {
 }
 
 #the-script {
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: pre;
 }

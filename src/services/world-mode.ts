@@ -1,13 +1,5 @@
-import {
-  Chapter,
-  ChapterData,
-  CharacterData,
-  MapPlatform,
-  NormalWorldMap,
-  NormalWorldMapData,
-  RewardType,
-} from "../models/world-mode";
-import { ChartService, WorldModeService } from "./declarations";
+import { Chapter, ChapterData, CharacterData, MapPlatform, NormalWorldMap, RewardType } from "../models/world-mode";
+import { ChartService, InverseProgressSolution, MusicPlayService, WorldModeService } from "./declarations";
 import characters from "../data/character-data.json";
 import items from "../data/item-data.json";
 import { SongData } from "../models/music-play";
@@ -18,7 +10,7 @@ const CHARACTER_FACTOR_RATIO = 50;
 export class WorldModeServiceImpl implements WorldModeService {
   itemImages = Object.fromEntries(items.map((item) => [item.name, item.img]));
 
-  constructor(private readonly chart: ChartService) {}
+  constructor(private readonly chart: ChartService, private readonly music: MusicPlayService) {}
 
   async getLongtermMaps(): Promise<Chapter[]> {
     const chapters = await this.getAllChapterData();
@@ -71,8 +63,76 @@ export class WorldModeServiceImpl implements WorldModeService {
     return result;
   }
 
-  antiBasicProgress(progress: number, step: number): number {
-    return (((progress * CHARACTER_FACTOR_RATIO) / step - BASE_PROG) / POTENTIAL_FACTOR) ** 2;
+  private inverseBasicProgress(progress: number, step: number, overflow: boolean): number {
+    const rootOfPotential = ((progress * CHARACTER_FACTOR_RATIO) / step - BASE_PROG) / POTENTIAL_FACTOR;
+    if (rootOfPotential < 0) {
+      // 平方根为负数，进度必然超过
+      if (overflow) {
+        // 作为下限的时候，可以用0
+        return 0;
+      }
+      return NaN;
+    }
+    const potential = rootOfPotential ** 2;
+    return potential;
+  }
+
+  inverseProgress(step: number, range: [low: number, high: number]): InverseProgressSolution[] {
+    const solutions: InverseProgressSolution[] = [];
+    const [low, high] = range;
+    // 无加成
+    solutions.push(this.solveProgressRange(step, range));
+    // 新图
+    {
+      const solution = this.solveProgressRange(step, [low / 4, high / 4]);
+      solution.world = {
+        type: "new",
+        x4: true,
+      };
+      solutions.push(solution);
+    }
+    // 老图
+    // 体力倍数
+    for (const stamina of [2, 4, 6]) {
+      // 残片加成
+      for (const fragment of [1, 1.1, 1.25, 1.5]) {
+        const ratio = fragment * stamina;
+        const solution = this.solveProgressRange(step, [low / ratio, high / ratio]);
+        solution.world = {
+          type: "legacy",
+          fragment,
+          stamina,
+        };
+        solutions.push(solution);
+      }
+    }
+    return solutions;
+  }
+
+  private solveProgressRange(step: number, [low, high]: [number, number]): InverseProgressSolution {
+    const maximum = this.chart.maximumConstant;
+    const maximumPtt = maximum + 2;
+    const lowPtt = this.inverseBasicProgress(low, step, true);
+    const highPtt = Math.min(maximumPtt, this.inverseBasicProgress(high, step, false));
+    const solution: InverseProgressSolution = {
+      world: null,
+      highPtt,
+      lowPtt,
+      invalidMessage: null,
+      pmRange: false,
+    };
+    if (isNaN(highPtt)) {
+      solution.invalidMessage = "无法降落，放置0分结算也会前进过头";
+    } else if (lowPtt > maximumPtt) {
+      solution.invalidMessage = `PM最高定数${maximum}谱面也无法前进这么多`;
+    } else {
+      const minConstant = this.music.computePMConstant(lowPtt, true);
+      const maxConstant = this.music.computePMConstant(highPtt, false);
+      if (minConstant > 0 && maxConstant <= maximum && minConstant <= maxConstant) {
+        solution.pmRange = [minConstant, maxConstant];
+      }
+    }
+    return solution;
   }
 
   private async getAllChapterData(): Promise<ChapterData[]> {

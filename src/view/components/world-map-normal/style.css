@@ -25,6 +25,19 @@
   cursor: pointer;
 }
 
+.highlighted {
+  animation-name: flash;
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0ms;
+}
+
+@keyframes flash {
+  from {
+    background-color: rgba(0, 0, 0, 0.53125);
+  }
+}
+
 .text-banner {
   background-image: linear-gradient(90deg, #ffffff, rgba(0, 0, 0, 0.53125) 50%, #ffffff 100%);
 }

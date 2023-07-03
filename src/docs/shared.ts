@@ -1,4 +1,4 @@
-import { onClickElsewhere } from "../utils/click-elsewhere";
+import { clickElsewhere } from "../utils/click-elsewhere";
 import { query } from "../utils/component";
 import "./shared.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,7 +14,7 @@ export const docsPage = (content: string) => {
   const hideToc = () => {
     toc.classList.toggle("visible", false);
   };
-  onClickElsewhere({ cleanups: [] }, tocPanel, () => {
+  clickElsewhere(tocPanel, () => {
     hideToc();
   });
   tocMenu.onclick = () => {

@@ -48,7 +48,9 @@
   padding-left: 32px;
   background-color: var(--constant-color);
 }
-
+.hidden {
+  visibility: hidden;
+}
 .rank {
   z-index: 3;
   background-color: #dddddd;

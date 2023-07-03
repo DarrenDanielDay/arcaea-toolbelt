@@ -1,4 +1,5 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
+  "prettier.printWidth": 120,
   "screenshot-clipboard.configs.saveDir": "src/docs/img"
 }

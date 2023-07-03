@@ -1,6 +1,7 @@
 import { BeyondAddon, Chart, Difficulty, SongData } from "../models/music-play";
 import { download } from "../utils/download";
-import { wikiURL, initPageDocument, htmlDocument } from "./wiki-util";
+import { arcaeaCNClient } from "./cached-fetch";
+import { wikiURL, initPageDocument, htmlDocument, prepareDocument } from "./wiki-util";
 
 const wikiConstantTable = wikiURL("定数详表");
 
@@ -138,7 +139,8 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
     // 由于歌曲wiki链接是唯一的，因此wiki链接可以作为歌曲id使用
     const songId = link.slice(1);
     const detailPageURL = wikiURL(link);
-    await initPageDocument(detailPageURL);
+    const content = await arcaeaCNClient.fetchAsText(detailPageURL);
+    prepareDocument(content, detailPageURL);
     const [normal, beyond] = Array.from(htmlDocument.querySelectorAll("#right-image img"));
     if (!normal) {
       throw new Error(`${name} 曲绘未找到`);

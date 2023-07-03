@@ -1,5 +1,5 @@
+import type { CleanUpFunc } from "hyplate/types";
 import { token } from "../../../services/di";
-import { CleanUp } from "../../../utils/component";
 
 export interface Route {
   path: string;
@@ -36,7 +36,7 @@ export class Router {
     }
   }
 
-  subscribe(subscriber: RouteChangeCallback): CleanUp {
+  subscribe(subscriber: RouteChangeCallback): CleanUpFunc {
     this.subscribers.add(subscriber);
     return () => {
       this.subscribers.delete(subscriber);

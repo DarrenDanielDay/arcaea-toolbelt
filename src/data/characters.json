@@ -2489,6 +2489,39 @@
     },
     {
         "skill_id_text": {
+          "en": "Recall Emotions. Each Emotion\nboosts an aspect of Ilith & Ivy by +10",
+          "ja": "感情の回収を実行。回収した感情ごとに、\nIlith & Ivyの機能を+10する",
+          "ko": "감정을 불러일으켜, 각 감정당\nIlith & Ivy의 능력치 하나가 10 증가합니다",
+          "zh-Hans": "重拾情感。每份情感会给\nIlith & Ivy的一项能力带来+10的提升",
+          "zh-Hant": "重拾情感。每份情感會給\nIlith & Ivy的一項能力帶來+10的提升"
+        },
+        "display_name": {
+          "en": "Ilith & Ivy",
+          "ja": "Ilith & Ivy",
+          "ko": "Ilith & Ivy",
+          "zh-Hans": "Ilith & Ivy",
+          "zh-Hant": "Ilith & Ivy"
+        },
+        "base_character": false,
+        "is_uncapped_override": false,
+        "is_uncapped": false,
+        "uncap_cores": [],
+        "char_type": 0,
+        "skill_id_uncap": "",
+        "skill_requires_uncap": false,
+        "skill_unlock_level": 0,
+        "skill_id": "skill_ilith_ivy",
+        "overdrive": 44.12837148272343,
+        "prog": 44.12837148272343,
+        "frag": 44.12837148272343,
+        "level_exp": 1200,
+        "exp": 1391.3851200000001,
+        "level": 10,
+        "name": "ilith_ivy",
+        "character_id": 69
+    },
+    {
+        "skill_id_text": {
             "en": "Earn +10 Fragments\nupon clearing a preferred song",
             "ja": "白姫の気まぐれ曲をクリア時\n欠片を+10獲得",
             "ko": "선택곡을 클리어할 경우 \n+10 조각을 얻게됩니다",

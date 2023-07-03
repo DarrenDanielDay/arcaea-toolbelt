@@ -5,3 +5,7 @@ header {
 .logging {
   width: 300px;
 }
+
+.actions > button:not(:last-child) {
+  margin-right: 1em;
+}

@@ -1,23 +1,22 @@
+import { Component, HyplateElement, cssVar } from "hyplate";
 import { $ProfileService, ProfileService } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
-import { Component, OnConnected } from "../../../utils/component";
 import { Best30 } from "../../components/b30";
 import { alert } from "../../components/global-message";
 import { Route } from "../router";
 
 @Component({
-  selector: "player-b30",
+  tag: "player-b30",
 })
-class PlayerB39 extends HTMLElement implements OnConnected {
+class PlayerB39 extends HyplateElement {
   @Inject($ProfileService)
   accessor profileService!: ProfileService;
 
-  connectedCallback(): void {
+  override render() {
     if (!this.profileService.profile) {
       alert("未选择存档");
     }
-    const b30Card = new Best30();
-    this.shadowRoot!.appendChild(b30Card);
+    return <>{new Best30()}</>;
   }
 }
 
@@ -28,7 +27,7 @@ export const PlayerB30Route: Route = {
     const page = new PlayerB39();
     const width = window.innerWidth;
     if (width < 800) {
-      document.body.style.setProperty("--inner-width", `${width}`);
+      cssVar(document.body, "inner-width", `${width}`);
     }
     return page;
   },

@@ -1225,7 +1225,7 @@
     "name": "To the Milky Way",
     "id": "To_the_Milky_Way",
     "sid": "tothemilkyway",
-    "alias": [],
+    "alias": ["银河", "牛奶路"],
     "charts": [
       {
         "constant": 5,
@@ -2554,7 +2554,7 @@
     "name": "New York Back Raise",
     "id": "New_York_Back_Raise",
     "sid": "newyorkbackraise",
-    "alias": [],
+    "alias": ["纽约", "新乡"],
     "charts": [
       {
         "constant": 4.5,
@@ -2589,7 +2589,7 @@
     "name": "The Survivor (Game Edit)",
     "id": "The_Survivor_(Game_Edit)",
     "sid": "thesurvivor",
-    "alias": [],
+    "alias": ["幸存者"],
     "charts": [
       {
         "constant": 3.5,
@@ -3486,7 +3486,7 @@
     "name": "Hybris (The one who shattered)",
     "id": "Hybris_(The_one_who_shattered)",
     "sid": "hybris",
-    "alias": [],
+    "alias": ["傲慢"],
     "charts": [
       {
         "constant": 4.5,
@@ -4319,7 +4319,7 @@
     "name": "Lost in the Abyss",
     "id": "Lost_in_the_Abyss",
     "sid": "lostintheabyss",
-    "alias": [],
+    "alias": ["深渊"],
     "charts": [
       {
         "constant": 3.5,
@@ -5869,7 +5869,7 @@
     "name": "Lost Emotion feat. nomico",
     "id": "Lost_Emotion_feat._nomico",
     "sid": "lostemotion",
-    "alias": [],
+    "alias": ["失去情感"],
     "charts": [
       {
         "constant": 3.5,
@@ -6971,7 +6971,7 @@
     "name": "Galactic Love",
     "id": "Galactic_Love",
     "sid": "galacticlove",
-    "alias": [],
+    "alias": ["银河之恋"],
     "charts": [
       {
         "constant": 3,
@@ -7218,7 +7218,7 @@
     "name": "Lawless Point",
     "id": "Lawless_Point",
     "sid": "lawlesspoint",
-    "alias": [],
+    "alias": ["无法地点"],
     "charts": [
       {
         "constant": 3,

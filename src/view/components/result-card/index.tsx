@@ -134,7 +134,7 @@ class ResultCard extends HyplateElement {
               })}
             </div>
           </div>
-          <div ref={this.songTitle} class="song-title"></div>
+          <div ref={this.songTitle} class="song-title">--</div>
           <div class={computed(() => (this.clearRank() === ClearRank.Maximum ? "score max" : "score"))}>
             {computed(() => formatScore(this.scoreResult()?.score ?? 0))}
           </div>

@@ -1,7 +1,8 @@
-import { findNextElWhere, htmlDocument, initPageDocument, wikiURL } from "./wiki-util";
+import { findNextElWhere, htmlDocument, initPageDocument, prepareDocument, wikiURL } from "./wiki-util";
 import characters from "./characters.json";
 import { CharacterData, CharacterFactors, ItemData } from "../models/world-mode";
 import { downloadJSON } from "../utils/download";
+import { arcaeaCNClient } from "./cached-fetch";
 const wikiCharacterTable = wikiURL("搭档");
 
 interface CharacterTableData {
@@ -87,7 +88,8 @@ export async function fetchWikiCharacterAndCharacterCoreItemData(): Promise<{
 
   for (const item of tableData) {
     const { ref, imgs, link } = item;
-    await initPageDocument(link);
+    const html = await arcaeaCNClient.fetchAsText(link);
+    prepareDocument(html, link);
     const characterDataSpan = htmlDocument.getElementById(".E6.90.AD.E6.A1.A3.E5.88.86.E7.BA.A7.E6.95.B0.E6.8D.AE");
     const table =
       characterDataSpan instanceof HTMLSpanElement

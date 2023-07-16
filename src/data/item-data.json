@@ -1,20 +1,50 @@
 [
-  { "name": "中空核心", "img": "https://wiki.arcaea.cn/images/thumb/b/bd/Core_hollow.png/50px-Core_hollow.png" },
-  { "name": "荒芜核心", "img": "https://wiki.arcaea.cn/images/thumb/b/b8/Core_desolate.png/50px-Core_desolate.png" },
+  {
+    "name": "中空核心",
+    "img": "https://wiki.arcaea.cn/images/thumb/b/bd/Core_hollow.png/50px-Core_hollow.png"
+  },
+  {
+    "name": "荒芜核心",
+    "img": "https://wiki.arcaea.cn/images/thumb/b/b8/Core_desolate.png/50px-Core_desolate.png"
+  },
   {
     "name": "CHUNITHM核心",
     "img": "https://wiki.arcaea.cn/images/thumb/4/4b/Core_chunithm.png/50px-Core_chunithm.png"
   },
-  { "name": "深红核心", "img": "https://wiki.arcaea.cn/images/thumb/6/63/Core_crimson.png/50px-Core_crimson.png" },
+  {
+    "name": "深红核心",
+    "img": "https://wiki.arcaea.cn/images/thumb/6/63/Core_crimson.png/50px-Core_crimson.png"
+  },
   {
     "name": "悖异核心",
     "img": "https://wiki.arcaea.cn/images/thumb/9/92/Core_ambivalent.png/50px-Core_ambivalent.png"
   },
-  { "name": "绯红核心", "img": "https://wiki.arcaea.cn/images/thumb/7/7d/Core_scarlet.png/50px-Core_scarlet.png" },
-  { "name": "音炫核心", "img": "https://wiki.arcaea.cn/images/thumb/2/2f/Core_groove.png/50px-Core_groove.png" },
-  { "name": "双生核心", "img": "https://wiki.arcaea.cn/images/thumb/3/35/Core_binary.png/50px-Core_binary.png" },
-  { "name": "缤纷核心", "img": "https://wiki.arcaea.cn/images/thumb/f/ff/Core_colorful.png/50px-Core_colorful.png" },
-  { "name": "暗影核心", "img": "https://wiki.arcaea.cn/images/thumb/1/1d/Core_umbral.png/50px-Core_umbral.png" },
-  { "name": "以太之滴", "img": "https://wiki.arcaea.cn/images/thumb/0/00/Ether_Drop.png/40px-Ether_Drop.png" },
-  { "name": "次元结晶", "img": "https://static.wikia.nocookie.net/iowiro/images/1/16/Core_bypass.png/revision/latest" }
+  {
+    "name": "绯红核心",
+    "img": "https://wiki.arcaea.cn/images/thumb/7/7d/Core_scarlet.png/50px-Core_scarlet.png"
+  },
+  {
+    "name": "音炫核心",
+    "img": "https://wiki.arcaea.cn/images/thumb/2/2f/Core_groove.png/50px-Core_groove.png"
+  },
+  {
+    "name": "双生核心",
+    "img": "https://wiki.arcaea.cn/images/thumb/3/35/Core_binary.png/50px-Core_binary.png"
+  },
+  {
+    "name": "缤纷核心",
+    "img": "https://wiki.arcaea.cn/images/thumb/f/ff/Core_colorful.png/50px-Core_colorful.png"
+  },
+  {
+    "name": "暗影核心",
+    "img": "https://wiki.arcaea.cn/images/thumb/1/1d/Core_umbral.png/50px-Core_umbral.png"
+  },
+  {
+    "name": "以太之滴",
+    "img": "https://wiki.arcaea.cn/images/thumb/0/00/Ether_Drop.png/40px-Ether_Drop.png"
+  },
+  {
+    "name": "次元结晶",
+    "img": "https://static.wikia.nocookie.net/iowiro/images/1/16/Core_bypass.png/revision/latest"
+  }
 ]

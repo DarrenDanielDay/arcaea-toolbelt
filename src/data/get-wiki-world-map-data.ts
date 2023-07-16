@@ -138,6 +138,10 @@ function getWorldMap(
             // wiki上的音译是“丽”，修正为和官方一致用于匹配
             linkText = "咲弥 & 伊莉莎白";
           }
+          if (linkText === "依莉丝 & Ivy") {
+            // wiki上的奖励名称有重定向，修正为和官方一致用于匹配
+            linkText = "Ilith & Ivy";
+          }
           const song = songs.find((s) => s.id === linkPath);
           const character = characters.find((c) => c.name.zh === linkText);
           if (song) {

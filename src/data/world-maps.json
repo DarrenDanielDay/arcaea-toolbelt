@@ -3925,6 +3925,48 @@
           { "length": 10, "reward": { "type": 0, "name": "残片", "count": 369 } },
           { "length": 0, "reward": { "type": 2, "id": 63 } }
         ]
+      },
+      {
+        "id": "7-11",
+        "platforms": [
+          { "length": 4, "special": { "type": 2, "range": "Cytus II Collaboration" } },
+          { "length": 4 },
+          { "length": 4 },
+          { "length": 4 },
+          { "length": 4 },
+          { "length": 4, "special": { "type": 2, "range": "Bullet Waiting for Me (James Landino remix)" } },
+          { "length": 25 },
+          { "length": 1 },
+          { "length": 25 },
+          { "length": 1 },
+          { "length": 4, "special": { "type": 3, "range": ["Devillic Sphere", "Corruption"] } },
+          { "length": 1 },
+          { "length": 18 },
+          { "length": 1 },
+          { "length": 18, "reward": { "type": 0, "name": "残片", "count": 110 } },
+          { "length": 4, "special": { "type": 2, "range": "Lucid Traveler" } },
+          { "length": 4 },
+          { "length": 4 },
+          { "length": 4 },
+          { "length": 4 },
+          { "length": 4, "special": { "type": 3, "range": "Cytus II Collaboration" } },
+          { "length": 25, "special": { "type": 2, "range": "Cytus II Collaboration" } },
+          { "length": 1, "special": { "type": 0, "count": 2 } },
+          { "length": 25, "special": { "type": 2, "range": "CHAOS" } },
+          {
+            "length": 1,
+            "special": {
+              "type": 3,
+              "range": ["Bullet Waiting for Me (James Landino remix)", "Devillic Sphere", "Lucid Traveler", "CHAOS"]
+            }
+          },
+          { "length": 4, "special": { "type": 2, "range": "Used to be" } },
+          { "length": 1 },
+          { "length": 18 },
+          { "length": 1 },
+          { "length": 18, "reward": { "type": 0, "name": "残片", "count": 110 } },
+          { "length": 0, "reward": { "type": 2, "id": 69 } }
+        ]
       }
     ]
   },

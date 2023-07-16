@@ -58,7 +58,7 @@ class ProfilePage extends HyplateElement {
               目前，616对好友榜查询的Web API添加了限制，此功能需要订阅<code>Arcaea Online</code>
               才能使用，使用此功能的封号风险请自行承担
             </strong>
-            。 目前的QQ bot基本都有<code>ptt &GreaterEqual; 10</code> 才能查b30的限制，但<strong>此脚本无此限制</strong>
+            。 目前的QQ bot基本都有<code>ptt ≥ 10</code> 才能查b30的限制，但<strong>此脚本无此限制</strong>
             。 通常来说被查玩家的潜力值越低，查分越慢，最坏情况是查完将近1000个谱面的好友榜，大约需要5分钟。
           </p>
           <p>

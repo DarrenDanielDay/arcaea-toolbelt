@@ -85,3 +85,4 @@ function getURL(input: string | URL) {
   return input instanceof URL ? input.href : input;
 }
 export const arcaeaCNClient = new CachedFetchClient("arcaea-cn-cache", 1);
+Object.assign(window, { arcaeaCNClient });

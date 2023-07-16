@@ -5,7 +5,11 @@
     "name": "Grievous Lady",
     "id": "Grievous_Lady",
     "sid": "grievouslady",
-    "alias": ["里黑", "病女", "对立拉窗帘"],
+    "alias": [
+      "里黑",
+      "病女",
+      "对立拉窗帘"
+    ],
     "charts": [
       {
         "constant": 6.5,
@@ -87,7 +91,16 @@
     "name": "Aegleseeker",
     "id": "Aegleseeker",
     "sid": "aegleseeker",
-    "alias": ["光追", "RTX", "辉神星", "寻星者", "追星者", "占星者", "星探", "追光者"],
+    "alias": [
+      "光追",
+      "RTX",
+      "辉神星",
+      "寻星者",
+      "追星者",
+      "占星者",
+      "星探",
+      "追光者"
+    ],
     "charts": [
       {
         "constant": 5.5,
@@ -122,7 +135,14 @@
     "name": "SAIKYO STRONGER",
     "id": "SAIKYO_STRONGER",
     "sid": "saikyostronger",
-    "alias": ["最强STRONGER", "完形填空", "血妹子", "血魔王", "赛高", "爬魔王"],
+    "alias": [
+      "最强STRONGER",
+      "完形填空",
+      "血妹子",
+      "血魔王",
+      "赛高",
+      "爬魔王"
+    ],
     "charts": [
       {
         "constant": 5.5,
@@ -159,7 +179,14 @@
     "sid": "temptation",
     "alias": [],
     "charts": [
-      { "constant": 5, "difficulty": "pst", "id": "TEmPTaTiON@pst", "level": "5", "note": 627, "songId": "TEmPTaTiON" },
+      {
+        "constant": 5,
+        "difficulty": "pst",
+        "id": "TEmPTaTiON@pst",
+        "level": "5",
+        "note": 627,
+        "songId": "TEmPTaTiON"
+      },
       {
         "constant": 8.2,
         "difficulty": "prs",
@@ -185,10 +212,31 @@
     "name": "Dantalion",
     "id": "Dantalion",
     "sid": "dantalion",
-    "alias": ["但它林", "但塔林", "但他林", "蛋挞狮子", "蛋挞林", "反复横跳"],
+    "alias": [
+      "但它林",
+      "但塔林",
+      "但他林",
+      "蛋挞狮子",
+      "蛋挞林",
+      "反复横跳"
+    ],
     "charts": [
-      { "constant": 5, "difficulty": "pst", "id": "Dantalion@pst", "level": "5", "note": 731, "songId": "Dantalion" },
-      { "constant": 8.2, "difficulty": "prs", "id": "Dantalion@prs", "level": "8", "note": 843, "songId": "Dantalion" },
+      {
+        "constant": 5,
+        "difficulty": "pst",
+        "id": "Dantalion@pst",
+        "level": "5",
+        "note": 731,
+        "songId": "Dantalion"
+      },
+      {
+        "constant": 8.2,
+        "difficulty": "prs",
+        "id": "Dantalion@prs",
+        "level": "8",
+        "note": 843,
+        "songId": "Dantalion"
+      },
       {
         "constant": 10.9,
         "difficulty": "ftr",
@@ -206,7 +254,9 @@
     "name": "Misdeed -la bonté de Dieu et l'origine du mal-",
     "id": "Misdeed_-la_bont%C3%A9_de_Dieu_et_l%27origine_du_mal-",
     "sid": "gou",
-    "alias": ["业善"],
+    "alias": [
+      "业善"
+    ],
     "charts": [
       {
         "constant": 5.5,
@@ -241,7 +291,10 @@
     "name": "#1f1e33",
     "id": "%EF%BC%831f1e33",
     "sid": "ifi",
-    "alias": ["色号", "对立色"],
+    "alias": [
+      "色号",
+      "对立色"
+    ],
     "charts": [
       {
         "constant": 5.5,
@@ -276,11 +329,35 @@
     "name": "LAMIA",
     "id": "LAMIA",
     "sid": "lamia",
-    "alias": ["拉面", "拉米亚"],
+    "alias": [
+      "拉面",
+      "拉米亚"
+    ],
     "charts": [
-      { "constant": 5, "difficulty": "pst", "id": "LAMIA@pst", "level": "5", "note": 826, "songId": "LAMIA" },
-      { "constant": 8.3, "difficulty": "prs", "id": "LAMIA@prs", "level": "8", "note": 885, "songId": "LAMIA" },
-      { "constant": 10.9, "difficulty": "ftr", "id": "LAMIA@ftr", "level": "10+", "note": 1385, "songId": "LAMIA" }
+      {
+        "constant": 5,
+        "difficulty": "pst",
+        "id": "LAMIA@pst",
+        "level": "5",
+        "note": 826,
+        "songId": "LAMIA"
+      },
+      {
+        "constant": 8.3,
+        "difficulty": "prs",
+        "id": "LAMIA@prs",
+        "level": "8",
+        "note": 885,
+        "songId": "LAMIA"
+      },
+      {
+        "constant": 10.9,
+        "difficulty": "ftr",
+        "id": "LAMIA@ftr",
+        "level": "10+",
+        "note": 1385,
+        "songId": "LAMIA"
+      }
     ],
     "pack": "O.N.G.E.K.I. Collaboration"
   },
@@ -290,7 +367,9 @@
     "name": "BUCHiGiRE Berserker",
     "id": "BUCHiGiRE_Berserker",
     "sid": "buchigireberserker",
-    "alias": ["狂战士"],
+    "alias": [
+      "狂战士"
+    ],
     "charts": [
       {
         "constant": 5,
@@ -325,11 +404,44 @@
     "name": "Testify",
     "id": "Testify",
     "sid": "testify",
-    "alias": ["考验", "命魔王", "审判", "证明", "见证", "铁丝", "妻寄光", "命运光", "奇迹光", "考试", "猫光"],
+    "alias": [
+      "考验",
+      "命魔王",
+      "审判",
+      "证明",
+      "见证",
+      "铁丝",
+      "妻寄光",
+      "命运光",
+      "奇迹光",
+      "考试",
+      "猫光"
+    ],
     "charts": [
-      { "constant": 7, "difficulty": "pst", "id": "Testify@pst", "level": "7", "note": 1001, "songId": "Testify" },
-      { "constant": 9.4, "difficulty": "prs", "id": "Testify@prs", "level": "9", "note": 1225, "songId": "Testify" },
-      { "constant": 10.8, "difficulty": "ftr", "id": "Testify@ftr", "level": "10+", "note": 1766, "songId": "Testify" },
+      {
+        "constant": 7,
+        "difficulty": "pst",
+        "id": "Testify@pst",
+        "level": "7",
+        "note": 1001,
+        "songId": "Testify"
+      },
+      {
+        "constant": 9.4,
+        "difficulty": "prs",
+        "id": "Testify@prs",
+        "level": "9",
+        "note": 1225,
+        "songId": "Testify"
+      },
+      {
+        "constant": 10.8,
+        "difficulty": "ftr",
+        "id": "Testify@ftr",
+        "level": "10+",
+        "note": 1766,
+        "songId": "Testify"
+      },
       {
         "constant": 12,
         "difficulty": "byd",
@@ -348,7 +460,12 @@
     "name": "World Vanquisher",
     "id": "World_Vanquisher",
     "sid": "worldvanquisher",
-    "alias": ["世界征服者", "世征", "威猛先生", "FTR6"],
+    "alias": [
+      "世界征服者",
+      "世征",
+      "威猛先生",
+      "FTR6"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -383,7 +500,10 @@
     "name": "Ringed Genesis",
     "id": "Ringed_Genesis",
     "sid": "ringedgenesis",
-    "alias": ["环状起源", "砖魔王"],
+    "alias": [
+      "环状起源",
+      "砖魔王"
+    ],
     "charts": [
       {
         "constant": 5.5,
@@ -418,7 +538,11 @@
     "name": "Spider's Thread",
     "id": "Spider%27s_Thread",
     "sid": "spidersthread",
-    "alias": ["蜘蛛丝", "爬虫线程", "蜘蛛线程"],
+    "alias": [
+      "蜘蛛丝",
+      "爬虫线程",
+      "蜘蛛线程"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -453,7 +577,11 @@
     "name": "Divine Light of Myriad",
     "id": "Divine_Light_of_Myriad",
     "sid": "divinelight",
-    "alias": ["光速神授说", "无尽圣光", "光授"],
+    "alias": [
+      "光速神授说",
+      "无尽圣光",
+      "光授"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -488,11 +616,36 @@
     "name": "ω4",
     "id": "%CE%A94",
     "sid": "omegafour",
-    "alias": ["W4", "OMEGA4", "owo"],
+    "alias": [
+      "W4",
+      "OMEGA4",
+      "owo"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "%CE%A94@pst", "level": "3", "note": 816, "songId": "%CE%A94" },
-      { "constant": 7.5, "difficulty": "prs", "id": "%CE%A94@prs", "level": "7", "note": 943, "songId": "%CE%A94" },
-      { "constant": 10.8, "difficulty": "ftr", "id": "%CE%A94@ftr", "level": "10+", "note": 1393, "songId": "%CE%A94" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "%CE%A94@pst",
+        "level": "3",
+        "note": 816,
+        "songId": "%CE%A94"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "%CE%A94@prs",
+        "level": "7",
+        "note": 943,
+        "songId": "%CE%A94"
+      },
+      {
+        "constant": 10.8,
+        "difficulty": "ftr",
+        "id": "%CE%A94@ftr",
+        "level": "10+",
+        "note": 1393,
+        "songId": "%CE%A94"
+      }
     ],
     "pack": "O.N.G.E.K.I. Collaboration"
   },
@@ -502,7 +655,17 @@
     "name": "Tempestissimo",
     "id": "Tempestissimo",
     "sid": "tempestissimo",
-    "alias": ["猫魔王", "暴风雨", "妙脆角", "猫对立", "风暴对立", "奥运会", "电话拨号", "风暴魔王", "坏脾气"],
+    "alias": [
+      "猫魔王",
+      "暴风雨",
+      "妙脆角",
+      "猫对立",
+      "风暴对立",
+      "奥运会",
+      "电话拨号",
+      "风暴魔王",
+      "坏脾气"
+    ],
     "charts": [
       {
         "constant": 6.5,
@@ -548,7 +711,11 @@
     "name": "REKKA RESONANCE",
     "id": "REKKA_RESONANCE",
     "sid": "rekkaresonance",
-    "alias": ["烈华回响", "裂化", "旺仔牛奶"],
+    "alias": [
+      "烈华回响",
+      "裂化",
+      "旺仔牛奶"
+    ],
     "charts": [
       {
         "constant": 5,
@@ -583,7 +750,9 @@
     "name": "ouroboros -twin stroke of the end-",
     "id": "Ouroboros_-twin_stroke_of_the_end-",
     "sid": "ouroboros",
-    "alias": ["衔尾蛇"],
+    "alias": [
+      "衔尾蛇"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -618,7 +787,10 @@
     "name": "PRIMITIVE LIGHTS",
     "id": "PRIMITIVE_LIGHTS",
     "sid": "primitivelights",
-    "alias": ["初始光", "原初之光"],
+    "alias": [
+      "初始光",
+      "原初之光"
+    ],
     "charts": [
       {
         "constant": 5.5,
@@ -653,11 +825,35 @@
     "name": "Stasis",
     "id": "Stasis",
     "sid": "stasis",
-    "alias": ["船", "停滞"],
+    "alias": [
+      "船",
+      "停滞"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "Stasis@pst", "level": "4", "note": 848, "songId": "Stasis" },
-      { "constant": 7, "difficulty": "prs", "id": "Stasis@prs", "level": "7", "note": 935, "songId": "Stasis" },
-      { "constant": 10.7, "difficulty": "ftr", "id": "Stasis@ftr", "level": "10+", "note": 1521, "songId": "Stasis" }
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Stasis@pst",
+        "level": "4",
+        "note": 848,
+        "songId": "Stasis"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Stasis@prs",
+        "level": "7",
+        "note": 935,
+        "songId": "Stasis"
+      },
+      {
+        "constant": 10.7,
+        "difficulty": "ftr",
+        "id": "Stasis@ftr",
+        "level": "10+",
+        "note": 1521,
+        "songId": "Stasis"
+      }
     ],
     "pack": "Lanota Collaboration"
   },
@@ -667,11 +863,37 @@
     "name": "Halcyon",
     "id": "Halcyon",
     "sid": "halcyon",
-    "alias": ["翡翠鸡", "黄金鸡", "翡翠鸟", "翡翠又鸟"],
+    "alias": [
+      "翡翠鸡",
+      "黄金鸡",
+      "翡翠鸟",
+      "翡翠又鸟"
+    ],
     "charts": [
-      { "constant": 5.5, "difficulty": "pst", "id": "Halcyon@pst", "level": "5", "note": 662, "songId": "Halcyon" },
-      { "constant": 8.2, "difficulty": "prs", "id": "Halcyon@prs", "level": "8", "note": 943, "songId": "Halcyon" },
-      { "constant": 10.7, "difficulty": "ftr", "id": "Halcyon@ftr", "level": "10+", "note": 1227, "songId": "Halcyon" }
+      {
+        "constant": 5.5,
+        "difficulty": "pst",
+        "id": "Halcyon@pst",
+        "level": "5",
+        "note": 662,
+        "songId": "Halcyon"
+      },
+      {
+        "constant": 8.2,
+        "difficulty": "prs",
+        "id": "Halcyon@prs",
+        "level": "8",
+        "note": 943,
+        "songId": "Halcyon"
+      },
+      {
+        "constant": 10.7,
+        "difficulty": "ftr",
+        "id": "Halcyon@ftr",
+        "level": "10+",
+        "note": 1227,
+        "songId": "Halcyon"
+      }
     ],
     "pack": "Luminous Sky"
   },
@@ -681,7 +903,12 @@
     "name": "Axium Crisis",
     "id": "Axium_Crisis",
     "sid": "axiumcrisis",
-    "alias": ["多轴危机", "轴心危机", "对立捆绑", "对立泡温泉"],
+    "alias": [
+      "多轴危机",
+      "轴心危机",
+      "对立捆绑",
+      "对立泡温泉"
+    ],
     "charts": [
       {
         "constant": 5.5,
@@ -716,7 +943,10 @@
     "name": "AMAZING MIGHTYYYY!!!!",
     "id": "AMAZING_MIGHTYYYY!!!!",
     "sid": "amazingmightyyyy",
-    "alias": ["大惊", "上午"],
+    "alias": [
+      "大惊",
+      "上午"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -751,7 +981,11 @@
     "name": "Singularity",
     "id": "Singularity",
     "sid": "singularity",
-    "alias": ["奇点", "IFYOUCAN", "奇点大大大会员"],
+    "alias": [
+      "奇点",
+      "IFYOUCAN",
+      "奇点大大大会员"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -798,9 +1032,19 @@
     "name": "GENOCIDER",
     "id": "GENOCIDER",
     "sid": "genocider",
-    "alias": ["马眼", "灭绝者"],
+    "alias": [
+      "马眼",
+      "灭绝者"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "GENOCIDER@pst", "level": "4", "note": 832, "songId": "GENOCIDER" },
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "GENOCIDER@pst",
+        "level": "4",
+        "note": 832,
+        "songId": "GENOCIDER"
+      },
       {
         "constant": 8.5,
         "difficulty": "prs",
@@ -826,11 +1070,36 @@
     "name": "Cyaegha",
     "id": "Cyaegha",
     "sid": "cyaegha",
-    "alias": ["绿魔王", "咲弥削吐司", "咲弥削面包"],
+    "alias": [
+      "绿魔王",
+      "咲弥削吐司",
+      "咲弥削面包"
+    ],
     "charts": [
-      { "constant": 5.5, "difficulty": "pst", "id": "Cyaegha@pst", "level": "5", "note": 760, "songId": "Cyaegha" },
-      { "constant": 8.4, "difficulty": "prs", "id": "Cyaegha@prs", "level": "8", "note": 984, "songId": "Cyaegha" },
-      { "constant": 10.7, "difficulty": "ftr", "id": "Cyaegha@ftr", "level": "10+", "note": 1368, "songId": "Cyaegha" }
+      {
+        "constant": 5.5,
+        "difficulty": "pst",
+        "id": "Cyaegha@pst",
+        "level": "5",
+        "note": 760,
+        "songId": "Cyaegha"
+      },
+      {
+        "constant": 8.4,
+        "difficulty": "prs",
+        "id": "Cyaegha@prs",
+        "level": "8",
+        "note": 984,
+        "songId": "Cyaegha"
+      },
+      {
+        "constant": 10.7,
+        "difficulty": "ftr",
+        "id": "Cyaegha@ftr",
+        "level": "10+",
+        "note": 1368,
+        "songId": "Cyaegha"
+      }
     ],
     "pack": "Absolute Reason"
   },
@@ -842,7 +1111,14 @@
     "sid": "attraqtia",
     "alias": [],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "AttraqtiA@pst", "level": "4", "note": 732, "songId": "AttraqtiA" },
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "AttraqtiA@pst",
+        "level": "4",
+        "note": 732,
+        "songId": "AttraqtiA"
+      },
       {
         "constant": 7.5,
         "difficulty": "prs",
@@ -868,7 +1144,9 @@
     "name": "NULL APOPHENIA",
     "id": "NULL_APOPHENIA",
     "sid": "nullapophenia",
-    "alias": ["虚空脑补"],
+    "alias": [
+      "虚空脑补"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -903,7 +1181,12 @@
     "name": "corps-sans-organes",
     "id": "Corps-sans-organes",
     "sid": "corpssansorganes",
-    "alias": ["里黄", "铜魔王", "空壳", "无器官的躯体"],
+    "alias": [
+      "里黄",
+      "铜魔王",
+      "空壳",
+      "无器官的躯体"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -938,9 +1221,20 @@
     "name": "Overwhelm",
     "id": "Overwhelm",
     "sid": "overwhelm",
-    "alias": ["压制", "淹没", "无从招架"],
+    "alias": [
+      "压制",
+      "淹没",
+      "无从招架"
+    ],
     "charts": [
-      { "constant": 5, "difficulty": "pst", "id": "Overwhelm@pst", "level": "5", "note": 854, "songId": "Overwhelm" },
+      {
+        "constant": 5,
+        "difficulty": "pst",
+        "id": "Overwhelm@pst",
+        "level": "5",
+        "note": 854,
+        "songId": "Overwhelm"
+      },
       {
         "constant": 8.5,
         "difficulty": "prs",
@@ -966,7 +1260,13 @@
     "name": "GLORY：ROAD",
     "id": "GLORY%EF%BC%9AROAD",
     "sid": "gloryroad",
-    "alias": ["里红", "光荣之路", "荣耀之路", "王道征途", "王者征途"],
+    "alias": [
+      "里红",
+      "光荣之路",
+      "荣耀之路",
+      "王道征途",
+      "王者征途"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -1001,11 +1301,37 @@
     "name": "cyanine",
     "id": "Cyanine",
     "sid": "cyanine",
-    "alias": ["花青", "地球仪", "启示录", "核弹"],
+    "alias": [
+      "花青",
+      "地球仪",
+      "启示录",
+      "核弹"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Cyanine@pst", "level": "4", "note": 661, "songId": "Cyanine" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Cyanine@prs", "level": "7", "note": 947, "songId": "Cyanine" },
-      { "constant": 10.6, "difficulty": "ftr", "id": "Cyanine@ftr", "level": "10", "note": 1171, "songId": "Cyanine" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Cyanine@pst",
+        "level": "4",
+        "note": 661,
+        "songId": "Cyanine"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Cyanine@prs",
+        "level": "7",
+        "note": 947,
+        "songId": "Cyanine"
+      },
+      {
+        "constant": 10.6,
+        "difficulty": "ftr",
+        "id": "Cyanine@ftr",
+        "level": "10",
+        "note": 1171,
+        "songId": "Cyanine"
+      }
     ],
     "pack": "Lanota Collaboration"
   },
@@ -1015,7 +1341,14 @@
     "name": "Sheriruth (Laur Remix)",
     "id": "Sheriruth_(Laur_Remix)",
     "sid": "sheriruthrmx",
-    "alias": ["老二射日", "黑老二", "墨绿魔王", "绿黑魔王", "射日热米线", "黑魔王remix"],
+    "alias": [
+      "老二射日",
+      "黑老二",
+      "墨绿魔王",
+      "绿黑魔王",
+      "射日热米线",
+      "黑魔王remix"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -1050,7 +1383,15 @@
     "name": "Live Fast Die Young",
     "id": "Live_Fast_Die_Young",
     "sid": "livefastdieyoung",
-    "alias": ["活的快死的早", "早死早超生", "早生早死", "英年早逝", "里eto", "快活早死", "及时行乐"],
+    "alias": [
+      "活的快死的早",
+      "早死早超生",
+      "早生早死",
+      "英年早逝",
+      "里eto",
+      "快活早死",
+      "及时行乐"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -1085,10 +1426,27 @@
     "name": "Seclusion",
     "id": "Seclusion",
     "sid": "seclusion",
-    "alias": ["隐居", "隔离14天"],
+    "alias": [
+      "隐居",
+      "隔离14天"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Seclusion@pst", "level": "4", "note": 544, "songId": "Seclusion" },
-      { "constant": 7, "difficulty": "prs", "id": "Seclusion@prs", "level": "7", "note": 762, "songId": "Seclusion" },
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Seclusion@pst",
+        "level": "4",
+        "note": 544,
+        "songId": "Seclusion"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Seclusion@prs",
+        "level": "7",
+        "note": 762,
+        "songId": "Seclusion"
+      },
       {
         "constant": 10.6,
         "difficulty": "ftr",
@@ -1108,7 +1466,14 @@
     "sid": "manicjeer",
     "alias": [],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Manic_Jeer@pst", "level": "4", "note": 698, "songId": "Manic_Jeer" },
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Manic_Jeer@pst",
+        "level": "4",
+        "note": 698,
+        "songId": "Manic_Jeer"
+      },
       {
         "constant": 7.5,
         "difficulty": "prs",
@@ -1134,7 +1499,10 @@
     "name": "Lightning Screw",
     "id": "Lightning_Screw",
     "sid": "lightningscrew",
-    "alias": ["闪电螺丝", "白姬喜怒哀乐"],
+    "alias": [
+      "闪电螺丝",
+      "白姬喜怒哀乐"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -1169,7 +1537,9 @@
     "name": "Good bye, Merry-Go-Round.",
     "id": "Good_bye,_Merry-Go-Round.",
     "sid": "goodbyemerry",
-    "alias": ["再见玛丽"],
+    "alias": [
+      "再见玛丽"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -1204,10 +1574,26 @@
     "name": "Aurgelmir",
     "id": "Aurgelmir",
     "sid": "aurgelmir",
-    "alias": ["披萨饼"],
+    "alias": [
+      "披萨饼"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "Aurgelmir@pst", "level": "4", "note": 540, "songId": "Aurgelmir" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Aurgelmir@prs", "level": "7", "note": 765, "songId": "Aurgelmir" },
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Aurgelmir@pst",
+        "level": "4",
+        "note": 540,
+        "songId": "Aurgelmir"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Aurgelmir@prs",
+        "level": "7",
+        "note": 765,
+        "songId": "Aurgelmir"
+      },
       {
         "constant": 10.5,
         "difficulty": "ftr",
@@ -1225,7 +1611,10 @@
     "name": "To the Milky Way",
     "id": "To_the_Milky_Way",
     "sid": "tothemilkyway",
-    "alias": ["银河", "牛奶路"],
+    "alias": [
+      "银河",
+      "牛奶路"
+    ],
     "charts": [
       {
         "constant": 5,
@@ -1260,7 +1649,10 @@
     "name": "Last Celebration",
     "id": "Last_Celebration",
     "sid": "lastcelebration",
-    "alias": ["最终庆典", "末祝"],
+    "alias": [
+      "最终庆典",
+      "末祝"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -1295,7 +1687,13 @@
     "name": "Arcana Eden",
     "id": "Arcana_Eden",
     "sid": "arcanaeden",
-    "alias": ["伊甸", "阿尔卡那", "阿卡纳", "塔罗牌", "奥秘伊甸"],
+    "alias": [
+      "伊甸",
+      "阿尔卡那",
+      "阿卡纳",
+      "塔罗牌",
+      "奥秘伊甸"
+    ],
     "charts": [
       {
         "constant": 5.5,
@@ -1339,7 +1737,12 @@
     "name": "Valhalla:0",
     "id": "Valhalla:0",
     "sid": "valhallazero",
-    "alias": ["V0", "VALHALLA0", "瓦尔哈拉", "指甲油"],
+    "alias": [
+      "V0",
+      "VALHALLA0",
+      "瓦尔哈拉",
+      "指甲油"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -1349,7 +1752,14 @@
         "note": 624,
         "songId": "Valhalla:0"
       },
-      { "constant": 7, "difficulty": "prs", "id": "Valhalla:0@prs", "level": "7", "note": 893, "songId": "Valhalla:0" },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Valhalla:0@prs",
+        "level": "7",
+        "note": 893,
+        "songId": "Valhalla:0"
+      },
       {
         "constant": 10.4,
         "difficulty": "ftr",
@@ -1367,11 +1777,34 @@
     "name": "Tiferet",
     "id": "Tiferet",
     "sid": "tiferet",
-    "alias": ["体罚"],
+    "alias": [
+      "体罚"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "Tiferet@pst", "level": "4", "note": 450, "songId": "Tiferet" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Tiferet@prs", "level": "7", "note": 720, "songId": "Tiferet" },
-      { "constant": 10.4, "difficulty": "ftr", "id": "Tiferet@ftr", "level": "10", "note": 1086, "songId": "Tiferet" }
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Tiferet@pst",
+        "level": "4",
+        "note": 450,
+        "songId": "Tiferet"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Tiferet@prs",
+        "level": "7",
+        "note": 720,
+        "songId": "Tiferet"
+      },
+      {
+        "constant": 10.4,
+        "difficulty": "ftr",
+        "id": "Tiferet@ftr",
+        "level": "10",
+        "note": 1086,
+        "songId": "Tiferet"
+      }
     ],
     "pack": "Tone Sphere Collaboration"
   },
@@ -1381,7 +1814,10 @@
     "name": "γuarδina",
     "id": "%CE%93uar%CE%B4ina",
     "sid": "guardina",
-    "alias": ["GD", "监护人"],
+    "alias": [
+      "GD",
+      "监护人"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -1416,7 +1852,13 @@
     "name": "Garakuta Doll Play",
     "id": "Garakuta_Doll_Play",
     "sid": "garakuta",
-    "alias": ["GDP", "小丑", "绿娃娃", "国内生产总值", "国民生产总值"],
+    "alias": [
+      "GDP",
+      "小丑",
+      "绿娃娃",
+      "国内生产总值",
+      "国民生产总值"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -1451,9 +1893,18 @@
     "name": "Chronicle",
     "id": "Chronicle",
     "sid": "chronicle",
-    "alias": ["编年史"],
+    "alias": [
+      "编年史"
+    ],
     "charts": [
-      { "constant": 5, "difficulty": "pst", "id": "Chronicle@pst", "level": "5", "note": 928, "songId": "Chronicle" },
+      {
+        "constant": 5,
+        "difficulty": "pst",
+        "id": "Chronicle@pst",
+        "level": "5",
+        "note": 928,
+        "songId": "Chronicle"
+      },
       {
         "constant": 8.5,
         "difficulty": "prs",
@@ -1479,11 +1930,36 @@
     "name": "Climax",
     "id": "Climax",
     "sid": "climax",
-    "alias": ["高潮", "妖艳魔男", "妖艳猛男"],
+    "alias": [
+      "高潮",
+      "妖艳魔男",
+      "妖艳猛男"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "Climax@pst", "level": "4", "note": 773, "songId": "Climax" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Climax@prs", "level": "7", "note": 988, "songId": "Climax" },
-      { "constant": 10.4, "difficulty": "ftr", "id": "Climax@ftr", "level": "10", "note": 1367, "songId": "Climax" }
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Climax@pst",
+        "level": "4",
+        "note": 773,
+        "songId": "Climax"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Climax@prs",
+        "level": "7",
+        "note": 988,
+        "songId": "Climax"
+      },
+      {
+        "constant": 10.4,
+        "difficulty": "ftr",
+        "id": "Climax@ftr",
+        "level": "10",
+        "note": 1367,
+        "songId": "Climax"
+      }
     ],
     "pack": "CHUNITHM Collaboration"
   },
@@ -1493,11 +1969,38 @@
     "name": "PUPA",
     "id": "PUPA",
     "sid": "pupa",
-    "alias": ["噗啪", "蝴蝶", "噗趴", "二路公交车", "蛹"],
+    "alias": [
+      "噗啪",
+      "蝴蝶",
+      "噗趴",
+      "二路公交车",
+      "蛹"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "PUPA@pst", "level": "4", "note": 374, "songId": "PUPA" },
-      { "constant": 7.5, "difficulty": "prs", "id": "PUPA@prs", "level": "7", "note": 684, "songId": "PUPA" },
-      { "constant": 10.4, "difficulty": "ftr", "id": "PUPA@ftr", "level": "10", "note": 1099, "songId": "PUPA" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "PUPA@pst",
+        "level": "4",
+        "note": 374,
+        "songId": "PUPA"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "PUPA@prs",
+        "level": "7",
+        "note": 684,
+        "songId": "PUPA"
+      },
+      {
+        "constant": 10.4,
+        "difficulty": "ftr",
+        "id": "PUPA@ftr",
+        "level": "10",
+        "note": 1099,
+        "songId": "PUPA"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -1507,11 +2010,37 @@
     "name": "Felis",
     "id": "Felis",
     "sid": "felis",
-    "alias": ["菲莉丝", "牌魔王", "凤梨酥", "菲林"],
+    "alias": [
+      "菲莉丝",
+      "牌魔王",
+      "凤梨酥",
+      "菲林"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Felis@pst", "level": "4", "note": 463, "songId": "Felis" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Felis@prs", "level": "7", "note": 624, "songId": "Felis" },
-      { "constant": 10.4, "difficulty": "ftr", "id": "Felis@ftr", "level": "10", "note": 1153, "songId": "Felis" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Felis@pst",
+        "level": "4",
+        "note": 463,
+        "songId": "Felis"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Felis@prs",
+        "level": "7",
+        "note": 624,
+        "songId": "Felis"
+      },
+      {
+        "constant": 10.4,
+        "difficulty": "ftr",
+        "id": "Felis@ftr",
+        "level": "10",
+        "note": 1153,
+        "songId": "Felis"
+      }
     ],
     "pack": "Ephemeral Page"
   },
@@ -1521,7 +2050,11 @@
     "name": "Kissing Lucifer",
     "id": "Kissing_Lucifer",
     "sid": "kissinglucifer",
-    "alias": ["亲吻路西法", "嘴巴嘟嘟路西法", "亲螺蛳粉"],
+    "alias": [
+      "亲吻路西法",
+      "嘴巴嘟嘟路西法",
+      "亲螺蛳粉"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -1591,11 +2124,36 @@
     "name": "Ikazuchi",
     "id": "Ikazuchi",
     "sid": "ikazuchi",
-    "alias": ["怒槌", "怒锤", "雷"],
+    "alias": [
+      "怒槌",
+      "怒锤",
+      "雷"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Ikazuchi@pst", "level": "3", "note": 656, "songId": "Ikazuchi" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Ikazuchi@prs", "level": "7", "note": 976, "songId": "Ikazuchi" },
-      { "constant": 10.4, "difficulty": "ftr", "id": "Ikazuchi@ftr", "level": "10", "note": 1347, "songId": "Ikazuchi" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Ikazuchi@pst",
+        "level": "3",
+        "note": 656,
+        "songId": "Ikazuchi"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Ikazuchi@prs",
+        "level": "7",
+        "note": 976,
+        "songId": "Ikazuchi"
+      },
+      {
+        "constant": 10.4,
+        "difficulty": "ftr",
+        "id": "Ikazuchi@ftr",
+        "level": "10",
+        "note": 1347,
+        "songId": "Ikazuchi"
+      }
     ],
     "pack": "CHUNITHM Collaboration"
   },
@@ -1605,7 +2163,10 @@
     "name": "[X]",
     "id": "%EF%BC%BBX%EF%BC%BD",
     "sid": "infinity",
-    "alias": ["∞", "X"],
+    "alias": [
+      "∞",
+      "X"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -1640,7 +2201,13 @@
     "name": "GIMME DA BLOOD",
     "id": "GIMME_DA_BLOOD",
     "sid": "gimmedablood",
-    "alias": ["渴血", "献血", "给我大菠萝", "给我大血", "血来"],
+    "alias": [
+      "渴血",
+      "献血",
+      "给我大菠萝",
+      "给我大血",
+      "血来"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -1675,7 +2242,9 @@
     "name": "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
     "id": "Hiiro_Gekka,_Kyoushou_no_Zetsu_(nayuta_2017_ver.)",
     "sid": "hiirogekka",
-    "alias": ["绯色月下"],
+    "alias": [
+      "绯色月下"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -1710,9 +2279,24 @@
     "name": "Pentiment",
     "id": "Pentiment",
     "sid": "pentiment",
-    "alias": ["喷嚏", "变换", "ptm", "ptt", "沸腾", "剧变", "奔驰"],
+    "alias": [
+      "喷嚏",
+      "变换",
+      "ptm",
+      "ptt",
+      "沸腾",
+      "剧变",
+      "奔驰"
+    ],
     "charts": [
-      { "constant": 6, "difficulty": "pst", "id": "Pentiment@pst", "level": "6", "note": 911, "songId": "Pentiment" },
+      {
+        "constant": 6,
+        "difficulty": "pst",
+        "id": "Pentiment@pst",
+        "level": "6",
+        "note": 911,
+        "songId": "Pentiment"
+      },
       {
         "constant": 8.4,
         "difficulty": "prs",
@@ -1747,7 +2331,15 @@
     "name": "Ether Strike",
     "id": "Ether_Strike",
     "sid": "etherstrike",
-    "alias": ["乙醚冲击", "以太冲击", "启明星", "乙醚上头", "表白", "零光吹唢呐", "乙醚罢工"],
+    "alias": [
+      "乙醚冲击",
+      "以太冲击",
+      "启明星",
+      "乙醚上头",
+      "表白",
+      "零光吹唢呐",
+      "乙醚罢工"
+    ],
     "charts": [
       {
         "constant": 5.5,
@@ -1782,7 +2374,13 @@
     "name": "Viyella's Tears",
     "id": "Viyella%27s_Tears",
     "sid": "viyellastears",
-    "alias": ["维耶拉之泪", "维耶拉的眼泪", "维也勒之泪", "维也勒的眼泪", "魔法少女小圆"],
+    "alias": [
+      "维耶拉之泪",
+      "维耶拉的眼泪",
+      "维也勒之泪",
+      "维也勒的眼泪",
+      "魔法少女小圆"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -1817,11 +2415,34 @@
     "name": "IZANA",
     "id": "IZANA",
     "sid": "izana",
-    "alias": ["哪里功夫高"],
+    "alias": [
+      "哪里功夫高"
+    ],
     "charts": [
-      { "constant": 5, "difficulty": "pst", "id": "IZANA@pst", "level": "5", "note": 609, "songId": "IZANA" },
-      { "constant": 8.3, "difficulty": "prs", "id": "IZANA@prs", "level": "8", "note": 836, "songId": "IZANA" },
-      { "constant": 10.3, "difficulty": "ftr", "id": "IZANA@ftr", "level": "10", "note": 976, "songId": "IZANA" }
+      {
+        "constant": 5,
+        "difficulty": "pst",
+        "id": "IZANA@pst",
+        "level": "5",
+        "note": 609,
+        "songId": "IZANA"
+      },
+      {
+        "constant": 8.3,
+        "difficulty": "prs",
+        "id": "IZANA@prs",
+        "level": "8",
+        "note": 836,
+        "songId": "IZANA"
+      },
+      {
+        "constant": 10.3,
+        "difficulty": "ftr",
+        "id": "IZANA@ftr",
+        "level": "10",
+        "note": 976,
+        "songId": "IZANA"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -1831,7 +2452,9 @@
     "name": "To: Alice Liddell",
     "id": "To:_Alice_Liddell",
     "sid": "toaliceliddell",
-    "alias": ["致爱丽丝"],
+    "alias": [
+      "致爱丽丝"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -1866,7 +2489,12 @@
     "name": "Metallic Punisher",
     "id": "Metallic_Punisher",
     "sid": "metallicpunisher",
-    "alias": ["罚金", "钢惩", "金属惩罚者", "钢铁惩罚者"],
+    "alias": [
+      "罚金",
+      "钢惩",
+      "金属惩罚者",
+      "钢铁惩罚者"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -1901,10 +2529,27 @@
     "name": "Nirv lucE",
     "id": "Nirv_lucE",
     "sid": "nirvluce",
-    "alias": ["红魔王", "表红"],
+    "alias": [
+      "红魔王",
+      "表红"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Nirv_lucE@pst", "level": "2", "note": 297, "songId": "Nirv_lucE" },
-      { "constant": 7, "difficulty": "prs", "id": "Nirv_lucE@prs", "level": "7", "note": 547, "songId": "Nirv_lucE" },
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Nirv_lucE@pst",
+        "level": "2",
+        "note": 297,
+        "songId": "Nirv_lucE"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Nirv_lucE@prs",
+        "level": "7",
+        "note": 547,
+        "songId": "Nirv_lucE"
+      },
       {
         "constant": 10.3,
         "difficulty": "ftr",
@@ -1922,7 +2567,10 @@
     "name": "αterlβus",
     "id": "%CE%91terl%CE%B2us",
     "sid": "aterlbus",
-    "alias": ["黑白之战", "ab"],
+    "alias": [
+      "黑白之战",
+      "ab"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -1992,7 +2640,11 @@
     "name": "Löschen",
     "id": "L%C3%B6schen",
     "sid": "loschen",
-    "alias": ["湮灭", "洛神", "螺丝陈"],
+    "alias": [
+      "湮灭",
+      "洛神",
+      "螺丝陈"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -2027,11 +2679,36 @@
     "name": "Capella",
     "id": "Capella",
     "sid": "capella",
-    "alias": ["寒红", "冬红", "冬日红"],
+    "alias": [
+      "寒红",
+      "冬红",
+      "冬日红"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "Capella@pst", "level": "4", "note": 884, "songId": "Capella" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Capella@prs", "level": "7", "note": 904, "songId": "Capella" },
-      { "constant": 10.2, "difficulty": "ftr", "id": "Capella@ftr", "level": "10", "note": 1159, "songId": "Capella" }
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Capella@pst",
+        "level": "4",
+        "note": 884,
+        "songId": "Capella"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Capella@prs",
+        "level": "7",
+        "note": 904,
+        "songId": "Capella"
+      },
+      {
+        "constant": 10.2,
+        "difficulty": "ftr",
+        "id": "Capella@ftr",
+        "level": "10",
+        "note": 1159,
+        "songId": "Capella"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -2041,7 +2718,11 @@
     "name": "Malicious Mischance",
     "id": "Malicious_Mischance",
     "sid": "maliciousmischance",
-    "alias": ["灾厄", "恶作剧", "it's behind you"],
+    "alias": [
+      "灾厄",
+      "恶作剧",
+      "it's behind you"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -2076,7 +2757,9 @@
     "name": "G e n g a o z o",
     "id": "G_e_n_g_a_o_z_o",
     "sid": "gengaozo",
-    "alias": ["跟哥走"],
+    "alias": [
+      "跟哥走"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -2111,11 +2794,35 @@
     "name": "conflict",
     "id": "Conflict",
     "sid": "conflict",
-    "alias": ["冲突", "一路公交车"],
+    "alias": [
+      "冲突",
+      "一路公交车"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "Conflict@pst", "level": "4", "note": 520, "songId": "Conflict" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Conflict@prs", "level": "7", "note": 731, "songId": "Conflict" },
-      { "constant": 10.2, "difficulty": "ftr", "id": "Conflict@ftr", "level": "10", "note": 1056, "songId": "Conflict" }
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Conflict@pst",
+        "level": "4",
+        "note": 520,
+        "songId": "Conflict"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Conflict@prs",
+        "level": "7",
+        "note": 731,
+        "songId": "Conflict"
+      },
+      {
+        "constant": 10.2,
+        "difficulty": "ftr",
+        "id": "Conflict@ftr",
+        "level": "10",
+        "note": 1056,
+        "songId": "Conflict"
+      }
     ],
     "pack": "Vicious Labyrinth"
   },
@@ -2125,11 +2832,34 @@
     "name": "Medusa",
     "id": "Medusa",
     "sid": "medusa",
-    "alias": ["美杜莎"],
+    "alias": [
+      "美杜莎"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "Medusa@pst", "level": "4", "note": 550, "songId": "Medusa" },
-      { "constant": 7, "difficulty": "prs", "id": "Medusa@prs", "level": "7", "note": 645, "songId": "Medusa" },
-      { "constant": 10.2, "difficulty": "ftr", "id": "Medusa@ftr", "level": "10", "note": 931, "songId": "Medusa" }
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Medusa@pst",
+        "level": "4",
+        "note": 550,
+        "songId": "Medusa"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Medusa@prs",
+        "level": "7",
+        "note": 645,
+        "songId": "Medusa"
+      },
+      {
+        "constant": 10.2,
+        "difficulty": "ftr",
+        "id": "Medusa@ftr",
+        "level": "10",
+        "note": 931,
+        "songId": "Medusa"
+      }
     ],
     "pack": "Muse Dash Collaboration"
   },
@@ -2139,10 +2869,28 @@
     "name": "NEO WINGS",
     "id": "NEO_WINGS",
     "sid": "neowings",
-    "alias": ["新翅膀", "新翼", "新羽"],
+    "alias": [
+      "新翅膀",
+      "新翼",
+      "新羽"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "NEO_WINGS@pst", "level": "4", "note": 591, "songId": "NEO_WINGS" },
-      { "constant": 7.5, "difficulty": "prs", "id": "NEO_WINGS@prs", "level": "7", "note": 840, "songId": "NEO_WINGS" },
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "NEO_WINGS@pst",
+        "level": "4",
+        "note": 591,
+        "songId": "NEO_WINGS"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "NEO_WINGS@prs",
+        "level": "7",
+        "note": 840,
+        "songId": "NEO_WINGS"
+      },
       {
         "constant": 10.2,
         "difficulty": "ftr",
@@ -2160,7 +2908,12 @@
     "name": "Scarlet Lance",
     "id": "Scarlet_Lance",
     "sid": "scarletlance",
-    "alias": ["红枪", "红X", "红叉", "猩红狼王"],
+    "alias": [
+      "红枪",
+      "红X",
+      "红叉",
+      "猩红狼王"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -2195,10 +2948,31 @@
     "name": "Sheriruth",
     "id": "Sheriruth",
     "sid": "sheriruth",
-    "alias": ["拒绝", "黑魔王", "射日如桃花", "对立削苹果", "对立切苹果", "小苹果"],
+    "alias": [
+      "拒绝",
+      "黑魔王",
+      "射日如桃花",
+      "对立削苹果",
+      "对立切苹果",
+      "小苹果"
+    ],
     "charts": [
-      { "constant": 5.5, "difficulty": "pst", "id": "Sheriruth@pst", "level": "5", "note": 611, "songId": "Sheriruth" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Sheriruth@prs", "level": "7", "note": 832, "songId": "Sheriruth" },
+      {
+        "constant": 5.5,
+        "difficulty": "pst",
+        "id": "Sheriruth@pst",
+        "level": "5",
+        "note": 611,
+        "songId": "Sheriruth"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Sheriruth@prs",
+        "level": "7",
+        "note": 832,
+        "songId": "Sheriruth"
+      },
       {
         "constant": 10.1,
         "difficulty": "ftr",
@@ -2216,7 +2990,10 @@
     "name": "PRAGMATISM",
     "id": "PRAGMATISM",
     "sid": "pragmatism",
-    "alias": ["白魔王", "实用主义"],
+    "alias": [
+      "白魔王",
+      "实用主义"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -2298,7 +3075,11 @@
     "name": "Alexandrite",
     "id": "Alexandrite",
     "sid": "alexandrite",
-    "alias": ["变石", "空之宝石", "亚历山大石"],
+    "alias": [
+      "变石",
+      "空之宝石",
+      "亚历山大石"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -2333,7 +3114,10 @@
     "name": "Free Myself",
     "id": "Free_Myself",
     "sid": "freemyself",
-    "alias": ["解放自我", "释放自我"],
+    "alias": [
+      "解放自我",
+      "释放自我"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -2368,7 +3152,9 @@
     "name": "trappola bewitching",
     "id": "Trappola_bewitching",
     "sid": "trappola",
-    "alias": ["妖艳魔女"],
+    "alias": [
+      "妖艳魔女"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -2414,11 +3200,35 @@
     "name": "Mirzam",
     "id": "Mirzam",
     "sid": "mirzam",
-    "alias": ["军市一", "迷尔在吗"],
+    "alias": [
+      "军市一",
+      "迷尔在吗"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Mirzam@pst", "level": "4", "note": 662, "songId": "Mirzam" },
-      { "constant": 7, "difficulty": "prs", "id": "Mirzam@prs", "level": "7", "note": 885, "songId": "Mirzam" },
-      { "constant": 10, "difficulty": "ftr", "id": "Mirzam@ftr", "level": "10", "note": 1303, "songId": "Mirzam" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Mirzam@pst",
+        "level": "4",
+        "note": 662,
+        "songId": "Mirzam"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Mirzam@prs",
+        "level": "7",
+        "note": 885,
+        "songId": "Mirzam"
+      },
+      {
+        "constant": 10,
+        "difficulty": "ftr",
+        "id": "Mirzam@ftr",
+        "level": "10",
+        "note": 1303,
+        "songId": "Mirzam"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -2428,11 +3238,36 @@
     "name": "HIVEMIND",
     "id": "HIVEMIND",
     "sid": "hivemind",
-    "alias": ["意聚", "意念聚集", "蜂巢思维"],
+    "alias": [
+      "意聚",
+      "意念聚集",
+      "蜂巢思维"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "HIVEMIND@pst", "level": "4", "note": 995, "songId": "HIVEMIND" },
-      { "constant": 7.5, "difficulty": "prs", "id": "HIVEMIND@prs", "level": "7", "note": 988, "songId": "HIVEMIND" },
-      { "constant": 10, "difficulty": "ftr", "id": "HIVEMIND@ftr", "level": "10", "note": 1252, "songId": "HIVEMIND" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "HIVEMIND@pst",
+        "level": "4",
+        "note": 995,
+        "songId": "HIVEMIND"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "HIVEMIND@prs",
+        "level": "7",
+        "note": 988,
+        "songId": "HIVEMIND"
+      },
+      {
+        "constant": 10,
+        "difficulty": "ftr",
+        "id": "HIVEMIND@ftr",
+        "level": "10",
+        "note": 1252,
+        "songId": "HIVEMIND"
+      }
     ],
     "pack": "Extend Archive"
   },
@@ -2442,11 +3277,37 @@
     "name": "Modelista",
     "id": "Modelista",
     "sid": "modelista",
-    "alias": ["高速公路", "造型师", "飙车", "莫得利斯塔"],
+    "alias": [
+      "高速公路",
+      "造型师",
+      "飙车",
+      "莫得利斯塔"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Modelista@pst", "level": "3", "note": 418, "songId": "Modelista" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Modelista@prs", "level": "7", "note": 691, "songId": "Modelista" },
-      { "constant": 10, "difficulty": "ftr", "id": "Modelista@ftr", "level": "10", "note": 1010, "songId": "Modelista" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Modelista@pst",
+        "level": "3",
+        "note": 418,
+        "songId": "Modelista"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Modelista@prs",
+        "level": "7",
+        "note": 691,
+        "songId": "Modelista"
+      },
+      {
+        "constant": 10,
+        "difficulty": "ftr",
+        "id": "Modelista@ftr",
+        "level": "10",
+        "note": 1010,
+        "songId": "Modelista"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -2456,11 +3317,38 @@
     "name": "Xanatos",
     "id": "Xanatos",
     "sid": "xanatos",
-    "alias": ["血玫", "血色玫瑰", "玫瑰少女", "撒那特思", "42姐"],
+    "alias": [
+      "血玫",
+      "血色玫瑰",
+      "玫瑰少女",
+      "撒那特思",
+      "42姐"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Xanatos@pst", "level": "4", "note": 735, "songId": "Xanatos" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Xanatos@prs", "level": "7", "note": 938, "songId": "Xanatos" },
-      { "constant": 10, "difficulty": "ftr", "id": "Xanatos@ftr", "level": "10", "note": 1232, "songId": "Xanatos" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Xanatos@pst",
+        "level": "4",
+        "note": 735,
+        "songId": "Xanatos"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Xanatos@prs",
+        "level": "7",
+        "note": 938,
+        "songId": "Xanatos"
+      },
+      {
+        "constant": 10,
+        "difficulty": "ftr",
+        "id": "Xanatos@ftr",
+        "level": "10",
+        "note": 1232,
+        "songId": "Xanatos"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -2470,7 +3358,9 @@
     "name": "Oshama Scramble!",
     "id": "Oshama_Scramble!",
     "sid": "oshamascramble",
-    "alias": ["牛奶"],
+    "alias": [
+      "牛奶"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -2505,7 +3395,10 @@
     "name": "Vicious Heroism",
     "id": "Vicious_Heroism",
     "sid": "viciousheroism",
-    "alias": ["恶毒的英雄主义", "邪雄主义"],
+    "alias": [
+      "恶毒的英雄主义",
+      "邪雄主义"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -2540,11 +3433,35 @@
     "name": "Bamboo",
     "id": "Bamboo",
     "sid": "take",
-    "alias": ["竹", "BAMBOO"],
+    "alias": [
+      "竹",
+      "BAMBOO"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Bamboo@pst", "level": "3", "note": 499, "songId": "Bamboo" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Bamboo@prs", "level": "6", "note": 631, "songId": "Bamboo" },
-      { "constant": 10, "difficulty": "ftr", "id": "Bamboo@ftr", "level": "10", "note": 1050, "songId": "Bamboo" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Bamboo@pst",
+        "level": "3",
+        "note": 499,
+        "songId": "Bamboo"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Bamboo@prs",
+        "level": "6",
+        "note": 631,
+        "songId": "Bamboo"
+      },
+      {
+        "constant": 10,
+        "difficulty": "ftr",
+        "id": "Bamboo@ftr",
+        "level": "10",
+        "note": 1050,
+        "songId": "Bamboo"
+      }
     ],
     "pack": "Extend Archive"
   },
@@ -2554,7 +3471,10 @@
     "name": "New York Back Raise",
     "id": "New_York_Back_Raise",
     "sid": "newyorkbackraise",
-    "alias": ["纽约", "新乡"],
+    "alias": [
+      "纽约",
+      "新乡"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -2589,7 +3509,9 @@
     "name": "The Survivor (Game Edit)",
     "id": "The_Survivor_(Game_Edit)",
     "sid": "thesurvivor",
-    "alias": ["幸存者"],
+    "alias": [
+      "幸存者"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -2659,11 +3581,35 @@
     "name": "7thSense",
     "id": "7thSense",
     "sid": "seventhsense",
-    "alias": ["第7感", "第七感"],
+    "alias": [
+      "第7感",
+      "第七感"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "7thSense@pst", "level": "3", "note": 360, "songId": "7thSense" },
-      { "constant": 7.5, "difficulty": "prs", "id": "7thSense@prs", "level": "7", "note": 739, "songId": "7thSense" },
-      { "constant": 9.9, "difficulty": "ftr", "id": "7thSense@ftr", "level": "9+", "note": 925, "songId": "7thSense" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "7thSense@pst",
+        "level": "3",
+        "note": 360,
+        "songId": "7thSense"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "7thSense@prs",
+        "level": "7",
+        "note": 739,
+        "songId": "7thSense"
+      },
+      {
+        "constant": 9.9,
+        "difficulty": "ftr",
+        "id": "7thSense@ftr",
+        "level": "9+",
+        "note": 925,
+        "songId": "7thSense"
+      }
     ],
     "pack": "maimai Collaboration"
   },
@@ -2673,10 +3619,32 @@
     "name": "Trap Crow",
     "id": "Trap_Crow",
     "sid": "trapcrow",
-    "alias": ["笼鸟", "踹牛", "乌鸦陷阱", "捕鸟器", "乌鸦圈套", "陷阱乌鸦", "危境之鸦"],
+    "alias": [
+      "笼鸟",
+      "踹牛",
+      "乌鸦陷阱",
+      "捕鸟器",
+      "乌鸦圈套",
+      "陷阱乌鸦",
+      "危境之鸦"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "Trap_Crow@pst", "level": "4", "note": 876, "songId": "Trap_Crow" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Trap_Crow@prs", "level": "7", "note": 898, "songId": "Trap_Crow" },
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Trap_Crow@pst",
+        "level": "4",
+        "note": 876,
+        "songId": "Trap_Crow"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Trap_Crow@prs",
+        "level": "7",
+        "note": 898,
+        "songId": "Trap_Crow"
+      },
       {
         "constant": 9.9,
         "difficulty": "ftr",
@@ -2694,7 +3662,11 @@
     "name": "Heavensdoor",
     "id": "Heavensdoor",
     "sid": "heavensdoor",
-    "alias": ["天堂门", "天堂之门", "黑蚊子多"],
+    "alias": [
+      "天堂门",
+      "天堂之门",
+      "黑蚊子多"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -2740,11 +3712,35 @@
     "name": "Arcahv",
     "id": "Arcahv",
     "sid": "arcahv",
-    "alias": ["坠落", "聚合"],
+    "alias": [
+      "坠落",
+      "聚合"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "Arcahv@pst", "level": "4", "note": 818, "songId": "Arcahv" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Arcahv@prs", "level": "7", "note": 884, "songId": "Arcahv" },
-      { "constant": 9.9, "difficulty": "ftr", "id": "Arcahv@ftr", "level": "9+", "note": 1065, "songId": "Arcahv" }
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Arcahv@pst",
+        "level": "4",
+        "note": 818,
+        "songId": "Arcahv"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Arcahv@prs",
+        "level": "7",
+        "note": 884,
+        "songId": "Arcahv"
+      },
+      {
+        "constant": 9.9,
+        "difficulty": "ftr",
+        "id": "Arcahv@ftr",
+        "level": "9+",
+        "note": 1065,
+        "songId": "Arcahv"
+      }
     ],
     "pack": "Black Fate"
   },
@@ -2754,7 +3750,11 @@
     "name": "Infinite Strife,",
     "id": "Infinite_Strife,",
     "sid": "infinitestrife",
-    "alias": ["逗号", "无限冲突", "死敌"],
+    "alias": [
+      "逗号",
+      "无限冲突",
+      "死敌"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -2798,7 +3798,12 @@
     "name": "World Ender",
     "id": "World_Ender",
     "sid": "worldender",
-    "alias": ["世终", "世界终结者", "世魔王", "纯白魔王"],
+    "alias": [
+      "世终",
+      "世界终结者",
+      "世魔王",
+      "纯白魔王"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -2842,7 +3847,13 @@
     "name": "Summer Fireworks of Love",
     "id": "Summer_Fireworks_of_Love",
     "sid": "summerfireworks",
-    "alias": ["夏日烟花", "彩る夏の恋花火", "彩夏恋花火", "恋花火", "恋歌2.0"],
+    "alias": [
+      "夏日烟花",
+      "彩る夏の恋花火",
+      "彩夏恋花火",
+      "恋花火",
+      "恋歌2.0"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -2877,7 +3888,9 @@
     "name": "SOUNDWiTCH",
     "id": "SOUNDWiTCH",
     "sid": "soundwitch",
-    "alias": ["音巫"],
+    "alias": [
+      "音巫"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -2912,11 +3925,37 @@
     "name": "Nhelv",
     "id": "Nhelv",
     "sid": "nhelv",
-    "alias": ["神经", "你和驴", "阿米娅", "你和阿米驴"],
+    "alias": [
+      "神经",
+      "你和驴",
+      "阿米娅",
+      "你和阿米驴"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Nhelv@pst", "level": "3", "note": 647, "songId": "Nhelv" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Nhelv@prs", "level": "6", "note": 913, "songId": "Nhelv" },
-      { "constant": 9.9, "difficulty": "ftr", "id": "Nhelv@ftr", "level": "9+", "note": 1108, "songId": "Nhelv" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Nhelv@pst",
+        "level": "3",
+        "note": 647,
+        "songId": "Nhelv"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Nhelv@prs",
+        "level": "6",
+        "note": 913,
+        "songId": "Nhelv"
+      },
+      {
+        "constant": 9.9,
+        "difficulty": "ftr",
+        "id": "Nhelv@ftr",
+        "level": "9+",
+        "note": 1108,
+        "songId": "Nhelv"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -2928,9 +3967,30 @@
     "sid": "maxrage",
     "alias": [],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "MAXRAGE@pst", "level": "3", "note": 696, "songId": "MAXRAGE" },
-      { "constant": 6.5, "difficulty": "prs", "id": "MAXRAGE@prs", "level": "6", "note": 760, "songId": "MAXRAGE" },
-      { "constant": 9.9, "difficulty": "ftr", "id": "MAXRAGE@ftr", "level": "9+", "note": 1184, "songId": "MAXRAGE" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "MAXRAGE@pst",
+        "level": "3",
+        "note": 696,
+        "songId": "MAXRAGE"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "MAXRAGE@prs",
+        "level": "6",
+        "note": 760,
+        "songId": "MAXRAGE"
+      },
+      {
+        "constant": 9.9,
+        "difficulty": "ftr",
+        "id": "MAXRAGE@ftr",
+        "level": "9+",
+        "note": 1184,
+        "songId": "MAXRAGE"
+      }
     ],
     "pack": "maimai Collaboration"
   },
@@ -2940,7 +4000,9 @@
     "name": "Astra walkthrough",
     "id": "Astra_walkthrough",
     "sid": "astrawalkthrough",
-    "alias": ["天体演练"],
+    "alias": [
+      "天体演练"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -2975,7 +4037,15 @@
     "name": "Antagonism",
     "id": "Antagonism",
     "sid": "antagonism",
-    "alias": ["圆对立", "对抗", "异议", "敌对", "敌意", "对立撸串", "对立烤串"],
+    "alias": [
+      "圆对立",
+      "对抗",
+      "异议",
+      "敌对",
+      "敌意",
+      "对立撸串",
+      "对立烤串"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -3010,9 +4080,21 @@
     "name": "Corruption",
     "id": "Corruption",
     "sid": "corruption",
-    "alias": ["腐败", "死机", "玩蛇博物馆", "腐化"],
+    "alias": [
+      "腐败",
+      "死机",
+      "玩蛇博物馆",
+      "腐化"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Corruption@pst", "level": "3", "note": 664, "songId": "Corruption" },
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Corruption@pst",
+        "level": "3",
+        "note": 664,
+        "songId": "Corruption"
+      },
       {
         "constant": 6.5,
         "difficulty": "prs",
@@ -3038,7 +4120,11 @@
     "name": "Scarlet Cage",
     "id": "Scarlet_Cage",
     "sid": "scarletcage",
-    "alias": ["红笼", "红牢", "绯红之笼"],
+    "alias": [
+      "红笼",
+      "红牢",
+      "绯红之笼"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -3073,10 +4159,30 @@
     "name": "Defection",
     "id": "Defection",
     "sid": "defection",
-    "alias": ["背叛", "脱逃", "叛逃", "凝视", "叛离之时"],
+    "alias": [
+      "背叛",
+      "脱逃",
+      "叛逃",
+      "凝视",
+      "叛离之时"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Defection@pst", "level": "3", "note": 588, "songId": "Defection" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Defection@prs", "level": "6", "note": 800, "songId": "Defection" },
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Defection@pst",
+        "level": "3",
+        "note": 588,
+        "songId": "Defection"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Defection@prs",
+        "level": "6",
+        "note": 800,
+        "songId": "Defection"
+      },
       {
         "constant": 9.8,
         "difficulty": "ftr",
@@ -3094,11 +4200,36 @@
     "name": "Ascent",
     "id": "Ascent",
     "sid": "ascent",
-    "alias": ["双子上升", "双飞", "双子贴贴"],
+    "alias": [
+      "双子上升",
+      "双飞",
+      "双子贴贴"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Ascent@pst", "level": "3", "note": 455, "songId": "Ascent" },
-      { "constant": 6, "difficulty": "prs", "id": "Ascent@prs", "level": "6", "note": 626, "songId": "Ascent" },
-      { "constant": 9.8, "difficulty": "ftr", "id": "Ascent@ftr", "level": "9+", "note": 1023, "songId": "Ascent" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Ascent@pst",
+        "level": "3",
+        "note": 455,
+        "songId": "Ascent"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Ascent@prs",
+        "level": "6",
+        "note": 626,
+        "songId": "Ascent"
+      },
+      {
+        "constant": 9.8,
+        "difficulty": "ftr",
+        "id": "Ascent@ftr",
+        "level": "9+",
+        "note": 1023,
+        "songId": "Ascent"
+      }
     ],
     "pack": "Binary Enfold"
   },
@@ -3143,7 +4274,11 @@
     "name": "Black Territory",
     "id": "Black_Territory",
     "sid": "blackterritory",
-    "alias": ["黑域", "黑色领域", "黑色领地"],
+    "alias": [
+      "黑域",
+      "黑色领域",
+      "黑色领地"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -3178,7 +4313,11 @@
     "name": "THE ULTIMACY",
     "id": "THE_ULTIMACY",
     "sid": "theultimacy",
-    "alias": ["弓哥", "黑妹", "火星"],
+    "alias": [
+      "弓哥",
+      "黑妹",
+      "火星"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -3213,7 +4352,12 @@
     "name": "Xeraphinite",
     "id": "Xeraphinite",
     "sid": "xeraphinite",
-    "alias": ["绿泥石", "里绿", "绿龙晶", "提琴咲弥"],
+    "alias": [
+      "绿泥石",
+      "里绿",
+      "绿龙晶",
+      "提琴咲弥"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -3248,7 +4392,11 @@
     "name": "Galaxy Friends",
     "id": "Galaxy_Friends",
     "sid": "galaxyfriends",
-    "alias": ["星系伙伴", "盖乐世", "星朋友"],
+    "alias": [
+      "星系伙伴",
+      "盖乐世",
+      "星朋友"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -3283,7 +4431,9 @@
     "name": "World Fragments III(radio edit)",
     "id": "World_Fragments_III(radio_edit)",
     "sid": "worldfragments",
-    "alias": ["世界碎片"],
+    "alias": [
+      "世界碎片"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -3320,9 +4470,30 @@
     "sid": "aidrew",
     "alias": [],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Ai_Drew@pst", "level": "3", "note": 694, "songId": "Ai_Drew" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Ai_Drew@prs", "level": "6", "note": 732, "songId": "Ai_Drew" },
-      { "constant": 9.8, "difficulty": "ftr", "id": "Ai_Drew@ftr", "level": "9+", "note": 1066, "songId": "Ai_Drew" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Ai_Drew@pst",
+        "level": "3",
+        "note": 694,
+        "songId": "Ai_Drew"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Ai_Drew@prs",
+        "level": "6",
+        "note": 732,
+        "songId": "Ai_Drew"
+      },
+      {
+        "constant": 9.8,
+        "difficulty": "ftr",
+        "id": "Ai_Drew@ftr",
+        "level": "9+",
+        "note": 1066,
+        "songId": "Ai_Drew"
+      }
     ],
     "pack": "O.N.G.E.K.I. Collaboration"
   },
@@ -3332,7 +4503,9 @@
     "name": "Heavenly caress",
     "id": "Heavenly_caress",
     "sid": "heavenlycaress",
-    "alias": ["圣抚"],
+    "alias": [
+      "圣抚"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -3367,7 +4540,12 @@
     "name": "Lost Desire",
     "id": "Lost_Desire",
     "sid": "lostdesire",
-    "alias": ["失欲", "失落的欲望", "失去感觉了", "失去欲望"],
+    "alias": [
+      "失欲",
+      "失落的欲望",
+      "失去感觉了",
+      "失去欲望"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -3402,7 +4580,11 @@
     "name": "Callima Karma",
     "id": "Callima_Karma",
     "sid": "callimakarma",
-    "alias": ["卡利玛", "水晶光", "玛卡巴卡"],
+    "alias": [
+      "卡利玛",
+      "水晶光",
+      "玛卡巴卡"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -3437,7 +4619,12 @@
     "name": "Haze of Autumn",
     "id": "Haze_of_Autumn",
     "sid": "akinokagerou",
-    "alias": ["秋阳炎", "秋之阳炎", "秋的阳炎", "肠炎"],
+    "alias": [
+      "秋阳炎",
+      "秋之阳炎",
+      "秋的阳炎",
+      "肠炎"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -3474,9 +4661,30 @@
     "sid": "init",
     "alias": [],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Init()@pst", "level": "4", "note": 713, "songId": "Init()" },
-      { "constant": 7, "difficulty": "prs", "id": "Init()@prs", "level": "7", "note": 957, "songId": "Init()" },
-      { "constant": 9.8, "difficulty": "ftr", "id": "Init()@ftr", "level": "9+", "note": 1204, "songId": "Init()" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Init()@pst",
+        "level": "4",
+        "note": 713,
+        "songId": "Init()"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Init()@prs",
+        "level": "7",
+        "note": 957,
+        "songId": "Init()"
+      },
+      {
+        "constant": 9.8,
+        "difficulty": "ftr",
+        "id": "Init()@ftr",
+        "level": "9+",
+        "note": 1204,
+        "songId": "Init()"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -3486,7 +4694,9 @@
     "name": "Hybris (The one who shattered)",
     "id": "Hybris_(The_one_who_shattered)",
     "sid": "hybris",
-    "alias": ["傲慢"],
+    "alias": [
+      "傲慢"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -3521,7 +4731,10 @@
     "name": "Far Away Light",
     "id": "Far_Away_Light",
     "sid": "farawaylight",
-    "alias": ["远光", "远离光"],
+    "alias": [
+      "远光",
+      "远离光"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -3591,7 +4804,12 @@
     "name": "Got hive of Ra",
     "id": "Got_hive_of_Ra",
     "sid": "gothiveofra",
-    "alias": ["蓝蝶", "镭聚", "镭射蜂窝", "燕尾蝶"],
+    "alias": [
+      "蓝蝶",
+      "镭聚",
+      "镭射蜂窝",
+      "燕尾蝶"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -3626,7 +4844,11 @@
     "name": "DX Choseinou Full Metal Shojo",
     "id": "DX_Choseinou_Full_Metal_Shojo",
     "sid": "dxfullmetal",
-    "alias": ["dx超性能全金属少女", "dx少女", "纵连少女"],
+    "alias": [
+      "dx超性能全金属少女",
+      "dx少女",
+      "纵连少女"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -3661,7 +4883,9 @@
     "name": "Memory Forest",
     "id": "Memory_Forest",
     "sid": "memoryforest",
-    "alias": ["记忆森林"],
+    "alias": [
+      "记忆森林"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -3696,7 +4920,10 @@
     "name": "Einherjar Joker",
     "id": "Einherjar_Joker",
     "sid": "einherjar",
-    "alias": ["英灵小丑", "黑剑"],
+    "alias": [
+      "英灵小丑",
+      "黑剑"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -3731,7 +4958,9 @@
     "name": "Linear Accelerator",
     "id": "Linear_Accelerator",
     "sid": "linearaccelerator",
-    "alias": ["线性加速器"],
+    "alias": [
+      "线性加速器"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -3766,7 +4995,10 @@
     "name": "Protoflicker",
     "id": "Protoflicker",
     "sid": "protoflicker",
-    "alias": ["原型滑动", "护船石"],
+    "alias": [
+      "原型滑动",
+      "护船石"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -3801,7 +5033,10 @@
     "name": "Mazy Metroplex",
     "id": "Mazy_Metroplex",
     "sid": "mazymetroplex",
-    "alias": ["迷宫都会", "迷都"],
+    "alias": [
+      "迷宫都会",
+      "迷都"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -3836,11 +5071,35 @@
     "name": "Lethaeus",
     "id": "Lethaeus",
     "sid": "lethaeus",
-    "alias": ["黄魔王", "表黄"],
+    "alias": [
+      "黄魔王",
+      "表黄"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Lethaeus@pst", "level": "3", "note": 480, "songId": "Lethaeus" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Lethaeus@prs", "level": "6", "note": 717, "songId": "Lethaeus" },
-      { "constant": 9.7, "difficulty": "ftr", "id": "Lethaeus@ftr", "level": "9+", "note": 900, "songId": "Lethaeus" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Lethaeus@pst",
+        "level": "3",
+        "note": 480,
+        "songId": "Lethaeus"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Lethaeus@prs",
+        "level": "6",
+        "note": 717,
+        "songId": "Lethaeus"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "Lethaeus@ftr",
+        "level": "9+",
+        "note": 900,
+        "songId": "Lethaeus"
+      }
     ],
     "pack": "Ambivalent Vision"
   },
@@ -3850,11 +5109,36 @@
     "name": "amygdata",
     "id": "Amygdata",
     "sid": "amygdata",
-    "alias": ["杏仁体数据", "杏仁核数据", "omg打他"],
+    "alias": [
+      "杏仁体数据",
+      "杏仁核数据",
+      "omg打他"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Amygdata@pst", "level": "4", "note": 504, "songId": "Amygdata" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Amygdata@prs", "level": "7", "note": 711, "songId": "Amygdata" },
-      { "constant": 9.7, "difficulty": "ftr", "id": "Amygdata@ftr", "level": "9+", "note": 1199, "songId": "Amygdata" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Amygdata@pst",
+        "level": "4",
+        "note": 504,
+        "songId": "Amygdata"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Amygdata@prs",
+        "level": "7",
+        "note": 711,
+        "songId": "Amygdata"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "Amygdata@ftr",
+        "level": "9+",
+        "note": 1199,
+        "songId": "Amygdata"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -3874,7 +5158,14 @@
         "note": 561,
         "songId": "Dazzle_hop"
       },
-      { "constant": 6, "difficulty": "prs", "id": "Dazzle_hop@prs", "level": "6", "note": 571, "songId": "Dazzle_hop" },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Dazzle_hop@prs",
+        "level": "6",
+        "note": 571,
+        "songId": "Dazzle_hop"
+      },
       {
         "constant": 9.7,
         "difficulty": "ftr",
@@ -3892,10 +5183,28 @@
     "name": "Vandalism",
     "id": "Vandalism",
     "sid": "vandalism",
-    "alias": ["捣毁", "破财", "万达"],
+    "alias": [
+      "捣毁",
+      "破财",
+      "万达"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Vandalism@pst", "level": "3", "note": 668, "songId": "Vandalism" },
-      { "constant": 6, "difficulty": "prs", "id": "Vandalism@prs", "level": "6", "note": 685, "songId": "Vandalism" },
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Vandalism@pst",
+        "level": "3",
+        "note": 668,
+        "songId": "Vandalism"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Vandalism@prs",
+        "level": "6",
+        "note": 685,
+        "songId": "Vandalism"
+      },
       {
         "constant": 9.7,
         "difficulty": "ftr",
@@ -3913,11 +5222,34 @@
     "name": "Altale",
     "id": "Altale",
     "sid": "altale",
-    "alias": ["机器人"],
+    "alias": [
+      "机器人"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Altale@pst", "level": "2", "note": 357, "songId": "Altale" },
-      { "constant": 5.5, "difficulty": "prs", "id": "Altale@prs", "level": "5", "note": 424, "songId": "Altale" },
-      { "constant": 9.7, "difficulty": "ftr", "id": "Altale@ftr", "level": "9+", "note": 690, "songId": "Altale" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Altale@pst",
+        "level": "2",
+        "note": 357,
+        "songId": "Altale"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "Altale@prs",
+        "level": "5",
+        "note": 424,
+        "songId": "Altale"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "Altale@ftr",
+        "level": "9+",
+        "note": 690,
+        "songId": "Altale"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -3927,11 +5259,34 @@
     "name": "BADTEK",
     "id": "BADTEK",
     "sid": "badtek",
-    "alias": ["坏锤子"],
+    "alias": [
+      "坏锤子"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "BADTEK@pst", "level": "4", "note": 532, "songId": "BADTEK" },
-      { "constant": 7, "difficulty": "prs", "id": "BADTEK@prs", "level": "7", "note": 595, "songId": "BADTEK" },
-      { "constant": 9.7, "difficulty": "ftr", "id": "BADTEK@ftr", "level": "9+", "note": 916, "songId": "BADTEK" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "BADTEK@pst",
+        "level": "4",
+        "note": 532,
+        "songId": "BADTEK"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "BADTEK@prs",
+        "level": "7",
+        "note": 595,
+        "songId": "BADTEK"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "BADTEK@ftr",
+        "level": "9+",
+        "note": 916,
+        "songId": "BADTEK"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -3941,7 +5296,10 @@
     "name": "Heart Jackin'",
     "id": "Heart_Jackin%27",
     "sid": "heartjackin",
-    "alias": ["心桃杰克", "红桃j"],
+    "alias": [
+      "心桃杰克",
+      "红桃j"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -3976,7 +5334,11 @@
     "name": "Monochrome Princess",
     "id": "Monochrome_Princess",
     "sid": "monochromeprincess",
-    "alias": ["黑白公主", "单色公主", "纵连公主"],
+    "alias": [
+      "黑白公主",
+      "单色公主",
+      "纵连公主"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -4011,7 +5373,12 @@
     "name": "Dreadnought",
     "id": "Dreadnought",
     "sid": "dreadnought",
-    "alias": ["无畏舰", "手电筒", "望远镜", "无畏战舰"],
+    "alias": [
+      "无畏舰",
+      "手电筒",
+      "望远镜",
+      "无畏战舰"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -4046,10 +5413,28 @@
     "name": "SUPERNOVA",
     "id": "SUPERNOVA",
     "sid": "supernova",
-    "alias": ["超新星", "白矮星", "超级诺娃"],
+    "alias": [
+      "超新星",
+      "白矮星",
+      "超级诺娃"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "SUPERNOVA@pst", "level": "3", "note": 664, "songId": "SUPERNOVA" },
-      { "constant": 6, "difficulty": "prs", "id": "SUPERNOVA@prs", "level": "6", "note": 564, "songId": "SUPERNOVA" },
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "SUPERNOVA@pst",
+        "level": "3",
+        "note": 664,
+        "songId": "SUPERNOVA"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "SUPERNOVA@prs",
+        "level": "6",
+        "note": 564,
+        "songId": "SUPERNOVA"
+      },
       {
         "constant": 9.7,
         "difficulty": "ftr",
@@ -4067,7 +5452,9 @@
     "name": "Black Lotus",
     "id": "Black_Lotus",
     "sid": "blacklotus",
-    "alias": ["黑莲"],
+    "alias": [
+      "黑莲"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -4102,11 +5489,34 @@
     "name": "Sulfur",
     "id": "Sulfur",
     "sid": "sulfur",
-    "alias": ["硫磺"],
+    "alias": [
+      "硫磺"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Sulfur@pst", "level": "4", "note": 458, "songId": "Sulfur" },
-      { "constant": 6, "difficulty": "prs", "id": "Sulfur@prs", "level": "6", "note": 608, "songId": "Sulfur" },
-      { "constant": 9.7, "difficulty": "ftr", "id": "Sulfur@ftr", "level": "9+", "note": 1045, "songId": "Sulfur" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Sulfur@pst",
+        "level": "4",
+        "note": 458,
+        "songId": "Sulfur"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Sulfur@prs",
+        "level": "6",
+        "note": 608,
+        "songId": "Sulfur"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "Sulfur@ftr",
+        "level": "9+",
+        "note": 1045,
+        "songId": "Sulfur"
+      }
     ],
     "pack": "Luminous Sky"
   },
@@ -4116,7 +5526,10 @@
     "name": "nέο κόsmo",
     "id": "N%CE%AD%CE%BF_%CE%BA%CF%8Csmo",
     "sid": "neokosmo",
-    "alias": ["新世界", "玻璃白姬"],
+    "alias": [
+      "新世界",
+      "玻璃白姬"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -4151,7 +5564,12 @@
     "name": "The Message",
     "id": "The_Message",
     "sid": "themessage",
-    "alias": ["马杀鸡", "信息", "短信", "消息"],
+    "alias": [
+      "马杀鸡",
+      "信息",
+      "短信",
+      "消息"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -4221,11 +5639,38 @@
     "name": "BLRINK",
     "id": "BLRINK",
     "sid": "blrink",
-    "alias": ["BLINK", "对立眨眼", "对立测视力", "对立唱情歌", "融辉"],
+    "alias": [
+      "BLINK",
+      "对立眨眼",
+      "对立测视力",
+      "对立唱情歌",
+      "融辉"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "BLRINK@pst", "level": "3", "note": 400, "songId": "BLRINK" },
-      { "constant": 7.5, "difficulty": "prs", "id": "BLRINK@prs", "level": "7", "note": 683, "songId": "BLRINK" },
-      { "constant": 9.7, "difficulty": "ftr", "id": "BLRINK@ftr", "level": "9+", "note": 1015, "songId": "BLRINK" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "BLRINK@pst",
+        "level": "3",
+        "note": 400,
+        "songId": "BLRINK"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "BLRINK@prs",
+        "level": "7",
+        "note": 683,
+        "songId": "BLRINK"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "BLRINK@ftr",
+        "level": "9+",
+        "note": 1015,
+        "songId": "BLRINK"
+      }
     ],
     "pack": "Adverse Prelude"
   },
@@ -4272,9 +5717,30 @@
     "sid": "alterale",
     "alias": [],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "AlterAle@pst", "level": "3", "note": 728, "songId": "AlterAle" },
-      { "constant": 6, "difficulty": "prs", "id": "AlterAle@prs", "level": "6", "note": 881, "songId": "AlterAle" },
-      { "constant": 9.7, "difficulty": "ftr", "id": "AlterAle@ftr", "level": "9+", "note": 1277, "songId": "AlterAle" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "AlterAle@pst",
+        "level": "3",
+        "note": 728,
+        "songId": "AlterAle"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "AlterAle@prs",
+        "level": "6",
+        "note": 881,
+        "songId": "AlterAle"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "AlterAle@ftr",
+        "level": "9+",
+        "note": 1277,
+        "songId": "AlterAle"
+      }
     ],
     "pack": "Esoteric Order"
   },
@@ -4284,7 +5750,10 @@
     "name": "BATTLE NO.1",
     "id": "BATTLE_NO.1",
     "sid": "battlenoone",
-    "alias": ["NO.1", "打架第一名"],
+    "alias": [
+      "NO.1",
+      "打架第一名"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -4319,7 +5788,9 @@
     "name": "Lost in the Abyss",
     "id": "Lost_in_the_Abyss",
     "sid": "lostintheabyss",
-    "alias": ["深渊"],
+    "alias": [
+      "深渊"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -4356,9 +5827,30 @@
     "sid": "mu",
     "alias": [],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "%CE%9C@pst", "level": "3", "note": 825, "songId": "%CE%9C" },
-      { "constant": 7, "difficulty": "prs", "id": "%CE%9C@prs", "level": "7", "note": 986, "songId": "%CE%9C" },
-      { "constant": 9.7, "difficulty": "ftr", "id": "%CE%9C@ftr", "level": "9+", "note": 1256, "songId": "%CE%9C" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "%CE%9C@pst",
+        "level": "3",
+        "note": 825,
+        "songId": "%CE%9C"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "%CE%9C@prs",
+        "level": "7",
+        "note": 986,
+        "songId": "%CE%9C"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "%CE%9C@ftr",
+        "level": "9+",
+        "note": 1256,
+        "songId": "%CE%9C"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -4368,11 +5860,35 @@
     "name": "Filament",
     "id": "Filament",
     "sid": "filament",
-    "alias": ["灯丝", "灯芯"],
+    "alias": [
+      "灯丝",
+      "灯芯"
+    ],
     "charts": [
-      { "constant": 4.5, "difficulty": "pst", "id": "Filament@pst", "level": "4", "note": 582, "songId": "Filament" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Filament@prs", "level": "7", "note": 780, "songId": "Filament" },
-      { "constant": 9.7, "difficulty": "ftr", "id": "Filament@ftr", "level": "9+", "note": 991, "songId": "Filament" }
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Filament@pst",
+        "level": "4",
+        "note": 582,
+        "songId": "Filament"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Filament@prs",
+        "level": "7",
+        "note": 780,
+        "songId": "Filament"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "Filament@ftr",
+        "level": "9+",
+        "note": 991,
+        "songId": "Filament"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -4382,7 +5898,10 @@
     "name": "Vindication",
     "id": "Vindication",
     "sid": "vindication",
-    "alias": ["辩护", "辩白"],
+    "alias": [
+      "辩护",
+      "辩白"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -4417,7 +5936,11 @@
     "name": "Purple Verse",
     "id": "Purple_Verse",
     "sid": "purpleverse",
-    "alias": ["紫诗", "紫色诗篇", "帝王诗篇"],
+    "alias": [
+      "紫诗",
+      "紫色诗篇",
+      "帝王诗篇"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -4452,7 +5975,9 @@
     "name": "Fallensquare",
     "id": "Fallensquare",
     "sid": "fallensquare",
-    "alias": ["塌方"],
+    "alias": [
+      "塌方"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -4487,7 +6012,9 @@
     "name": "carmine:scythe",
     "id": "Carmine:scythe",
     "sid": "carminescythe",
-    "alias": ["红镰"],
+    "alias": [
+      "红镰"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -4522,7 +6049,11 @@
     "name": "Avant Raze",
     "id": "Avant_Raze",
     "sid": "avantraze",
-    "alias": ["前卫剃须刀", "狂欢之前", "毁灭之前"],
+    "alias": [
+      "前卫剃须刀",
+      "狂欢之前",
+      "毁灭之前"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -4557,7 +6088,12 @@
     "name": "Loveless Dress",
     "id": "Loveless_Dress",
     "sid": "lovelessdress",
-    "alias": ["裙子", "无爱之装", "品如的衣服", "锁心所爱连衣裙"],
+    "alias": [
+      "裙子",
+      "无爱之装",
+      "品如的衣服",
+      "锁心所爱连衣裙"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -4592,7 +6128,10 @@
     "name": "Lazy Addiction",
     "id": "Lazy_Addiction",
     "sid": "lazyaddiction",
-    "alias": ["懒瘾", "倦瘾"],
+    "alias": [
+      "懒瘾",
+      "倦瘾"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -4627,11 +6166,34 @@
     "name": "IMPACT",
     "id": "IMPACT",
     "sid": "impact",
-    "alias": ["impart"],
+    "alias": [
+      "impart"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "IMPACT@pst", "level": "3", "note": 723, "songId": "IMPACT" },
-      { "constant": 7.5, "difficulty": "prs", "id": "IMPACT@prs", "level": "7", "note": 913, "songId": "IMPACT" },
-      { "constant": 9.6, "difficulty": "ftr", "id": "IMPACT@ftr", "level": "9", "note": 1231, "songId": "IMPACT" },
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "IMPACT@pst",
+        "level": "3",
+        "note": 723,
+        "songId": "IMPACT"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "IMPACT@prs",
+        "level": "7",
+        "note": 913,
+        "songId": "IMPACT"
+      },
+      {
+        "constant": 9.6,
+        "difficulty": "ftr",
+        "id": "IMPACT@ftr",
+        "level": "9",
+        "note": 1231,
+        "songId": "IMPACT"
+      },
       {
         "constant": 10.4,
         "difficulty": "byd",
@@ -4650,7 +6212,12 @@
     "name": "A Wandering Melody of Love",
     "id": "A_Wandering_Melody_of_Love",
     "sid": "melodyoflove",
-    "alias": ["恋歌", "迷音", "音恋", "爱的旋律"],
+    "alias": [
+      "恋歌",
+      "迷音",
+      "音恋",
+      "爱的旋律"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -4685,7 +6252,13 @@
     "name": "Astral tale",
     "id": "Astral_tale",
     "sid": "astraltale",
-    "alias": ["星语", "魂语", "星传说", "星月神话", "星神话"],
+    "alias": [
+      "星语",
+      "魂语",
+      "星传说",
+      "星月神话",
+      "星神话"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -4755,7 +6328,9 @@
     "name": "ENERGY SYNERGY MATRIX",
     "id": "ENERGY_SYNERGY_MATRIX",
     "sid": "energysynergymatrix",
-    "alias": ["ESM跑"],
+    "alias": [
+      "ESM跑"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -4790,7 +6365,10 @@
     "name": "LunarOrbit -believe in the Espebranch road-",
     "id": "LunarOrbit_-believe_in_the_Espebranch_road-",
     "sid": "espebranch",
-    "alias": ["白道", "白羊"],
+    "alias": [
+      "白道",
+      "白羊"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -4825,7 +6403,10 @@
     "name": "ΟΔΥΣΣΕΙΑ",
     "id": "%CE%9F%CE%94%CE%A5%CE%A3%CE%A3%CE%95%CE%99%CE%91",
     "sid": "odysseia",
-    "alias": ["奥德赛", "o什么的"],
+    "alias": [
+      "奥德赛",
+      "o什么的"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -4860,7 +6441,10 @@
     "name": "Cybernecia Catharsis",
     "id": "Cybernecia_Catharsis",
     "sid": "cyberneciacatharsis",
-    "alias": ["控制宣泄", "蓝角"],
+    "alias": [
+      "控制宣泄",
+      "蓝角"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -4895,7 +6479,11 @@
     "name": "Evening in Scarlet",
     "id": "Evening_in_Scarlet",
     "sid": "eveninginscarlet",
-    "alias": ["红夜", "马冬梅", "绯红之霄"],
+    "alias": [
+      "红夜",
+      "马冬梅",
+      "绯红之霄"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -4930,11 +6518,35 @@
     "name": "DataErr0r",
     "id": "DataErr0r",
     "sid": "dataerror",
-    "alias": ["数据错误", "数据异常"],
+    "alias": [
+      "数据错误",
+      "数据异常"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "DataErr0r@pst", "level": "3", "note": 502, "songId": "DataErr0r" },
-      { "constant": 7, "difficulty": "prs", "id": "DataErr0r@prs", "level": "7", "note": 785, "songId": "DataErr0r" },
-      { "constant": 9.5, "difficulty": "ftr", "id": "DataErr0r@ftr", "level": "9", "note": 955, "songId": "DataErr0r" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "DataErr0r@pst",
+        "level": "3",
+        "note": 502,
+        "songId": "DataErr0r"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "DataErr0r@prs",
+        "level": "7",
+        "note": 785,
+        "songId": "DataErr0r"
+      },
+      {
+        "constant": 9.5,
+        "difficulty": "ftr",
+        "id": "DataErr0r@ftr",
+        "level": "9",
+        "note": 955,
+        "songId": "DataErr0r"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -5025,9 +6637,30 @@
     "sid": "gimmick",
     "alias": [],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "GIMMICK@pst", "level": "2", "note": 421, "songId": "GIMMICK" },
-      { "constant": 6.5, "difficulty": "prs", "id": "GIMMICK@prs", "level": "6", "note": 598, "songId": "GIMMICK" },
-      { "constant": 9.5, "difficulty": "ftr", "id": "GIMMICK@ftr", "level": "9", "note": 733, "songId": "GIMMICK" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "GIMMICK@pst",
+        "level": "2",
+        "note": 421,
+        "songId": "GIMMICK"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "GIMMICK@prs",
+        "level": "6",
+        "note": 598,
+        "songId": "GIMMICK"
+      },
+      {
+        "constant": 9.5,
+        "difficulty": "ftr",
+        "id": "GIMMICK@ftr",
+        "level": "9",
+        "note": 733,
+        "songId": "GIMMICK"
+      }
     ],
     "pack": "World Extend"
   },
@@ -5037,11 +6670,34 @@
     "name": "Specta",
     "id": "Specta",
     "sid": "specta",
-    "alias": ["灯男"],
+    "alias": [
+      "灯男"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Specta@pst", "level": "3", "note": 390, "songId": "Specta" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Specta@prs", "level": "6", "note": 706, "songId": "Specta" },
-      { "constant": 9.5, "difficulty": "ftr", "id": "Specta@ftr", "level": "9", "note": 1096, "songId": "Specta" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Specta@pst",
+        "level": "3",
+        "note": 390,
+        "songId": "Specta"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Specta@prs",
+        "level": "6",
+        "note": 706,
+        "songId": "Specta"
+      },
+      {
+        "constant": 9.5,
+        "difficulty": "ftr",
+        "id": "Specta@ftr",
+        "level": "9",
+        "note": 1096,
+        "songId": "Specta"
+      }
     ],
     "pack": "Lanota Collaboration"
   },
@@ -5053,9 +6709,30 @@
     "sid": "nulctrl",
     "alias": [],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "NULCTRL@pst", "level": "3", "note": 407, "songId": "NULCTRL" },
-      { "constant": 6, "difficulty": "prs", "id": "NULCTRL@prs", "level": "6", "note": 410, "songId": "NULCTRL" },
-      { "constant": 9.5, "difficulty": "ftr", "id": "NULCTRL@ftr", "level": "9", "note": 715, "songId": "NULCTRL" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "NULCTRL@pst",
+        "level": "3",
+        "note": 407,
+        "songId": "NULCTRL"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "NULCTRL@prs",
+        "level": "6",
+        "note": 410,
+        "songId": "NULCTRL"
+      },
+      {
+        "constant": 9.5,
+        "difficulty": "ftr",
+        "id": "NULCTRL@ftr",
+        "level": "9",
+        "note": 715,
+        "songId": "NULCTRL"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -5065,7 +6742,11 @@
     "name": "Illegal Paradise",
     "id": "Illegal_Paradise",
     "sid": "darakunosono",
-    "alias": ["堕乐园", "失乐园", "堕落乐园"],
+    "alias": [
+      "堕乐园",
+      "失乐园",
+      "堕落乐园"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -5100,11 +6781,38 @@
     "name": "MAHOROBA",
     "id": "MAHOROBA",
     "sid": "mahoroba",
-    "alias": ["世外桃源", "魔法萝卜", "麻花萝卜", "魔法老八", "好地方"],
+    "alias": [
+      "世外桃源",
+      "魔法萝卜",
+      "麻花萝卜",
+      "魔法老八",
+      "好地方"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "MAHOROBA@pst", "level": "3", "note": 422, "songId": "MAHOROBA" },
-      { "constant": 6.5, "difficulty": "prs", "id": "MAHOROBA@prs", "level": "6", "note": 632, "songId": "MAHOROBA" },
-      { "constant": 9.5, "difficulty": "ftr", "id": "MAHOROBA@ftr", "level": "9", "note": 828, "songId": "MAHOROBA" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "MAHOROBA@pst",
+        "level": "3",
+        "note": 422,
+        "songId": "MAHOROBA"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "MAHOROBA@prs",
+        "level": "6",
+        "note": 632,
+        "songId": "MAHOROBA"
+      },
+      {
+        "constant": 9.5,
+        "difficulty": "ftr",
+        "id": "MAHOROBA@ftr",
+        "level": "9",
+        "note": 828,
+        "songId": "MAHOROBA"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -5114,7 +6822,12 @@
     "name": "Your voice so... feat. Such",
     "id": "Your_voice_so..._feat._Such",
     "sid": "yourvoiceso",
-    "alias": ["腿一", "腿1", "腿歌1", "你的声音"],
+    "alias": [
+      "腿一",
+      "腿1",
+      "腿歌1",
+      "你的声音"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -5184,7 +6897,9 @@
     "name": "Dreamin' Attraction!!",
     "id": "Dreamin%27_Attraction!!",
     "sid": "dreaminattraction",
-    "alias": ["美年达"],
+    "alias": [
+      "美年达"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -5219,7 +6934,12 @@
     "name": "Equilibrium",
     "id": "Equilibrium",
     "sid": "equilibrium",
-    "alias": ["圆光", "平衡", "接手霸王", "船光"],
+    "alias": [
+      "圆光",
+      "平衡",
+      "接手霸王",
+      "船光"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -5254,7 +6974,11 @@
     "name": "VECTOЯ",
     "id": "VECTO%D0%AF",
     "sid": "vector",
-    "alias": ["向量", "维克托", "矢量"],
+    "alias": [
+      "向量",
+      "维克托",
+      "矢量"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -5289,7 +7013,12 @@
     "name": "Yosakura Fubuki",
     "id": "Yosakura_Fubuki",
     "sid": "yozakurafubuki",
-    "alias": ["夜桜", "夜樱", "夜桜吹雪", "夜樱吹雪"],
+    "alias": [
+      "夜桜",
+      "夜樱",
+      "夜桜吹雪",
+      "夜樱吹雪"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -5324,7 +7053,12 @@
     "name": "Red and Blue",
     "id": "Red_and_Blue",
     "sid": "redandblue",
-    "alias": ["红蓝", "红与蓝", "红和蓝", "双蛇律动"],
+    "alias": [
+      "红蓝",
+      "红与蓝",
+      "红和蓝",
+      "双蛇律动"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -5371,11 +7105,37 @@
     "name": "with U",
     "id": "With_U",
     "sid": "withu",
-    "alias": ["与你", "病娇", "和你", "withyou"],
+    "alias": [
+      "与你",
+      "病娇",
+      "和你",
+      "withyou"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "With_U@pst", "level": "2", "note": 448, "songId": "With_U" },
-      { "constant": 6.5, "difficulty": "prs", "id": "With_U@prs", "level": "6", "note": 649, "songId": "With_U" },
-      { "constant": 9.4, "difficulty": "ftr", "id": "With_U@ftr", "level": "9", "note": 932, "songId": "With_U" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "With_U@pst",
+        "level": "2",
+        "note": 448,
+        "songId": "With_U"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "With_U@prs",
+        "level": "6",
+        "note": 649,
+        "songId": "With_U"
+      },
+      {
+        "constant": 9.4,
+        "difficulty": "ftr",
+        "id": "With_U@ftr",
+        "level": "9",
+        "note": 932,
+        "songId": "With_U"
+      }
     ],
     "pack": "WACCA Collaboration"
   },
@@ -5385,7 +7145,12 @@
     "name": "CROSS†SOUL",
     "id": "CROSS%E2%80%A0SOUL",
     "sid": "crosssoul",
-    "alias": ["穿魂", "十字", "十字架", "十字灵魂"],
+    "alias": [
+      "穿魂",
+      "十字",
+      "十字架",
+      "十字灵魂"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -5420,7 +7185,12 @@
     "name": "Let you DIVE! (nitro rmx)",
     "id": "Let_you_DIVE!_(nitro_rmx)",
     "sid": "letyoudivermx",
-    "alias": ["lyd", "lud", "让你下潜", "nitro die"],
+    "alias": [
+      "lyd",
+      "lud",
+      "让你下潜",
+      "nitro die"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -5455,7 +7225,13 @@
     "name": "Impure Bird",
     "id": "Impure_Bird",
     "sid": "impurebird",
-    "alias": ["脏鸟", "污鸟", "不洁白鸟", "不净白鸟", "小男孩"],
+    "alias": [
+      "脏鸟",
+      "污鸟",
+      "不洁白鸟",
+      "不净白鸟",
+      "小男孩"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -5490,7 +7266,11 @@
     "name": "Party Vinyl",
     "id": "Party_Vinyl",
     "sid": "partyvinyl",
-    "alias": ["派对乙烯基", "黑胶派对", "乙烯派对"],
+    "alias": [
+      "派对乙烯基",
+      "黑胶派对",
+      "乙烯派对"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -5615,11 +7395,34 @@
     "name": "Teriqma",
     "id": "Teriqma",
     "sid": "teriqma",
-    "alias": ["特日骑马"],
+    "alias": [
+      "特日骑马"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Teriqma@pst", "level": "3", "note": 345, "songId": "Teriqma" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Teriqma@prs", "level": "6", "note": 579, "songId": "Teriqma" },
-      { "constant": 9.4, "difficulty": "ftr", "id": "Teriqma@ftr", "level": "9", "note": 873, "songId": "Teriqma" },
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Teriqma@pst",
+        "level": "3",
+        "note": 345,
+        "songId": "Teriqma"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Teriqma@prs",
+        "level": "6",
+        "note": 579,
+        "songId": "Teriqma"
+      },
+      {
+        "constant": 9.4,
+        "difficulty": "ftr",
+        "id": "Teriqma@ftr",
+        "level": "9",
+        "note": 873,
+        "songId": "Teriqma"
+      },
       {
         "constant": 9.7,
         "difficulty": "byd",
@@ -5638,11 +7441,36 @@
     "name": "Lapis",
     "id": "Lapis",
     "sid": "lapis",
-    "alias": ["青金石", "苍石", "苍姬"],
+    "alias": [
+      "青金石",
+      "苍石",
+      "苍姬"
+    ],
     "charts": [
-      { "constant": 2, "difficulty": "pst", "id": "Lapis@pst", "level": "2", "note": 391, "songId": "Lapis" },
-      { "constant": 6, "difficulty": "prs", "id": "Lapis@prs", "level": "6", "note": 520, "songId": "Lapis" },
-      { "constant": 9.4, "difficulty": "ftr", "id": "Lapis@ftr", "level": "9", "note": 920, "songId": "Lapis" }
+      {
+        "constant": 2,
+        "difficulty": "pst",
+        "id": "Lapis@pst",
+        "level": "2",
+        "note": 391,
+        "songId": "Lapis"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Lapis@prs",
+        "level": "6",
+        "note": 520,
+        "songId": "Lapis"
+      },
+      {
+        "constant": 9.4,
+        "difficulty": "ftr",
+        "id": "Lapis@ftr",
+        "level": "9",
+        "note": 920,
+        "songId": "Lapis"
+      }
     ],
     "pack": "Extend Archive"
   },
@@ -5652,11 +7480,34 @@
     "name": "Be There",
     "id": "Be_There",
     "sid": "bethere",
-    "alias": ["在那里"],
+    "alias": [
+      "在那里"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Be_There@pst", "level": "4", "note": 592, "songId": "Be_There" },
-      { "constant": 7.5, "difficulty": "prs", "id": "Be_There@prs", "level": "7", "note": 792, "songId": "Be_There" },
-      { "constant": 9.4, "difficulty": "ftr", "id": "Be_There@ftr", "level": "9", "note": 982, "songId": "Be_There" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Be_There@pst",
+        "level": "4",
+        "note": 592,
+        "songId": "Be_There"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Be_There@prs",
+        "level": "7",
+        "note": 792,
+        "songId": "Be_There"
+      },
+      {
+        "constant": 9.4,
+        "difficulty": "ftr",
+        "id": "Be_There@ftr",
+        "level": "9",
+        "note": 982,
+        "songId": "Be_There"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -5666,7 +7517,10 @@
     "name": "CROSS†OVER",
     "id": "CROSS%E2%80%A0OVER",
     "sid": "crossover",
-    "alias": ["穿过", "超度"],
+    "alias": [
+      "穿过",
+      "超度"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -5701,7 +7555,11 @@
     "name": "Crystal Gravity",
     "id": "Crystal_Gravity",
     "sid": "crystalgravity",
-    "alias": ["晶体重力", "水晶重力", "重力晶"],
+    "alias": [
+      "晶体重力",
+      "水晶重力",
+      "重力晶"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -5736,7 +7594,13 @@
     "name": "Head BONK ache",
     "id": "Head_BONK_ache",
     "sid": "headbonkache",
-    "alias": ["敲头", "头疼", "头痛", "脑震荡", "碎颅击"],
+    "alias": [
+      "敲头",
+      "头疼",
+      "头痛",
+      "脑震荡",
+      "碎颅击"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -5771,11 +7635,36 @@
     "name": "Auxesia",
     "id": "Auxesia",
     "sid": "auxesia",
-    "alias": ["夏歌", "自闭症", "夏日曲"],
+    "alias": [
+      "夏歌",
+      "自闭症",
+      "夏日曲"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Auxesia@pst", "level": "3", "note": 385, "songId": "Auxesia" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Auxesia@prs", "level": "6", "note": 648, "songId": "Auxesia" },
-      { "constant": 9.3, "difficulty": "ftr", "id": "Auxesia@ftr", "level": "9", "note": 1000, "songId": "Auxesia" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Auxesia@pst",
+        "level": "3",
+        "note": 385,
+        "songId": "Auxesia"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Auxesia@prs",
+        "level": "6",
+        "note": 648,
+        "songId": "Auxesia"
+      },
+      {
+        "constant": 9.3,
+        "difficulty": "ftr",
+        "id": "Auxesia@ftr",
+        "level": "9",
+        "note": 1000,
+        "songId": "Auxesia"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -5785,7 +7674,10 @@
     "name": "Sakura Fubuki",
     "id": "Sakura_Fubuki",
     "sid": "sakurafubuki",
-    "alias": ["樱吹雪", "桜吹雪"],
+    "alias": [
+      "樱吹雪",
+      "桜吹雪"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -5822,9 +7714,30 @@
     "sid": "glow",
     "alias": [],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Glow@pst", "level": "4", "note": 504, "songId": "Glow" },
-      { "constant": 7, "difficulty": "prs", "id": "Glow@prs", "level": "7", "note": 666, "songId": "Glow" },
-      { "constant": 9.3, "difficulty": "ftr", "id": "Glow@ftr", "level": "9", "note": 916, "songId": "Glow" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Glow@pst",
+        "level": "4",
+        "note": 504,
+        "songId": "Glow"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Glow@prs",
+        "level": "7",
+        "note": 666,
+        "songId": "Glow"
+      },
+      {
+        "constant": 9.3,
+        "difficulty": "ftr",
+        "id": "Glow@ftr",
+        "level": "9",
+        "note": 916,
+        "songId": "Glow"
+      }
     ],
     "pack": "Extend Archive"
   },
@@ -5869,7 +7782,9 @@
     "name": "Lost Emotion feat. nomico",
     "id": "Lost_Emotion_feat._nomico",
     "sid": "lostemotion",
-    "alias": ["失去情感"],
+    "alias": [
+      "失去情感"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -5904,11 +7819,35 @@
     "name": "Blaster",
     "id": "Blaster",
     "sid": "blaster",
-    "alias": ["轰击手", "爆破手"],
+    "alias": [
+      "轰击手",
+      "爆破手"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Blaster@pst", "level": "4", "note": 571, "songId": "Blaster" },
-      { "constant": 7, "difficulty": "prs", "id": "Blaster@prs", "level": "7", "note": 635, "songId": "Blaster" },
-      { "constant": 9.3, "difficulty": "ftr", "id": "Blaster@ftr", "level": "9", "note": 1002, "songId": "Blaster" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Blaster@pst",
+        "level": "4",
+        "note": 571,
+        "songId": "Blaster"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Blaster@prs",
+        "level": "7",
+        "note": 635,
+        "songId": "Blaster"
+      },
+      {
+        "constant": 9.3,
+        "difficulty": "ftr",
+        "id": "Blaster@ftr",
+        "level": "9",
+        "note": 1002,
+        "songId": "Blaster"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -5918,7 +7857,9 @@
     "name": "PICO-Pico-Translation!",
     "id": "PICO-Pico-Translation!",
     "sid": "picopicotranslation",
-    "alias": ["翻的啥玩意"],
+    "alias": [
+      "翻的啥玩意"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -5955,9 +7896,30 @@
     "sid": "kokoro",
     "alias": [],
     "charts": [
-      { "constant": 1, "difficulty": "pst", "id": "Heart@pst", "level": "1", "note": 428, "songId": "Heart" },
-      { "constant": 5, "difficulty": "prs", "id": "Heart@prs", "level": "5", "note": 575, "songId": "Heart" },
-      { "constant": 9.3, "difficulty": "ftr", "id": "Heart@ftr", "level": "9", "note": 872, "songId": "Heart" }
+      {
+        "constant": 1,
+        "difficulty": "pst",
+        "id": "Heart@pst",
+        "level": "1",
+        "note": 428,
+        "songId": "Heart"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Heart@prs",
+        "level": "5",
+        "note": 575,
+        "songId": "Heart"
+      },
+      {
+        "constant": 9.3,
+        "difficulty": "ftr",
+        "id": "Heart@ftr",
+        "level": "9",
+        "note": 872,
+        "songId": "Heart"
+      }
     ],
     "pack": "O.N.G.E.K.I. Collaboration"
   },
@@ -5967,11 +7929,37 @@
     "name": "Oracle",
     "id": "Oracle",
     "sid": "oracle",
-    "alias": ["神谕", "甲骨文", "数据库", "兔娘"],
+    "alias": [
+      "神谕",
+      "甲骨文",
+      "数据库",
+      "兔娘"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Oracle@pst", "level": "3", "note": 425, "songId": "Oracle" },
-      { "constant": 5.5, "difficulty": "prs", "id": "Oracle@prs", "level": "5", "note": 508, "songId": "Oracle" },
-      { "constant": 9.3, "difficulty": "ftr", "id": "Oracle@ftr", "level": "9", "note": 963, "songId": "Oracle" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Oracle@pst",
+        "level": "3",
+        "note": 425,
+        "songId": "Oracle"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "Oracle@prs",
+        "level": "5",
+        "note": 508,
+        "songId": "Oracle"
+      },
+      {
+        "constant": 9.3,
+        "difficulty": "ftr",
+        "id": "Oracle@ftr",
+        "level": "9",
+        "note": 963,
+        "songId": "Oracle"
+      }
     ],
     "pack": "Dynamix Collaboration"
   },
@@ -5981,7 +7969,16 @@
     "name": "Feels So Right feat. Renko",
     "id": "Feels_So_Right_feat._Renko",
     "sid": "feelssoright",
-    "alias": ["马卡龙", "感觉爽", "感觉好", "感觉右", "感觉很好", "感觉良好", "感觉很右", "感觉很爽"],
+    "alias": [
+      "马卡龙",
+      "感觉爽",
+      "感觉好",
+      "感觉右",
+      "感觉很好",
+      "感觉良好",
+      "感觉很右",
+      "感觉很爽"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -6016,7 +8013,11 @@
     "name": "Blocked Library",
     "id": "Blocked_Library",
     "sid": "blockedlibrary",
-    "alias": ["封闭图书馆", "封锁图书馆", "图书馆关门"],
+    "alias": [
+      "封闭图书馆",
+      "封锁图书馆",
+      "图书馆关门"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -6051,11 +8052,34 @@
     "name": "Syro",
     "id": "Syro",
     "sid": "syro",
-    "alias": ["涮羊肉"],
+    "alias": [
+      "涮羊肉"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Syro@pst", "level": "3", "note": 535, "songId": "Syro" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Syro@prs", "level": "6", "note": 829, "songId": "Syro" },
-      { "constant": 9.3, "difficulty": "ftr", "id": "Syro@ftr", "level": "9", "note": 1150, "songId": "Syro" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Syro@pst",
+        "level": "3",
+        "note": 535,
+        "songId": "Syro"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Syro@prs",
+        "level": "6",
+        "note": 829,
+        "songId": "Syro"
+      },
+      {
+        "constant": 9.3,
+        "difficulty": "ftr",
+        "id": "Syro@ftr",
+        "level": "9",
+        "note": 1150,
+        "songId": "Syro"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -6065,11 +8089,35 @@
     "name": "Ignotus",
     "id": "Ignotus",
     "sid": "ignotus",
-    "alias": ["点火", "引燃物"],
+    "alias": [
+      "点火",
+      "引燃物"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Ignotus@pst", "level": "3", "note": 579, "songId": "Ignotus" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Ignotus@prs", "level": "6", "note": 809, "songId": "Ignotus" },
-      { "constant": 9.3, "difficulty": "ftr", "id": "Ignotus@ftr", "level": "9", "note": 1225, "songId": "Ignotus" },
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Ignotus@pst",
+        "level": "3",
+        "note": 579,
+        "songId": "Ignotus"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Ignotus@prs",
+        "level": "6",
+        "note": 809,
+        "songId": "Ignotus"
+      },
+      {
+        "constant": 9.3,
+        "difficulty": "ftr",
+        "id": "Ignotus@ftr",
+        "level": "9",
+        "note": 1225,
+        "songId": "Ignotus"
+      },
       {
         "constant": 9.9,
         "difficulty": "byd",
@@ -6091,7 +8139,11 @@
     "name": "GOODTEK (Arcaea Edit)",
     "id": "GOODTEK_(Arcaea_Edit)",
     "sid": "goodtek",
-    "alias": ["好锤子", "良锤", "好锤"],
+    "alias": [
+      "好锤子",
+      "良锤",
+      "好锤"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -6124,7 +8176,9 @@
         "level": "9+",
         "note": 1103,
         "songId": "GOODTEK_(Arcaea_Edit)",
-        "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/6/60/Songs_goodtek_byd.jpg/256px-Songs_goodtek_byd.jpg" }
+        "byd": {
+          "cover": "https://wiki.arcaea.cn/images/thumb/6/60/Songs_goodtek_byd.jpg/256px-Songs_goodtek_byd.jpg"
+        }
       }
     ],
     "pack": "Arcaea"
@@ -6135,7 +8189,11 @@
     "name": "False Embellishment",
     "id": "False_Embellishment",
     "sid": "kyogenkigo",
-    "alias": ["狂言绮语", "狂绮", "谬饰"],
+    "alias": [
+      "狂言绮语",
+      "狂绮",
+      "谬饰"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -6170,7 +8228,9 @@
     "name": "MANTIS (Arcaea Ultra-Bloodrush VIP)",
     "id": "MANTIS_(Arcaea_Ultra-Bloodrush_VIP)",
     "sid": "mantis",
-    "alias": ["螳螂"],
+    "alias": [
+      "螳螂"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -6205,11 +8265,34 @@
     "name": "Libertas",
     "id": "Libertas",
     "sid": "libertas",
-    "alias": ["自主神"],
+    "alias": [
+      "自主神"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Libertas@pst", "level": "3", "note": 476, "songId": "Libertas" },
-      { "constant": 5.5, "difficulty": "prs", "id": "Libertas@prs", "level": "5", "note": 514, "songId": "Libertas" },
-      { "constant": 9.2, "difficulty": "ftr", "id": "Libertas@ftr", "level": "9", "note": 947, "songId": "Libertas" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Libertas@pst",
+        "level": "3",
+        "note": 476,
+        "songId": "Libertas"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "Libertas@prs",
+        "level": "5",
+        "note": 514,
+        "songId": "Libertas"
+      },
+      {
+        "constant": 9.2,
+        "difficulty": "ftr",
+        "id": "Libertas@ftr",
+        "level": "9",
+        "note": 947,
+        "songId": "Libertas"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -6219,7 +8302,10 @@
     "name": "Anökumene",
     "id": "An%C3%B6kumene",
     "sid": "anokumene",
-    "alias": ["无人区", "无人禁区"],
+    "alias": [
+      "无人区",
+      "无人禁区"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -6254,7 +8340,12 @@
     "name": "Strongholds",
     "id": "Strongholds",
     "sid": "strongholds",
-    "alias": ["要塞", "强握", "印度蛇", "堡垒"],
+    "alias": [
+      "要塞",
+      "强握",
+      "印度蛇",
+      "堡垒"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -6289,7 +8380,15 @@
     "name": "Redraw the Colorless World",
     "id": "Redraw_the_Colorless_World",
     "sid": "mukishitsu",
-    "alias": ["无机世界", "无机质", "牛奶摇吐", "无量", "mk", "无机", "黑线铁轨"],
+    "alias": [
+      "无机世界",
+      "无机质",
+      "牛奶摇吐",
+      "无量",
+      "mk",
+      "无机",
+      "黑线铁轨"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -6359,11 +8458,35 @@
     "name": "Rugie",
     "id": "Rugie",
     "sid": "rugie",
-    "alias": ["引诱", "乳鸽"],
+    "alias": [
+      "引诱",
+      "乳鸽"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Rugie@pst", "level": "3", "note": 566, "songId": "Rugie" },
-      { "constant": 6, "difficulty": "prs", "id": "Rugie@prs", "level": "6", "note": 754, "songId": "Rugie" },
-      { "constant": 9.2, "difficulty": "ftr", "id": "Rugie@ftr", "level": "9", "note": 975, "songId": "Rugie" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Rugie@pst",
+        "level": "3",
+        "note": 566,
+        "songId": "Rugie"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Rugie@prs",
+        "level": "6",
+        "note": 754,
+        "songId": "Rugie"
+      },
+      {
+        "constant": 9.2,
+        "difficulty": "ftr",
+        "id": "Rugie@ftr",
+        "level": "9",
+        "note": 975,
+        "songId": "Rugie"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -6373,7 +8496,9 @@
     "name": "cocoro*cosmetic",
     "id": "Cocoro*cosmetic",
     "sid": "cocorocosmetic",
-    "alias": ["条形码"],
+    "alias": [
+      "条形码"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -6408,7 +8533,10 @@
     "name": "Alice à la mode",
     "id": "Alice_%C3%A0_la_mode",
     "sid": "alicealamode",
-    "alias": ["时髦爱丽丝", "时尚爱丽丝"],
+    "alias": [
+      "时髦爱丽丝",
+      "时尚爱丽丝"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -6443,7 +8571,15 @@
     "name": "Lost Civilization",
     "id": "Lost_Civilization",
     "sid": "lostcivilization",
-    "alias": ["失落文明", "失落的文明", "失落遗迹", "韵律八点", "韵律几点", "我的天啊你看看都几点了", "钟"],
+    "alias": [
+      "失落文明",
+      "失落的文明",
+      "失落遗迹",
+      "韵律八点",
+      "韵律几点",
+      "我的天啊你看看都几点了",
+      "钟"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -6489,11 +8625,36 @@
     "name": "Phantasia",
     "id": "Phantasia",
     "sid": "phantasia",
-    "alias": ["幻想", "做彩梦", "初彩梦"],
+    "alias": [
+      "幻想",
+      "做彩梦",
+      "初彩梦"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Phantasia@pst", "level": "4", "note": 544, "songId": "Phantasia" },
-      { "constant": 5.5, "difficulty": "prs", "id": "Phantasia@prs", "level": "5", "note": 579, "songId": "Phantasia" },
-      { "constant": 9.2, "difficulty": "ftr", "id": "Phantasia@ftr", "level": "9", "note": 952, "songId": "Phantasia" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Phantasia@pst",
+        "level": "4",
+        "note": 544,
+        "songId": "Phantasia"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "Phantasia@prs",
+        "level": "5",
+        "note": 579,
+        "songId": "Phantasia"
+      },
+      {
+        "constant": 9.2,
+        "difficulty": "ftr",
+        "id": "Phantasia@ftr",
+        "level": "9",
+        "note": 952,
+        "songId": "Phantasia"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -6503,7 +8664,11 @@
     "name": "Small Cloud Sugar Candy",
     "id": "Small_Cloud_Sugar_Candy",
     "sid": "smallcloud",
-    "alias": ["小糖云", "小云糖", "小小云朵糖"],
+    "alias": [
+      "小糖云",
+      "小云糖",
+      "小小云朵糖"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -6571,7 +8736,9 @@
         "level": "9+",
         "note": 1288,
         "songId": "Qualia_-ideaesthesia-",
-        "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/4/4b/Songs_qualia_byd.jpg/256px-Songs_qualia_byd.jpg" }
+        "byd": {
+          "cover": "https://wiki.arcaea.cn/images/thumb/4/4b/Songs_qualia_byd.jpg/256px-Songs_qualia_byd.jpg"
+        }
       }
     ],
     "pack": "Arcaea"
@@ -6582,7 +8749,9 @@
     "name": "Life is PIANO",
     "id": "Life_is_PIANO",
     "sid": "lifeispiano",
-    "alias": ["生命如琴"],
+    "alias": [
+      "生命如琴"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -6617,10 +8786,29 @@
     "name": "Iconoclast",
     "id": "Iconoclast",
     "sid": "iconoclast",
-    "alias": ["破灭者", "毁灭者", "破旧者", "圣像破坏者"],
+    "alias": [
+      "破灭者",
+      "毁灭者",
+      "破旧者",
+      "圣像破坏者"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Iconoclast@pst", "level": "4", "note": 443, "songId": "Iconoclast" },
-      { "constant": 7, "difficulty": "prs", "id": "Iconoclast@prs", "level": "7", "note": 593, "songId": "Iconoclast" },
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Iconoclast@pst",
+        "level": "4",
+        "note": 443,
+        "songId": "Iconoclast"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Iconoclast@prs",
+        "level": "7",
+        "note": 593,
+        "songId": "Iconoclast"
+      },
       {
         "constant": 9.1,
         "difficulty": "ftr",
@@ -6638,7 +8826,11 @@
     "name": "Essence of Twilight",
     "id": "Essence_of_Twilight",
     "sid": "essenceoftwilight",
-    "alias": ["黄昏本质", "黄昏的本质", "暮色的本质"],
+    "alias": [
+      "黄昏本质",
+      "黄昏的本质",
+      "暮色的本质"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -6673,11 +8865,34 @@
     "name": "dropdead",
     "id": "Dropdead",
     "sid": "dropdead",
-    "alias": ["摔死"],
+    "alias": [
+      "摔死"
+    ],
     "charts": [
-      { "constant": 1.5, "difficulty": "pst", "id": "Dropdead@pst", "level": "1", "note": 44, "songId": "Dropdead" },
-      { "constant": 9.5, "difficulty": "prs", "id": "Dropdead@prs", "level": "9", "note": 1323, "songId": "Dropdead" },
-      { "constant": 9.1, "difficulty": "ftr", "id": "Dropdead@ftr", "level": "8", "note": 823, "songId": "Dropdead" },
+      {
+        "constant": 1.5,
+        "difficulty": "pst",
+        "id": "Dropdead@pst",
+        "level": "1",
+        "note": 44,
+        "songId": "Dropdead"
+      },
+      {
+        "constant": 9.5,
+        "difficulty": "prs",
+        "id": "Dropdead@prs",
+        "level": "9",
+        "note": 1323,
+        "songId": "Dropdead"
+      },
+      {
+        "constant": 9.1,
+        "difficulty": "ftr",
+        "id": "Dropdead@ftr",
+        "level": "8",
+        "note": 823,
+        "songId": "Dropdead"
+      },
       {
         "constant": 10.5,
         "difficulty": "byd",
@@ -6699,7 +8914,10 @@
     "name": "Faint Light (Arcaea Edit)",
     "id": "Faint_Light_(Arcaea_Edit)",
     "sid": "faintlight",
-    "alias": ["微光", "微弱的光"],
+    "alias": [
+      "微光",
+      "微弱的光"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -6734,7 +8952,10 @@
     "name": "Alice's Suitcase",
     "id": "Alice%27s_Suitcase",
     "sid": "alicessuitcase",
-    "alias": ["爱丽丝的手提箱", "爱丽丝的行李箱"],
+    "alias": [
+      "爱丽丝的手提箱",
+      "爱丽丝的行李箱"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -6769,11 +8990,36 @@
     "name": "Blue Rose",
     "id": "Blue_Rose",
     "sid": "bluerose",
-    "alias": ["蓝玫瑰", "蓝色玫瑰", "蓝色妖姬"],
+    "alias": [
+      "蓝玫瑰",
+      "蓝色玫瑰",
+      "蓝色妖姬"
+    ],
     "charts": [
-      { "constant": 2, "difficulty": "pst", "id": "Blue_Rose@pst", "level": "2", "note": 595, "songId": "Blue_Rose" },
-      { "constant": 5.5, "difficulty": "prs", "id": "Blue_Rose@prs", "level": "5", "note": 669, "songId": "Blue_Rose" },
-      { "constant": 9.1, "difficulty": "ftr", "id": "Blue_Rose@ftr", "level": "9", "note": 955, "songId": "Blue_Rose" }
+      {
+        "constant": 2,
+        "difficulty": "pst",
+        "id": "Blue_Rose@pst",
+        "level": "2",
+        "note": 595,
+        "songId": "Blue_Rose"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "Blue_Rose@prs",
+        "level": "5",
+        "note": 669,
+        "songId": "Blue_Rose"
+      },
+      {
+        "constant": 9.1,
+        "difficulty": "ftr",
+        "id": "Blue_Rose@ftr",
+        "level": "9",
+        "note": 955,
+        "songId": "Blue_Rose"
+      }
     ],
     "pack": "Divided Heart"
   },
@@ -6783,7 +9029,15 @@
     "name": "La'qryma of the Wasteland",
     "id": "La%27qryma_of_the_Wasteland",
     "sid": "laqryma",
-    "alias": ["废土", "垃圾岛", "荒原之泪", "荒泪之地", "荒泪之岛", "废土之泪", "垃圾场"],
+    "alias": [
+      "废土",
+      "垃圾岛",
+      "荒原之泪",
+      "荒泪之地",
+      "荒泪之岛",
+      "废土之泪",
+      "垃圾场"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -6816,7 +9070,9 @@
         "level": "9+",
         "note": 1161,
         "songId": "La%27qryma_of_the_Wasteland",
-        "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/0/0b/Songs_laqryma_byd.jpg/256px-Songs_laqryma_byd.jpg" }
+        "byd": {
+          "cover": "https://wiki.arcaea.cn/images/thumb/0/0b/Songs_laqryma_byd.jpg/256px-Songs_laqryma_byd.jpg"
+        }
       }
     ],
     "pack": "Memory Archive"
@@ -6827,7 +9083,9 @@
     "name": "Flyburg and Endroll",
     "id": "Flyburg_and_Endroll",
     "sid": "flyburg",
-    "alias": ["飞堡"],
+    "alias": [
+      "飞堡"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -6897,7 +9155,10 @@
     "name": "Kanagawa Cyber Culvert",
     "id": "Kanagawa_Cyber_Culvert",
     "sid": "kanagawa",
-    "alias": ["神奈川电脑暗渠", "神奈川电脑下水道"],
+    "alias": [
+      "神奈川电脑暗渠",
+      "神奈川电脑下水道"
+    ],
     "charts": [
       {
         "constant": 1,
@@ -6943,11 +9204,38 @@
     "name": "ReviXy",
     "id": "ReviXy",
     "sid": "revixy",
-    "alias": ["屑", "逊", "创可贴", "指手画脚", "指指点点"],
+    "alias": [
+      "屑",
+      "逊",
+      "创可贴",
+      "指手画脚",
+      "指指点点"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "ReviXy@pst", "level": "3", "note": 538, "songId": "ReviXy" },
-      { "constant": 6, "difficulty": "prs", "id": "ReviXy@prs", "level": "6", "note": 729, "songId": "ReviXy" },
-      { "constant": 9, "difficulty": "ftr", "id": "ReviXy@ftr", "level": "9", "note": 1047, "songId": "ReviXy" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "ReviXy@pst",
+        "level": "3",
+        "note": 538,
+        "songId": "ReviXy"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "ReviXy@prs",
+        "level": "6",
+        "note": 729,
+        "songId": "ReviXy"
+      },
+      {
+        "constant": 9,
+        "difficulty": "ftr",
+        "id": "ReviXy@ftr",
+        "level": "9",
+        "note": 1047,
+        "songId": "ReviXy"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -6957,11 +9245,34 @@
     "name": "Jump",
     "id": "Jump",
     "sid": "jump",
-    "alias": ["跳跃"],
+    "alias": [
+      "跳跃"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Jump@pst", "level": "4", "note": 531, "songId": "Jump" },
-      { "constant": 6, "difficulty": "prs", "id": "Jump@prs", "level": "6", "note": 622, "songId": "Jump" },
-      { "constant": 9, "difficulty": "ftr", "id": "Jump@ftr", "level": "9", "note": 841, "songId": "Jump" }
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Jump@pst",
+        "level": "4",
+        "note": 531,
+        "songId": "Jump"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Jump@prs",
+        "level": "6",
+        "note": 622,
+        "songId": "Jump"
+      },
+      {
+        "constant": 9,
+        "difficulty": "ftr",
+        "id": "Jump@ftr",
+        "level": "9",
+        "note": 841,
+        "songId": "Jump"
+      }
     ],
     "pack": "Ephemeral Page"
   },
@@ -6971,7 +9282,9 @@
     "name": "Galactic Love",
     "id": "Galactic_Love",
     "sid": "galacticlove",
-    "alias": ["银河之恋"],
+    "alias": [
+      "银河之恋"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -7006,7 +9319,14 @@
     "name": "Empire of Winter",
     "id": "Empire_of_Winter",
     "sid": "empireofwinter",
-    "alias": ["冬国", "雪国", "冬之国", "冬双子", "冬日双子", "冬日帝国"],
+    "alias": [
+      "冬国",
+      "雪国",
+      "冬之国",
+      "冬双子",
+      "冬日双子",
+      "冬日帝国"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -7041,7 +9361,11 @@
     "name": "Evoltex (poppi'n mix)",
     "id": "Evoltex_(poppi%27n_mix)",
     "sid": "evoltex",
-    "alias": ["E旋风", "演变", "999hits"],
+    "alias": [
+      "E旋风",
+      "演变",
+      "999hits"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -7076,7 +9400,10 @@
     "name": "Give Me a Nightmare",
     "id": "Give_Me_a_Nightmare",
     "sid": "givemeanightmare",
-    "alias": ["给我噩梦", "梦魇"],
+    "alias": [
+      "给我噩梦",
+      "梦魇"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -7111,7 +9438,11 @@
     "name": "Chronostasis",
     "id": "Chronostasis",
     "sid": "chronostasis",
-    "alias": ["时停", "停表错觉", "齿轮"],
+    "alias": [
+      "时停",
+      "停表错觉",
+      "齿轮"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -7146,11 +9477,40 @@
     "name": "Maze No.9",
     "id": "Maze_No.9",
     "sid": "mazenine",
-    "alias": ["妹子九", "Maze9", "妹子9", "第九迷宫", "迷宫九", "迷宫9", "九番目的迷路"],
+    "alias": [
+      "妹子九",
+      "Maze9",
+      "妹子9",
+      "第九迷宫",
+      "迷宫九",
+      "迷宫9",
+      "九番目的迷路"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Maze_No.9@pst", "level": "3", "note": 494, "songId": "Maze_No.9" },
-      { "constant": 3.5, "difficulty": "prs", "id": "Maze_No.9@prs", "level": "3", "note": 445, "songId": "Maze_No.9" },
-      { "constant": 8.9, "difficulty": "ftr", "id": "Maze_No.9@ftr", "level": "8", "note": 775, "songId": "Maze_No.9" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Maze_No.9@pst",
+        "level": "3",
+        "note": 494,
+        "songId": "Maze_No.9"
+      },
+      {
+        "constant": 3.5,
+        "difficulty": "prs",
+        "id": "Maze_No.9@prs",
+        "level": "3",
+        "note": 445,
+        "songId": "Maze_No.9"
+      },
+      {
+        "constant": 8.9,
+        "difficulty": "ftr",
+        "id": "Maze_No.9@ftr",
+        "level": "8",
+        "note": 775,
+        "songId": "Maze_No.9"
+      }
     ],
     "pack": "Luminous Sky"
   },
@@ -7160,11 +9520,34 @@
     "name": "MERLIN",
     "id": "MERLIN",
     "sid": "merlin",
-    "alias": ["梅林"],
+    "alias": [
+      "梅林"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "MERLIN@pst", "level": "3", "note": 315, "songId": "MERLIN" },
-      { "constant": 5.5, "difficulty": "prs", "id": "MERLIN@prs", "level": "5", "note": 428, "songId": "MERLIN" },
-      { "constant": 8.9, "difficulty": "ftr", "id": "MERLIN@ftr", "level": "8", "note": 712, "songId": "MERLIN" },
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "MERLIN@pst",
+        "level": "3",
+        "note": 315,
+        "songId": "MERLIN"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "MERLIN@prs",
+        "level": "5",
+        "note": 428,
+        "songId": "MERLIN"
+      },
+      {
+        "constant": 8.9,
+        "difficulty": "ftr",
+        "id": "MERLIN@ftr",
+        "level": "8",
+        "note": 712,
+        "songId": "MERLIN"
+      },
       {
         "constant": 9.4,
         "difficulty": "byd",
@@ -7183,7 +9566,10 @@
     "name": "memoryfactory.lzh",
     "id": "Memoryfactory.lzh",
     "sid": "memoryfactory",
-    "alias": ["记忆工厂", "老字号"],
+    "alias": [
+      "记忆工厂",
+      "老字号"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -7218,7 +9604,9 @@
     "name": "Lawless Point",
     "id": "Lawless_Point",
     "sid": "lawlesspoint",
-    "alias": ["无法地点"],
+    "alias": [
+      "无法地点"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -7253,7 +9641,10 @@
     "name": "Coastal Highway",
     "id": "Coastal_Highway",
     "sid": "coastalhighway",
-    "alias": ["海岸公路", "海岸高速路"],
+    "alias": [
+      "海岸公路",
+      "海岸高速路"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -7288,7 +9679,9 @@
     "name": "next to you",
     "id": "Next_to_you",
     "sid": "nexttoyou",
-    "alias": ["在你身旁"],
+    "alias": [
+      "在你身旁"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -7334,11 +9727,34 @@
     "name": "Antithese",
     "id": "Antithese",
     "sid": "antithese",
-    "alias": ["对比"],
+    "alias": [
+      "对比"
+    ],
     "charts": [
-      { "constant": 2, "difficulty": "pst", "id": "Antithese@pst", "level": "2", "note": 845, "songId": "Antithese" },
-      { "constant": 5, "difficulty": "prs", "id": "Antithese@prs", "level": "5", "note": 826, "songId": "Antithese" },
-      { "constant": 8.8, "difficulty": "ftr", "id": "Antithese@ftr", "level": "8", "note": 877, "songId": "Antithese" },
+      {
+        "constant": 2,
+        "difficulty": "pst",
+        "id": "Antithese@pst",
+        "level": "2",
+        "note": 845,
+        "songId": "Antithese"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Antithese@prs",
+        "level": "5",
+        "note": 826,
+        "songId": "Antithese"
+      },
+      {
+        "constant": 8.8,
+        "difficulty": "ftr",
+        "id": "Antithese@ftr",
+        "level": "8",
+        "note": 877,
+        "songId": "Antithese"
+      },
       {
         "constant": 9.5,
         "difficulty": "byd",
@@ -7359,11 +9775,35 @@
     "name": "Journey",
     "id": "Journey",
     "sid": "journey",
-    "alias": ["石柱", "旅程"],
+    "alias": [
+      "石柱",
+      "旅程"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Journey@pst", "level": "3", "note": 551, "songId": "Journey" },
-      { "constant": 6, "difficulty": "prs", "id": "Journey@prs", "level": "6", "note": 778, "songId": "Journey" },
-      { "constant": 8.8, "difficulty": "ftr", "id": "Journey@ftr", "level": "8", "note": 997, "songId": "Journey" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Journey@pst",
+        "level": "3",
+        "note": 551,
+        "songId": "Journey"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Journey@prs",
+        "level": "6",
+        "note": 778,
+        "songId": "Journey"
+      },
+      {
+        "constant": 8.8,
+        "difficulty": "ftr",
+        "id": "Journey@ftr",
+        "level": "8",
+        "note": 997,
+        "songId": "Journey"
+      }
     ],
     "pack": "Lanota Collaboration"
   },
@@ -7373,7 +9813,11 @@
     "name": "Vivid Theory",
     "id": "Vivid_Theory",
     "sid": "vividtheory",
-    "alias": ["生理", "生动理论", "生动的理论"],
+    "alias": [
+      "生理",
+      "生动理论",
+      "生动的理论"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -7408,7 +9852,12 @@
     "name": "Solitary Dream",
     "id": "Solitary_Dream",
     "sid": "solitarydream",
-    "alias": ["虚空之梦", "虚空梦", "孤梦", "百合"],
+    "alias": [
+      "虚空之梦",
+      "虚空梦",
+      "孤梦",
+      "百合"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -7443,7 +9892,11 @@
     "name": "Particle Arts",
     "id": "Particle_Arts",
     "sid": "particlearts",
-    "alias": ["粒子艺术", "粒子画", "粒画"],
+    "alias": [
+      "粒子艺术",
+      "粒子画",
+      "粒画"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -7478,11 +9931,34 @@
     "name": "Surrender",
     "id": "Surrender",
     "sid": "surrender",
-    "alias": ["投降"],
+    "alias": [
+      "投降"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Surrender@pst", "level": "3", "note": 550, "songId": "Surrender" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Surrender@prs", "level": "6", "note": 721, "songId": "Surrender" },
-      { "constant": 8.8, "difficulty": "ftr", "id": "Surrender@ftr", "level": "8", "note": 925, "songId": "Surrender" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Surrender@pst",
+        "level": "3",
+        "note": 550,
+        "songId": "Surrender"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Surrender@prs",
+        "level": "6",
+        "note": 721,
+        "songId": "Surrender"
+      },
+      {
+        "constant": 8.8,
+        "difficulty": "ftr",
+        "id": "Surrender@ftr",
+        "level": "8",
+        "note": 925,
+        "songId": "Surrender"
+      }
     ],
     "pack": "Memory Archive"
   },
@@ -7492,11 +9968,35 @@
     "name": "Flashback",
     "id": "Flashback",
     "sid": "flashback",
-    "alias": ["闪回", "闪退"],
+    "alias": [
+      "闪回",
+      "闪退"
+    ],
     "charts": [
-      { "constant": 2, "difficulty": "pst", "id": "Flashback@pst", "level": "2", "note": 356, "songId": "Flashback" },
-      { "constant": 5, "difficulty": "prs", "id": "Flashback@prs", "level": "5", "note": 488, "songId": "Flashback" },
-      { "constant": 8.8, "difficulty": "ftr", "id": "Flashback@ftr", "level": "8", "note": 856, "songId": "Flashback" }
+      {
+        "constant": 2,
+        "difficulty": "pst",
+        "id": "Flashback@pst",
+        "level": "2",
+        "note": 356,
+        "songId": "Flashback"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Flashback@prs",
+        "level": "5",
+        "note": 488,
+        "songId": "Flashback"
+      },
+      {
+        "constant": 8.8,
+        "difficulty": "ftr",
+        "id": "Flashback@ftr",
+        "level": "8",
+        "note": 856,
+        "songId": "Flashback"
+      }
     ],
     "pack": "Crimson Solace"
   },
@@ -7506,7 +10006,10 @@
     "name": "Cosmo Pop Funclub",
     "id": "Cosmo_Pop_Funclub",
     "sid": "cosmopop",
-    "alias": ["cpfc", "芭芭拉"],
+    "alias": [
+      "cpfc",
+      "芭芭拉"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -7543,9 +10046,30 @@
     "sid": "cycles",
     "alias": [],
     "charts": [
-      { "constant": 2, "difficulty": "pst", "id": "CYCLES@pst", "level": "2", "note": 389, "songId": "CYCLES" },
-      { "constant": 5, "difficulty": "prs", "id": "CYCLES@prs", "level": "5", "note": 430, "songId": "CYCLES" },
-      { "constant": 8.8, "difficulty": "ftr", "id": "CYCLES@ftr", "level": "8", "note": 695, "songId": "CYCLES" }
+      {
+        "constant": 2,
+        "difficulty": "pst",
+        "id": "CYCLES@pst",
+        "level": "2",
+        "note": 389,
+        "songId": "CYCLES"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "CYCLES@prs",
+        "level": "5",
+        "note": 430,
+        "songId": "CYCLES"
+      },
+      {
+        "constant": 8.8,
+        "difficulty": "ftr",
+        "id": "CYCLES@ftr",
+        "level": "8",
+        "note": 695,
+        "songId": "CYCLES"
+      }
     ],
     "pack": "maimai Collaboration"
   },
@@ -7555,7 +10079,10 @@
     "name": "Beside You",
     "id": "Beside_You",
     "sid": "besideyou",
-    "alias": ["与你同在", "在你身侧"],
+    "alias": [
+      "与你同在",
+      "在你身侧"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -7565,7 +10092,14 @@
         "note": 526,
         "songId": "Beside_You"
       },
-      { "constant": 6, "difficulty": "prs", "id": "Beside_You@prs", "level": "6", "note": 634, "songId": "Beside_You" },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Beside_You@prs",
+        "level": "6",
+        "note": 634,
+        "songId": "Beside_You"
+      },
       {
         "constant": 8.7,
         "difficulty": "ftr",
@@ -7583,7 +10117,9 @@
     "name": "Lights of Muse",
     "id": "Lights_of_Muse",
     "sid": "lightsofmuse",
-    "alias": ["灵光乍现"],
+    "alias": [
+      "灵光乍现"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -7618,7 +10154,15 @@
     "name": "Call My Name feat. Yukacco",
     "id": "Call_My_Name_feat._Yukacco",
     "sid": "callmyname",
-    "alias": ["腿二", "腿2", "腿歌2", "冰激凌", "叫我名字", "呼唤我的名字", "冰淇淋"],
+    "alias": [
+      "腿二",
+      "腿2",
+      "腿歌2",
+      "冰激凌",
+      "叫我名字",
+      "呼唤我的名字",
+      "冰淇淋"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -7653,7 +10197,10 @@
     "name": "Paper Witch",
     "id": "Paper_Witch",
     "sid": "paperwitch",
-    "alias": ["纸巫", "纸上魔法使"],
+    "alias": [
+      "纸巫",
+      "纸上魔法使"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -7688,11 +10235,36 @@
     "name": "Senkyou",
     "id": "Senkyou",
     "sid": "senkyou",
-    "alias": ["仙境", "仙乡", "狐仙"],
+    "alias": [
+      "仙境",
+      "仙乡",
+      "狐仙"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Senkyou@pst", "level": "3", "note": 627, "songId": "Senkyou" },
-      { "constant": 5.5, "difficulty": "prs", "id": "Senkyou@prs", "level": "5", "note": 722, "songId": "Senkyou" },
-      { "constant": 8.7, "difficulty": "ftr", "id": "Senkyou@ftr", "level": "8", "note": 964, "songId": "Senkyou" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Senkyou@pst",
+        "level": "3",
+        "note": 627,
+        "songId": "Senkyou"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "Senkyou@prs",
+        "level": "5",
+        "note": 722,
+        "songId": "Senkyou"
+      },
+      {
+        "constant": 8.7,
+        "difficulty": "ftr",
+        "id": "Senkyou@ftr",
+        "level": "8",
+        "note": 964,
+        "songId": "Senkyou"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -7702,7 +10274,11 @@
     "name": "Quon",
     "id": "Quon_(DJ_Noriken)",
     "sid": "quonwacca",
-    "alias": ["quin", "waccaquon", "quon2"],
+    "alias": [
+      "quin",
+      "waccaquon",
+      "quon2"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -7746,11 +10322,37 @@
     "name": "Grimheart",
     "id": "Grimheart",
     "sid": "grimheart",
-    "alias": ["冷酷的心", "黑心", "冰心", "寒心"],
+    "alias": [
+      "冷酷的心",
+      "黑心",
+      "冰心",
+      "寒心"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Grimheart@pst", "level": "2", "note": 728, "songId": "Grimheart" },
-      { "constant": 5, "difficulty": "prs", "id": "Grimheart@prs", "level": "5", "note": 699, "songId": "Grimheart" },
-      { "constant": 8.6, "difficulty": "ftr", "id": "Grimheart@ftr", "level": "8", "note": 959, "songId": "Grimheart" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Grimheart@pst",
+        "level": "2",
+        "note": 728,
+        "songId": "Grimheart"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Grimheart@prs",
+        "level": "5",
+        "note": 699,
+        "songId": "Grimheart"
+      },
+      {
+        "constant": 8.6,
+        "difficulty": "ftr",
+        "id": "Grimheart@ftr",
+        "level": "8",
+        "note": 959,
+        "songId": "Grimheart"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -7760,7 +10362,10 @@
     "name": "Silent Rush",
     "id": "Silent_Rush",
     "sid": "silentrush",
-    "alias": ["静冲", "潜行"],
+    "alias": [
+      "静冲",
+      "潜行"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -7795,7 +10400,9 @@
     "name": "Gekka (Short Version)",
     "id": "Gekka_(Short_Version)",
     "sid": "gekka",
-    "alias": ["月华"],
+    "alias": [
+      "月华"
+    ],
     "charts": [
       {
         "constant": 4,
@@ -7830,11 +10437,34 @@
     "name": "FREEF4LL",
     "id": "FREEF4LL",
     "sid": "freefall",
-    "alias": ["自由落体"],
+    "alias": [
+      "自由落体"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "FREEF4LL@pst", "level": "4", "note": 589, "songId": "FREEF4LL" },
-      { "constant": 7, "difficulty": "prs", "id": "FREEF4LL@prs", "level": "7", "note": 782, "songId": "FREEF4LL" },
-      { "constant": 8.6, "difficulty": "ftr", "id": "FREEF4LL@ftr", "level": "8", "note": 1023, "songId": "FREEF4LL" },
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "FREEF4LL@pst",
+        "level": "4",
+        "note": 589,
+        "songId": "FREEF4LL"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "FREEF4LL@prs",
+        "level": "7",
+        "note": 782,
+        "songId": "FREEF4LL"
+      },
+      {
+        "constant": 8.6,
+        "difficulty": "ftr",
+        "id": "FREEF4LL@ftr",
+        "level": "8",
+        "note": 1023,
+        "songId": "FREEF4LL"
+      },
       {
         "constant": 9.8,
         "difficulty": "byd",
@@ -7855,11 +10485,35 @@
     "name": "Cosmica",
     "id": "Cosmica",
     "sid": "cosmica",
-    "alias": ["cos米", "宇宙Luna"],
+    "alias": [
+      "cos米",
+      "宇宙Luna"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Cosmica@pst", "level": "2", "note": 428, "songId": "Cosmica" },
-      { "constant": 5, "difficulty": "prs", "id": "Cosmica@prs", "level": "5", "note": 566, "songId": "Cosmica" },
-      { "constant": 8.5, "difficulty": "ftr", "id": "Cosmica@ftr", "level": "8", "note": 773, "songId": "Cosmica" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Cosmica@pst",
+        "level": "2",
+        "note": 428,
+        "songId": "Cosmica"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Cosmica@prs",
+        "level": "5",
+        "note": 566,
+        "songId": "Cosmica"
+      },
+      {
+        "constant": 8.5,
+        "difficulty": "ftr",
+        "id": "Cosmica@ftr",
+        "level": "8",
+        "note": 773,
+        "songId": "Cosmica"
+      }
     ],
     "pack": "Binary Enfold"
   },
@@ -7869,11 +10523,34 @@
     "name": "Dandelion",
     "id": "Dandelion",
     "sid": "dandelion",
-    "alias": ["蒲公英"],
+    "alias": [
+      "蒲公英"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Dandelion@pst", "level": "2", "note": 391, "songId": "Dandelion" },
-      { "constant": 6, "difficulty": "prs", "id": "Dandelion@prs", "level": "6", "note": 698, "songId": "Dandelion" },
-      { "constant": 8.5, "difficulty": "ftr", "id": "Dandelion@ftr", "level": "8", "note": 921, "songId": "Dandelion" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Dandelion@pst",
+        "level": "2",
+        "note": 391,
+        "songId": "Dandelion"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Dandelion@prs",
+        "level": "6",
+        "note": 698,
+        "songId": "Dandelion"
+      },
+      {
+        "constant": 8.5,
+        "difficulty": "ftr",
+        "id": "Dandelion@ftr",
+        "level": "8",
+        "note": 921,
+        "songId": "Dandelion"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -7883,11 +10560,37 @@
     "name": "DDD",
     "id": "DDD",
     "sid": "ddd",
-    "alias": ["3d", "三D", "D立方", "单推"],
+    "alias": [
+      "3d",
+      "三D",
+      "D立方",
+      "单推"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "DDD@pst", "level": "2", "note": 363, "songId": "DDD" },
-      { "constant": 6.5, "difficulty": "prs", "id": "DDD@prs", "level": "6", "note": 484, "songId": "DDD" },
-      { "constant": 8.5, "difficulty": "ftr", "id": "DDD@ftr", "level": "8", "note": 653, "songId": "DDD" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "DDD@pst",
+        "level": "2",
+        "note": 363,
+        "songId": "DDD"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "DDD@prs",
+        "level": "6",
+        "note": 484,
+        "songId": "DDD"
+      },
+      {
+        "constant": 8.5,
+        "difficulty": "ftr",
+        "id": "DDD@ftr",
+        "level": "8",
+        "note": 653,
+        "songId": "DDD"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -7897,11 +10600,35 @@
     "name": "Reinvent",
     "id": "Reinvent",
     "sid": "reinvent",
-    "alias": ["改造", "冰红茶"],
+    "alias": [
+      "改造",
+      "冰红茶"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Reinvent@pst", "level": "2", "note": 570, "songId": "Reinvent" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Reinvent@prs", "level": "6", "note": 703, "songId": "Reinvent" },
-      { "constant": 8.5, "difficulty": "ftr", "id": "Reinvent@ftr", "level": "8", "note": 852, "songId": "Reinvent" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Reinvent@pst",
+        "level": "2",
+        "note": 570,
+        "songId": "Reinvent"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Reinvent@prs",
+        "level": "6",
+        "note": 703,
+        "songId": "Reinvent"
+      },
+      {
+        "constant": 8.5,
+        "difficulty": "ftr",
+        "id": "Reinvent@ftr",
+        "level": "8",
+        "note": 852,
+        "songId": "Reinvent"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -7911,11 +10638,39 @@
     "name": "Babaroque",
     "id": "Babaroque",
     "sid": "babaroque",
-    "alias": ["BBQ", "BBRQ", "烧烤", "巴巴洛克", "叭叭雀", "8bq"],
+    "alias": [
+      "BBQ",
+      "BBRQ",
+      "烧烤",
+      "巴巴洛克",
+      "叭叭雀",
+      "8bq"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Babaroque@pst", "level": "3", "note": 402, "songId": "Babaroque" },
-      { "constant": 6.5, "difficulty": "prs", "id": "Babaroque@prs", "level": "6", "note": 645, "songId": "Babaroque" },
-      { "constant": 8.5, "difficulty": "ftr", "id": "Babaroque@ftr", "level": "8", "note": 808, "songId": "Babaroque" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Babaroque@pst",
+        "level": "3",
+        "note": 402,
+        "songId": "Babaroque"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Babaroque@prs",
+        "level": "6",
+        "note": 645,
+        "songId": "Babaroque"
+      },
+      {
+        "constant": 8.5,
+        "difficulty": "ftr",
+        "id": "Babaroque@ftr",
+        "level": "8",
+        "note": 808,
+        "songId": "Babaroque"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -7925,7 +10680,14 @@
     "name": "cry of viyella",
     "id": "Cry_of_viyella",
     "sid": "viyella",
-    "alias": ["维耶拉", "维耶拉之泣", "维耶拉的哭泣", "维也勒", "维也勒之泣", "维也勒的哭泣"],
+    "alias": [
+      "维耶拉",
+      "维耶拉之泣",
+      "维耶拉的哭泣",
+      "维也勒",
+      "维也勒之泣",
+      "维也勒的哭泣"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -7960,7 +10722,10 @@
     "name": "Harutopia ~Utopia of Spring~",
     "id": "Harutopia_~Utopia_of_Spring~",
     "sid": "harutopia",
-    "alias": ["乌托邦之春", "春之乌托邦"],
+    "alias": [
+      "乌托邦之春",
+      "春之乌托邦"
+    ],
     "charts": [
       {
         "constant": 1,
@@ -7995,11 +10760,34 @@
     "name": "Chelsea",
     "id": "Chelsea",
     "sid": "chelsea",
-    "alias": ["切尔西"],
+    "alias": [
+      "切尔西"
+    ],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Chelsea@pst", "level": "3", "note": 388, "songId": "Chelsea" },
-      { "constant": 6, "difficulty": "prs", "id": "Chelsea@prs", "level": "6", "note": 503, "songId": "Chelsea" },
-      { "constant": 8.5, "difficulty": "ftr", "id": "Chelsea@ftr", "level": "8", "note": 650, "songId": "Chelsea" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Chelsea@pst",
+        "level": "3",
+        "note": 388,
+        "songId": "Chelsea"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Chelsea@prs",
+        "level": "6",
+        "note": 503,
+        "songId": "Chelsea"
+      },
+      {
+        "constant": 8.5,
+        "difficulty": "ftr",
+        "id": "Chelsea@ftr",
+        "level": "8",
+        "note": 650,
+        "songId": "Chelsea"
+      }
     ],
     "pack": "Sunset Radiance"
   },
@@ -8011,9 +10799,30 @@
     "sid": "lumia",
     "alias": [],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Lumia@pst", "level": "2", "note": 469, "songId": "Lumia" },
-      { "constant": 5.5, "difficulty": "prs", "id": "Lumia@prs", "level": "5", "note": 438, "songId": "Lumia" },
-      { "constant": 8.4, "difficulty": "ftr", "id": "Lumia@ftr", "level": "8", "note": 961, "songId": "Lumia" },
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Lumia@pst",
+        "level": "2",
+        "note": 469,
+        "songId": "Lumia"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "Lumia@prs",
+        "level": "5",
+        "note": 438,
+        "songId": "Lumia"
+      },
+      {
+        "constant": 8.4,
+        "difficulty": "ftr",
+        "id": "Lumia@ftr",
+        "level": "8",
+        "note": 961,
+        "songId": "Lumia"
+      },
       {
         "constant": 9.5,
         "difficulty": "byd",
@@ -8021,7 +10830,9 @@
         "level": "9",
         "note": 814,
         "songId": "Lumia",
-        "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/0/0f/Songs_lumia_byd.jpg/256px-Songs_lumia_byd.jpg" }
+        "byd": {
+          "cover": "https://wiki.arcaea.cn/images/thumb/0/0f/Songs_lumia_byd.jpg/256px-Songs_lumia_byd.jpg"
+        }
       }
     ],
     "pack": "Eternal Core"
@@ -8032,7 +10843,9 @@
     "name": "Snow White",
     "id": "Snow_White",
     "sid": "snowwhite",
-    "alias": ["雪白"],
+    "alias": [
+      "雪白"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -8042,7 +10855,14 @@
         "note": 486,
         "songId": "Snow_White"
       },
-      { "constant": 5, "difficulty": "prs", "id": "Snow_White@prs", "level": "5", "note": 672, "songId": "Snow_White" },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Snow_White@prs",
+        "level": "5",
+        "note": 672,
+        "songId": "Snow_White"
+      },
       {
         "constant": 8.4,
         "difficulty": "ftr",
@@ -8060,7 +10880,11 @@
     "name": "Eccentric Tale",
     "id": "Eccentric_Tale",
     "sid": "eccentrictale",
-    "alias": ["怪诞", "诡谈", "怪谈"],
+    "alias": [
+      "怪诞",
+      "诡谈",
+      "怪谈"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -8095,7 +10919,14 @@
     "name": "enchanted love",
     "id": "Enchanted_love",
     "sid": "enchantedlove",
-    "alias": ["迷恋", "赞爱", "附魔爱", "附魔的爱", "青蛙王子", "颂爱"],
+    "alias": [
+      "迷恋",
+      "赞爱",
+      "附魔爱",
+      "附魔的爱",
+      "青蛙王子",
+      "颂爱"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -8130,11 +10961,35 @@
     "name": "Moonheart",
     "id": "Moonheart",
     "sid": "moonheart",
-    "alias": ["月心", "月核"],
+    "alias": [
+      "月心",
+      "月核"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Moonheart@pst", "level": "2", "note": 449, "songId": "Moonheart" },
-      { "constant": 5.5, "difficulty": "prs", "id": "Moonheart@prs", "level": "5", "note": 566, "songId": "Moonheart" },
-      { "constant": 8.4, "difficulty": "ftr", "id": "Moonheart@ftr", "level": "8", "note": 947, "songId": "Moonheart" },
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Moonheart@pst",
+        "level": "2",
+        "note": 449,
+        "songId": "Moonheart"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "Moonheart@prs",
+        "level": "5",
+        "note": 566,
+        "songId": "Moonheart"
+      },
+      {
+        "constant": 8.4,
+        "difficulty": "ftr",
+        "id": "Moonheart@ftr",
+        "level": "8",
+        "note": 947,
+        "songId": "Moonheart"
+      },
       {
         "constant": 9.7,
         "difficulty": "byd",
@@ -8155,7 +11010,9 @@
     "name": "Purgatorium",
     "id": "Purgatorium",
     "sid": "purgatorium",
-    "alias": ["炼狱"],
+    "alias": [
+      "炼狱"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -8201,7 +11058,12 @@
     "name": "Rabbit In The Black Room",
     "id": "Rabbit_In_The_Black_Room",
     "sid": "rabbitintheblackroom",
-    "alias": ["黑兔子", "黑兔屋", "黑屋兔", "兔子在黑屋"],
+    "alias": [
+      "黑兔子",
+      "黑兔屋",
+      "黑屋兔",
+      "兔子在黑屋"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -8236,7 +11098,11 @@
     "name": "INTERNET OVERDOSE",
     "id": "INTERNET_OVERDOSE",
     "sid": "internetoverdose",
-    "alias": ["主播女孩重度依赖", "升天", "糖糖"],
+    "alias": [
+      "主播女孩重度依赖",
+      "升天",
+      "糖糖"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -8271,7 +11137,10 @@
     "name": "REconstruction",
     "id": "REconstruction",
     "sid": "reconstruction",
-    "alias": ["再构筑", "重构"],
+    "alias": [
+      "再构筑",
+      "重构"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -8306,7 +11175,11 @@
     "name": "Tsuki ni Murakumo, Hana ni Kaze",
     "id": "Tsuki_ni_Murakumo,_Hana_ni_Kaze",
     "sid": "tsukinimurakumo",
-    "alias": ["月映丛云风语花", "丛云遮月风落花", "闲云遮月清风袭花"],
+    "alias": [
+      "月映丛云风语花",
+      "丛云遮月风落花",
+      "闲云遮月清风袭花"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -8341,7 +11214,12 @@
     "name": "Bookmaker (2D Version)",
     "id": "Bookmaker_(2D_Version)",
     "sid": "bookmaker",
-    "alias": ["造书者", "写书人", "印刷工", "图书制造者"],
+    "alias": [
+      "造书者",
+      "写书人",
+      "印刷工",
+      "图书制造者"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -8387,11 +11265,35 @@
     "name": "Oblivia",
     "id": "Oblivia",
     "sid": "oblivia",
-    "alias": ["遗忘", "健忘"],
+    "alias": [
+      "遗忘",
+      "健忘"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Oblivia@pst", "level": "3", "note": 574, "songId": "Oblivia" },
-      { "constant": 5, "difficulty": "prs", "id": "Oblivia@prs", "level": "5", "note": 517, "songId": "Oblivia" },
-      { "constant": 8.3, "difficulty": "ftr", "id": "Oblivia@ftr", "level": "8", "note": 956, "songId": "Oblivia" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Oblivia@pst",
+        "level": "3",
+        "note": 574,
+        "songId": "Oblivia"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Oblivia@prs",
+        "level": "5",
+        "note": 517,
+        "songId": "Oblivia"
+      },
+      {
+        "constant": 8.3,
+        "difficulty": "ftr",
+        "id": "Oblivia@ftr",
+        "level": "8",
+        "note": 956,
+        "songId": "Oblivia"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -8436,7 +11338,10 @@
     "name": "April showers",
     "id": "April_showers",
     "sid": "aprilshowers",
-    "alias": ["四月雨", "四月的雨"],
+    "alias": [
+      "四月雨",
+      "四月的雨"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -8471,7 +11376,11 @@
     "name": "Altair (feat. *spiLa*)",
     "id": "Altair_(feat._*spiLa*)",
     "sid": "altair",
-    "alias": ["牛郎星", "牵牛星", "阿特尔"],
+    "alias": [
+      "牛郎星",
+      "牵牛星",
+      "阿特尔"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -8506,7 +11415,12 @@
     "name": "Dot to Dot feat. shully",
     "id": "Dot_to_Dot_feat._shully",
     "sid": "dottodot",
-    "alias": ["DTD", "D2D", "点对点", "草莓"],
+    "alias": [
+      "DTD",
+      "D2D",
+      "点对点",
+      "草莓"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -8541,7 +11455,11 @@
     "name": "Tie me down gently",
     "id": "Tie_me_down_gently",
     "sid": "tiemedowngently",
-    "alias": ["TMDG", "绑我", "束缚"],
+    "alias": [
+      "TMDG",
+      "绑我",
+      "束缚"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -8576,7 +11494,10 @@
     "name": "Shades of Light in a Transcendent Realm",
     "id": "Shades_of_Light_in_a_Transcendent_Realm",
     "sid": "shadesoflight",
-    "alias": ["上界光之影", "光影"],
+    "alias": [
+      "上界光之影",
+      "光影"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -8622,11 +11543,36 @@
     "name": "san skia",
     "id": "San_skia",
     "sid": "sanskia",
-    "alias": ["影子", "萝莉对立", "幼对立"],
+    "alias": [
+      "影子",
+      "萝莉对立",
+      "幼对立"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "San_skia@pst", "level": "3", "note": 670, "songId": "San_skia" },
-      { "constant": 6, "difficulty": "prs", "id": "San_skia@prs", "level": "6", "note": 783, "songId": "San_skia" },
-      { "constant": 8.3, "difficulty": "ftr", "id": "San_skia@ftr", "level": "8", "note": 1046, "songId": "San_skia" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "San_skia@pst",
+        "level": "3",
+        "note": 670,
+        "songId": "San_skia"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "San_skia@prs",
+        "level": "6",
+        "note": 783,
+        "songId": "San_skia"
+      },
+      {
+        "constant": 8.3,
+        "difficulty": "ftr",
+        "id": "San_skia@ftr",
+        "level": "8",
+        "note": 1046,
+        "songId": "San_skia"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -8636,7 +11582,9 @@
     "name": "One Last Drive",
     "id": "One_Last_Drive",
     "sid": "onelastdrive",
-    "alias": ["最后一次开车"],
+    "alias": [
+      "最后一次开车"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -8671,7 +11619,10 @@
     "name": "blue comet",
     "id": "Blue_comet",
     "sid": "bluecomet",
-    "alias": ["蓝星", "蓝色彗星"],
+    "alias": [
+      "蓝星",
+      "蓝色彗星"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -8681,7 +11632,14 @@
         "note": 494,
         "songId": "Blue_comet"
       },
-      { "constant": 5, "difficulty": "prs", "id": "Blue_comet@prs", "level": "5", "note": 645, "songId": "Blue_comet" },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Blue_comet@prs",
+        "level": "5",
+        "note": 645,
+        "songId": "Blue_comet"
+      },
       {
         "constant": 8.2,
         "difficulty": "ftr",
@@ -8699,7 +11657,9 @@
     "name": "Hall of Mirrors",
     "id": "Hall_of_Mirrors",
     "sid": "hallofmirrors",
-    "alias": ["镜厅"],
+    "alias": [
+      "镜厅"
+    ],
     "charts": [
       {
         "constant": 3,
@@ -8734,7 +11694,11 @@
     "name": "1F√",
     "id": "1F%E2%88%9A",
     "sid": "onefr",
-    "alias": ["根号", "一楼", "一次全连"],
+    "alias": [
+      "根号",
+      "一楼",
+      "一次全连"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -8769,11 +11733,35 @@
     "name": "Lucifer",
     "id": "Lucifer",
     "sid": "lucifer",
-    "alias": ["路西法", "螺蛳粉"],
+    "alias": [
+      "路西法",
+      "螺蛳粉"
+    ],
     "charts": [
-      { "constant": 3.5, "difficulty": "pst", "id": "Lucifer@pst", "level": "3", "note": 424, "songId": "Lucifer" },
-      { "constant": 5.5, "difficulty": "prs", "id": "Lucifer@prs", "level": "5", "note": 506, "songId": "Lucifer" },
-      { "constant": 8.2, "difficulty": "ftr", "id": "Lucifer@ftr", "level": "8", "note": 861, "songId": "Lucifer" }
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Lucifer@pst",
+        "level": "3",
+        "note": 424,
+        "songId": "Lucifer"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "Lucifer@prs",
+        "level": "5",
+        "note": 506,
+        "songId": "Lucifer"
+      },
+      {
+        "constant": 8.2,
+        "difficulty": "ftr",
+        "id": "Lucifer@ftr",
+        "level": "8",
+        "note": 861,
+        "songId": "Lucifer"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -8783,7 +11771,9 @@
     "name": "Genesis",
     "id": "Genesis_(Iris)",
     "sid": "genesis",
-    "alias": ["起源"],
+    "alias": [
+      "起源"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -8818,11 +11808,35 @@
     "name": "Hikari",
     "id": "Hikari",
     "sid": "hikari",
-    "alias": ["光明", "暗光"],
+    "alias": [
+      "光明",
+      "暗光"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Hikari@pst", "level": "2", "note": 237, "songId": "Hikari" },
-      { "constant": 6, "difficulty": "prs", "id": "Hikari@prs", "level": "6", "note": 450, "songId": "Hikari" },
-      { "constant": 8.1, "difficulty": "ftr", "id": "Hikari@ftr", "level": "8", "note": 684, "songId": "Hikari" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Hikari@pst",
+        "level": "2",
+        "note": 237,
+        "songId": "Hikari"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Hikari@prs",
+        "level": "6",
+        "note": 450,
+        "songId": "Hikari"
+      },
+      {
+        "constant": 8.1,
+        "difficulty": "ftr",
+        "id": "Hikari@ftr",
+        "level": "8",
+        "note": 684,
+        "songId": "Hikari"
+      }
     ],
     "pack": "Tone Sphere Collaboration"
   },
@@ -8834,9 +11848,30 @@
     "sid": "dialnote",
     "alias": [],
     "charts": [
-      { "constant": 3, "difficulty": "pst", "id": "Dialnote@pst", "level": "3", "note": 393, "songId": "Dialnote" },
-      { "constant": 6, "difficulty": "prs", "id": "Dialnote@prs", "level": "6", "note": 548, "songId": "Dialnote" },
-      { "constant": 8.1, "difficulty": "ftr", "id": "Dialnote@ftr", "level": "8", "note": 684, "songId": "Dialnote" }
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "Dialnote@pst",
+        "level": "3",
+        "note": 393,
+        "songId": "Dialnote"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "Dialnote@prs",
+        "level": "6",
+        "note": 548,
+        "songId": "Dialnote"
+      },
+      {
+        "constant": 8.1,
+        "difficulty": "ftr",
+        "id": "Dialnote@ftr",
+        "level": "8",
+        "note": 684,
+        "songId": "Dialnote"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -8846,7 +11881,9 @@
     "name": "I've heard it said",
     "id": "I%27ve_heard_it_said",
     "sid": "hearditsaid",
-    "alias": ["我听到它说"],
+    "alias": [
+      "我听到它说"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -8881,11 +11918,36 @@
     "name": "Diode",
     "id": "Diode",
     "sid": "diode",
-    "alias": ["二极管", "霓虹灯管", "免费红"],
+    "alias": [
+      "二极管",
+      "霓虹灯管",
+      "免费红"
+    ],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Diode@pst", "level": "2", "note": 452, "songId": "Diode" },
-      { "constant": 5.5, "difficulty": "prs", "id": "Diode@prs", "level": "5", "note": 472, "songId": "Diode" },
-      { "constant": 8.1, "difficulty": "ftr", "id": "Diode@ftr", "level": "8", "note": 709, "songId": "Diode" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Diode@pst",
+        "level": "2",
+        "note": 452,
+        "songId": "Diode"
+      },
+      {
+        "constant": 5.5,
+        "difficulty": "prs",
+        "id": "Diode@prs",
+        "level": "5",
+        "note": 472,
+        "songId": "Diode"
+      },
+      {
+        "constant": 8.1,
+        "difficulty": "ftr",
+        "id": "Diode@ftr",
+        "level": "8",
+        "note": 709,
+        "songId": "Diode"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -8895,7 +11957,9 @@
     "name": "Relentless",
     "id": "Relentless",
     "sid": "relentless",
-    "alias": ["热门"],
+    "alias": [
+      "热门"
+    ],
     "charts": [
       {
         "constant": 4.5,
@@ -8913,7 +11977,14 @@
         "note": 722,
         "songId": "Relentless"
       },
-      { "constant": 8, "difficulty": "ftr", "id": "Relentless@ftr", "level": "8", "note": 1015, "songId": "Relentless" }
+      {
+        "constant": 8,
+        "difficulty": "ftr",
+        "id": "Relentless@ftr",
+        "level": "8",
+        "note": 1015,
+        "songId": "Relentless"
+      }
     ],
     "pack": "Eternal Core"
   },
@@ -8923,7 +11994,10 @@
     "name": "world.execute(me);",
     "id": "World.execute(me);",
     "sid": "worldexecuteme",
-    "alias": ["世界杀我", "世界处刑"],
+    "alias": [
+      "世界杀我",
+      "世界处刑"
+    ],
     "charts": [
       {
         "constant": 3.5,
@@ -8960,9 +12034,30 @@
     "sid": "prism",
     "alias": [],
     "charts": [
-      { "constant": 2, "difficulty": "pst", "id": "Prism@pst", "level": "2", "note": 476, "songId": "Prism" },
-      { "constant": 5, "difficulty": "prs", "id": "Prism@prs", "level": "5", "note": 544, "songId": "Prism" },
-      { "constant": 8, "difficulty": "ftr", "id": "Prism@ftr", "level": "8", "note": 785, "songId": "Prism" }
+      {
+        "constant": 2,
+        "difficulty": "pst",
+        "id": "Prism@pst",
+        "level": "2",
+        "note": 476,
+        "songId": "Prism"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Prism@prs",
+        "level": "5",
+        "note": 544,
+        "songId": "Prism"
+      },
+      {
+        "constant": 8,
+        "difficulty": "ftr",
+        "id": "Prism@ftr",
+        "level": "8",
+        "note": 785,
+        "songId": "Prism"
+      }
     ],
     "pack": "Lanota Collaboration"
   },
@@ -8972,7 +12067,9 @@
     "name": "First Snow",
     "id": "First_Snow",
     "sid": "firstsnow",
-    "alias": ["初雪"],
+    "alias": [
+      "初雪"
+    ],
     "charts": [
       {
         "constant": 2.5,
@@ -9007,7 +12104,10 @@
     "name": "Clotho and the stargazer",
     "id": "Clotho_and_the_stargazer",
     "sid": "clotho",
-    "alias": ["观星者", "行星观测者"],
+    "alias": [
+      "观星者",
+      "行星观测者"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -9042,7 +12142,12 @@
     "name": "Moonlight of Sand Castle",
     "id": "Moonlight_of_Sand_Castle",
     "sid": "moonlightofsandcastle",
-    "alias": ["月光沙堡", "月下沙堡", "月光沙城", "沙堡月光"],
+    "alias": [
+      "月光沙堡",
+      "月下沙堡",
+      "月光沙城",
+      "沙堡月光"
+    ],
     "charts": [
       {
         "constant": 1.5,
@@ -9079,9 +12184,30 @@
     "sid": "inkarusi",
     "alias": [],
     "charts": [
-      { "constant": 2, "difficulty": "pst", "id": "Inkar-usi@pst", "level": "2", "note": 276, "songId": "Inkar-usi" },
-      { "constant": 4, "difficulty": "prs", "id": "Inkar-usi@prs", "level": "4", "note": 326, "songId": "Inkar-usi" },
-      { "constant": 7.5, "difficulty": "ftr", "id": "Inkar-usi@ftr", "level": "7", "note": 463, "songId": "Inkar-usi" }
+      {
+        "constant": 2,
+        "difficulty": "pst",
+        "id": "Inkar-usi@pst",
+        "level": "2",
+        "note": 276,
+        "songId": "Inkar-usi"
+      },
+      {
+        "constant": 4,
+        "difficulty": "prs",
+        "id": "Inkar-usi@prs",
+        "level": "4",
+        "note": 326,
+        "songId": "Inkar-usi"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "ftr",
+        "id": "Inkar-usi@ftr",
+        "level": "7",
+        "note": 463,
+        "songId": "Inkar-usi"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -9091,11 +12217,36 @@
     "name": "Suomi",
     "id": "Suomi",
     "sid": "suomi",
-    "alias": ["扭秧歌", "索米", "广播体操"],
+    "alias": [
+      "扭秧歌",
+      "索米",
+      "广播体操"
+    ],
     "charts": [
-      { "constant": 2, "difficulty": "pst", "id": "Suomi@pst", "level": "2", "note": 368, "songId": "Suomi" },
-      { "constant": 5, "difficulty": "prs", "id": "Suomi@prs", "level": "5", "note": 550, "songId": "Suomi" },
-      { "constant": 7.5, "difficulty": "ftr", "id": "Suomi@ftr", "level": "7", "note": 818, "songId": "Suomi" }
+      {
+        "constant": 2,
+        "difficulty": "pst",
+        "id": "Suomi@pst",
+        "level": "2",
+        "note": 368,
+        "songId": "Suomi"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Suomi@prs",
+        "level": "5",
+        "note": 550,
+        "songId": "Suomi"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "ftr",
+        "id": "Suomi@ftr",
+        "level": "7",
+        "note": 818,
+        "songId": "Suomi"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -9105,7 +12256,11 @@
     "name": "Romance Wars",
     "id": "Romance_Wars",
     "sid": "romancewars",
-    "alias": ["罗马战争", "浪漫战争", "恋爱战争"],
+    "alias": [
+      "罗马战争",
+      "浪漫战争",
+      "恋爱战争"
+    ],
     "charts": [
       {
         "constant": 1,
@@ -9140,7 +12295,11 @@
     "name": "Infinity Heaven",
     "id": "Infinity_Heaven",
     "sid": "infinityheaven",
-    "alias": ["无限天堂", "无尽天堂", "蔬菜大棚"],
+    "alias": [
+      "无限天堂",
+      "无尽天堂",
+      "蔬菜大棚"
+    ],
     "charts": [
       {
         "constant": 1.5,
@@ -9188,9 +12347,30 @@
     "sid": "rise",
     "alias": [],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Rise@pst", "level": "2", "note": 322, "songId": "Rise" },
-      { "constant": 4, "difficulty": "prs", "id": "Rise@prs", "level": "4", "note": 599, "songId": "Rise" },
-      { "constant": 7.5, "difficulty": "ftr", "id": "Rise@ftr", "level": "7", "note": 788, "songId": "Rise" }
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Rise@pst",
+        "level": "2",
+        "note": 322,
+        "songId": "Rise"
+      },
+      {
+        "constant": 4,
+        "difficulty": "prs",
+        "id": "Rise@prs",
+        "level": "4",
+        "note": 599,
+        "songId": "Rise"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "ftr",
+        "id": "Rise@ftr",
+        "level": "7",
+        "note": 788,
+        "songId": "Rise"
+      }
     ],
     "pack": "Arcaea"
   },
@@ -9200,7 +12380,9 @@
     "name": "Brand new world",
     "id": "Brand_new_world",
     "sid": "brandnewworld",
-    "alias": ["全新世界"],
+    "alias": [
+      "全新世界"
+    ],
     "charts": [
       {
         "constant": 2,
@@ -9268,7 +12450,9 @@
         "level": "9+",
         "note": 1040,
         "songId": "Dement_~after_legend~",
-        "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/5/57/Songs_dement_byd.jpg/256px-Songs_dement_byd.jpg" }
+        "byd": {
+          "cover": "https://wiki.arcaea.cn/images/thumb/5/57/Songs_dement_byd.jpg/256px-Songs_dement_byd.jpg"
+        }
       }
     ],
     "pack": "Arcaea"
@@ -9279,11 +12463,36 @@
     "name": "Paradise",
     "id": "Paradise",
     "sid": "paradise",
-    "alias": ["乐园", "伊甸园", "天堂"],
+    "alias": [
+      "乐园",
+      "伊甸园",
+      "天堂"
+    ],
     "charts": [
-      { "constant": 1, "difficulty": "pst", "id": "Paradise@pst", "level": "1", "note": 253, "songId": "Paradise" },
-      { "constant": 4, "difficulty": "prs", "id": "Paradise@prs", "level": "4", "note": 349, "songId": "Paradise" },
-      { "constant": 7.5, "difficulty": "ftr", "id": "Paradise@ftr", "level": "7", "note": 729, "songId": "Paradise" }
+      {
+        "constant": 1,
+        "difficulty": "pst",
+        "id": "Paradise@pst",
+        "level": "1",
+        "note": 253,
+        "songId": "Paradise"
+      },
+      {
+        "constant": 4,
+        "difficulty": "prs",
+        "id": "Paradise@prs",
+        "level": "4",
+        "note": 349,
+        "songId": "Paradise"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "ftr",
+        "id": "Paradise@ftr",
+        "level": "7",
+        "note": 729,
+        "songId": "Paradise"
+      }
     ],
     "pack": "Crimson Solace"
   },
@@ -9293,7 +12502,11 @@
     "name": "Dream goes on",
     "id": "Dream_goes_on",
     "sid": "dreamgoeson",
-    "alias": ["梦想启程", "梦开始的地方", "续梦"],
+    "alias": [
+      "梦想启程",
+      "梦开始的地方",
+      "续梦"
+    ],
     "charts": [
       {
         "constant": 1.5,
@@ -9328,11 +12541,38 @@
     "name": "Fairytale",
     "id": "Fairytale",
     "sid": "fairytale",
-    "alias": ["童话", "草房子", "风车屋", "农场", "新手村"],
+    "alias": [
+      "童话",
+      "草房子",
+      "风车屋",
+      "农场",
+      "新手村"
+    ],
     "charts": [
-      { "constant": 1, "difficulty": "pst", "id": "Fairytale@pst", "level": "1", "note": 336, "songId": "Fairytale" },
-      { "constant": 3.5, "difficulty": "prs", "id": "Fairytale@prs", "level": "3", "note": 511, "songId": "Fairytale" },
-      { "constant": 7, "difficulty": "ftr", "id": "Fairytale@ftr", "level": "7", "note": 782, "songId": "Fairytale" },
+      {
+        "constant": 1,
+        "difficulty": "pst",
+        "id": "Fairytale@pst",
+        "level": "1",
+        "note": 336,
+        "songId": "Fairytale"
+      },
+      {
+        "constant": 3.5,
+        "difficulty": "prs",
+        "id": "Fairytale@prs",
+        "level": "3",
+        "note": 511,
+        "songId": "Fairytale"
+      },
+      {
+        "constant": 7,
+        "difficulty": "ftr",
+        "id": "Fairytale@ftr",
+        "level": "7",
+        "note": 782,
+        "songId": "Fairytale"
+      },
       {
         "constant": 9.5,
         "difficulty": "byd",
@@ -9355,9 +12595,30 @@
     "sid": "blossoms",
     "alias": [],
     "charts": [
-      { "constant": 1, "difficulty": "pst", "id": "Blossoms@pst", "level": "1", "note": 275, "songId": "Blossoms" },
-      { "constant": 4, "difficulty": "prs", "id": "Blossoms@prs", "level": "4", "note": 383, "songId": "Blossoms" },
-      { "constant": 7, "difficulty": "ftr", "id": "Blossoms@ftr", "level": "7", "note": 655, "songId": "Blossoms" }
+      {
+        "constant": 1,
+        "difficulty": "pst",
+        "id": "Blossoms@pst",
+        "level": "1",
+        "note": 275,
+        "songId": "Blossoms"
+      },
+      {
+        "constant": 4,
+        "difficulty": "prs",
+        "id": "Blossoms@prs",
+        "level": "4",
+        "note": 383,
+        "songId": "Blossoms"
+      },
+      {
+        "constant": 7,
+        "difficulty": "ftr",
+        "id": "Blossoms@ftr",
+        "level": "7",
+        "note": 655,
+        "songId": "Blossoms"
+      }
     ],
     "pack": "Ambivalent Vision"
   },
@@ -9369,9 +12630,30 @@
     "sid": "vexaria",
     "alias": [],
     "charts": [
-      { "constant": 2.5, "difficulty": "pst", "id": "Vexaria@pst", "level": "2", "note": 369, "songId": "Vexaria" },
-      { "constant": 5, "difficulty": "prs", "id": "Vexaria@prs", "level": "5", "note": 534, "songId": "Vexaria" },
-      { "constant": 7, "difficulty": "ftr", "id": "Vexaria@ftr", "level": "7", "note": 734, "songId": "Vexaria" },
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Vexaria@pst",
+        "level": "2",
+        "note": 369,
+        "songId": "Vexaria"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Vexaria@prs",
+        "level": "5",
+        "note": 534,
+        "songId": "Vexaria"
+      },
+      {
+        "constant": 7,
+        "difficulty": "ftr",
+        "id": "Vexaria@ftr",
+        "level": "7",
+        "note": 734,
+        "songId": "Vexaria"
+      },
       {
         "constant": 8.8,
         "difficulty": "byd",
@@ -9379,7 +12661,9 @@
         "level": "8",
         "note": 785,
         "songId": "Vexaria",
-        "byd": { "cover": "https://wiki.arcaea.cn/images/thumb/2/29/Songs_vexaria_byd.jpg/256px-Songs_vexaria_byd.jpg" }
+        "byd": {
+          "cover": "https://wiki.arcaea.cn/images/thumb/2/29/Songs_vexaria_byd.jpg/256px-Songs_vexaria_byd.jpg"
+        }
       }
     ],
     "pack": "Arcaea"
@@ -9390,7 +12674,11 @@
     "name": "Sayonara Hatsukoi",
     "id": "Sayonara_Hatsukoi",
     "sid": "sayonarahatsukoi",
-    "alias": ["再见初恋", "失恋", "再见世征"],
+    "alias": [
+      "再见初恋",
+      "失恋",
+      "再见世征"
+    ],
     "charts": [
       {
         "constant": 1.5,
@@ -9420,17 +12708,261 @@
     "pack": "Arcaea"
   },
   {
+    "bpm": "107",
+    "cover": "https://wiki.arcaea.cn/images/thumb/4/42/Songs_bulletwaiting.jpg/256px-Songs_bulletwaiting.jpg",
+    "name": "Bullet Waiting for Me (James Landino remix)",
+    "id": "Bullet_Waiting_for_Me_(James_Landino_Remix)",
+    "sid": "bulletwaiting",
+    "alias": [],
+    "charts": [
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "Bullet_Waiting_for_Me_(James_Landino_Remix)@pst",
+        "level": "2",
+        "note": 325,
+        "songId": "Bullet_Waiting_for_Me_(James_Landino_Remix)"
+      },
+      {
+        "constant": 4.5,
+        "difficulty": "prs",
+        "id": "Bullet_Waiting_for_Me_(James_Landino_Remix)@prs",
+        "level": "4",
+        "note": 390,
+        "songId": "Bullet_Waiting_for_Me_(James_Landino_Remix)"
+      },
+      {
+        "constant": 8.1,
+        "difficulty": "ftr",
+        "id": "Bullet_Waiting_for_Me_(James_Landino_Remix)@ftr",
+        "level": "8",
+        "note": 701,
+        "songId": "Bullet_Waiting_for_Me_(James_Landino_Remix)"
+      }
+    ],
+    "pack": "CYTUS II"
+  },
+  {
+    "bpm": "160",
+    "cover": "https://wiki.arcaea.cn/images/thumb/3/37/Songs_devillicsphere.jpg/256px-Songs_devillicsphere.jpg",
+    "name": "Devillic Sphere",
+    "id": "Devillic_Sphere",
+    "sid": "devillicsphere",
+    "alias": [
+      "恶魔球"
+    ],
+    "charts": [
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Devillic_Sphere@pst",
+        "level": "4",
+        "note": 490,
+        "songId": "Devillic_Sphere"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Devillic_Sphere@prs",
+        "level": "7",
+        "note": 692,
+        "songId": "Devillic_Sphere"
+      },
+      {
+        "constant": 9.9,
+        "difficulty": "ftr",
+        "id": "Devillic_Sphere@ftr",
+        "level": "9+",
+        "note": 1129,
+        "songId": "Devillic_Sphere"
+      }
+    ],
+    "pack": "CYTUS II"
+  },
+  {
+    "bpm": "170-200",
+    "cover": "https://wiki.arcaea.cn/images/thumb/e/ee/Songs_lucidtraveler.jpg/256px-Songs_lucidtraveler.jpg",
+    "name": "Lucid Traveler",
+    "id": "Lucid_Traveler",
+    "sid": "lucidtraveler",
+    "alias": [
+      "清醒旅人"
+    ],
+    "charts": [
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Lucid_Traveler@pst",
+        "level": "4",
+        "note": 634,
+        "songId": "Lucid_Traveler"
+      },
+      {
+        "constant": 8.3,
+        "difficulty": "prs",
+        "id": "Lucid_Traveler@prs",
+        "level": "8",
+        "note": 1006,
+        "songId": "Lucid_Traveler"
+      },
+      {
+        "constant": 10.4,
+        "difficulty": "ftr",
+        "id": "Lucid_Traveler@ftr",
+        "level": "10",
+        "note": 1341,
+        "songId": "Lucid_Traveler"
+      }
+    ],
+    "pack": "CYTUS II"
+  },
+  {
+    "bpm": "150",
+    "cover": "https://wiki.arcaea.cn/images/thumb/8/88/Songs_chaos.jpg/256px-Songs_chaos.jpg",
+    "name": "CHAOS",
+    "id": "CHAOS",
+    "sid": "chaos",
+    "alias": [
+      "混沌"
+    ],
+    "charts": [
+      {
+        "constant": 5.5,
+        "difficulty": "pst",
+        "id": "CHAOS@pst",
+        "level": "5",
+        "note": 646,
+        "songId": "CHAOS"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "CHAOS@prs",
+        "level": "7",
+        "note": 848,
+        "songId": "CHAOS"
+      },
+      {
+        "constant": 10.9,
+        "difficulty": "ftr",
+        "id": "CHAOS@ftr",
+        "level": "10+",
+        "note": 1369,
+        "songId": "CHAOS"
+      }
+    ],
+    "pack": "CYTUS II"
+  },
+  {
+    "bpm": "140",
+    "cover": "https://wiki.arcaea.cn/images/thumb/0/08/Songs_usedtobe.jpg/256px-Songs_usedtobe.jpg",
+    "name": "Used to be",
+    "id": "Used_to_be",
+    "sid": "usedtobe",
+    "alias": [
+      "过时人物",
+      "曾是"
+    ],
+    "charts": [
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Used_to_be@pst",
+        "level": "3",
+        "note": 537,
+        "songId": "Used_to_be"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Used_to_be@prs",
+        "level": "6",
+        "note": 675,
+        "songId": "Used_to_be"
+      },
+      {
+        "constant": 9.2,
+        "difficulty": "ftr",
+        "id": "Used_to_be@ftr",
+        "level": "9",
+        "note": 799,
+        "songId": "Used_to_be"
+      }
+    ],
+    "pack": "CYTUS II"
+  },
+  {
+    "bpm": "185",
+    "cover": "https://wiki.arcaea.cn/images/thumb/5/50/Songs_internetyamero.jpg/256px-Songs_internetyamero.jpg",
+    "name": "INTERNET YAMERO",
+    "id": "INTERNET_YAMERO",
+    "sid": "internetyamero",
+    "alias": [],
+    "charts": [
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "INTERNET_YAMERO@pst",
+        "level": "4",
+        "note": 677,
+        "songId": "INTERNET_YAMERO"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "INTERNET_YAMERO@prs",
+        "level": "7",
+        "note": 987,
+        "songId": "INTERNET_YAMERO"
+      },
+      {
+        "constant": 9.9,
+        "difficulty": "ftr",
+        "id": "INTERNET_YAMERO@ftr",
+        "level": "9+",
+        "note": 1222,
+        "songId": "INTERNET_YAMERO"
+      }
+    ],
+    "pack": "Memory Archive"
+  },
+  {
     "bpm": "175",
     "cover": "https://wiki.arcaea.cn/images/thumb/a/a2/Songs_last.jpg/256px-Songs_last.jpg",
     "id": "Last",
     "sid": "last",
     "name": "Last",
     "pack": "Silent Answer",
-    "alias": ["终章", "光和对立贴贴", "Last时刻"],
+    "alias": [
+      "终章",
+      "光和对立贴贴",
+      "Last时刻"
+    ],
     "charts": [
-      { "constant": 4, "difficulty": "pst", "id": "Last@pst", "level": "4", "note": 674, "songId": "Last" },
-      { "constant": 7, "difficulty": "prs", "id": "Last@prs", "level": "7", "note": 777, "songId": "Last" },
-      { "constant": 9, "difficulty": "ftr", "id": "Last@ftr", "level": "9", "note": 831, "songId": "Last" },
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "Last@pst",
+        "level": "4",
+        "note": 674,
+        "songId": "Last"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "Last@prs",
+        "level": "7",
+        "note": 777,
+        "songId": "Last"
+      },
+      {
+        "constant": 9,
+        "difficulty": "ftr",
+        "id": "Last@ftr",
+        "level": "9",
+        "note": 831,
+        "songId": "Last"
+      },
       {
         "id": "Last | Moment@byd",
         "constant": 9.6,
@@ -9452,7 +12984,10 @@
     "name": "Last | Eternity",
     "pack": "Silent Answer",
     "sid": "lasteternity",
-    "alias": ["Last永恒", "永恒终局"],
+    "alias": [
+      "Last永恒",
+      "永恒终局"
+    ],
     "charts": [
       {
         "id": "Last | Eternity@byd",
@@ -9461,7 +12996,9 @@
         "level": "9+",
         "note": 786,
         "songId": "Last",
-        "byd": { "song": "Last | Eternity" }
+        "byd": {
+          "song": "Last | Eternity"
+        }
       }
     ]
   }

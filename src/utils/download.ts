@@ -6,6 +6,6 @@ export function download(url: string, filename: string) {
 }
 
 export function downloadJSON(json: object, filename: string) {
-  const url = URL.createObjectURL(new Blob([JSON.stringify(json)], { type: "application/json" }));
+  const url = URL.createObjectURL(new Blob([JSON.stringify(json, undefined, 2) + "\n"], { type: "application/json" }));
   download(url, filename);
 }

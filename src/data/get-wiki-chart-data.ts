@@ -1,5 +1,5 @@
 import { BeyondAddon, Chart, Difficulty, SongData } from "../models/music-play";
-import { download } from "../utils/download";
+import { downloadJSON } from "../utils/download";
 import { arcaeaCNClient } from "./cached-fetch";
 import { wikiURL, initPageDocument, htmlDocument, prepareDocument } from "./wiki-util";
 
@@ -270,5 +270,5 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
 
 export async function generateChartTableFile() {
   const data = await fetchWikiChartData();
-  download(URL.createObjectURL(new Blob([JSON.stringify(data)], { type: "application/json" })), "chart-data.json");
+  downloadJSON(data, "chart-data.json");
 }

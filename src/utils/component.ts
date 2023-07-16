@@ -2,6 +2,8 @@ import { ParseSelector } from "typed-query-selector/parser";
 import { element, listen, registerDirective } from "hyplate";
 import { CleanUpFunc, JSXDirective } from "hyplate/types";
 
+export const css = String.raw;
+
 export const query =
   <T extends Record<string, string>>(queries: T): Query<T> =>
   (host) =>

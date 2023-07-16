@@ -32,8 +32,8 @@ import { ChartInfo } from "../chart-info";
 import type { WritableSignal } from "hyplate/types";
 import { CharacterSelect } from "../character-select";
 import { pageInto } from "../../../utils/paging";
+import { css } from "../../../utils/component";
 
-const css = String.raw;
 const characterPickerModalStyle = css`
   div.modal-root {
     width: 80vw;

@@ -8,7 +8,7 @@ import { Profile } from "../../../models/profile";
 import { alert } from "../global-message";
 import type { FC } from "hyplate/types";
 import { computed, signal, For, Show, create, HyplateElement, Component, element } from "hyplate";
-import { css } from "sheetly";
+import { css } from "../../../utils/component";
 
 export
 @Component({

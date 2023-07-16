@@ -12,7 +12,8 @@
   box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.12);
   width: 1000px;
   height: 320px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 288px 664px;
   padding: 16px;
   gap: 16px;
 }

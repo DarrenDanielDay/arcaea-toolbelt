@@ -12,6 +12,7 @@ import {
   InverseProgressSolution,
   MusicPlayService,
   ProfileService,
+  WorldMapBonus,
   type WorldModeService,
 } from "../../../services/declarations";
 import { alert, confirm } from "../global-message";
@@ -58,6 +59,10 @@ const characterPickerModalStyle = css`
     cursor: pointer;
   }
 `;
+
+const NEW_MAP = "新版梯";
+const LEGACY_MAP = "遗产梯";
+
 export
 @Component({
   tag: "world-mode-calculator",
@@ -73,26 +78,41 @@ class WorldModeCalculator extends HyplateElement {
   @Inject($ChartService)
   accessor chart!: ChartService;
 
+  select = new WorldMapSelect();
+  worldMap = new WorldMapNormal();
+
   jumpForm = element("form");
   completed = signal(NaN);
   rest = signal(NaN);
   restMax = signal<number | null>(null);
 
   calcForm = element("form");
+  /**
+   * 用于正算
+   */
   step = signal(NaN);
   potential = signal(NaN);
+  /**
+   * 用于正算
+   */
+  worldType = signal("new");
+  stamina = signal("1");
   fragment = signal("1");
   memoryx4 = signal(false);
+  progress = signal(NaN);
 
   inverseProgressForm = element("form");
-  inverseProgressStep = signal(NaN);
+  /**
+   * 用于逆算
+   */
+  step2 = signal(NaN);
   lowProgress = signal(NaN);
   highProgress = signal(NaN);
-  select = new WorldMapSelect();
-  worldMap = new WorldMapNormal();
 
-  progress = signal(NaN);
-  worldType = signal("");
+  /**
+   * 用于逆算，默认为空，逆算不显示任何带加成的方案
+   */
+  worldType2 = signal("");
   solutions = signal<InverseProgressSolution[]>([]);
 
   override render() {
@@ -143,24 +163,12 @@ class WorldModeCalculator extends HyplateElement {
           alert("此格已完成！");
           return;
         }
-        let low = 0,
-          high = rest;
-        for (let currentLevel = completed + 1; currentLevel < targetLevel; currentLevel++) {
-          const context = contexts[currentLevel - 1]!;
-          low += currentLevel === completed + 1 ? rest : context.platform.length;
-        }
-        for (let currentLevel = completed + 2; currentLevel <= targetLevel; currentLevel++) {
-          const context = contexts[currentLevel - 1]!;
-          high += context.platform.length;
-        }
-        if (low) {
-          // 超出0.1保证进入格子
-          low += 0.1;
-        }
-        if (high) {
-          // 少0.1保证不过头
-          high -= 0.1;
-        }
+        const [low, high] = this.worldMode.computeProgressRange(
+          this.worldMap.currentMap()!,
+          completed,
+          rest,
+          targetLevel
+        );
         this.lowProgress.set(low);
         this.highProgress.set(high);
         this.inverseProgress();
@@ -168,6 +176,8 @@ class WorldModeCalculator extends HyplateElement {
     );
     this.effect(() => listen(this.calcForm)("change", this.calculateProgress));
     this.effect(() => listen(this.inverseProgressForm)("change", this.inverseProgress));
+    const isNotLegacy = computed(() => this.worldType() !== "legacy");
+    const isNotNew = computed(() => this.worldType() !== "new");
     return (
       <>
         <div class="title mx-3">选择地图</div>
@@ -248,24 +258,31 @@ class WorldModeCalculator extends HyplateElement {
                 required
               />
             </div>
-            <div class="col-auto">
-              <label for="fragment" class="col-form-label">
-                残片加成
-              </label>
+          </div>
+          <div class="row">
+            <div class="col-auto">世界类型</div>
+          </div>
+          <div class="input-group">
+            <div class="input-group-text">
+              <div class="form-check">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  id="new-world"
+                  value="new"
+                  h-model={this.worldType}
+                ></input>
+                <label class="form-check-label" for="new-world">
+                  {NEW_MAP}
+                </label>
+              </div>
             </div>
-            <div class="col-auto">
-              <select h-model={this.fragment} name="fragment" id="fragment" class="form-select">
-                <option value="1">无</option>
-                <option value="1.1">100 (x1.1)</option>
-                <option value="1.25">250 (x1.25)</option>
-                <option value="1.5">500 (x1.5)</option>
-              </select>
-            </div>
-            <div class="col-auto">
-              <div class="form-check col-form-label">
+            <div class="input-group-text">
+              <div class="form-check">
                 <input
                   type="checkbox"
                   h-model:boolean={this.memoryx4}
+                  disabled={isNotNew}
                   name="memory-x4"
                   id="memory-x4"
                   class="form-check-input"
@@ -275,17 +292,60 @@ class WorldModeCalculator extends HyplateElement {
                 </label>
               </div>
             </div>
+          </div>
+          <div class="input-group my-3">
+            <div class="input-group-text">
+              <div class="form-check">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  id="legacy-world"
+                  value="legacy"
+                  h-model={this.worldType}
+                ></input>
+                <label class="form-check-label" for="legacy-world">
+                  {LEGACY_MAP}
+                </label>
+              </div>
+            </div>
+            <label for="fragment" class="input-group-text">
+              残片加成
+            </label>
+            <select h-model={this.fragment} disabled={isNotLegacy} name="fragment" id="fragment" class="form-select">
+              <option value="1">无</option>
+              <option value="1.1">100 (x1.1)</option>
+              <option value="1.25">250 (x1.25)</option>
+              <option value="1.5">500 (x1.5)</option>
+            </select>
+            <label for="stamina" class="input-group-text">
+              消耗体力
+            </label>
+            <select h-model={this.stamina} disabled={isNotLegacy} name="stamina" id="stamina" class="form-select">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+          <div class="row">
             <div class="col-auto">
               <span class="calc-result">
-                <AutoRender>
-                  {() => {
-                    const p = this.progress();
-                    if (p) return <div>进度：{p.toFixed(4)}</div>;
-                    return nil;
-                  }}
-                </AutoRender>
+                进度：
+                {computed(() => {
+                  const progress = this.progress();
+                  if (isNaN(progress)) {
+                    return "-";
+                  }
+                  return progress.toFixed(4);
+                })}
               </span>
-              <button type="button" name="calc" class="btn btn-primary" onClick={this.focusProgressResult}>
+              <button
+                type="button"
+                name="calc"
+                class="btn btn-primary"
+                onClick={this.focusProgressResult}
+                disabled={computed(() => isNaN(this.progress()) || !this.worldMap.currentProgress())}
+              >
                 查看结果格子
               </button>
             </div>
@@ -299,28 +359,32 @@ class WorldModeCalculator extends HyplateElement {
             </div>
             <div class="row">
               <div class="col-auto">
-                <input
-                  type="radio"
-                  class="form-check-input"
-                  id="new-world"
-                  value="new"
-                  h-model={this.worldType}
-                ></input>
-                <label class="form-check-label" for="new-world">
-                  新版梯（最少2体力）
-                </label>
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="new-world-2"
+                    value="new"
+                    h-model={this.worldType2}
+                  ></input>
+                  <label class="form-check-label" for="new-world-2">
+                    {NEW_MAP}
+                  </label>
+                </div>
               </div>
               <div class="col-auto">
-                <input
-                  type="radio"
-                  class="form-check-input"
-                  id="legacy-world"
-                  value="legacy"
-                  h-model={this.worldType}
-                ></input>
-                <label class="form-check-label" for="legacy-world">
-                  遗产梯（可选1，2，4，6体力）
-                </label>
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="legacy-world-2"
+                    value="legacy"
+                    h-model={this.worldType2}
+                  ></input>
+                  <label class="form-check-label" for="legacy-world-2">
+                    {LEGACY_MAP}
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -330,7 +394,7 @@ class WorldModeCalculator extends HyplateElement {
                 角色step
               </label>
             </div>
-            {this.renderCharacterStepInput(this.inverseProgressStep, "anti-progress-step")}
+            {this.renderCharacterStepInput(this.step2, "step2")}
           </div>
           <div class="row">
             <div class="col-auto">
@@ -366,7 +430,7 @@ class WorldModeCalculator extends HyplateElement {
               <AutoRender>
                 {() => {
                   const solutions = this.solutions();
-                  const worldType = this.worldType();
+                  const worldType = this.worldType2();
                   return (
                     <div class="solutions">
                       {solutions
@@ -654,14 +718,27 @@ class WorldModeCalculator extends HyplateElement {
 
   calculateProgress = () => {
     if (!this.calcForm.reportValidity()) {
+      this.progress.set(NaN);
       return;
     }
     const fragment = +this.fragment(),
       potential = this.potential(),
       step = this.step(),
-      x4 = this.memoryx4();
+      x4 = this.memoryx4(),
+      worldType = this.worldType(),
+      stamina = +this.stamina();
     try {
-      const result = this.worldMode.computeProgress(step, potential, fragment, x4);
+      const bonus: WorldMapBonus | null =
+        worldType === "new"
+          ? { type: "new", x4 }
+          : worldType === "legacy"
+          ? {
+              type: "legacy",
+              fragment,
+              stamina,
+            }
+          : null;
+      const result = this.worldMode.computeProgress(step, potential, bonus);
       this.progress.set(result);
     } catch (error) {
       if (error instanceof Error) {
@@ -711,7 +788,7 @@ class WorldModeCalculator extends HyplateElement {
     if (!this.inverseProgressForm.reportValidity()) {
       return;
     }
-    const step = this.inverseProgressStep();
+    const step = this.step2();
     const low = this.lowProgress();
     const high = this.highProgress();
     this.solutions.set(this.worldMode.inverseProgress(step, [low, high]));

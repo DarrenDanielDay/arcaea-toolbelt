@@ -27,8 +27,21 @@ world-map-select {
   background-color: var(--bs-primary);
 }
 
+.calc-result {
+  display: inline-block;
+  width: 8em;
+}
+
 input[type="number"] {
   max-width: 6em;
+}
+
+select#fragment {
+  min-width: 8em;
+}
+
+select#stamina {
+  min-width: 6em;
 }
 
 .solutions {

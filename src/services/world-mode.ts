@@ -1,5 +1,11 @@
 import { Chapter, ChapterData, CharacterData, MapPlatform, NormalWorldMap, RewardType } from "../models/world-mode";
-import { ChartService, InverseProgressSolution, MusicPlayService, WorldModeService } from "./declarations";
+import {
+  ChartService,
+  InverseProgressSolution,
+  MusicPlayService,
+  WorldMapBonus,
+  WorldModeService,
+} from "./declarations";
 import characters from "../data/character-data.json";
 import items from "../data/item-data.json";
 import { SongData } from "../models/music-play";
@@ -49,18 +55,45 @@ export class WorldModeServiceImpl implements WorldModeService {
     return ((BASE_PROG + POTENTIAL_FACTOR * Math.sqrt(potential)) * step) / CHARACTER_FACTOR_RATIO;
   }
 
-  computeProgress(step: number, potential: number, fragment?: number | undefined, x4?: boolean | undefined): number {
+  computeProgress(step: number, potential: number, bonus: WorldMapBonus | null): number {
     let result = this.computeBasicProgress(step, potential);
-    if (fragment && fragment !== 1 && !!x4) {
-      throw new Error(`残片加成与源韵强化无法同时生效`);
-    }
-    if (fragment) {
-      result *= fragment;
-    }
-    if (x4) {
-      result *= 4;
+    if (bonus) {
+      if (bonus.type === "legacy") {
+        result *= bonus.fragment;
+        result *= bonus.stamina;
+      } else if (bonus.type === "new") {
+        if (bonus.x4) result *= 4;
+      }
     }
     return result;
+  }
+
+  computeProgressRange(
+    map: NormalWorldMap,
+    completed: number,
+    rest: number,
+    targetLevel: number
+  ): [min: number, max: number] {
+    const platforms = map.platforms;
+    let min = 0,
+      max = rest;
+    for (let currentLevel = completed + 1; currentLevel < targetLevel; currentLevel++) {
+      const platform = platforms[currentLevel]!;
+      min += currentLevel === completed + 1 ? rest : platform.length;
+    }
+    for (let currentLevel = completed + 2; currentLevel <= targetLevel; currentLevel++) {
+      const platform = platforms[currentLevel]!;
+      max += platform.length;
+    }
+    if (min) {
+      // 超出0.1保证进入格子
+      min += 0.1;
+    }
+    if (max) {
+      // 少0.1保证不过头
+      max -= 0.1;
+    }
+    return [min, max];
   }
 
   private inverseBasicProgress(progress: number, step: number, overflow: boolean): number {

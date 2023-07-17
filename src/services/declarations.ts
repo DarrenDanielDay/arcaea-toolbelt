@@ -62,19 +62,20 @@ export interface ProfileService {
   b30(): Promise<B30Response>;
 }
 
+export type WorldMapBonus =
+  | {
+      type: "legacy";
+      fragment: number;
+      stamina: number;
+    }
+  | {
+      type: "new";
+      x4: boolean;
+    };
+
 export interface InverseProgressSolution {
   invalidMessage: string | null;
-  world:
-    | {
-        type: "legacy";
-        fragment: number;
-        stamina: number;
-      }
-    | {
-        type: "new";
-        x4: boolean;
-      }
-    | null;
+  world: WorldMapBonus | null;
   lowPtt: number;
   highPtt: number;
   pmRange: [number, number] | false;
@@ -85,7 +86,13 @@ export interface WorldModeService {
   getEventMaps(): Promise<NormalWorldMap[]>;
   getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, string[]>>;
   computeBasicProgress(step: number, potential: number): number;
-  computeProgress(step: number, potential: number, fragment?: number, x4?: boolean): number;
+  computeProgress(step: number, potential: number, bonus: WorldMapBonus | null): number;
+  computeProgressRange(
+    map: NormalWorldMap,
+    completed: number,
+    rest: number,
+    targetLevel: number
+  ): [low: number, high: number];
   inverseProgress(step: number, progressRange: [low: number, high: number]): InverseProgressSolution[];
 }
 

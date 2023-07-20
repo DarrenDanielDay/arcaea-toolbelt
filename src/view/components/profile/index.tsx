@@ -63,7 +63,7 @@ class ProfilePage extends HyplateElement {
           </p>
           <p>
             关于此脚本更详细的使用方法，请参考
-            <a href="../../../docs/plugin-usage.html" target="_blank">
+            <a href="docs/plugin-usage.html" target="_blank">
               使用说明
             </a>
             ，下面是简单的使用说明：

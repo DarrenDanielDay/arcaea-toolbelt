@@ -1,11 +1,4 @@
-import {
-  Chart,
-  ClearRank,
-  Grade,
-  NoteResult,
-  PartnerClearRank,
-  ScoreResult,
-} from "../models/music-play";
+import { Chart, ClearRank, Grade, NoteResult, PartnerClearRank, ScoreResult } from "../models/music-play";
 import { MusicPlayService } from "./declarations";
 
 const MAX_BASE_SCORE = 1000_0000;
@@ -16,7 +9,11 @@ const A_SCORE = 920_0000;
 const B_SCORE = 890_0000;
 const C_SCORE = 860_0000;
 
+const EX_RATIO = 20_0000;
+const AA_RATIO = 30_0000;
 export class MusicPlayServiceImpl implements MusicPlayService {
+  ex = EX_SCORE;
+
   inferNoteResult(
     chart: Chart,
     perfect: number | null,
@@ -79,9 +76,7 @@ export class MusicPlayServiceImpl implements MusicPlayService {
   }
   computeScore(chart: Chart, playResult: NoteResult): number {
     const { perfect, far, lost } = playResult;
-    return (
-      Math.floor(MAX_BASE_SCORE * (1 - (far / 2 + lost) / chart.note)) + perfect
-    );
+    return Math.floor(MAX_BASE_SCORE * (1 - (far / 2 + lost) / chart.note)) + perfect;
   }
 
   computeGrade(score: number): Grade {
@@ -102,11 +97,7 @@ export class MusicPlayServiceImpl implements MusicPlayService {
         return Grade.D;
     }
   }
-  computeClearRank(
-    noteResult: NoteResult,
-    chart: Chart,
-    clear: PartnerClearRank | null
-  ): ClearRank | null {
+  computeClearRank(noteResult: NoteResult, chart: Chart, clear: PartnerClearRank | null): ClearRank | null {
     const { far, lost, perfect } = noteResult;
     const { note } = chart;
     if (!lost) {
@@ -132,9 +123,9 @@ export class MusicPlayServiceImpl implements MusicPlayService {
       return constant + 2;
     }
     if (score >= EX_SCORE) {
-      return (score - EX_SCORE) / 20_0000 + constant + 1;
+      return (score - EX_SCORE) / EX_RATIO + constant + 1;
     }
-    return Math.max(0, (score - EX_SCORE) / 30_0000 + constant + 1);
+    return Math.max(0, (score - EX_SCORE) / AA_RATIO + constant + 1);
   }
   computeScoreResult(score: number, chart: Chart): ScoreResult {
     return {
@@ -148,5 +139,16 @@ export class MusicPlayServiceImpl implements MusicPlayService {
     const target = potential - 2;
     const gapFactor = target >= 8 ? 10 : 2;
     return (overflow ? Math.ceil : Math.floor)(target * gapFactor) / gapFactor;
+  }
+
+  inverseScore(potential: number, constant: number): number {
+    const modifier = potential - constant;
+    const rawScore = modifier < 1 ? modifier * AA_RATIO + AA_SCORE : (modifier - 1) * EX_RATIO + EX_SCORE;
+    return Math.round(rawScore);
+  }
+
+  computeFar(score: number, note: number, overflow: boolean): number {
+    const count = ((MAX_BASE_SCORE - score) * note * 2) / MAX_BASE_SCORE;
+    return (overflow ? Math.floor : Math.ceil)(count);
   }
 }

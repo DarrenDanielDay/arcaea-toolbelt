@@ -7,10 +7,10 @@ const getStaticSongData = async (): Promise<SongData[]> => staticData;
 
 // 对于同个名称匹配系数，按照ftr，byd，prs，pst排序
 const difficultyOrder = [Difficulty.Future, Difficulty.Beyond, Difficulty.Present, Difficulty.Past];
+const constants = staticData.flatMap((s) => s.charts.map((c) => c.constant));
 export class ChartServiceImpl implements ChartService {
-  maximumConstant = staticData
-    .flatMap((s) => s.charts.map((c) => c.constant))
-    .reduce((max, curr) => Math.max(max, curr), -Infinity);
+  maximumConstant = constants.reduce((max, curr) => Math.max(max, curr), -Infinity);
+  minimumConstant = constants.reduce((min, curr) => Math.min(min, curr), Infinity);
   getSongData(): Promise<SongData[]> {
     return getStaticSongData();
   }

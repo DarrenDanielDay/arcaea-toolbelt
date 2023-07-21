@@ -1,6 +1,7 @@
 import { sheet } from "./style.css.js";
 import { bootstrap } from "../../styles";
 import { Component, HyplateElement, Show, element, nil, signal } from "hyplate";
+import type { JSXChildNode } from "hyplate/types";
 
 export
 @Component({
@@ -19,7 +20,7 @@ class GlobalMessage extends HyplateElement {
     );
   }
 
-  showAlert(message: string | Node | JSX.Element) {
+  showAlert(message: JSXChildNode) {
     this.content.set(
       <div class="modal-root">
         <div class="modal-content mb-3">{message}</div>
@@ -36,8 +37,8 @@ class GlobalMessage extends HyplateElement {
   done = () => this.dialog.close("confirm");
   cancel = () => this.dialog.close("cancel");
   showConfirm(
-    message: string | Node | JSX.Element,
-    renderFooter?: (done: () => void, cancel: () => void) => JSX.Element | JSX.Element[]
+    message: JSXChildNode,
+    renderFooter?: (done: () => void, cancel: () => void) => JSXChildNode
   ): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
       this.content.set(
@@ -86,13 +87,13 @@ const ensureInDocument = () => {
   }
 };
 export const confirm = (
-  message: string | Node | JSX.Element,
+  message: JSXChildNode,
   renderFooter?: (done: () => void, cancel: () => void) => JSX.Element | JSX.Element[]
 ) => {
   ensureInDocument();
   return globalMessage.showConfirm(message, renderFooter);
 };
-export const alert = (message: string | Node | JSX.Element) => {
+export const alert = (message: JSXChildNode) => {
   ensureInDocument();
   return globalMessage.showAlert(message);
 };

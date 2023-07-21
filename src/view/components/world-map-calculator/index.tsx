@@ -60,6 +60,12 @@ const characterPickerModalStyle = css`
   }
 `;
 
+const scoreControllerModalStyle = css`
+  div.modal-root {
+    width: 24em;
+  }
+`;
+
 const NEW_MAP = "新版梯";
 const LEGACY_MAP = "遗产梯";
 
@@ -478,7 +484,61 @@ class WorldModeCalculator extends HyplateElement {
                                       </button>
                                     </div>
                                   ) : (
-                                    nil
+                                    <button
+                                      type="button"
+                                      class="btn btn-secondary"
+                                      onClick={async () => {
+                                        const charts = await this.chart.queryChartsByConstant(lowPtt - 2, highPtt - 1);
+                                        alert(
+                                          charts
+                                            .map((chart) => {
+                                              const { constant, cover, difficulty, title } = chart;
+                                              const lowScore = Math.max(
+                                                this.musicPlay.ex,
+                                                this.musicPlay.inverseScore(lowPtt, constant)
+                                              );
+                                              const highScore = this.musicPlay.inverseScore(highPtt, constant);
+                                              const note = chart.chart.note;
+                                              const maxFar = this.musicPlay.computeFar(lowScore, note, true);
+                                              const minFar = this.musicPlay.computeFar(highScore, note, false);
+                                              return (
+                                                <div class="m-3">
+                                                  <div class="row my-1">
+                                                    <div class="col-auto">
+                                                      <img
+                                                        src={cover}
+                                                        width={80}
+                                                        height={80}
+                                                        style:border={`0.25em solid var(--${difficulty})`}
+                                                        title={title}
+                                                      ></img>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                      <div class="row" style:height="2em">
+                                                        {title}
+                                                      </div>
+                                                      <div class="row" style:font-size="0.5em">
+                                                        {chart.song.pack}
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="row">
+                                                    <div class="col-auto">
+                                                      分数 {lowScore} ~ {highScore}
+                                                    </div>
+                                                    <div class="col-auto">
+                                                      Far {minFar} ~ {maxFar}
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              );
+                                            })
+                                            .concat(<style>{scoreControllerModalStyle}</style>)
+                                        );
+                                      }}
+                                    >
+                                      控分
+                                    </button>
                                   )}
                                 </>
                               )}

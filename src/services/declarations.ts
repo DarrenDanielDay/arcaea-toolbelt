@@ -27,6 +27,7 @@ export interface SearchResult {
 
 export interface ChartService {
   readonly maximumConstant: number;
+  readonly minimumConstant: number;
   getSongData(): Promise<SongData[]>;
   searchChart(searchText: string): Promise<SearchResult[]>;
   queryChartsByConstant(min: number, max: number): Promise<SearchResult[]>;
@@ -34,6 +35,7 @@ export interface ChartService {
 }
 
 export interface MusicPlayService {
+  readonly ex: number;
   inferNoteResult(
     chart: Chart,
     perfect: number | null,
@@ -47,6 +49,8 @@ export interface MusicPlayService {
   computeClearRank(play: NoteResult, chart: Chart, clear: PartnerClearRank | null): ClearRank | null;
   computeScoreResult(score: number, chart: Chart): ScoreResult;
   computePMConstant(potential: number, overflow: boolean): number;
+  inverseScore(potential: number, constant: number): number;
+  computeFar(score: number, note: number, overflow: boolean): number;
 }
 
 export interface ProfileService {

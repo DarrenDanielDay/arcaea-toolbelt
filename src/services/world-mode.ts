@@ -144,6 +144,7 @@ export class WorldModeServiceImpl implements WorldModeService {
 
   private solveProgressRange(step: number, [low, high]: [number, number]): InverseProgressSolution {
     const maximum = this.chart.maximumConstant;
+    const minimum = this.chart.minimumConstant;
     const maximumPtt = maximum + 2;
     const lowPtt = this.inverseBasicProgress(low, step, true);
     const highPtt = Math.min(maximumPtt, this.inverseBasicProgress(high, step, false));
@@ -159,9 +160,9 @@ export class WorldModeServiceImpl implements WorldModeService {
     } else if (lowPtt > maximumPtt) {
       solution.invalidMessage = `PM最高定数${maximum}谱面也无法前进这么多`;
     } else {
-      const minConstant = this.music.computePMConstant(lowPtt, true);
+      const minConstant = Math.max(minimum, this.music.computePMConstant(lowPtt, true));
       const maxConstant = this.music.computePMConstant(highPtt, false);
-      if (minConstant > 0 && maxConstant <= maximum && minConstant <= maxConstant) {
+      if (maxConstant <= maximum && minConstant <= maxConstant) {
         solution.pmRange = [minConstant, maxConstant];
       }
     }

@@ -78,11 +78,11 @@ export class WorldModeServiceImpl implements WorldModeService {
     let min = 0,
       max = rest;
     for (let currentLevel = completed + 1; currentLevel < targetLevel; currentLevel++) {
-      const platform = platforms[currentLevel]!;
+      const platform = platforms[currentLevel - 1]!;
       min += currentLevel === completed + 1 ? rest : platform.length;
     }
     for (let currentLevel = completed + 2; currentLevel <= targetLevel; currentLevel++) {
-      const platform = platforms[currentLevel]!;
+      const platform = platforms[currentLevel - 1]!;
       max += platform.length;
     }
     if (min) {

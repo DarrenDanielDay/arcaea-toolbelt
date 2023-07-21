@@ -17685,6 +17685,349 @@
             }
           }
         ]
+      },
+      {
+        "id": "7-12",
+        "platforms": [
+          {
+            "length": 5,
+            "special": {
+              "type": 2,
+              "range": [
+                "Devillic Sphere",
+                "Bullet Waiting for Me (James Landino remix)",
+                "Lucid Traveler",
+                "99 Glooms",
+                "DRG",
+                "syūten"
+              ]
+            }
+          },
+          {
+            "length": 5
+          },
+          {
+            "length": 5
+          },
+          {
+            "length": 5
+          },
+          {
+            "length": 5
+          },
+          {
+            "length": 5,
+            "special": {
+              "type": 2,
+              "range": [
+                "99 Glooms",
+                "DRG",
+                "syūten"
+              ]
+            }
+          },
+          {
+            "length": 25
+          },
+          {
+            "length": 1
+          },
+          {
+            "length": 25
+          },
+          {
+            "length": 1
+          },
+          {
+            "length": 5,
+            "special": {
+              "type": 3,
+              "range": [
+                "99 Glooms",
+                "DRG",
+                "syūten"
+              ]
+            }
+          },
+          {
+            "length": 5
+          },
+          {
+            "length": 5
+          },
+          {
+            "length": 5
+          },
+          {
+            "length": 5
+          },
+          {
+            "length": 5,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 55
+            }
+          },
+          {
+            "length": 25
+          },
+          {
+            "length": 1
+          },
+          {
+            "length": 25
+          },
+          {
+            "length": 1
+          },
+          {
+            "length": 5,
+            "special": {
+              "type": 0,
+              "count": 2
+            },
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 55
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 1
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 1
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 1
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 1
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 1
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 1
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 1
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 1
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 1
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 1
+            }
+          },
+          {
+            "length": 10,
+            "special": {
+              "type": 1,
+              "max": 6.5
+            }
+          },
+          {
+            "length": 10,
+            "special": {
+              "type": 1,
+              "max": 6.3
+            }
+          },
+          {
+            "length": 10,
+            "special": {
+              "type": 1,
+              "max": 6
+            }
+          },
+          {
+            "length": 10,
+            "special": {
+              "type": 1,
+              "max": 5.8
+            }
+          },
+          {
+            "length": 10,
+            "special": {
+              "type": 3,
+              "range": "͟͝͞Ⅱ́̕ "
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 10
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 10
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 10
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 10
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 10
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 10
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 10
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 10
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 10
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 10
+            }
+          },
+          {
+            "length": 5,
+            "reward": {
+              "type": 0,
+              "name": "以太之滴",
+              "count": 1
+            }
+          },
+          {
+            "length": 5,
+            "reward": {
+              "type": 0,
+              "name": "以太之滴",
+              "count": 1
+            }
+          },
+          {
+            "length": 5,
+            "reward": {
+              "type": 0,
+              "name": "以太之滴",
+              "count": 1
+            }
+          },
+          {
+            "length": 5,
+            "reward": {
+              "type": 0,
+              "name": "以太之滴",
+              "count": 1
+            }
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 2,
+              "id": 70
+            }
+          }
+        ]
       }
     ]
   },
@@ -43166,6 +43509,195 @@
             "reward": {
               "type": 1,
               "id": "Hybris_(The_one_who_shattered)"
+            }
+          }
+        ]
+      },
+      {
+        "id": "限时：Ultimate_taste",
+        "platforms": [
+          {
+            "length": 15
+          },
+          {
+            "length": 20
+          },
+          {
+            "length": 15
+          },
+          {
+            "length": 10,
+            "special": {
+              "type": 3,
+              "range": []
+            }
+          },
+          {
+            "length": 15
+          },
+          {
+            "length": 20,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 495
+            }
+          },
+          {
+            "length": 25
+          },
+          {
+            "length": 20
+          },
+          {
+            "length": 15,
+            "special": {
+              "type": 3,
+              "range": []
+            }
+          },
+          {
+            "length": 20
+          },
+          {
+            "length": 25,
+            "reward": {
+              "type": 0,
+              "name": "以太之滴",
+              "count": 2
+            }
+          },
+          {
+            "length": 30
+          },
+          {
+            "length": 25
+          },
+          {
+            "length": 20,
+            "special": {
+              "type": 3,
+              "range": []
+            }
+          },
+          {
+            "length": 25
+          },
+          {
+            "length": 30,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 495
+            }
+          },
+          {
+            "length": 35
+          },
+          {
+            "length": 30
+          },
+          {
+            "length": 25,
+            "special": {
+              "type": 3,
+              "range": []
+            }
+          },
+          {
+            "length": 30
+          },
+          {
+            "length": 35,
+            "reward": {
+              "type": 0,
+              "name": "以太之滴",
+              "count": 2
+            }
+          },
+          {
+            "length": 40
+          },
+          {
+            "length": 35,
+            "reward": {
+              "type": 1,
+              "id": "Ultimate_taste"
+            }
+          },
+          {
+            "length": 30,
+            "special": {
+              "type": 3,
+              "range": []
+            }
+          },
+          {
+            "length": 35,
+            "special": {
+              "type": 2,
+              "range": [
+                "Ultimate taste",
+                "Tsuki ni Murakumo, Hana ni Kaze",
+                "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
+                "Lost Emotion feat. nomico",
+                "Lost in the Abyss"
+              ]
+            }
+          },
+          {
+            "length": 40,
+            "reward": {
+              "type": 0,
+              "name": "残片",
+              "count": 495
+            }
+          },
+          {
+            "length": 45,
+            "special": {
+              "type": 2,
+              "range": [
+                "Ultimate taste",
+                "Tsuki ni Murakumo, Hana ni Kaze",
+                "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
+                "Lost Emotion feat. nomico",
+                "Lost in the Abyss"
+              ]
+            }
+          },
+          {
+            "length": 40
+          },
+          {
+            "length": 35,
+            "special": {
+              "type": 3,
+              "range": []
+            }
+          },
+          {
+            "length": 40,
+            "special": {
+              "type": 2,
+              "range": [
+                "Ultimate taste",
+                "Tsuki ni Murakumo, Hana ni Kaze",
+                "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
+                "Lost Emotion feat. nomico",
+                "Lost in the Abyss"
+              ]
+            }
+          },
+          {
+            "length": 45
+          },
+          {
+            "length": 0,
+            "reward": {
+              "type": 0,
+              "name": "次元结晶",
+              "count": 1
             }
           }
         ]

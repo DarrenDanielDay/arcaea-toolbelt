@@ -8714,6 +8714,118 @@
     ]
   },
   {
+    "id": 70,
+    "image": "https://wiki.arcaea.cn/images/thumb/3/35/Partner_hikari_%26_vanessa_icon.png/95px-Partner_hikari_%26_vanessa_icon.png",
+    "awakenImage": null,
+    "name": {
+      "en": "Hikari & Vanessa",
+      "zh": "Hikari & Vanessa"
+    },
+    "levels": [
+      null,
+      {
+        "frag": 51,
+        "over": 58,
+        "step": 58
+      },
+      {
+        "frag": 51,
+        "over": 58,
+        "step": 58
+      },
+      {
+        "frag": 51,
+        "over": 58,
+        "step": 58
+      },
+      {
+        "frag": 51,
+        "over": 58,
+        "step": 58
+      },
+      {
+        "frag": 51,
+        "over": 59,
+        "step": 59
+      },
+      {
+        "frag": 51,
+        "over": 60,
+        "step": 60
+      },
+      {
+        "frag": 51,
+        "over": 62,
+        "step": 62
+      },
+      {
+        "frag": 51,
+        "over": 65,
+        "step": 65
+      },
+      {
+        "frag": 51,
+        "over": 69,
+        "step": 69
+      },
+      {
+        "frag": 51,
+        "over": 74,
+        "step": 74
+      },
+      {
+        "frag": 51,
+        "over": 79,
+        "step": 79
+      },
+      {
+        "frag": 51,
+        "over": 84,
+        "step": 84
+      },
+      {
+        "frag": 51,
+        "over": 88,
+        "step": 88
+      },
+      {
+        "frag": 51,
+        "over": 91,
+        "step": 91
+      },
+      {
+        "frag": 51,
+        "over": 93,
+        "step": 93
+      },
+      {
+        "frag": 51,
+        "over": 94,
+        "step": 94
+      },
+      {
+        "frag": 51,
+        "over": 95,
+        "step": 95
+      },
+      {
+        "frag": 51,
+        "over": 95,
+        "step": 95
+      },
+      {
+        "frag": 51,
+        "over": 95,
+        "step": 95
+      },
+      {
+        "frag": 51,
+        "over": 96,
+        "step": 96
+      }
+    ]
+  },
+  {
     "id": 99,
     "image": "https://wiki.arcaea.cn/images/thumb/7/7f/Partner_shirahime_icon.png/95px-Partner_shirahime_icon.png",
     "awakenImage": null,

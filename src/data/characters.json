@@ -2522,6 +2522,39 @@
     },
     {
         "skill_id_text": {
+          "en": "HARD + Lose Emotions. Weaken an aspect of\nHikari & Vanessa by -10 per Emotion lost",
+          "ja": "HARD + 感情の喪失　感情1つの喪失につき\nHikari & Vanessaの性能1つが-10される",
+          "ko": "HARD + 감정을 상실하고, 각 감정당\nHikari & Vanessa의 능력 하나를 -10합니다",
+          "zh-Hans": "困难 + 失去情感。每份破碎的情感会使\nHikari & Vanessa的一项能力造成-10的损失",
+          "zh-Hant": "困難 + 失去情感。每份破碎的情感會使\nHikari & Vanessa的一項能力造成-10的損失"
+        },
+        "display_name": {
+          "en": "Hikari & Vanessa",
+          "ja": "Hikari & Vanessa",
+          "ko": "Hikari & Vanessa",
+          "zh-Hans": "Hikari & Vanessa",
+          "zh-Hant": "Hikari & Vanessa"
+        },
+        "base_character": false,
+        "is_uncapped_override": false,
+        "is_uncapped": false,
+        "uncap_cores": [],
+        "char_type": 2,
+        "skill_id_uncap": "",
+        "skill_requires_uncap": false,
+        "skill_unlock_level": 0,
+        "skill_id": "skill_hikari_vanessa",
+        "overdrive": 58,
+        "prog": 58,
+        "frag": 51,
+        "level_exp": 0,
+        "exp": 0,
+        "level": 1,
+        "name": "hikari_vanessa",
+        "character_id": 70
+    },
+    {
+        "skill_id_text": {
             "en": "Earn +10 Fragments\nupon clearing a preferred song",
             "ja": "白姫の気まぐれ曲をクリア時\n欠片を+10獲得",
             "ko": "선택곡을 클리어할 경우 \n+10 조각을 얻게됩니다",

@@ -12740,7 +12740,7 @@
         "songId": "Bullet_Waiting_for_Me_(James_Landino_Remix)"
       }
     ],
-    "pack": "CYTUS II"
+    "pack": "CYTUS II Collaboration"
   },
   {
     "bpm": "160",
@@ -12777,7 +12777,7 @@
         "songId": "Devillic_Sphere"
       }
     ],
-    "pack": "CYTUS II"
+    "pack": "CYTUS II Collaboration"
   },
   {
     "bpm": "170-200",
@@ -12814,7 +12814,7 @@
         "songId": "Lucid_Traveler"
       }
     ],
-    "pack": "CYTUS II"
+    "pack": "CYTUS II Collaboration"
   },
   {
     "bpm": "150",
@@ -12851,7 +12851,7 @@
         "songId": "CHAOS"
       }
     ],
-    "pack": "CYTUS II"
+    "pack": "CYTUS II Collaboration"
   },
   {
     "bpm": "140",
@@ -12889,7 +12889,7 @@
         "songId": "Used_to_be"
       }
     ],
-    "pack": "CYTUS II"
+    "pack": "CYTUS II Collaboration"
   },
   {
     "bpm": "185",
@@ -12925,6 +12925,223 @@
       }
     ],
     "pack": "Memory Archive"
+  },
+  {
+    "bpm": "130-150",
+    "cover": "https://wiki.arcaea.cn/images/thumb/a/a1/Songs_ii_pst.jpg/256px-Songs_ii_pst.jpg",
+    "name": "͟͝͞Ⅱ́̕",
+    "id": "%CD%9F%CD%9D%CD%9E%E2%85%A1%CC%81%CC%95",
+    "sid": "ii",
+    "alias": [
+      "马拉松"
+    ],
+    "charts": [
+      {
+        "constant": 5,
+        "difficulty": "pst",
+        "id": "%CD%9F%CD%9D%CD%9E%E2%85%A1%CC%81%CC%95@pst",
+        "level": "5",
+        "note": 690,
+        "songId": "%CD%9F%CD%9D%CD%9E%E2%85%A1%CC%81%CC%95"
+      },
+      {
+        "constant": 8.4,
+        "difficulty": "prs",
+        "id": "%CD%9F%CD%9D%CD%9E%E2%85%A1%CC%81%CC%95@prs",
+        "level": "8",
+        "note": 816,
+        "songId": "%CD%9F%CD%9D%CD%9E%E2%85%A1%CC%81%CC%95"
+      },
+      {
+        "constant": 10.8,
+        "difficulty": "ftr",
+        "id": "%CD%9F%CD%9D%CD%9E%E2%85%A1%CC%81%CC%95@ftr",
+        "level": "10+",
+        "note": 1051,
+        "songId": "%CD%9F%CD%9D%CD%9E%E2%85%A1%CC%81%CC%95"
+      }
+    ],
+    "pack": "CYTUS II Collaboration"
+  },
+  {
+    "bpm": "160",
+    "cover": "https://wiki.arcaea.cn/images/thumb/3/3e/Songs_magnolia.jpg/256px-Songs_magnolia.jpg",
+    "name": "Magnolia",
+    "id": "Magnolia",
+    "sid": "magnolia",
+    "alias": [
+      "木兰"
+    ],
+    "charts": [
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "Magnolia@pst",
+        "level": "4",
+        "note": 625,
+        "songId": "Magnolia"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "Magnolia@prs",
+        "level": "7",
+        "note": 726,
+        "songId": "Magnolia"
+      },
+      {
+        "constant": 10.2,
+        "difficulty": "ftr",
+        "id": "Magnolia@ftr",
+        "level": "10",
+        "note": 895,
+        "songId": "Magnolia"
+      }
+    ],
+    "pack": "CYTUS II Collaboration"
+  },
+  {
+    "bpm": "76-96",
+    "cover": "https://wiki.arcaea.cn/images/thumb/5/5d/Songs_syuten.jpg/256px-Songs_syuten.jpg",
+    "name": "syūten",
+    "id": "Sy%C5%ABten",
+    "sid": "syuten",
+    "alias": [],
+    "charts": [
+      {
+        "constant": 2,
+        "difficulty": "pst",
+        "id": "Sy%C5%ABten@pst",
+        "level": "2",
+        "note": 395,
+        "songId": "Sy%C5%ABten"
+      },
+      {
+        "constant": 5,
+        "difficulty": "prs",
+        "id": "Sy%C5%ABten@prs",
+        "level": "5",
+        "note": 446,
+        "songId": "Sy%C5%ABten"
+      },
+      {
+        "constant": 8.5,
+        "difficulty": "ftr",
+        "id": "Sy%C5%ABten@ftr",
+        "level": "8",
+        "note": 592,
+        "songId": "Sy%C5%ABten"
+      }
+    ],
+    "pack": "CYTUS II Collaboration"
+  },
+  {
+    "bpm": "185",
+    "cover": "https://wiki.arcaea.cn/images/thumb/c/c9/Songs_nnglooms.jpg/256px-Songs_nnglooms.jpg",
+    "name": "99 Glooms",
+    "id": "99_Glooms",
+    "sid": "nnglooms",
+    "alias": [],
+    "charts": [
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "99_Glooms@pst",
+        "level": "4",
+        "note": 637,
+        "songId": "99_Glooms"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "99_Glooms@prs",
+        "level": "7",
+        "note": 774,
+        "songId": "99_Glooms"
+      },
+      {
+        "constant": 10.3,
+        "difficulty": "ftr",
+        "id": "99_Glooms@ftr",
+        "level": "10",
+        "note": 1294,
+        "songId": "99_Glooms"
+      }
+    ],
+    "pack": "CYTUS II Collaboration"
+  },
+  {
+    "bpm": "155",
+    "cover": "https://wiki.arcaea.cn/images/thumb/5/5c/Songs_drg.jpg/256px-Songs_drg.jpg",
+    "name": "DRG",
+    "id": "DRG",
+    "sid": "drg",
+    "alias": [
+      "大热狗",
+      "删游戏"
+    ],
+    "charts": [
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "DRG@pst",
+        "level": "3",
+        "note": 380,
+        "songId": "DRG"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "DRG@prs",
+        "level": "7",
+        "note": 624,
+        "songId": "DRG"
+      },
+      {
+        "constant": 9.5,
+        "difficulty": "ftr",
+        "id": "DRG@ftr",
+        "level": "9",
+        "note": 872,
+        "songId": "DRG"
+      }
+    ],
+    "pack": "CYTUS II Collaboration"
+  },
+  {
+    "bpm": "200",
+    "cover": "https://wiki.arcaea.cn/images/thumb/c/c5/Songs_ultimatetaste.jpg/256px-Songs_ultimatetaste.jpg",
+    "name": "Ultimate taste",
+    "id": "Ultimate_taste",
+    "sid": "ultimatetaste",
+    "alias": [],
+    "charts": [
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "Ultimate_taste@pst",
+        "level": "3",
+        "note": 828,
+        "songId": "Ultimate_taste"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "Ultimate_taste@prs",
+        "level": "6",
+        "note": 1008,
+        "songId": "Ultimate_taste"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "Ultimate_taste@ftr",
+        "level": "9+",
+        "note": 1405,
+        "songId": "Ultimate_taste"
+      }
+    ],
+    "pack": "World Extend"
   },
   {
     "bpm": "175",

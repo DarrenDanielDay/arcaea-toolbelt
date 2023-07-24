@@ -116,16 +116,22 @@ export class MusicPlayServiceImpl implements MusicPlayService {
     }
     return clear;
   }
-  computePotential(score: number, chart: Chart): number {
-    const { constant } = chart;
+
+  private computePotentialModifier(score: number): number {
     if (score >= MAX_BASE_SCORE) {
       // 不考虑非PM的超过1000W分，目前没有这样的谱
-      return constant + 2;
+      return 2;
     }
     if (score >= EX_SCORE) {
-      return (score - EX_SCORE) / EX_RATIO + constant + 1;
+      return (score - EX_SCORE) / EX_RATIO + 1;
     }
-    return Math.max(0, (score - EX_SCORE) / AA_RATIO + constant + 1);
+    return (score - EX_SCORE) / AA_RATIO + 1;
+  }
+
+  computePotential(score: number, chart: Chart): number {
+    const { constant } = chart;
+    const modifier = this.computePotentialModifier(score);
+    return Math.max(0, constant + modifier);
   }
   computeScoreResult(score: number, chart: Chart): ScoreResult {
     return {
@@ -145,6 +151,12 @@ export class MusicPlayServiceImpl implements MusicPlayService {
     const modifier = potential - constant;
     const rawScore = modifier < 1 ? modifier * AA_RATIO + AA_SCORE : (modifier - 1) * EX_RATIO + EX_SCORE;
     return Math.round(rawScore);
+  }
+
+  inverseConstant(potential: number, score: number): number {
+    const modifier = this.computePotentialModifier(score);
+    const rawConstant = potential - modifier;
+    return Math.round(rawConstant * 10) / 10;
   }
 
   computeFar(score: number, note: number, overflow: boolean): number {

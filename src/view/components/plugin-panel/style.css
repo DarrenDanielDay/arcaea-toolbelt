@@ -9,3 +9,7 @@ header {
 .actions > button:not(:last-child) {
   margin-right: 1em;
 }
+
+.modal-root {
+  width: 24em;
+}

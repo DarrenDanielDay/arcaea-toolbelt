@@ -1,8 +1,7 @@
-import { create } from "sheetly";
 import data from "../data/chart-data.json";
 import { Chart, ClearRank, Difficulty, PlayResult, SongData } from "../models/music-play";
 import { Profile } from "../models/profile";
-import { $CrossSiteScriptPluginService, CrossSiteScriptPluginService, MusicPlayService } from "./declarations";
+import { $CrossSiteScriptPluginService, $WorldModeService, ChartService, CrossSiteScriptPluginService, MusicPlayService, WorldModeService } from "./declarations";
 import { MusicPlayServiceImpl } from "./music-play";
 import * as lowiro from "./web-api";
 import { ToolPanel } from "../view/components/plugin-panel";
@@ -11,8 +10,13 @@ import { bootstrap } from "../view/styles";
 import { sheet as dialogSheet } from "../view/components/global-message/style.css.js";
 import { provide } from "./di";
 import { element } from "hyplate";
+import { WorldModeServiceImpl } from "./world-mode";
+import { ChartServiceImpl } from "./chart-data";
 
 const musicPlay: MusicPlayService = new MusicPlayServiceImpl();
+const chart: ChartService = new ChartServiceImpl();
+const worldMode: WorldModeService = new WorldModeServiceImpl(chart, musicPlay);
+
 const flattenData = (data as SongData[])
   .flatMap((song) =>
     song.charts.map((chart) => ({
@@ -318,6 +322,7 @@ const createOrGetDialog = (() => {
       document.body.appendChild(dialog);
       const container = element("div");
       provide($CrossSiteScriptPluginService, container, new CrossSiteScriptPluginServiceImpl());
+      provide($WorldModeService, container, worldMode);
       document.body.appendChild(container);
       const wrapper = container.attachShadow({ mode: "open" });
       addSheet(bootstrap, wrapper);

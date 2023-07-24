@@ -50,6 +50,7 @@ export interface MusicPlayService {
   computeScoreResult(score: number, chart: Chart): ScoreResult;
   computePMConstant(potential: number, overflow: boolean): number;
   inverseScore(potential: number, constant: number): number;
+  inverseConstant(potential: number, score: number): number;
   computeFar(score: number, note: number, overflow: boolean): number;
 }
 
@@ -98,6 +99,7 @@ export interface WorldModeService {
     targetLevel: number
   ): [low: number, high: number];
   inverseProgress(step: number, progressRange: [low: number, high: number]): InverseProgressSolution[];
+  inverseBeyondBoost(difference: number, score: number): number;
 }
 
 export interface CrossSiteScriptPluginService {

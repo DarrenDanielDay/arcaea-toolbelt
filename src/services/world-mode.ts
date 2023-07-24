@@ -10,6 +10,7 @@ import characters from "../data/character-data.json";
 import items from "../data/item-data.json";
 import { SongData } from "../models/music-play";
 const BASE_PROG = 2.5;
+const BASE_BOOST = 27;
 const POTENTIAL_FACTOR = 2.45;
 const CHARACTER_FACTOR_RATIO = 50;
 
@@ -140,6 +141,15 @@ export class WorldModeServiceImpl implements WorldModeService {
       }
     }
     return solutions;
+  }
+
+  inverseBeyondBoost(difference: number, score: number): number {
+    const potentialRoot = (difference - BASE_BOOST) / POTENTIAL_FACTOR;
+    if (potentialRoot < 0) {
+      return NaN;
+    }
+    const potential = potentialRoot ** 2;
+    return this.music.inverseConstant(potential, score);
   }
 
   private solveProgressRange(step: number, [low, high]: [number, number]): InverseProgressSolution {

@@ -116,7 +116,7 @@ class ChartQuery extends HyplateElement {
     const min = this.min(),
       max = this.max();
     return {
-      min: isNaN(min) ? -Infinity : max,
+      min: isNaN(min) ? -Infinity : min,
       max: isNaN(max) ? Infinity : max,
     };
   };

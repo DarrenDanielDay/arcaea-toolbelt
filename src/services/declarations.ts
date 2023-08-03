@@ -28,6 +28,7 @@ export interface SearchResult {
 export interface ChartService {
   readonly maximumConstant: number;
   readonly minimumConstant: number;
+  readonly maximumPotential: number;
   getSongData(): Promise<SongData[]>;
   searchChart(searchText: string): Promise<SearchResult[]>;
   queryChartsByConstant(min: number, max: number): Promise<SearchResult[]>;

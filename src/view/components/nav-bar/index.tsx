@@ -6,6 +6,7 @@ import { $Router, Router } from "../../pages/router";
 import { clickElsewhere } from "../../../utils/click-elsewhere";
 import { alert } from "../global-message";
 import { Component, HyplateElement, computed, signal } from "hyplate";
+import { $ChartService, ChartService } from "../../../services/declarations";
 
 export
 @Component({
@@ -15,6 +16,9 @@ export
 class NavBar extends HyplateElement {
   @Inject($Router)
   accessor router!: Router;
+  @Inject($ChartService)
+  accessor chart!: ChartService;
+
   showMenu = signal(false);
   activeRoute = signal("");
   override render() {
@@ -61,7 +65,12 @@ class NavBar extends HyplateElement {
   }
 
   showVersion = () => {
-    alert(process.env.COMMIT_SHA);
+    alert(
+      <div>
+        <p>Arcaea Toolbelt 版本: {process.env.COMMIT_SHA}</p>
+        <p>最大潜力值: {this.chart.maximumPotential}</p>
+      </div>
+    );
   };
 
   toggleMenu = () => {

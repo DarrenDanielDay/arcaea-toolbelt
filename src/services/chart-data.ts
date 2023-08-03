@@ -8,9 +8,13 @@ const getStaticSongData = async (): Promise<SongData[]> => staticData;
 // 对于同个名称匹配系数，按照ftr，byd，prs，pst排序
 const difficultyOrder = [Difficulty.Future, Difficulty.Beyond, Difficulty.Present, Difficulty.Past];
 const constants = staticData.flatMap((s) => s.charts.map((c) => c.constant));
+const maxs = [...constants].sort((a, b) => b - a).slice(0, 30);
+const maxptt = maxs.concat(maxs.slice(0, 10)).reduce((sum, curr) => sum + curr + 2, 0) / 40;
+
 export class ChartServiceImpl implements ChartService {
   maximumConstant = constants.reduce((max, curr) => Math.max(max, curr), -Infinity);
   minimumConstant = constants.reduce((min, curr) => Math.min(min, curr), Infinity);
+  maximumPotential = maxptt;
   getSongData(): Promise<SongData[]> {
     return getStaticSongData();
   }

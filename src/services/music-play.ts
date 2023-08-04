@@ -163,4 +163,24 @@ export class MusicPlayServiceImpl implements MusicPlayService {
     const count = ((MAX_BASE_SCORE - score) * note * 2) / MAX_BASE_SCORE;
     return (overflow ? Math.floor : Math.ceil)(count);
   }
+  mapClearType(clearType: number, shinyPerfectCount: number, chart: Chart): ClearRank {
+    if (shinyPerfectCount === chart.note) {
+      return ClearRank.Maximum;
+    }
+    switch (clearType) {
+      case 0:
+        return ClearRank.TrackLost;
+      case 1:
+        return ClearRank.NormalClear;
+      case 2:
+        return ClearRank.FullRecall;
+      case 3:
+        return ClearRank.PureMemory;
+      case 4:
+        return ClearRank.EasyClear;
+      case 5:
+        return ClearRank.HardClear;
+    }
+    throw new Error(`未知clear_type: ${clearType}`);
+  }
 }

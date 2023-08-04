@@ -1,4 +1,4 @@
-import { Component, HyplateElement, cssVar } from "hyplate";
+import { Component, HyplateElement, cssVar, listen } from "hyplate";
 import { $ProfileService, ProfileService } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
 import { Best30 } from "../../components/b30";
@@ -11,12 +11,25 @@ import { Route } from "../router";
 class PlayerB39 extends HyplateElement {
   @Inject($ProfileService)
   accessor profileService!: ProfileService;
+  best30 = new Best30()
 
   override render() {
     if (!this.profileService.profile) {
       alert("未选择存档");
     }
-    return <>{new Best30()}</>;
+    this.effect(() => {
+      this.profileService.b30().then((res) => this.best30.b30.set(res));
+      const events = listen(this.best30 as HTMLElement);
+      const unsubscribe = events("dblclick", () => {
+        this.requestFullscreen({
+          navigationUI: "hide",
+        });
+      });
+      return () => {
+        unsubscribe();
+      };
+    });
+    return <>{this.best30}</>;
   }
 }
 

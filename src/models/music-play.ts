@@ -43,6 +43,10 @@ export interface SongData extends Song {
   charts: Chart[];
 }
 
+export interface SongIndex {
+  [songId: string]: SongData;
+}
+
 export enum Grade {
   EXPlus = "EX+",
   EX = "EX",

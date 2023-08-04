@@ -1,9 +1,7 @@
 import { sheet } from "./style.css.js";
-import { Inject } from "../../../services/di";
-import { $ProfileService, ProfileService } from "../../../services/declarations";
 import { ResultCard } from "../result-card";
 import { B30Response, BestResultItem } from "../../../models/profile";
-import { Component, HyplateElement, Show, listen, signal } from "hyplate";
+import { Component, HyplateElement, Show, signal } from "hyplate";
 
 const renderB30 = (response: B30Response, now: Date) => {
   const { b30, b31_39, b30Average, maxPotential, minPotential, potential, r10Average, username } = response;
@@ -60,24 +58,9 @@ export
   styles: [sheet],
 })
 class Best30 extends HyplateElement {
-  @Inject($ProfileService)
-  accessor profile!: ProfileService;
-
   b30 = signal<B30Response | null>(null);
 
   override render() {
-    this.effect(() => {
-      this.profile.b30().then((res) => this.b30.set(res));
-      const events = listen(this as HTMLElement);
-      const unsubscribe = events("dblclick", () => {
-        this.requestFullscreen({
-          navigationUI: "hide",
-        });
-      });
-      return () => {
-        unsubscribe();
-      };
-    });
     return <Show when={this.b30}>{(response) => renderB30(response, new Date(Date.now()))}</Show>;
   }
 }

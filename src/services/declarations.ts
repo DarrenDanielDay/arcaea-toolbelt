@@ -10,6 +10,7 @@ import {
   ScoreResult,
   Song,
   SongData,
+  SongIndex,
 } from "../models/music-play";
 import { B30Response, Profile } from "../models/profile";
 import { token } from "./di";
@@ -30,6 +31,7 @@ export interface ChartService {
   readonly minimumConstant: number;
   readonly maximumPotential: number;
   getSongData(): Promise<SongData[]>;
+  getSongIndex(): Promise<SongIndex>;
   searchChart(searchText: string): Promise<SearchResult[]>;
   queryChartsByConstant(min: number, max: number): Promise<SearchResult[]>;
   roll(min: number, max: number): Promise<SearchResult | null>;
@@ -53,6 +55,7 @@ export interface MusicPlayService {
   inverseScore(potential: number, constant: number): number;
   inverseConstant(potential: number, score: number): number;
   computeFar(score: number, note: number, overflow: boolean): number;
+  mapClearType(clearType: number, shinyPerfectCount: number, chart: Chart): ClearRank;
 }
 
 export interface ProfileService {
@@ -61,6 +64,7 @@ export interface ProfileService {
   getProfileList(): Promise<string[]>;
   syncProfiles(data: Partial<Profile>[]): Promise<void>;
   importProfile(file: File): Promise<void>;
+  importDB(file: File, profile: Profile): Promise<void>;
   exportProfile(): Promise<void>;
   useProfile(username: string): Promise<void>;
   addResult(playResult: PlayResult, replace?: boolean): Promise<void>;

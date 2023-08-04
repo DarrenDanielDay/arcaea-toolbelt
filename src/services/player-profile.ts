@@ -1,7 +1,8 @@
-import { PlayResult } from "../models/music-play";
+import { SqlJsStatic } from "sql.js";
+import { NoteResult, PlayResult } from "../models/music-play";
 import { B30Response, BestResultItem, Profile } from "../models/profile";
 import { download } from "../utils/download";
-import { readFile } from "../utils/read-file";
+import { readBinary, readFile } from "../utils/read-file";
 import { alert, confirm } from "../view/components/global-message";
 import { ChartService, MusicPlayService, ProfileService } from "./declarations";
 
@@ -24,7 +25,7 @@ const isValidProfileV1 = (input: any): input is Profile => {
 
 export class ProfileServiceImpl implements ProfileService {
   currentUsername: string | null = this.getInitCurrentUsername();
-
+  #SQL: SqlJsStatic | null = null;
   constructor(private readonly musicPlay: MusicPlayService, private readonly chartService: ChartService) {}
 
   get profile(): Profile | null {
@@ -173,6 +174,68 @@ export class ProfileServiceImpl implements ProfileService {
       b30Average: b30Sum / ptt30.length,
     };
   }
+  async importDB(file: File, profile: Profile): Promise<void> {
+    const bytes = await readBinary(file);
+    const SQL = (this.#SQL ??= await this.#initSQLJS());
+    const db = new SQL.Database(new Uint8Array(bytes));
+    const [scoreQueryResult] = db.exec(`\
+SELECT
+scores.songId,
+scores.songDifficulty,
+scores.shinyPerfectCount,
+scores.perfectCount,
+scores.nearCount,
+scores.missCount,
+cleartypes.clearType 
+FROM scores JOIN cleartypes
+ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.songDifficulty
+`);
+    if (!scoreQueryResult) {
+      return alert(`读取数据库失败`);
+    }
+    interface ST3ScoreQuery {
+      songId: string;
+      songDifficulty: number;
+      shinyPerfectCount: number;
+      perfectCount: number;
+      nearCount: number;
+      missCount: number;
+      clearType: number;
+    }
+    const { columns, values } = scoreQueryResult;
+    const scores = values.map((row) =>
+      row.reduce<ST3ScoreQuery>((st3Score, value, index) => {
+        Reflect.set(st3Score, columns[index]!, value);
+        return st3Score;
+      }, {} as unknown as ST3ScoreQuery)
+    );
+    const songIndex = await this.chartService.getSongIndex();
+    const { best } = profile;
+    for (const score of scores) {
+      const { songId, songDifficulty, shinyPerfectCount, perfectCount, nearCount, missCount, clearType } = score;
+      const song = songIndex[songId];
+      if (!song) {
+        throw new Error(`未知songId：${songId}`);
+      }
+      const chart = song.charts[songDifficulty];
+      if (!chart) {
+        throw new Error(`曲目${song.name}难度${songDifficulty}不存在`);
+      }
+      const noteResult: NoteResult = {
+        perfect: shinyPerfectCount,
+        pure: perfectCount,
+        far: nearCount,
+        lost: missCount,
+      };
+      best[chart.id] = {
+        type: "note",
+        result: noteResult,
+        chartId: chart.id,
+        clear: this.musicPlay.mapClearType(clearType, shinyPerfectCount, chart),
+      };
+    }
+    this.saveProfile({ best });
+  }
 
   private createEmptyProfile(username: string): Profile {
     return {
@@ -217,6 +280,19 @@ export class ProfileServiceImpl implements ProfileService {
         return false;
       }
       return isValidProfileV1(profile);
+    });
+  }
+
+  async #initSQLJS() {
+    import.meta.resolve;
+    const { default: initSQLJS } = await import("sql.js");
+    return initSQLJS({
+      locateFile(url, scriptDirectory) {
+        if (url === "sql-wasm.wasm") {
+          return new URL("../../node_modules/sql.js/dist/sql-wasm.wasm", import.meta.url).href;
+        }
+        return `https://sql.js.org/dist/${url}`;
+      },
     });
   }
 }

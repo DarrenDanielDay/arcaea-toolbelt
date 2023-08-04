@@ -58,8 +58,7 @@ class ProfilePage extends HyplateElement {
               目前，616对好友榜查询的Web API添加了限制，此功能需要订阅<code>Arcaea Online</code>
               才能使用，使用此功能的封号风险请自行承担
             </strong>
-            。 目前的QQ bot基本都有<code>ptt ≥ 10</code> 才能查b30的限制，但<strong>此脚本无此限制</strong>
-            。 通常来说被查玩家的潜力值越低，查分越慢，最坏情况是查完将近1000个谱面的好友榜，大约需要5分钟。
+            。
           </p>
           <p>
             关于此脚本更详细的使用方法，请参考
@@ -155,7 +154,9 @@ class ProfilePage extends HyplateElement {
         </dialog>
         <dialog ref={this.importProfileDialog} id="import-profile">
           <form>
-            <div class="h4">导入存档</div>
+            <div class="h4" style:user-select="none" onDblclick={this.importDB}>
+              导入存档
+            </div>
             <div class="row">
               <div class="col">
                 <input type="file" class="form-control" accept=".json" name="file" />
@@ -225,6 +226,26 @@ class ProfilePage extends HyplateElement {
         await this.profileService.importProfile(file);
       }
     });
+  };
+
+  importDB = async () => {
+    const profile = this.profileService.profile;
+    if (!profile) {
+      return alert(`需要选择存档才能导入成绩`);
+    }
+    // @ts-expect-error non-standard method
+    const [filehandle] = (await showOpenFilePicker({
+      types: [
+        {
+          description: "Arcaea Profile Database",
+        },
+      ],
+      multiple: false,
+    })) as [FileSystemHandle];
+    // @ts-expect-error do not have type declaration
+    const file: File = await filehandle.getFile();
+    await this.profileService.importDB(file, profile);
+    alert("导入成绩成功");
   };
 
   private openFormModal(modal: HTMLDialogElement, onConfirm: (data: FormData) => Promise<void>) {

@@ -1,4 +1,4 @@
-import { Difficulty, SongData } from "../models/music-play";
+import { Difficulty, SongData, SongIndex } from "../models/music-play";
 import { searchMatch } from "../utils/string";
 import { ChartService, SearchResult } from "./declarations";
 import staticData from "../data/chart-data.json";
@@ -15,9 +15,15 @@ export class ChartServiceImpl implements ChartService {
   maximumConstant = constants.reduce((max, curr) => Math.max(max, curr), -Infinity);
   minimumConstant = constants.reduce((min, curr) => Math.min(min, curr), Infinity);
   maximumPotential = maxptt;
+  #songIndex: SongIndex | null = null;
   getSongData(): Promise<SongData[]> {
     return getStaticSongData();
   }
+
+  async getSongIndex(): Promise<SongIndex> {
+    return (this.#songIndex ??= await this.initSongIndex());
+  }
+
   async searchChart(searchText: string): Promise<SearchResult[]> {
     if (!searchText) {
       return [];
@@ -79,27 +85,12 @@ export class ChartServiceImpl implements ChartService {
     }
     return results.at(Math.floor(Math.random() * results.length)) ?? null;
   }
+
+  private async initSongIndex() {
+    const songs = await this.getSongData();
+    return songs.reduce<{ [songId: string]: SongData }>((indexed, song) => {
+      indexed[song.sid] = song;
+      return indexed;
+    }, {});
+  }
 }
-
-// const names = [
-//   "Clotho and",
-//   "Dement",
-//   "Infinity Heaven",
-//   "Suomi",
-//   "Rise",
-//   "Fairytale",
-//   "Brand new",
-//   "Vexaria",
-//   "Sayonara",
-//   "inkar-usi",
-//   'world.exec',
-//   'Diode',
-
-// ];
-
-// const songs = staticData.filter((s) => names.some((n) => s.name.startsWith(n)));
-// const charts = songs.flatMap((song) => song.charts.filter(c=> c.difficulty !== 'byd')).sort((a, b) => b.constant - a.constant);
-// function sum<T>(arr: T[], selector: (item: T) => number) {
-//   return arr.reduce((s, i) => s + selector(i), 0);
-// }
-// console.log((sum(charts.slice(0, 30), (x) => x.constant) + sum(charts.slice(0, 10), (x) => x.constant) + 40 * 2)/ 40);

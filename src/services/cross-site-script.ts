@@ -1,7 +1,14 @@
 import data from "../data/chart-data.json";
-import { Chart, ClearRank, Difficulty, PlayResult, SongData } from "../models/music-play";
+import { Difficulty, PlayResult, SongData } from "../models/music-play";
 import { Profile } from "../models/profile";
-import { $CrossSiteScriptPluginService, $WorldModeService, ChartService, CrossSiteScriptPluginService, MusicPlayService, WorldModeService } from "./declarations";
+import {
+  $CrossSiteScriptPluginService,
+  $WorldModeService,
+  ChartService,
+  CrossSiteScriptPluginService,
+  MusicPlayService,
+  WorldModeService,
+} from "./declarations";
 import { MusicPlayServiceImpl } from "./music-play";
 import * as lowiro from "./web-api";
 import { ToolPanel } from "../view/components/plugin-panel";
@@ -94,27 +101,6 @@ function mapDifficulty(d: Difficulty) {
   }
 }
 
-function mapClearType(clear: number, shiny_perfect: number, chart: Chart): ClearRank {
-  if (shiny_perfect === chart.note) {
-    return ClearRank.Maximum;
-  }
-  switch (clear) {
-    case 0:
-      return ClearRank.TrackLost;
-    case 1:
-      return ClearRank.NormalClear;
-    case 2:
-      return ClearRank.FullRecall;
-    case 3:
-      return ClearRank.PureMemory;
-    case 4:
-      return ClearRank.EasyClear;
-    case 5:
-      return ClearRank.HardClear;
-  }
-  throw new Error(`未知clear_type: ${clear}`);
-}
-
 type QueryBests = {
   [username: string]: {
     [chartId: string]: PlayResult;
@@ -173,7 +159,7 @@ async function queryBest(
             type: "note",
             chartId: chart.id,
             // clear_type是最高分那次的，best_clear_type是排行榜显示的通关类型
-            clear: mapClearType(best.clear_type, best.shiny_perfect_count, chart),
+            clear: musicPlay.mapClearType(best.clear_type, best.shiny_perfect_count, chart),
             result: {
               pure: best.perfect_count,
               perfect: best.shiny_perfect_count,

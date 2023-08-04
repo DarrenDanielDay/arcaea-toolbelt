@@ -12,10 +12,9 @@ declare module "*.ico" {
   const url: string;
   export default url;
 }
-
-declare var process: {
-  env: {
+declare namespace NodeJS {
+  interface ProcessEnv {
     BASE_URI: string;
     COMMIT_SHA: string;
-  };
-};
+  }
+}

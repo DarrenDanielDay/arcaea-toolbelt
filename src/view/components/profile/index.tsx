@@ -242,10 +242,15 @@ class ProfilePage extends HyplateElement {
       ],
       multiple: false,
     })) as [FileSystemHandle];
+    this.importProfileDialog.close();
     // @ts-expect-error do not have type declaration
     const file: File = await filehandle.getFile();
-    await this.profileService.importDB(file, profile);
-    alert("导入成绩成功");
+    try {
+      await this.profileService.importDB(file, profile);
+      alert("导入成绩成功");
+    } catch (error) {
+      alert(`${error}`);
+    }
   };
 
   private openFormModal(modal: HTMLDialogElement, onConfirm: (data: FormData) => Promise<void>) {

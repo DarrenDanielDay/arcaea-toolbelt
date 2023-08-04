@@ -191,7 +191,7 @@ FROM scores JOIN cleartypes
 ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.songDifficulty
 `);
     if (!scoreQueryResult) {
-      return alert(`读取数据库失败`);
+      throw new Error(`读取数据库失败`);
     }
     interface ST3ScoreQuery {
       songId: string;
@@ -215,11 +215,13 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       const { songId, songDifficulty, shinyPerfectCount, perfectCount, nearCount, missCount, clearType } = score;
       const song = songIndex[songId];
       if (!song) {
-        throw new Error(`未知songId：${songId}`);
+        console.error(`未知songId：${songId}`);
+        continue;
       }
       const chart = song.charts[songDifficulty];
       if (!chart) {
-        throw new Error(`曲目${song.name}难度${songDifficulty}不存在`);
+        console.error(`曲目${song.name}难度${songDifficulty}不存在`);
+        continue;
       }
       const noteResult: NoteResult = {
         perfect: shinyPerfectCount,
@@ -284,7 +286,6 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
   }
 
   async #initSQLJS() {
-    import.meta.resolve;
     const { default: initSQLJS } = await import("sql.js");
     return initSQLJS({
       locateFile(url, scriptDirectory) {

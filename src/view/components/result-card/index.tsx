@@ -116,7 +116,7 @@ class ResultCard extends HyplateElement {
                   const grade = this.scoreResult()?.grade;
                   return grade ? gradeImages[grade] : null;
                 })}
-                class:hidden={computed(() => !!this.scoreResult())}
+                class:hidden={computed(() => !this.scoreResult())}
               />
               <img
                 class="clear"
@@ -124,7 +124,7 @@ class ResultCard extends HyplateElement {
                   const clear = this.clearRank();
                   return clear ? clearImages[clear] : null;
                 })}
-                class:hidden={computed(() => !!this.clearRank())}
+                class:hidden={computed(() => !this.clearRank())}
               />
             </div>
             <div class="no-badge">

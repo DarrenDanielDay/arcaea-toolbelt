@@ -1,20 +1,18 @@
 {
   "Component": {
-    "scope": "javascript,typescript",
+    "scope": "javascript,typescript,typescriptreact",
     "prefix": "comp",
     "body": [
-      "import html from \"bundle-text:./template.html\";",
       "import { sheet } from \"./style.css.js\";",
-      "import { Component } from \"../../../utils/component\";",
+      "import { Component, HyplateElement } from \"hyplate\";",
       "import { bootstrap } from \"../../styles\";",
       "",
       "export",
       "@Component({",
-      "  selector: \"$1\",",
-      "  html,",
-      "  css: [bootstrap, sheet],",
+      "  tag: \"$1\",",
+      "  styles: [bootstrap, sheet],",
       "})",
-      "class $2 extends HTMLElement {}"
+      "class $2 extends HyplateElement {}"
     ],
     "description": "Log output to console"
   }

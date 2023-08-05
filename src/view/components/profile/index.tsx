@@ -5,6 +5,8 @@ import { $ProfileService, ProfileService } from "../../../services/declarations"
 import { alert } from "../global-message";
 import { Component, For, HyplateElement, computed, element, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
+import { loading } from "../loading";
+import { delay } from "../../../utils/delay";
 export
 @Component({
   tag: "profile-page",
@@ -18,6 +20,8 @@ class ProfilePage extends HyplateElement {
   editProfileDialog = element("dialog");
   switchProfileDialog = element("dialog");
   importProfileDialog = element("dialog");
+  importSt3Dialog = element("dialog");
+
   greet = signal<Profile | null>(null);
 
   override render() {
@@ -35,7 +39,7 @@ class ProfilePage extends HyplateElement {
             创建存档
           </button>
           <button type="button" class="btn btn-outline-secondary switch-profile" onClick={this.switchProfile}>
-            切换存档
+            选择存档
           </button>
           <button type="button" class="btn btn-outline-secondary update-profile" onClick={this.updateProfile}>
             修改存档
@@ -45,6 +49,9 @@ class ProfilePage extends HyplateElement {
           </button>
           <button type="button" class="btn btn-outline-secondary import-profile" onClick={this.importProfile}>
             导入存档
+          </button>
+          <button type="button" class="btn btn-outline-secondary import-scores" onClick={this.importSt3}>
+            导入st3
           </button>
         </div>
         <div class="row m-3">
@@ -117,7 +124,7 @@ class ProfilePage extends HyplateElement {
         </dialog>
         <dialog ref={this.editProfileDialog} id="edit-profile">
           <form>
-            <div class="h4">修改存档</div>
+            <div class="h4">选择存档</div>
             <div class="mb-3">
               <label for="ptt" class="form-label">
                 潜力值
@@ -154,12 +161,30 @@ class ProfilePage extends HyplateElement {
         </dialog>
         <dialog ref={this.importProfileDialog} id="import-profile">
           <form>
-            <div class="h4" style:user-select="none" onDblclick={this.importDB}>
+            <div class="h4">
               导入存档
             </div>
             <div class="row">
               <div class="col">
                 <input type="file" class="form-control" accept=".json" name="file" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary cancel">
+                取消
+              </button>
+              <button type="button" class="btn btn-primary confirm">
+                确认
+              </button>
+            </div>
+          </form>
+        </dialog>
+        <dialog ref={this.importSt3Dialog} id="import-scores">
+          <form>
+            <div class="h4">从Arcaea本地存档st3文件导入成绩</div>
+            <div class="row">
+              <div class="col">
+                <input type="file" class="form-control" name="file" />
               </div>
             </div>
             <div class="modal-footer">
@@ -228,29 +253,28 @@ class ProfilePage extends HyplateElement {
     });
   };
 
-  importDB = async () => {
+  importSt3 = async () => {
     const profile = this.profileService.profile;
     if (!profile) {
       return alert(`需要选择存档才能导入成绩`);
     }
-    // @ts-expect-error non-standard method
-    const [filehandle] = (await showOpenFilePicker({
-      types: [
-        {
-          description: "Arcaea Profile Database",
-        },
-      ],
-      multiple: false,
-    })) as [FileSystemHandle];
-    this.importProfileDialog.close();
-    // @ts-expect-error do not have type declaration
-    const file: File = await filehandle.getFile();
-    try {
-      await this.profileService.importDB(file, profile);
-      alert("导入成绩成功");
-    } catch (error) {
-      alert(`${error}`);
-    }
+    this.openFormModal(this.importSt3Dialog, async (data) => {
+      const file = data.get("file");
+      if (file instanceof File) {
+        try {
+          await loading(
+            (async () => {
+              await delay(300);
+              await this.profileService.importDB(file, profile);
+            })(),
+            <div>正在导入成绩……</div>
+          );
+          alert("导入成绩成功");
+        } catch (error) {
+          alert(`${error}`);
+        }
+      }
+    });
   };
 
   private openFormModal(modal: HTMLDialogElement, onConfirm: (data: FormData) => Promise<void>) {

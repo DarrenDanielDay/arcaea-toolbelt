@@ -16,6 +16,10 @@ blockquote {
   margin: 8px 0;
 }
 
+.modal-footer {
+  margin: 0.5em 0;
+}
+
 #the-script {
   overflow-x: auto;
   white-space: pre;

@@ -3,7 +3,7 @@ import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
 import { $ChartService, $ProfileService, ChartService, ProfileService } from "../../../services/declarations";
 import { alert, confirm } from "../global-message";
-import { Component, For, HyplateElement, computed, element, signal } from "hyplate";
+import { Component, HyplateElement, computed, element, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/delay";

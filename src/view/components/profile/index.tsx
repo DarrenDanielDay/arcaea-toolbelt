@@ -1,8 +1,8 @@
 import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
-import { $ProfileService, ProfileService } from "../../../services/declarations";
-import { alert } from "../global-message";
+import { $ChartService, $ProfileService, ChartService, ProfileService } from "../../../services/declarations";
+import { alert, confirm } from "../global-message";
 import { Component, For, HyplateElement, computed, element, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
@@ -15,12 +15,15 @@ export
 class ProfilePage extends HyplateElement {
   @Inject($ProfileService)
   accessor profileService!: ProfileService;
+  @Inject($ChartService)
+  accessor chartService!: ChartService;
 
   createProfileDialog = element("dialog");
   editProfileDialog = element("dialog");
   switchProfileDialog = element("dialog");
   importProfileDialog = element("dialog");
   importSt3Dialog = element("dialog");
+  editPtt = element("input");
 
   greet = signal<Profile | null>(null);
 
@@ -100,7 +103,16 @@ class ProfilePage extends HyplateElement {
               <label for="potential" class="form-label">
                 潜力值
               </label>
-              <input class="form-control" id="potential" name="potential" required />
+              <input
+                class="form-control"
+                id="potential"
+                name="potential"
+                type="number"
+                step="0.01"
+                min={0}
+                max={this.chartService.maximumPotential}
+                required
+              />
             </div>
             {this.renderFooter()}
           </form>
@@ -112,7 +124,18 @@ class ProfilePage extends HyplateElement {
               <label for="ptt" class="form-label">
                 潜力值
               </label>
-              <input class="form-control" id="ptt" name="ptt" required autofocus />
+              <input
+                ref={this.editPtt}
+                class="form-control"
+                id="ptt"
+                name="ptt"
+                type="number"
+                step="0.01"
+                min={0}
+                max={this.chartService.maximumPotential}
+                required
+                autofocus
+              />
             </div>
             {this.renderFooter()}
           </form>
@@ -159,7 +182,11 @@ class ProfilePage extends HyplateElement {
       const username = data.get("username") as string;
       const ptt = +data.get("potential")!;
       if (!isNaN(ptt)) {
-        this.profileService.createOrUpdateProfile(username, ptt);
+        await this.profileService.createOrUpdateProfile(username, ptt);
+        if (!this.profileService.profile) {
+          await this.profileService.useProfile(username);
+          this.updateGreet();
+        }
       }
     });
   };
@@ -170,6 +197,7 @@ class ProfilePage extends HyplateElement {
       alert("未选择存档");
       return;
     }
+    this.editPtt.value = currentProfile.potential;
     this.openFormModal(this.editProfileDialog, async (data) => {
       const ptt = +data.get("ptt")!;
       if (!isNaN(ptt)) {
@@ -180,8 +208,14 @@ class ProfilePage extends HyplateElement {
   };
 
   switchProfile = async () => {
-    const select = this.switchProfileDialog.querySelector('select[name="profile"]')!;
     const profiles = await this.profileService.getProfileList();
+    if (!profiles.length) {
+      if (await confirm("当前没有存档，是否前往创建？")) {
+        this.createProfile();
+      }
+      return;
+    }
+    const select = this.switchProfileDialog.querySelector('select[name="profile"]')!;
     select.innerHTML = profiles.map((p) => `<option>${p}</option>`).join("");
     select.value = this.profileService.profile?.username ?? "";
     this.openFormModal(this.switchProfileDialog, async (data) => {

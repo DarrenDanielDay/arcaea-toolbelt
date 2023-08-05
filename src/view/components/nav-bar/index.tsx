@@ -53,7 +53,7 @@ class NavBar extends HyplateElement {
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="https://github.com/DarrenDanielDay/arcaea-toolbelt">
+                <a class="nav-link" href="https://github.com/DarrenDanielDay/arcaea-toolbelt" target="_blank">
                   <img src={github} width="24" height="24" />
                 </a>
               </li>

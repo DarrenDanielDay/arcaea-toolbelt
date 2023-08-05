@@ -44,28 +44,20 @@ class ProfilePage extends HyplateElement {
           <button type="button" class="btn btn-outline-secondary update-profile" onClick={this.updateProfile}>
             修改存档
           </button>
-          <button type="button" class="btn btn-outline-secondary export-profile" onClick={this.exportProfile}>
-            导出当前存档
-          </button>
-          <button type="button" class="btn btn-outline-secondary import-profile" onClick={this.importProfile}>
-            导入存档
-          </button>
           <button type="button" class="btn btn-outline-secondary import-scores" onClick={this.importSt3}>
             导入st3
           </button>
+          <button type="button" class="btn btn-outline-secondary import-profile" onClick={this.importProfile}>
+            导入JSON存档
+          </button>
+          <button type="button" class="btn btn-outline-secondary export-profile" onClick={this.exportProfile}>
+            导出当前存档为JSON
+          </button>
         </div>
         <div class="row m-3">
-          <p>b30相关的功能主要是手动录入成绩进行计算并生成看板，类似excel算分表格的在线版。</p>
           <p>
-            为了减少手动录入成绩的麻烦，下面也提供一个自助查分脚本工具，可用于在Arcaea官网爬取这些成绩数据，并生成存档同步至本站。
-            所有的查分操作都会在浏览器内进行，数据也存在浏览器内。查分原理和
-            <code>Arcaea Unlimited API</code>
-            一样是查好友榜，并且可以同时查多个玩家。
-            <strong>
-              目前，616对好友榜查询的Web API添加了限制，此功能需要订阅<code>Arcaea Online</code>
-              才能使用，使用此功能的封号风险请自行承担
-            </strong>
-            。
+            本工具有一个配套的脚本，可以用于在{this.renderArcaeaOfficialLink()}
+            获取一些信息，包括获取搭档数据、Web API查分（需订阅Arcaea Online）等。
           </p>
           <p>
             关于此脚本更详细的使用方法，请参考
@@ -76,9 +68,7 @@ class ProfilePage extends HyplateElement {
           </p>
           <p>
             在电脑上，使用<code>Chrome/Edge</code>浏览器打开
-            <a href="https://arcaea.lowiro.com/zh/" target="_blank">
-              Arcaea官网
-            </a>
+            {this.renderArcaeaOfficialLink()}
             并登录，按F12打开开发者工具，找到控制台（Console），复制并执行以下脚本代码即可调用此脚本。
           </p>
           <div>
@@ -112,71 +102,41 @@ class ProfilePage extends HyplateElement {
               </label>
               <input class="form-control" id="potential" name="potential" required />
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary cancel">
-                取消
-              </button>
-              <button type="button" class="btn btn-primary confirm">
-                确认
-              </button>
-            </div>
+            {this.renderFooter()}
           </form>
         </dialog>
         <dialog ref={this.editProfileDialog} id="edit-profile">
           <form>
-            <div class="h4">选择存档</div>
+            <div class="h4">修改存档</div>
             <div class="mb-3">
               <label for="ptt" class="form-label">
                 潜力值
               </label>
               <input class="form-control" id="ptt" name="ptt" required autofocus />
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary cancel">
-                取消
-              </button>
-              <button type="button" class="btn btn-primary confirm">
-                确认
-              </button>
-            </div>
+            {this.renderFooter()}
           </form>
         </dialog>
         <dialog ref={this.switchProfileDialog} id="switch-profile">
           <form>
-            <div class="h4">切换存档</div>
+            <div class="h4">选择存档</div>
             <div class="row">
               <div class="col">
                 <select class="form-select" name="profile" required></select>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary cancel">
-                取消
-              </button>
-              <button type="button" class="btn btn-primary confirm">
-                确认
-              </button>
-            </div>
+            {this.renderFooter()}
           </form>
         </dialog>
         <dialog ref={this.importProfileDialog} id="import-profile">
           <form>
-            <div class="h4">
-              导入存档
-            </div>
+            <div class="h4">导入存档</div>
             <div class="row">
               <div class="col">
                 <input type="file" class="form-control" accept=".json" name="file" />
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary cancel">
-                取消
-              </button>
-              <button type="button" class="btn btn-primary confirm">
-                确认
-              </button>
-            </div>
+            {this.renderFooter()}
           </form>
         </dialog>
         <dialog ref={this.importSt3Dialog} id="import-scores">
@@ -187,14 +147,7 @@ class ProfilePage extends HyplateElement {
                 <input type="file" class="form-control" name="file" />
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary cancel">
-                取消
-              </button>
-              <button type="button" class="btn btn-primary confirm">
-                确认
-              </button>
-            </div>
+            {this.renderFooter()}
           </form>
         </dialog>
       </>
@@ -276,6 +229,27 @@ class ProfilePage extends HyplateElement {
       }
     });
   };
+
+  private renderArcaeaOfficialLink() {
+    return (
+      <a href="https://arcaea.lowiro.com/zh/" target="_blank">
+        Arcaea官网
+      </a>
+    );
+  }
+
+  private renderFooter() {
+    return (
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary cancel">
+          取消
+        </button>
+        <button type="button" class="btn btn-primary confirm">
+          确认
+        </button>
+      </div>
+    );
+  }
 
   private openFormModal(modal: HTMLDialogElement, onConfirm: (data: FormData) => Promise<void>) {
     modal.querySelector("button.cancel")!.onclick = () => {

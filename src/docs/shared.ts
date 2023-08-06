@@ -25,4 +25,14 @@ export const docsPage = (content: string) => {
       hideToc();
     };
   });
+  document.querySelectorAll("img").forEach((img) => {
+    img.onclick = () => {
+      const isFullScreen = !!document.fullscreenElement;
+      if (isFullScreen) {
+        document.exitFullscreen();
+      } else {
+        img.requestFullscreen({ navigationUI: "show" });
+      }
+    };
+  });
 };

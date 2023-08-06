@@ -80,6 +80,7 @@ pre {
   object-fit: scale-down;
   max-width: 400px;
   margin: 8px 0;
+  cursor: zoom-in;
 }
 
 * {

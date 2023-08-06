@@ -1,0 +1,82 @@
+<div class="page">
+  <div class="toc-wrapper">
+    <aside class="toc-content">
+      <header>目录</header>
+      <ul id="toc">
+        <li>
+          <a href="#install-mumu">1. 安装模拟器</a>
+        </li>
+        <li>
+          <a href="#install-arcaea">2. 安装Arcaea</a>
+        </li>
+        <li>
+          <a href="#sync-profile">3. 同步存档</a>
+        </li>
+        <li>
+          <a href="#root">4. 开启Root权限</a>
+        </li>
+        <li>
+          <a href="#confirm-port">5. 确认端口</a>
+        </li>
+        <li>
+          <a href="#open-terminal">6. 打开终端</a>
+        </li>
+        <li>
+          <a href="#exec">7. 执行adb命令</a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+  <main>
+    <p>本文介绍如何使用MuMu模拟器获取Arcaea的本地存档<code>st3</code>文件。</p>
+    <h3 id="install-mumu">1. 安装MuMu模拟器12</h3>
+    <p>
+      <a href="https://mumu.163.com/index.html">https://mumu.163.com/index.html</a>
+    </p>
+    <p>可以提前记一下安装目录，后面有用。</p>
+    <h3 id="install-arcaea">2. 安装Arcaea</h3>
+    <p>官网：<a href="https://arcaea.lowiro.com/">https://arcaea.lowiro.com/</a></p>
+    <p>官网太慢可以试试第三方下载：<a href="https://616.sb/">https://616.sb/</a></p>
+    <p>安装包文件下载完直接拖进模拟器即可自动安装。</p>
+    <h3 id="sync-profile">3. 同步存档</h3>
+    <p>
+      模拟器上打开Arcaea，登录账号，同步云端的存档到模拟器上。记得在登录前在原设备上同步存档到云端，以及注意24小时内不要同时登录包括模拟器在内的三个设备。
+    </p>
+    <h3 id="root">4. 开启模拟器的Root权限</h3>
+    <div class="imgs">
+      <img src="../img/settings.png" loading="lazy" />
+      <img src="../img/open-root.png" loading="lazy" />
+    </div>
+    <p>
+      其实这才是用模拟器最主要的点，一般安卓设备出厂都是没有Root的，如果你的手机刷过Root，不用模拟器也可以用同样的方法拿到存档文件。
+    </p>
+    <h3 id="confirm-port">5. 确认端口</h3>
+    <p>打开MuMu多开器，记一下模拟器用的adb端口号（这里是16384）。</p>
+    <div class="imgs">
+      <img src="../img/port.png" loading="lazy" />
+    </div>
+    <h3 id="open-terminal">6. 打开带有adb命令的终端</h3>
+    <p>做安卓的同学应该比较熟悉adb，这里用的是MuMu模拟器安装后自带的adb。</p>
+    <p>找到模拟器的安装目录下的shell文件夹，以此路径打开命令行工具，就可以使用adb命令了。</p>
+    <p>可通过右键菜单-&gt;在终端打开，也可以直接在地址栏输入<code>cmd</code>或<code>powershell</code>并回车来打开。</p>
+    <div class="imgs">
+      <img src="../img/open-terminal.png" loading="lazy" />
+    </div>
+    <h3 id="exec">7. 执行adb命令</h3>
+    <p>
+      依次输入并回车执行以下几个命令，即可将模拟器内的本地存档复制到目标位置。图中在E盘创建了一个temp文件夹，命令将整个
+      <code>/data/data/moe.low.arc/files</code>
+      文件夹里的全部复制到里面的<code>sb616</code>文件夹下。
+    </p>
+    <pre><code><code><div>adb kill-server; adb start-server;
+adb connect 127.0.0.1:&lt;端口号&gt;
+adb -s 127.0.0.1:&lt;端口号&gt; pull /data/data/moe.low.arc/files &lt;目标位置&gt;</div></code></code></pre>
+    <div class="imgs">
+      <img src="../img/adb-pull.png" loading="lazy" />
+    </div>
+    <p>完成以后找到里面的<code>st3</code>即为本地分数存档文件。</p>
+    <div class="imgs">
+      <img src="../img/st3.png" loading="lazy" />
+    </div>
+  </main>
+</div>

@@ -9,6 +9,7 @@
       "source": [
         "src/index.html",
         "src/docs/plugin-usage.html",
+        "src/docs/mumu-adb.html",
         "src/services/cross-site-script.ts",
         "src/services/cross-site-frame.html"
       ],

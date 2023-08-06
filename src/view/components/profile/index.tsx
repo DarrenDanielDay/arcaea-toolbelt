@@ -59,6 +59,13 @@ class ProfilePage extends HyplateElement {
         </div>
         <div class="row m-3">
           <p>
+            关于如何获取本地存档<code>st3</code>文件，可参考
+            <a href="docs/mumu-adb.html" target="_blank">
+              使用MuMu模拟器和adb获取存档
+            </a>
+            。
+          </p>
+          <p>
             本工具有一个配套的脚本，可以用于在{this.renderArcaeaOfficialLink()}
             获取一些信息，包括获取搭档数据、Web API查分（需订阅Arcaea Online）等。
           </p>

@@ -19,28 +19,28 @@
           <a href="#confirm-port">5. 确认端口</a>
         </li>
         <li>
-          <a href="#open-terminal">6. 打开终端</a>
+          <a href="#exec">6. 执行adb命令</a>
         </li>
         <li>
-          <a href="#exec">7. 执行adb命令</a>
+          <a href="#tool">7. 解析工具</a>
         </li>
       </ul>
     </aside>
   </div>
   <main>
-    <p>本文介绍如何使用MuMu模拟器获取Arcaea的本地存档<code>st3</code>文件。</p>
+    <p>本文介绍如何在Windows上使用MuMu模拟器获取Arcaea的本地存档<code>st3</code>文件。</p>
     <h3 id="install-mumu">1. 安装MuMu模拟器12</h3>
     <p>
-      <a href="https://mumu.163.com/index.html">https://mumu.163.com/index.html</a>
+      <a href="https://mumu.163.com/index.html" target="_blank">https://mumu.163.com/index.html</a>
     </p>
     <p>可以提前记一下安装目录，后面有用。</p>
     <h3 id="install-arcaea">2. 安装Arcaea</h3>
-    <p>官网：<a href="https://arcaea.lowiro.com/">https://arcaea.lowiro.com/</a></p>
+    <p>官网：<a href="https://arcaea.lowiro.com/" target="_blank">https://arcaea.lowiro.com/</a></p>
     <p>官网太慢可以试试第三方下载：<a href="https://616.sb/">https://616.sb/</a></p>
     <p>安装包文件下载完直接拖进模拟器即可自动安装。</p>
     <h3 id="sync-profile">3. 同步存档</h3>
     <p>
-      模拟器上打开Arcaea，登录账号，同步云端的存档到模拟器上。记得在登录前在原设备上同步存档到云端，以及注意24小时内不要同时登录包括模拟器在内的三个设备。
+      模拟器上打开Arcaea，登录账号，同步云端的存档到模拟器上。记得提前在原设备上同步存档到云端，以及注意<strong>24小时内不要同时登录包括模拟器在内的三个以上设备</strong>。
     </p>
     <h3 id="root">4. 开启模拟器的Root权限</h3>
     <div class="imgs">
@@ -48,35 +48,79 @@
       <img src="../img/open-root.png" loading="lazy" />
     </div>
     <p>
-      其实这才是用模拟器最主要的点，一般安卓设备出厂都是没有Root的，如果你的手机刷过Root，不用模拟器也可以用同样的方法拿到存档文件。
+      其实这才是用模拟器最主要的点，一般安卓设备出厂都是没有Root的，如果有刷过Root的手机，不用模拟器也可以用同样的方法拿到存档文件。
     </p>
     <h3 id="confirm-port">5. 确认端口</h3>
     <p>打开MuMu多开器，记一下模拟器用的adb端口号（这里是16384）。</p>
     <div class="imgs">
       <img src="../img/port.png" loading="lazy" />
     </div>
-    <h3 id="open-terminal">6. 打开带有adb命令的终端</h3>
-    <p>做安卓的同学应该比较熟悉adb，这里用的是MuMu模拟器安装后自带的adb。</p>
-    <p>找到模拟器的安装目录下的shell文件夹，以此路径打开命令行工具，就可以使用adb命令了。</p>
-    <p>可通过右键菜单-&gt;在终端打开，也可以直接在地址栏输入<code>cmd</code>或<code>powershell</code>并回车来打开。</p>
+    <h3 id="exec">6. 执行adb命令</h3>
+    <p>
+      做安卓的同学应该比较熟悉adb，这里用的是MuMu模拟器安装后自带的adb。以root权限使用adb能够直接导出安卓文件系统内部的文件，我们需要的存档文件位置是<code>/data/data/moe.low.arc/files/st3</code>。这里提供两种操作方法。
+    </p>
+    <p>
+      方法一：输入以下参数来直接生成带有完整命令的bat脚本，下载后直接双击运行即可，运行成功后即可在导出文件夹内找到st3存档文件。可以多次执行脚本，每次执行都会导出并覆盖原有文件。
+    </p>
+    <p>
+      下载脚本时，浏览器可能会报告安全问题，因为恶意的脚本可能会窃取信息或损坏计算机。此生成的脚本没有这样的恶意代码，可以放心下载并保留。
+    </p>
+    <form class="mx-2">
+      <div class="my-2">
+        <label class="form-label" for="install-path">MuMu模拟器安装路径或shell路径</label>
+        <input class="form-control" id="install-path" />
+      </div>
+      <div class="my-2">
+        <label class="form-label" for="port">模拟器adb端口</label>
+        <input class="form-control" id="port" type="number" min="0" max="65535" step="1" />
+      </div>
+      <div class="my-2">
+        <label class="form-label" for="export-path">放导出存档的文件夹（需提前创建）</label>
+        <input class="form-control" id="export-path" />
+      </div>
+      <p>生成的脚本内容：</p>
+      <pre><div id="script-content"></div></pre>
+      <p>
+        <button type="button" class="btn btn-primary" id="download-script">下载脚本</button>
+      </p>
+    </form>
+    <p>方案二：手动执行adb命令。找到模拟器的安装目录下的shell文件夹，以此路径打开命令行工具。</p>
+    <p>可通过空白处右键菜单-&gt;在终端打开：</p>
     <div class="imgs">
       <img src="../img/open-terminal.png" loading="lazy" />
     </div>
-    <h3 id="exec">7. 执行adb命令</h3>
+    <p>也可以直接在文件浏览器地址栏输入<code>powershell</code>或<code>cmd</code>并按回车来打开：</p>
+    <div class="imgs">
+      <img src="../img/open-powershell.gif" loading="lazy" />
+    </div>
+    <p>再在命令行内手动依次输入并回车执行以下几个命令，即可将模拟器内的本地存档复制到目标位置。</p>
+    <pre><code><code><div>.\adb.exe kill-server
+.\adb.exe start-server
+.\adb.exe connect 127.0.0.1:端口号
+.\adb.exe -s 127.0.0.1:端口号 pull /data/data/moe.low.arc/files/st3 导出st3的文件夹</div></code></code></pre>
     <p>
-      依次输入并回车执行以下几个命令，即可将模拟器内的本地存档复制到目标位置。图中在E盘创建了一个temp文件夹，命令将整个
-      <code>/data/data/moe.low.arc/files</code>
-      文件夹里的全部复制到里面的<code>sb616</code>文件夹下。
+      如下图所示，先在E盘创建<code>E:\temp\616sb</code>文件夹，然后用adb将
+      <code>/data/data/moe.low.arc/files/st3</code>
+      文件抽取到<code>616sb</code>文件夹下。
     </p>
-    <pre><code><code><div>adb kill-server; adb start-server;
-adb connect 127.0.0.1:&lt;端口号&gt;
-adb -s 127.0.0.1:&lt;端口号&gt; pull /data/data/moe.low.arc/files &lt;目标位置&gt;</div></code></code></pre>
     <div class="imgs">
       <img src="../img/adb-pull.png" loading="lazy" />
     </div>
-    <p>完成以后找到里面的<code>st3</code>即为本地分数存档文件。</p>
+    <p>完成以后找到里面的<code>st3</code>文件即为包含本地分数的存档文件。</p>
     <div class="imgs">
       <img src="../img/st3.png" loading="lazy" />
     </div>
+    <h3 id="tool">7. 解析工具</h3>
+    <p>
+      存档的格式是<code>sqlite</code>数据库文件。<code>Arcaea Toolbelt</code>的<a
+        href="https://darrendanielday.github.io/arcaea-toolbelt"
+        target="_blank"
+        >主站</a
+      >支持通过<code>st3</code>存档导入成绩并计算<code>b30</code>。
+    </p>
+    <p>
+      此外还推荐一个<code>sqlite</code>数据库可视化工具<a href="https://www.sqlitestudio.pl/" target="_blank">SQLiteStudio</a
+      >，有兴趣可以尝试一下。
+    </p>
   </main>
 </div>

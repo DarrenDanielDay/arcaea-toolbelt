@@ -610,6 +610,10 @@ class WorldModeCalculator extends HyplateElement {
                     }),
                     10
                   );
+                  const hasStepModifier = [
+                    35, // 风暴对立
+                    55, // 宿命光
+                  ].includes(character.id);
                   return (
                     <>
                       <div class="row my-3">
@@ -620,6 +624,11 @@ class WorldModeCalculator extends HyplateElement {
                           <div class="col-auto">
                             <img src={character.awakenImage} width={64} height={64}></img>
                           </div>
+                        ) : (
+                          nil
+                        )}
+                        {hasStepModifier ? (
+                          <div class="col-auto" style:color="red">注意：此角色有step加成的因子，静态数据不包括加成的值。</div>
                         ) : (
                           nil
                         )}

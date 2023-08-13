@@ -1,6 +1,6 @@
 import { sheet } from "./style.css.js";
 import { bootstrap } from "../../styles";
-import { MapPlatform, NormalWorldMap, PlatformType, RewardType } from "../../../models/world-mode";
+import { CurrentProgress, MapPlatform, NormalWorldMap, PlatformType, RewardType } from "../../../models/world-mode";
 import { alert } from "../global-message";
 import { Component, For, HyplateElement, computed, element, nil, signal } from "hyplate";
 import type { CleanUpFunc, WritableSignal } from "hyplate/types";
@@ -42,11 +42,6 @@ interface PlatformContext {
   highlighted: WritableSignal<boolean>;
 }
 
-interface CurrentProgress {
-  level: number;
-  progress: number;
-}
-
 export
 @Component({
   tag: "world-map-normal",
@@ -56,9 +51,6 @@ class WorldMapNormal extends HyplateElement {
   platformsContainer = element("div");
 
   currentMap = signal<NormalWorldMap | null>(null);
-  /**
-   * 索引是level-1
-   */
   platforms = signal<PlatformContext[]>([]);
   currentProgress = signal<CurrentProgress | null>(null);
   #cleanupHighlight: CleanUpFunc | null = null;
@@ -211,7 +203,7 @@ class WorldMapNormal extends HyplateElement {
         if (!platform) {
           return result;
         }
-        const level = +key + 1;
+        const level = +key;
         result.push({
           cell: element("div"),
           level,

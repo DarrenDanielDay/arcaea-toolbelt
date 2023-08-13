@@ -14,7 +14,7 @@ import {
 } from "../models/music-play";
 import { B30Response, Profile } from "../models/profile";
 import { token } from "./di";
-import { Chapter, NormalWorldMap, RewardType } from "../models/world-mode";
+import { Chapter, CurrentProgress, NormalWorldMap, RewardType } from "../models/world-mode";
 
 export interface SearchResult {
   chart: Chart;
@@ -39,6 +39,7 @@ export interface ChartService {
 
 export interface MusicPlayService {
   readonly ex: number;
+  readonly maximumSinglePotential: number;
   inferNoteResult(
     chart: Chart,
     perfect: number | null,
@@ -72,6 +73,21 @@ export interface ProfileService {
   b30(): Promise<B30Response>;
 }
 
+export interface MapDistance {
+  // 暂时只管一个progress的距离
+  distance: number;
+}
+
+export interface NextRewardInfo {
+  img: string;
+  remaining: MapDistance;
+}
+
+export interface RemainingProgress {
+  total: MapDistance;
+  nextReward: NextRewardInfo | null;
+}
+
 export type WorldMapBonus =
   | {
       type: "legacy";
@@ -95,14 +111,15 @@ export interface WorldModeService {
   getLongtermMaps(): Promise<Chapter[]>;
   getEventMaps(): Promise<NormalWorldMap[]>;
   getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, string[]>>;
+  computePlayResult(potential: number): number;
   computeBasicProgress(step: number, potential: number): number;
   computeProgress(step: number, potential: number, bonus: WorldMapBonus | null): number;
   computeProgressRange(
     map: NormalWorldMap,
-    completed: number,
-    rest: number,
+    currentProgress: CurrentProgress,
     targetLevel: number
   ): [low: number, high: number];
+  computeRemainingProgress(map: NormalWorldMap, currentProgress: CurrentProgress): RemainingProgress;
   inverseProgress(step: number, progressRange: [low: number, high: number]): InverseProgressSolution[];
   inverseBeyondBoost(difference: number, score: number): number;
 }

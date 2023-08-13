@@ -105,12 +105,17 @@ export interface NormalWorldMapData {
    */
   id: string;
   legacy?: true;
-  platforms: { [level: number]: MapPlatformData | undefined | null };
+  platforms: { [level: number]: MapPlatformData | undefined | null; };
+}
+
+export interface NormalWorldMapPlatforms {
+  [level: number]: MapPlatform | undefined | null;
+  length: number;
 }
 
 export interface NormalWorldMap extends NormalWorldMapData {
   
-  platforms: { [level: number]: MapPlatform | undefined | null };
+  platforms: NormalWorldMapPlatforms;
 }
 
 export enum PlatformType {
@@ -150,4 +155,9 @@ export interface MapPlatformData {
 
 export interface MapPlatform extends MapPlatformData {
   reward?: WorldMapReward;
+}
+
+export interface CurrentProgress {
+  level: number;
+  progress: number;
 }

@@ -2,7 +2,8 @@ import { ChartServiceImpl } from "./chart-data";
 import { MusicPlayServiceImpl } from "./music-play";
 import { ProfileServiceImpl } from "./player-profile";
 
-const profile = new ProfileServiceImpl(new MusicPlayServiceImpl(), new ChartServiceImpl());
+const chart = new ChartServiceImpl();
+const profile = new ProfileServiceImpl(new MusicPlayServiceImpl(chart), chart);
 
 window.addEventListener("message", async (e) => {
   const parent = window.parent;

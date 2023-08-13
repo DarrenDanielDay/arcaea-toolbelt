@@ -1,8 +1,20 @@
-import { Chapter, ChapterData, CharacterData, MapPlatform, NormalWorldMap, RewardType } from "../models/world-mode";
+import {
+  Chapter,
+  ChapterData,
+  CharacterData,
+  CurrentProgress,
+  MapPlatform,
+  NormalWorldMap,
+  NormalWorldMapPlatforms,
+  RewardType,
+} from "../models/world-mode";
 import {
   ChartService,
   InverseProgressSolution,
+  MapDistance,
   MusicPlayService,
+  NextRewardInfo,
+  RemainingProgress,
   WorldMapBonus,
   WorldModeService,
 } from "./declarations";
@@ -52,8 +64,12 @@ export class WorldModeServiceImpl implements WorldModeService {
     return res;
   }
 
+  computePlayResult(potential: number) {
+    return BASE_PROG + POTENTIAL_FACTOR * Math.sqrt(potential);
+  }
+
   computeBasicProgress(step: number, potential: number): number {
-    return ((BASE_PROG + POTENTIAL_FACTOR * Math.sqrt(potential)) * step) / CHARACTER_FACTOR_RATIO;
+    return (this.computePlayResult(potential) * step) / CHARACTER_FACTOR_RATIO;
   }
 
   computeProgress(step: number, potential: number, bonus: WorldMapBonus | null): number {
@@ -71,21 +87,11 @@ export class WorldModeServiceImpl implements WorldModeService {
 
   computeProgressRange(
     map: NormalWorldMap,
-    completed: number,
-    rest: number,
+    currentProgress: CurrentProgress,
     targetLevel: number
   ): [min: number, max: number] {
-    const platforms = map.platforms;
-    let min = 0,
-      max = rest;
-    for (let currentLevel = completed + 1; currentLevel < targetLevel; currentLevel++) {
-      const platform = platforms[currentLevel - 1]!;
-      min += currentLevel === completed + 1 ? rest : platform.length;
-    }
-    for (let currentLevel = completed + 2; currentLevel <= targetLevel; currentLevel++) {
-      const platform = platforms[currentLevel - 1]!;
-      max += platform.length;
-    }
+    let min = this.computeDistance(map, currentProgress, targetLevel, false).distance,
+      max = this.computeDistance(map, currentProgress, targetLevel, true).distance;
     if (min) {
       // 超出0.1保证进入格子
       min += 0.1;
@@ -95,6 +101,40 @@ export class WorldModeServiceImpl implements WorldModeService {
       max -= 0.1;
     }
     return [min, max];
+  }
+
+  computeRemainingProgress(map: NormalWorldMap, currentProgress: CurrentProgress): RemainingProgress {
+    const { level: reachedLevel } = currentProgress;
+    const platforms = map.platforms;
+    let nextRewardData = null;
+    loop: for (let currentLevel = reachedLevel; currentLevel <= platforms.length; currentLevel++) {
+      const platform = platforms[currentLevel]!;
+      const { reward } = platform;
+      if (reward) {
+        switch (reward.type) {
+          case RewardType.Character:
+          case RewardType.Song:
+            nextRewardData = {
+              img: reward.img,
+              level: currentLevel,
+            };
+            break loop;
+        }
+      }
+    }
+    let nextReward: NextRewardInfo | null = null;
+    if (nextRewardData) {
+      const distance = this.computeDistance(map, currentProgress, nextRewardData.level, false);
+      nextReward = {
+        img: nextRewardData.img,
+        remaining: distance,
+      };
+    }
+    const totalDistance = this.computeDistance(map, currentProgress, platforms.length, true);
+    return {
+      nextReward,
+      total: totalDistance,
+    };
   }
 
   private inverseBasicProgress(progress: number, step: number, overflow: boolean): number {
@@ -155,7 +195,7 @@ export class WorldModeServiceImpl implements WorldModeService {
   private solveProgressRange(step: number, [low, high]: [number, number]): InverseProgressSolution {
     const maximum = this.chart.maximumConstant;
     const minimum = this.chart.minimumConstant;
-    const maximumPtt = maximum + 2;
+    const maximumPtt = this.music.maximumSinglePotential;
     const lowPtt = this.inverseBasicProgress(low, step, true);
     const highPtt = Math.min(maximumPtt, this.inverseBasicProgress(high, step, false));
     const solution: InverseProgressSolution = {
@@ -197,15 +237,16 @@ export class WorldModeServiceImpl implements WorldModeService {
         ...m,
         platforms: Object.entries(m.platforms)
           .map<[number, MapPlatform | null | undefined]>(([key, value]) => {
+            const level = +key + 1;
             if (!value) {
-              return [+key, value];
+              return [level, value];
             }
             if (!value.reward) {
-              return [+key, { ...value, reward: undefined }];
+              return [level, { ...value, reward: undefined }];
             }
             const { reward } = value;
             return [
-              +key,
+              level,
               {
                 ...value,
                 reward: (() => {
@@ -232,11 +273,35 @@ export class WorldModeServiceImpl implements WorldModeService {
               },
             ];
           })
-          .reduce<{ [key: number]: MapPlatform | undefined | null }>((acc, [k, v]) => {
-            acc[k] = v;
-            return acc;
-          }, {}),
+          .reduce<NormalWorldMapPlatforms>(
+            (acc, [k, v], i) => {
+              acc[k] = v;
+              acc.length = i + 1;
+              return acc;
+            },
+            { length: 0 }
+          ),
       })),
     }));
+  }
+
+  private computeDistance(
+    map: NormalWorldMap,
+    currentProgress: CurrentProgress,
+    targetLevel: number,
+    overflow: boolean
+  ): MapDistance {
+    let distance = 0;
+    let { level: reachedLevel, progress } = currentProgress;
+    const { platforms } = map;
+    for (let currentLevel = reachedLevel; currentLevel <= targetLevel; currentLevel++) {
+      if (!overflow && currentLevel === targetLevel) {
+        break;
+      }
+      distance += currentLevel === reachedLevel ? progress : platforms[currentLevel]!.length;
+    }
+    return {
+      distance,
+    };
   }
 }

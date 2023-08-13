@@ -20,8 +20,8 @@ import { element } from "hyplate";
 import { WorldModeServiceImpl } from "./world-mode";
 import { ChartServiceImpl } from "./chart-data";
 
-const musicPlay: MusicPlayService = new MusicPlayServiceImpl();
 const chart: ChartService = new ChartServiceImpl();
+const musicPlay: MusicPlayService = new MusicPlayServiceImpl(chart);
 const worldMode: WorldModeService = new WorldModeServiceImpl(chart, musicPlay);
 
 const flattenData = (data as SongData[])

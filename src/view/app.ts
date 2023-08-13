@@ -14,7 +14,7 @@ document.adoptedStyleSheets = [bootstrap, sheet];
 
 const chart = new ChartServiceImpl();
 provide($ChartService, document.body, chart);
-const music = new MusicPlayServiceImpl();
+const music = new MusicPlayServiceImpl(chart);
 provide($MusicPlayService, document.body, music);
 const profile = new ProfileServiceImpl(music, chart);
 provide($ProfileService, document.body, profile);

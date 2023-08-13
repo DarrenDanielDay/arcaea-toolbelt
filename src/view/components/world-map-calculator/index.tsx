@@ -124,11 +124,11 @@ class WorldModeCalculator extends HyplateElement {
   override render() {
     this.autorun(() => {
       const selected = this.select.selected();
+      this.resetCalculation();
+      this.worldMap.setCurrentPlatform(null);
       if (selected) {
         this.worldMap.setMap(selected);
       }
-      this.resetCalculation();
-      this.worldMap.setCurrentPlatform(null);
     });
     this.effect(() =>
       listen(this.worldMap)<number>("click-cell", ({ detail: targetLevel }) => {
@@ -169,10 +169,14 @@ class WorldModeCalculator extends HyplateElement {
           alert("此格已完成！");
           return;
         }
+        const currentProgress = this.worldMap.currentProgress();
+        if (!currentProgress) {
+          alert("未确认设置进度");
+          return;
+        }
         const [low, high] = this.worldMode.computeProgressRange(
           this.worldMap.currentMap()!,
-          completed,
-          rest,
+          currentProgress,
           targetLevel
         );
         this.lowProgress.set(low);
@@ -238,7 +242,34 @@ class WorldModeCalculator extends HyplateElement {
             </div>
           </div>
         </form>
-        <div class="title mx-3">正算步数</div>
+        <AutoRender>
+          {() => {
+            const currentProgress = this.worldMap.currentProgress();
+            const currentMap = this.worldMap.currentMap();
+            if (!currentProgress || !currentMap) {
+              return nil;
+            }
+            const { nextReward, total } = this.worldMode.computeRemainingProgress(currentMap, currentProgress);
+            return (
+              <div class="mx-3">
+                <div class="row">
+                  <div class="col-auto">
+                    {nextReward ? (
+                      <>
+                        距离下个主要奖励<img src={nextReward.img} width="32" height="32"></img>还剩
+                        {nextReward.remaining.distance}进度，
+                      </>
+                    ) : (
+                      nil
+                    )}
+                    距离爬完还剩{total.distance}进度。
+                  </div>
+                </div>
+              </div>
+            );
+          }}
+        </AutoRender>
+        <div class="title mx-3">正算步数（可计算打歌次数）</div>
         <form ref={this.calcForm} id="calc-progress" name="calc" class="mx-3">
           <div class="row">
             <div class="col-auto">
@@ -260,10 +291,23 @@ class WorldModeCalculator extends HyplateElement {
                 step="any"
                 id="potential"
                 min="0"
+                max={this.musicPlay.maximumSinglePotential}
                 class="form-control"
                 required
               />
             </div>
+            <AutoRender>
+              {() => {
+                const potential = this.potential();
+                if (isNaN(potential)) return nil;
+                const playResult = this.worldMode.computePlayResult(potential);
+                return (
+                  <div class="col-auto col-form-label">
+                    游玩结果：{playResult.toFixed(1)}（{playResult}）
+                  </div>
+                );
+              }}
+            </AutoRender>
           </div>
           <div class="row">
             <div class="col-auto">世界类型</div>
@@ -356,6 +400,33 @@ class WorldModeCalculator extends HyplateElement {
               </button>
             </div>
           </div>
+          <AutoRender>
+            {() => {
+              const progress = this.progress();
+              const currentProgress = this.worldMap.currentProgress();
+              const currentMap = this.worldMap.currentMap();
+              if (isNaN(progress) || !currentProgress || !currentMap) {
+                return nil;
+              }
+              const { nextReward, total } = this.worldMode.computeRemainingProgress(currentMap, currentProgress);
+              return (
+                <div class="row">
+                  <div class="col-auto">
+                    以此进度结算，
+                    {nextReward ? (
+                      <>
+                        到下个主要奖励<img src={nextReward.img} width="32" height="32"></img>还需要打
+                        {Math.ceil(nextReward.remaining.distance / progress)}次，
+                      </>
+                    ) : (
+                      nil
+                    )}
+                    爬完还需要打歌{Math.ceil(total.distance / progress)}次。
+                  </div>
+                </div>
+              );
+            }}
+          </AutoRender>
         </form>
         <div class="title mx-3">逆算潜力值（控分精准降落）</div>
         <form ref={this.inverseProgressForm} id="anti-progress" class="mx-3">
@@ -628,7 +699,9 @@ class WorldModeCalculator extends HyplateElement {
                           nil
                         )}
                         {hasStepModifier ? (
-                          <div class="col-auto" style:color="red">注意：此角色有step加成的因子，静态数据不包括加成的值。</div>
+                          <div class="col-auto" style:color="red">
+                            注意：此角色有step加成的因子，静态数据不包括加成的值。
+                          </div>
                         ) : (
                           nil
                         )}
@@ -828,18 +901,14 @@ class WorldModeCalculator extends HyplateElement {
       return;
     }
     const platforms = this.#getMapCurrentPlatformContexts();
-    let reachedIndex = reached.level - 1;
+    let reachedIndex = reached.level;
+    if (progress < reached.progress) {
+      this.worldMap.focusLevel(reachedIndex);
+      return;
+    }
     let context = platforms[reachedIndex];
-    if (!context) {
-      console.warn("未找到当前平台");
-      return;
-    }
-    if (progress + reached.progress < context.platform.length) {
-      this.worldMap.focusLevel(reachedIndex + 1);
-      return;
-    }
     for (
-      let rest = progress + reached.progress - context.platform.length;
+      let rest = progress - reached.progress;
       context && rest > 0;
       reachedIndex++, context = platforms[reachedIndex]
     ) {
@@ -849,7 +918,7 @@ class WorldModeCalculator extends HyplateElement {
       // 到顶了
       alert("爬到顶了");
     } else {
-      this.worldMap.focusLevel(reachedIndex + 1);
+      this.worldMap.focusLevel(reachedIndex);
     }
   };
 

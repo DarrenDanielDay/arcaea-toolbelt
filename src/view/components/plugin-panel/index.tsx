@@ -1,19 +1,26 @@
 import characters from "../../../data/character-data.json";
 import { sheet } from "./style.css.js";
+import { text as app } from "../../app.css.js";
 import { bootstrap } from "../../styles";
 import { Inject } from "../../../services/di";
 import {
+  $ChartService,
   $CrossSiteScriptPluginService,
+  $MusicPlayService,
   $WorldModeService,
+  ChartService,
   CrossSiteScriptPluginService,
+  MusicPlayService,
   WorldModeService,
 } from "../../../services/declarations";
 import * as lowiro from "../../../services/web-api";
 import { Profile } from "../../../models/profile";
 import { alert } from "../global-message";
 import type { FC } from "hyplate/types";
-import { computed, signal, For, Show, create, HyplateElement, Component, element } from "hyplate";
+import { computed, signal, Show, create, HyplateElement, Component, element } from "hyplate";
 import { css } from "../../../utils/component";
+import { ResultCard } from "../result-card";
+import { Difficulty, NoteResult } from "../../../models/music-play";
 
 export
 @Component({
@@ -25,6 +32,11 @@ class ToolPanel extends HyplateElement {
   accessor service!: CrossSiteScriptPluginService;
   @Inject($WorldModeService)
   accessor world!: WorldModeService;
+  @Inject($ChartService)
+  accessor chart!: ChartService;
+  @Inject($MusicPlayService)
+  accessor music!: MusicPlayService;
+
   override render(): JSX.Element {
     const profile$ = signal<lowiro.UserProfile | null>(null);
     const querying$ = signal(false);
@@ -100,10 +112,9 @@ class ToolPanel extends HyplateElement {
               if (isNaN(lastGauge) || difference) {
                 sessionStorage.setItem(key, `${beyond_boost_gauge}`);
               }
-              const players = computed(() => {
-                const profile = profile$();
-                return profile ? [profile, ...profile.friends] : [];
-              });
+              const players = [profile, ...profile.friends];
+              const isProfile = (p: unknown): p is lowiro.UserProfile => p === profile;
+
               return (
                 <main>
                   <header>
@@ -136,6 +147,105 @@ class ToolPanel extends HyplateElement {
                     </div>
                   </div>
                   <header>
+                    <h2>最近游玩</h2>
+                  </header>
+                  <div class="my-1">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      onClick={async () => {
+                        const songs = await this.chart.getSongIndex();
+                        alert(
+                          <div>
+                            <style>{recentListStyle}</style>
+                            <div class="panel">
+                              {players.flatMap((player) =>
+                                player.recent_score.map((recent) => {
+                                  const isProfileRecent = (
+                                    p: unknown
+                                  ): p is lowiro.UserProfile["recent_score"][number] => isProfile(player);
+                                  const { difficulty, song_id, time_played, score } = recent;
+                                  const { character } = player;
+                                  const characterData = characters.find((c) => c.id === character);
+                                  const status = isProfile(player)
+                                    ? player.character_stats.find((s) => s.character_id === character)!
+                                    : {
+                                        is_uncapped: player.is_char_uncapped,
+                                        is_uncapped_override: player.is_char_uncapped_override,
+                                      };
+
+                                  return (
+                                    <>
+                                      <div class="user">
+                                        {characterData ? (
+                                          <Avatar character={characterData} status={status}></Avatar>
+                                        ) : (
+                                          <div>未知角色</div>
+                                        )}
+                                        <div class="username">{player.name}</div>
+                                        <div class="play-time">{new Date(time_played).toLocaleString()}</div>
+                                      </div>
+                                      {(() => {
+                                        const song = songs[song_id];
+                                        if (song) {
+                                          const chart = song.charts.find(
+                                            (c) => this.music.mapDifficulty(c.difficulty) === difficulty
+                                          );
+                                          if (chart) {
+                                            const card = new ResultCard();
+                                            card.setChart(song, chart);
+                                            if (isProfileRecent(recent)) {
+                                              const noteResult: NoteResult = {
+                                                perfect: recent.shiny_perfect_count,
+                                                pure: recent.perfect_count,
+                                                far: recent.near_count,
+                                                lost: recent.miss_count,
+                                              };
+                                              card.setResult(
+                                                noteResult,
+                                                this.music.computeScoreResult(score, chart),
+                                                this.music.mapClearType(
+                                                  recent.clear_type,
+                                                  recent.shiny_perfect_count,
+                                                  chart
+                                                )
+                                              );
+                                            } else {
+                                              const noteResult = this.music.inferNoteResult(
+                                                chart,
+                                                null,
+                                                null,
+                                                null,
+                                                score
+                                              );
+                                              card.setResult(
+                                                noteResult,
+                                                this.music.computeScoreResult(score, chart),
+                                                noteResult ? this.music.computeClearRank(noteResult, chart, null) : null
+                                              );
+                                            }
+                                            return card;
+                                          }
+                                        }
+                                        return (
+                                          <div>
+                                            未知曲目{song_id}或难度{difficulty}
+                                          </div>
+                                        );
+                                      })()}
+                                    </>
+                                  );
+                                })
+                              )}
+                            </div>
+                          </div>
+                        );
+                      }}
+                    >
+                      查看
+                    </button>
+                  </div>
+                  <header>
                     <h2>查分</h2>
                   </header>
                   <div>
@@ -148,7 +258,9 @@ class ToolPanel extends HyplateElement {
                       <div class="row">
                         <div class="col">
                           <select id="query-targets" name="query-targets" multiple class="form-select" ref={selectRef}>
-                            <For of={players}>{(friend) => <option value={friend.name}>{friend.name}</option>}</For>
+                            {players.map((friend) => (
+                              <option value={friend.name}>{friend.name}</option>
+                            ))}
                           </select>
                         </div>
                       </div>
@@ -239,13 +351,29 @@ const characterMap: Record<number, (typeof characters)[number]> = Object.fromEnt
 
 const characterListStyle = css`
   div.modal-root {
-    width: 80vw;
+    width: auto;
   }
   thead th,
   tbody td {
     border: var(--bs-border-width) var(--bs-border-color) solid;
     border-collapse: collapse;
     padding: 0.25em;
+  }
+`;
+
+const recentListStyle = css`
+  ${app}
+  div.modal-root {
+    width: auto;
+  }
+  .panel {
+    display: grid;
+    grid-template-columns: 1fr 500px;
+    gap: 1em;
+  }
+  .user {
+    text-align: center;
+    margin: 0.5em;
   }
 `;
 
@@ -293,15 +421,7 @@ const CharacterList: FC<{
               <tr>
                 <td>{status.character_id}</td>
                 <td>
-                  <img
-                    src={
-                      status.is_uncapped // 觉醒
-                        ? status.is_uncapped_override // 觉醒了但切换回觉醒前立绘
-                          ? character.image
-                          : character.awakenImage ?? character.image // 光&对立觉醒立绘和初始立绘一样
-                        : character.image
-                    }
-                  ></img>
+                  <Avatar status={status} character={character}></Avatar>
                 </td>
                 <td>{character.name.zh}</td>
                 <td>{renderNumber(status.level)}</td>
@@ -317,5 +437,22 @@ const CharacterList: FC<{
       </table>
       <style>{characterListStyle}</style>
     </>
+  );
+};
+
+const Avatar: FC<{
+  status: Pick<lowiro.UserProfile["character_stats"][number], "is_uncapped" | "is_uncapped_override">;
+  character: (typeof characters)[number];
+}> = ({ status, character }) => {
+  return (
+    <img
+      src={
+        status.is_uncapped // 觉醒
+          ? status.is_uncapped_override // 觉醒了但切换回觉醒前立绘
+            ? character.image
+            : character.awakenImage ?? character.image // 光&对立觉醒立绘和初始立绘一样
+          : character.image
+      }
+    ></img>
   );
 };

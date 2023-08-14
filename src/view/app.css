@@ -1,5 +1,5 @@
 /* styles here */
-:root {
+:root, :host {
   --1: #f8c507;
   --2: #d1d4e2;
   --3: #f39b77;

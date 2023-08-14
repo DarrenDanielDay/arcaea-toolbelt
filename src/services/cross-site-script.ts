@@ -2,7 +2,9 @@ import data from "../data/chart-data.json";
 import { Difficulty, PlayResult, SongData } from "../models/music-play";
 import { Profile } from "../models/profile";
 import {
+  $ChartService,
   $CrossSiteScriptPluginService,
+  $MusicPlayService,
   $WorldModeService,
   ChartService,
   CrossSiteScriptPluginService,
@@ -88,19 +90,6 @@ export async function getFriendsBest(sid: string, difficulty: number) {
   }
 }
 
-function mapDifficulty(d: Difficulty) {
-  switch (d) {
-    case Difficulty.Past:
-      return 0;
-    case Difficulty.Present:
-      return 1;
-    case Difficulty.Future:
-      return 2;
-    case Difficulty.Beyond:
-      return 3;
-  }
-}
-
 type QueryBests = {
   [username: string]: {
     [chartId: string]: PlayResult;
@@ -143,7 +132,7 @@ async function queryBest(
     message(
       `正在查询 ${chart.byd?.song ?? song.name} 的 ${chart.difficulty}难度（${chart.constant.toFixed(1)}）好友榜……`
     );
-    const friendBests = await getFriendsBest(song.sid, mapDifficulty(chart.difficulty));
+    const friendBests = await getFriendsBest(song.sid, musicPlay.mapDifficulty(chart.difficulty));
     if (!friendBests) {
       throw new Error(`寄了，接口改了，需要订阅Arcaea Online才能用`);
     }
@@ -309,6 +298,8 @@ const createOrGetDialog = (() => {
       const container = element("div");
       provide($CrossSiteScriptPluginService, container, new CrossSiteScriptPluginServiceImpl());
       provide($WorldModeService, container, worldMode);
+      provide($MusicPlayService, container, musicPlay);
+      provide($ChartService, container, chart);
       document.body.appendChild(container);
       const wrapper = container.attachShadow({ mode: "open" });
       addSheet(bootstrap, wrapper);

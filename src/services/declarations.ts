@@ -57,6 +57,7 @@ export interface MusicPlayService {
   inverseConstant(potential: number, score: number): number;
   computeFar(score: number, note: number, overflow: boolean): number;
   mapClearType(clearType: number, shinyPerfectCount: number, chart: Chart): ClearRank;
+  mapDifficulty(d: Difficulty): number;
 }
 
 export interface ProfileService {

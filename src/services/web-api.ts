@@ -22,7 +22,7 @@ export interface UserProfile {
   beyond_boost_gauge: number;
   is_beyond_unlocked: boolean;
   country: string;
-  course_banners: any[];
+  course_banners: string[];
   world_mode_locked_end_ts: number;
   is_locked_name_duplicate: boolean;
   is_skill_sealed: boolean;
@@ -32,12 +32,13 @@ export interface UserProfile {
   max_stamina_ts: number;
   max_stamina: number;
   stamina: number;
-  world_unlocks: any[];
-  world_songs: any[];
-  singles: any[];
-  packs: any[];
+  world_unlock: string;
+  world_unlocks: string[];
+  world_songs: string[];
+  singles: string[];
+  packs: string[];
   characters: number[];
-  cores: any[];
+  cores: Uncapcore[];
   recent_score: Recentscore2[];
   max_friend: number;
   rating: number;
@@ -66,33 +67,22 @@ interface Settings {
 }
 
 interface Friend {
-  is_mutual: boolean;
-  is_char_uncapped_override: boolean;
-  is_char_uncapped: boolean;
-  is_skill_sealed: boolean;
-  rating: number;
-  join_date: number;
   character: number;
   recent_score: Recentscore[];
-  name: string;
+  rating: number;
+  is_char_uncapped_override: boolean;
+  is_char_uncapped: boolean;
+  is_mutual: boolean;
   user_id: number;
+  name: string;
 }
 
 interface Recentscore {
   title: Title;
-  rating: number;
-  modifier: number;
-  time_played: number;
-  health: number;
-  best_clear_type: number;
-  clear_type: number;
-  miss_count: number;
-  near_count: number;
-  perfect_count: number;
-  shiny_perfect_count: number;
-  score: number;
-  difficulty: number;
   song_id: string;
+  difficulty: number;
+  score: number;
+  time_played: number;
 }
 
 interface Title {
@@ -121,6 +111,11 @@ interface Characterstat {
   name: string;
   character_id: number;
   base_character_id?: number;
+  skill_id_uncap_text?: Skillidtext;
+  variant?: Skillidtext;
+  prog_tempest?: number;
+  fatalis_is_limited?: boolean;
+  fatalis_boost_value?: number;
 }
 
 interface Uncapcore {
@@ -133,8 +128,8 @@ interface Skillidtext {
   en: string;
   ja: string;
   ko: string;
-  "zh-Hans": string;
-  "zh-Hant": string;
+  'zh-Hans': string;
+  'zh-Hant': string;
 }
 
 interface Curravailablemap {

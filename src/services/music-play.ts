@@ -1,4 +1,4 @@
-import { Chart, ClearRank, Grade, NoteResult, PartnerClearRank, ScoreResult } from "../models/music-play";
+import { Chart, ClearRank, Difficulty, Grade, NoteResult, PartnerClearRank, ScoreResult } from "../models/music-play";
 import { ChartService, MusicPlayService } from "./declarations";
 
 const MAX_BASE_SCORE = 1000_0000;
@@ -185,5 +185,17 @@ export class MusicPlayServiceImpl implements MusicPlayService {
         return ClearRank.HardClear;
     }
     throw new Error(`未知clear_type: ${clearType}`);
+  }
+  mapDifficulty(d: Difficulty): number {
+    switch (d) {
+      case Difficulty.Past:
+        return 0;
+      case Difficulty.Present:
+        return 1;
+      case Difficulty.Future:
+        return 2;
+      case Difficulty.Beyond:
+        return 3;
+    }
   }
 }

@@ -7860,17 +7860,17 @@
       {
         "frag": 89,
         "over": 49,
-        "step": 59
+        "step": 60
       },
       {
         "frag": 89,
         "over": 49,
-        "step": 59
+        "step": 60
       },
       {
         "frag": 89,
         "over": 49,
-        "step": 59
+        "step": 60
       },
       {
         "frag": 90,
@@ -8536,7 +8536,7 @@
       },
       {
         "frag": 42,
-        "over": 44,
+        "over": 43,
         "step": 49
       },
       {
@@ -8556,7 +8556,7 @@
       },
       {
         "frag": 47,
-        "over": 54,
+        "over": 53,
         "step": 71
       },
       {
@@ -8576,7 +8576,7 @@
       },
       {
         "frag": 49,
-        "over": 59,
+        "over": 58,
         "step": 83
       },
       {
@@ -8596,7 +8596,7 @@
       },
       {
         "frag": 50,
-        "over": 60,
+        "over": 59,
         "step": 85
       }
     ]
@@ -8822,6 +8822,118 @@
         "frag": 51,
         "over": 96,
         "step": 96
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "image": "https://wiki.arcaea.cn/images/thumb/e/e9/Partner_maya_icon.png/95px-Partner_maya_icon.png",
+    "awakenImage": null,
+    "name": {
+      "en": "Maya",
+      "zh": "摩耶"
+    },
+    "levels": [
+      null,
+      {
+        "frag": 27,
+        "over": 31,
+        "step": 31
+      },
+      {
+        "frag": 27,
+        "over": 31,
+        "step": 31
+      },
+      {
+        "frag": 27,
+        "over": 31,
+        "step": 31
+      },
+      {
+        "frag": 27,
+        "over": 31,
+        "step": 31
+      },
+      {
+        "frag": 27,
+        "over": 32,
+        "step": 32
+      },
+      {
+        "frag": 27,
+        "over": 32,
+        "step": 32
+      },
+      {
+        "frag": 28,
+        "over": 33,
+        "step": 33
+      },
+      {
+        "frag": 29,
+        "over": 34,
+        "step": 34
+      },
+      {
+        "frag": 30,
+        "over": 36,
+        "step": 36
+      },
+      {
+        "frag": 32,
+        "over": 38,
+        "step": 38
+      },
+      {
+        "frag": 34,
+        "over": 40,
+        "step": 40
+      },
+      {
+        "frag": 36,
+        "over": 42,
+        "step": 42
+      },
+      {
+        "frag": 37,
+        "over": 43,
+        "step": 43
+      },
+      {
+        "frag": 38,
+        "over": 45,
+        "step": 45
+      },
+      {
+        "frag": 39,
+        "over": 45,
+        "step": 45
+      },
+      {
+        "frag": 39,
+        "over": 46,
+        "step": 46
+      },
+      {
+        "frag": 39,
+        "over": 46,
+        "step": 46
+      },
+      {
+        "frag": 39,
+        "over": 46,
+        "step": 46
+      },
+      {
+        "frag": 39,
+        "over": 46,
+        "step": 46
+      },
+      {
+        "frag": 40,
+        "over": 47,
+        "step": 47
       }
     ]
   },

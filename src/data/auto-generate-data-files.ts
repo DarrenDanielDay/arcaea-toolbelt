@@ -3,6 +3,7 @@ import { getCharacterData } from "./get-wiki-character-data";
 import { fetchWikiWorldMapData } from "./get-wiki-world-map-data";
 import { SongData } from "../models/music-play";
 import { PackList, SongList } from "./packed-data";
+import { indexBy } from "../utils/collections";
 
 export async function generate() {
   const projectRootDir = await window.showDirectoryPicker();
@@ -14,7 +15,7 @@ export async function generate() {
   );
   const newSongs = await getSongData(songList, packList);
   const oldSongs = await getOldChartData(projectRootDir);
-  const songs = mergeChartData(oldSongs, newSongs);
+  const songs = sortChartDataBySongListIdx(mergeChartData(oldSongs, newSongs), songList);
   const { characters, items } = await getCharacterData();
   const { longterm, events } = await fetchWikiWorldMapData(songs, characters);
   await saveJSON(projectRootDir, songs, "/src/data/chart-data.json");
@@ -92,4 +93,9 @@ function mergeChartData(oldData: SongData[], newData: SongData[]) {
     }
   }
   return newSongs;
+}
+
+function sortChartDataBySongListIdx(songs: SongData[], songList: SongList) {
+  const index = indexBy(songList.songs, (s) => s.id);
+  return songs.sort((a, b) => index[a.sid]!.idx - index[b.sid]!.idx);
 }

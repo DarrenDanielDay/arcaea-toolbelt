@@ -1,7 +1,6 @@
 import { findNextElWhere, htmlDocument, initPageDocument, prepareDocument, wikiURL } from "./wiki-util";
 import characters from "./characters.json";
 import { CharacterData, CharacterFactors, ItemData } from "../models/world-mode";
-import { downloadJSON } from "../utils/download";
 import { arcaeaCNClient } from "./cached-fetch";
 const wikiCharacterTable = wikiURL("搭档");
 
@@ -165,9 +164,11 @@ function getOtherItemsData(): ItemData[] {
   ];
 }
 
-export async function generateCharacterDataFile() {
+export async function getCharacterData() {
   const { characters, cores } = await fetchWikiCharacterAndCharacterCoreItemData();
-  downloadJSON(characters, "character-data.json");
   const items = [...cores, ...getOtherItemsData()];
-  downloadJSON(items, "item-data.json");
+  return {
+    characters,
+    items,
+  };
 }

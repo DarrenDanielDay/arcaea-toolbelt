@@ -2,6 +2,7 @@ import { Difficulty, SongData, SongIndex } from "../models/music-play";
 import { searchMatch } from "../utils/string";
 import { ChartService, SearchResult } from "./declarations";
 import staticData from "../data/chart-data.json";
+import { indexBy } from "../utils/collections";
 // @ts-expect-error string as enum
 const getStaticSongData = async (): Promise<SongData[]> => staticData;
 
@@ -88,9 +89,6 @@ export class ChartServiceImpl implements ChartService {
 
   private async initSongIndex() {
     const songs = await this.getSongData();
-    return songs.reduce<{ [songId: string]: SongData }>((indexed, song) => {
-      indexed[song.sid] = song;
-      return indexed;
-    }, {});
+    return indexBy(songs, (s) => s.sid);
   }
 }

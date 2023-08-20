@@ -1,27 +1,39 @@
-import { ChapterData, MapPlatformData, NormalWorldMapData, PlatformType, RewardType } from "../models/world-mode";
-import { downloadJSON } from "../utils/download";
-import characters from "./character-data.json";
-import songs from "./chart-data.json";
+import { SongData } from "../models/music-play";
+import {
+  ChapterData,
+  CharacterData,
+  MapPlatformData,
+  NormalWorldMapData,
+  PlatformType,
+  RewardType,
+} from "../models/world-mode";
 import { findNextElWhere, htmlDocument, initPageDocument, wikiURL } from "./wiki-util";
 
-const wikiWordMapTable = wikiURL("世界模式地图详表_(移动版)");
+const wikiLongtermWorldMapTable = wikiURL("世界模式地图详表 (移动版常驻)");
+const wikiEventWorldMapTable = wikiURL("世界模式地图详表_(移动版限时活动)");
+
+interface WikiWorldMapTableItem {
+  id: string;
+  title: string;
+}
 
 interface WikiChapterData {
   name: string;
-  maps: {
-    id: string;
-    title: string;
-  }[];
+  maps: WikiWorldMapTableItem[];
 }
 
-async function getWikiWorldMapTable() {
-  await initPageDocument(wikiWordMapTable);
+function getMapTableItem(link: HTMLAnchorElement): WikiWorldMapTableItem {
+  return {
+    id: link.getAttribute("href")!.slice(1),
+    title: link.textContent!,
+  };
+}
+
+async function getWikiLontermWorldMapTable() {
+  await initPageDocument(wikiLongtermWorldMapTable);
   const table = htmlDocument.querySelector("table.wikitable")!;
   // 排除byd章节
   const headers = Array.from(table.querySelectorAll("th")).slice(2, -1);
-  if (headers.length !== 8) {
-    throw new Error(`应当是7主线+1活动章节`);
-  }
   const chapters: WikiChapterData[] = [];
   for (const th of headers) {
     const firstRow = th.parentElement;
@@ -46,20 +58,25 @@ async function getWikiWorldMapTable() {
         if (!link) {
           continue;
         }
-        chapter.maps.push({
-          id: link.getAttribute("href")!.slice(1),
-          title: link.textContent!,
-        });
+        chapter.maps.push(getMapTableItem(link));
       }
     }
   }
   return chapters;
 }
 
+async function getWikiEventWorldMapTable(): Promise<WikiWorldMapTableItem[]> {
+  await initPageDocument(wikiEventWorldMapTable);
+  const table = htmlDocument.querySelector("table.wikitable")!;
+  return Array.from(table.querySelectorAll("td a"), (a) => getMapTableItem(a));
+}
+
 function getWorldMap(
   doc: Document,
-  map: WikiChapterData["maps"][number],
-  backgrounds: Backgrounds
+  map: WikiWorldMapTableItem,
+  backgrounds: Backgrounds,
+  songs: SongData[],
+  characters: CharacterData[]
 ): NormalWorldMapData {
   const anchor = doc.getElementById(map.id)!;
   const table = findNextElWhere(anchor.parentElement!, (el) => el.matches("table"));
@@ -217,16 +234,14 @@ async function getBackgounds(): Promise<Backgrounds> {
   return map;
 }
 
-export async function fetchWikiWorldMapData(): Promise<ChapterData[]> {
+export async function fetchWikiWorldMapData(songs: SongData[], characters: CharacterData[]) {
   const backgrounds = await getBackgounds();
-  const mainTableData = await getWikiWorldMapTable();
-  return mainTableData.map((d) => ({
+  const longtermTableItems = await getWikiLontermWorldMapTable();
+  const longterm = longtermTableItems.map<ChapterData>((d) => ({
     chapter: d.name,
-    maps: d.maps.map((map) => getWorldMap(htmlDocument, map, backgrounds)),
+    maps: d.maps.map((map) => getWorldMap(htmlDocument, map, backgrounds, songs, characters)),
   }));
-}
-
-export async function generateWorldMapDataFile() {
-  const data = await fetchWikiWorldMapData();
-  downloadJSON(data, "world-maps.json");
+  const eventTableItems = await getWikiEventWorldMapTable();
+  const events = eventTableItems.map((map) => getWorldMap(htmlDocument, map, backgrounds, songs, characters));
+  return { longterm, events };
 }

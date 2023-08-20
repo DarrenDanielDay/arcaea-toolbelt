@@ -1,6 +1,7 @@
 import { BeyondAddon, Chart, Difficulty, SongData } from "../models/music-play";
-import { downloadJSON } from "../utils/download";
+import { groupBy, indexBy } from "../utils/collections";
 import { arcaeaCNClient } from "./cached-fetch";
+import { Pack, PackList, Song, SongList } from "./packed-data";
 import { wikiURL, initPageDocument, htmlDocument, prepareDocument } from "./wiki-util";
 
 const wikiConstantTable = wikiURL("定数详表");
@@ -32,7 +33,7 @@ async function getWikiChartTable() {
     const cells = Array.from(row.cells);
     checkCells(cells);
     const [name, past, present, future, beyond] = cells;
-    const songName = name.textContent!;
+    const songName = name.textContent!.trim();
     // Last一系列比较特殊，跳过
     if (songName === "Last" || songName === "Last | Eternity") {
       continue;
@@ -81,10 +82,11 @@ async function getArcInfData() {
     return map;
   }, {});
   return {
-    getSong(name: string, { pst, prs, ftr, byd }: ConstantChartData): ArcInfSongData {
+    getSong(name: string, { pst, prs, ftr, byd }: ConstantChartData): ArcInfSongData | null {
       const songs = indexed[name];
       if (!songs) {
-        throw new Error(`曲目 ${name} 未找到`);
+        console.error(`曲目 ${name} 在Arcaea Infinity内未找到`);
+        return null;
       }
       if (songs.length === 1) {
         return songs[0]!;
@@ -97,24 +99,19 @@ async function getArcInfData() {
           }
           const difficulty = song.difficulties[i];
           if (!difficulty) {
-            throw new Error(`${name} ${[pst, prs, ftr, byd]} 没有难度 ${i}`);
+            console.error(`${name} ${[pst, prs, ftr, byd]} 没有难度 ${i}`);
+            return null;
           }
           // 浮点误差
-          return Math.abs(difficulty!.rating / 10 - c) < 0.01;
+          return Math.abs(difficulty.rating / 10 - c) < 0.01;
         })
       );
 
       if (song.length !== 1) {
-        throw new Error(`这都能重复，没救了`);
+        console.error(`这都能重复，没救了`);
+        return null;
       }
       return song[0]!;
-    },
-    getPack(song: ArcInfSongData) {
-      const packNames = song.difficulties.map((d) => d.set_friendly);
-      if (new Set(packNames).size !== 1) {
-        throw new Error(`${song.song_id} 曲包名不唯一？`);
-      }
-      return packNames[0]!;
     },
     raw: arcInfinityData,
   };
@@ -128,8 +125,32 @@ function getWikiTableItemsByLabel(label: Element) {
   return nodes;
 }
 
-export async function fetchWikiChartData(): Promise<SongData[]> {
+export async function getSongData(songList: SongList, packList: PackList): Promise<SongData[]> {
   const songs = await getWikiChartTable();
+  const songGroup = groupBy(songList.songs, (s) => s.title_localized.en.trim());
+  const packIndex = indexBy(packList.packs, (p) => p.id);
+  const getPackName = (song: Song) => {
+    const pack = packIndex[song.set];
+    if (pack) {
+      const segments: string[] = [];
+      for (let p: Pack | undefined = pack; p; p = p.pack_parent ? packIndex[p.pack_parent] : undefined) {
+        segments.push(p.name_localized.en);
+      }
+      return segments.reverse().join(" - ");
+    }
+    return "Memory Archive";
+  };
+  const getSongByNameAndBpm = (title: string, bpm: string) => {
+    const group = songGroup[title];
+    if (group?.length === 1) {
+      return group[0]!;
+    }
+    const found = group?.find((s) => s.bpm === bpm);
+    if (!found) {
+      debugger;
+    }
+    return found;
+  };
   const arcInf = await getArcInfData();
   const songsData: SongData[] = [];
   const difficulties = [Difficulty.Past, Difficulty.Present, Difficulty.Future] satisfies Difficulty[];
@@ -161,18 +182,22 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
       note: notes[i]!,
       songId,
     }));
-
+    const songListSong = getSongByNameAndBpm(name, bpm);
+    if (!songListSong) {
+      throw new Error(`song list内未找到${name}`);
+    }
     if (byd) {
       const addon: BeyondAddon = {};
       if (beyond) {
         addon.cover = wikiURL(beyond.src).toString();
       }
-      const bydDifficulty = arcInfSong.difficulties[3];
+      const bydDifficulty = songListSong.difficulties[3];
       if (!bydDifficulty) {
-        throw new Error(`Arcaea Infinity的数据不包含 ${name} 的byd谱`);
+        throw new Error(`song list的数据不包含 ${name} 的byd谱`);
       }
-      if (bydDifficulty.name_en !== name) {
-        addon.song = bydDifficulty.name_en;
+      const name_en = bydDifficulty.title_localized?.en;
+      if (name_en && name_en !== name) {
+        addon.song = name_en;
       }
       const bydChart: Chart = {
         constant: byd,
@@ -190,10 +215,10 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
       cover,
       name,
       id: songId,
-      sid: arcInfSong.song_id,
-      alias: arcInfSong.alias,
+      sid: songListSong.id,
+      alias: arcInfSong?.alias ?? [],
       charts,
-      pack: arcInf.getPack(arcInfSong),
+      pack: getPackName(songListSong),
     };
     songsData.push(songData);
   }
@@ -266,9 +291,4 @@ export async function fetchWikiChartData(): Promise<SongData[]> {
     });
   })();
   return songsData;
-}
-
-export async function generateChartTableFile() {
-  const data = await fetchWikiChartData();
-  downloadJSON(data, "chart-data.json");
 }

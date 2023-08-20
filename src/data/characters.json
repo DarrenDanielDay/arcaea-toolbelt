@@ -2555,6 +2555,39 @@
     },
     {
         "skill_id_text": {
+          "en": "",
+          "ja": "",
+          "ko": "",
+          "zh-Hans": "",
+          "zh-Hant": ""
+        },
+        "display_name": {
+          "en": "Maya",
+          "ja": "",
+          "ko": "",
+          "zh-Hans": "摩耶",
+          "zh-Hant": ""
+        },
+        "base_character": false,
+        "is_uncapped_override": false,
+        "is_uncapped": false,
+        "uncap_cores": [],
+        "char_type": 2,
+        "skill_id_uncap": "",
+        "skill_requires_uncap": false,
+        "skill_unlock_level": 0,
+        "skill_id": "",
+        "overdrive": 0,
+        "prog": 0,
+        "frag": 0,
+        "level_exp": 0,
+        "exp": 0,
+        "level": 1,
+        "name": "maya",
+        "character_id": 71
+    },
+    {
+        "skill_id_text": {
             "en": "Earn +10 Fragments\nupon clearing a preferred song",
             "ja": "白姫の気まぐれ曲をクリア時\n欠片を+10獲得",
             "ko": "선택곡을 클리어할 경우 \n+10 조각을 얻게됩니다",

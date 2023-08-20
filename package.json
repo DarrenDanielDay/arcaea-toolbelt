@@ -3,6 +3,14 @@
   "version": "0.0.0",
   "type": "module",
   "targets": {
+    "data-tools": {
+      "context": "browser",
+      "scopeHoist": false,
+      "source": [
+        "src/data/tools.html"
+      ],
+      "outputFormat": "esmodule"
+    },
     "default": {
       "context": "browser",
       "scopeHoist": false,
@@ -18,6 +26,7 @@
   },
   "browserslist": "Chrome 100",
   "scripts": {
+    "start:data-tools": "parcel --target data-tools --port 1236",
     "start:parcel": "parcel --target default --hmr-host localhost --hmr-port 1235",
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
     "start": "run-p --print-label \"start:**\"",

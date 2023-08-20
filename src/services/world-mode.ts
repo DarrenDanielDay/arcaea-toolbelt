@@ -5,6 +5,7 @@ import {
   CurrentProgress,
   MapPlatform,
   NormalWorldMap,
+  NormalWorldMapData,
   NormalWorldMapPlatforms,
   RewardType,
 } from "../models/world-mode";
@@ -20,7 +21,8 @@ import {
 } from "./declarations";
 import characters from "../data/character-data.json";
 import items from "../data/item-data.json";
-import { SongData } from "../models/music-play";
+import { SongData, SongIndex } from "../models/music-play";
+import { Indexed, indexBy } from "../utils/collections";
 const BASE_PROG = 2.5;
 const BASE_BOOST = 27;
 const POTENTIAL_FACTOR = 2.45;
@@ -28,17 +30,21 @@ const CHARACTER_FACTOR_RATIO = 50;
 
 export class WorldModeServiceImpl implements WorldModeService {
   itemImages = Object.fromEntries(items.map((item) => [item.name, item.img]));
-
+  #characterIndex: Indexed<CharacterData> | null = null;
+  #songIndex: SongIndex | null = null;
   constructor(private readonly chart: ChartService, private readonly music: MusicPlayService) {}
 
   async getLongtermMaps(): Promise<Chapter[]> {
-    const chapters = await this.getAllChapterData();
-    return this.withRewardImgs(chapters, characters, await this.chart.getSongData()).slice(0, -1);
+    const chapters = await import("../data/world-maps-longterm.json");
+    const songIndex = await this.getSongIndex();
+    return chapters.map((c) => ({ ...c, maps: c.maps.map((m) => this.withRewardImgs(m, songIndex)) }));
   }
+
   async getEventMaps(): Promise<NormalWorldMap[]> {
-    const maps = await this.getAllChapterData();
+    const maps = await import("../data/world-maps-events.json");
+    const songIndex = await this.getSongIndex();
     // TODO 只显示当前可用的活动图
-    return this.withRewardImgs(maps, characters, await this.chart.getSongData()).at(-1)!.maps;
+    return maps.map((m) => this.withRewardImgs(m, songIndex));
   }
 
   getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, string[]>> {
@@ -192,6 +198,14 @@ export class WorldModeServiceImpl implements WorldModeService {
     return this.music.inverseConstant(potential, score);
   }
 
+  private getCharacterIndex() {
+    return (this.#characterIndex ??= indexBy(characters, (c) => c.id));
+  }
+
+  private async getSongIndex() {
+    return (this.#songIndex ??= indexBy(await this.chart.getSongData(), (s) => s.id));
+  }
+
   private solveProgressRange(step: number, [low, high]: [number, number]): InverseProgressSolution {
     const maximum = this.chart.maximumConstant;
     const minimum = this.chart.minimumConstant;
@@ -219,70 +233,65 @@ export class WorldModeServiceImpl implements WorldModeService {
     return solution;
   }
 
-  private async getAllChapterData(): Promise<ChapterData[]> {
-    return await import("../data/world-maps.json");
-  }
-
   private findItemImage(name: string): string {
     const result = this.itemImages[name];
     return result || "";
   }
 
-  private withRewardImgs(chapters: ChapterData[], characters: CharacterData[], songs: SongData[]): Chapter[] {
-    const characterMap = new Map(characters.map((c) => [c.id, c]));
-    const songMap = new Map(songs.map((s) => [s.id, s]));
-    return chapters.map((c) => ({
-      ...c,
-      maps: c.maps.map((m) => ({
-        ...m,
-        platforms: Object.entries(m.platforms)
-          .map<[number, MapPlatform | null | undefined]>(([key, value]) => {
-            const level = +key + 1;
-            if (!value) {
-              return [level, value];
-            }
-            if (!value.reward) {
-              return [level, { ...value, reward: undefined }];
-            }
-            const { reward } = value;
-            return [
-              level,
-              {
-                ...value,
-                reward: (() => {
-                  const type = reward.type;
-                  switch (reward.type) {
-                    case RewardType.Background:
-                      return reward;
-                    case RewardType.Character:
-                      return { ...reward, img: characterMap.get(reward.id)!.image };
-                    case RewardType.Item:
-                      return {
-                        type: RewardType.Item,
-                        count: reward.count,
-                        name: reward.name,
-                        img: this.findItemImage(reward.name)!,
-                      };
-                    case RewardType.Song:
-                      const song = songMap.get(reward.id)!;
-                      return { ...reward, img: song.cover, name: song.name };
-                    default:
-                      throw new Error(`Unknown reward type: ${type}`);
-                  }
-                })(),
-              },
-            ];
-          })
-          .reduce<NormalWorldMapPlatforms>(
-            (acc, [k, v], i) => {
-              acc[k] = v;
-              acc.length = i + 1;
-              return acc;
+  private withRewardImgs(map: NormalWorldMapData, songIndex: SongIndex): NormalWorldMap {
+    const characterIndex = this.getCharacterIndex();
+    return {
+      ...map,
+      platforms: Object.entries(map.platforms)
+        .map<[number, MapPlatform | null | undefined]>(([key, value]) => {
+          const level = +key + 1;
+          if (!value) {
+            return [level, value];
+          }
+          if (!value.reward) {
+            return [level, { ...value, reward: undefined }];
+          }
+          const { reward } = value;
+          return [
+            level,
+            {
+              ...value,
+              reward: (() => {
+                const type = reward.type;
+                switch (reward.type) {
+                  case RewardType.Background:
+                    return reward;
+                  case RewardType.Character:
+                    return { ...reward, img: characterIndex[reward.id]!.image };
+                  case RewardType.Item:
+                    return {
+                      type: RewardType.Item,
+                      count: reward.count,
+                      name: reward.name,
+                      img: this.findItemImage(reward.name)!,
+                    };
+                  case RewardType.Song:
+                    const song = songIndex[reward.id]!;
+                    if (!song) {
+                      debugger;
+                    }
+                    return { ...reward, img: song.cover, name: song.name };
+                  default:
+                    throw new Error(`Unknown reward type: ${type}`);
+                }
+              })(),
             },
-            { length: 0 }
-          ),
-      })),
-    }));
+          ];
+        })
+        .reduce<NormalWorldMapPlatforms>(
+          (acc, [k, v], i) => {
+            acc[k] = v;
+            acc.length = i + 1;
+            return acc;
+          },
+          { length: 0 }
+        ),
+    };
   }
 
   private computeDistance(

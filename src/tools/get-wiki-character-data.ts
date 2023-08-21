@@ -1,5 +1,5 @@
 import { findNextElWhere, htmlDocument, initPageDocument, prepareDocument, wikiURL } from "./wiki-util";
-import characters from "./characters.json";
+import characters from "../data/characters.json";
 import { CharacterData, CharacterFactors, ItemData } from "../models/world-mode";
 import { arcaeaCNClient } from "./cached-fetch";
 const wikiCharacterTable = wikiURL("搭档");

@@ -18,7 +18,7 @@
   },
   "browserslist": "Chrome 100",
   "scripts": {
-    "start:data-tools": "parcel src/data/tools.html --port 1236",
+    "start:tools": "parcel src/tools/index.html --port 1236",
     "start:parcel": "parcel --target default --hmr-host localhost --hmr-port 1235",
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
     "start": "run-p --print-label \"start:**\"",

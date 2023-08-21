@@ -349,14 +349,50 @@ class HackedXHR extends XMLHttpRequest {
   }
 }
 
+/* 通过获取data-***参数，传递给新建的item来复制style和hover效果
+但是我不会写typescript，所以我放弃了（
+let dataVer = "";
+
+function getDataVer(node: Element){
+  let result = Array.from(node.attributes).filter(function(attributeNode){
+    return attributeNode.nodeName.indexOf("data-") === 0;
+  });
+  if (result.length>0) {
+    dataVer = result[0];
+  }
+}
+*/
+
+function insertSidebarOption() {
+  let sidebar_results = document.getElementsByClassName("sidebar");
+  if (sidebar_results.length>0 && !document.getElementById('toolbelt-btn')) {
+    let sidebar = sidebar_results[0];
+    let sidebar_lastgroup = sidebar?.lastChild;
+    let toolbelt_item = document.createElement('a');
+    toolbelt_item.className = "link-sidebar";
+    toolbelt_item.id = "toolbelt-btn"
+    toolbelt_item.addEventListener("click", ()=>{
+        createOrGetDialog().showModal();
+    });
+    let toolbelt_icon = document.createElement("span");
+    let toolbelt_item_text = document.createElement("span");
+    toolbelt_item_text.innerHTML = "Toolbelt Plugin"
+    toolbelt_item.appendChild(toolbelt_item_text);
+    sidebar_lastgroup?.appendChild(toolbelt_item);
+  }
+}
+
 async function main() {
   window.XMLHttpRequest = HackedXHR;
+
   window.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key.toUpperCase() === "B") {
       createOrGetDialog().showModal();
     }
   });
   createOrGetDialog().showModal();
+
+  window.setInterval(insertSidebarOption, 500);
 }
 
 main();

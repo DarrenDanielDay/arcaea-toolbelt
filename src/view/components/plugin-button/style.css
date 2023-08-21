@@ -5,17 +5,27 @@
   left: 2em;
 }
 
-img {
+div {
+  box-sizing: content-box;
   transition: all 0.3s;
-  width: 3em;
-  height: 3em;
+  transform: rotate(45deg);
+  transform-origin: 50% 50%;
   border-style: solid;
   border-width: 0.25em;
   border-color: var(--bs-border-color-translucent);
-  border-radius: 50%;
   box-shadow: var(--bs-box-shadow-sm);
+  width: 3em;
+  height: 3em;
+  overflow: hidden;
 }
 
-div[role="button"]:is(:hover, :focus, :focus-within) img {
+img {
+  width: 4.25em;
+  height: 4.25em;
+  transition: all 0.3s;
+  transform: rotate(-45deg) translateY(-20%);
+}
+
+div[role="button"]:is(:hover, :focus, :focus-within) {
   box-shadow: var(--bs-box-shadow);
 }

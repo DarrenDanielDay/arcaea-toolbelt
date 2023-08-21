@@ -21,6 +21,7 @@ import { provide } from "./di";
 import { element } from "hyplate";
 import { WorldModeServiceImpl } from "./world-mode";
 import { ChartServiceImpl } from "./chart-data";
+import { PluginButton } from "../view/components/plugin-button";
 
 const chart: ChartService = new ChartServiceImpl();
 const musicPlay: MusicPlayService = new MusicPlayServiceImpl(chart);
@@ -349,6 +350,14 @@ class HackedXHR extends XMLHttpRequest {
   }
 }
 
+function addPluginButton() {
+  const button = new PluginButton();
+  document.body.appendChild(button);
+  button.onclick = () => {
+    createOrGetDialog().showModal();
+  };
+}
+
 async function main() {
   window.XMLHttpRequest = HackedXHR;
   window.addEventListener("keydown", (e) => {
@@ -356,7 +365,7 @@ async function main() {
       createOrGetDialog().showModal();
     }
   });
-  createOrGetDialog().showModal();
+  addPluginButton();
 }
 
 main();

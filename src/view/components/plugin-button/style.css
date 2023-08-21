@@ -1,0 +1,21 @@
+:host {
+  position: fixed;
+  z-index: 114514;
+  bottom: 2em;
+  left: 2em;
+}
+
+img {
+  transition: all 0.3s;
+  width: 3em;
+  height: 3em;
+  border-style: solid;
+  border-width: 0.25em;
+  border-color: var(--bs-border-color-translucent);
+  border-radius: 50%;
+  box-shadow: var(--bs-box-shadow-sm);
+}
+
+div[role="button"]:is(:hover, :focus, :focus-within) img {
+  box-shadow: var(--bs-box-shadow);
+}

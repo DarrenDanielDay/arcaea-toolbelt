@@ -17,6 +17,5 @@ declare namespace NodeJS {
     BASE_URI: string;
     COMMIT_SHA: string;
     NODE_ENV: "production" | "development";
-    ARCAEA_VERSION: string;
   }
 }

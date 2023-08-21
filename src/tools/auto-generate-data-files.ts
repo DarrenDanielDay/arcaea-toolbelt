@@ -4,14 +4,15 @@ import { fetchWikiWorldMapData } from "./get-wiki-world-map-data";
 import { SongData } from "../models/music-play";
 import { PackList, SongList } from "./packed-data";
 import { indexBy } from "../utils/collections";
+import { getProjectRootDirectory, readJSON, getFileHandle, saveJSON, readAsText, extractName } from "./shared";
 
-export async function generate() {
-  const projectRootDir = await window.showDirectoryPicker();
+export async function generate(version: string) {
+  const projectRootDir = await getProjectRootDirectory();
   const songList = await readJSON<SongList>(
-    await getFileHandle(projectRootDir, `/arcaea/arcaea_${process.env.ARCAEA_VERSION}/assets/songs/songlist`)
+    await getFileHandle(projectRootDir, `/arcaea/${extractName(version)}/assets/songs/songlist`)
   );
   const packList = await readJSON<PackList>(
-    await getFileHandle(projectRootDir, `/arcaea/arcaea_${process.env.ARCAEA_VERSION}/assets/songs/packlist`)
+    await getFileHandle(projectRootDir, `/arcaea/${extractName(version)}/assets/songs/packlist`)
   );
   const newSongs = await getSongData(songList, packList);
   const oldSongs = await getOldChartData(projectRootDir);
@@ -23,48 +24,6 @@ export async function generate() {
   await saveJSON(projectRootDir, items, "/src/data/item-data.json");
   await saveJSON(projectRootDir, longterm, "/src/data/world-maps-longterm.json");
   await saveJSON(projectRootDir, events, "/src/data/world-maps-events.json");
-}
-
-function toJSONString(obj: any) {
-  return JSON.stringify(obj, undefined, 2) + "\n";
-}
-
-async function saveJSON(root: FileSystemDirectoryHandle, json: any, path: string) {
-  const file = await getFileHandle(root, path);
-  await writeJSON(file, json);
-}
-
-async function getFileHandle(root: FileSystemDirectoryHandle, path: string) {
-  const segments = path.split(/[\\\/]/).filter((s) => !!s);
-  let dir = root;
-  for (let i = 0, l = segments.length - 1; i < l; i++) {
-    const segment = segments[i]!;
-    dir = await dir.getDirectoryHandle(segment, { create: true });
-  }
-  const fileName = segments.at(-1)!;
-  const file = await dir.getFileHandle(fileName, { create: true });
-  return file;
-}
-
-async function writeText(file: FileSystemFileHandle, content: FileSystemWriteChunkType) {
-  const stream = await file.createWritable({ keepExistingData: false });
-  await stream.write(content);
-  await stream.close();
-}
-
-async function writeJSON(file: FileSystemFileHandle, json: any) {
-  await writeText(file, toJSONString(json));
-}
-
-async function readAsText(handle: FileSystemFileHandle) {
-  const file = await handle.getFile();
-  const content = await file.text();
-  return content;
-}
-
-async function readJSON<T>(handle: FileSystemFileHandle): Promise<T> {
-  const text = await readAsText(handle);
-  return JSON.parse(text);
 }
 
 async function getOldChartData(dir: FileSystemDirectoryHandle) {

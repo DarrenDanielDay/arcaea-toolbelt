@@ -18,6 +18,7 @@
         "src/services/cross-site-script.ts",
         "src/services/cross-site-frame.html"
       ],
+      "distDir":"./arcaea-toolbelt",
       "outputFormat": "esmodule"
     }
   },
@@ -28,7 +29,7 @@
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
     "start": "run-p --print-label \"start:**\"",
     "purge": "node ./scripts/purge.js",
-    "build:parcel": "parcel build --target default --public-url /arcaea-toolbelt --dist-dir ./arcaea-toolbelt --reporter @parcel/reporter-bundle-analyzer",
+    "build:parcel": "parcel build --target default --public-url /arcaea-toolbelt --reporter @parcel/reporter-bundle-analyzer",
     "build:sheetly": "sheetly build --dir src",
     "build": "run-s purge build:sheetly build:parcel"
   },

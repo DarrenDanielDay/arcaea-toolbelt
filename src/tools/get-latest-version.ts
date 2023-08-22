@@ -1,5 +1,5 @@
 import { WritableSignal } from "hyplate/types";
-import { getFileHandle, getProjectRootDirectory } from "./shared";
+import { apkName, getFileHandle, getProjectRootDirectory } from "./shared";
 
 export interface APKResponse {
   url: string;
@@ -26,7 +26,7 @@ export async function downloadToLocal(
   received: WritableSignal<number>,
   signal?: AbortSignal
 ) {
-  const fileHandle = await getFileHandle(projectRoot, `/arcaea/apk/arcaea_${version}.apk`);
+  const fileHandle = await getFileHandle(projectRoot, `/arcaea/apk/${apkName(version)}`);
   const res = await fetch(url, {
     mode: "cors",
     credentials: "omit",

@@ -10,6 +10,9 @@ import {
   RewardType,
 } from "../models/world-mode";
 import {
+  $ChartService,
+  $MusicPlayService,
+  $WorldModeService,
   ChartService,
   InverseProgressSolution,
   MapDistance,
@@ -23,11 +26,15 @@ import characters from "../data/character-data.json";
 import items from "../data/item-data.json";
 import { SongData, SongIndex } from "../models/music-play";
 import { Indexed, indexBy } from "../utils/collections";
+import { Injectable } from "classic-di";
 const BASE_PROG = 2.5;
 const BASE_BOOST = 27;
 const POTENTIAL_FACTOR = 2.45;
 const CHARACTER_FACTOR_RATIO = 50;
-
+@Injectable({
+  requires: [$ChartService, $MusicPlayService] as const,
+  implements: $WorldModeService,
+})
 export class WorldModeServiceImpl implements WorldModeService {
   itemImages = Object.fromEntries(items.map((item) => [item.name, item.img]));
   #characterIndex: Indexed<CharacterData> | null = null;

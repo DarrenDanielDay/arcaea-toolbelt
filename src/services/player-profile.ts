@@ -4,7 +4,15 @@ import { B30Response, BestResultItem, Profile } from "../models/profile";
 import { download } from "../utils/download";
 import { readBinary, readFile } from "../utils/read-file";
 import { alert, confirm } from "../view/components/global-message";
-import { ChartService, MusicPlayService, ProfileService } from "./declarations";
+import {
+  $ChartService,
+  $MusicPlayService,
+  $ProfileService,
+  ChartService,
+  MusicPlayService,
+  ProfileService,
+} from "./declarations";
+import { Injectable } from "classic-di";
 
 const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);
 
@@ -22,7 +30,10 @@ const isValidProfileV1 = (input: any): input is Profile => {
     (value.characters == null || Array.isArray(value.characters))
   );
 };
-
+@Injectable({
+  requires: [$MusicPlayService, $ChartService] as const,
+  implements: $ProfileService,
+})
 export class ProfileServiceImpl implements ProfileService {
   currentUsername: string | null = this.getInitCurrentUsername();
   #SQL: SqlJsStatic | null = null;

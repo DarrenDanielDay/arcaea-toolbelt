@@ -1,5 +1,6 @@
+import { Injectable } from "classic-di";
 import { Chart, ClearRank, Difficulty, Grade, NoteResult, PartnerClearRank, ScoreResult } from "../models/music-play";
-import { ChartService, MusicPlayService } from "./declarations";
+import { $ChartService, $MusicPlayService, ChartService, MusicPlayService } from "./declarations";
 
 const MAX_BASE_SCORE = 1000_0000;
 const EX_PLUS_SCORE = 990_0000;
@@ -11,6 +12,10 @@ const C_SCORE = 860_0000;
 
 const EX_RATIO = 20_0000;
 const AA_RATIO = 30_0000;
+@Injectable({
+  requires: [$ChartService],
+  implements: $MusicPlayService,
+})
 export class MusicPlayServiceImpl implements MusicPlayService {
   ex = EX_SCORE;
   maximumSinglePotential = this.chart.maximumConstant + 2;

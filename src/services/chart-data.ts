@@ -1,8 +1,9 @@
 import { Difficulty, SongData, SongIndex } from "../models/music-play";
 import { searchMatch } from "../utils/string";
-import { ChartService, SearchResult } from "./declarations";
+import { $ChartService, ChartService, SearchResult } from "./declarations";
 import staticData from "../data/chart-data.json";
 import { indexBy } from "../utils/collections";
+import { Injectable } from "classic-di";
 // @ts-expect-error string as enum
 const getStaticSongData = async (): Promise<SongData[]> => staticData;
 
@@ -12,6 +13,9 @@ const constants = staticData.flatMap((s) => s.charts.map((c) => c.constant));
 const maxs = [...constants].sort((a, b) => b - a).slice(0, 30);
 const maxptt = maxs.concat(maxs.slice(0, 10)).reduce((sum, curr) => sum + curr + 2, 0) / 40;
 
+@Injectable({
+  implements: $ChartService,
+})
 export class ChartServiceImpl implements ChartService {
   maximumConstant = constants.reduce((max, curr) => Math.max(max, curr), -Infinity);
   minimumConstant = constants.reduce((min, curr) => Math.min(min, curr), Infinity);

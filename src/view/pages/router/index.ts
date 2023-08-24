@@ -1,5 +1,5 @@
 import type { CleanUpFunc } from "hyplate/types";
-import { token } from "../../../services/di";
+import { token } from "classic-di";
 
 export interface Route {
   path: string;

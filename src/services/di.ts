@@ -1,9 +1,4 @@
-export interface Token<T> {
-  name: string;
-  default?: T;
-}
-
-export const token = <T>(name: string): Token<T> => ({ name });
+import type { Container, Token } from "classic-di";
 
 export const Inject =
   <T>(token: Token<T>) =>
@@ -17,12 +12,15 @@ export const Inject =
     return {
       get() {
         for (let node: Node | null = this; node; node = getParentContext(node)) {
-          const provider = node[$$provider];
-          if (provider?.has(token)) {
-            return provider.get(token)!;
+          const container = node[$$provider];
+          if (container) {
+            const resolution = container.resolve(token);
+            if (!resolution.circular) {
+              return container.create(resolution.path);
+            }
           }
         }
-        throw new Error(`Cannot find implementation for token "${token.name}"`);
+        throw new Error(`Cannot find implementation for token "${token.key.description}"`);
       },
     };
   };
@@ -36,27 +34,12 @@ const getParentContext = (node: Node): Node | null => {
 
 const $$provider: unique symbol = Symbol("@@provider");
 
-class Provider {
-  map = new WeakMap<Token<unknown>, unknown>();
-  has(token: Token<unknown>): boolean {
-    return this.map.has(token);
-  }
-  set<T>(token: Token<T>, implementation: T): void {
-    this.map.set(token, implementation);
-  }
-  get<T>(token: Token<T>): T | null {
-    // @ts-expect-error skip runtime type check
-    return this.map.get(token);
-  }
-}
-
 declare global {
   interface Node {
-    [$$provider]?: Provider;
+    [$$provider]?: Container;
   }
 }
 
-export const provide = <T>(token: Token<T>, at: Node, implementation: T) => {
-  const provider = (at[$$provider] ??= new Provider());
-  provider.set(token, implementation);
+export const provide = (at: Node, container: Container) => {
+  at[$$provider] = container;
 };

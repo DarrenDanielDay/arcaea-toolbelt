@@ -14,13 +14,13 @@ import {
   WorldModeService,
 } from "../../../services/declarations";
 import * as lowiro from "../../../services/web-api";
-import { Profile } from "../../../models/profile";
+import type { Profile } from "../../../models/profile";
 import { alert } from "../global-message";
 import type { FC } from "hyplate/types";
 import { computed, signal, Show, create, HyplateElement, Component, element } from "hyplate";
 import { css } from "../../../utils/component";
 import { ResultCard } from "../result-card";
-import { Difficulty, NoteResult } from "../../../models/music-play";
+import { NoteResult } from "../../../models/music-play";
 
 export
 @Component({

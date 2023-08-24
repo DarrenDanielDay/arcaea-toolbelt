@@ -13,7 +13,7 @@ import {
   SongIndex,
 } from "../models/music-play";
 import { B30Response, Profile } from "../models/profile";
-import { token } from "./di";
+import { token } from "classic-di";
 import { Chapter, CurrentProgress, NormalWorldMap, RewardType } from "../models/world-mode";
 
 export interface SearchResult {

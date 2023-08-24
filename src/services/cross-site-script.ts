@@ -1,31 +1,25 @@
 import data from "../data/chart-data.json";
-import { Difficulty, PlayResult, SongData } from "../models/music-play";
+import { ToolPanel } from "../view/components/plugin-panel";
+import { PlayResult, SongData } from "../models/music-play";
 import { Profile } from "../models/profile";
-import {
-  $ChartService,
-  $CrossSiteScriptPluginService,
-  $MusicPlayService,
-  $WorldModeService,
-  ChartService,
-  CrossSiteScriptPluginService,
-  MusicPlayService,
-  WorldModeService,
-} from "./declarations";
+import { $CrossSiteScriptPluginService, $MusicPlayService, CrossSiteScriptPluginService } from "./declarations";
 import { MusicPlayServiceImpl } from "./music-play";
 import * as lowiro from "./web-api";
-import { ToolPanel } from "../view/components/plugin-panel";
 import { addSheet } from "sheetly";
 import { bootstrap } from "../view/styles";
 import { sheet as dialogSheet } from "../view/components/global-message/style.css.js";
-import { provide } from "./di";
 import { element } from "hyplate";
 import { WorldModeServiceImpl } from "./world-mode";
 import { ChartServiceImpl } from "./chart-data";
 import { PluginButton } from "../view/components/plugin-button";
+import { Container, Injectable } from "classic-di";
+import { provide } from "./di";
 
-const chart: ChartService = new ChartServiceImpl();
-const musicPlay: MusicPlayService = new MusicPlayServiceImpl(chart);
-const worldMode: WorldModeService = new WorldModeServiceImpl(chart, musicPlay);
+const ioc = new Container({ name: "cross-site-script-root" });
+ioc.register(ChartServiceImpl);
+ioc.register(MusicPlayServiceImpl);
+ioc.register(WorldModeServiceImpl);
+const musicPlay = ioc.get($MusicPlayService);
 
 const flattenData = (data as SongData[])
   .flatMap((song) =>
@@ -199,7 +193,9 @@ async function queryBest(
     potential: (queryPlayers.find((f) => f.name === name)!.rating / 100).toFixed(2),
   }));
 }
-
+@Injectable({
+  implements: $CrossSiteScriptPluginService,
+})
 class CrossSiteScriptPluginServiceImpl implements CrossSiteScriptPluginService {
   private iframe: HTMLIFrameElement | null = null;
 
@@ -288,7 +284,7 @@ class CrossSiteScriptPluginServiceImpl implements CrossSiteScriptPluginService {
     return this.postMessage("sync-me", myProfile);
   }
 }
-
+ioc.register(CrossSiteScriptPluginServiceImpl);
 const createOrGetDialog = (() => {
   let dialog: HTMLDialogElement | null = null;
   let panel: ToolPanel | null = null;
@@ -297,10 +293,7 @@ const createOrGetDialog = (() => {
       dialog = element("dialog");
       document.body.appendChild(dialog);
       const container = element("div");
-      provide($CrossSiteScriptPluginService, container, new CrossSiteScriptPluginServiceImpl());
-      provide($WorldModeService, container, worldMode);
-      provide($MusicPlayService, container, musicPlay);
-      provide($ChartService, container, chart);
+      provide(container, ioc);
       document.body.appendChild(container);
       const wrapper = container.attachShadow({ mode: "open" });
       addSheet(bootstrap, wrapper);

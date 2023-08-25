@@ -1,8 +1,8 @@
 import { Chart, ClearRank, NoteResult, PlayResult, ScoreResult, Song } from "./music-play";
 import { CharacterInstanceData } from "./world-mode";
 
-export interface Profile {
-  version: number;
+export interface ProfileV1 {
+  version: 1;
   username: string;
   potential: string;
   best: {
@@ -10,6 +10,17 @@ export interface Profile {
   };
   characters?: CharacterInstanceData[];
 }
+export interface ProfileV2 {
+  version: 2;
+  username: string;
+  potential: string;
+  best: {
+    [chartId: string]: PlayResult;
+  };
+  characters?: CharacterInstanceData[];
+}
+
+export { type ProfileV2 as Profile };
 
 export interface BestResultItem {
   no: number;

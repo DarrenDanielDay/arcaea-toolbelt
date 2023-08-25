@@ -93,6 +93,6 @@ export class ChartServiceImpl implements ChartService {
 
   private async initSongIndex() {
     const songs = await this.getSongData();
-    return indexBy(songs, (s) => s.sid);
+    return indexBy(songs, (s) => s.id);
   }
 }

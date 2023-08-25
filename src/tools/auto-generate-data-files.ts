@@ -34,12 +34,12 @@ async function getOldChartData(dir: FileSystemDirectoryHandle) {
 
 function mergeChartData(oldData: SongData[], newData: SongData[]) {
   const oldIndex = oldData.reduce<{ [songId: string]: SongData }>((index, item) => {
-    index[item.sid] = item;
+    index[item.id] = item;
     return index;
   }, {});
   const newSongs: SongData[] = [];
   for (const item of newData) {
-    const oldSong = oldIndex[item.sid];
+    const oldSong = oldIndex[item.id];
     if (!oldSong) {
       console.log(`新曲目：${item.name}`);
       newSongs.push(item);
@@ -56,5 +56,5 @@ function mergeChartData(oldData: SongData[], newData: SongData[]) {
 
 function sortChartDataBySongListIdx(songs: SongData[], songList: SongList) {
   const index = indexBy(songList.songs, (s) => s.id);
-  return songs.sort((a, b) => index[a.sid]!.idx - index[b.sid]!.idx);
+  return songs.sort((a, b) => index[a.id]!.idx - index[b.id]!.idx);
 }

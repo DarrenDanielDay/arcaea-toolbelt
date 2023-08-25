@@ -157,8 +157,6 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
   for (const song of songs) {
     const { name, link, byd } = song;
     const arcInfSong = arcInf.getSong(name, song);
-    // 由于歌曲wiki链接是唯一的，因此wiki链接可以作为歌曲id使用
-    const songId = link.slice(1);
     const detailPageURL = wikiURL(link);
     const content = await arcaeaCNClient.fetchAsText(detailPageURL);
     prepareDocument(content, detailPageURL);
@@ -174,6 +172,11 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     const notes: number[] = getWikiTableItemsByLabel(noteLabel).map((el) => +el.textContent!);
     const levelLabel = labels.find((label) => label.textContent!.match(/等级/i))!;
     const levels: string[] = getWikiTableItemsByLabel(levelLabel).map((el) => el.textContent!);
+    const songListSong = getSongByNameAndBpm(name, bpm);
+    if (!songListSong) {
+      throw new Error(`song list内未找到${name}`);
+    }
+    const songId = songListSong.id;
     const charts = difficulties.map<Chart>((difficulty, i) => ({
       constant: song[difficulty],
       difficulty,
@@ -182,10 +185,6 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       note: notes[i]!,
       songId,
     }));
-    const songListSong = getSongByNameAndBpm(name, bpm);
-    if (!songListSong) {
-      throw new Error(`song list内未找到${name}`);
-    }
     if (byd) {
       const addon: BeyondAddon = {};
       if (beyond) {
@@ -215,7 +214,6 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       cover,
       name,
       id: songId,
-      sid: songListSong.id,
       alias: arcInfSong?.alias ?? [],
       charts,
       pack: getPackName(songListSong),
@@ -230,7 +228,6 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       ftr: 9.0,
     };
     const notes = [674, 777, 831];
-    const songId = "Last";
     const levels = ["4", "7", "9"];
     const last = "last";
     const lasteternity = "lasteternity";
@@ -238,8 +235,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     songsData.push({
       bpm: "175",
       cover: wikiURL("/images/thumb/a/a2/Songs_last.jpg/256px-Songs_last.jpg").toString(),
-      id: "Last",
-      sid: last,
+      id: last,
       name: "Last",
       pack,
       alias: arcInf.raw.find((s) => s.song_id === last)!.alias,
@@ -247,19 +243,19 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
         .map<Chart>((difficulty, i) => ({
           constant: song[difficulty]!,
           difficulty,
-          id: `${songId}@${difficulty}`,
+          id: `${last}@${difficulty}`,
           level: levels[i]!,
           note: notes[i]!,
-          songId,
+          songId: last,
         }))
         .concat([
           {
-            id: `Last | Moment@${Difficulty.Beyond}`,
+            id: `${last}@${Difficulty.Beyond}`,
             constant: 9.6,
             difficulty: Difficulty.Beyond,
             level: "9",
             note: 888,
-            songId,
+            songId: last,
             byd: {
               song: `Last | Moment`,
               cover: wikiURL("/images/thumb/1/1e/Songs_last_byd.jpg/256px-Songs_last_byd.jpg").toString(),
@@ -270,19 +266,18 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     songsData.push({
       bpm: "175",
       cover: wikiURL("/images/thumb/9/92/Songs_lasteternity.jpg/256px-Songs_lasteternity.jpg").toString(),
-      id: "Last | Eternity",
+      id: lasteternity,
       name: "Last | Eternity",
       pack,
-      sid: lasteternity,
       alias: arcInf.raw.find((s) => s.song_id === lasteternity)!.alias,
       charts: [
         {
-          id: `Last | Eternity@${Difficulty.Beyond}`,
+          id: `${lasteternity}@${Difficulty.Beyond}`,
           constant: 9.7,
           difficulty: Difficulty.Beyond,
           level: "9+",
           note: 786,
-          songId,
+          songId: lasteternity,
           byd: {
             song: `Last | Eternity`,
           },

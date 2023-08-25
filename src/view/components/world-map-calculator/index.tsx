@@ -640,7 +640,8 @@ class WorldModeCalculator extends HyplateElement {
     const input = element("input");
     const pickCharacterStep = async () => {
       const useStaticData = signal(false);
-      const profileCharacters = this.profile.profile?.characters ?? [];
+      const profile = await this.profile.getProfile();
+      const profileCharacters = profile?.characters ?? [];
       const characterSelect = new CharacterSelect();
       const selectedCharacter = characterSelect.selectedItem;
       const resultStep = signal<number | null>(null);

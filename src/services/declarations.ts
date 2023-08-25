@@ -61,7 +61,7 @@ export interface MusicPlayService {
 }
 
 export interface ProfileService {
-  readonly profile: Profile | null;
+  getProfile(): Promise<Profile | null>;
   createOrUpdateProfile(username: string, potential: number): Promise<void>;
   getProfileList(): Promise<string[]>;
   syncProfiles(data: Partial<Profile>[]): Promise<void>;

@@ -11,13 +11,15 @@ import { Route } from "../router";
 class PlayerB39 extends HyplateElement {
   @Inject($ProfileService)
   accessor profileService!: ProfileService;
-  best30 = new Best30()
+  best30 = new Best30();
 
   override render() {
-    if (!this.profileService.profile) {
-      alert("未选择存档");
-    }
     this.effect(() => {
+      this.profileService.getProfile().then((res) => {
+        if (!res) {
+          alert("未选择存档");
+        }
+      });
       this.profileService.b30().then((res) => this.best30.b30.set(res));
       const events = listen(this.best30 as HTMLElement);
       const unsubscribe = events("dblclick", () => {

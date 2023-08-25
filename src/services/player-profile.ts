@@ -1,6 +1,6 @@
 import { SqlJsStatic } from "sql.js";
 import { NoteResult, PlayResult } from "../models/music-play";
-import { B30Response, BestResultItem, Profile } from "../models/profile";
+import { B30Response, BestResultItem, Profile, ProfileV1, ProfileV2 } from "../models/profile";
 import { download } from "../utils/download";
 import { readBinary, readFile } from "../utils/read-file";
 import { alert, confirm } from "../view/components/global-message";
@@ -13,13 +13,12 @@ import {
   ProfileService,
 } from "./declarations";
 import { Injectable } from "classic-di";
-
 const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
 
-const isValidProfileV1 = (input: any): input is Profile => {
-  const value: Partial<Profile> = input;
+const isValidProfileV1 = (input: any): input is ProfileV1 => {
+  const value: Partial<ProfileV1> = input;
   return (
     value != null &&
     typeof value === "object" &&
@@ -30,6 +29,20 @@ const isValidProfileV1 = (input: any): input is Profile => {
     (value.characters == null || Array.isArray(value.characters))
   );
 };
+
+const isValidProfileV2 = (input: any): input is ProfileV2 => {
+  const value: Partial<ProfileV2> = input;
+  return (
+    value != null &&
+    typeof value === "object" &&
+    value.version === 2 &&
+    typeof value.username === "string" &&
+    typeof value.potential === "string" &&
+    typeof value.best === "object" &&
+    (value.characters == null || Array.isArray(value.characters))
+  );
+};
+
 @Injectable({
   requires: [$MusicPlayService, $ChartService] as const,
   implements: $ProfileService,
@@ -39,18 +52,18 @@ export class ProfileServiceImpl implements ProfileService {
   #SQL: SqlJsStatic | null = null;
   constructor(private readonly musicPlay: MusicPlayService, private readonly chartService: ChartService) {}
 
-  get profile(): Profile | null {
+  async getProfile(): Promise<Profile | null> {
     if (!this.currentUsername) {
       return null;
     }
-    return this.getProfile(this.currentUsername);
+    return this.getProfileAsync(this.currentUsername);
   }
 
   async createOrUpdateProfile(username: string, potential: number): Promise<void> {
-    const profile: Profile = this.getProfile(username) ?? this.createEmptyProfile(username);
+    const profile: Profile = (await this.getProfileAsync(username)) ?? this.createEmptyProfile(username);
     profile.potential = potential.toFixed(2);
     profile.username = username;
-    this.saveProfile(profile, username);
+    await this.saveProfile(profile, username);
   }
 
   async getProfileList(): Promise<string[]> {
@@ -75,14 +88,14 @@ export class ProfileServiceImpl implements ProfileService {
           return;
         }
       }
-      this.saveProfile(json, username);
+      await this.saveProfile(json, username);
       alert("导入成功");
     } catch (error) {
       alert(`寄！${error}`);
     }
   }
   async exportProfile(): Promise<void> {
-    const p = this.profile;
+    const p = await this.getProfile();
     if (!p) {
       alert("未选择存档");
       return;
@@ -91,7 +104,7 @@ export class ProfileServiceImpl implements ProfileService {
     download(url, `profile_${p.username}.json`);
   }
   async addResult(playResult: PlayResult, replace?: boolean | undefined): Promise<void> {
-    const p = this.profile;
+    const p = await this.getProfile();
     if (!p) {
       alert("未选择存档");
       return;
@@ -115,7 +128,7 @@ export class ProfileServiceImpl implements ProfileService {
       }
     }
     p.best[playResult.chartId] = playResult;
-    this.saveProfile(p);
+    await this.saveProfile(p);
   }
 
   async useProfile(username: string): Promise<void> {
@@ -124,15 +137,15 @@ export class ProfileServiceImpl implements ProfileService {
   }
 
   async removeResult(chartId: string): Promise<void> {
-    const p = this.profile;
+    const p = await this.getProfile();
     if (!p) {
       return;
     }
     delete p.best[chartId];
-    this.saveProfile(p);
+    await this.saveProfile(p);
   }
   async b30(): Promise<B30Response> {
-    const p = this.profile;
+    const p = await this.getProfile();
     if (!p) {
       throw new Error("No profile selected.");
     }
@@ -247,7 +260,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         clear: this.musicPlay.mapClearType(clearType, shinyPerfectCount, chart),
       };
     }
-    this.saveProfile({ best });
+    await this.saveProfile({ best });
   }
 
   private createEmptyProfile(username: string): Profile {
@@ -255,23 +268,69 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       best: {},
       potential: "0",
       username,
-      version: 1,
+      version: 2,
     };
   }
 
-  private getProfile(username: string): Profile | null {
+  private getJSONSync(username: string): object | null {
     try {
-      const profile = JSON.parse(localStorage.getItem(username)!);
-      return profile;
-    } catch (error) {
+      return JSON.parse(localStorage.getItem(username)!);
+    } catch {
       return null;
     }
   }
 
-  private saveProfile(profile: Partial<Profile>, key = this.currentUsername!) {
-    const original = this.getProfile(key) ?? this.createEmptyProfile(key);
+  /**
+   * 获取存档时自动升级一次
+   */
+  private async getProfileAsync(username: string): Promise<Profile | null> {
+    try {
+      const profile = this.getJSONSync(username);
+      if (isValidProfileV1(profile)) {
+        const newProfile = await this.upgradeV1(profile);
+        await this.saveProfileDirectly(newProfile, username);
+        return newProfile;
+      } else if (isValidProfileV2(profile)) {
+        return profile;
+      }
+      return null;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  private async upgradeV1(v1: ProfileV1): Promise<ProfileV2> {
+    const indexed = await this.#getV1Map();
+    return {
+      ...v1,
+      version: 2,
+      best: Object.fromEntries(
+        Object.entries(v1.best).map(([oldChartId, value]) => {
+          const chartId = indexed[oldChartId.toLowerCase()];
+          if (!chartId) {
+            throw new Error(`Cannot upgrade chartId: ${oldChartId}`);
+          }
+          return [
+            chartId,
+            {
+              ...value,
+              chartId,
+            },
+          ] as const;
+        })
+      ),
+    };
+  }
+
+  private async saveProfile(profile: Partial<Profile>, key = this.currentUsername!) {
+    const original = (await this.getProfileAsync(key)) ?? this.createEmptyProfile(key);
     const newProfile = Object.assign({}, original, profile);
-    localStorage.setItem(key, JSON.stringify(newProfile));
+    await this.saveProfileDirectly(newProfile, key);
+  }
+
+  private async saveProfileDirectly(profile: Profile, key: string) {
+    localStorage.setItem(key, JSON.stringify(profile));
   }
 
   private getInitCurrentUsername(): string | null {
@@ -288,11 +347,11 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
 
   private getProfileListSync(): string[] {
     return Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i)!).filter((key) => {
-      const profile = this.getProfile(key);
+      const profile = this.getJSONSync(key);
       if (!profile) {
         return false;
       }
-      return isValidProfileV1(profile);
+      return isValidProfileV1(profile) || isValidProfileV2(profile);
     });
   }
 
@@ -306,5 +365,31 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         return `https://sql.js.org/dist/${url}`;
       },
     });
+  }
+
+  #v1Map: {
+    [oldChartIdLower: string]: string;
+  } | null = null;
+
+  async #getV1Map() {
+    if (!this.#v1Map) {
+      const v1Data = await import("../data/chart-data-legacy-1.json");
+      const v2Data = await this.chartService.getSongData();
+      const validV2ChartIds = new Set(v2Data.flatMap((song) => song.charts.map((chart) => chart.id)));
+      Object.assign({ validV2ChartIds });
+      this.#v1Map = Object.fromEntries(
+        v1Data.flatMap((song) =>
+          song.charts.map((chart) => {
+            const newId = `${song.sid}@${chart.difficulty}`;
+            if (!validV2ChartIds.has(newId)) {
+              console.error(`${newId} cannot be resolved`);
+            }
+            const oldIdLower = chart.id.toLowerCase();
+            return [oldIdLower, newId];
+          })
+        )
+      );
+    }
+    return this.#v1Map;
   }
 }

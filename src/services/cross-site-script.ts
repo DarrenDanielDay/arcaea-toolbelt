@@ -127,7 +127,7 @@ async function queryBest(
     message(
       `正在查询 ${chart.byd?.song ?? song.name} 的 ${chart.difficulty}难度（${chart.constant.toFixed(1)}）好友榜……`
     );
-    const friendBests = await getFriendsBest(song.sid, musicPlay.mapDifficulty(chart.difficulty));
+    const friendBests = await getFriendsBest(song.id, musicPlay.mapDifficulty(chart.difficulty));
     if (!friendBests) {
       throw new Error(`寄了，接口改了，需要订阅Arcaea Online才能用`);
     }
@@ -189,7 +189,7 @@ async function queryBest(
   return Object.entries(result).map(([name, best]) => ({
     best,
     username: name,
-    version: 1,
+    version: 2,
     potential: (queryPlayers.find((f) => f.name === name)!.rating / 100).toFixed(2),
   }));
 }

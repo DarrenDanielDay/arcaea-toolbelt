@@ -2,9 +2,9 @@ export interface Song {
   id: string;
   alias: string[];
   /**
-   * 616的歌曲id
+   * 直接使用游戏内id作为id，不再需要两个id
    */
-  sid: string;
+  // sid: string;
   name: string;
   cover: string;
   pack: string;
@@ -22,6 +22,7 @@ export enum Difficulty {
 }
 
 export interface Chart {
+  // 原来的基于wiki链接的id改为游戏内id
   id: string;
   songId: string;
   byd?: BeyondAddon;

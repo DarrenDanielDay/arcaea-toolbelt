@@ -87,7 +87,8 @@ class ProfilePage extends HyplateElement {
             </blockquote>
           </div>
           <p>
-            脚本执行后左下角会出现一个悬浮按钮，点击按钮弹出插件弹框，根据弹框内提示操作即可。关闭弹框后可通过<kbd>Ctrl + B</kbd>重新唤起弹框。
+            脚本执行后左下角会出现一个悬浮按钮，点击按钮弹出插件弹框，根据弹框内提示操作即可。关闭弹框后可通过
+            <kbd>Ctrl + B</kbd>重新唤起弹框。
           </p>
           <p>若需要频繁使用此脚本，可以使用油猴插件实现在访问Arcaea官网时自动执行。</p>
           <p>若要在手机上执行此脚本，可以参考这篇文章：</p>
@@ -190,7 +191,7 @@ class ProfilePage extends HyplateElement {
       const ptt = +data.get("potential")!;
       if (!isNaN(ptt)) {
         await this.profileService.createOrUpdateProfile(username, ptt);
-        if (!this.profileService.profile) {
+        if (!(await this.profileService.getProfile())) {
           await this.profileService.useProfile(username);
           this.updateGreet();
         }
@@ -199,7 +200,7 @@ class ProfilePage extends HyplateElement {
   };
 
   updateProfile = async () => {
-    const currentProfile = this.profileService.profile;
+    const currentProfile = await this.profileService.getProfile();
     if (!currentProfile) {
       alert("未选择存档");
       return;
@@ -222,9 +223,10 @@ class ProfilePage extends HyplateElement {
       }
       return;
     }
+    const profile = await this.profileService.getProfile();
     const select = this.switchProfileDialog.querySelector('select[name="profile"]')!;
     select.innerHTML = profiles.map((p) => `<option>${p}</option>`).join("");
-    select.value = this.profileService.profile?.username ?? "";
+    select.value = profile?.username ?? "";
     this.openFormModal(this.switchProfileDialog, async (data) => {
       const profile = data.get("profile");
       if (profile && typeof profile === "string") {
@@ -248,7 +250,7 @@ class ProfilePage extends HyplateElement {
   };
 
   importSt3 = async () => {
-    const profile = this.profileService.profile;
+    const profile = await this.profileService.getProfile();
     if (!profile) {
       return alert(`需要选择存档才能导入成绩`);
     }
@@ -308,8 +310,8 @@ class ProfilePage extends HyplateElement {
     modal.showModal();
   }
 
-  private updateGreet() {
-    const profile = this.profileService.profile;
+  private async updateGreet() {
+    const profile = await this.profileService.getProfile();
     this.greet.set(profile);
   }
 }

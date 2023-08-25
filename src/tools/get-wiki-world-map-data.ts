@@ -149,7 +149,6 @@ function getWorldMap(
         }
         if (links.length) {
           const link = links[0]!;
-          const linkPath = new URL(link.href).pathname.slice(1);
           let linkText = link.textContent!.trim();
           if (linkText === "咲弥 & 伊丽莎白") {
             // wiki上的音译是“丽”，修正为和官方一致用于匹配
@@ -159,7 +158,7 @@ function getWorldMap(
             // wiki上的奖励名称有重定向，修正为和官方一致用于匹配
             linkText = "Ilith & Ivy";
           }
-          const song = songs.find((s) => s.id === linkPath);
+          const song = songs.find((s) => s.name === linkText);
           const character = characters.find((c) => c.name.zh === linkText);
           if (song) {
             platform.reward = {

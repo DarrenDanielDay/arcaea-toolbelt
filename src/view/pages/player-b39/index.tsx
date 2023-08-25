@@ -15,12 +15,15 @@ class PlayerB39 extends HyplateElement {
 
   override render() {
     this.effect(() => {
-      this.profileService.getProfile().then((res) => {
-        if (!res) {
+      (async () => {
+        const profile = await this.profileService.getProfile();
+        if (!profile) {
           alert("未选择存档");
+          return;
         }
-      });
-      this.profileService.b30().then((res) => this.best30.b30.set(res));
+        const b30 = await this.profileService.b30(profile);
+        this.best30.b30.set(b30);
+      })();
       const events = listen(this.best30 as HTMLElement);
       const unsubscribe = events("dblclick", () => {
         this.requestFullscreen({

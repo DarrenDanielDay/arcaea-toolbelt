@@ -71,7 +71,7 @@ export interface ProfileService {
   useProfile(username: string): Promise<void>;
   addResult(playResult: PlayResult, replace?: boolean): Promise<void>;
   removeResult(chartId: string): Promise<void>;
-  b30(): Promise<B30Response>;
+  b30(profile: Profile): Promise<B30Response>;
 }
 
 export interface MapDistance {

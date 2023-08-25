@@ -144,14 +144,10 @@ export class ProfileServiceImpl implements ProfileService {
     delete p.best[chartId];
     await this.saveProfile(p);
   }
-  async b30(): Promise<B30Response> {
-    const p = await this.getProfile();
-    if (!p) {
-      throw new Error("No profile selected.");
-    }
+  async b30(profile: Profile): Promise<B30Response> {
     const songs = await this.chartService.getSongData();
     const charts = Object.fromEntries(songs.flatMap((s) => s.charts.map((c) => [c.id, { chart: c, song: s }])));
-    const playResults = Object.values(p.best).map<BestResultItem>((r) => {
+    const playResults = Object.values(profile.best).map<BestResultItem>((r) => {
       const { chart, song } = charts[r.chartId]!;
       const { clear } = r;
       if (r.type === "score") {
@@ -185,11 +181,11 @@ export class ProfileServiceImpl implements ProfileService {
     const maxPotential = (b10Sum + b30Sum) / 40;
     const minPotential = b30Sum / 40;
     // 如果成绩少于10个，recent 10的平均值应当按照成绩个数取平均
-    const r10Average = (+p.potential * 40 - b30Sum) / Math.min(playResults.length, 10);
+    const r10Average = (+profile.potential * 40 - b30Sum) / Math.min(playResults.length, 10);
 
     return {
-      username: p.username,
-      potential: p.potential,
+      username: profile.username,
+      potential: profile.potential,
       b30: b30,
       b31_39: ordered.slice(30, 39),
       maxPotential,

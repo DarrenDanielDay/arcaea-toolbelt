@@ -7,6 +7,7 @@ import { Component, HyplateElement, computed, element, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/delay";
+import { clearImages } from "../../../assets/play-result";
 export
 @Component({
   tag: "profile-page",
@@ -118,7 +119,7 @@ class ProfilePage extends HyplateElement {
                 type="number"
                 step="0.01"
                 min={0}
-                max={this.chartService.maximumPotential}
+                max={this.chartService.maximumPotential.toFixed(2)}
                 required
               />
             </div>
@@ -140,7 +141,7 @@ class ProfilePage extends HyplateElement {
                 type="number"
                 step="0.01"
                 min={0}
-                max={this.chartService.maximumPotential}
+                max={this.chartService.maximumPotential.toFixed(2)}
                 required
                 autofocus
               />
@@ -176,6 +177,41 @@ class ProfilePage extends HyplateElement {
             <div class="row">
               <div class="col">
                 <input type="file" class="form-control" name="file" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-auto">
+                <span class="form-text">
+                  已知的小问题：st3内只有谱面最高等级的通关类型信息，没有最佳成绩当次的通关类型信息。通关类型从高到低的顺序是：
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span class="form-text">
+                  {this.renderInlineImg(clearImages.PM)}
+                  {">"}
+                  {this.renderInlineImg(clearImages.FR)}
+                  {">"}
+                  {this.renderInlineImg(clearImages.HC)}
+                  {">"}
+                  {this.renderInlineImg(clearImages.NC)}
+                  {">"}
+                  {this.renderInlineImg(clearImages.EC)}
+                  {">"}
+                  {this.renderInlineImg(clearImages.TL)}
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-auto">
+                <span class="form-text">
+                  例如有一个谱面最佳成绩是9990000分0-1，实际通关类型应当为NC（
+                  {this.renderInlineImg(clearImages.NC)}
+                  ），但先前曾经9980000分4-0全连过，st3存档内的数据将会是FR（
+                  {this.renderInlineImg(clearImages.FR)}
+                  ），从而可能导致b30里的通关显示存在一些小瑕疵。
+                </span>
               </div>
             </div>
             {this.renderFooter()}
@@ -272,6 +308,10 @@ class ProfilePage extends HyplateElement {
       }
     });
   };
+
+  private renderInlineImg(url: string) {
+    return <img src={url} class="inline-img"></img>;
+  }
 
   private renderArcaeaOfficialLink() {
     return (

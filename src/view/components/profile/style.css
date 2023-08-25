@@ -20,6 +20,11 @@ blockquote {
   margin: 0.5em 0;
 }
 
+.inline-img {
+  width: 3em;
+  height: 3em;
+}
+
 #the-script {
   overflow-x: auto;
   white-space: pre;

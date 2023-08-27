@@ -1,6 +1,6 @@
 import { Difficulty, SongData, SongIndex } from "../models/music-play";
 import { searchMatch } from "../utils/string";
-import { $ChartService, ChartService, SearchResult } from "./declarations";
+import { $ChartService, ChartService, ChartStatistics, SearchResult } from "./declarations";
 import staticData from "../data/chart-data.json";
 import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
@@ -27,6 +27,27 @@ export class ChartServiceImpl implements ChartService {
 
   async getSongIndex(): Promise<SongIndex> {
     return (this.#songIndex ??= await this.initSongIndex());
+  }
+
+  async getStatistics(): Promise<ChartStatistics> {
+    const songs = await this.getSongData();
+    const statistics: ChartStatistics = [
+      Difficulty.Past,
+      Difficulty.Present,
+      Difficulty.Future,
+      Difficulty.Beyond,
+    ].reduce<ChartStatistics>((map, difficulty) => {
+      map[difficulty] = { count: 0, notes: 0 };
+      return map;
+    }, {} as ChartStatistics);
+    for (const song of songs) {
+      for (const chart of song.charts) {
+        const stat = statistics[chart.difficulty];
+        stat.count++;
+        stat.notes += chart.note;
+      }
+    }
+    return statistics;
   }
 
   async searchChart(searchText: string): Promise<SearchResult[]> {

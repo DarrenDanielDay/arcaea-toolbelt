@@ -26,12 +26,26 @@ export interface SearchResult {
   difficulty: Difficulty;
 }
 
+export interface DifficultyStatistics {
+  /**
+   * 谱面个数
+   */
+  count: number;
+  /**
+   * 物量总和
+   */
+  notes: number;
+}
+
+export type ChartStatistics = Record<Difficulty, DifficultyStatistics>;
+
 export interface ChartService {
   readonly maximumConstant: number;
   readonly minimumConstant: number;
   readonly maximumPotential: number;
   getSongData(): Promise<SongData[]>;
   getSongIndex(): Promise<SongIndex>;
+  getStatistics(): Promise<ChartStatistics>;
   searchChart(searchText: string): Promise<SearchResult[]>;
   queryChartsByConstant(min: number, max: number): Promise<SearchResult[]>;
   roll(min: number, max: number): Promise<SearchResult | null>;

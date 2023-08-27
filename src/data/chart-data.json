@@ -11001,7 +11001,7 @@
         "difficulty": "pst",
         "id": "last@pst",
         "level": "4",
-        "note": 674,
+        "note": 680,
         "songId": "last"
       },
       {
@@ -11009,7 +11009,7 @@
         "difficulty": "prs",
         "id": "last@prs",
         "level": "7",
-        "note": 777,
+        "note": 781,
         "songId": "last"
       },
       {
@@ -11050,7 +11050,7 @@
         "constant": 9.7,
         "difficulty": "byd",
         "level": "9+",
-        "note": 786,
+        "note": 790,
         "songId": "lasteternity",
         "byd": {
           "song": "Last | Eternity"
@@ -12894,7 +12894,7 @@
         "difficulty": "pst",
         "id": "sacrifice@pst",
         "level": "3",
-        "note": null,
+        "note": 548,
         "songId": "sacrifice"
       },
       {
@@ -12902,7 +12902,7 @@
         "difficulty": "prs",
         "id": "sacrifice@prs",
         "level": "7",
-        "note": null,
+        "note": 779,
         "songId": "sacrifice"
       },
       {
@@ -12910,7 +12910,7 @@
         "difficulty": "ftr",
         "id": "sacrifice@ftr",
         "level": "9+",
-        "note": null,
+        "note": 958,
         "songId": "sacrifice"
       }
     ],

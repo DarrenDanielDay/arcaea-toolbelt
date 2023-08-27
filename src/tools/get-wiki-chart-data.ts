@@ -227,7 +227,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       prs: 7.0,
       ftr: 9.0,
     };
-    const notes = [674, 777, 831];
+    const notes = [680, 781, 831];
     const levels = ["4", "7", "9"];
     const last = "last";
     const lasteternity = "lasteternity";
@@ -276,7 +276,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
           constant: 9.7,
           difficulty: Difficulty.Beyond,
           level: "9+",
-          note: 786,
+          note: 790,
           songId: lasteternity,
           byd: {
             song: `Last | Eternity`,

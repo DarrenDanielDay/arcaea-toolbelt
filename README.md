@@ -50,6 +50,8 @@ npm run start
 
 And then open <http://localhost:1234> in a modern browser.
 
+Open <http://localhost:1236> for data tools.
+
 To debug in [`Microsoft Edge`](https://www.microsoft.com/edge) with [`vscode`](https://code.visualstudio.com), press `F5`.
 
 References of third-party libraries:

@@ -1,3 +1,4 @@
+import "classic-di/polyfill";
 import { ChartServiceImpl } from "./chart-data";
 import { MusicPlayServiceImpl } from "./music-play";
 import { ProfileServiceImpl } from "./player-profile";

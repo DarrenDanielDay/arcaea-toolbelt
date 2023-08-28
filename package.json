@@ -29,35 +29,38 @@
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
     "start": "run-p --print-label \"start:**\"",
     "purge": "node ./scripts/purge.js",
-    "build:parcel": "parcel build --target default --public-url /arcaea-toolbelt --reporter @parcel/reporter-bundle-analyzer",
+    "build:parcel": "parcel build --target default --no-optimize --public-url /arcaea-toolbelt --reporter @parcel/reporter-bundle-analyzer",
     "build:sheetly": "sheetly build --dir src",
     "build": "run-s purge build:sheetly build:parcel"
   },
   "private": true,
+  "@parcel/resolver-default": {
+    "packageExports": true
+  },
   "devDependencies": {
-    "@parcel/reporter-bundle-analyzer": "^2.8.3",
-    "@parcel/transformer-inline-string": "^2.8.3",
-    "@parcel/transformer-typescript-tsc": "^2.8.3",
+    "@parcel/reporter-bundle-analyzer": "^2.9.3",
+    "@parcel/transformer-inline-string": "^2.9.3",
+    "@parcel/transformer-typescript-tsc": "^2.9.3",
     "@types/bootstrap": "^5.2.6",
     "@types/sql.js": "^1.4.4",
-    "buffer": "^5.7.1",
+    "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "events": "^3.3.0",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.8.3",
+    "parcel": "^2.9.3",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "purgecss": "^5.0.0",
     "stream-browserify": "^3.0.0",
-    "typed-query-selector": "^2.10.1",
+    "typed-query-selector": "^2.11.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "bootstrap": "^5.3.0-alpha3",
-    "classic-di": "^0.2.0",
-    "hyplate": "^0.19.0",
+    "bootstrap": "^5.3.1",
+    "classic-di": "^0.3.0",
+    "hyplate": "^0.19.2",
     "sheetly": "^0.5.0",
     "sql.js": "^1.8.0",
-    "tslib": "^2.5.0"
+    "tslib": "^2.6.2"
   }
 }

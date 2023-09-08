@@ -1,6 +1,6 @@
 import { sheet } from "./style.css.js";
 import { bootstrap } from "../../styles";
-import { Component, HyplateElement, Show, element, nil, signal } from "hyplate";
+import { Component, HyplateElement, Show, element, listen, nil, signal } from "hyplate";
 import type { JSXChildNode } from "hyplate/types";
 
 export
@@ -13,6 +13,11 @@ class GlobalMessage extends HyplateElement {
   content = signal<JSX.Element>(nil);
 
   override render() {
+    this.effect(() =>
+      listen(this.dialog)("close", () => {
+        this.content.set(nil);
+      })
+    );
     return (
       <dialog ref={this.dialog}>
         <Show when={this.content}>{(node) => node}</Show>

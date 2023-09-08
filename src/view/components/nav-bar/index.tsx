@@ -41,9 +41,12 @@ class NavBar extends HyplateElement {
                   <a
                     class="nav-link"
                     role="button"
-                    onClick={() => {
-                      this.router.navigate(route);
-                      this.showMenu.set(false);
+                    href={`#${route.path}`}
+                    onClick={(e) => {
+                      if (!e.ctrlKey) {
+                        this.router.navigate(route);
+                        this.showMenu.set(false);
+                      }
                     }}
                   >
                     {route.title}
@@ -81,7 +84,8 @@ class NavBar extends HyplateElement {
           {Object.entries(statistics).map(([difficulty, { count, notes }]) => {
             return (
               <div>
-                <strong style:color={`var(--${difficulty})`}>{difficulty.toUpperCase()}</strong>:{count}个谱面，物量{notes}
+                <strong style:color={`var(--${difficulty})`}>{difficulty.toUpperCase()}</strong>:{count}个谱面，物量
+                {notes}
               </div>
             );
           })}

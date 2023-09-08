@@ -332,7 +332,9 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     );
     const all = Object.values(profile.best);
     const groupByDifficulty = groupBy(all, (res) => charts[res.chartId]!.difficulty);
-
+    for (const difficulty of Object.values(Difficulty)) {
+      groupByDifficulty[difficulty] ??= [];
+    }
     return {
       difficulties: mapProps(groupByDifficulty, byRecords),
       general: byRecords(all),

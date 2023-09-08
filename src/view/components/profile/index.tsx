@@ -345,7 +345,6 @@ class ProfilePage extends HyplateElement {
 
   async showProfileStats(profile: Profile) {
     const stats = await this.profileService.getProfileStatistics(profile);
-    console.log(Object.keys(stats.difficulties));
     const Desc: FC<{ label: string; content: string | number; style?: string }> = ({ label, content, style }) => {
       return (
         <div class="row" style={style ?? null}>
@@ -372,9 +371,9 @@ class ProfilePage extends HyplateElement {
       if (stat.max) {
         descriptsions.push(<Desc label="理论值" content={stat.max} style="text-shadow: 1px 1px #0f7185dd;"></Desc>);
       }
-      const percentage = (rate: number) => `${(rate * 100).toFixed(4)}%`;
+      const percentage = (rate: number) => (isNaN(rate) ? "-" : `${(rate * 100).toFixed(4)}%`);
       descriptsions.push(
-        <Desc label="平均得分率" content={percentage(stat.acc)}></Desc>,
+        <Desc label="EX以上P率" content={percentage(stat.acc)}></Desc>,
         <Desc label="大P准度" content={percentage(stat.pacc)}></Desc>
       );
       if (stat.rest <= 1e6) {

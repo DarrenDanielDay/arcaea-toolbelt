@@ -7,12 +7,11 @@ import { alert } from "../../components/global-message";
 import { Route } from "../router";
 import { download } from "../../../utils/download";
 import { bootstrap } from "../../styles/index";
-import { sheet } from "./style.css.js";
 import { loading } from "../../components/loading";
 
 @Component({
   tag: "player-b30",
-  styles: [bootstrap, sheet],
+  styles: [bootstrap],
 })
 class PlayerB39 extends HyplateElement {
   @Inject($ProfileService)

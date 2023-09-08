@@ -23,8 +23,8 @@
 
 - [x] 手动录入成绩 & 单曲潜力值计算
 - [x] `st3`存档成绩导入
-- [x] `b30/r10`计算 & `b39`看板
-- [ ] 存档内成绩查询 & 统计
+- [x] `b30/r10`计算 & `b39`看板 & 导出图片
+- [x] 存档内成绩查询 & 统计
 - [x] 定数范围查谱 & 随机谱面抽取
 - [x] 世界模式地图预览
 - [x] 世界模式剩余进度计算
@@ -66,6 +66,7 @@ You'll see `JSX` code in components, but this project is **NOT** using [`react`]
 - [Arcaea 中文 Wiki](https://wiki.arcaea.cn/)
 - [Arcaea-Infinity](Arcaea-Infinity)
 - [YukiChan](https://github.com/bsdayo/YukiChan/)
+- [ArcaeaResource-ActionUpdater](https://github.com/MoYoez/ArcaeaResource-ActionUpdater)
 
 ## License
 

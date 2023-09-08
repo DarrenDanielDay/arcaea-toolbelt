@@ -6,7 +6,7 @@ import { $Router, Router } from "../../pages/router";
 import { clickElsewhere } from "../../../utils/click-elsewhere";
 import { alert } from "../global-message";
 import { Component, HyplateElement, computed, signal } from "hyplate";
-import { $ChartService, ChartService } from "../../../services/declarations";
+import { $ChartService, $MusicPlayService, ChartService, MusicPlayService } from "../../../services/declarations";
 
 export
 @Component({
@@ -18,6 +18,8 @@ class NavBar extends HyplateElement {
   accessor router!: Router;
   @Inject($ChartService)
   accessor chart!: ChartService;
+  @Inject($MusicPlayService)
+  accessor musicPlay!: MusicPlayService;
 
   showMenu = signal(false);
   activeRoute = signal("");
@@ -68,7 +70,8 @@ class NavBar extends HyplateElement {
   }
 
   showVersion = async () => {
-    const statistics = await this.chart.getStatistics();
+    const chartStats = await this.chart.getStatistics();
+    const musicPlayStats = await this.musicPlay.getStatistics();
     alert(
       <div>
         <h2>Arcaea Toolbelt</h2>
@@ -78,10 +81,10 @@ class NavBar extends HyplateElement {
         <p>版本: {process.env.COMMIT_SHA}</p>
         <h3>统计信息</h3>
         {/* 最大潜力值一定是0.1 / 40 = 0.0025的倍数，因此最多只有4位小数 */}
-        <p>最大潜力值: {this.chart.maximumPotential.toFixed(4)}</p>
+        <p>最大潜力值: {musicPlayStats.maximumPotential.toFixed(4)}</p>
         <h4>谱面统计</h4>
         <div>
-          {Object.entries(statistics).map(([difficulty, { count, notes }]) => {
+          {Object.entries(chartStats).map(([difficulty, { count, notes }]) => {
             return (
               <div>
                 <strong style:color={`var(--${difficulty})`}>{difficulty.toUpperCase()}</strong>:{count}个谱面，物量

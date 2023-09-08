@@ -14,9 +14,11 @@ import {
   $MusicPlayService,
   $WorldModeService,
   ChartService,
+  ChartStatistics,
   InverseProgressSolution,
   MapDistance,
   MusicPlayService,
+  MusicPlayStatistics,
   NextRewardInfo,
   RemainingProgress,
   WorldMapBonus,
@@ -164,14 +166,16 @@ export class WorldModeServiceImpl implements WorldModeService {
     return potential;
   }
 
-  inverseProgress(step: number, range: [low: number, high: number]): InverseProgressSolution[] {
+  async inverseProgress(step: number, range: [low: number, high: number]): Promise<InverseProgressSolution[]> {
+    const chartStats = await this.chart.getStatistics();
+    const musicStats = await this.music.getStatistics();
     const solutions: InverseProgressSolution[] = [];
     const [low, high] = range;
     // 无加成
-    solutions.push(this.solveProgressRange(step, range));
+    solutions.push(this.solveProgressRange(step, range, chartStats, musicStats));
     // 新图
     {
-      const solution = this.solveProgressRange(step, [low / 4, high / 4]);
+      const solution = this.solveProgressRange(step, [low / 4, high / 4], chartStats, musicStats);
       solution.world = {
         type: "new",
         x4: true,
@@ -184,7 +188,7 @@ export class WorldModeServiceImpl implements WorldModeService {
       // 残片加成
       for (const fragment of [1, 1.1, 1.25, 1.5]) {
         const ratio = fragment * stamina;
-        const solution = this.solveProgressRange(step, [low / ratio, high / ratio]);
+        const solution = this.solveProgressRange(step, [low / ratio, high / ratio], chartStats, musicStats);
         solution.world = {
           type: "legacy",
           fragment,
@@ -213,10 +217,15 @@ export class WorldModeServiceImpl implements WorldModeService {
     return (this.#songIndex ??= indexBy(await this.chart.getSongData(), (s) => s.id));
   }
 
-  private solveProgressRange(step: number, [low, high]: [number, number]): InverseProgressSolution {
-    const maximum = this.chart.maximumConstant;
-    const minimum = this.chart.minimumConstant;
-    const maximumPtt = this.music.maximumSinglePotential;
+  private solveProgressRange(
+    step: number,
+    [low, high]: [number, number],
+    chartStats: ChartStatistics,
+    musicStats: MusicPlayStatistics
+  ): InverseProgressSolution {
+    const maximum = chartStats.maximumConstant;
+    const minimum = chartStats.minimumConstant;
+    const maximumPtt = musicStats.maximumSinglePotential;
     const lowPtt = this.inverseBasicProgress(low, step, true);
     const highPtt = Math.min(maximumPtt, this.inverseBasicProgress(high, step, false));
     const solution: InverseProgressSolution = {

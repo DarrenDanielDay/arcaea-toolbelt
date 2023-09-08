@@ -1,6 +1,6 @@
 import { Injectable } from "classic-di";
 import { Chart, ClearRank, Difficulty, Grade, NoteResult, PartnerClearRank, ScoreResult } from "../models/music-play";
-import { $ChartService, $MusicPlayService, ChartService, MusicPlayService } from "./declarations";
+import { $ChartService, $MusicPlayService, ChartService, MusicPlayService, MusicPlayStatistics } from "./declarations";
 
 const MAX_BASE_SCORE = 1000_0000;
 const EX_PLUS_SCORE = 990_0000;
@@ -19,9 +19,20 @@ const AA_RATIO = 30_0000;
 export class MusicPlayServiceImpl implements MusicPlayService {
   ex = EX_SCORE;
   maxBase = MAX_BASE_SCORE;
-  maximumSinglePotential = this.chart.maximumConstant + 2;
 
   constructor(private readonly chart: ChartService) {}
+
+  async getStatistics(): Promise<MusicPlayStatistics> {
+    const songs = await this.chart.getSongData();
+    const stats = await this.chart.getStatistics();
+    const constants = songs.flatMap((s) => s.charts.map((c) => c.constant));
+    const maxs = [...constants].sort((a, b) => b - a).slice(0, 30);
+    const maxptt = maxs.concat(maxs.slice(0, 10)).reduce((sum, curr) => sum + curr + 2, 0) / 40;
+    return {
+      maximumPotential: maxptt,
+      maximumSinglePotential: stats.maximumConstant + 2,
+    };
+  }
 
   inferNoteResult(
     chart: Chart,

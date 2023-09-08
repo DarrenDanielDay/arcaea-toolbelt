@@ -3,13 +3,15 @@ import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
 import {
   $ChartService,
+  $MusicPlayService,
   $ProfileService,
   BestStatistics,
   ChartService,
+  MusicPlayService,
   ProfileService,
 } from "../../../services/declarations";
 import { alert, confirm } from "../global-message";
-import { AutoRender, Component, HyplateElement, computed, element, mount, signal } from "hyplate";
+import { AutoRender, Component, Future, HyplateElement, computed, element, mount, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/delay";
@@ -24,8 +26,8 @@ export
 class ProfilePage extends HyplateElement {
   @Inject($ProfileService)
   accessor profileService!: ProfileService;
-  @Inject($ChartService)
-  accessor chartService!: ChartService;
+  @Inject($MusicPlayService)
+  accessor musicPlay!: MusicPlayService;
 
   createProfileDialog = element("dialog");
   editProfileDialog = element("dialog");
@@ -38,6 +40,15 @@ class ProfilePage extends HyplateElement {
 
   override render() {
     this.updateGreet();
+    return (
+      <Future promise={this.musicPlay.getStatistics()}>
+        {({ maximumPotential }) => {
+          return this._render(maximumPotential);
+        }}
+      </Future>
+    );
+  }
+  _render(maximumPotential: number) {
     return (
       <>
         <div class="row m-3" id="greet">
@@ -142,7 +153,7 @@ class ProfilePage extends HyplateElement {
                 type="number"
                 step="0.01"
                 min={0}
-                max={this.chartService.maximumPotential.toFixed(2)}
+                max={maximumPotential.toFixed(2)}
                 required
               />
             </div>
@@ -164,7 +175,7 @@ class ProfilePage extends HyplateElement {
                 type="number"
                 step="0.01"
                 min={0}
-                max={this.chartService.maximumPotential.toFixed(2)}
+                max={maximumPotential.toFixed(2)}
                 required
                 autofocus
               />

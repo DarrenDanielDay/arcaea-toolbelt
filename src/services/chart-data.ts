@@ -1,25 +1,18 @@
 import { Difficulty, SongData, SongIndex } from "../models/music-play";
 import { searchMatch } from "../utils/string";
-import { $ChartService, ChartService, ChartStatistics, SearchResult } from "./declarations";
-import staticData from "../data/chart-data.json";
+import { $ChartService, ChartService, ChartDifficultyStatistics, SearchResult, ChartStatistics } from "./declarations";
 import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
 // @ts-expect-error string as enum
-const getStaticSongData = async (): Promise<SongData[]> => staticData;
+const getStaticSongData = async (): Promise<SongData[]> => import("../data/chart-data.json");
 
 // 对于同个名称匹配系数，按照ftr，byd，prs，pst排序
 const difficultyOrder = [Difficulty.Future, Difficulty.Beyond, Difficulty.Present, Difficulty.Past];
-const constants = staticData.flatMap((s) => s.charts.map((c) => c.constant));
-const maxs = [...constants].sort((a, b) => b - a).slice(0, 30);
-const maxptt = maxs.concat(maxs.slice(0, 10)).reduce((sum, curr) => sum + curr + 2, 0) / 40;
 
 @Injectable({
   implements: $ChartService,
 })
 export class ChartServiceImpl implements ChartService {
-  maximumConstant = constants.reduce((max, curr) => Math.max(max, curr), -Infinity);
-  minimumConstant = constants.reduce((min, curr) => Math.min(min, curr), Infinity);
-  maximumPotential = maxptt;
   #songIndex: SongIndex | null = null;
   getSongData(): Promise<SongData[]> {
     return getStaticSongData();
@@ -31,23 +24,31 @@ export class ChartServiceImpl implements ChartService {
 
   async getStatistics(): Promise<ChartStatistics> {
     const songs = await this.getSongData();
-    const statistics: ChartStatistics = [
+    const statistics: ChartDifficultyStatistics = [
       Difficulty.Past,
       Difficulty.Present,
       Difficulty.Future,
       Difficulty.Beyond,
-    ].reduce<ChartStatistics>((map, difficulty) => {
+    ].reduce<ChartDifficultyStatistics>((map, difficulty) => {
       map[difficulty] = { count: 0, notes: 0 };
       return map;
-    }, {} as ChartStatistics);
+    }, {} as ChartDifficultyStatistics);
+    let maximumConstant = -Infinity,
+      minimumConstant = Infinity;
     for (const song of songs) {
       for (const chart of song.charts) {
         const stat = statistics[chart.difficulty];
         stat.count++;
         stat.notes += chart.note;
+        maximumConstant = Math.max(maximumConstant, chart.constant);
+        minimumConstant = Math.min(minimumConstant, chart.constant);
       }
     }
-    return statistics;
+    return {
+      difficulties: statistics,
+      maximumConstant,
+      minimumConstant,
+    };
   }
 
   async searchChart(searchText: string): Promise<SearchResult[]> {

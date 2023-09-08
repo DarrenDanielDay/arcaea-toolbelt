@@ -37,12 +37,16 @@ export interface DifficultyStatistics {
   notes: number;
 }
 
-export type ChartStatistics = Record<Difficulty, DifficultyStatistics>;
+export type ChartDifficultyStatistics = Record<Difficulty, DifficultyStatistics>;
+
+export interface ChartStatistics {
+  difficulties: ChartDifficultyStatistics;
+  maximumConstant: number;
+  minimumConstant: number;
+}
+
 
 export interface ChartService {
-  readonly maximumConstant: number;
-  readonly minimumConstant: number;
-  readonly maximumPotential: number;
   getSongData(): Promise<SongData[]>;
   getSongIndex(): Promise<SongIndex>;
   getStatistics(): Promise<ChartStatistics>;
@@ -51,10 +55,15 @@ export interface ChartService {
   roll(min: number, max: number): Promise<SearchResult | null>;
 }
 
+export interface MusicPlayStatistics {
+  readonly maximumPotential: number;
+  readonly maximumSinglePotential: number;
+}
+
 export interface MusicPlayService {
   readonly ex: number;
   readonly maxBase: number;
-  readonly maximumSinglePotential: number;
+  getStatistics(): Promise<MusicPlayStatistics>;
   inferNoteResult(
     chart: Chart,
     perfect: number | null,
@@ -183,7 +192,7 @@ export interface WorldModeService {
     targetLevel: number
   ): [low: number, high: number];
   computeRemainingProgress(map: NormalWorldMap, currentProgress: CurrentProgress): RemainingProgress;
-  inverseProgress(step: number, progressRange: [low: number, high: number]): InverseProgressSolution[];
+  inverseProgress(step: number, progressRange: [low: number, high: number]): Promise<InverseProgressSolution[]>;
   inverseBeyondBoost(difference: number, score: number): number;
 }
 

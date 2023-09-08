@@ -28,6 +28,7 @@ import {
   watch,
   effect,
   AutoRender,
+  Future,
 } from "hyplate";
 import { ChartInfo } from "../chart-info";
 import type { WritableSignal } from "hyplate/types";
@@ -186,6 +187,11 @@ class WorldModeCalculator extends HyplateElement {
     );
     this.effect(() => listen(this.calcForm)("change", this.calculateProgress));
     this.effect(() => listen(this.inverseProgressForm)("change", this.inverseProgress));
+    return (
+      <Future promise={this.musicPlay.getStatistics()}>{(stats) => this._render(stats.maximumSinglePotential)}</Future>
+    );
+  }
+  _render(maximumSinglePotential: number) {
     const isNotLegacy = computed(() => this.worldType() !== "legacy");
     const isNotNew = computed(() => this.worldType() !== "new");
     return (
@@ -291,7 +297,7 @@ class WorldModeCalculator extends HyplateElement {
                 step="any"
                 id="potential"
                 min="0"
-                max={this.musicPlay.maximumSinglePotential}
+                max={maximumSinglePotential}
                 class="form-control"
                 required
               />
@@ -923,14 +929,14 @@ class WorldModeCalculator extends HyplateElement {
     }
   };
 
-  inverseProgress = () => {
+  inverseProgress = async () => {
     if (!this.inverseProgressForm.reportValidity()) {
       return;
     }
     const step = this.step2();
     const low = this.lowProgress();
     const high = this.highProgress();
-    this.solutions.set(this.worldMode.inverseProgress(step, [low, high]));
+    this.solutions.set(await this.worldMode.inverseProgress(step, [low, high]));
   };
 
   /**

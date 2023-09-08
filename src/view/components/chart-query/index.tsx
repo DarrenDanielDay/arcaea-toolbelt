@@ -4,7 +4,7 @@ import { $ChartService, ChartService, SearchResult } from "../../../services/dec
 import { Inject } from "../../../services/di";
 import { alert } from "../global-message";
 import { ChartInfo } from "../chart-info";
-import { Component, For, HyplateElement, signal, watch } from "hyplate";
+import { Component, For, Future, HyplateElement, signal, watch } from "hyplate";
 
 export
 @Component({
@@ -36,7 +36,12 @@ class ChartQuery extends HyplateElement {
         }
       })
     );
-    const { maximumConstant: maximum } = this.chartService;
+    return (
+      <Future promise={this.chartService.getStatistics()}>{(stats) => this._render(stats.maximumConstant)}</Future>
+    );
+  }
+
+  _render(maximumConstant: number) {
     return (
       <>
         <form
@@ -52,7 +57,7 @@ class ChartQuery extends HyplateElement {
                 name="min-constant"
                 type="number"
                 min={1}
-                max={maximum}
+                max={maximumConstant}
                 step="0.1"
                 placeholder="1.0"
                 class="form-control"
@@ -66,9 +71,9 @@ class ChartQuery extends HyplateElement {
                 name="max-constant"
                 type="number"
                 min={1}
-                max={maximum}
+                max={maximumConstant}
                 step="0.1"
-                placeholder={maximum.toFixed(1)}
+                placeholder={maximumConstant.toFixed(1)}
                 class="form-control"
                 h-model:number={this.max}
                 keypress-submit

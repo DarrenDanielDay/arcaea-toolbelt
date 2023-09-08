@@ -1,7 +1,16 @@
 import { sheet } from "./style.css.js";
-import { Chart, ScoreResult, Song, ClearRank, NoteResult } from "../../../models/music-play";
+import { Chart, ScoreResult, Song, ClearRank, NoteResult, PlayResult } from "../../../models/music-play";
 import { Component, HyplateElement, computed, content, element, signal, cssVar } from "hyplate";
-import { gradeImages, clearImages } from "../../../assets/play-result";
+import { Inject } from "../../../services/di.js";
+import {
+  $AssetsService,
+  $ChartService,
+  $MusicPlayService,
+  AssetsService,
+  ChartService,
+  MusicPlayService,
+} from "../../../services/declarations.js";
+import { AssetImage } from "../asset-image/index.js";
 
 function formatScore(score: number) {
   const raw = Math.floor(score).toString();
@@ -27,12 +36,20 @@ export
   styles: [sheet],
 })
 class ResultCard extends HyplateElement {
+  @Inject($ChartService)
+  accessor chart!: ChartService;
+  @Inject($MusicPlayService)
+  accessor musicPlay!: MusicPlayService;
+  @Inject($AssetsService)
+  accessor assets!: AssetsService;
+
   songTitle = element("div");
   chartInfo = signal<{ song: Song; chart: Chart } | null>(null);
   bestNo = signal<number | null>(null);
   noteResult = signal<Partial<NoteResult>>({});
   scoreResult = signal<ScoreResult | null>(null);
   clearRank = signal<ClearRank | null>(null);
+  hd = signal(false);
   override render() {
     this.effect(() => {
       this.resizeCard();
@@ -51,7 +68,7 @@ class ResultCard extends HyplateElement {
       const { difficulty } = chart;
       cssVar(this, "potential-color", `var(--${difficulty}-light)`);
       cssVar(this, "constant-color", `var(--${difficulty})`);
-      const title = chart.byd?.song ?? song.name;
+      const title = this.chart.getName(chart, song);
       content(this.songTitle, title);
       const length = measureSongTitle(title);
       const titleLength = length < 664 ? 664 : length;
@@ -67,13 +84,14 @@ class ResultCard extends HyplateElement {
           return `var(--${bestNo})`;
         })}
       >
-        <img
+        <AssetImage
           class="cover"
           src={computed(() => {
             const info = this.chartInfo();
-            if (!info) return "";
+            const hd = this.hd();
+            if (!info) return Promise.resolve("");
             const { chart, song } = info;
-            return chart.byd?.cover ?? song.cover;
+            return this.assets.getCover(chart, song, hd);
           })}
           width="288"
           height="288"
@@ -83,19 +101,19 @@ class ResultCard extends HyplateElement {
             <div class="potential">{computed(() => this.scoreResult()?.potential.toFixed(4) ?? "")}</div>
             <div class="constant">{computed(() => this.chartInfo()?.chart.constant.toFixed(1) ?? "")}</div>
             <div class="rank">
-              <img
+              <AssetImage
                 class="grade"
                 src={computed(() => {
                   const grade = this.scoreResult()?.grade;
-                  return grade ? gradeImages[grade] : null;
+                  return grade ? this.assets.getGradeImg(grade) : Promise.resolve(null);
                 })}
                 class:hidden={computed(() => !this.scoreResult())}
               />
-              <img
+              <AssetImage
                 class="clear"
                 src={computed(() => {
                   const clear = this.clearRank();
-                  return clear ? clearImages[clear] : null;
+                  return clear ? this.assets.getClearImg(clear) : Promise.resolve(null);
                 })}
                 class:hidden={computed(() => !this.clearRank())}
               />
@@ -107,7 +125,9 @@ class ResultCard extends HyplateElement {
               })}
             </div>
           </div>
-          <div ref={this.songTitle} class="song-title">--</div>
+          <div ref={this.songTitle} class="song-title">
+            --
+          </div>
           <div class={computed(() => (this.clearRank() === ClearRank.Maximum ? "score max" : "score"))}>
             {computed(() => formatScore(this.scoreResult()?.score ?? 0))}
           </div>
@@ -138,8 +158,36 @@ class ResultCard extends HyplateElement {
     this.scoreResult.set(score);
   }
 
+  async setPlayResult(playResult: PlayResult | null) {
+    if (!playResult) {
+      this.chartInfo.set(null);
+      this.setResult(null, null, null);
+      this.setBest(null);
+      return;
+    }
+    const [searched] = await this.chart.searchChart(playResult.chartId);
+    if (!searched) {
+      return;
+    }
+    const { chart, song } = searched;
+    this.setChart(song, chart);
+    if (playResult.type === "note") {
+      this.setResult(
+        playResult.result,
+        this.musicPlay.computeScoreResult(this.musicPlay.computeScore(chart, playResult.result), chart),
+        playResult.clear
+      );
+    } else {
+      this.setResult(null, this.musicPlay.computeScoreResult(playResult.score, chart), playResult.clear);
+    }
+  }
+
   setBest(bestNo: number | null) {
     this.bestNo.set(bestNo);
+  }
+
+  setHD(hd: boolean) {
+    this.hd.set(hd);
   }
 
   private resizeCard() {

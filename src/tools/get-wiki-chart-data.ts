@@ -1,8 +1,7 @@
-import { BeyondAddon, Chart, Difficulty, SongData } from "../models/music-play";
+import { Chart, ChartOverride, Difficulty, SongData } from "../models/music-play";
 import { groupBy, indexBy } from "../utils/collections";
-import { arcaeaCNClient } from "./cached-fetch";
 import { Pack, PackList, Song, SongList } from "./packed-data";
-import { wikiURL, initPageDocument, htmlDocument, prepareDocument } from "./wiki-util";
+import { wikiURL, initPageDocument, htmlDocument, prepareDocument, arcaeaCNClient } from "./wiki-util";
 
 const wikiConstantTable = wikiURL("定数详表");
 
@@ -153,14 +152,22 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
   };
   const arcInf = await getArcInfData();
   const songsData: SongData[] = [];
-  const difficulties = [Difficulty.Past, Difficulty.Present, Difficulty.Future] satisfies Difficulty[];
+  const difficulties = [Difficulty.Past, Difficulty.Present, Difficulty.Future];
+  const withByd = difficulties.concat([Difficulty.Beyond]);
   for (const song of songs) {
     const { name, link, byd } = song;
     const arcInfSong = arcInf.getSong(name, song);
     const detailPageURL = wikiURL(link);
-    const content = await arcaeaCNClient.fetchAsText(detailPageURL);
+    const content = await arcaeaCNClient.fetch(detailPageURL).then((res) => res.text());
     prepareDocument(content, detailPageURL);
-    const [normal, beyond] = Array.from(htmlDocument.querySelectorAll("#right-image img"));
+    const tabs = Array.from(htmlDocument.querySelectorAll("#right-image #tab-b .img-tab-part"));
+    const imgs = Array.from(htmlDocument.querySelectorAll("#right-image img"));
+    const normal = tabs.length
+      ? imgs[tabs.findIndex((tab) => tab.classList.contains("ftr") || tab.classList.contains("normal"))]
+      : imgs[0];
+    if (tabs.length) {
+      console.log(`特殊曲绘列表： ${name} ${tabs.map((tab) => tab.textContent).join(" ")}`);
+    }
     if (!normal) {
       throw new Error(`${name} 曲绘未找到`);
     }
@@ -169,7 +176,14 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     const bpmLabel = labels.find((label) => label.textContent!.match(/BPM/i))!;
     const bpm = bpmLabel.nextElementSibling!.textContent!;
     const noteLabel = labels.find((label) => label.textContent!.match(/^note/i))!;
-    const notes: number[] = getWikiTableItemsByLabel(noteLabel).map((el) => +el.textContent!);
+    const newLocal = getWikiTableItemsByLabel(noteLabel);
+    const notes: number[] = newLocal.map((el) => {
+      const note = +el.textContent!;
+      if (isNaN(note) && el.textContent?.trim() !== "空") {
+        throw new Error(`${name}的note数量缺失 ${newLocal}`);
+      }
+      return note;
+    });
     const levelLabel = labels.find((label) => label.textContent!.match(/等级/i))!;
     const levels: string[] = getWikiTableItemsByLabel(levelLabel).map((el) => el.textContent!);
     const songListSong = getSongByNameAndBpm(name, bpm);
@@ -177,14 +191,41 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       throw new Error(`song list内未找到${name}`);
     }
     const songId = songListSong.id;
-    const charts = difficulties.map<Chart>((difficulty, i) => ({
-      constant: song[difficulty],
-      difficulty,
-      id: `${songId}@${difficulty}`,
-      level: levels[i]!,
-      note: notes[i]!,
-      songId,
-    }));
+    const charts = (byd ? withByd : difficulties).map<Chart>((difficulty, i) => {
+      const constant = song[difficulty];
+      if (!constant) {
+        throw new Error(`${name} byd 定数缺失`);
+      }
+      const chart: Chart = {
+        constant,
+        difficulty,
+        id: `${songId}@${difficulty}`,
+        level: levels[i]!,
+        note: notes[i]!,
+        songId,
+      };
+      const songListChart = songListSong.difficulties[i]!;
+      const override: ChartOverride = {};
+      if (songListChart.jacketOverride) {
+        override.cover = true;
+      }
+      if (songListChart.title_localized) {
+        override.name = songListChart.title_localized.en;
+      }
+      if (difficulty !== Difficulty.Future && override.cover) {
+        const notFTRCover = imgs[tabs.findIndex((tab) => tab.classList.contains(difficulty))];
+        if (notFTRCover) {
+          override.url = wikiURL(notFTRCover.src).toString();
+        } else {
+          console.error(`特殊封面 ${name} ${difficulty} 未匹配`);
+        }
+      }
+      if (Object.keys(override).length) {
+        chart.override = override;
+      }
+      return chart;
+    });
+    /*
     if (byd) {
       const addon: BeyondAddon = {};
       if (beyond) {
@@ -209,14 +250,16 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       };
       charts.push(bydChart);
     }
+    */
     const songData: SongData = {
       bpm,
       cover,
-      name,
       id: songId,
+      name,
+      pack: getPackName(songListSong),
+      dl: !!songListSong.remote_dl,
       alias: arcInfSong?.alias ?? [],
       charts,
-      pack: getPackName(songListSong),
     };
     songsData.push(songData);
   }
@@ -238,6 +281,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       id: last,
       name: "Last",
       pack,
+      dl: true,
       alias: arcInf.raw.find((s) => s.song_id === last)!.alias,
       charts: difficulties
         .map<Chart>((difficulty, i) => ({
@@ -256,9 +300,10 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
             level: "9",
             note: 888,
             songId: last,
-            byd: {
-              song: `Last | Moment`,
-              cover: wikiURL("/images/thumb/1/1e/Songs_last_byd.jpg/256px-Songs_last_byd.jpg").toString(),
+            override: {
+              cover: true,
+              name: `Last | Moment`,
+              url: wikiURL("/images/thumb/1/1e/Songs_last_byd.jpg/256px-Songs_last_byd.jpg").toString(),
             },
           },
         ]),
@@ -269,6 +314,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       id: lasteternity,
       name: "Last | Eternity",
       pack,
+      dl: true,
       alias: arcInf.raw.find((s) => s.song_id === lasteternity)!.alias,
       charts: [
         {
@@ -278,9 +324,6 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
           level: "9+",
           note: 790,
           songId: lasteternity,
-          byd: {
-            song: `Last | Eternity`,
-          },
         },
       ],
     });

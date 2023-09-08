@@ -12,6 +12,10 @@ declare module "*.ico" {
   const url: string;
   export default url;
 }
+declare module "*.gif" {
+  const url: string;
+  export default url;
+}
 declare namespace NodeJS {
   interface ProcessEnv {
     BASE_URI: string;

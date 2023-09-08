@@ -11,7 +11,7 @@ import {
   ProfileService,
 } from "../../../services/declarations";
 import { alert, confirm } from "../global-message";
-import { AutoRender, Component, Future, HyplateElement, computed, element, mount, signal } from "hyplate";
+import { AutoRender, Component, Future, HyplateElement, computed, element, mount, nil, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/delay";
@@ -51,27 +51,32 @@ class ProfilePage extends HyplateElement {
   _render(maximumPotential: number) {
     return (
       <>
-        <div class="row m-3" id="greet">
-          <AutoRender>
-            {() => {
-              const profile = this.greet();
-              return (
-                <div class="col">
-                  {profile ? (
-                    <>
-                      当前存档：{profile.username}（{profile.potential}）
-                      <button type="button" class="btn btn-primary" onClick={() => this.showProfileStats(profile)}>
-                        存档统计
-                      </button>
-                    </>
-                  ) : (
-                    "未选择存档"
-                  )}
+        <AutoRender>
+          {() => {
+            const profile = this.greet();
+            return (
+              <>
+                <div class="row m-3" id="greet">
+                  <div class="col">
+                    {profile ? `当前存档：${profile.username}（${profile.potential}）` : "未选择存档"}
+                  </div>
                 </div>
-              );
-            }}
-          </AutoRender>
-        </div>
+                {profile
+                  ? [
+                      <div class="row m-3">
+                        <button type="button" class="btn btn-primary" onClick={() => this.showProfileStats(profile)}>
+                          存档统计
+                        </button>
+                        <button type="button" class="btn btn-danger" onClick={() => this.deleteProfile(profile)}>
+                          删除存档
+                        </button>
+                      </div>,
+                    ]
+                  : nil}
+              </>
+            );
+          }}
+        </AutoRender>
         <div class="row m-3">
           <button type="button" class="btn btn-outline-secondary create-profile" onClick={this.createProfile}>
             创建存档
@@ -376,7 +381,7 @@ class ProfilePage extends HyplateElement {
         <Desc label="EX以上P率" content={percentage(stat.acc)}></Desc>,
         <Desc label="大P准度" content={percentage(stat.pacc)}></Desc>
       );
-      if (stat.rest <= 1e6) {
+      if (stat.rest <= 1e5) {
         descriptsions.push(<Desc label="距游玩谱面全理论" content={stat.rest}></Desc>);
       }
       return <div>{descriptsions}</div>;
@@ -421,6 +426,14 @@ class ProfilePage extends HyplateElement {
     );
   }
 
+  async deleteProfile(profile: Profile) {
+    if (!(await confirm("删除操作不可撤销，是否继续？"))) {
+      return;
+    }
+    await this.profileService.deleteProfile(profile.username);
+    await this.updateGreet();
+  }
+
   private renderInlineImg(url: string) {
     return <img src={url} class="inline-img"></img>;
   }
@@ -447,18 +460,24 @@ class ProfilePage extends HyplateElement {
   }
 
   private openFormModal(modal: HTMLDialogElement, onConfirm: (data: FormData) => Promise<void>) {
-    modal.querySelector("button.cancel")!.onclick = () => {
-      modal.close();
-    };
-
-    modal.querySelector("button.confirm")!.onclick = async () => {
-      const form = modal.querySelector("form")!;
+    const form = modal.querySelector("form")!;
+    const confirmBtn = modal.querySelector("button.confirm")!;
+    const cancelBtn = modal.querySelector("button.cancel")!;
+    const handleSubmit = async () => {
       if (!form.reportValidity()) {
         return;
       }
       await onConfirm(new FormData(form));
       modal.close();
     };
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      handleSubmit();
+    };
+    cancelBtn.onclick = () => {
+      modal.close();
+    };
+    confirmBtn.onclick = handleSubmit;
     modal.showModal();
   }
 

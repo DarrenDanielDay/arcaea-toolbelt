@@ -16,6 +16,12 @@ import { B30Response, Profile } from "../models/profile";
 import { token } from "classic-di";
 import { Chapter, CurrentProgress, NormalWorldMap, RewardType } from "../models/world-mode";
 
+export interface AssetsService {
+  getCover(chart: Chart, song: Song, hd?: boolean): Promise<string>;
+  getClearImg(clearType: ClearRank): Promise<string>;
+  getGradeImg(scoreRank: Grade): Promise<string>;
+}
+
 export interface SearchResult {
   chart: Chart;
   song: Song;
@@ -45,7 +51,6 @@ export interface ChartStatistics {
   minimumConstant: number;
 }
 
-
 export interface ChartService {
   getSongData(): Promise<SongData[]>;
   getSongIndex(): Promise<SongIndex>;
@@ -53,6 +58,8 @@ export interface ChartService {
   searchChart(searchText: string): Promise<SearchResult[]>;
   queryChartsByConstant(min: number, max: number): Promise<SearchResult[]>;
   roll(min: number, max: number): Promise<SearchResult | null>;
+  getName(chart: Chart, song: Song): string;
+  getCover(chart: Chart, song: Song): string;
 }
 
 export interface MusicPlayStatistics {
@@ -141,6 +148,7 @@ export interface ProfileService {
   useProfile(username: string): Promise<void>;
   addResult(playResult: PlayResult, replace?: boolean): Promise<void>;
   removeResult(chartId: string): Promise<void>;
+  deleteProfile(username: string): Promise<void>;
   b30(profile: Profile): Promise<B30Response>;
   getProfileStatistics(profile: Profile): Promise<ScoreStatistics>;
 }
@@ -209,6 +217,7 @@ export interface CrossSiteScriptPluginService {
   syncMe(profile: lowiro.UserProfile): Promise<void>;
 }
 
+export const $AssetsService = token<AssetsService>("assets");
 export const $ChartService = token<ChartService>("chart");
 export const $MusicPlayService = token<MusicPlayService>("music-play");
 export const $ProfileService = token<ProfileService>("profile");

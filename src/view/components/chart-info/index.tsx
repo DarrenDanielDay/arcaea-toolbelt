@@ -4,20 +4,25 @@ import { Chart, Song } from "../../../models/music-play";
 import { element, mount } from "hyplate";
 import type { FC } from "hyplate/types";
 import { addSheet } from "sheetly";
+import { ChartService } from "../../../services/declarations.js";
 
-export const ChartInfo: FC<{ song: Song; chart: Chart }> = ({ chart, song }) => {
+export const ChartInfo: FC<{ song: Song; chart: Chart; chartService: ChartService }> = ({
+  chart,
+  song,
+  chartService,
+}) => {
   const container = element("div");
   const shadow = container.attachShadow({ mode: "open" });
   addSheet([bootstrap, sheet], shadow);
   mount(
     <>
       <div class="cover-container">
-        <img class="cover" src={chart.byd?.cover ?? song.cover} />
+        <img class="cover" src={chartService.getCover(chart, song)} />
       </div>
       <div class="row my-3">
         <div class="col">
           <div>
-            名称：<span class="name">{chart.byd?.song ?? song.name}</span>
+            名称：<span class="name">{chartService.getName(chart, song)}</span>
           </div>
           <div>
             等级：

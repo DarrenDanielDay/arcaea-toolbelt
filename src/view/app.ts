@@ -10,9 +10,11 @@ import { routes } from "./pages";
 import { WorldModeServiceImpl } from "../services/world-mode";
 import { element } from "hyplate";
 import { Container } from "classic-di";
+import { AssetsServiceImpl } from "../services/assets";
 document.adoptedStyleSheets = [bootstrap, sheet];
 
 const ioc = new Container();
+ioc.register(AssetsServiceImpl);
 ioc.register(ChartServiceImpl);
 ioc.register(MusicPlayServiceImpl);
 ioc.register(ProfileServiceImpl);

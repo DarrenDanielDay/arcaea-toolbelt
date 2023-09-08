@@ -554,7 +554,13 @@ class WorldModeCalculator extends HyplateElement {
                                           if (!result) {
                                             return alert("未找到给定定数范围内的谱面");
                                           }
-                                          alert(<ChartInfo chart={result.chart} song={result.song}></ChartInfo>);
+                                          alert(
+                                            <ChartInfo
+                                              chart={result.chart}
+                                              song={result.song}
+                                              chartService={this.chart}
+                                            ></ChartInfo>
+                                          );
                                         }}
                                       >
                                         roll一个

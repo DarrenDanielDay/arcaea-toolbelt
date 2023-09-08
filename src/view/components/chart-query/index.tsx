@@ -103,7 +103,11 @@ class ChartQuery extends HyplateElement {
                             class="cover"
                             loading="lazy"
                             src={result.cover}
-                            onClick={() => alert(<ChartInfo chart={result.chart} song={result.song} />)}
+                            onClick={() =>
+                              alert(
+                                <ChartInfo chart={result.chart} song={result.song} chartService={this.chartService} />
+                              )
+                            }
                           />
                         </div>
                       ))}

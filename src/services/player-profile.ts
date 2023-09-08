@@ -59,7 +59,11 @@ export class ProfileServiceImpl implements ProfileService {
     if (!this.currentUsername) {
       return null;
     }
-    return this.getProfileAsync(this.currentUsername);
+    const profile = this.getProfileAsync(this.currentUsername);
+    if (!profile) {
+      sessionStorage.removeItem(KEY_CURRENT_USERNAME);
+    }
+    return profile;
   }
 
   async createOrUpdateProfile(username: string, potential: number): Promise<void> {
@@ -147,6 +151,11 @@ export class ProfileServiceImpl implements ProfileService {
     delete p.best[chartId];
     await this.saveProfile(p);
   }
+
+  async deleteProfile(username: string): Promise<void> {
+    localStorage.removeItem(username);
+  }
+
   async b30(profile: Profile): Promise<B30Response> {
     const songs = await this.chartService.getSongData();
     const charts = Object.fromEntries(songs.flatMap((s) => s.charts.map((c) => [c.id, { chart: c, song: s }])));

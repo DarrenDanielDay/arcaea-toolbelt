@@ -1,4 +1,4 @@
-import { Difficulty, SongData, SongIndex } from "../models/music-play";
+import { Chart, Difficulty, Song, SongData, SongIndex } from "../models/music-play";
 import { searchMatch } from "../utils/string";
 import { $ChartService, ChartService, ChartDifficultyStatistics, SearchResult, ChartStatistics } from "./declarations";
 import { indexBy } from "../utils/collections";
@@ -19,7 +19,7 @@ export class ChartServiceImpl implements ChartService {
   }
 
   async getSongIndex(): Promise<SongIndex> {
-    return (this.#songIndex ??= await this.initSongIndex());
+    return (this.#songIndex ??= await this.#initSongIndex());
   }
 
   async getStatistics(): Promise<ChartStatistics> {
@@ -59,17 +59,17 @@ export class ChartServiceImpl implements ChartService {
     const matches: SearchResult[] = [];
     for (const song of songs) {
       for (const chart of song.charts) {
-        candidateMatch: for (const candidate of [song.name, chart.id, chart.byd?.song ?? "", ...song.alias]) {
+        candidateMatch: for (const candidate of [song.name, chart.id, chart.override?.name ?? "", ...song.alias]) {
           const match = searchMatch(searchText, candidate);
           if (match != null) {
             matches.push({
               song,
               constant: chart.constant,
-              cover: chart.byd?.cover ?? song.cover,
+              cover: this.getCover(chart, song),
               difficulty: chart.difficulty,
               sort: match,
               chart,
-              title: chart.byd?.song ?? song.name,
+              title: this.getName(chart, song),
             });
             break candidateMatch;
           }
@@ -98,10 +98,10 @@ export class ChartServiceImpl implements ChartService {
       song: item.song,
       chart: item.chart,
       constant: item.chart.constant,
-      cover: item.chart.byd?.cover ?? item.song.cover,
+      cover: this.getCover(item.chart, item.song),
       difficulty: item.chart.difficulty,
       sort: 0,
-      title: item.chart.byd?.song ?? item.song.name,
+      title: this.getName(item.chart, item.song),
     }));
   }
 
@@ -113,8 +113,17 @@ export class ChartServiceImpl implements ChartService {
     return results.at(Math.floor(Math.random() * results.length)) ?? null;
   }
 
-  private async initSongIndex() {
+  getName(chart: Chart, song: Song): string {
+    return chart.override?.name ?? song.name;
+  }
+
+  getCover(chart: Chart, song: Song): string {
+    return chart.override?.url ?? song.cover;
+  }
+
+  async #initSongIndex() {
     const songs = await this.getSongData();
     return indexBy(songs, (s) => s.id);
   }
+
 }

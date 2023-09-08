@@ -2,7 +2,12 @@ import data from "../data/chart-data.json";
 import { ToolPanel } from "../view/components/plugin-panel";
 import { PlayResult, SongData } from "../models/music-play";
 import { Profile } from "../models/profile";
-import { $CrossSiteScriptPluginService, $MusicPlayService, CrossSiteScriptPluginService } from "./declarations";
+import {
+  $ChartService,
+  $CrossSiteScriptPluginService,
+  $MusicPlayService,
+  CrossSiteScriptPluginService,
+} from "./declarations";
 import { MusicPlayServiceImpl } from "./music-play";
 import * as lowiro from "./web-api";
 import { addSheet } from "sheetly";
@@ -98,6 +103,7 @@ async function queryBest(
   signal: AbortSignal,
   limit: number = 39
 ): Promise<Profile[]> {
+  const chartService = ioc.get($ChartService);
   const friends = profile.friends;
   const names = new Set(usernames);
   const queryPlayers = [...friends, profile].filter((p) => names.has(p.name));
@@ -125,7 +131,7 @@ async function queryBest(
       throw new Error(`用户取消。`);
     }
     message(
-      `正在查询 ${chart.byd?.song ?? song.name} 的 ${chart.difficulty}难度（${chart.constant.toFixed(1)}）好友榜……`
+      `正在查询 ${chartService.getName(chart, song)} 的 ${chart.difficulty}难度（${chart.constant.toFixed(1)}）好友榜……`
     );
     const friendBests = await getFriendsBest(song.id, musicPlay.mapDifficulty(chart.difficulty));
     if (!friendBests) {

@@ -8,6 +8,7 @@ export interface Song {
   name: string;
   cover: string;
   pack: string;
+  dl: boolean;
   /**
    * bpm不是数字，因为有会变节奏的曲子
    */
@@ -21,23 +22,21 @@ export enum Difficulty {
   Beyond = "byd",
 }
 
+export interface ChartOverride {
+  url?: string;
+  name?: string;
+  cover?: boolean;
+}
+
 export interface Chart {
   // 原来的基于wiki链接的id改为游戏内id
   id: string;
   songId: string;
-  byd?: BeyondAddon;
   difficulty: Difficulty;
   constant: number;
   level: string;
   note: number;
-}
-
-/**
- * 部分byd谱曲名和曲绘不一样，附加内容
- */
-export interface BeyondAddon {
-  song?: string;
-  cover?: string;
+  override?: ChartOverride;
 }
 
 export interface SongData extends Song {

@@ -1,5 +1,5 @@
 import { SqlJsStatic } from "sql.js";
-import { NoteResult, PlayResult } from "../models/music-play";
+import { ClearRank, Difficulty, NoteResult, PlayResult } from "../models/music-play";
 import { B30Response, BestResultItem, Profile, ProfileV1, ProfileV2 } from "../models/profile";
 import { download } from "../utils/download";
 import { readBinary, readFile } from "../utils/read-file";
@@ -8,11 +8,14 @@ import {
   $ChartService,
   $MusicPlayService,
   $ProfileService,
+  BestStatistics,
   ChartService,
   MusicPlayService,
   ProfileService,
+  ScoreStatistics,
 } from "./declarations";
 import { Injectable } from "classic-di";
+import { groupBy, indexBy, mapProps } from "../utils/collections";
 const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
@@ -257,6 +260,83 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       };
     }
     await this.saveProfile({ best });
+  }
+
+  async getProfileStatistics(profile: Profile): Promise<ScoreStatistics> {
+    const byRecords = (records: PlayResult[]): BestStatistics => {
+      let total = records.length,
+        clear = 0,
+        fr = 0,
+        pm = 0,
+        max = 0,
+        totalAccScore = 0,
+        totalAccChartCount = 0,
+        totalPerfect = 0,
+        totalNotes = 0,
+        totalScore = 0,
+        totalNoteResultNotes = 0;
+      for (const record of records) {
+        const chart = charts[record.chartId]!;
+        const { note } = chart;
+        totalNotes += note;
+        let score = 0;
+        if (record.type === "note") {
+          const { result } = record;
+          const { perfect } = result;
+          totalNoteResultNotes += note;
+          totalPerfect += perfect;
+          switch (record.clear) {
+            // @ts-ignore
+            case ClearRank.Maximum:
+              max++;
+            // @ts-ignore
+            case ClearRank.PureMemory:
+              pm++;
+            // @ts-ignore
+            case ClearRank.FullRecall:
+              fr++;
+            case ClearRank.EasyClear:
+            case ClearRank.NormalClear:
+            case ClearRank.HardClear:
+              clear++;
+          }
+          score = this.musicPlay.computeScore(chart, result);
+        } else if (record.type === "score") {
+          score = record.score;
+        }
+        totalScore += score;
+        const accScore = Math.min(score, this.musicPlay.maxBase);
+        if (accScore > this.musicPlay.ex) {
+          totalAccScore += accScore;
+          totalAccChartCount++;
+        }
+      }
+      const acc = totalAccScore / totalAccChartCount / this.musicPlay.maxBase;
+      const pacc = totalPerfect / totalNoteResultNotes;
+      const rest = totalNotes + total * this.musicPlay.maxBase - totalScore;
+      return {
+        total,
+        clear,
+        pm,
+        fr,
+        max,
+        acc,
+        pacc,
+        rest,
+      };
+    };
+    const songs = await this.chartService.getSongData();
+    const charts = indexBy(
+      songs.flatMap((song) => song.charts),
+      (chart) => chart.id
+    );
+    const all = Object.values(profile.best);
+    const groupByDifficulty = groupBy(all, (res) => charts[res.chartId]!.difficulty);
+
+    return {
+      difficulties: mapProps(groupByDifficulty, byRecords),
+      general: byRecords(all),
+    };
   }
 
   private createEmptyProfile(username: string): Profile {

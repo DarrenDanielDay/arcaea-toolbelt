@@ -18,6 +18,7 @@ const AA_RATIO = 30_0000;
 })
 export class MusicPlayServiceImpl implements MusicPlayService {
   ex = EX_SCORE;
+  maxBase = MAX_BASE_SCORE;
   maximumSinglePotential = this.chart.maximumConstant + 2;
 
   constructor(private readonly chart: ChartService) {}

@@ -53,6 +53,7 @@ export interface ChartService {
 
 export interface MusicPlayService {
   readonly ex: number;
+  readonly maxBase: number;
   readonly maximumSinglePotential: number;
   inferNoteResult(
     chart: Chart,
@@ -74,6 +75,52 @@ export interface MusicPlayService {
   mapDifficulty(d: Difficulty): number;
 }
 
+export interface ScoreStatistics {
+  /**
+   * 各个难度分层的统计信息
+   */
+  difficulties: Record<Difficulty, BestStatistics>;
+  /**
+   * 整体统计信息
+   */
+  general: BestStatistics;
+}
+
+export interface BestStatistics {
+  /**
+   * 游玩过（存档中成绩）的个数
+   */
+  total: number;
+  /**
+   * 通关个数，不包括Track Lost
+   */
+  clear: number;
+  /**
+   * Full Recall个数
+   */
+  fr: number;
+  /**
+   * Pure Memory个数
+   */
+  pm: number;
+  /**
+   * 理论值个数
+   */
+  max: number;
+  /**
+   * EX以上谱面平均准度，计算方法为平均分/1kw，PM谱面不算大P
+   */
+  acc: number;
+  /**
+   * 大P准度，计算方法：大P总数/总Pure数，仅计算有判定信息的成绩
+   */
+  pacc: number;
+  /**
+   * 有成绩的谱面距离全部理论相差的分数
+   */
+  rest: number;
+}
+
 export interface ProfileService {
   getProfile(): Promise<Profile | null>;
   createOrUpdateProfile(username: string, potential: number): Promise<void>;
@@ -86,6 +133,7 @@ export interface ProfileService {
   addResult(playResult: PlayResult, replace?: boolean): Promise<void>;
   removeResult(chartId: string): Promise<void>;
   b30(profile: Profile): Promise<B30Response>;
+  getProfileStatistics(profile: Profile): Promise<ScoreStatistics>;
 }
 
 export interface MapDistance {

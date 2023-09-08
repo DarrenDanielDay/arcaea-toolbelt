@@ -1,13 +1,21 @@
 import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
-import { $ChartService, $ProfileService, ChartService, ProfileService } from "../../../services/declarations";
+import {
+  $ChartService,
+  $ProfileService,
+  BestStatistics,
+  ChartService,
+  ProfileService,
+} from "../../../services/declarations";
 import { alert, confirm } from "../global-message";
-import { Component, HyplateElement, computed, element, signal } from "hyplate";
+import { AutoRender, Component, HyplateElement, computed, element, mount, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/delay";
 import { clearImages } from "../../../assets/play-result";
+import { FC } from "hyplate/types";
+import { Difficulty } from "../../../models/music-play";
 export
 @Component({
   tag: "profile-page",
@@ -33,10 +41,25 @@ class ProfilePage extends HyplateElement {
     return (
       <>
         <div class="row m-3" id="greet">
-          {computed(() => {
-            const profile = this.greet();
-            return profile ? `当前存档：${profile.username}（${profile.potential}）` : "未选择存档";
-          })}
+          <AutoRender>
+            {() => {
+              const profile = this.greet();
+              return (
+                <div class="col">
+                  {profile ? (
+                    <>
+                      当前存档：{profile.username}（{profile.potential}）
+                      <button type="button" class="btn btn-primary" onClick={() => this.showProfileStats(profile)}>
+                        存档统计
+                      </button>
+                    </>
+                  ) : (
+                    "未选择存档"
+                  )}
+                </div>
+              );
+            }}
+          </AutoRender>
         </div>
         <div class="row m-3">
           <button type="button" class="btn btn-outline-secondary create-profile" onClick={this.createProfile}>
@@ -308,6 +331,85 @@ class ProfilePage extends HyplateElement {
       }
     });
   };
+
+  async showProfileStats(profile: Profile) {
+    const stats = await this.profileService.getProfileStatistics(profile);
+    console.log(Object.keys(stats.difficulties));
+    const Desc: FC<{ label: string; content: string | number; style?: string }> = ({ label, content, style }) => {
+      return (
+        <div class="row" style={style ?? null}>
+          <div class="col">{label}</div>
+          <div class="col">{content}</div>
+        </div>
+      );
+    };
+    type TabDifficulty = Difficulty | null;
+    const displayOrder: TabDifficulty[] = [
+      Difficulty.Past,
+      Difficulty.Present,
+      Difficulty.Future,
+      Difficulty.Beyond,
+      null,
+    ];
+    const Stat: FC<{ stat: BestStatistics }> = ({ stat }) => {
+      const descriptsions = [
+        <Desc label="游玩总数" content={stat.total}></Desc>,
+        <Desc label="Clear" content={stat.clear}></Desc>,
+        <Desc label="Full Recall" content={stat.fr} style="color: #a470b5;"></Desc>,
+        <Desc label="Pure Memory" content={stat.pm} style="color: #40c4c5;"></Desc>,
+      ];
+      if (stat.max) {
+        descriptsions.push(<Desc label="理论值" content={stat.max} style="text-shadow: 1px 1px #0f7185dd;"></Desc>);
+      }
+      const percentage = (rate: number) => `${(rate * 100).toFixed(4)}%`;
+      descriptsions.push(
+        <Desc label="平均得分率" content={percentage(stat.acc)}></Desc>,
+        <Desc label="大P准度" content={percentage(stat.pacc)}></Desc>
+      );
+      if (stat.rest <= 1e6) {
+        descriptsions.push(<Desc label="距游玩谱面全理论" content={stat.rest}></Desc>);
+      }
+      return <div>{descriptsions}</div>;
+    };
+    const Tab: FC<{ difficulty: TabDifficulty }> = ({ difficulty }) => {
+      return (
+        <span
+          role="tab"
+          style="cursor: pointer; margin-right: 0.25em"
+          style:color={difficulty && `var(--${difficulty})`}
+          style:border-bottom={computed(() =>
+            difficulty === currentDifficulty() ? `0.125em solid ${difficulty ? `var(--${difficulty})` : "#000"}` : null
+          )}
+          onClick={() => currentDifficulty.set(difficulty)}
+        >
+          {difficulty ? difficulty.toUpperCase() : "全部"}
+        </span>
+      );
+    };
+    const currentDifficulty = signal<TabDifficulty>(Difficulty.Future);
+    alert(
+      <div>
+        <h2>存档统计</h2>
+        <div class="mb-3">
+          {displayOrder.map((difficulty) => (
+            <Tab difficulty={difficulty}></Tab>
+          ))}
+        </div>
+        <div style="height: 200px; width: 300px;">
+          <AutoRender>
+            {() => {
+              const difficulty = currentDifficulty();
+              if (!difficulty) {
+                return <Stat stat={stats.general}></Stat>;
+              }
+              const stat = stats.difficulties[difficulty];
+              return <Stat stat={stat}></Stat>;
+            }}
+          </AutoRender>
+        </div>
+      </div>
+    );
+  }
 
   private renderInlineImg(url: string) {
     return <img src={url} class="inline-img"></img>;

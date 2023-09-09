@@ -1,9 +1,9 @@
 import { Injectable } from "classic-di";
 import { Song, Difficulty, ClearRank, Grade, Chart } from "../models/music-play";
 import { $AssetsService, AssetsService } from "./declarations";
-import { clearImages, gradeImages } from "../assets/play-result";
 import { CachedHttpGetClient } from "./cache";
-const assetsRoot = "https://ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/";
+const assetsRoot =
+  "https://ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
 @Injectable({
   implements: $AssetsService,
 })
@@ -18,26 +18,26 @@ export class AssetsServiceImpl implements AssetsService {
   };
   #client = new CachedHttpGetClient("assets-image-cache", 1);
 
+  resolve(path: string): URL {
+    return new URL(path, assetsRoot);
+  }
+
   async getCover(chart: Chart, song: Song, hd?: boolean | undefined): Promise<string> {
     const folder = !song.dl ? song.id : `dl_${song.id}`;
-    const base = `assets/songs/${folder}`;
+    const base = `songs/${folder}`;
     const suffix = hd ? ".jpg" : "_256.jpg";
     const path = chart.override?.cover
       ? `${base}/${this.#difficulty[chart.difficulty]}${suffix}`
       : `${base}/base${suffix}`;
-    return this.#cachedFetch(new URL(path, assetsRoot));
+    return this.#cachedFetch(this.resolve(path));
   }
 
   async getClearImg(clearType: ClearRank): Promise<string> {
-    return this.#cachedFetch(
-      new URL(`assets/img/clear_type/${this.#getClearAssetsImgName(clearType)}.png`, assetsRoot)
-    );
+    return this.#cachedFetch(this.resolve(`img/clear_type/${this.#getClearAssetsImgName(clearType)}.png`));
   }
 
   async getGradeImg(scoreRank: Grade): Promise<string> {
-    return this.#cachedFetch(
-      new URL(`assets/img/grade/mini/${this.#getGradeAssetsImgName(scoreRank)}.png`, assetsRoot)
-    );
+    return this.#cachedFetch(this.resolve(`img/grade/mini/${this.#getGradeAssetsImgName(scoreRank)}.png`));
   }
 
   async #cachedFetch(url: string | URL) {

@@ -17,6 +17,7 @@ import { token } from "classic-di";
 import { Chapter, CurrentProgress, NormalWorldMap, RewardType } from "../models/world-mode";
 
 export interface AssetsService {
+  resolve(path: string): URL;
   getCover(chart: Chart, song: Song, hd?: boolean): Promise<string>;
   getClearImg(clearType: ClearRank): Promise<string>;
   getGradeImg(scoreRank: Grade): Promise<string>;

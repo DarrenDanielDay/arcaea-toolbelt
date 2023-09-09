@@ -223,7 +223,7 @@ FROM scores JOIN cleartypes
 ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.songDifficulty
 `);
     if (!scoreQueryResult) {
-      throw new Error(`读取数据库失败`);
+      throw new Error(`读取数据库失败：无结果集。可能原因：导出st3前未同步云端存档，存档内无数据。`);
     }
     interface ST3ScoreQuery {
       songId: string;

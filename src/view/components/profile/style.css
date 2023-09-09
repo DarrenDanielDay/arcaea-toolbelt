@@ -9,7 +9,7 @@ dialog {
 blockquote {
   padding: 8px;
   border-radius: 4px;
-  background-color:var(--bs-gray-200);
+  background-color: var(--bs-gray-200);
 }
 
 .cross-site-script > div > div {
@@ -23,6 +23,11 @@ blockquote {
 .inline-img {
   width: 3em;
   height: 3em;
+}
+
+#greet > .col {
+  display: flex;
+  align-items: center;
 }
 
 #the-script {

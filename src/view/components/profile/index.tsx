@@ -18,6 +18,7 @@ import { delay } from "../../../utils/delay";
 import { clearImages } from "../../../assets/play-result";
 import { FC } from "hyplate/types";
 import { Difficulty } from "../../../models/music-play";
+import { PotentialBadge } from "../potential-badge";
 export
 @Component({
   tag: "profile-page",
@@ -58,7 +59,12 @@ class ProfilePage extends HyplateElement {
               <>
                 <div class="row m-3" id="greet">
                   <div class="col">
-                    {profile ? `当前存档：${profile.username}（${profile.potential}）` : "未选择存档"}
+                    {profile
+                      ? [
+                          `当前存档：${profile.username}`,
+                          <PotentialBadge attr:potential={+profile.potential}></PotentialBadge>,
+                        ]
+                      : "未选择存档"}
                   </div>
                 </div>
                 {profile

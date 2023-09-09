@@ -1,0 +1,36 @@
+:host {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+img {
+  user-select: none;
+  width: 100%;
+  height: 100%;
+}
+
+.potential {
+  position: absolute;
+  color: white;
+  font-weight: 700;
+  left: 50%;
+  top: 50%;
+  font-family: Exo;
+  -webkit-text-stroke: 1px #25152a;
+  transform: translate(-50%, -50%);
+}
+
+.off {
+  font-size: 24px;
+}
+
+.decimal {
+  font-size: 22px;
+}
+
+.fixed {
+  font-size: 16px;
+  padding-top: 5px;
+}

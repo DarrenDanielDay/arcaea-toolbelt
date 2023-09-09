@@ -13,3 +13,7 @@
   --byd: #bf0d25;
   --byd-light: #bf0d25dd;
 }
+@font-face {
+  font-family: Exo;
+  src: url("https://fonts.gstatic.com/s/exo/v20/4UaZrEtFpBI4f1ZSIK9d4LjJ4rQwOwRmOw.woff2") format("woff2");
+}

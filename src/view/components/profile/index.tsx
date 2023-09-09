@@ -67,6 +67,27 @@ class ProfilePage extends HyplateElement {
                         <button type="button" class="btn btn-primary" onClick={() => this.showProfileStats(profile)}>
                           存档统计
                         </button>
+                        <button
+                          type="button"
+                          class="btn btn-outline-secondary update-profile"
+                          onClick={() => this.updateProfile(profile)}
+                        >
+                          修改存档
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-outline-secondary import-scores"
+                          onClick={() => this.importSt3(profile)}
+                        >
+                          导入st3
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-outline-secondary export-profile"
+                          onClick={() => this.exportProfile(profile)}
+                        >
+                          导出存档为JSON
+                        </button>
                         <button type="button" class="btn btn-danger" onClick={() => this.deleteProfile(profile)}>
                           删除存档
                         </button>
@@ -84,17 +105,8 @@ class ProfilePage extends HyplateElement {
           <button type="button" class="btn btn-outline-secondary switch-profile" onClick={this.switchProfile}>
             选择存档
           </button>
-          <button type="button" class="btn btn-outline-secondary update-profile" onClick={this.updateProfile}>
-            修改存档
-          </button>
-          <button type="button" class="btn btn-outline-secondary import-scores" onClick={this.importSt3}>
-            导入st3
-          </button>
           <button type="button" class="btn btn-outline-secondary import-profile" onClick={this.importProfile}>
             导入JSON存档
-          </button>
-          <button type="button" class="btn btn-outline-secondary export-profile" onClick={this.exportProfile}>
-            导出当前存档为JSON
           </button>
         </div>
         <div class="row m-3">
@@ -274,12 +286,7 @@ class ProfilePage extends HyplateElement {
     });
   };
 
-  updateProfile = async () => {
-    const currentProfile = await this.profileService.getProfile();
-    if (!currentProfile) {
-      alert("未选择存档");
-      return;
-    }
+  async updateProfile(currentProfile: Profile) {
     this.editPtt.value = currentProfile.potential;
     this.openFormModal(this.editProfileDialog, async (data) => {
       const ptt = +data.get("ptt")!;
@@ -288,7 +295,7 @@ class ProfilePage extends HyplateElement {
       }
       this.updateGreet();
     });
-  };
+  }
 
   switchProfile = async () => {
     const profiles = await this.profileService.getProfileList();
@@ -311,42 +318,51 @@ class ProfilePage extends HyplateElement {
     });
   };
 
-  exportProfile = async () => {
-    await this.profileService.exportProfile();
-  };
+  async exportProfile(profile: Profile) {
+    await this.profileService.exportProfile(profile);
+  }
 
-  importProfile = () => {
+  importProfile() {
     this.openFormModal(this.importProfileDialog, async (data) => {
       const file = data.get("file");
       if (file instanceof File) {
         await this.profileService.importProfile(file);
       }
     });
-  };
+  }
 
-  importSt3 = async () => {
-    const profile = await this.profileService.getProfile();
-    if (!profile) {
-      return alert(`需要选择存档才能导入成绩`);
-    }
+  async importSt3(profile: Profile) {
     this.openFormModal(this.importSt3Dialog, async (data) => {
       const file = data.get("file");
       if (file instanceof File) {
         try {
-          await loading(
+          const result = await loading(
             (async () => {
               await delay(300);
-              await this.profileService.importDB(file, profile);
+              return await this.profileService.importDB(file, profile);
             })(),
             <div>正在导入成绩……</div>
           );
-          alert("导入成绩成功");
+          const { count, difficulties } = result;
+          alert(
+            <div>
+              <p>
+                成功导入：
+                {Object.entries(difficulties).map(([key, value]) => (
+                  <>
+                    {value}个<span style:color={`var(--${key})`}>{key.toUpperCase()}</span>{" "}
+                  </>
+                ))}
+              </p>
+              <p>共{result.count}个成绩</p>
+            </div>
+          );
         } catch (error) {
           alert(`${error}`);
         }
       }
     });
-  };
+  }
 
   async showProfileStats(profile: Profile) {
     const stats = await this.profileService.getProfileStatistics(profile);

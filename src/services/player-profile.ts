@@ -10,6 +10,7 @@ import {
   $ProfileService,
   BestStatistics,
   ChartService,
+  ImportResult,
   MusicPlayService,
   ProfileService,
   ScoreStatistics,
@@ -101,14 +102,9 @@ export class ProfileServiceImpl implements ProfileService {
       alert(`寄！${error}`);
     }
   }
-  async exportProfile(): Promise<void> {
-    const p = await this.getProfile();
-    if (!p) {
-      alert("未选择存档");
-      return;
-    }
-    const url = URL.createObjectURL(new Blob([JSON.stringify(p)], { type: "application/json" }));
-    download(url, `profile_${p.username}.json`);
+  async exportProfile(profile: Profile): Promise<void> {
+    const url = URL.createObjectURL(new Blob([JSON.stringify(profile)], { type: "application/json" }));
+    download(url, `profile_${profile.username}.json`);
   }
   async addResult(playResult: PlayResult, replace?: boolean | undefined): Promise<void> {
     const p = await this.getProfile();
@@ -206,7 +202,7 @@ export class ProfileServiceImpl implements ProfileService {
       b30Average: b30Sum / ptt30.length,
     };
   }
-  async importDB(file: File, profile: Profile): Promise<void> {
+  async importDB(file: File, profile: Profile): Promise<ImportResult> {
     const bytes = await readBinary(file);
     const SQL = (this.#SQL ??= await this.#initSQLJS());
     const db = new SQL.Database(new Uint8Array(bytes));
@@ -243,6 +239,13 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     );
     const songIndex = await this.chartService.getSongIndex();
     const { best } = profile;
+    const result: ImportResult = {
+      count: 0,
+      difficulties: mapProps(
+        groupBy(Object.values(Difficulty), (d) => d),
+        () => 0
+      ),
+    };
     for (const score of scores) {
       const { songId, songDifficulty, shinyPerfectCount, perfectCount, nearCount, missCount, clearType } = score;
       const song = songIndex[songId];
@@ -267,8 +270,11 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         chartId: chart.id,
         clear: this.musicPlay.mapClearType(clearType, shinyPerfectCount, chart),
       };
+      result.difficulties[chart.difficulty]++;
+      result.count++;
     }
     await this.saveProfile({ best });
+    return result;
   }
 
   async getProfileStatistics(profile: Profile): Promise<ScoreStatistics> {

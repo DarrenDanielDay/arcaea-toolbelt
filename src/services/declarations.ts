@@ -91,6 +91,11 @@ export interface MusicPlayService {
   mapDifficulty(d: Difficulty): number;
 }
 
+export interface ImportResult {
+  count: number;
+  difficulties: Record<Difficulty, number>;
+}
+
 export interface ScoreStatistics {
   /**
    * 各个难度分层的统计信息
@@ -143,8 +148,8 @@ export interface ProfileService {
   getProfileList(): Promise<string[]>;
   syncProfiles(data: Partial<Profile>[]): Promise<void>;
   importProfile(file: File): Promise<void>;
-  importDB(file: File, profile: Profile): Promise<void>;
-  exportProfile(): Promise<void>;
+  importDB(file: File, profile: Profile): Promise<ImportResult>;
+  exportProfile(profile: Profile): Promise<void>;
   useProfile(username: string): Promise<void>;
   addResult(playResult: PlayResult, replace?: boolean): Promise<void>;
   removeResult(chartId: string): Promise<void>;

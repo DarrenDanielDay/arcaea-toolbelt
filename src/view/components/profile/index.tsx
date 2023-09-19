@@ -328,14 +328,14 @@ class ProfilePage extends HyplateElement {
     await this.profileService.exportProfile(profile);
   }
 
-  importProfile() {
+  importProfile = () => {
     this.openFormModal(this.importProfileDialog, async (data) => {
       const file = data.get("file");
       if (file instanceof File) {
         await this.profileService.importProfile(file);
       }
     });
-  }
+  };
 
   async importSt3(profile: Profile) {
     this.openFormModal(this.importSt3Dialog, async (data) => {

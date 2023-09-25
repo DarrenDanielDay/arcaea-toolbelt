@@ -1,6 +1,6 @@
 import characters from "../../../data/character-data.json";
 import { sheet } from "./style.css.js";
-import { text as app } from "../../app.css.js";
+import { sheet as app } from "../../app.css.js";
 import { bootstrap } from "../../styles";
 import { Inject } from "../../../services/di";
 import {
@@ -15,17 +15,16 @@ import {
 } from "../../../services/declarations";
 import * as lowiro from "../../../services/web-api";
 import type { Profile } from "../../../models/profile";
-import { alert } from "../fancy-dialog";
+import { FancyDialog, alert } from "../fancy-dialog";
 import type { FC } from "hyplate/types";
-import { computed, signal, Show, create, HyplateElement, Component, element } from "hyplate";
-import { css } from "../../../utils/component";
+import { computed, signal, Show, HyplateElement, Component, element } from "hyplate";
 import { ResultCard } from "../result-card";
 import { NoteResult } from "../../../models/music-play";
 
 export
 @Component({
   tag: "arcaea-toolbelt-plugin-panel",
-  styles: [bootstrap, sheet],
+  styles: [bootstrap, sheet, app],
 })
 class ToolPanel extends HyplateElement {
   @Inject($CrossSiteScriptPluginService)
@@ -36,6 +35,9 @@ class ToolPanel extends HyplateElement {
   accessor chart!: ChartService;
   @Inject($MusicPlayService)
   accessor music!: MusicPlayService;
+
+  characterList = new FancyDialog();
+  recentList = new FancyDialog();
 
   override render(): JSX.Element {
     const profile$ = signal<lowiro.UserProfile | null>(null);
@@ -48,7 +50,12 @@ class ToolPanel extends HyplateElement {
       profile$.set(await this.service.getProfile());
     };
     const openCharacterStatus = (profile: lowiro.UserProfile) => {
-      alert(create(<CharacterList stats={profile.character_stats}></CharacterList>));
+      this.characterList.showAlert(
+        <div slot="content">
+          <CharacterList stats={profile.character_stats}></CharacterList>
+        </div>,
+        true
+      );
     };
     const refresh = () => {
       initProfile();
@@ -155,9 +162,8 @@ class ToolPanel extends HyplateElement {
                       class="btn btn-primary"
                       onClick={async () => {
                         const songs = await this.chart.getSongIndex();
-                        alert(
-                          <div>
-                            <style>{recentListStyle}</style>
+                        this.recentList.showAlert(
+                          <div slot="content">
                             <div class="panel">
                               {players.flatMap((player) =>
                                 player.recent_score.map((recent) => {
@@ -238,7 +244,8 @@ class ToolPanel extends HyplateElement {
                                 })
                               )}
                             </div>
-                          </div>
+                          </div>,
+                          true
                         );
                       }}
                     >
@@ -342,40 +349,14 @@ class ToolPanel extends HyplateElement {
             关闭
           </button>
         </div>
+        <fancy-dialog ref={this.characterList} id="character-list"></fancy-dialog>
+        <fancy-dialog ref={this.recentList} id="recent-list"></fancy-dialog>
       </div>
     );
   }
 }
 
 const characterMap: Record<number, (typeof characters)[number]> = Object.fromEntries(characters.map((c) => [c.id, c]));
-
-const characterListStyle = css`
-  div.modal-root {
-    width: auto;
-  }
-  thead th,
-  tbody td {
-    border: var(--bs-border-width) var(--bs-border-color) solid;
-    border-collapse: collapse;
-    padding: 0.25em;
-  }
-`;
-
-const recentListStyle = css`
-  ${app}
-  div.modal-root {
-    width: auto;
-  }
-  .panel {
-    display: grid;
-    grid-template-columns: 1fr 500px;
-    gap: 1em;
-  }
-  .user {
-    text-align: center;
-    margin: 0.5em;
-  }
-`;
 
 const CharacterList: FC<{
   stats: lowiro.UserProfile["character_stats"];
@@ -435,7 +416,6 @@ const CharacterList: FC<{
           })}
         </tbody>
       </table>
-      <style>{characterListStyle}</style>
     </>
   );
 };

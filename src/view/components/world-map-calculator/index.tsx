@@ -15,27 +15,10 @@ import {
   WorldMapBonus,
   type WorldModeService,
 } from "../../../services/declarations";
-import { alert, confirm } from "../fancy-dialog/index.js";
-import {
-  HyplateElement,
-  Component,
-  listen,
-  signal,
-  element,
-  nil,
-  computed,
-  AutoRender,
-  Future,
-} from "hyplate";
+import { FancyDialog, alert, confirm } from "../fancy-dialog/index.js";
+import { HyplateElement, Component, listen, signal, element, nil, computed, AutoRender, Future } from "hyplate";
 import { ChartInfo } from "../chart-info";
-import { css } from "../../../utils/component";
 import { CharacterPicker, renderCharacterStepInput } from "../character-picker";
-
-const scoreControllerModalStyle = css`
-  div.modal-root {
-    width: 24em;
-  }
-`;
 
 const NEW_MAP = "新版梯";
 const LEGACY_MAP = "遗产梯";
@@ -58,6 +41,7 @@ class WorldModeCalculator extends HyplateElement {
   select = new WorldMapSelect();
   worldMap = new WorldMapNormal();
   characterPicker = new CharacterPicker();
+  scoreController = new FancyDialog();
 
   jumpForm = element("form");
   completed = signal(NaN);
@@ -168,6 +152,7 @@ class WorldModeCalculator extends HyplateElement {
     return (
       <>
         {this.characterPicker}
+        <fancy-dialog ref={this.scoreController} id="score-controller"></fancy-dialog>
         <div class="title mx-3">选择地图</div>
         {this.select}
         {this.worldMap}
@@ -544,51 +529,50 @@ class WorldModeCalculator extends HyplateElement {
                                       class="btn btn-secondary"
                                       onClick={async () => {
                                         const charts = await this.chart.queryChartsByConstant(lowPtt - 2, highPtt - 1);
-                                        alert(
-                                          charts
-                                            .map((chart) => {
-                                              const { constant, cover, difficulty, title } = chart;
-                                              const lowScore = Math.max(
-                                                this.musicPlay.ex,
-                                                this.musicPlay.inverseScore(lowPtt, constant)
-                                              );
-                                              const highScore = this.musicPlay.inverseScore(highPtt, constant);
-                                              const note = chart.chart.note;
-                                              const maxFar = this.musicPlay.computeFar(lowScore, note, true);
-                                              const minFar = this.musicPlay.computeFar(highScore, note, false);
-                                              return (
-                                                <div class="m-3">
-                                                  <div class="row my-1">
-                                                    <div class="col-auto">
-                                                      <img
-                                                        src={cover}
-                                                        width={80}
-                                                        height={80}
-                                                        style:border={`0.25em solid var(--${difficulty})`}
-                                                        title={title}
-                                                      ></img>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                      <div class="row" style:height="2em">
-                                                        {title}
-                                                      </div>
-                                                      <div class="row" style:font-size="0.5em">
-                                                        {chart.song.pack}
-                                                      </div>
-                                                    </div>
+                                        this.scoreController.showAlert(
+                                          charts.map((chart) => {
+                                            const { constant, cover, difficulty, title } = chart;
+                                            const lowScore = Math.max(
+                                              this.musicPlay.ex,
+                                              this.musicPlay.inverseScore(lowPtt, constant)
+                                            );
+                                            const highScore = this.musicPlay.inverseScore(highPtt, constant);
+                                            const note = chart.chart.note;
+                                            const maxFar = this.musicPlay.computeFar(lowScore, note, true);
+                                            const minFar = this.musicPlay.computeFar(highScore, note, false);
+                                            return (
+                                              <div class="m-3" slot="content">
+                                                <div class="row my-1">
+                                                  <div class="col-auto">
+                                                    <img
+                                                      src={cover}
+                                                      width={80}
+                                                      height={80}
+                                                      style:border={`0.25em solid var(--${difficulty})`}
+                                                      title={title}
+                                                    ></img>
                                                   </div>
-                                                  <div class="row">
-                                                    <div class="col-auto">
-                                                      分数 {lowScore} ~ {highScore}
+                                                  <div class="col-auto">
+                                                    <div class="row" style:height="2em">
+                                                      {title}
                                                     </div>
-                                                    <div class="col-auto">
-                                                      Far {minFar} ~ {maxFar}
+                                                    <div class="row" style:font-size="0.5em">
+                                                      {chart.song.pack}
                                                     </div>
                                                   </div>
                                                 </div>
-                                              );
-                                            })
-                                            .concat(<style>{scoreControllerModalStyle}</style>)
+                                                <div class="row">
+                                                  <div class="col-auto">
+                                                    分数 {lowScore} ~ {highScore}
+                                                  </div>
+                                                  <div class="col-auto">
+                                                    Far {minFar} ~ {maxFar}
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            );
+                                          }),
+                                          true
                                         );
                                       }}
                                     >

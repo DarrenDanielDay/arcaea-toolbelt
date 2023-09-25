@@ -13,3 +13,29 @@ header {
 .modal-root {
   width: 24em;
 }
+
+#character-list::part(modal-root) {
+  width: auto;
+}
+
+#character-list thead th,
+#character-list tbody td {
+  border: var(--bs-border-width) var(--bs-border-color) solid;
+  border-collapse: collapse;
+  padding: 0.25em;
+}
+
+#recent-list::part(modal-root) {
+  width: auto;
+}
+
+#recent-list .panel {
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  gap: 1em;
+}
+
+#recent-list .user {
+  text-align: center;
+  margin: 0.5em;
+}

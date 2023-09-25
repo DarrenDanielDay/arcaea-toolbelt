@@ -39,3 +39,7 @@ select#stamina {
   padding: .5em;
   border-radius: var(--bs-border-radius);
 }
+
+#score-controller::part(modal-root) {
+  width: 24em;
+}

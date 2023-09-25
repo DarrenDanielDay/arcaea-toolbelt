@@ -30,10 +30,13 @@ class FancyDialog extends HyplateElement {
     );
   }
 
-  showAlert(message: JSXChildNode) {
+  showAlert(message: JSXChildNode, useSlot?: boolean) {
+    if (useSlot) {
+      this.#renderedSlot = mount(<>{message}</>, this);
+    }
     this.content.set(
       <div class="modal-root" part="modal-root">
-        <div class="modal-content mb-3">{message}</div>
+        <div class="modal-content mb-3">{useSlot ? <slot name="content"></slot> : message}</div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" onClick={() => this.dialog.close()}>
             确认

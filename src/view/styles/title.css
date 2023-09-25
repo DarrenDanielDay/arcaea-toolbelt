@@ -1,0 +1,15 @@
+.title {
+  margin: 0.5em 1em;
+  padding: 0.5em 1em;
+  border-bottom: 1px var(--bs-border-color) solid;
+}
+
+.title::before {
+  display: block;
+  content: " ";
+  position: absolute;
+  left: 1.25em;
+  width: 0.125em;
+  height: 1.4em;
+  background-color: var(--bs-primary);
+}

@@ -1,5 +1,5 @@
 import { sheet } from "./style.css.js";
-import { bootstrap } from "../../styles";
+import { bootstrap, title } from "../../styles";
 import { WorldMapSelect } from "../world-map-select";
 import { WorldMapNormal } from "../world-map-normal";
 import { Inject } from "../../../services/di";
@@ -73,7 +73,7 @@ const LEGACY_MAP = "遗产梯";
 export
 @Component({
   tag: "world-mode-calculator",
-  styles: [bootstrap, sheet],
+  styles: [bootstrap, sheet, title],
 })
 class WorldModeCalculator extends HyplateElement {
   @Inject($WorldModeService)

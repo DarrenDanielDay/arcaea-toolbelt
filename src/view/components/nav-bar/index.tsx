@@ -7,7 +7,7 @@ import { clickElsewhere } from "../../../utils/click-elsewhere";
 import { alert } from "../fancy-dialog";
 import { Component, HyplateElement, computed, signal } from "hyplate";
 import { $ChartService, $MusicPlayService, ChartService, MusicPlayService } from "../../../services/declarations";
-
+import meta from "../../../data/meta.json";
 export
 @Component({
   tag: "nav-bar",
@@ -78,7 +78,14 @@ class NavBar extends HyplateElement {
         <div style="display: flex; justify-content: center;">
           <img src={icon}></img>
         </div>
-        <p>版本: {process.env.COMMIT_SHA}</p>
+        <p>commit SHA: {process.env.COMMIT_SHA}</p>
+        <p>数据更新时间：{new Date(meta.time).toLocaleString()}</p>
+        <p>
+          Arcaea版本: {meta.version}{" "}
+          <a target="_blank" href={meta.apk}>
+            下载链接
+          </a>
+        </p>
         <h3>统计信息</h3>
         {/* 最大潜力值一定是0.1 / 40 = 0.0025的倍数，因此最多只有4位小数 */}
         <p>最大潜力值: {musicPlayStats.maximumPotential.toFixed(4)}</p>

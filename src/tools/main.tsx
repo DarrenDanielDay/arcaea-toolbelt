@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-import "../view/components/global-message/style.css";
+import "../view/components/fancy-dialog/style.css";
 import { AutoRender, computed, element, mount, nil, signal } from "hyplate";
 import { generate } from "./auto-generate-data-files";
 import { APKResponse, downloadToLocal, getLatestVersion } from "./get-latest-version";

@@ -1,4 +1,4 @@
-global-message::part(modal-root) {
+fancy-dialog::part(modal-root) {
   width: 80vw;
   max-width: 400px;
   min-height: 540px;

@@ -4,7 +4,7 @@ import { bootstrap } from "../../styles";
 import { Inject } from "../../../services/di";
 import { $Router, Router } from "../../pages/router";
 import { clickElsewhere } from "../../../utils/click-elsewhere";
-import { alert } from "../global-message";
+import { alert } from "../fancy-dialog";
 import { Component, HyplateElement, computed, signal } from "hyplate";
 import { $ChartService, $MusicPlayService, ChartService, MusicPlayService } from "../../../services/declarations";
 

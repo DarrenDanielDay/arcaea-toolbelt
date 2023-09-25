@@ -12,7 +12,7 @@ import { MusicPlayServiceImpl } from "./music-play";
 import * as lowiro from "./web-api";
 import { addSheet } from "sheetly";
 import { bootstrap } from "../view/styles";
-import { sheet as dialogSheet } from "../view/components/global-message/style.css.js";
+import { sheet as dialogSheet } from "../view/components/fancy-dialog/style.css.js";
 import { element } from "hyplate";
 import { WorldModeServiceImpl } from "./world-mode";
 import { ChartServiceImpl } from "./chart-data";

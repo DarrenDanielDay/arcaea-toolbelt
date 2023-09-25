@@ -6,7 +6,7 @@ import { bootstrap } from "../../styles";
 import { Route } from "../router";
 import { ResultCard } from "../../components/result-card";
 import { PlayResult } from "../../../models/music-play";
-import { confirm } from "../../components/global-message";
+import { confirm } from "../../components/fancy-dialog";
 
 @Component({
   tag: "chart-potential",

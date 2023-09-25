@@ -2,7 +2,7 @@ import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
 import { $ChartService, ChartService, SearchResult } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
-import { alert } from "../global-message";
+import { alert } from "../fancy-dialog";
 import { ChartInfo } from "../chart-info";
 import { Component, For, Future, HyplateElement, signal, watch } from "hyplate";
 

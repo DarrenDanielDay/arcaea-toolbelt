@@ -15,7 +15,7 @@ import {
   WorldMapBonus,
   type WorldModeService,
 } from "../../../services/declarations";
-import { alert, confirm } from "../global-message";
+import { alert, confirm } from "../fancy-dialog/index.js";
 import {
   HyplateElement,
   Component,

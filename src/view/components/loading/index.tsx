@@ -1,6 +1,6 @@
 import { bootstrap } from "../../styles";
 import { Component, HyplateElement, element } from "hyplate";
-import { sheet } from "../global-message/style.css.js";
+import { sheet } from "../fancy-dialog/style.css.js";
 import type { JSXChildNode } from "hyplate/types";
 
 @Component({

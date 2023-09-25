@@ -10,7 +10,7 @@ import {
   MusicPlayService,
   ProfileService,
 } from "../../../services/declarations";
-import { alert, confirm } from "../global-message";
+import { alert, confirm } from "../fancy-dialog";
 import { AutoRender, Component, Future, HyplateElement, computed, element, mount, nil, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";

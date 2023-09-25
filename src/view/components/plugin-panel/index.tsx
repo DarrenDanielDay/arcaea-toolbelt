@@ -15,7 +15,7 @@ import {
 } from "../../../services/declarations";
 import * as lowiro from "../../../services/web-api";
 import type { Profile } from "../../../models/profile";
-import { alert } from "../global-message";
+import { alert } from "../fancy-dialog";
 import type { FC } from "hyplate/types";
 import { computed, signal, Show, create, HyplateElement, Component, element } from "hyplate";
 import { css } from "../../../utils/component";

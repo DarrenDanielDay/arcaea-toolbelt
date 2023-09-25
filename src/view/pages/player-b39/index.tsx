@@ -3,7 +3,7 @@ import { Component, HyplateElement, cssVar, listen, signal } from "hyplate";
 import { $ProfileService, ProfileService } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
 import { Best30 } from "../../components/b30";
-import { alert } from "../../components/global-message";
+import { alert } from "../../components/fancy-dialog";
 import { Route } from "../router";
 import { download } from "../../../utils/download";
 import { bootstrap } from "../../styles/index";

@@ -3,7 +3,7 @@ import { ClearRank, Difficulty, NoteResult, PlayResult } from "../models/music-p
 import { B30Response, BestResultItem, Profile, ProfileV1, ProfileV2 } from "../models/profile";
 import { download } from "../utils/download";
 import { readBinary, readFile } from "../utils/read-file";
-import { alert, confirm } from "../view/components/global-message";
+import { alert, confirm } from "../view/components/fancy-dialog";
 import {
   $ChartService,
   $MusicPlayService,

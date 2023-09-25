@@ -19,7 +19,7 @@ import { pageInto } from "../../../utils/paging";
 import { CharacterSelect } from "../character-select";
 import { Inject } from "../../../services/di";
 import { $ProfileService, ProfileService } from "../../../services/declarations";
-import { GlobalMessage } from "../global-message";
+import { FancyDialog } from "../fancy-dialog/index.js";
 import type { WritableSignal } from "hyplate/types";
 
 export
@@ -31,7 +31,7 @@ class CharacterPicker extends HyplateElement {
   @Inject($ProfileService)
   accessor profile!: ProfileService;
 
-  modal = new GlobalMessage();
+  modal = new FancyDialog();
   characterSelect = new CharacterSelect();
   useStaticData = signal(false);
   resultStep = signal<number | null>(null);

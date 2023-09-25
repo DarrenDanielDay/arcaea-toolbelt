@@ -235,7 +235,11 @@ class ToolPanel extends HyplateElement {
                                         }
                                         return (
                                           <div>
-                                            未知曲目{song_id}或难度{difficulty}
+                                            <p>未知曲目或谱面难度</p>
+                                            <p>
+                                              曲目ID = {song_id}，难度 = {difficulty}
+                                            </p>
+                                            <p>分数{score}</p>
                                           </div>
                                         );
                                       })()}

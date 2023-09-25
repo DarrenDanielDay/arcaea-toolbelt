@@ -13525,5 +13525,83 @@
         "songId": "abstrusedilemma"
       }
     ]
+  },
+  {
+    "bpm": "178",
+    "cover": "https://wiki.arcaea.cn/images/thumb/5/53/Songs_matenrou.jpg/256px-Songs_matenrou.jpg",
+    "id": "matenrou",
+    "name": "Kanjou no Matenrou ～Arr.Demetori",
+    "pack": "World Extend",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "matenrou@pst",
+        "level": "3",
+        "note": 736,
+        "songId": "matenrou"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "matenrou@prs",
+        "level": "6",
+        "note": 929,
+        "songId": "matenrou"
+      },
+      {
+        "constant": 9.8,
+        "difficulty": "ftr",
+        "id": "matenrou@ftr",
+        "level": "9+",
+        "note": 1294,
+        "songId": "matenrou"
+      }
+    ]
+  },
+  {
+    "bpm": "183",
+    "cover": "https://wiki.arcaea.cn/images/thumb/7/75/Songs_tothefurthestdream.jpg/256px-Songs_tothefurthestdream.jpg",
+    "id": "tothefurthestdream",
+    "name": "To the Furthest Dream",
+    "pack": "Memory Archive",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "tothefurthestdream@pst",
+        "level": "4",
+        "note": 836,
+        "songId": "tothefurthestdream",
+        "override": {
+          "cover": true,
+          "url": "https://wiki.arcaea.cn/images/thumb/2/26/Songs_tothefurthestdream_pst.jpg/256px-Songs_tothefurthestdream_pst.jpg"
+        }
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "tothefurthestdream@prs",
+        "level": "7",
+        "note": 994,
+        "songId": "tothefurthestdream",
+        "override": {
+          "cover": true,
+          "url": "https://wiki.arcaea.cn/images/thumb/d/d7/Songs_tothefurthestdream_prs.jpg/256px-Songs_tothefurthestdream_prs.jpg"
+        }
+      },
+      {
+        "constant": 9.8,
+        "difficulty": "ftr",
+        "id": "tothefurthestdream@ftr",
+        "level": "9+",
+        "note": 1102,
+        "songId": "tothefurthestdream"
+      }
+    ]
   }
 ]

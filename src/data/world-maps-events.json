@@ -25885,5 +25885,375 @@
         }
       }
     ]
+  },
+  {
+    "id": "限时：Kanjou_no_Matenrou_～Arr.Demetori",
+    "platforms": [
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12,
+        "special": {
+          "type": 2,
+          "range": [
+            "Kanjou no Matenrou ～Arr.Demetori",
+            "Ultimate taste",
+            "Tsuki ni Murakumo, Hana ni Kaze",
+            "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
+            "Lost Emotion feat. nomico",
+            "Lost in the Abyss",
+            "SACRIFICE feat. ayame",
+            "Dandelion",
+            "Small Cloud Sugar Candy",
+            "The Message"
+          ]
+        }
+      },
+      {
+        "length": 12,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 250
+        }
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12,
+        "special": {
+          "type": 2,
+          "range": [
+            "Kanjou no Matenrou ～Arr.Demetori",
+            "Ultimate taste",
+            "Tsuki ni Murakumo, Hana ni Kaze",
+            "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
+            "Lost Emotion feat. nomico",
+            "Lost in the Abyss",
+            "SACRIFICE feat. ayame",
+            "Dandelion",
+            "Small Cloud Sugar Candy",
+            "The Message"
+          ]
+        }
+      },
+      {
+        "length": 12,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 1
+        }
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12,
+        "special": {
+          "type": 2,
+          "range": [
+            "Kanjou no Matenrou ～Arr.Demetori",
+            "Ultimate taste",
+            "Tsuki ni Murakumo, Hana ni Kaze",
+            "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
+            "Lost Emotion feat. nomico",
+            "Lost in the Abyss",
+            "SACRIFICE feat. ayame",
+            "Dandelion",
+            "Small Cloud Sugar Candy",
+            "The Message"
+          ]
+        }
+      },
+      {
+        "length": 12,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 300
+        }
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12,
+        "special": {
+          "type": 2,
+          "range": [
+            "Kanjou no Matenrou ～Arr.Demetori",
+            "Ultimate taste",
+            "Tsuki ni Murakumo, Hana ni Kaze",
+            "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
+            "Lost Emotion feat. nomico",
+            "Lost in the Abyss",
+            "SACRIFICE feat. ayame",
+            "Dandelion",
+            "Small Cloud Sugar Candy",
+            "The Message"
+          ]
+        }
+      },
+      {
+        "length": 12,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 1
+        }
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12,
+        "special": {
+          "type": 2,
+          "range": [
+            "Kanjou no Matenrou ～Arr.Demetori",
+            "Ultimate taste",
+            "Tsuki ni Murakumo, Hana ni Kaze",
+            "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
+            "Lost Emotion feat. nomico",
+            "Lost in the Abyss",
+            "SACRIFICE feat. ayame",
+            "Dandelion",
+            "Small Cloud Sugar Candy",
+            "The Message"
+          ]
+        }
+      },
+      {
+        "length": 12,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 350
+        }
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12,
+        "special": {
+          "type": 2,
+          "range": [
+            "Kanjou no Matenrou ～Arr.Demetori",
+            "Ultimate taste",
+            "Tsuki ni Murakumo, Hana ni Kaze",
+            "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
+            "Lost Emotion feat. nomico",
+            "Lost in the Abyss",
+            "SACRIFICE feat. ayame",
+            "Dandelion",
+            "Small Cloud Sugar Candy",
+            "The Message"
+          ]
+        }
+      },
+      {
+        "length": 12,
+        "reward": {
+          "type": 1,
+          "id": "matenrou"
+        }
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12,
+        "special": {
+          "type": 1,
+          "max": 6
+        }
+      },
+      {
+        "length": 12,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 2
+        }
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12,
+        "special": {
+          "type": 1,
+          "max": 6
+        }
+      },
+      {
+        "length": 12,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 400
+        }
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 12,
+        "special": {
+          "type": 1,
+          "max": 6
+        }
+      },
+      {
+        "length": 0,
+        "reward": {
+          "type": 0,
+          "name": "次元结晶",
+          "count": 1
+        }
+      }
+    ]
   }
 ]

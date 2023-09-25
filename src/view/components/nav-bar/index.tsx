@@ -84,7 +84,7 @@ class NavBar extends HyplateElement {
         <p>最大潜力值: {musicPlayStats.maximumPotential.toFixed(4)}</p>
         <h4>谱面统计</h4>
         <div>
-          {Object.entries(chartStats).map(([difficulty, { count, notes }]) => {
+          {Object.entries(chartStats.difficulties).map(([difficulty, { count, notes }]) => {
             return (
               <div>
                 <strong style:color={`var(--${difficulty})`}>{difficulty.toUpperCase()}</strong>:{count}个谱面，物量

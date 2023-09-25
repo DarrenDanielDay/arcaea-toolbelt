@@ -1,0 +1,22 @@
+global-message::part(modal-root) {
+  width: 80vw;
+  max-width: 400px;
+  min-height: 540px;
+}
+table {
+  width: 100%;
+}
+table {
+  display: block;
+  overflow-x: auto;
+}
+table th,
+table td {
+  padding: 0.25em;
+  border-collapse: collapse;
+  border: 1px solid var(--bs-border-color);
+}
+th:not(:first-child),
+td:not(:first-child) {
+  cursor: pointer;
+}

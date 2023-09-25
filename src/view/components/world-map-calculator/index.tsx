@@ -24,42 +24,12 @@ import {
   element,
   nil,
   computed,
-  Show,
-  watch,
-  effect,
   AutoRender,
   Future,
 } from "hyplate";
 import { ChartInfo } from "../chart-info";
-import type { WritableSignal } from "hyplate/types";
-import { CharacterSelect } from "../character-select";
-import { pageInto } from "../../../utils/paging";
 import { css } from "../../../utils/component";
-
-const characterPickerModalStyle = css`
-  div.modal-root {
-    width: 80vw;
-    max-width: 400px;
-    min-height: 540px;
-  }
-  table {
-    width: 100%;
-  }
-  table {
-    display: block;
-    overflow-x: auto;
-  }
-  table th,
-  table td {
-    padding: 0.25em;
-    border-collapse: collapse;
-    border: 1px solid var(--bs-border-color);
-  }
-  th:not(:first-child),
-  td:not(:first-child) {
-    cursor: pointer;
-  }
-`;
+import { CharacterPicker, renderCharacterStepInput } from "../character-picker";
 
 const scoreControllerModalStyle = css`
   div.modal-root {
@@ -87,6 +57,7 @@ class WorldModeCalculator extends HyplateElement {
 
   select = new WorldMapSelect();
   worldMap = new WorldMapNormal();
+  characterPicker = new CharacterPicker();
 
   jumpForm = element("form");
   completed = signal(NaN);
@@ -196,6 +167,7 @@ class WorldModeCalculator extends HyplateElement {
     const isNotNew = computed(() => this.worldType() !== "new");
     return (
       <>
+        {this.characterPicker}
         <div class="title mx-3">选择地图</div>
         {this.select}
         {this.worldMap}
@@ -283,7 +255,7 @@ class WorldModeCalculator extends HyplateElement {
                 角色Step
               </label>
             </div>
-            {this.renderCharacterStepInput(this.step, "step")}
+            {renderCharacterStepInput(this.characterPicker, this.step, "step")}
             <div class="col-auto">
               <label for="potential" class="col-form-label">
                 结算单曲ptt
@@ -477,7 +449,7 @@ class WorldModeCalculator extends HyplateElement {
                 角色step
               </label>
             </div>
-            {this.renderCharacterStepInput(this.step2, "step2")}
+            {renderCharacterStepInput(this.characterPicker, this.step2, "step2")}
           </div>
           <div class="row">
             <div class="col-auto">
@@ -646,202 +618,6 @@ class WorldModeCalculator extends HyplateElement {
     this.highProgress.set(NaN);
     this.fragment.set("1");
     this.memoryx4.set(false);
-  }
-
-  renderCharacterStepInput(binding: WritableSignal<number>, field: string) {
-    const input = element("input");
-    const pickCharacterStep = async () => {
-      const useStaticData = signal(false);
-      const profile = await this.profile.getProfile();
-      const profileCharacters = profile?.characters ?? [];
-      const characterSelect = new CharacterSelect();
-      const selectedCharacter = characterSelect.selectedItem;
-      const resultStep = signal<number | null>(null);
-      const profileCharacter = computed(() => {
-        const character = selectedCharacter();
-        if (!character) return null;
-        return profileCharacters.find((c) => c.id === character.id);
-      });
-      const unsubscribeWatch = watch(profileCharacter, (character) => {
-        // 存档中角色变更时默认优先使用存档中角色数据
-        useStaticData.set(!character);
-      });
-
-      const unsubscribeSync = effect(() => {
-        const character = profileCharacter();
-        const isStatic = useStaticData();
-        if (!isStatic) {
-          resultStep.set(character?.factors.step ?? null);
-        } else {
-          resultStep.set(null);
-        }
-      });
-      try {
-        const confirmed = await confirm(
-          <div>
-            <style>{characterPickerModalStyle}</style>
-            <form>
-              <div class="row">
-                <label class="form-label">选择角色</label>
-              </div>
-              <character-select ref={characterSelect} name="character"></character-select>
-              <Show when={selectedCharacter}>
-                {(character) => {
-                  const pagedCharacterLevels = pageInto(
-                    Object.entries(character.levels).flatMap(([level, factors]) => {
-                      if (!factors) return [];
-                      return [[level, factors] as const];
-                    }),
-                    10
-                  );
-                  const hasStepModifier = [
-                    35, // 风暴对立
-                    55, // 宿命光
-                  ].includes(character.id);
-                  return (
-                    <>
-                      <div class="row my-3">
-                        <div class="col-auto">
-                          <img src={character.image} width={64} height={64}></img>
-                        </div>
-                        {character.awakenImage ? (
-                          <div class="col-auto">
-                            <img src={character.awakenImage} width={64} height={64}></img>
-                          </div>
-                        ) : (
-                          nil
-                        )}
-                        {hasStepModifier ? (
-                          <div class="col-auto" style:color="red">
-                            注意：此角色有step加成的因子，静态数据不包括加成的值。
-                          </div>
-                        ) : (
-                          nil
-                        )}
-                        <div class="col-auto">
-                          <Show
-                            when={profileCharacter}
-                            fallback={() => <div class="form-check-label">存档中没有此角色</div>}
-                          >
-                            {(character) => (
-                              <div class="form-check-label">存档中的角色数据：{character.factors.step}</div>
-                            )}
-                          </Show>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-auto">
-                          <div class="form-check col-form-label">
-                            <input
-                              type="checkbox"
-                              h-model:boolean={useStaticData}
-                              disabled={computed(() => !profileCharacter())}
-                              class="form-check-input"
-                              name="use-static"
-                              id="use-static"
-                            ></input>
-                            <label class="form-check-label" for="use-static">
-                              使用静态等级数据
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <Show when={useStaticData}>
-                        {() => (
-                          <>
-                            <div class="row">
-                              <div class="col my-2">点击表格中等级/数值进行选择：</div>
-                            </div>
-                            <div class="row">
-                              <div class="col">
-                                <table>
-                                  <tbody>
-                                    {pagedCharacterLevels.map((characterLevels) => {
-                                      return (
-                                        <>
-                                          <tr>
-                                            <th>等级</th>
-                                            {characterLevels.map(([key, factors]) => (
-                                              <th onClick={() => resultStep.set(factors.step)}>{key}</th>
-                                            ))}
-                                          </tr>
-                                          <tr>
-                                            <td>step</td>
-                                            {characterLevels.map(([, factors]) => (
-                                              <td onClick={() => resultStep.set(factors.step)}>{factors.step}</td>
-                                            ))}
-                                          </tr>
-                                        </>
-                                      );
-                                    })}
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </>
-                        )}
-                      </Show>
-                    </>
-                  );
-                }}
-              </Show>
-            </form>
-          </div>,
-          (done, cancel) => [
-            <AutoRender>
-              {() => {
-                const step = resultStep();
-                if (step != null) return <span>当前使用的step值：{step.toFixed(4)}</span>;
-                return nil;
-              }}
-            </AutoRender>,
-            <button
-              type="button"
-              class="btn btn-primary"
-              disabled={computed(() => resultStep() == null)}
-              onClick={done}
-            >
-              确认
-            </button>,
-            <button type="button" class="btn btn-secondary" onClick={cancel}>
-              取消
-            </button>,
-          ]
-        );
-        if (confirmed) {
-          const result = resultStep();
-          if (result != null) {
-            binding.set(result);
-            input.form?.dispatchEvent(new Event("change"));
-          } else {
-            alert("未选择有效的角色数据");
-          }
-        }
-      } finally {
-        unsubscribeSync();
-        unsubscribeWatch();
-      }
-    };
-    return [
-      <div class="col-auto">
-        <input
-          ref={input}
-          type="number"
-          h-model:number={binding}
-          name={field}
-          id={field}
-          step="any"
-          min="0"
-          class="form-control"
-          required
-        />
-      </div>,
-      <div class="col-auto">
-        <button type="button" class="btn btn-secondary" onClick={pickCharacterStep}>
-          使用角色数据
-        </button>
-      </div>,
-    ];
   }
 
   restCurrentProgress = () => {

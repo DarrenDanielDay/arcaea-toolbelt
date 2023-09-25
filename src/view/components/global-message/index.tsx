@@ -1,7 +1,11 @@
 import { sheet } from "./style.css.js";
 import { bootstrap } from "../../styles";
-import { Component, HyplateElement, Show, element, listen, nil, signal } from "hyplate";
-import type { JSXChildNode } from "hyplate/types";
+import { Component, HyplateElement, Show, element, listen, mount, nil, signal, unmount } from "hyplate";
+import type { JSXChildNode, Rendered } from "hyplate/types";
+
+type RenderedSlot = Rendered<any> | null;
+type RenderWithClose = (done: () => void, cancel: () => void) => JSXChildNode;
+type RenderWithAction<T> = (done: (result: T) => void, cancel: () => void) => JSXChildNode;
 
 export
 @Component({
@@ -11,11 +15,12 @@ export
 class GlobalMessage extends HyplateElement {
   dialog = element("dialog");
   content = signal<JSX.Element>(nil);
-
+  #renderedSlot: RenderedSlot = null;
   override render() {
     this.effect(() =>
       listen(this.dialog)("close", () => {
         this.content.set(nil);
+        this.#unmountSlots();
       })
     );
     return (
@@ -27,7 +32,7 @@ class GlobalMessage extends HyplateElement {
 
   showAlert(message: JSXChildNode) {
     this.content.set(
-      <div class="modal-root">
+      <div class="modal-root" part="modal-root">
         <div class="modal-content mb-3">{message}</div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" onClick={() => this.dialog.close()}>
@@ -41,13 +46,11 @@ class GlobalMessage extends HyplateElement {
 
   done = () => this.dialog.close("confirm");
   cancel = () => this.dialog.close("cancel");
-  showConfirm(
-    message: JSXChildNode,
-    renderFooter?: (done: () => void, cancel: () => void) => JSXChildNode
-  ): Promise<boolean> {
+  showConfirm(message: JSXChildNode, renderFooter?: RenderWithClose): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
       this.content.set(
         <div
+          part="modal-root"
           class="modal-root"
           onSubmit={(e) => {
             e.preventDefault();
@@ -82,6 +85,52 @@ class GlobalMessage extends HyplateElement {
       };
       this.dialog.showModal();
     });
+  }
+
+  showPicker<T>(renderContents: RenderWithAction<T>) {
+    return new Promise<T | null>((resolve) => {
+      this.#renderedSlot = mount(
+        <>
+          {renderContents(
+            (value) => {
+              resolve(value);
+              this.done();
+            },
+            () => {
+              resolve(null);
+              this.cancel();
+            }
+          )}
+        </>,
+        this
+      );
+      this.content.set(
+        <div
+          part="modal-root"
+          class="modal-root"
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.done();
+          }}
+        >
+          <div class="modal-content mb-3">
+            <slot name="content"></slot>
+          </div>
+          <div class="modal-footer">
+            <slot name="footer"></slot>
+          </div>
+        </div>
+      );
+      this.dialog.onclose = this.dialog.oncancel = () => resolve(null);
+      this.dialog.showModal();
+    });
+  }
+
+  #unmountSlots() {
+    const unmountIf = (content: RenderedSlot) => content && unmount(content);
+    unmountIf(this.#renderedSlot);
+    this.#renderedSlot = null;
+    this.innerHTML = "";
   }
 }
 

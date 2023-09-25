@@ -5,6 +5,13 @@ export async function saveJSON(root: FileSystemDirectoryHandle, json: any, path:
   const file = await getFileHandle(root, path);
   await writeJSON(file, json);
 }
+
+export async function patchJSON(root: FileSystemDirectoryHandle, json: any, path: string) {
+  const file = await getFileHandle(root, path);
+  const original = await readJSON<any>(file);
+  await writeJSON(file, Object.assign(original, json));
+}
+
 export async function getFileHandle(root: FileSystemDirectoryHandle, path: string) {
   const segments = path.split(/[\\\/]/).filter((s) => !!s);
   let dir = root;

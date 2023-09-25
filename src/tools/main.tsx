@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "../view/components/fancy-dialog/style.css";
 import { AutoRender, computed, element, mount, nil, signal } from "hyplate";
-import { generate } from "./auto-generate-data-files";
+import { generate, generateVersionMeta } from "./auto-generate-data-files";
 import { APKResponse, downloadToLocal, getLatestVersion } from "./get-latest-version";
 import { FC, Signal } from "hyplate/types";
 import { JSXChildNode } from "hyplate/types";
@@ -75,6 +75,9 @@ const APKInfo: FC<{ apkInfo: APKResponse }> = ({ apkInfo }) => {
       footer={[
         <button class="btn btn-primary" onClick={downloadDirectly}>
           直接下载到项目内
+        </button>,
+        <button class="btn btn-secondary" onClick={() => generateVersionMeta(apkInfo)}>
+          生成meta
         </button>,
         <button class="btn btn-danger" onClick={() => latestDialog.close()}>
           关闭

@@ -4,7 +4,17 @@ import { fetchWikiWorldMapData } from "./get-wiki-world-map-data";
 import { SongData } from "../models/music-play";
 import { PackList, SongList } from "./packed-data";
 import { indexBy } from "../utils/collections";
-import { getProjectRootDirectory, readJSON, getFileHandle, saveJSON, readAsText, extractName } from "./shared";
+import {
+  getProjectRootDirectory,
+  readJSON,
+  getFileHandle,
+  saveJSON,
+  readAsText,
+  extractName,
+  patchJSON,
+} from "./shared";
+import { APKResponse } from "./get-latest-version";
+import { ArcaeaToolbeltMeta } from "../models/misc";
 
 export async function generate(version: string) {
   const projectRootDir = await getProjectRootDirectory();
@@ -24,6 +34,20 @@ export async function generate(version: string) {
   await saveJSON(projectRootDir, items, "/src/data/item-data.json");
   await saveJSON(projectRootDir, longterm, "/src/data/world-maps-longterm.json");
   await saveJSON(projectRootDir, events, "/src/data/world-maps-events.json");
+  await patchMeta({
+    time: Date.now(),
+  });
+}
+
+export async function generateVersionMeta(apkInfo: APKResponse) {
+  await patchMeta({
+    version: apkInfo.version,
+    apk: apkInfo.url,
+  });
+}
+
+async function patchMeta(meta: Partial<ArcaeaToolbeltMeta>) {
+  await patchJSON(await getProjectRootDirectory(), meta, "/src/data/meta.json");
 }
 
 async function getOldChartData(dir: FileSystemDirectoryHandle) {

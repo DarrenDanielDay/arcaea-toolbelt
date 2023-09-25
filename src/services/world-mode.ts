@@ -29,6 +29,7 @@ import items from "../data/item-data.json";
 import { SongData, SongIndex } from "../models/music-play";
 import { Indexed, indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
+import { inferRange } from "../utils/math";
 const BASE_PROG = 2.5;
 const BASE_BOOST = 27;
 const POTENTIAL_FACTOR = 2.45;
@@ -152,8 +153,12 @@ export class WorldModeServiceImpl implements WorldModeService {
     };
   }
 
+  inversePlayResult(progress: number, step: number) {
+    return (progress * CHARACTER_FACTOR_RATIO) / step;
+  }
+
   private inverseBasicProgress(progress: number, step: number, overflow: boolean): number {
-    const rootOfPotential = ((progress * CHARACTER_FACTOR_RATIO) / step - BASE_PROG) / POTENTIAL_FACTOR;
+    const rootOfPotential = (this.inversePlayResult(progress, step) - BASE_PROG) / POTENTIAL_FACTOR;
     if (rootOfPotential < 0) {
       // 平方根为负数，进度必然超过
       if (overflow) {
@@ -198,6 +203,28 @@ export class WorldModeServiceImpl implements WorldModeService {
       }
     }
     return solutions;
+  }
+
+  inverseConstantRange(playResult: number, score: number, step: number, progress: number): [number, number] | null {
+    if (!score) return null;
+    let min = -Infinity,
+      max = Infinity;
+    if (playResult) {
+      const base = Math.floor(playResult * 10);
+      min = (base * 10) / 100;
+      max = (base * 10 + 10) / 100;
+    }
+    if (step && progress) {
+      // TODO 验证实际显示的progress是截尾还是舍入
+      const [minProgress, maxProgress] = inferRange(progress, 1, false);
+      const minPlayResult = this.inversePlayResult(minProgress, step);
+      const maxPlayResult = this.inversePlayResult(maxProgress, step);
+      // 缩小范围
+      min = Math.max(min, minPlayResult);
+      max = Math.min(max, maxPlayResult);
+    }
+    if (!(isFinite(min) && isFinite(max))) return null;
+    return [this.inverseConstant(min, score), this.inverseConstant(max, score)];
   }
 
   inverseBeyondBoost(difference: number, score: number): number {
@@ -328,5 +355,11 @@ export class WorldModeServiceImpl implements WorldModeService {
     return {
       distance,
     };
+  }
+
+  private inverseConstant(playResult: number, score: number) {
+    const potentialRoot = (playResult - BASE_PROG) / POTENTIAL_FACTOR;
+    if (potentialRoot < 0) return NaN;
+    return this.music.inverseConstant(potentialRoot ** 2, score, true);
   }
 }

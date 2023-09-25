@@ -86,7 +86,7 @@ export interface MusicPlayService {
   computeScoreResult(score: number, chart: Chart): ScoreResult;
   computePMConstant(potential: number, overflow: boolean): number;
   inverseScore(potential: number, constant: number): number;
-  inverseConstant(potential: number, score: number): number;
+  inverseConstant(potential: number, score: number, raw?: boolean): number;
   computeFar(score: number, note: number, overflow: boolean): number;
   mapClearType(clearType: number, shinyPerfectCount: number, chart: Chart): ClearRank;
   mapDifficulty(d: Difficulty): number;
@@ -206,7 +206,9 @@ export interface WorldModeService {
     targetLevel: number
   ): [low: number, high: number];
   computeRemainingProgress(map: NormalWorldMap, currentProgress: CurrentProgress): RemainingProgress;
+  inversePlayResult(progress: number, step: number): number;
   inverseProgress(step: number, progressRange: [low: number, high: number]): Promise<InverseProgressSolution[]>;
+  inverseConstantRange(playResult: number, score: number, step: number, progress: number): [number, number] | null;
   inverseBeyondBoost(difference: number, score: number): number;
 }
 

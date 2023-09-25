@@ -173,9 +173,10 @@ export class MusicPlayServiceImpl implements MusicPlayService {
     return Math.round(rawScore);
   }
 
-  inverseConstant(potential: number, score: number): number {
+  inverseConstant(potential: number, score: number, raw?: boolean): number {
     const modifier = this.computePotentialModifier(score);
     const rawConstant = potential - modifier;
+    if (raw) return rawConstant;
     return Math.round(rawConstant * 10) / 10;
   }
 

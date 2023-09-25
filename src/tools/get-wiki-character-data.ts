@@ -1,6 +1,7 @@
 import { findNextElWhere, htmlDocument, initPageDocument, prepareDocument, wikiURL, arcaeaCNClient } from "./wiki-util";
 import characters from "../data/characters.json";
 import { CharacterData, CharacterFactors, ItemData } from "../models/world-mode";
+import { concurrently } from "../utils/concurrent";
 
 const wikiCharacterTable = wikiURL("搭档");
 
@@ -75,7 +76,6 @@ export async function fetchWikiCharacterAndCharacterCoreItemData(): Promise<{
   cores: ItemData[];
 }> {
   const tableData = await getWikiCharacterTable();
-  const charactersData: CharacterData[] = [];
   const itemTable = htmlDocument.querySelector(`#mw-content-text > div.mw-parser-output > table:nth-child(46)`)!;
   const itemImgs = Array.from(itemTable.querySelectorAll("img"));
   const items = itemImgs.map<ItemData>((img) => {
@@ -85,7 +85,7 @@ export async function fetchWikiCharacterAndCharacterCoreItemData(): Promise<{
     };
   });
 
-  for (const item of tableData) {
+  const getOneCharacter = async (item: CharacterTableData) => {
     const { ref, imgs, link } = item;
     const html = await arcaeaCNClient.fetch(link).then((res) => res.text());
     prepareDocument(html, link);
@@ -134,7 +134,7 @@ export async function fetchWikiCharacterAndCharacterCoreItemData(): Promise<{
     }
     const variantEn = ref.variant?.en.trim();
     const variantZh = ref.variant?.["zh-Hans"].trim();
-    charactersData.push({
+    return {
       id: ref.character_id,
       image: imgs.at(0)!,
       awakenImage: imgs.at(1) || null,
@@ -143,8 +143,9 @@ export async function fetchWikiCharacterAndCharacterCoreItemData(): Promise<{
         zh: ref.display_name["zh-Hans"] + (variantZh ? `（${variantZh}）` : ""),
       },
       levels,
-    });
-  }
+    };
+  };
+  const charactersData: CharacterData[] = await concurrently(tableData, getOneCharacter, 6);
   return {
     characters: charactersData.sort((a, b) => a.id - b.id),
     cores: items,

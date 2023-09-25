@@ -13,9 +13,15 @@ import {
   extractName,
   patchJSON,
 } from "./shared";
-import { APKResponse } from "./get-latest-version";
+import { APKResponse, getLatestVersion } from "./get-latest-version";
 import { ArcaeaToolbeltMeta } from "../models/misc";
+import { AssetsServiceImpl } from "../services/assets";
 
+const assets = new AssetsServiceImpl();
+function fetchAssets(path: string) {
+  return fetch(assets.resolve(path), { mode: "cors" });
+}
+/** @deprecated */
 export async function generate(version: string) {
   const projectRootDir = await getProjectRootDirectory();
   const songList = await readJSON<SongList>(
@@ -36,6 +42,28 @@ export async function generate(version: string) {
   await saveJSON(projectRootDir, events, "/src/data/world-maps-events.json");
   await patchMeta({
     time: Date.now(),
+  });
+}
+
+export async function generateDirectly() {
+  const projectRootDir = await getProjectRootDirectory();
+  const apkInfo = await getLatestVersion();
+  const songList: SongList = await fetchAssets(`songs/songlist`).then((r) => r.json());
+  const packList: PackList = await fetchAssets(`songs/packlist`).then((r) => r.json());
+  const newSongs = await getSongData(songList, packList);
+  const oldSongs = await getOldChartData(projectRootDir);
+  const songs = sortChartDataBySongListIdx(mergeChartData(oldSongs, newSongs), songList);
+  const { characters, items } = await getCharacterData();
+  const { longterm, events } = await fetchWikiWorldMapData(songs, characters);
+  await saveJSON(projectRootDir, songs, "/src/data/chart-data.json");
+  await saveJSON(projectRootDir, characters, "/src/data/character-data.json");
+  await saveJSON(projectRootDir, items, "/src/data/item-data.json");
+  await saveJSON(projectRootDir, longterm, "/src/data/world-maps-longterm.json");
+  await saveJSON(projectRootDir, events, "/src/data/world-maps-events.json");
+  await patchMeta({
+    time: Date.now(),
+    apk: apkInfo.url,
+    version: apkInfo.version,
   });
 }
 

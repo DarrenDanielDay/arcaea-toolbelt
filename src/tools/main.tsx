@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "../view/components/fancy-dialog/style.css";
 import { AutoRender, computed, element, mount, nil, signal } from "hyplate";
-import { generate, generateVersionMeta } from "./auto-generate-data-files";
+import { generate, generateDirectly, generateVersionMeta } from "./auto-generate-data-files";
 import { APKResponse, downloadToLocal, getLatestVersion } from "./get-latest-version";
 import { FC, Signal } from "hyplate/types";
 import { JSXChildNode } from "hyplate/types";
@@ -175,6 +175,20 @@ mount(
         </div>
       </div>
     </form>
+    <div class="row">
+      <div class="col-auto">
+        <button
+          type="button"
+          class="btn btn-primary"
+          onClick={async function () {
+            await generateDirectly();
+            showAlert("生成完毕");
+          }}
+        >
+          生成最新数据文件
+        </button>
+      </div>
+    </div>
     {latest}
     {progress}
     {alert}

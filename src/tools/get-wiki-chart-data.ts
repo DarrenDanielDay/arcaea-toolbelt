@@ -1,5 +1,6 @@
 import { Chart, ChartOverride, Difficulty, SongData } from "../models/music-play";
 import { groupBy, indexBy } from "../utils/collections";
+import { concurrently } from "../utils/concurrent";
 import { Pack, PackList, Song, SongList } from "./packed-data";
 import { wikiURL, initPageDocument, htmlDocument, prepareDocument, arcaeaCNClient } from "./wiki-util";
 
@@ -50,7 +51,9 @@ async function getWikiChartTable() {
 }
 
 async function getArcInfData() {
-  const res = await fetch("https://raw.githubusercontent.com/Arcaea-Infinity/ArcaeaSongDatabase/main/arcsong.json");
+  const res = await fetch(
+    "https://ghproxy.com/raw.githubusercontent.com/Arcaea-Infinity/ArcaeaSongDatabase/main/arcsong.json"
+  );
   type ArcInfChartData = {
     name_en: string;
     /**
@@ -151,10 +154,9 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     return found;
   };
   const arcInf = await getArcInfData();
-  const songsData: SongData[] = [];
   const difficulties = [Difficulty.Past, Difficulty.Present, Difficulty.Future];
   const withByd = difficulties.concat([Difficulty.Beyond]);
-  for (const song of songs) {
+  const getOneSong = async (song: ConstantChartData) => {
     const { name, link, byd } = song;
     const arcInfSong = arcInf.getSong(name, song);
     const detailPageURL = wikiURL(link);
@@ -261,8 +263,10 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       alias: arcInfSong?.alias ?? [],
       charts,
     };
-    songsData.push(songData);
-  }
+    return songData;
+  };
+  const songsData = await concurrently(songs, getOneSong, 6);
+  songsData.push();
   (() => {
     // Last比较特殊，有五个谱面，两个byd难度和三个曲绘，直接作为固定内容处理
     const song: Partial<Record<Difficulty, number>> = {

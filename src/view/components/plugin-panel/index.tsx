@@ -20,6 +20,7 @@ import type { FC } from "hyplate/types";
 import { computed, signal, Show, HyplateElement, Component, element } from "hyplate";
 import { ResultCard } from "../result-card";
 import { NoteResult } from "../../../models/music-play";
+import { PotentialBadge } from "../potential-badge";
 
 export
 @Component({
@@ -171,7 +172,7 @@ class ToolPanel extends HyplateElement {
                                     p: unknown
                                   ): p is lowiro.UserProfile["recent_score"][number] => isProfile(player);
                                   const { difficulty, song_id, time_played, score } = recent;
-                                  const { character } = player;
+                                  const { character, rating } = player;
                                   const characterData = characters.find((c) => c.id === character);
                                   const status = isProfile(player)
                                     ? player.character_stats.find((s) => s.character_id === character)!
@@ -188,6 +189,7 @@ class ToolPanel extends HyplateElement {
                                         ) : (
                                           <div>未知角色</div>
                                         )}
+                                        <PotentialBadge potential={rating / 100}></PotentialBadge>
                                         <div class="username">{player.name}</div>
                                         <div class="play-time">{new Date(time_played).toLocaleString()}</div>
                                       </div>

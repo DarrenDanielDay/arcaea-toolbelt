@@ -62,7 +62,7 @@ class ProfilePage extends HyplateElement {
                     {profile
                       ? [
                           `当前存档：${profile.username}`,
-                          <PotentialBadge attr:potential={+profile.potential}></PotentialBadge>,
+                          <PotentialBadge potential={+profile.potential}></PotentialBadge>,
                         ]
                       : "未选择存档"}
                   </div>

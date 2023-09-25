@@ -38,4 +38,11 @@ header {
 #recent-list .user {
   text-align: center;
   margin: 0.5em;
+  position: relative;
+}
+
+#recent-list potential-badge {
+  position: absolute;
+  right: 0.5em;
+  bottom: 2.5em;
 }

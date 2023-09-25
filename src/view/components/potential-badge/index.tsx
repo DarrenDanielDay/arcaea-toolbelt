@@ -1,9 +1,10 @@
-import { Attribute, AutoRender, Component, Future, HyplateElement, computed } from "hyplate";
+import { Attribute, AutoRender, Component, HyplateElement } from "hyplate";
 import { Signal } from "hyplate/types";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di.js";
 import { $AssetsService, AssetsService } from "../../../services/declarations";
 import { wikiPotientialBadges } from "../../../assets/potential-rating";
+import { syncProps } from "../../../utils/component.js";
 
 export interface PotentialBadgeProps {
   potential?: number;
@@ -21,6 +22,7 @@ class PotentialBadge extends HyplateElement<PotentialBadgeProps> {
   accessor assets!: AssetsService;
 
   override render() {
+    syncProps(this);
     return (
       <AutoRender>
         {() => {

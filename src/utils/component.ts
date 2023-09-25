@@ -1,6 +1,6 @@
 import { ParseSelector } from "typed-query-selector/parser";
-import { element, listen, registerDirective } from "hyplate";
-import { CleanUpFunc, JSXDirective } from "hyplate/types";
+import { attr, element, listen, registerDirective } from "hyplate";
+import { ClassComponentInstance, CleanUpFunc, JSXDirective } from "hyplate/types";
 
 export const css = String.raw;
 
@@ -19,6 +19,19 @@ export type Refs<T extends Record<string, string>> = {
 export type RefsOf<Q> = Q extends Query<infer T> ? Refs<T> : never;
 
 export const input = () => element("input");
+
+export const syncProps = (component: ClassComponentInstance) => {
+  const props = component.props;
+  for (const key in props) {
+    if (key !== "ref" && key !== "children") {
+      // @ts-expect-error dynamic key property
+      const value = props[key];
+      if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
+        attr(component, key, value);
+      }
+    }
+  }
+};
 
 export class EnterSubmitDirective implements JSXDirective<boolean> {
   prefix = "keypress-submit";

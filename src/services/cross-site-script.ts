@@ -19,11 +19,13 @@ import { ChartServiceImpl } from "./chart-data";
 import { PluginButton } from "../view/components/plugin-button";
 import { Container, Injectable } from "classic-di";
 import { provide } from "./di";
+import { WikiAssetsService } from "./wiki-assets";
 
 const ioc = new Container({ name: "cross-site-script-root" });
 ioc.register(ChartServiceImpl);
 ioc.register(MusicPlayServiceImpl);
 ioc.register(WorldModeServiceImpl);
+ioc.register(WikiAssetsService);
 const musicPlay = ioc.get($MusicPlayService);
 
 const flattenData = (data as SongData[])

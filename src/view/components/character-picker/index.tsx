@@ -19,7 +19,7 @@ import { pageInto } from "../../../utils/paging";
 import { CharacterSelect } from "../character-select";
 import { Inject } from "../../../services/di";
 import { $ProfileService, ProfileService } from "../../../services/declarations";
-import { FancyDialog } from "../fancy-dialog/index.js";
+import { FancyDialog } from "../fancy-dialog";
 import type { WritableSignal } from "hyplate/types";
 
 export

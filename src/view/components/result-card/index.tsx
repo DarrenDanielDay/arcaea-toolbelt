@@ -1,7 +1,7 @@
 import { sheet } from "./style.css.js";
 import { Chart, ScoreResult, Song, ClearRank, NoteResult, PlayResult } from "../../../models/music-play";
 import { Component, HyplateElement, computed, content, element, signal, cssVar } from "hyplate";
-import { Inject } from "../../../services/di.js";
+import { Inject } from "../../../services/di";
 import {
   $AssetsService,
   $ChartService,
@@ -9,9 +9,9 @@ import {
   AssetsService,
   ChartService,
   MusicPlayService,
-} from "../../../services/declarations.js";
-import { AssetImage } from "../asset-image/index.js";
-import { duration } from "../../../utils/time.js";
+} from "../../../services/declarations";
+import { AssetImage } from "../asset-image";
+import { duration } from "../../../utils/time";
 
 function formatScore(score: number) {
   const raw = Math.floor(score).toString();

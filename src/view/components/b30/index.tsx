@@ -2,7 +2,7 @@ import { sheet } from "./style.css.js";
 import { ResultCard } from "../result-card";
 import { B30Response, BestResultItem } from "../../../models/profile";
 import { Component, HyplateElement, Show, cssVar, signal } from "hyplate";
-import { Inject } from "../../../services/di.js";
+import { Inject } from "../../../services/di";
 import { $AssetsService, $ChartService, AssetsService, ChartService } from "../../../services/declarations.js";
 
 const renderB30 = (response: B30Response) => {

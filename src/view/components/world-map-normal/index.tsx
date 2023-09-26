@@ -1,7 +1,7 @@
 import { sheet } from "./style.css.js";
 import { bootstrap } from "../../styles";
 import { CurrentProgress, MapPlatform, NormalWorldMap, PlatformType, RewardType } from "../../../models/world-mode";
-import { alert } from "../fancy-dialog/index.js";
+import { alert } from "../fancy-dialog";
 import { Component, For, HyplateElement, computed, element, nil, signal } from "hyplate";
 import type { CleanUpFunc, WritableSignal } from "hyplate/types";
 

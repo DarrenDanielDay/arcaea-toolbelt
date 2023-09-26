@@ -15,7 +15,7 @@ import {
   WorldMapBonus,
   type WorldModeService,
 } from "../../../services/declarations";
-import { FancyDialog, alert, confirm } from "../fancy-dialog/index.js";
+import { FancyDialog, alert, confirm } from "../fancy-dialog";
 import { HyplateElement, Component, listen, signal, element, nil, computed, AutoRender, Future } from "hyplate";
 import { ChartInfo } from "../chart-info";
 import { CharacterPicker, renderCharacterStepInput } from "../character-picker";

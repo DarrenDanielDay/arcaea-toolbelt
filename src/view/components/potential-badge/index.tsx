@@ -1,10 +1,10 @@
 import { Attribute, AutoRender, Component, HyplateElement } from "hyplate";
 import type { GlobalAttributes, Signal } from "hyplate/types";
 import { sheet } from "./style.css.js";
-import { Inject } from "../../../services/di.js";
+import { Inject } from "../../../services/di";
 import { $AssetsService, AssetsService } from "../../../services/declarations";
 import { wikiPotientialBadges } from "../../../assets/potential-rating";
-import { syncProps } from "../../../utils/component.js";
+import { syncProps } from "../../../utils/component";
 
 export interface PotentialBadgeProps {
   potential?: number;

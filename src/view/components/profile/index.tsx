@@ -10,7 +10,7 @@ import {
   MusicPlayService,
   ProfileService,
 } from "../../../services/declarations";
-import { alert, confirm } from "../fancy-dialog";
+import { FancyDialog, alert, confirm } from "../fancy-dialog";
 import { AutoRender, Component, Future, HyplateElement, computed, element, mount, nil, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
@@ -36,6 +36,7 @@ class ProfilePage extends HyplateElement {
   importProfileDialog = element("dialog");
   importSt3Dialog = element("dialog");
   editPtt = element("input");
+  profileStats = new FancyDialog();
 
   greet = signal<Profile | null>(null);
 
@@ -70,6 +71,7 @@ class ProfilePage extends HyplateElement {
                 {profile
                   ? [
                       <div class="row m-3">
+                        {this.profileStats}
                         <button type="button" class="btn btn-primary" onClick={() => this.showProfileStats(profile)}>
                           存档统计
                         </button>
@@ -430,9 +432,19 @@ class ProfilePage extends HyplateElement {
       );
     };
     const currentDifficulty = signal<TabDifficulty>(Difficulty.Future);
-    alert(
-      <div>
+    const showPotential = signal(true);
+    const { potential, username } = profile;
+    this.profileStats.showAlert(
+      <div slot="content">
         <h2>存档统计</h2>
+        <div class="user">
+          {username}
+          <potential-badge
+            title="点击切换潜力值显示"
+            potential={computed(() => (showPotential() ? +potential : -1))}
+            onClick={() => showPotential.update((show) => !show)}
+          ></potential-badge>
+        </div>
         <div class="mb-3">
           {displayOrder.map((difficulty) => (
             <Tab difficulty={difficulty}></Tab>
@@ -450,7 +462,8 @@ class ProfilePage extends HyplateElement {
             }}
           </AutoRender>
         </div>
-      </div>
+      </div>,
+      true
     );
   }
 

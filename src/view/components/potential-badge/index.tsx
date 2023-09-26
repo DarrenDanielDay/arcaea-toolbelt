@@ -1,5 +1,5 @@
 import { Attribute, AutoRender, Component, HyplateElement } from "hyplate";
-import { Signal } from "hyplate/types";
+import { GlobalAttributes, Signal } from "hyplate/types";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di.js";
 import { $AssetsService, AssetsService } from "../../../services/declarations";
@@ -55,5 +55,13 @@ class PotentialBadge extends HyplateElement<PotentialBadgeProps> {
       return -1;
     }
     return [3.5, 7.0, 10.0, 11.0, 12.0, 12.5, 13.0, Infinity].findIndex((bound) => potential < bound);
+  }
+}
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "potential-badge": JSXAttributes<PotentialBadgeProps & GlobalAttributes, PotentialBadge>;
+    }
   }
 }

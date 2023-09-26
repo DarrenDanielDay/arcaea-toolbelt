@@ -18,7 +18,7 @@ import {
 } from "./declarations";
 import { Injectable } from "classic-di";
 import { groupBy, indexBy, mapProps } from "../utils/collections";
-import { delay } from "../utils/delay";
+import { delay } from "../utils/time";
 const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";

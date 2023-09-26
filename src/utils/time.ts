@@ -1,5 +1,7 @@
 import { divide } from "./math";
 
+export const delay = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
 const secondMS = 1000;
 const minuteMS = 60 * secondMS;
 const hourMS = 60 * minuteMS;

@@ -14,7 +14,7 @@ import { FancyDialog, alert, confirm } from "../fancy-dialog";
 import { AutoRender, Component, Future, HyplateElement, computed, element, mount, nil, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
-import { delay } from "../../../utils/delay";
+import { delay } from "../../../utils/time";
 import { clearImages } from "../../../assets/play-result";
 import type { FC } from "hyplate/types";
 import { Difficulty } from "../../../models/music-play";

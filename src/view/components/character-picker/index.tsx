@@ -143,7 +143,14 @@ class CharacterPicker extends HyplateElement {
                     <div class="col-auto">
                       <Show
                         when={profileCharacter}
-                        fallback={() => <div class="form-check-label">存档中没有此角色</div>}
+                        fallback={() => (
+                          <div class="form-check-label">
+                            存档中没有此角色。
+                            <a href="docs/plugin-usage#user-profile" target="_blank">
+                              如何添加？
+                            </a>
+                          </div>
+                        )}
                       >
                         {(character) => <div class="form-check-label">存档中的角色数据：{character.factors.step}</div>}
                       </Show>

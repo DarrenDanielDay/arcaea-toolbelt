@@ -13,10 +13,12 @@ import {
   ImportResult,
   MusicPlayService,
   ProfileService,
+  ReportProgress,
   ScoreStatistics,
 } from "./declarations";
 import { Injectable } from "classic-di";
 import { groupBy, indexBy, mapProps } from "../utils/collections";
+import { delay } from "../utils/delay";
 const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
@@ -202,9 +204,13 @@ export class ProfileServiceImpl implements ProfileService {
       b30Average: b30Sum / ptt30.length,
     };
   }
-  async importDB(file: File, profile: Profile): Promise<ImportResult> {
+  async importDB(file: File, profile: Profile, report?: ReportProgress): Promise<ImportResult> {
+    report?.("正在读取文件");
     const bytes = await readBinary(file);
+    report?.("正在加载模块");
     const SQL = (this.#SQL ??= await this.#initSQLJS());
+    report?.("正在查询成绩");
+    await delay(300);
     const db = new SQL.Database(new Uint8Array(bytes));
     const [scoreQueryResult] = db.exec(`\
 SELECT
@@ -218,6 +224,8 @@ cleartypes.clearType
 FROM scores JOIN cleartypes
 ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.songDifficulty
 `);
+
+    report?.("正在导入存档");
     if (!scoreQueryResult) {
       throw new Error(`读取数据库失败：无结果集。可能原因：导出st3前未同步云端存档，存档内无数据。`);
     }
@@ -245,17 +253,18 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         groupBy(Object.values(Difficulty), (d) => d),
         () => 0
       ),
+      skipped: [],
     };
     for (const score of scores) {
       const { songId, songDifficulty, shinyPerfectCount, perfectCount, nearCount, missCount, clearType } = score;
       const song = songIndex[songId];
       if (!song) {
-        console.error(`未知songId：${songId}`);
+        result.skipped.push(`未知songId：${songId}`);
         continue;
       }
       const chart = song.charts[songDifficulty];
       if (!chart) {
-        console.error(`曲目${song.name}难度${songDifficulty}不存在`);
+        result.skipped.push(`曲目${song.name}的${Object.keys(Difficulty)[songDifficulty]}难度谱面未知`);
         continue;
       }
       const noteResult: NoteResult = {
@@ -273,6 +282,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       result.difficulties[chart.difficulty]++;
       result.count++;
     }
+
     await this.saveProfile({ best });
     return result;
   }

@@ -1,5 +1,5 @@
 import loadingImg from "../../../assets/loading.gif";
-import { Component, HyplateElement, cssVar, listen, signal } from "hyplate";
+import { Component, HyplateElement, Show, cssVar, listen, signal } from "hyplate";
 import { $ProfileService, ProfileService } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
 import { Best30 } from "../../components/b30";
@@ -8,6 +8,7 @@ import { Route } from "../router";
 import { download } from "../../../utils/download";
 import { bootstrap } from "../../styles/index";
 import { loading } from "../../components/loading";
+import { future } from "../../../utils/future";
 
 @Component({
   tag: "player-b30",
@@ -62,32 +63,64 @@ class PlayerB39 extends HyplateElement {
     const exportNode = this.best30.getExportNode();
     const profile = await this.profileService.getProfile();
     if (!exportNode || !profile) return;
+    const progress = signal("");
+    const link = signal<{ url: string; filename: string } | null>(null);
+    const task = future();
     await loading(
       (async () => {
+        progress.set("正在加载模块");
         // @ts-expect-error parcel ESM default
         const html2canvas: typeof import("html2canvas").default = await import("html2canvas");
+        progress.set("正在绘制图片");
         const canvas = await html2canvas(exportNode);
-        await new Promise<void>((resolve, reject) => {
+        progress.set("正在导出图片");
+        const blob = await new Promise<Blob>((resolve, reject) => {
           canvas.toBlob((blob) => {
             if (blob) {
-              const now = new Date();
-              const pad2 = (n: number) => `${n}`.padStart(2, "0");
-              resolve();
-              download(
-                URL.createObjectURL(blob),
-                `b30 ${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())} ${pad2(
-                  now.getHours()
-                )}-${pad2(now.getMinutes())}-${pad2(now.getSeconds())}.jpg`
-              );
+              resolve(blob);
             } else {
               reject();
             }
           }, "image/jpeg");
         });
+        const now = new Date();
+        const pad2 = (n: number) => `${n}`.padStart(2, "0");
+        const filename = `b30 ${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())} ${pad2(
+          now.getHours()
+        )}-${pad2(now.getMinutes())}-${pad2(now.getSeconds())}.jpg`;
+        const url = URL.createObjectURL(blob);
+        link.set({
+          url,
+          filename,
+        });
+        download(url, filename);
+        await task.promise;
       })(),
-      <div>
-        <p>正在导出...</p>
-        <img src={loadingImg} width="100" height="100"></img>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <p>{progress}</p>
+        <Show when={link} fallback={() => <img src={loadingImg} width="48" height="48"></img>}>
+          {({ url, filename }) => (
+            <div>
+              <p>如果图片没有自动下载，请点击下面的链接打开图片手动保存。</p>
+              <div>
+                <a href={url} target="_blank">
+                  {filename}
+                </a>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn btn-primary"
+                  onClick={() => {
+                    task.done();
+                    URL.revokeObjectURL(url);
+                  }}
+                >
+                  完成
+                </button>
+              </div>
+            </div>
+          )}
+        </Show>
       </div>
     );
   };

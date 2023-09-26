@@ -95,6 +95,7 @@ export interface MusicPlayService {
 export interface ImportResult {
   count: number;
   difficulties: Record<Difficulty, number>;
+  skipped: string[];
 }
 
 export interface ScoreStatistics {
@@ -143,13 +144,15 @@ export interface BestStatistics {
   rest: number;
 }
 
+export type ReportProgress = (message: string) => void;
+
 export interface ProfileService {
   getProfile(): Promise<Profile | null>;
   createOrUpdateProfile(username: string, potential: number): Promise<void>;
   getProfileList(): Promise<string[]>;
   syncProfiles(data: Partial<Profile>[]): Promise<void>;
   importProfile(file: File): Promise<void>;
-  importDB(file: File, profile: Profile): Promise<ImportResult>;
+  importDB(file: File, profile: Profile, report?: ReportProgress): Promise<ImportResult>;
   exportProfile(profile: Profile): Promise<void>;
   useProfile(username: string): Promise<void>;
   addResult(playResult: PlayResult, replace?: boolean): Promise<void>;

@@ -342,14 +342,16 @@ class ProfilePage extends HyplateElement {
       const file = data.get("file");
       if (file instanceof File) {
         try {
+          const message = signal("");
           const result = await loading(
             (async () => {
+              const result = await this.profileService.importDB(file, profile, (msg) => message.set(msg));
               await delay(300);
-              return await this.profileService.importDB(file, profile);
+              return result;
             })(),
-            <div>正在导入成绩……</div>
+            <div>{message}</div>
           );
-          const { count, difficulties } = result;
+          const { count, difficulties, skipped } = result;
           alert(
             <div>
               <p>
@@ -360,7 +362,11 @@ class ProfilePage extends HyplateElement {
                   </>
                 ))}
               </p>
-              <p>共{result.count}个成绩</p>
+              {skipped.length ? <p>跳过：</p> : nil}
+              {skipped.map((msg) => (
+                <p>{msg}</p>
+              ))}
+              <p>共{count}个成绩</p>
             </div>
           );
         } catch (error) {

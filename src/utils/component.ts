@@ -1,6 +1,6 @@
 import { ParseSelector } from "typed-query-selector/parser";
 import { attr, element, listen, registerDirective } from "hyplate";
-import { ClassComponentInstance, CleanUpFunc, JSXDirective } from "hyplate/types";
+import type { ClassComponentInstance, CleanUpFunc, JSXDirective } from "hyplate/types";
 
 export const css = String.raw;
 

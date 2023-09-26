@@ -1,5 +1,5 @@
 import { Attribute, AutoRender, Component, HyplateElement } from "hyplate";
-import { GlobalAttributes, Signal } from "hyplate/types";
+import type { GlobalAttributes, Signal } from "hyplate/types";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di.js";
 import { $AssetsService, AssetsService } from "../../../services/declarations";

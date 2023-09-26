@@ -16,7 +16,7 @@ import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/delay";
 import { clearImages } from "../../../assets/play-result";
-import { FC } from "hyplate/types";
+import type { FC } from "hyplate/types";
 import { Difficulty } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
 export

@@ -1,4 +1,4 @@
-import { WritableSignal } from "hyplate/types";
+import type { WritableSignal } from "hyplate/types";
 import { apkName, getFileHandle, getProjectRootDirectory } from "./shared";
 
 export interface APKResponse {

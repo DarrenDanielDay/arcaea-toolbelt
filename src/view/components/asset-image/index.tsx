@@ -1,6 +1,6 @@
 import loading from "../../../assets/loading.gif";
 import { signal, useAutoRun } from "hyplate";
-import { Signal, HTMLImageElementAttributes } from "hyplate/types";
+import type { Signal, HTMLImageElementAttributes } from "hyplate/types";
 
 type AssetImageProps = JSX.JSXAttributes<Omit<HTMLImageElementAttributes, "src">, HTMLImageElement> & {
   src: Signal<Promise<string | null>>;

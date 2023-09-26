@@ -3,8 +3,7 @@ import "../view/components/fancy-dialog/style.css";
 import { AutoRender, computed, element, mount, nil, signal } from "hyplate";
 import { generate, generateDirectly, generateVersionMeta } from "./auto-generate-data-files";
 import { APKResponse, downloadToLocal, getLatestVersion } from "./get-latest-version";
-import { FC, Signal } from "hyplate/types";
-import { JSXChildNode } from "hyplate/types";
+import type { FC, JSXChildNode, Signal } from "hyplate/types";
 import { apkName, getProjectRootDirectory } from "./shared";
 
 function createModal() {

@@ -169,6 +169,7 @@ export class ProfileServiceImpl implements ProfileService {
           clear,
           note: null,
           no: 0,
+          date: r.date,
         };
       }
       return {
@@ -178,6 +179,7 @@ export class ProfileServiceImpl implements ProfileService {
         no: 0,
         note: r.result,
         score: this.musicPlay.computeScoreResult(this.musicPlay.computeScore(chart, r.result), chart),
+        date: r.date,
       };
     });
 
@@ -194,6 +196,7 @@ export class ProfileServiceImpl implements ProfileService {
     const r10Average = (+profile.potential * 40 - b30Sum) / Math.min(playResults.length, 10);
 
     return {
+      queryTime: Date.now(),
       username: profile.username,
       potential: profile.potential,
       b30: b30,
@@ -220,6 +223,7 @@ scores.shinyPerfectCount,
 scores.perfectCount,
 scores.nearCount,
 scores.missCount,
+scores.date,
 cleartypes.clearType 
 FROM scores JOIN cleartypes
 ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.songDifficulty
@@ -236,6 +240,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       perfectCount: number;
       nearCount: number;
       missCount: number;
+      date: number;
       clearType: number;
     }
     const { columns, values } = scoreQueryResult;
@@ -256,7 +261,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       skipped: [],
     };
     for (const score of scores) {
-      const { songId, songDifficulty, shinyPerfectCount, perfectCount, nearCount, missCount, clearType } = score;
+      const { songId, songDifficulty, shinyPerfectCount, perfectCount, nearCount, missCount, date, clearType } = score;
       const song = songIndex[songId];
       if (!song) {
         result.skipped.push(`未知songId：${songId}`);
@@ -278,6 +283,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         result: noteResult,
         chartId: chart.id,
         clear: this.musicPlay.mapClearType(clearType, shinyPerfectCount, chart),
+        date: this.normalizeDate(date),
       };
       result.difficulties[chart.difficulty]++;
       result.count++;
@@ -456,6 +462,10 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       }
       return isValidProfileV1(profile) || isValidProfileV2(profile);
     });
+  }
+
+  private normalizeDate(date: number): number {
+    return date * 1e6;
   }
 
   async #initSQLJS() {

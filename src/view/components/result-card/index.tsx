@@ -11,6 +11,7 @@ import {
   MusicPlayService,
 } from "../../../services/declarations.js";
 import { AssetImage } from "../asset-image/index.js";
+import { duration } from "../../../utils/time.js";
 
 function formatScore(score: number) {
   const raw = Math.floor(score).toString();
@@ -49,6 +50,8 @@ class ResultCard extends HyplateElement {
   noteResult = signal<Partial<NoteResult>>({});
   scoreResult = signal<ScoreResult | null>(null);
   clearRank = signal<ClearRank | null>(null);
+  playTime = signal<Date | null>(null);
+  now = signal<Date | null>(null);
   hd = signal(false);
   override render() {
     this.effect(() => {
@@ -133,14 +136,29 @@ class ResultCard extends HyplateElement {
           </div>
           <div class="play-result">
             <div class="pure">
-              Pure / <span class="count">{computed(() => this.noteResult().pure ?? "?")}</span>(+
+              Pure/<span class="count">{computed(() => this.noteResult().pure ?? "?")}</span>(+
               <span class="perfect">{computed(() => this.noteResult().perfect ?? "?")}</span>)
             </div>
             <div class="far">
-              Far / <span class="count">{computed(() => this.noteResult().far ?? "?")}</span>
+              Far/<span class="count">{computed(() => this.noteResult().far ?? "?")}</span>
             </div>
             <div class="lost">
-              Lost / <span class="count">{computed(() => this.noteResult().lost ?? "?")}</span>
+              Lost/<span class="count">{computed(() => this.noteResult().lost ?? "?")}</span>
+            </div>
+            <div class="time">
+              <time
+                datetime={computed(() => this.playTime()?.toISOString())}
+                title={computed(() => this.playTime()?.toString())}
+              >
+                {computed(() => {
+                  const now = this.now();
+                  const time = this.playTime();
+                  if (!now || !time) {
+                    return "-";
+                  }
+                  return duration(+time, +now);
+                })}
+              </time>
             </div>
           </div>
         </div>
@@ -156,6 +174,14 @@ class ResultCard extends HyplateElement {
     this.clearRank.set(clear);
     this.noteResult.set(noteResult ?? {});
     this.scoreResult.set(score);
+  }
+
+  setPlayTime(time: number | Date | null) {
+    this.playTime.set(time ? new Date(time) : null);
+  }
+
+  setNow(now: number | Date) {
+    this.now.set(new Date(now));
   }
 
   async setPlayResult(playResult: PlayResult | null) {
@@ -180,6 +206,7 @@ class ResultCard extends HyplateElement {
     } else {
       this.setResult(null, this.musicPlay.computeScoreResult(playResult.score, chart), playResult.clear);
     }
+    this.setPlayTime(playResult.date ?? null);
   }
 
   setBest(bestNo: number | null) {

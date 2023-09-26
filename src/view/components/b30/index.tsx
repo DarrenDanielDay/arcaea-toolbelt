@@ -5,13 +5,16 @@ import { Component, HyplateElement, Show, cssVar, signal } from "hyplate";
 import { Inject } from "../../../services/di.js";
 import { $AssetsService, $ChartService, AssetsService, ChartService } from "../../../services/declarations.js";
 
-const renderB30 = (response: B30Response, now: Date) => {
-  const { b30, b31_39, b30Average, maxPotential, minPotential, potential, r10Average, username } = response;
+const renderB30 = (response: B30Response) => {
+  const { queryTime, b30, b31_39, b30Average, maxPotential, minPotential, potential, r10Average, username } = response;
+  const now = new Date(queryTime);
   const renderBest = (best: BestResultItem) => {
     const card = new ResultCard();
     card.setChart(best.song, best.chart);
     card.setBest(best.no);
     card.setResult(best.note, best.score, best.clear);
+    card.setPlayTime(best.date ?? null);
+    card.setNow(now);
     return card;
   };
   return (
@@ -75,7 +78,7 @@ class Best30 extends HyplateElement {
         this.#updateSize(hd);
       }
     });
-    return <Show when={this.b30}>{(response) => renderB30(response, new Date(Date.now()))}</Show>;
+    return <Show when={this.b30}>{(response) => renderB30(response)}</Show>;
   }
 
   getExportNode() {

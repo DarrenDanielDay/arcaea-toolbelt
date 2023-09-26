@@ -91,10 +91,12 @@ export type PlayResult =
       chartId: string;
       score: number;
       clear: ClearRank | null;
+      date?: number | null;
     }
   | {
       type: "note";
       chartId: string;
       result: NoteResult;
       clear: ClearRank | null;
+      date?: number | null;
     };

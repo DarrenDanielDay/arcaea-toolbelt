@@ -29,9 +29,11 @@ export interface BestResultItem {
   note: NoteResult | null;
   score: ScoreResult;
   clear: ClearRank | null;
+  date?: number | null;
 }
 
 export interface B30Response {
+  queryTime: number;
   username: string;
   potential: string;
   maxPotential: number;

@@ -7,6 +7,7 @@ import { Route } from "../router";
 import { ResultCard } from "../../components/result-card";
 import { PlayResult } from "../../../models/music-play";
 import { confirm } from "../../components/fancy-dialog";
+import { getNow } from "../../../utils/time";
 
 @Component({
   tag: "chart-potential",
@@ -33,6 +34,7 @@ class ChartPotentialPage extends HyplateElement {
         const best = profile?.best?.[chart.id];
         this.currentResult.set(best ?? null);
         this.existingResultCard.setPlayResult(best ?? null);
+        this.existingResultCard.setNow(getNow());
       });
     });
     return (
@@ -75,6 +77,7 @@ class ChartPotentialPage extends HyplateElement {
       await this.profileService.addResult(res);
       this.currentResult.set(res);
       this.existingResultCard.setPlayResult(res);
+      this.existingResultCard.setNow(getNow());
       this.form.chartSelect.searchInput.focus();
     }
   };

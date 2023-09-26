@@ -8,3 +8,9 @@ export const inferRange = (value: number, digit: number, round: boolean): [numbe
 };
 
 export const isInt = (value: number) => value === Math.floor(value);
+
+export const divide = (a: number, b: number) => {
+  const quotient = Math.floor(a / b);
+  const remainder = a - quotient * b;
+  return [quotient, remainder] as const;
+};

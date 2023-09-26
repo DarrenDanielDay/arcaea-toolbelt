@@ -9,6 +9,7 @@ import { download } from "../../../utils/download";
 import { bootstrap } from "../../styles/index";
 import { loading } from "../../components/loading";
 import { future } from "../../../utils/future";
+import { getNow } from "../../../utils/time";
 
 @Component({
   tag: "player-b30",
@@ -60,6 +61,11 @@ class PlayerB39 extends HyplateElement {
   }
 
   exportImg = async () => {
+    const b30 = this.best30.b30();
+    if (!b30) {
+      alert("b30计算尚未完成，请稍后……");
+      return;
+    }
     const exportNode = this.best30.getExportNode();
     const profile = await this.profileService.getProfile();
     if (!exportNode || !profile) return;
@@ -83,7 +89,7 @@ class PlayerB39 extends HyplateElement {
             }
           }, "image/jpeg");
         });
-        const now = new Date();
+        const now = new Date(b30.queryTime);
         const pad2 = (n: number) => `${n}`.padStart(2, "0");
         const filename = `b30 ${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())} ${pad2(
           now.getHours()

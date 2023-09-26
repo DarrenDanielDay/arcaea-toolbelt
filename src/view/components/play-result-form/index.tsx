@@ -22,6 +22,7 @@ import { Component, HyplateElement, cssVar, element, listen } from "hyplate";
 import { addSheet } from "sheetly";
 import { sheet } from "./style.css.js";
 import type { AttachFunc, Rendered } from "hyplate/types";
+import { getDateFromDatetimeLocal, getNow, setDateToDatetimeLocal } from "../../../utils/time";
 
 export
 @Component({
@@ -40,6 +41,7 @@ class PlayResultForm extends HyplateElement {
   perfect = input();
   score = input();
   clear = element("select");
+  playTime = input();
   card = new ResultCard();
   chartSelect = new SearchSelect<SearchResult>(
     (result) => (
@@ -167,6 +169,35 @@ class PlayResultForm extends HyplateElement {
               </select>
             </div>
           </div>
+          <div class="row my-2">
+            <div class="col-auto">
+              <label for="play-time" class="col-form-label">
+                游玩时间（可选）
+              </label>
+            </div>
+            <div class="col">
+              <input
+                ref={this.playTime}
+                type="datetime-local"
+                class="form-control"
+                id="play-time"
+                name="play-time"
+                step={1}
+              />
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onClick={() => {
+                  setDateToDatetimeLocal(this.playTime, getNow());
+                  this.playTime.dispatchEvent(new Event("change", { bubbles: true }));
+                }}
+              >
+                现在
+              </button>
+            </div>
+          </div>
           <div class="my-2">
             <p>谱面成绩预览：</p>
             {this.card}
@@ -186,12 +217,14 @@ class PlayResultForm extends HyplateElement {
       return null;
     }
     const { chartId, score } = scoreResult;
+    const date = getDateFromDatetimeLocal(this.playTime).getTime();
     if (noteResult) {
       return {
         type: "note",
         chartId,
         clear: clearRank,
         result: noteResult,
+        date,
       };
     }
     return {
@@ -199,6 +232,7 @@ class PlayResultForm extends HyplateElement {
       chartId,
       clear: clearRank,
       score,
+      date,
     };
   }
 
@@ -212,6 +246,8 @@ class PlayResultForm extends HyplateElement {
     if (target instanceof HTMLInputElement) {
       if (target === this.chartSelect.searchInput && target.value === this.chartSelect.selectedItem()?.chart?.id) {
         this.handleChartChange();
+      } else if (target === this.playTime) {
+        this.handlePlayTimeChange();
       } else if (target.type === "radio" && target.name === "type") {
         // @ts-expect-error skip radio value type check
         this.handleTypeChange(target.value);
@@ -281,6 +317,11 @@ class PlayResultForm extends HyplateElement {
     }
     const { noteResult, scoreResult, clearRank } = results;
     this.card.setResult(noteResult, scoreResult, clearRank);
+  }
+
+  private handlePlayTimeChange() {
+    this.card.setPlayTime(getDateFromDatetimeLocal(this.playTime));
+    this.card.setNow(getNow());
   }
 
   private getResults(): {

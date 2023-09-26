@@ -101,7 +101,7 @@
   width: 100%;
   font-size: 32px;
   line-height: 48px;
-  grid-template-columns: 6fr 3fr 3fr;
+  grid-template-columns: 6fr 3fr 3fr 1fr;
 }
 
 .pure {

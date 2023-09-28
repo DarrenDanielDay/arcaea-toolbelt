@@ -265,8 +265,18 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     };
     return songData;
   };
-  const songsData = await concurrently(songs, getOneSong, 6);
-  songsData.push();
+  const songsData = await concurrently(
+    songs,
+    async (song) => {
+      try {
+        return await getOneSong(song);
+      } catch (error) {
+        console.error(`获取${song.name}信息失败`, error);
+        throw error;
+      }
+    },
+    6
+  );
   (() => {
     // Last比较特殊，有五个谱面，两个byd难度和三个曲绘，直接作为固定内容处理
     const song: Partial<Record<Difficulty, number>> = {

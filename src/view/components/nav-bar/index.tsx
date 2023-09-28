@@ -29,7 +29,7 @@ class NavBar extends HyplateElement {
     return (
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#" onDblclick={this.showVersion}>
+          <a class="navbar-brand" href="#" onClick={this.showVersion}>
             <img src={icon} alt="Logo" width="24" height="24" class="d-inline-block align-text-top" />
             {" Arcaea Toolbelt "}
           </a>
@@ -69,7 +69,8 @@ class NavBar extends HyplateElement {
     );
   }
 
-  showVersion = async () => {
+  showVersion = async (e: Event) => {
+    e.preventDefault();
     const chartStats = await this.chart.getStatistics();
     const musicPlayStats = await this.musicPlay.getStatistics();
     alert(
@@ -78,7 +79,7 @@ class NavBar extends HyplateElement {
         <div style="display: flex; justify-content: center;">
           <img src={icon}></img>
         </div>
-        <p>commit SHA: {process.env.COMMIT_SHA}</p>
+        <p>commit SHA: {process.env.COMMIT_SHA?.slice(8)}</p>
         <p>数据更新时间：{new Date(meta.time).toLocaleString()}</p>
         <p>
           Arcaea版本: {meta.version}{" "}

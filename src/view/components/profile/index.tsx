@@ -2,16 +2,14 @@ import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
 import {
-  $ChartService,
   $MusicPlayService,
   $ProfileService,
   BestStatistics,
-  ChartService,
   MusicPlayService,
   ProfileService,
 } from "../../../services/declarations";
 import { FancyDialog, alert, confirm } from "../fancy-dialog";
-import { AutoRender, Component, Future, HyplateElement, computed, element, mount, nil, signal } from "hyplate";
+import { AutoRender, Component, Future, HyplateElement, computed, element, nil, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/time";
@@ -19,6 +17,8 @@ import { clearImages } from "../../../assets/play-result";
 import type { FC } from "hyplate/types";
 import { Difficulty } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
+import { RouteLink } from "../route-link";
+~RouteLink;
 export
 @Component({
   tag: "profile-page",
@@ -119,11 +119,29 @@ class ProfilePage extends HyplateElement {
         </div>
         <div class="row m-3">
           <p>
-            关于如何获取本地存档<code>st3</code>文件，可参考
+            存档用于保存谱面成绩，进行
+            <route-link path="/b30">b30</route-link>的计算和一些相关统计，以及保存角色数据进行爬梯相关计算。
+          </p>
+          <p>
+            本站支持解析Arcaea本地存档<code>st3</code>文件并导入成绩到存档。关于如何获取<code>st3</code>文件，可参考
             <a href="docs/mumu-adb.html" target="_blank">
               使用MuMu模拟器和adb获取存档
             </a>
+            ，或者
+            <a href="https://space.bilibili.com/171403897" target="_blank">
+              RTE
+            </a>
+            的视频
+            <a href="https://www.bilibili.com/video/BV1kp4y1F7Jw/" target="_blank">
+              BV1kp4y1F7Jw
+            </a>
             。
+          </p>
+          <p>
+            本站也支持<route-link path="/chart-ptt">手动录入成绩</route-link>。
+            <strong>存档的数据全部保存在浏览器内</strong>，在清除浏览器缓存后，存档内的数据将会永远丢失。因此
+            <strong>若通过手动录入谱面成绩，请自行定期导出JSON进行备份</strong>
+            ，否则可能会出现需要重新录入的麻烦。
           </p>
           <p>
             本工具有一个配套的脚本，可以用于在{this.renderArcaeaOfficialLink()}

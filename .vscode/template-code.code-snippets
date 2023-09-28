@@ -14,6 +14,40 @@
       "})",
       "class $2 extends HyplateElement {}"
     ],
-    "description": "Log output to console"
+    "description": "simple component"
+  },
+  "Component With attributes": {
+    "scope": "javascript,typescript,typescriptreact",
+    "prefix": "comp-attr",
+    "body": [
+      "import { sheet } from \"./style.css.js\";",
+      "import { Component, HyplateElement } from \"hyplate\";",
+      "import type { GlobalAttributes } from \"hyplate/types\";",
+      "import { bootstrap } from \"../../styles\";",
+      "",
+      "export interface $2Props {",
+      "",
+      "}",
+      "",
+      "export",
+      "@Component({",
+      "  tag: \"$1\",",
+      "  styles: [bootstrap, sheet],",
+      "})",
+      "class $2 extends HyplateElement {",
+      "  override render() {",
+      "",
+      "  }",
+      "}",
+      "",
+      "declare global {",
+      "  namespace JSX {",
+      "    interface IntrinsicElements {",
+      "      \"$1\": JSXAttributes<$2Props & GlobalAttributes, $2>;",
+      "    }",
+      "  }",
+      "}"
+    ],
+    "description": "simple component"
   }
 }

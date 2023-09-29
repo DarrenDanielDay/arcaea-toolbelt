@@ -29,6 +29,7 @@ export function mergeIntoSongData(
   const difficulties = Object.values(Difficulty);
   return songList.songs.map((song) => {
     const songId = song.id;
+    // TODO 合并处理旧数据？
     const old = oldIndex[songId];
     const extra = extraIndex[songId];
     const charts: Chart[] = [];
@@ -64,7 +65,6 @@ export function mergeIntoSongData(
     }
     const songData: SongData = {
       bpm: song.bpm,
-      cover: old?.cover || "",
       id: songId,
       name: song.title_localized.en,
       pack: getPackName(packIndex, song),

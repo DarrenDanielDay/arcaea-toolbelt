@@ -260,7 +260,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     */
     const songData: SongData = {
       bpm,
-      cover,
+      // cover,
       id: songId,
       name,
       pack: getPackName(songListSong),
@@ -296,7 +296,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     const pack = "Silent Answer";
     songsData.push({
       bpm: "175",
-      cover: wikiURL("/images/thumb/a/a2/Songs_last.jpg/256px-Songs_last.jpg").toString(),
+      // cover: wikiURL("/images/thumb/a/a2/Songs_last.jpg/256px-Songs_last.jpg").toString(),
       id: last,
       name: "Last",
       pack,
@@ -329,7 +329,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     });
     songsData.push({
       bpm: "175",
-      cover: wikiURL("/images/thumb/9/92/Songs_lasteternity.jpg/256px-Songs_lasteternity.jpg").toString(),
+      // cover: wikiURL("/images/thumb/9/92/Songs_lasteternity.jpg/256px-Songs_lasteternity.jpg").toString(),
       id: lasteternity,
       name: "Last | Eternity",
       pack,

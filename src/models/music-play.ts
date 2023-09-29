@@ -6,7 +6,10 @@ export interface Song {
    */
   // sid: string;
   name: string;
+  /*
+  不再使用
   cover: string;
+  */
   pack: string;
   dl: boolean;
   /**

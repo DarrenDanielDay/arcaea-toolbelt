@@ -10,9 +10,11 @@ import {
   RewardType,
 } from "../models/world-mode";
 import {
+  $AssetsResolver,
   $ChartService,
   $MusicPlayService,
   $WorldModeService,
+  AssetsResolver,
   ChartService,
   ChartStatistics,
   InverseProgressSolution,
@@ -35,14 +37,18 @@ const BASE_BOOST = 27;
 const POTENTIAL_FACTOR = 2.45;
 const CHARACTER_FACTOR_RATIO = 50;
 @Injectable({
-  requires: [$ChartService, $MusicPlayService] as const,
+  requires: [$ChartService, $MusicPlayService, $AssetsResolver] as const,
   implements: $WorldModeService,
 })
 export class WorldModeServiceImpl implements WorldModeService {
   itemImages = Object.fromEntries(items.map((item) => [item.name, item.img]));
   #characterIndex: Indexed<CharacterData> | null = null;
   #songIndex: SongIndex | null = null;
-  constructor(private readonly chart: ChartService, private readonly music: MusicPlayService) {}
+  constructor(
+    private readonly chart: ChartService,
+    private readonly music: MusicPlayService,
+    private readonly resolver: AssetsResolver
+  ) {}
 
   async getLongtermMaps(): Promise<Chapter[]> {
     const chapters = await import("../data/world-maps-longterm.json");
@@ -318,7 +324,11 @@ export class WorldModeServiceImpl implements WorldModeService {
                     if (!song) {
                       debugger;
                     }
-                    return { ...reward, img: song.cover, name: song.name };
+                    return {
+                      ...reward,
+                      img: this.resolver.resolveCover(song.charts[2]!, song, false).href,
+                      name: song.name,
+                    };
                   default:
                     throw new Error(`Unknown reward type: ${type}`);
                 }

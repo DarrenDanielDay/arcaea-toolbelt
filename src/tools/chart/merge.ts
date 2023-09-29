@@ -1,6 +1,7 @@
 import { Chart, ChartOverride, Difficulty, SongData } from "../../models/music-play";
 import { Indexed, indexBy } from "../../utils/collections";
 import { PackList, SongList, Song, Pack } from "../packed-data";
+import { AssetsInfo } from "./assets";
 import { Alias, ExtraSongData } from "./shared";
 
 const getPackName = (packIndex: Indexed<Pack>, song: Song) => {
@@ -20,12 +21,14 @@ export function mergeIntoSongData(
   songList: SongList,
   packList: PackList,
   extraData: ExtraSongData[],
-  alias: Alias[]
+  alias: Alias[],
+  assetsInfo: AssetsInfo[]
 ): SongData[] {
   const oldIndex = indexBy(oldData, (song) => song.id);
   const packIndex = indexBy(packList.packs, (pack) => pack.id);
   const aliasIndex = indexBy(alias, (a) => a.id);
   const extraIndex = indexBy(extraData, (extra) => extra.id);
+  const assetsIndex = indexBy(assetsInfo, (a) => a.id);
   const difficulties = Object.values(Difficulty);
   return songList.songs.map((song) => {
     const songId = song.id;
@@ -67,6 +70,7 @@ export function mergeIntoSongData(
       bpm: song.bpm,
       id: songId,
       name: song.title_localized.en,
+      covers: assetsIndex[songId]!.covers,
       pack: getPackName(packIndex, song),
       dl: !!song.remote_dl,
       alias: aliasIndex[songId]?.alias ?? [],

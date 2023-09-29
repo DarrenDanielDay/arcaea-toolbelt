@@ -14,6 +14,16 @@ export async function patchJSON(root: FileSystemDirectoryHandle, json: any, path
   await writeJSON(file, Object.assign(original, json));
 }
 
+export async function getDirectoryHandle(root: FileSystemDirectoryHandle, path: string) {
+  const segments = path.split(/[\\\/]/).filter((s) => !!s);
+  let dir = root;
+  for (let i = 0, l = segments.length; i < l; i++) {
+    const segment = segments[i]!;
+    dir = await dir.getDirectoryHandle(segment, { create: true });
+  }
+  return dir;
+}
+
 export async function getFileHandle(root: FileSystemDirectoryHandle, path: string) {
   const segments = path.split(/[\\\/]/).filter((s) => !!s);
   let dir = root;

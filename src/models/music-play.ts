@@ -10,6 +10,7 @@ export interface Song {
   不再使用
   cover: string;
   */
+  covers: string[];
   pack: string;
   dl: boolean;
   /**

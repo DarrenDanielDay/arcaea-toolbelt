@@ -21,9 +21,10 @@ export class AssetsResolverImpl implements AssetsResolver {
     const folder = !song.dl ? song.id : `dl_${song.id}`;
     const base = `songs/${folder}`;
     const suffix = hd ? ".jpg" : "_256.jpg";
-    const path = chart.override?.cover
-      ? `${base}/${this.#difficulty[chart.difficulty]}${suffix}`
-      : `${base}/1080_base${suffix}`;
+    const version = chart.override?.cover ? `${this.#difficulty[chart.difficulty]}` : "base";
+    const possible = ["", "1080_"].map((prefix) => `${prefix}${version}${suffix}`);
+    const file = song.covers.find((cover) => possible.includes(cover));
+    const path = `${base}/${file}`;
     return this.resolve(path);
   }
   resolveClearImg(clearType: ClearRank): URL {

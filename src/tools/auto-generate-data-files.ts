@@ -6,11 +6,7 @@ import { PackList, SongList } from "./packed-data";
 import { indexBy } from "../utils/collections";
 import {
   getProjectRootDirectory,
-  readJSON,
-  getFileHandle,
   saveJSON,
-  readAsText,
-  extractName,
   patchJSON,
   CACHE_EXPIRE_TIME,
   miscDataClient,
@@ -24,6 +20,7 @@ import { getChartDataFromFandomWiki } from "./chart/fandom-wiki";
 import { mergeIntoSongData } from "./chart/merge";
 import { getAliasFromArcaeaInfinity } from "./chart/arcaea-infinity";
 import { Alias, ExtraSongData, mergeArray } from "./chart/shared";
+import { AssetsInfo, getAssetsInfo } from "./chart/assets";
 
 const resolver = new AssetsResolverImpl();
 
@@ -82,6 +79,7 @@ const worldMapLongTermPath = "/src/data/world-maps-longterm.json";
 const worldMapEventsPath = "/src/data/world-maps-events.json";
 const extraDataPath = "/src/data/notes-and-constants.json";
 const aliasPath = "/src/data/alias.json";
+const assetsInfoPath = "/src/data/assets-info.json";
 const chartDataPath = "/src/data/chart-data.json";
 
 export async function updateNotesAndConstantsFileViaFandomWiki() {
@@ -125,7 +123,8 @@ export async function generateMergedChartData() {
   const packList = await getPackList();
   const extraData = await readProjectJSON<ExtraSongData[]>(extraDataPath);
   const alias = await readProjectJSON<Alias[]>(aliasPath);
-  const newData = mergeIntoSongData(old, songList, packList, extraData, alias);
+  const assetsInfo = await readProjectJSON<AssetsInfo[]>(assetsInfoPath);
+  const newData = mergeIntoSongData(old, songList, packList, extraData, alias, assetsInfo);
   await saveProjectJSON(sortChartDataBySongListIdx(newData, songList), chartDataPath);
 }
 

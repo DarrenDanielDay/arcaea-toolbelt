@@ -61,7 +61,14 @@ class PlayResultForm extends HyplateElement {
         </div>
       </>
     ),
-    (text) => this.chartService.searchChart(text),
+    async (text) => {
+      const results = await this.chartService.searchChart(text);
+      // 避免一次性加载过多图片
+      if (results.length > 10) {
+        return results.slice(0, 10);
+      }
+      return results;
+    },
     (item) => item.chart.id
   );
 

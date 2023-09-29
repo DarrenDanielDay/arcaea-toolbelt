@@ -17,6 +17,11 @@ export interface Alias {
   alias: string[];
 }
 
+export interface AssetsInfo {
+  id: string;
+  covers: string[];
+}
+
 export function matchDuplicatedName(songs: Song[], difficulties: (string | null)[]): Song | null {
   if (songs.length === 1) return songs[0]!;
   const song = songs.find((s) => {

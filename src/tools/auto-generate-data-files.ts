@@ -19,8 +19,7 @@ import { AssetsResolverImpl } from "../services/assets-resolver";
 import { getChartDataFromFandomWiki } from "./chart/fandom-wiki";
 import { mergeIntoSongData } from "./chart/merge";
 import { getAliasFromArcaeaInfinity } from "./chart/arcaea-infinity";
-import { Alias, ExtraSongData, mergeArray } from "./chart/shared";
-import { AssetsInfo, getAssetsInfo } from "./chart/assets";
+import { Alias, AssetsInfo, ExtraSongData, mergeArray } from "./chart/shared";
 
 const resolver = new AssetsResolverImpl();
 

@@ -19,7 +19,7 @@ async function main() {
 
   /**
    * @param {import('../src/tools/packed-data').Song} song
-   * @returns {Promise<import('../src/tools/chart/assets').AssetsInfo>}
+   * @returns {Promise<import('../src/tools/chart/shared').AssetsInfo>}
    */
   async function getSongAssets(song) {
     const folder = song.remote_dl ? `dl_${song.id}` : song.id;
@@ -29,7 +29,7 @@ async function main() {
       covers: children.filter((file) => file.endsWith(".jpg")),
     };
   }
-  /** @type {import('../src/tools/chart/assets').AssetsInfo[]} */
+  /** @type {import('../src/tools/chart/shared').AssetsInfo[]} */
   const assetsInfo = await Promise.all(songList.songs.map(getSongAssets));
   await writeFile("src/data/assets-info.json", JSON.stringify(assetsInfo, undefined, 2));
   console.log(

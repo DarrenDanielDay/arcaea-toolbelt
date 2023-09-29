@@ -1,8 +1,7 @@
 import { Chart, ChartOverride, Difficulty, SongData } from "../../models/music-play";
 import { Indexed, indexBy } from "../../utils/collections";
 import { PackList, SongList, Song, Pack } from "../packed-data";
-import { AssetsInfo } from "./assets";
-import { Alias, ExtraSongData } from "./shared";
+import { Alias, AssetsInfo, ExtraSongData } from "./shared";
 
 const getPackName = (packIndex: Indexed<Pack>, song: Song) => {
   const pack = packIndex[song.set];

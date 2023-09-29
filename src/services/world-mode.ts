@@ -233,13 +233,26 @@ export class WorldModeServiceImpl implements WorldModeService {
     return [this.inverseConstant(min, score), this.inverseConstant(max, score)];
   }
 
-  inverseBeyondBoost(difference: number, score: number): number {
+  inverseBeyondBoost(difference: number, score: number, raw?: boolean): number {
     const potentialRoot = (difference - BASE_BOOST) / POTENTIAL_FACTOR;
     if (potentialRoot < 0) {
       return NaN;
     }
     const potential = potentialRoot ** 2;
-    return this.music.inverseConstant(potential, score);
+    return this.music.inverseConstant(potential, score, raw);
+  }
+
+  inferConstant(min: number, max: number): number[] {
+    const possible: number[] = [];
+    const min10 = Math.ceil(min * 10);
+    const max10 = Math.floor(max * 10);
+    for (let rating10 = min10; rating10 <= max10; rating10++) {
+      // level 7 以下最小单位为.5
+      if (rating10 >= 80 || rating10 % 5 === 0) {
+        possible.push(rating10 / 10);
+      }
+    }
+    return possible;
   }
 
   private getCharacterIndex() {

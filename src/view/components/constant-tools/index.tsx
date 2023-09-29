@@ -31,7 +31,7 @@ class ConstantTools extends HyplateElement {
         {this.characterPicker}
         <div class="title">Step法</div>
         <div class="mx-3">
-          <div class="row">
+          <div class="row my-3">
             <div class="col-auto">
               <label for="step-score" class="col-form-label">
                 分数
@@ -47,6 +47,8 @@ class ConstantTools extends HyplateElement {
                 id="step-score"
               ></input>
             </div>
+          </div>
+          <div class="row my-3">
             <div class="col-auto">
               <label for="play-result" class="col-form-label">
                 游玩结果
@@ -67,7 +69,7 @@ class ConstantTools extends HyplateElement {
               <span class="form-text">以下用于辅助计算更精确的游玩结果范围</span>
             </div>
           </div>
-          <div class="row">
+          <div class="row my-3">
             <div class="col-auto">
               <label for="progress" class="col-form-label">
                 前进步数（不含技能、残片、源韵强化等加成）
@@ -77,10 +79,10 @@ class ConstantTools extends HyplateElement {
               <input type="number" h-model:number={this.progress} class="form-control" id="progress"></input>
             </div>
           </div>
-          <div class="row">
+          <div class="row my-3">
             <div class="col-auto">
               <label for="step" class="col-form-label">
-                角色step
+                角色step（若角色游玩后升级，应取升级后step）
               </label>
             </div>
             {renderCharacterStepInput(this.characterPicker, this.step, "step")}
@@ -94,7 +96,7 @@ class ConstantTools extends HyplateElement {
               const result = this.worldMode.inverseConstantRange(playResult, score, step, progress);
               if (!result) return nil;
               const [min, max] = result;
-              return this.#renderTextRow(` 推测定数范围：[${min}, ${max}]`);
+              return this.#renderTextRow(this.#inferRange(min, max));
             }}
           </AutoRender>
         </div>
@@ -108,7 +110,7 @@ class ConstantTools extends HyplateElement {
             </a>
             集成了beyond boost测算定数功能，此处的手动录入仅作为不使用该脚本的备选工具。
           </div>
-          <div class="row">
+          <div class="row my-3">
             <div class="col-auto">
               <label for="beyond-boost1" class="col-form-label">
                 游玩前Beyond能量
@@ -124,6 +126,8 @@ class ConstantTools extends HyplateElement {
                 id="beyond-boost1"
               ></input>
             </div>
+          </div>
+          <div class="row my-3">
             <div class="col-auto">
               <label for="beyond-score" class="col-form-label">
                 分数
@@ -138,6 +142,8 @@ class ConstantTools extends HyplateElement {
                 id="beyond-score"
               ></input>
             </div>
+          </div>
+          <div class="row my-3">
             <div class="col-auto">
               <label for="beyond-boost2" class="col-form-label">
                 游玩后Beyond能量
@@ -169,13 +175,11 @@ class ConstantTools extends HyplateElement {
               }
               if (isInt(byd1) && isInt(byd2)) {
                 const [min, max] = inferRange(byd2 - byd1, 1, false);
-                return this.#renderTextRow(
-                  `推测定数范围：[${this.worldMode.inverseBeyondBoost(min, score)}, ${this.worldMode.inverseBeyondBoost(
-                    max,
-                    score
-                  )}]`
-                );
+                const minConstant = this.worldMode.inverseBeyondBoost(min, score, true);
+                const maxConstant = this.worldMode.inverseBeyondBoost(max, score, true);
+                return this.#renderTextRow(this.#inferRange(minConstant, maxConstant));
               }
+              // 非整数输入认为是接口弄来的准确数据
               return this.#renderTextRow(`推测定数：${this.worldMode.inverseBeyondBoost(byd2 - byd1, score)}`);
             }}
           </AutoRender>
@@ -190,5 +194,9 @@ class ConstantTools extends HyplateElement {
         <div class="col-auto">{text}</div>
       </div>
     );
+  }
+
+  #inferRange(min: number, max: number) {
+    return `推测定数范围：[${min}, ${max}] => ${this.worldMode.inferConstant(min, max).join(" or ")}`;
   }
 }

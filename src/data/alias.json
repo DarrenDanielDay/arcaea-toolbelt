@@ -1,0 +1,2448 @@
+[
+  {
+    "id": "aegleseeker",
+    "alias": [
+      "光追",
+      "RTX",
+      "辉神星",
+      "寻星者",
+      "追星者",
+      "占星者",
+      "星探",
+      "追光者"
+    ]
+  },
+  {
+    "id": "aidrew",
+    "alias": []
+  },
+  {
+    "id": "aiueoon",
+    "alias": []
+  },
+  {
+    "id": "akinokagerou",
+    "alias": [
+      "秋阳炎",
+      "秋之阳炎",
+      "秋的阳炎",
+      "肠炎"
+    ]
+  },
+  {
+    "id": "alexandrite",
+    "alias": [
+      "变石",
+      "空之宝石",
+      "亚历山大石"
+    ]
+  },
+  {
+    "id": "alicealamode",
+    "alias": [
+      "时髦爱丽丝",
+      "时尚爱丽丝"
+    ]
+  },
+  {
+    "id": "alicessuitcase",
+    "alias": [
+      "爱丽丝的手提箱",
+      "爱丽丝的行李箱"
+    ]
+  },
+  {
+    "id": "altair",
+    "alias": [
+      "牛郎星",
+      "牵牛星",
+      "阿特尔"
+    ]
+  },
+  {
+    "id": "altale",
+    "alias": [
+      "机器人"
+    ]
+  },
+  {
+    "id": "alterale",
+    "alias": []
+  },
+  {
+    "id": "amazingmightyyyy",
+    "alias": [
+      "大惊",
+      "上午"
+    ]
+  },
+  {
+    "id": "amygdata",
+    "alias": [
+      "杏仁体数据",
+      "杏仁核数据",
+      "omg打他"
+    ]
+  },
+  {
+    "id": "anokumene",
+    "alias": [
+      "无人区",
+      "无人禁区"
+    ]
+  },
+  {
+    "id": "antagonism",
+    "alias": [
+      "圆对立",
+      "对抗",
+      "异议",
+      "敌对",
+      "敌意",
+      "对立撸串",
+      "对立烤串"
+    ]
+  },
+  {
+    "id": "antithese",
+    "alias": [
+      "对比"
+    ]
+  },
+  {
+    "id": "aprilshowers",
+    "alias": [
+      "四月雨",
+      "四月的雨"
+    ]
+  },
+  {
+    "id": "arcahv",
+    "alias": [
+      "坠落",
+      "聚合"
+    ]
+  },
+  {
+    "id": "arcanaeden",
+    "alias": [
+      "伊甸",
+      "阿尔卡那",
+      "阿卡纳",
+      "塔罗牌",
+      "奥秘伊甸"
+    ]
+  },
+  {
+    "id": "ascent",
+    "alias": [
+      "双子上升",
+      "双飞",
+      "双子贴贴"
+    ]
+  },
+  {
+    "id": "astraltale",
+    "alias": [
+      "星语",
+      "魂语",
+      "星传说",
+      "星月神话",
+      "星神话"
+    ]
+  },
+  {
+    "id": "astrawalkthrough",
+    "alias": [
+      "天体演练"
+    ]
+  },
+  {
+    "id": "aterlbus",
+    "alias": [
+      "黑白之战",
+      "ab"
+    ]
+  },
+  {
+    "id": "attraqtia",
+    "alias": []
+  },
+  {
+    "id": "aurgelmir",
+    "alias": [
+      "披萨饼"
+    ]
+  },
+  {
+    "id": "auxesia",
+    "alias": [
+      "夏歌",
+      "自闭症",
+      "夏日曲"
+    ]
+  },
+  {
+    "id": "avantraze",
+    "alias": [
+      "前卫剃须刀",
+      "狂欢之前",
+      "毁灭之前"
+    ]
+  },
+  {
+    "id": "avril",
+    "alias": []
+  },
+  {
+    "id": "axiumcrisis",
+    "alias": [
+      "多轴危机",
+      "轴心危机",
+      "对立捆绑",
+      "对立泡温泉"
+    ]
+  },
+  {
+    "id": "babaroque",
+    "alias": [
+      "BBQ",
+      "BBRQ",
+      "烧烤",
+      "巴巴洛克",
+      "叭叭雀",
+      "8bq"
+    ]
+  },
+  {
+    "id": "badtek",
+    "alias": [
+      "坏锤子"
+    ]
+  },
+  {
+    "id": "bassline",
+    "alias": []
+  },
+  {
+    "id": "battlenoone",
+    "alias": [
+      "NO.1",
+      "打架第一名"
+    ]
+  },
+  {
+    "id": "besideyou",
+    "alias": [
+      "与你同在",
+      "在你身侧"
+    ]
+  },
+  {
+    "id": "bethere",
+    "alias": [
+      "在那里"
+    ]
+  },
+  {
+    "id": "blacklotus",
+    "alias": [
+      "黑莲"
+    ]
+  },
+  {
+    "id": "blackterritory",
+    "alias": [
+      "黑域",
+      "黑色领域",
+      "黑色领地"
+    ]
+  },
+  {
+    "id": "blaster",
+    "alias": [
+      "轰击手",
+      "爆破手"
+    ]
+  },
+  {
+    "id": "blockedlibrary",
+    "alias": [
+      "封闭图书馆",
+      "封锁图书馆",
+      "图书馆关门"
+    ]
+  },
+  {
+    "id": "blossoms",
+    "alias": []
+  },
+  {
+    "id": "blrink",
+    "alias": [
+      "BLINK",
+      "对立眨眼",
+      "对立测视力",
+      "对立唱情歌",
+      "融辉"
+    ]
+  },
+  {
+    "id": "bluecomet",
+    "alias": [
+      "蓝星",
+      "蓝色彗星"
+    ]
+  },
+  {
+    "id": "bluerose",
+    "alias": [
+      "蓝玫瑰",
+      "蓝色玫瑰",
+      "蓝色妖姬"
+    ]
+  },
+  {
+    "id": "bookmaker",
+    "alias": [
+      "造书者",
+      "写书人",
+      "印刷工",
+      "图书制造者"
+    ]
+  },
+  {
+    "id": "brandnewworld",
+    "alias": [
+      "全新世界"
+    ]
+  },
+  {
+    "id": "buchigireberserker",
+    "alias": [
+      "狂战士"
+    ]
+  },
+  {
+    "id": "bulletwaiting",
+    "alias": []
+  },
+  {
+    "id": "callimakarma",
+    "alias": [
+      "卡利玛",
+      "水晶光",
+      "玛卡巴卡"
+    ]
+  },
+  {
+    "id": "callmyname",
+    "alias": [
+      "腿二",
+      "腿2",
+      "腿歌2",
+      "冰激凌",
+      "叫我名字",
+      "呼唤我的名字",
+      "冰淇淋"
+    ]
+  },
+  {
+    "id": "capella",
+    "alias": [
+      "寒红",
+      "冬红",
+      "冬日红"
+    ]
+  },
+  {
+    "id": "carminescythe",
+    "alias": [
+      "红镰"
+    ]
+  },
+  {
+    "id": "chaos",
+    "alias": [
+      "混沌"
+    ]
+  },
+  {
+    "id": "chelsea",
+    "alias": [
+      "切尔西"
+    ]
+  },
+  {
+    "id": "chronicle",
+    "alias": [
+      "编年史"
+    ]
+  },
+  {
+    "id": "chronostasis",
+    "alias": [
+      "时停",
+      "停表错觉",
+      "齿轮"
+    ]
+  },
+  {
+    "id": "climax",
+    "alias": [
+      "高潮",
+      "妖艳魔男",
+      "妖艳猛男"
+    ]
+  },
+  {
+    "id": "clotho",
+    "alias": [
+      "观星者",
+      "行星观测者"
+    ]
+  },
+  {
+    "id": "coastalhighway",
+    "alias": [
+      "海岸公路",
+      "海岸高速路"
+    ]
+  },
+  {
+    "id": "cocorocosmetic",
+    "alias": [
+      "条形码"
+    ]
+  },
+  {
+    "id": "conflict",
+    "alias": [
+      "冲突",
+      "一路公交车"
+    ]
+  },
+  {
+    "id": "corpssansorganes",
+    "alias": [
+      "里黄",
+      "铜魔王",
+      "空壳",
+      "无器官的躯体"
+    ]
+  },
+  {
+    "id": "corruption",
+    "alias": [
+      "腐败",
+      "死机",
+      "玩蛇博物馆",
+      "腐化"
+    ]
+  },
+  {
+    "id": "cosmica",
+    "alias": [
+      "cos米",
+      "宇宙Luna"
+    ]
+  },
+  {
+    "id": "cosmopop",
+    "alias": [
+      "cpfc",
+      "芭芭拉"
+    ]
+  },
+  {
+    "id": "crimsonthrone",
+    "alias": []
+  },
+  {
+    "id": "crossover",
+    "alias": [
+      "穿过",
+      "超度"
+    ]
+  },
+  {
+    "id": "crosssoul",
+    "alias": [
+      "穿魂",
+      "十字",
+      "十字架",
+      "十字灵魂"
+    ]
+  },
+  {
+    "id": "crystalgravity",
+    "alias": [
+      "晶体重力",
+      "水晶重力",
+      "重力晶"
+    ]
+  },
+  {
+    "id": "cyaegha",
+    "alias": [
+      "绿魔王",
+      "咲弥削吐司",
+      "咲弥削面包"
+    ]
+  },
+  {
+    "id": "cyanine",
+    "alias": [
+      "花青",
+      "地球仪",
+      "启示录",
+      "核弹"
+    ]
+  },
+  {
+    "id": "cyberneciacatharsis",
+    "alias": [
+      "控制宣泄",
+      "蓝角"
+    ]
+  },
+  {
+    "id": "cycles",
+    "alias": []
+  },
+  {
+    "id": "dandelion",
+    "alias": [
+      "蒲公英"
+    ]
+  },
+  {
+    "id": "dantalion",
+    "alias": [
+      "但它林",
+      "但塔林",
+      "但他林",
+      "蛋挞狮子",
+      "蛋挞林",
+      "反复横跳"
+    ]
+  },
+  {
+    "id": "darakunosono",
+    "alias": [
+      "堕乐园",
+      "失乐园",
+      "堕落乐园"
+    ]
+  },
+  {
+    "id": "dataerror",
+    "alias": [
+      "数据错误",
+      "数据异常"
+    ]
+  },
+  {
+    "id": "dazzlehop",
+    "alias": []
+  },
+  {
+    "id": "ddd",
+    "alias": [
+      "3d",
+      "三D",
+      "D立方",
+      "单推"
+    ]
+  },
+  {
+    "id": "defection",
+    "alias": [
+      "背叛",
+      "脱逃",
+      "叛逃",
+      "凝视",
+      "叛离之时"
+    ]
+  },
+  {
+    "id": "dement",
+    "alias": []
+  },
+  {
+    "id": "devillicsphere",
+    "alias": [
+      "恶魔球"
+    ]
+  },
+  {
+    "id": "dialnote",
+    "alias": []
+  },
+  {
+    "id": "diode",
+    "alias": [
+      "二极管",
+      "霓虹灯管",
+      "免费红"
+    ]
+  },
+  {
+    "id": "divinelight",
+    "alias": [
+      "光速神授说",
+      "无尽圣光",
+      "光授"
+    ]
+  },
+  {
+    "id": "dottodot",
+    "alias": [
+      "DTD",
+      "D2D",
+      "点对点",
+      "草莓"
+    ]
+  },
+  {
+    "id": "dreadnought",
+    "alias": [
+      "无畏舰",
+      "手电筒",
+      "望远镜",
+      "无畏战舰"
+    ]
+  },
+  {
+    "id": "dreamgoeson",
+    "alias": [
+      "梦想启程",
+      "梦开始的地方",
+      "续梦"
+    ]
+  },
+  {
+    "id": "dreaminattraction",
+    "alias": [
+      "美年达"
+    ]
+  },
+  {
+    "id": "drg",
+    "alias": [
+      "大热狗",
+      "删游戏"
+    ]
+  },
+  {
+    "id": "dropdead",
+    "alias": [
+      "摔死"
+    ]
+  },
+  {
+    "id": "dxfullmetal",
+    "alias": [
+      "dx超性能全金属少女",
+      "dx少女",
+      "纵连少女"
+    ]
+  },
+  {
+    "id": "eccentrictale",
+    "alias": [
+      "怪诞",
+      "诡谈",
+      "怪谈"
+    ]
+  },
+  {
+    "id": "einherjar",
+    "alias": [
+      "英灵小丑",
+      "黑剑"
+    ]
+  },
+  {
+    "id": "empireofwinter",
+    "alias": [
+      "冬国",
+      "雪国",
+      "冬之国",
+      "冬双子",
+      "冬日双子",
+      "冬日帝国"
+    ]
+  },
+  {
+    "id": "enchantedlove",
+    "alias": [
+      "迷恋",
+      "赞爱",
+      "附魔爱",
+      "附魔的爱",
+      "青蛙王子",
+      "颂爱"
+    ]
+  },
+  {
+    "id": "energysynergymatrix",
+    "alias": [
+      "ESM跑"
+    ]
+  },
+  {
+    "id": "equilibrium",
+    "alias": [
+      "圆光",
+      "平衡",
+      "接手霸王",
+      "船光"
+    ]
+  },
+  {
+    "id": "espebranch",
+    "alias": [
+      "白道",
+      "白羊"
+    ]
+  },
+  {
+    "id": "essenceoftwilight",
+    "alias": [
+      "黄昏本质",
+      "黄昏的本质",
+      "暮色的本质"
+    ]
+  },
+  {
+    "id": "etherstrike",
+    "alias": [
+      "乙醚冲击",
+      "以太冲击",
+      "启明星",
+      "乙醚上头",
+      "表白",
+      "零光吹唢呐",
+      "乙醚罢工"
+    ]
+  },
+  {
+    "id": "eveninginscarlet",
+    "alias": [
+      "红夜",
+      "马冬梅",
+      "绯红之霄"
+    ]
+  },
+  {
+    "id": "evoltex",
+    "alias": [
+      "E旋风",
+      "演变",
+      "999hits"
+    ]
+  },
+  {
+    "id": "faintlight",
+    "alias": [
+      "微光",
+      "微弱的光"
+    ]
+  },
+  {
+    "id": "fairytale",
+    "alias": [
+      "童话",
+      "草房子",
+      "风车屋",
+      "农场",
+      "新手村"
+    ]
+  },
+  {
+    "id": "fallensquare",
+    "alias": [
+      "塌方"
+    ]
+  },
+  {
+    "id": "farawaylight",
+    "alias": [
+      "远光",
+      "远离光"
+    ]
+  },
+  {
+    "id": "feelssoright",
+    "alias": [
+      "马卡龙",
+      "感觉爽",
+      "感觉好",
+      "感觉右",
+      "感觉很好",
+      "感觉良好",
+      "感觉很右",
+      "感觉很爽"
+    ]
+  },
+  {
+    "id": "felis",
+    "alias": [
+      "菲莉丝",
+      "牌魔王",
+      "凤梨酥",
+      "菲林"
+    ]
+  },
+  {
+    "id": "filament",
+    "alias": [
+      "灯丝",
+      "灯芯"
+    ]
+  },
+  {
+    "id": "finalstep",
+    "alias": []
+  },
+  {
+    "id": "firstsnow",
+    "alias": [
+      "初雪"
+    ]
+  },
+  {
+    "id": "flashback",
+    "alias": [
+      "闪回",
+      "闪退"
+    ]
+  },
+  {
+    "id": "fluffyflash",
+    "alias": []
+  },
+  {
+    "id": "flyburg",
+    "alias": [
+      "飞堡"
+    ]
+  },
+  {
+    "id": "fractureray",
+    "alias": [
+      "里白",
+      "碎光",
+      "骨折光",
+      "骨折射线",
+      "破碎光线",
+      "断裂射线",
+      "散落的光线",
+      "光伸手要钱",
+      "我很可爱请给我钱",
+      "里光",
+      "破碎的光线"
+    ]
+  },
+  {
+    "id": "freefall",
+    "alias": [
+      "自由落体"
+    ]
+  },
+  {
+    "id": "freemyself",
+    "alias": [
+      "解放自我",
+      "释放自我"
+    ]
+  },
+  {
+    "id": "galacticlove",
+    "alias": [
+      "银河之恋"
+    ]
+  },
+  {
+    "id": "galaxyfriends",
+    "alias": [
+      "星系伙伴",
+      "盖乐世",
+      "星朋友"
+    ]
+  },
+  {
+    "id": "garakuta",
+    "alias": [
+      "GDP",
+      "小丑",
+      "绿娃娃",
+      "国内生产总值",
+      "国民生产总值"
+    ]
+  },
+  {
+    "id": "gekka",
+    "alias": [
+      "月华"
+    ]
+  },
+  {
+    "id": "genesis",
+    "alias": [
+      "起源"
+    ]
+  },
+  {
+    "id": "genesischunithm",
+    "alias": []
+  },
+  {
+    "id": "gengaozo",
+    "alias": [
+      "跟哥走"
+    ]
+  },
+  {
+    "id": "genocider",
+    "alias": [
+      "马眼",
+      "灭绝者"
+    ]
+  },
+  {
+    "id": "gimmedablood",
+    "alias": [
+      "渴血",
+      "献血",
+      "给我大菠萝",
+      "给我大血",
+      "血来"
+    ]
+  },
+  {
+    "id": "gimmick",
+    "alias": []
+  },
+  {
+    "id": "givemeanightmare",
+    "alias": [
+      "给我噩梦",
+      "梦魇"
+    ]
+  },
+  {
+    "id": "gloryroad",
+    "alias": [
+      "里红",
+      "光荣之路",
+      "荣耀之路",
+      "王道征途",
+      "王者征途"
+    ]
+  },
+  {
+    "id": "glow",
+    "alias": []
+  },
+  {
+    "id": "goldenslaughterer",
+    "alias": []
+  },
+  {
+    "id": "goodbyemerry",
+    "alias": [
+      "再见玛丽"
+    ]
+  },
+  {
+    "id": "goodtek",
+    "alias": [
+      "好锤子",
+      "良锤",
+      "好锤"
+    ]
+  },
+  {
+    "id": "gothiveofra",
+    "alias": [
+      "蓝蝶",
+      "镭聚",
+      "镭射蜂窝",
+      "燕尾蝶"
+    ]
+  },
+  {
+    "id": "gou",
+    "alias": [
+      "业善"
+    ]
+  },
+  {
+    "id": "grievouslady",
+    "alias": [
+      "里黑",
+      "病女",
+      "对立拉窗帘"
+    ]
+  },
+  {
+    "id": "grimheart",
+    "alias": [
+      "冷酷的心",
+      "黑心",
+      "冰心",
+      "寒心"
+    ]
+  },
+  {
+    "id": "guardina",
+    "alias": [
+      "GD",
+      "监护人"
+    ]
+  },
+  {
+    "id": "halcyon",
+    "alias": [
+      "翡翠鸡",
+      "黄金鸡",
+      "翡翠鸟",
+      "翡翠又鸟"
+    ]
+  },
+  {
+    "id": "hallofmirrors",
+    "alias": [
+      "镜厅"
+    ]
+  },
+  {
+    "id": "harutopia",
+    "alias": [
+      "乌托邦之春",
+      "春之乌托邦"
+    ]
+  },
+  {
+    "id": "headbonkache",
+    "alias": [
+      "敲头",
+      "头疼",
+      "头痛",
+      "脑震荡",
+      "碎颅击"
+    ]
+  },
+  {
+    "id": "hearditsaid",
+    "alias": [
+      "我听到它说"
+    ]
+  },
+  {
+    "id": "heartjackin",
+    "alias": [
+      "心桃杰克",
+      "红桃j"
+    ]
+  },
+  {
+    "id": "heavenlycaress",
+    "alias": [
+      "圣抚"
+    ]
+  },
+  {
+    "id": "heavensdoor",
+    "alias": [
+      "天堂门",
+      "天堂之门",
+      "黑蚊子多"
+    ]
+  },
+  {
+    "id": "hiirogekka",
+    "alias": [
+      "绯色月下"
+    ]
+  },
+  {
+    "id": "hikari",
+    "alias": [
+      "光明",
+      "暗光"
+    ]
+  },
+  {
+    "id": "hivemind",
+    "alias": [
+      "意聚",
+      "意念聚集",
+      "蜂巢思维"
+    ]
+  },
+  {
+    "id": "hybris",
+    "alias": [
+      "傲慢"
+    ]
+  },
+  {
+    "id": "iconoclast",
+    "alias": [
+      "破灭者",
+      "毁灭者",
+      "破旧者",
+      "圣像破坏者"
+    ]
+  },
+  {
+    "id": "ifi",
+    "alias": [
+      "色号",
+      "对立色"
+    ]
+  },
+  {
+    "id": "ignotus",
+    "alias": [
+      "点火",
+      "引燃物"
+    ]
+  },
+  {
+    "id": "ii",
+    "alias": [
+      "马拉松"
+    ]
+  },
+  {
+    "id": "ikazuchi",
+    "alias": [
+      "怒槌",
+      "怒锤",
+      "雷"
+    ]
+  },
+  {
+    "id": "impact",
+    "alias": [
+      "impart"
+    ]
+  },
+  {
+    "id": "impurebird",
+    "alias": [
+      "脏鸟",
+      "污鸟",
+      "不洁白鸟",
+      "不净白鸟",
+      "小男孩"
+    ]
+  },
+  {
+    "id": "infinitestrife",
+    "alias": [
+      "逗号",
+      "无限冲突",
+      "死敌"
+    ]
+  },
+  {
+    "id": "infinity",
+    "alias": [
+      "∞",
+      "X"
+    ]
+  },
+  {
+    "id": "infinityheaven",
+    "alias": [
+      "无限天堂",
+      "无尽天堂",
+      "蔬菜大棚"
+    ]
+  },
+  {
+    "id": "init",
+    "alias": []
+  },
+  {
+    "id": "inkarusi",
+    "alias": []
+  },
+  {
+    "id": "internetoverdose",
+    "alias": [
+      "主播女孩重度依赖",
+      "升天",
+      "糖糖"
+    ]
+  },
+  {
+    "id": "internetyamero",
+    "alias": []
+  },
+  {
+    "id": "izana",
+    "alias": [
+      "哪里功夫高"
+    ]
+  },
+  {
+    "id": "journey",
+    "alias": [
+      "石柱",
+      "旅程"
+    ]
+  },
+  {
+    "id": "jump",
+    "alias": [
+      "跳跃"
+    ]
+  },
+  {
+    "id": "kanagawa",
+    "alias": [
+      "神奈川电脑暗渠",
+      "神奈川电脑下水道"
+    ]
+  },
+  {
+    "id": "kissinglucifer",
+    "alias": [
+      "亲吻路西法",
+      "嘴巴嘟嘟路西法",
+      "亲螺蛳粉"
+    ]
+  },
+  {
+    "id": "kokoro",
+    "alias": []
+  },
+  {
+    "id": "kyogenkigo",
+    "alias": [
+      "狂言绮语",
+      "狂绮",
+      "谬饰"
+    ]
+  },
+  {
+    "id": "lamia",
+    "alias": [
+      "拉面",
+      "拉米亚"
+    ]
+  },
+  {
+    "id": "lapis",
+    "alias": [
+      "青金石",
+      "苍石",
+      "苍姬"
+    ]
+  },
+  {
+    "id": "laqryma",
+    "alias": [
+      "废土",
+      "垃圾岛",
+      "荒原之泪",
+      "荒泪之地",
+      "荒泪之岛",
+      "废土之泪",
+      "垃圾场"
+    ]
+  },
+  {
+    "id": "last",
+    "alias": [
+      "终章",
+      "光和对立贴贴",
+      "Last时刻"
+    ]
+  },
+  {
+    "id": "lastcelebration",
+    "alias": [
+      "最终庆典",
+      "末祝"
+    ]
+  },
+  {
+    "id": "lastendconductor",
+    "alias": []
+  },
+  {
+    "id": "lasteternity",
+    "alias": [
+      "Last永恒",
+      "永恒终局"
+    ]
+  },
+  {
+    "id": "lawlesspoint",
+    "alias": [
+      "无法地点"
+    ]
+  },
+  {
+    "id": "lazyaddiction",
+    "alias": [
+      "懒瘾",
+      "倦瘾"
+    ]
+  },
+  {
+    "id": "lethaeus",
+    "alias": [
+      "黄魔王",
+      "表黄"
+    ]
+  },
+  {
+    "id": "letsrock",
+    "alias": []
+  },
+  {
+    "id": "letyoudivermx",
+    "alias": [
+      "lyd",
+      "lud",
+      "让你下潜",
+      "nitro die"
+    ]
+  },
+  {
+    "id": "libertas",
+    "alias": [
+      "自主神"
+    ]
+  },
+  {
+    "id": "lifeispiano",
+    "alias": [
+      "生命如琴"
+    ]
+  },
+  {
+    "id": "lightningscrew",
+    "alias": [
+      "闪电螺丝",
+      "白姬喜怒哀乐"
+    ]
+  },
+  {
+    "id": "lightsofmuse",
+    "alias": [
+      "灵光乍现"
+    ]
+  },
+  {
+    "id": "linearaccelerator",
+    "alias": [
+      "线性加速器"
+    ]
+  },
+  {
+    "id": "livefastdieyoung",
+    "alias": [
+      "活的快死的早",
+      "早死早超生",
+      "早生早死",
+      "英年早逝",
+      "里eto",
+      "快活早死",
+      "及时行乐"
+    ]
+  },
+  {
+    "id": "loschen",
+    "alias": [
+      "湮灭",
+      "洛神",
+      "螺丝陈"
+    ]
+  },
+  {
+    "id": "lostcivilization",
+    "alias": [
+      "失落文明",
+      "失落的文明",
+      "失落遗迹",
+      "韵律八点",
+      "韵律几点",
+      "我的天啊你看看都几点了",
+      "钟"
+    ]
+  },
+  {
+    "id": "lostdesire",
+    "alias": [
+      "失欲",
+      "失落的欲望",
+      "失去感觉了",
+      "失去欲望"
+    ]
+  },
+  {
+    "id": "lostemotion",
+    "alias": [
+      "失去情感"
+    ]
+  },
+  {
+    "id": "lostintheabyss",
+    "alias": [
+      "深渊"
+    ]
+  },
+  {
+    "id": "lovelessdress",
+    "alias": [
+      "裙子",
+      "无爱之装",
+      "品如的衣服",
+      "锁心所爱连衣裙"
+    ]
+  },
+  {
+    "id": "lucidtraveler",
+    "alias": [
+      "清醒旅人"
+    ]
+  },
+  {
+    "id": "lucifer",
+    "alias": [
+      "路西法",
+      "螺蛳粉"
+    ]
+  },
+  {
+    "id": "lumia",
+    "alias": []
+  },
+  {
+    "id": "macromod",
+    "alias": []
+  },
+  {
+    "id": "magnolia",
+    "alias": [
+      "木兰"
+    ]
+  },
+  {
+    "id": "mahoroba",
+    "alias": [
+      "世外桃源",
+      "魔法萝卜",
+      "麻花萝卜",
+      "魔法老八",
+      "好地方"
+    ]
+  },
+  {
+    "id": "maliciousmischance",
+    "alias": [
+      "灾厄",
+      "恶作剧",
+      "it's behind you"
+    ]
+  },
+  {
+    "id": "manicjeer",
+    "alias": []
+  },
+  {
+    "id": "mantis",
+    "alias": [
+      "螳螂"
+    ]
+  },
+  {
+    "id": "maxrage",
+    "alias": []
+  },
+  {
+    "id": "mazenine",
+    "alias": [
+      "妹子九",
+      "Maze9",
+      "妹子9",
+      "第九迷宫",
+      "迷宫九",
+      "迷宫9",
+      "九番目的迷路"
+    ]
+  },
+  {
+    "id": "mazymetroplex",
+    "alias": [
+      "迷宫都会",
+      "迷都"
+    ]
+  },
+  {
+    "id": "medusa",
+    "alias": [
+      "美杜莎"
+    ]
+  },
+  {
+    "id": "melodyoflove",
+    "alias": [
+      "恋歌",
+      "迷音",
+      "音恋",
+      "爱的旋律"
+    ]
+  },
+  {
+    "id": "memoryfactory",
+    "alias": [
+      "记忆工厂",
+      "老字号"
+    ]
+  },
+  {
+    "id": "memoryforest",
+    "alias": [
+      "记忆森林"
+    ]
+  },
+  {
+    "id": "merlin",
+    "alias": [
+      "梅林"
+    ]
+  },
+  {
+    "id": "metallicpunisher",
+    "alias": [
+      "罚金",
+      "钢惩",
+      "金属惩罚者",
+      "钢铁惩罚者"
+    ]
+  },
+  {
+    "id": "mirzam",
+    "alias": [
+      "军市一",
+      "迷尔在吗"
+    ]
+  },
+  {
+    "id": "modelista",
+    "alias": [
+      "高速公路",
+      "造型师",
+      "飙车",
+      "莫得利斯塔"
+    ]
+  },
+  {
+    "id": "monochromeprincess",
+    "alias": [
+      "黑白公主",
+      "单色公主",
+      "纵连公主"
+    ]
+  },
+  {
+    "id": "moonheart",
+    "alias": [
+      "月心",
+      "月核"
+    ]
+  },
+  {
+    "id": "moonlightofsandcastle",
+    "alias": [
+      "月光沙堡",
+      "月下沙堡",
+      "月光沙城",
+      "沙堡月光"
+    ]
+  },
+  {
+    "id": "mu",
+    "alias": []
+  },
+  {
+    "id": "mukishitsu",
+    "alias": [
+      "无机世界",
+      "无机质",
+      "牛奶摇吐",
+      "无量",
+      "mk",
+      "无机",
+      "黑线铁轨"
+    ]
+  },
+  {
+    "id": "nekonote",
+    "alias": []
+  },
+  {
+    "id": "neokosmo",
+    "alias": [
+      "新世界",
+      "玻璃白姬"
+    ]
+  },
+  {
+    "id": "neowings",
+    "alias": [
+      "新翅膀",
+      "新翼",
+      "新羽"
+    ]
+  },
+  {
+    "id": "newyorkbackraise",
+    "alias": [
+      "纽约",
+      "新乡"
+    ]
+  },
+  {
+    "id": "nexttoyou",
+    "alias": [
+      "在你身旁"
+    ]
+  },
+  {
+    "id": "nhelv",
+    "alias": [
+      "神经",
+      "你和驴",
+      "阿米娅",
+      "你和阿米驴"
+    ]
+  },
+  {
+    "id": "nirvluce",
+    "alias": [
+      "红魔王",
+      "表红"
+    ]
+  },
+  {
+    "id": "nnglooms",
+    "alias": []
+  },
+  {
+    "id": "nulctrl",
+    "alias": []
+  },
+  {
+    "id": "nullapophenia",
+    "alias": [
+      "虚空脑补"
+    ]
+  },
+  {
+    "id": "oblivia",
+    "alias": [
+      "遗忘",
+      "健忘"
+    ]
+  },
+  {
+    "id": "odysseia",
+    "alias": [
+      "奥德赛",
+      "o什么的"
+    ]
+  },
+  {
+    "id": "omakeno",
+    "alias": []
+  },
+  {
+    "id": "omegafour",
+    "alias": [
+      "W4",
+      "OMEGA4",
+      "owo"
+    ]
+  },
+  {
+    "id": "onefr",
+    "alias": [
+      "根号",
+      "一楼",
+      "一次全连"
+    ]
+  },
+  {
+    "id": "onelastdrive",
+    "alias": [
+      "最后一次开车"
+    ]
+  },
+  {
+    "id": "oracle",
+    "alias": [
+      "神谕",
+      "甲骨文",
+      "数据库",
+      "兔娘"
+    ]
+  },
+  {
+    "id": "oshamascramble",
+    "alias": [
+      "牛奶"
+    ]
+  },
+  {
+    "id": "ouroboros",
+    "alias": [
+      "衔尾蛇"
+    ]
+  },
+  {
+    "id": "overwhelm",
+    "alias": [
+      "压制",
+      "淹没",
+      "无从招架"
+    ]
+  },
+  {
+    "id": "paperwitch",
+    "alias": [
+      "纸巫",
+      "纸上魔法使"
+    ]
+  },
+  {
+    "id": "paradise",
+    "alias": [
+      "乐园",
+      "伊甸园",
+      "天堂"
+    ]
+  },
+  {
+    "id": "particlearts",
+    "alias": [
+      "粒子艺术",
+      "粒子画",
+      "粒画"
+    ]
+  },
+  {
+    "id": "partyvinyl",
+    "alias": [
+      "派对乙烯基",
+      "黑胶派对",
+      "乙烯派对"
+    ]
+  },
+  {
+    "id": "pentiment",
+    "alias": [
+      "喷嚏",
+      "变换",
+      "ptm",
+      "ptt",
+      "沸腾",
+      "剧变",
+      "奔驰"
+    ]
+  },
+  {
+    "id": "phantasia",
+    "alias": [
+      "幻想",
+      "做彩梦",
+      "初彩梦"
+    ]
+  },
+  {
+    "id": "picopicotranslation",
+    "alias": [
+      "翻的啥玩意"
+    ]
+  },
+  {
+    "id": "pragmatism",
+    "alias": [
+      "白魔王",
+      "实用主义"
+    ]
+  },
+  {
+    "id": "primitivelights",
+    "alias": [
+      "初始光",
+      "原初之光"
+    ]
+  },
+  {
+    "id": "prism",
+    "alias": []
+  },
+  {
+    "id": "protoflicker",
+    "alias": [
+      "原型滑动",
+      "护船石"
+    ]
+  },
+  {
+    "id": "pupa",
+    "alias": [
+      "噗啪",
+      "蝴蝶",
+      "噗趴",
+      "二路公交车",
+      "蛹"
+    ]
+  },
+  {
+    "id": "purgatorium",
+    "alias": [
+      "炼狱"
+    ]
+  },
+  {
+    "id": "purpleverse",
+    "alias": [
+      "紫诗",
+      "紫色诗篇",
+      "帝王诗篇"
+    ]
+  },
+  {
+    "id": "qualia",
+    "alias": []
+  },
+  {
+    "id": "quon",
+    "alias": []
+  },
+  {
+    "id": "quonwacca",
+    "alias": [
+      "quin",
+      "waccaquon",
+      "quon2"
+    ]
+  },
+  {
+    "id": "rabbitintheblackroom",
+    "alias": [
+      "黑兔子",
+      "黑兔屋",
+      "黑屋兔",
+      "兔子在黑屋"
+    ]
+  },
+  {
+    "id": "reconstruction",
+    "alias": [
+      "再构筑",
+      "重构"
+    ]
+  },
+  {
+    "id": "redandblue",
+    "alias": [
+      "红蓝",
+      "红与蓝",
+      "红和蓝",
+      "双蛇律动"
+    ]
+  },
+  {
+    "id": "redolentshape",
+    "alias": []
+  },
+  {
+    "id": "reinvent",
+    "alias": [
+      "改造",
+      "冰红茶"
+    ]
+  },
+  {
+    "id": "rekkaresonance",
+    "alias": [
+      "烈华回响",
+      "裂化",
+      "旺仔牛奶"
+    ]
+  },
+  {
+    "id": "relentless",
+    "alias": [
+      "热门"
+    ]
+  },
+  {
+    "id": "revixy",
+    "alias": [
+      "屑",
+      "逊",
+      "创可贴",
+      "指手画脚",
+      "指指点点"
+    ]
+  },
+  {
+    "id": "ringedgenesis",
+    "alias": [
+      "环状起源",
+      "砖魔王"
+    ]
+  },
+  {
+    "id": "rise",
+    "alias": []
+  },
+  {
+    "id": "romancewars",
+    "alias": [
+      "罗马战争",
+      "浪漫战争",
+      "恋爱战争"
+    ]
+  },
+  {
+    "id": "rugie",
+    "alias": [
+      "引诱",
+      "乳鸽"
+    ]
+  },
+  {
+    "id": "saikyostronger",
+    "alias": [
+      "最强STRONGER",
+      "完形填空",
+      "血妹子",
+      "血魔王",
+      "赛高",
+      "爬魔王"
+    ]
+  },
+  {
+    "id": "sakurafubuki",
+    "alias": [
+      "樱吹雪",
+      "桜吹雪"
+    ]
+  },
+  {
+    "id": "sanskia",
+    "alias": [
+      "影子",
+      "萝莉对立",
+      "幼对立"
+    ]
+  },
+  {
+    "id": "sayonarahatsukoi",
+    "alias": [
+      "再见初恋",
+      "失恋",
+      "再见世征"
+    ]
+  },
+  {
+    "id": "scarletcage",
+    "alias": [
+      "红笼",
+      "红牢",
+      "绯红之笼"
+    ]
+  },
+  {
+    "id": "scarletlance",
+    "alias": [
+      "红枪",
+      "红X",
+      "红叉",
+      "猩红狼王"
+    ]
+  },
+  {
+    "id": "seclusion",
+    "alias": [
+      "隐居",
+      "隔离14天"
+    ]
+  },
+  {
+    "id": "senkyou",
+    "alias": [
+      "仙境",
+      "仙乡",
+      "狐仙"
+    ]
+  },
+  {
+    "id": "seventhsense",
+    "alias": [
+      "第7感",
+      "第七感"
+    ]
+  },
+  {
+    "id": "shadesoflight",
+    "alias": [
+      "上界光之影",
+      "光影"
+    ]
+  },
+  {
+    "id": "sheriruth",
+    "alias": [
+      "拒绝",
+      "黑魔王",
+      "射日如桃花",
+      "对立削苹果",
+      "对立切苹果",
+      "小苹果"
+    ]
+  },
+  {
+    "id": "sheriruthrmx",
+    "alias": [
+      "老二射日",
+      "黑老二",
+      "墨绿魔王",
+      "绿黑魔王",
+      "射日热米线",
+      "黑魔王remix"
+    ]
+  },
+  {
+    "id": "silentrush",
+    "alias": [
+      "静冲",
+      "潜行"
+    ]
+  },
+  {
+    "id": "singularity",
+    "alias": [
+      "奇点",
+      "IFYOUCAN",
+      "奇点大大大会员"
+    ]
+  },
+  {
+    "id": "smallcloud",
+    "alias": [
+      "小糖云",
+      "小云糖",
+      "小小云朵糖"
+    ]
+  },
+  {
+    "id": "snowwhite",
+    "alias": [
+      "雪白"
+    ]
+  },
+  {
+    "id": "solitarydream",
+    "alias": [
+      "虚空之梦",
+      "虚空梦",
+      "孤梦",
+      "百合"
+    ]
+  },
+  {
+    "id": "soundwitch",
+    "alias": [
+      "音巫"
+    ]
+  },
+  {
+    "id": "specta",
+    "alias": [
+      "灯男"
+    ]
+  },
+  {
+    "id": "spidersthread",
+    "alias": [
+      "蜘蛛丝",
+      "爬虫线程",
+      "蜘蛛线程"
+    ]
+  },
+  {
+    "id": "stager",
+    "alias": []
+  },
+  {
+    "id": "stasis",
+    "alias": [
+      "船",
+      "停滞"
+    ]
+  },
+  {
+    "id": "strongholds",
+    "alias": [
+      "要塞",
+      "强握",
+      "印度蛇",
+      "堡垒"
+    ]
+  },
+  {
+    "id": "sulfur",
+    "alias": [
+      "硫磺"
+    ]
+  },
+  {
+    "id": "summerfireworks",
+    "alias": [
+      "夏日烟花",
+      "彩る夏の恋花火",
+      "彩夏恋花火",
+      "恋花火",
+      "恋歌2.0"
+    ]
+  },
+  {
+    "id": "suomi",
+    "alias": [
+      "扭秧歌",
+      "索米",
+      "广播体操"
+    ]
+  },
+  {
+    "id": "supernova",
+    "alias": [
+      "超新星",
+      "白矮星",
+      "超级诺娃"
+    ]
+  },
+  {
+    "id": "surrender",
+    "alias": [
+      "投降"
+    ]
+  },
+  {
+    "id": "syro",
+    "alias": [
+      "涮羊肉"
+    ]
+  },
+  {
+    "id": "syuten",
+    "alias": []
+  },
+  {
+    "id": "take",
+    "alias": [
+      "竹",
+      "BAMBOO"
+    ]
+  },
+  {
+    "id": "tempestissimo",
+    "alias": [
+      "猫魔王",
+      "暴风雨",
+      "妙脆角",
+      "猫对立",
+      "风暴对立",
+      "奥运会",
+      "电话拨号",
+      "风暴魔王",
+      "坏脾气"
+    ]
+  },
+  {
+    "id": "temptation",
+    "alias": []
+  },
+  {
+    "id": "teriqma",
+    "alias": [
+      "特日骑马"
+    ]
+  },
+  {
+    "id": "testify",
+    "alias": [
+      "考验",
+      "命魔王",
+      "审判",
+      "证明",
+      "见证",
+      "铁丝",
+      "妻寄光",
+      "命运光",
+      "奇迹光",
+      "考试",
+      "猫光"
+    ]
+  },
+  {
+    "id": "themessage",
+    "alias": [
+      "马杀鸡",
+      "信息",
+      "短信",
+      "消息"
+    ]
+  },
+  {
+    "id": "thesurvivor",
+    "alias": [
+      "幸存者"
+    ]
+  },
+  {
+    "id": "theultimacy",
+    "alias": [
+      "弓哥",
+      "黑妹",
+      "火星"
+    ]
+  },
+  {
+    "id": "tiemedowngently",
+    "alias": [
+      "TMDG",
+      "绑我",
+      "束缚"
+    ]
+  },
+  {
+    "id": "tiferet",
+    "alias": [
+      "体罚"
+    ]
+  },
+  {
+    "id": "toaliceliddell",
+    "alias": [
+      "致爱丽丝"
+    ]
+  },
+  {
+    "id": "tothemilkyway",
+    "alias": [
+      "银河",
+      "牛奶路"
+    ]
+  },
+  {
+    "id": "trapcrow",
+    "alias": [
+      "笼鸟",
+      "踹牛",
+      "乌鸦陷阱",
+      "捕鸟器",
+      "乌鸦圈套",
+      "陷阱乌鸦",
+      "危境之鸦"
+    ]
+  },
+  {
+    "id": "trappola",
+    "alias": [
+      "妖艳魔女"
+    ]
+  },
+  {
+    "id": "trrricksters",
+    "alias": []
+  },
+  {
+    "id": "tsukinimurakumo",
+    "alias": [
+      "月映丛云风语花",
+      "丛云遮月风落花",
+      "闲云遮月清风袭花"
+    ]
+  },
+  {
+    "id": "turbocharger",
+    "alias": []
+  },
+  {
+    "id": "ultimatetaste",
+    "alias": []
+  },
+  {
+    "id": "usedtobe",
+    "alias": [
+      "过时人物",
+      "曾是"
+    ]
+  },
+  {
+    "id": "valhallazero",
+    "alias": [
+      "V0",
+      "VALHALLA0",
+      "瓦尔哈拉",
+      "指甲油"
+    ]
+  },
+  {
+    "id": "vandalism",
+    "alias": [
+      "捣毁",
+      "破财",
+      "万达"
+    ]
+  },
+  {
+    "id": "vector",
+    "alias": [
+      "向量",
+      "维克托",
+      "矢量"
+    ]
+  },
+  {
+    "id": "vexaria",
+    "alias": []
+  },
+  {
+    "id": "viciousheroism",
+    "alias": [
+      "恶毒的英雄主义",
+      "邪雄主义"
+    ]
+  },
+  {
+    "id": "vindication",
+    "alias": [
+      "辩护",
+      "辩白"
+    ]
+  },
+  {
+    "id": "vividtheory",
+    "alias": [
+      "生理",
+      "生动理论",
+      "生动的理论"
+    ]
+  },
+  {
+    "id": "viyella",
+    "alias": [
+      "维耶拉",
+      "维耶拉之泣",
+      "维耶拉的哭泣",
+      "维也勒",
+      "维也勒之泣",
+      "维也勒的哭泣"
+    ]
+  },
+  {
+    "id": "viyellastears",
+    "alias": [
+      "维耶拉之泪",
+      "维耶拉的眼泪",
+      "维也勒之泪",
+      "维也勒的眼泪",
+      "魔法少女小圆"
+    ]
+  },
+  {
+    "id": "withu",
+    "alias": [
+      "与你",
+      "病娇",
+      "和你",
+      "withyou"
+    ]
+  },
+  {
+    "id": "worldender",
+    "alias": [
+      "世终",
+      "世界终结者",
+      "世魔王",
+      "纯白魔王"
+    ]
+  },
+  {
+    "id": "worldexecuteme",
+    "alias": [
+      "世界杀我",
+      "世界处刑"
+    ]
+  },
+  {
+    "id": "worldfragments",
+    "alias": [
+      "世界碎片"
+    ]
+  },
+  {
+    "id": "worldvanquisher",
+    "alias": [
+      "世界征服者",
+      "世征",
+      "威猛先生",
+      "FTR6"
+    ]
+  },
+  {
+    "id": "xanatos",
+    "alias": [
+      "血玫",
+      "血色玫瑰",
+      "玫瑰少女",
+      "撒那特思",
+      "42姐"
+    ]
+  },
+  {
+    "id": "xeraphinite",
+    "alias": [
+      "绿泥石",
+      "里绿",
+      "绿龙晶",
+      "提琴咲弥"
+    ]
+  },
+  {
+    "id": "yourvoiceso",
+    "alias": [
+      "腿一",
+      "腿1",
+      "腿歌1",
+      "你的声音"
+    ]
+  },
+  {
+    "id": "yozakurafubuki",
+    "alias": [
+      "夜桜",
+      "夜樱",
+      "夜桜吹雪",
+      "夜樱吹雪"
+    ]
+  }
+]

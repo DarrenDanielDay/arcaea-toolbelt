@@ -1,7 +1,14 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "../view/components/fancy-dialog/style.css";
 import { AutoRender, computed, element, mount, nil, signal } from "hyplate";
-import { generate, generateDirectly, generateVersionMeta } from "./auto-generate-data-files";
+import {
+  generate,
+  generateDirectly,
+  generateVersionMeta,
+  updateNotesAndConstantsFileViaFandomWiki,
+  generateMergedChartData,
+  generateAlias,
+} from "./auto-generate-data-files";
 import { APKResponse, downloadToLocal, getLatestVersion } from "./get-latest-version";
 import type { FC, JSXChildNode, Signal } from "hyplate/types";
 import { apkName, getProjectRootDirectory } from "./shared";
@@ -101,6 +108,16 @@ const APKInfo: FC<{ apkInfo: APKResponse }> = ({ apkInfo }) => {
   );
 };
 
+const Action: FC<{ handler: () => void }, JSXChildNode> = ({ children, handler }) => {
+  return (
+    <div class="col-auto">
+      <button class="btn btn-primary" type="button" onClick={handler}>
+        {children}
+      </button>
+    </div>
+  );
+};
+
 const ProgressModal: FC<{ total: Signal<number>; now: Signal<number>; controller?: AbortController }> = ({
   total,
   now,
@@ -187,6 +204,9 @@ mount(
           生成最新数据文件
         </button>
       </div>
+      <Action handler={generateAlias}>更新alias</Action>
+      <Action handler={updateNotesAndConstantsFileViaFandomWiki}>通过Fandom Wiki更新定数物量</Action>
+      <Action handler={generateMergedChartData}>生成合并数据</Action>
     </div>
     {latest}
     {progress}

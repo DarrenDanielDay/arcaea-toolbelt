@@ -12,59 +12,121 @@ import {
   readAsText,
   extractName,
   patchJSON,
+  CACHE_EXPIRE_TIME,
+  miscDataClient,
+  readProjectJSON,
+  saveProjectJSON,
 } from "./shared";
 import { APKResponse, getLatestVersion } from "./get-latest-version";
 import { ArcaeaToolbeltMeta } from "../models/misc";
-import { AssetsServiceImpl } from "../services/assets";
+import { AssetsResolverImpl } from "../services/assets-resolver";
+import { getChartDataFromFandomWiki } from "./chart/fandom-wiki";
+import { mergeIntoSongData } from "./chart/merge";
+import { getAliasFromArcaeaInfinity } from "./chart/arcaea-infinity";
+import { Alias, ExtraSongData, mergeArray } from "./chart/shared";
 
-const assets = new AssetsServiceImpl();
-function fetchAssets(path: string) {
-  return fetch(assets.resolve(path), { mode: "cors" });
+const resolver = new AssetsResolverImpl();
+
+async function getSongList(): Promise<SongList> {
+  const res = await miscDataClient.fetch(resolver.resolve(`songs/songlist`), CACHE_EXPIRE_TIME);
+  return res.json();
 }
+
+async function getPackList(): Promise<PackList> {
+  const res = await miscDataClient.fetch(resolver.resolve(`songs/packlist`), CACHE_EXPIRE_TIME);
+  return res.json();
+}
+
 /** @deprecated */
 export async function generate(version: string) {
-  const projectRootDir = await getProjectRootDirectory();
-  const songList = await readJSON<SongList>(
-    await getFileHandle(projectRootDir, `/arcaea/${extractName(version)}/assets/songs/songlist`)
-  );
-  const packList = await readJSON<PackList>(
-    await getFileHandle(projectRootDir, `/arcaea/${extractName(version)}/assets/songs/packlist`)
-  );
+  const songList = await getSongList();
+  const packList = await getPackList();
   const newSongs = await getSongData(songList, packList);
-  const oldSongs = await getOldChartData(projectRootDir);
+  const oldSongs = await getOldChartData();
   const songs = sortChartDataBySongListIdx(mergeChartData(oldSongs, newSongs), songList);
   const { characters, items } = await getCharacterData();
   const { longterm, events } = await fetchWikiWorldMapData(songs, characters);
-  await saveJSON(projectRootDir, songs, "/src/data/chart-data.json");
-  await saveJSON(projectRootDir, characters, "/src/data/character-data.json");
-  await saveJSON(projectRootDir, items, "/src/data/item-data.json");
-  await saveJSON(projectRootDir, longterm, "/src/data/world-maps-longterm.json");
-  await saveJSON(projectRootDir, events, "/src/data/world-maps-events.json");
+  await saveProjectJSON(songs, "/src/data/chart-data.json");
+  await saveProjectJSON(characters, "/src/data/character-data.json");
+  await saveProjectJSON(items, "/src/data/item-data.json");
+  await saveProjectJSON(longterm, "/src/data/world-maps-longterm.json");
+  await saveProjectJSON(events, "/src/data/world-maps-events.json");
   await patchMeta({
     time: Date.now(),
   });
 }
 
 export async function generateDirectly() {
-  const projectRootDir = await getProjectRootDirectory();
   const apkInfo = await getLatestVersion();
-  const songList: SongList = await fetchAssets(`songs/songlist`).then((r) => r.json());
-  const packList: PackList = await fetchAssets(`songs/packlist`).then((r) => r.json());
+  const songList = await getSongList();
+  const packList = await getPackList();
   const newSongs = await getSongData(songList, packList);
-  const oldSongs = await getOldChartData(projectRootDir);
+  const oldSongs = await getOldChartData();
   const songs = sortChartDataBySongListIdx(mergeChartData(oldSongs, newSongs), songList);
   const { characters, items } = await getCharacterData();
   const { longterm, events } = await fetchWikiWorldMapData(songs, characters);
-  await saveJSON(projectRootDir, songs, "/src/data/chart-data.json");
-  await saveJSON(projectRootDir, characters, "/src/data/character-data.json");
-  await saveJSON(projectRootDir, items, "/src/data/item-data.json");
-  await saveJSON(projectRootDir, longterm, "/src/data/world-maps-longterm.json");
-  await saveJSON(projectRootDir, events, "/src/data/world-maps-events.json");
+  await saveProjectJSON(songs, chartDataPath);
+  await saveProjectJSON(characters, characterDataPath);
+  await saveProjectJSON(items, itemDataPath);
+  await saveProjectJSON(longterm, worldMapLongTermPath);
+  await saveProjectJSON(events, worldMapEventsPath);
   await patchMeta({
     time: Date.now(),
     apk: apkInfo.url,
     version: apkInfo.version,
   });
+}
+const characterDataPath = "/src/data/character-data.json";
+const itemDataPath = "/src/data/item-data.json";
+const worldMapLongTermPath = "/src/data/world-maps-longterm.json";
+const worldMapEventsPath = "/src/data/world-maps-events.json";
+const extraDataPath = "/src/data/notes-and-constants.json";
+const aliasPath = "/src/data/alias.json";
+const chartDataPath = "/src/data/chart-data.json";
+
+export async function updateNotesAndConstantsFileViaFandomWiki() {
+  const projectRoot = await getProjectRootDirectory();
+  const songList = await getSongList();
+  const fandomWikiData = await getChartDataFromFandomWiki(songList);
+  const old = await readProjectJSON<ExtraSongData[]>(extraDataPath);
+  await saveJSON(
+    projectRoot,
+    mergeArray(
+      old,
+      fandomWikiData,
+      (d) => d.id,
+      (old) => {
+        // Fandom Wiki 有很多数据有误，暂时只添加新数据
+        return old;
+      }
+    ),
+    extraDataPath
+  );
+}
+
+export async function generateAlias() {
+  const oldAlias = await readProjectJSON<Alias[]>(aliasPath);
+  const latestAlias = await getAliasFromArcaeaInfinity();
+  const newAlias = mergeArray(
+    oldAlias,
+    latestAlias,
+    (a) => a.id,
+    (a, b) => ({
+      id: a.id,
+      alias: [...new Set([...a.alias, ...b.alias])],
+    })
+  );
+  await saveProjectJSON(newAlias, aliasPath);
+}
+
+export async function generateMergedChartData() {
+  const old = await getOldChartData();
+  const songList = await getSongList();
+  const packList = await getPackList();
+  const extraData = await readProjectJSON<ExtraSongData[]>(extraDataPath);
+  const alias = await readProjectJSON<Alias[]>(aliasPath);
+  const newData = mergeIntoSongData(old, songList, packList, extraData, alias);
+  await saveProjectJSON(sortChartDataBySongListIdx(newData, songList), chartDataPath);
 }
 
 export async function generateVersionMeta(apkInfo: APKResponse) {
@@ -78,9 +140,8 @@ async function patchMeta(meta: Partial<ArcaeaToolbeltMeta>) {
   await patchJSON(await getProjectRootDirectory(), meta, "/src/data/meta.json");
 }
 
-async function getOldChartData(dir: FileSystemDirectoryHandle) {
-  const handle = await getFileHandle(dir, "/src/data/chart-data.json");
-  const old: SongData[] = JSON.parse(await readAsText(handle));
+async function getOldChartData() {
+  const old: SongData[] = await readProjectJSON(chartDataPath);
   return old;
 }
 

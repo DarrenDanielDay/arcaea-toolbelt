@@ -7,7 +7,7 @@ import {
   PlatformType,
   RewardType,
 } from "../models/world-mode";
-import { findNextElWhere, htmlDocument, initPageDocument, wikiURL } from "./wiki-util";
+import { arcaeaCNClient, findNextElWhere, htmlDocument, initPageDocument, wikiURL } from "./wiki-util";
 
 const wikiLongtermWorldMapTable = wikiURL("世界模式地图详表 (移动版常驻)");
 const wikiEventWorldMapTable = wikiURL("世界模式地图详表_(移动版限时活动)");
@@ -30,7 +30,7 @@ function getMapTableItem(link: HTMLAnchorElement): WikiWorldMapTableItem {
 }
 
 async function getWikiLontermWorldMapTable() {
-  await initPageDocument(wikiLongtermWorldMapTable);
+  await initPageDocument(wikiLongtermWorldMapTable, arcaeaCNClient);
   const table = htmlDocument.querySelector("table.wikitable")!;
   // 排除byd章节
   const headers = Array.from(table.querySelectorAll("th")).slice(2, -1);
@@ -66,7 +66,7 @@ async function getWikiLontermWorldMapTable() {
 }
 
 async function getWikiEventWorldMapTable(): Promise<WikiWorldMapTableItem[]> {
-  await initPageDocument(wikiEventWorldMapTable);
+  await initPageDocument(wikiEventWorldMapTable, arcaeaCNClient);
   const table = htmlDocument.querySelector("table.wikitable")!;
   return Array.from(table.querySelectorAll("td a"), (a) => getMapTableItem(a));
 }
@@ -221,7 +221,7 @@ type Backgrounds = {
 
 async function getBackgounds(): Promise<Backgrounds> {
   const map: Backgrounds = {};
-  await initPageDocument(wikiURL("背景列表"));
+  await initPageDocument(wikiURL("背景列表"), arcaeaCNClient);
   const anchor = htmlDocument.querySelector("#场景")!;
   const table = findNextElWhere(anchor.parentElement!, (el) => el.matches("table")) as HTMLTableElement;
   for (const tbody of Array.from(table.tBodies)) {

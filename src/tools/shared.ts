@@ -1,3 +1,5 @@
+import { CachedHttpGetClient } from "../services/cache";
+
 function toJSONString(obj: any) {
   return JSON.stringify(obj, undefined, 2) + "\n";
 }
@@ -43,6 +45,16 @@ export async function readJSON<T>(handle: FileSystemFileHandle): Promise<T> {
   return JSON.parse(text);
 }
 
+export async function readProjectJSON<T>(path: string) {
+  const dir = await getProjectRootDirectory();
+  const handle = await getFileHandle(dir, path);
+  return readJSON<T>(handle);
+}
+
+export async function saveProjectJSON(json: any, path: string) {
+  await saveJSON(await getProjectRootDirectory(), json, path);
+}
+
 let projectRoot: FileSystemDirectoryHandle | null = null;
 export async function getProjectRootDirectory() {
   return (projectRoot ??= await window.showDirectoryPicker({ id: "project-root", mode: "readwrite" }));
@@ -55,3 +67,7 @@ export function extractName(version: string) {
 export function apkName(version: string) {
   return `${extractName(version)}.apk`;
 }
+
+export const CACHE_EXPIRE_TIME = 24 * 60 * 60 * 1000;
+
+export const miscDataClient = new CachedHttpGetClient("misc-data", 1);

@@ -14,7 +14,7 @@ interface CharacterTableData {
 }
 
 async function getWikiCharacterTable(): Promise<CharacterTableData[]> {
-  await initPageDocument(wikiCharacterTable);
+  await initPageDocument(wikiCharacterTable, arcaeaCNClient);
   const characterAnchor = htmlDocument.querySelector("#搭档列表")!;
   const tableDiv = findNextElWhere(characterAnchor.parentElement!, (node) => node.matches("div.ddtable"));
   if (!tableDiv) {

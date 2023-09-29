@@ -18,7 +18,7 @@ interface ConstantChartData {
  * 从wiki爬数据的主要出于使用wiki上曲绘的考虑
  */
 async function getWikiChartTable() {
-  await initPageDocument(wikiConstantTable);
+  await initPageDocument(wikiConstantTable, arcaeaCNClient);
   const constantTableEl = htmlDocument.querySelector("table")!;
   type TD = HTMLTableCellElement;
   function checkCells(cells: TD[]): asserts cells is [TD, TD, TD, TD, TD] {
@@ -142,17 +142,6 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     }
     return "Memory Archive";
   };
-  const getSongByNameAndBpm = (title: string, bpm: string) => {
-    const group = songGroup[title];
-    if (group?.length === 1) {
-      return group[0]!;
-    }
-    const found = group?.find((s) => s.bpm === bpm);
-    if (!found) {
-      debugger;
-    }
-    return found;
-  };
   const arcInf = await getArcInfData();
   const difficulties = [Difficulty.Past, Difficulty.Present, Difficulty.Future];
   const withByd = difficulties.concat([Difficulty.Beyond]);
@@ -171,42 +160,57 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       console.log(`特殊曲绘列表： ${name} ${tabs.map((tab) => tab.textContent).join(" ")}`);
     }
     if (!normal) {
-      throw new Error(`${name} 曲绘未找到`);
+      console.error(`${name} 曲绘未找到`);
     }
-    const cover = wikiURL(normal.src).toString();
+    const cover = normal ? wikiURL(normal.src).toString() : "";
     const labels = Array.from(htmlDocument.querySelectorAll("div#mw-content-text div.label"));
-    const bpmLabel = labels.find((label) => label.textContent!.match(/BPM/i))!;
-    const bpm = bpmLabel.nextElementSibling!.textContent!;
-    const noteLabel = labels.find((label) => label.textContent!.match(/^note/i))!;
-    const newLocal = getWikiTableItemsByLabel(noteLabel);
-    const notes: number[] = newLocal.map((el) => {
+    const noteLabel = labels.find((label) => label.textContent!.match(/^note/i));
+    const noteItems = noteLabel ? getWikiTableItemsByLabel(noteLabel) : [];
+    const notes: number[] = noteItems.map((el) => {
       const note = +el.textContent!;
       if (isNaN(note) && el.textContent?.trim() !== "空") {
-        throw new Error(`${name}的note数量缺失 ${newLocal}`);
+        return -1;
       }
       return note;
     });
-    const levelLabel = labels.find((label) => label.textContent!.match(/等级/i))!;
-    const levels: string[] = getWikiTableItemsByLabel(levelLabel).map((el) => el.textContent!);
-    const songListSong = getSongByNameAndBpm(name, bpm);
+    const group = songGroup[name];
+    if (!group) {
+      throw new Error(`song list内曲目${name}不存在`);
+    }
+    const songListSong =
+      group.length === 1
+        ? group[0]!
+        : group.find((s) =>
+            difficulties.every((d, i) => {
+              const chart = s.difficulties[i];
+              const constant = song[d] || 0;
+              const level = Math.floor(constant);
+              const isPlus = level >= 9 && Math.round(constant * 10) - level * 10 >= 7;
+              const match = (chart?.rating ?? 0) === level && !!chart?.ratingPlus === isPlus;
+              return match;
+            })
+          );
     if (!songListSong) {
       throw new Error(`song list内未找到${name}`);
     }
-    const songId = songListSong.id;
+    const { id: songId, bpm } = songListSong;
     const charts = (byd ? withByd : difficulties).map<Chart>((difficulty, i) => {
       const constant = song[difficulty];
       if (!constant) {
         throw new Error(`${name} byd 定数缺失`);
       }
+      const songListChart = songListSong.difficulties[i]!;
       const chart: Chart = {
         constant,
         difficulty,
         id: `${songId}@${difficulty}`,
-        level: levels[i]!,
-        note: notes[i]!,
+        level: songListChart.rating,
+        note: notes[i] || -1,
         songId,
       };
-      const songListChart = songListSong.difficulties[i]!;
+      if (songListChart.ratingPlus) {
+        chart.plus = true;
+      }
       const override: ChartOverride = {};
       if (songListChart.jacketOverride) {
         override.cover = true;
@@ -220,6 +224,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
           override.url = wikiURL(notFTRCover.src).toString();
         } else {
           console.error(`特殊封面 ${name} ${difficulty} 未匹配`);
+          override.url = "";
         }
       }
       if (Object.keys(override).length) {
@@ -285,7 +290,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
       ftr: 9.0,
     };
     const notes = [680, 781, 831];
-    const levels = ["4", "7", "9"];
+    const levels = [4, 7, 9];
     const last = "last";
     const lasteternity = "lasteternity";
     const pack = "Silent Answer";
@@ -311,7 +316,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
             id: `${last}@${Difficulty.Beyond}`,
             constant: 9.6,
             difficulty: Difficulty.Beyond,
-            level: "9",
+            level: 9,
             note: 888,
             songId: last,
             override: {
@@ -335,7 +340,8 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
           id: `${lasteternity}@${Difficulty.Beyond}`,
           constant: 9.7,
           difficulty: Difficulty.Beyond,
-          level: "9+",
+          level: 9,
+          plus: true,
           note: 790,
           songId: lasteternity,
         },

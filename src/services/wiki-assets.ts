@@ -5,9 +5,6 @@ import { $AssetsService, AssetsService } from "./declarations";
 
 @Injectable({ implements: $AssetsService })
 export class WikiAssetsService implements AssetsService {
-  resolve(path: string): URL {
-    throw new Error("Method not implemented.");
-  }
   async getCover(chart: Chart, song: Song, hd?: boolean | undefined): Promise<string> {
     return (chart.override?.cover && chart.override.url) || song.cover;
   }

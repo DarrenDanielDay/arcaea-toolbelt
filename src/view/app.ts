@@ -11,9 +11,11 @@ import { WorldModeServiceImpl } from "../services/world-mode";
 import { element } from "hyplate";
 import { Container } from "classic-di";
 import { AssetsServiceImpl } from "../services/assets";
+import { AssetsResolverImpl } from "../services/assets-resolver";
 document.adoptedStyleSheets = [bootstrap, sheet];
 
 const ioc = new Container();
+ioc.register(AssetsResolverImpl);
 ioc.register(AssetsServiceImpl);
 ioc.register(ChartServiceImpl);
 ioc.register(MusicPlayServiceImpl);

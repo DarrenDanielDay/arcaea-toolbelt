@@ -34,7 +34,8 @@ export interface Chart {
   songId: string;
   difficulty: Difficulty;
   constant: number;
-  level: string;
+  level: number;
+  plus?: boolean;
   note: number;
   override?: ChartOverride;
 }

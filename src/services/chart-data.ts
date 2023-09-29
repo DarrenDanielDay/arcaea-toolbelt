@@ -1,6 +1,14 @@
 import { Chart, Difficulty, Song, SongData, SongIndex } from "../models/music-play";
 import { searchMatch } from "../utils/string";
-import { $ChartService, ChartService, ChartDifficultyStatistics, SearchResult, ChartStatistics } from "./declarations";
+import {
+  $ChartService,
+  ChartService,
+  ChartDifficultyStatistics,
+  SearchResult,
+  ChartStatistics,
+  $AssetsResolver,
+  AssetsResolver,
+} from "./declarations";
 import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
 // @ts-expect-error string as enum
@@ -10,10 +18,14 @@ const getStaticSongData = async (): Promise<SongData[]> => import("../data/chart
 const difficultyOrder = [Difficulty.Future, Difficulty.Beyond, Difficulty.Present, Difficulty.Past];
 
 @Injectable({
+  requires: [$AssetsResolver] as const,
   implements: $ChartService,
 })
 export class ChartServiceImpl implements ChartService {
   #songIndex: SongIndex | null = null;
+
+  constructor(private resolver: AssetsResolver) {}
+
   getSongData(): Promise<SongData[]> {
     return getStaticSongData();
   }
@@ -118,12 +130,11 @@ export class ChartServiceImpl implements ChartService {
   }
 
   getCover(chart: Chart, song: Song): string {
-    return chart.override?.url ?? song.cover;
+    return this.resolver.resolveCover(chart, song, true).toString();
   }
 
   async #initSongIndex() {
     const songs = await this.getSongData();
     return indexBy(songs, (s) => s.id);
   }
-
 }

@@ -27,7 +27,7 @@ export const ChartInfo: FC<{ song: Song; chart: Chart; chartService: ChartServic
           <div>
             等级：
             <span class="level">
-              {chart.difficulty} {chart.level}
+              {chart.difficulty} {`${chart.level}${chart.plus ? "+" : ""}`}
             </span>
           </div>
           <div>

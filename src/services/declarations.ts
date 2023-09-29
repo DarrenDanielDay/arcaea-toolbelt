@@ -16,9 +16,15 @@ import { B30Response, Profile } from "../models/profile";
 import { token } from "classic-di";
 import { Chapter, CurrentProgress, NormalWorldMap, RewardType } from "../models/world-mode";
 
-export interface AssetsService {
+export interface AssetsResolver {
   resolve(path: string): URL;
-  getCover(chart: Chart, song: Song, hd?: boolean): Promise<string>;
+  resolveCover(chart: Chart, song: Song, hd: boolean): URL;
+  resolveClearImg(clearType: ClearRank): URL;
+  resolveGradeImg(scoreRank: Grade): URL;
+}
+
+export interface AssetsService {
+  getCover(chart: Chart, song: Song, hd: boolean): Promise<string>;
   getClearImg(clearType: ClearRank): Promise<string>;
   getGradeImg(scoreRank: Grade): Promise<string>;
 }
@@ -228,6 +234,7 @@ export interface CrossSiteScriptPluginService {
   syncMe(profile: lowiro.UserProfile): Promise<void>;
 }
 
+export const $AssetsResolver = token<AssetsResolver>("assets-resolver");
 export const $AssetsService = token<AssetsService>("assets");
 export const $ChartService = token<ChartService>("chart");
 export const $MusicPlayService = token<MusicPlayService>("music-play");

@@ -73,13 +73,16 @@ class NavBar extends HyplateElement {
     e.preventDefault();
     const chartStats = await this.chart.getStatistics();
     const musicPlayStats = await this.musicPlay.getStatistics();
+    const COMMIT_SHA = process.env.COMMIT_SHA;
     alert(
       <div>
         <h2>Arcaea Toolbelt</h2>
         <div style="display: flex; justify-content: center;">
           <img src={icon}></img>
         </div>
-        <p>commit SHA: {process.env.COMMIT_SHA?.slice(8)}</p>
+        <p>
+          commit SHA: <span title={COMMIT_SHA}>{COMMIT_SHA?.slice(0, 8)}</span>
+        </p>
         <p>数据更新时间：{new Date(meta.time).toLocaleString()}</p>
         <p>
           Arcaea版本: {meta.version}{" "}

@@ -6298,5 +6298,167 @@
       },
       null
     ]
+  },
+  {
+    "id": "remindthesouls",
+    "charts": [
+      {
+        "notes": 561,
+        "constant": 3.5
+      },
+      {
+        "notes": 756,
+        "constant": 6.5
+      },
+      {
+        "notes": 945,
+        "constant": 9.5
+      },
+      null
+    ]
+  },
+  {
+    "id": "dynitikos",
+    "charts": [
+      {
+        "notes": 683,
+        "constant": 4
+      },
+      {
+        "notes": 894,
+        "constant": 6.5
+      },
+      {
+        "notes": 986,
+        "constant": 9.5
+      },
+      null
+    ]
+  },
+  {
+    "id": "amekagura",
+    "charts": [
+      {
+        "notes": 741,
+        "constant": 4
+      },
+      {
+        "notes": 851,
+        "constant": 7.5
+      },
+      {
+        "notes": 1076,
+        "constant": 9.9
+      },
+      null
+    ]
+  },
+  {
+    "id": "bbkkbkk",
+    "charts": [
+      {
+        "notes": 669,
+        "constant": 4.5
+      },
+      {
+        "notes": 708,
+        "constant": 7
+      },
+      {
+        "notes": 976,
+        "constant": 9.7
+      },
+      null
+    ]
+  },
+  {
+    "id": "primevaltexture",
+    "charts": [
+      {
+        "notes": 346,
+        "constant": 3
+      },
+      {
+        "notes": 525,
+        "constant": 6
+      },
+      {
+        "notes": 810,
+        "constant": 9
+      },
+      null
+    ]
+  },
+  {
+    "id": "technicolour",
+    "charts": [
+      {
+        "notes": 644,
+        "constant": 3.5
+      },
+      {
+        "notes": 812,
+        "constant": 7
+      },
+      {
+        "notes": 1140,
+        "constant": 9.8
+      },
+      null
+    ]
+  },
+  {
+    "id": "logos",
+    "charts": [
+      {
+        "notes": 697,
+        "constant": 4
+      },
+      {
+        "notes": 798,
+        "constant": 7
+      },
+      {
+        "notes": 1040,
+        "constant": 10.1
+      },
+      null
+    ]
+  },
+  {
+    "id": "egoeimi",
+    "charts": [
+      {
+        "notes": 801,
+        "constant": 5.5
+      },
+      {
+        "notes": 937,
+        "constant": 8.6
+      },
+      {
+        "notes": 1223,
+        "constant": 10.5
+      },
+      null
+    ]
+  },
+  {
+    "id": "arghena",
+    "charts": [
+      {
+        "notes": 883,
+        "constant": 6
+      },
+      {
+        "notes": 1082,
+        "constant": 9.4
+      },
+      {
+        "notes": 1444,
+        "constant": 11.3
+      },
+      null
+    ]
   }
 ]

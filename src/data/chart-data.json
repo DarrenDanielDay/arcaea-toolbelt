@@ -1,7 +1,6 @@
 [
   {
     "bpm": "178",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/fd/Songs_sayonarahatsukoi.jpg/256px-Songs_sayonarahatsukoi.jpg",
     "id": "sayonarahatsukoi",
     "name": "Sayonara Hatsukoi",
     "pack": "Arcaea",
@@ -40,7 +39,6 @@
   },
   {
     "bpm": "75 - 210",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b4/Songs_lostcivilization.jpg/256px-Songs_lostcivilization.jpg",
     "id": "lostcivilization",
     "name": "Lost Civilization",
     "pack": "Arcaea",
@@ -88,15 +86,13 @@
         "songId": "lostcivilization",
         "plus": true,
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/a/a7/Songs_lostcivilization_byd.jpg/256px-Songs_lostcivilization_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/53/Songs_goodtek.jpg/256px-Songs_goodtek.jpg",
     "id": "goodtek",
     "name": "GOODTEK (Arcaea Edit)",
     "pack": "Arcaea",
@@ -140,15 +136,13 @@
         "songId": "goodtek",
         "plus": true,
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/6/60/Songs_goodtek_byd.jpg/256px-Songs_goodtek_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "75 - 180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/00/Songs_viyella.jpg/256px-Songs_viyella.jpg",
     "id": "viyella",
     "name": "cry of viyella",
     "pack": "Eternal Core",
@@ -190,7 +184,6 @@
   },
   {
     "bpm": "140",
-    "cover": "https://wiki.arcaea.cn/images/a/a4/Songs_rise.jpg",
     "id": "rise",
     "name": "Rise",
     "pack": "Arcaea",
@@ -225,7 +218,6 @@
   },
   {
     "bpm": "165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/04/Songs_lucifer.jpg/256px-Songs_lucifer.jpg",
     "id": "lucifer",
     "name": "Lucifer",
     "pack": "Arcaea",
@@ -263,7 +255,6 @@
   },
   {
     "bpm": "189",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8f/Songs_fairytale.jpg/256px-Songs_fairytale.jpg",
     "id": "fairytale",
     "name": "Fairytale",
     "pack": "Arcaea",
@@ -308,15 +299,13 @@
         "note": 932,
         "songId": "fairytale",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/8/8c/Songs_fairytale_byd.jpg/256px-Songs_fairytale_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a3/Songs_hearditsaid.jpg/256px-Songs_hearditsaid.jpg",
     "id": "hearditsaid",
     "name": "I've heard it said",
     "pack": "Eternal Core",
@@ -353,7 +342,6 @@
   },
   {
     "bpm": "136",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b7/Songs_babaroque.jpg/256px-Songs_babaroque.jpg",
     "id": "babaroque",
     "name": "Babaroque",
     "pack": "Arcaea",
@@ -395,7 +383,6 @@
   },
   {
     "bpm": "100",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/59/Songs_memoryfactory.jpg/256px-Songs_memoryfactory.jpg",
     "id": "memoryfactory",
     "name": "memoryfactory.lzh",
     "pack": "Eternal Core",
@@ -433,7 +420,6 @@
   },
   {
     "bpm": "150",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8d/Songs_snowwhite.jpg/256px-Songs_snowwhite.jpg",
     "id": "snowwhite",
     "name": "Snow White",
     "pack": "Arcaea",
@@ -470,7 +456,6 @@
   },
   {
     "bpm": "174",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/fe/Songs_relentless.jpg/256px-Songs_relentless.jpg",
     "id": "relentless",
     "name": "Relentless",
     "pack": "Eternal Core",
@@ -507,7 +492,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/9a/Songs_shadesoflight.jpg/256px-Songs_shadesoflight.jpg",
     "id": "shadesoflight",
     "name": "Shades of Light in a Transcendent Realm",
     "pack": "Arcaea",
@@ -549,15 +533,13 @@
         "note": 1042,
         "songId": "shadesoflight",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/7/79/Songs_shadesoflight_byd.jpg/256px-Songs_shadesoflight_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/ef/Songs_vexaria.jpg/256px-Songs_vexaria.jpg",
     "id": "vexaria",
     "name": "Vexaria",
     "pack": "Arcaea",
@@ -596,15 +578,13 @@
         "note": 785,
         "songId": "vexaria",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/2/29/Songs_vexaria_byd.jpg/256px-Songs_vexaria_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "164",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/77/Songs_essenceoftwilight.jpg/256px-Songs_essenceoftwilight.jpg",
     "id": "essenceoftwilight",
     "name": "Essence of Twilight",
     "pack": "Eternal Core",
@@ -643,7 +623,6 @@
   },
   {
     "bpm": "144",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/97/Songs_qualia.jpg/256px-Songs_qualia.jpg",
     "id": "qualia",
     "name": "qualia -ideaesthesia-",
     "pack": "Arcaea",
@@ -683,15 +662,13 @@
         "songId": "qualia",
         "plus": true,
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/4/4b/Songs_qualia_byd.jpg/256px-Songs_qualia_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "174",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/24/Songs_pragmatism.jpg/256px-Songs_pragmatism.jpg",
     "id": "pragmatism",
     "name": "PRAGMATISM",
     "pack": "Eternal Core",
@@ -734,15 +711,13 @@
         "songId": "pragmatism",
         "override": {
           "cover": true,
-          "name": "PRAGMATISM -RESURRECTION-",
-          "url": "https://wiki.arcaea.cn/images/thumb/4/4e/Songs_pragmatism_byd.jpg/256px-Songs_pragmatism_byd.jpg"
+          "name": "PRAGMATISM -RESURRECTION-"
         }
       }
     ]
   },
   {
     "bpm": "185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/0f/Songs_sheriruth.jpg/256px-Songs_sheriruth.jpg",
     "id": "sheriruth",
     "name": "Sheriruth",
     "pack": "Eternal Core",
@@ -784,7 +759,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c9/Songs_lumia.jpg/256px-Songs_lumia.jpg",
     "id": "lumia",
     "name": "Lumia",
     "pack": "Eternal Core",
@@ -823,15 +797,13 @@
         "note": 814,
         "songId": "lumia",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/0/0f/Songs_lumia_byd.jpg/256px-Songs_lumia_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "210",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/58/Songs_dement.jpg/256px-Songs_dement.jpg",
     "id": "dement",
     "name": "Dement ~after legend~",
     "pack": "Arcaea",
@@ -871,15 +843,13 @@
         "songId": "dement",
         "plus": true,
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/5/57/Songs_dement_byd.jpg/256px-Songs_dement_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "169",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/96/Songs_dandelion.jpg/256px-Songs_dandelion.jpg",
     "id": "dandelion",
     "name": "Dandelion",
     "pack": "Arcaea",
@@ -916,7 +886,6 @@
   },
   {
     "bpm": "186",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b6/Songs_anokumene.jpg/256px-Songs_anokumene.jpg",
     "id": "anokumene",
     "name": "Anökumene",
     "pack": "Arcaea",
@@ -954,7 +923,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/41/Songs_infinityheaven.jpg/256px-Songs_infinityheaven.jpg",
     "id": "infinityheaven",
     "name": "Infinity Heaven",
     "pack": "Arcaea",
@@ -997,15 +965,13 @@
         "note": 986,
         "songId": "infinityheaven",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/9/99/Songs_infinityheaven_byd.jpg/256px-Songs_infinityheaven_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "132",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/4c/Songs_partyvinyl.jpg/256px-Songs_partyvinyl.jpg",
     "id": "partyvinyl",
     "name": "Party Vinyl",
     "pack": "Crimson Solace",
@@ -1048,15 +1014,13 @@
         "note": 946,
         "songId": "partyvinyl",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/f/f0/Songs_partyvinyl_byd.jpg/256px-Songs_partyvinyl_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "195",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/ee/Songs_flashback.jpg/256px-Songs_flashback.jpg",
     "id": "flashback",
     "name": "Flashback",
     "pack": "Crimson Solace",
@@ -1094,7 +1058,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c0/Songs_flyburg.jpg/256px-Songs_flyburg.jpg",
     "id": "flyburg",
     "name": "Flyburg and Endroll",
     "pack": "Crimson Solace",
@@ -1131,7 +1094,6 @@
   },
   {
     "bpm": "260",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/31/Songs_nirvluce.jpg/256px-Songs_nirvluce.jpg",
     "id": "nirvluce",
     "name": "Nirv lucE",
     "pack": "Crimson Solace",
@@ -1169,7 +1131,6 @@
   },
   {
     "bpm": "126",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b7/Songs_paradise.jpg/256px-Songs_paradise.jpg",
     "id": "paradise",
     "name": "Paradise",
     "pack": "Crimson Solace",
@@ -1208,7 +1169,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/1b/Songs_brandnewworld.jpg/256px-Songs_brandnewworld.jpg",
     "id": "brandnewworld",
     "name": "Brand new world",
     "pack": "Arcaea",
@@ -1245,7 +1205,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/79/Songs_dataerror.jpg/256px-Songs_dataerror.jpg",
     "id": "dataerror",
     "name": "DataErr0r",
     "pack": "Memory Archive",
@@ -1283,7 +1242,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/1d/Songs_crosssoul.jpg/256px-Songs_crosssoul.jpg",
     "id": "crosssoul",
     "name": "CROSS†SOUL",
     "pack": "Memory Archive",
@@ -1323,7 +1281,6 @@
   },
   {
     "bpm": "176",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b8/Songs_yourvoiceso.jpg/256px-Songs_yourvoiceso.jpg",
     "id": "yourvoiceso",
     "name": "Your voice so... feat. Such",
     "pack": "Memory Archive",
@@ -1363,7 +1320,6 @@
   },
   {
     "bpm": "196",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/04/Songs_chronostasis.jpg/256px-Songs_chronostasis.jpg",
     "id": "chronostasis",
     "name": "Chronostasis",
     "pack": "Arcaea",
@@ -1402,7 +1358,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a7/Songs_kanagawa.jpg/256px-Songs_kanagawa.jpg",
     "id": "kanagawa",
     "name": "Kanagawa Cyber Culvert",
     "pack": "Arcaea",
@@ -1445,15 +1400,13 @@
         "songId": "kanagawa",
         "plus": true,
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/4/46/Songs_kanagawa_byd.jpg/256px-Songs_kanagawa_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8d/Songs_moonlightofsandcastle.jpg/256px-Songs_moonlightofsandcastle.jpg",
     "id": "moonlightofsandcastle",
     "name": "Moonlight of Sand Castle",
     "pack": "Dynamix",
@@ -1493,7 +1446,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8d/Songs_reconstruction.jpg/256px-Songs_reconstruction.jpg",
     "id": "reconstruction",
     "name": "REconstruction",
     "pack": "Dynamix",
@@ -1531,7 +1483,6 @@
   },
   {
     "bpm": "205",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/ad/Songs_evoltex.jpg/256px-Songs_evoltex.jpg",
     "id": "evoltex",
     "name": "Evoltex (poppi'n mix)",
     "pack": "Dynamix",
@@ -1570,7 +1521,6 @@
   },
   {
     "bpm": "152",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/69/Songs_oracle.jpg/256px-Songs_oracle.jpg",
     "id": "oracle",
     "name": "Oracle",
     "pack": "Dynamix",
@@ -1610,7 +1560,6 @@
   },
   {
     "bpm": "202",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/cc/Songs_aterlbus.jpg/256px-Songs_aterlbus.jpg",
     "id": "aterlbus",
     "name": "αterlβus",
     "pack": "Dynamix",
@@ -1648,7 +1597,6 @@
   },
   {
     "bpm": "230",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/56/Songs_clotho.jpg/256px-Songs_clotho.jpg",
     "id": "clotho",
     "name": "Clotho and the stargazer",
     "pack": "Arcaea",
@@ -1686,7 +1634,6 @@
   },
   {
     "bpm": "184",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/48/Songs_impurebird.jpg/256px-Songs_impurebird.jpg",
     "id": "impurebird",
     "name": "Impure Bird",
     "pack": "Memory Archive",
@@ -1727,7 +1674,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/0a/Songs_ignotus.jpg/256px-Songs_ignotus.jpg",
     "id": "ignotus",
     "name": "Ignotus",
     "pack": "Arcaea",
@@ -1771,15 +1717,13 @@
         "plus": true,
         "override": {
           "cover": true,
-          "name": "Ignotus Afterburn",
-          "url": "https://wiki.arcaea.cn/images/thumb/e/ee/Songs_ignotusafterburn.jpg/256px-Songs_ignotusafterburn.jpg"
+          "name": "Ignotus Afterburn"
         }
       }
     ]
   },
   {
     "bpm": "155",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/9e/Songs_lethaeus.jpg/256px-Songs_lethaeus.jpg",
     "id": "lethaeus",
     "name": "Lethaeus",
     "pack": "Ambivalent Vision",
@@ -1818,7 +1762,6 @@
   },
   {
     "bpm": "187",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/94/Songs_romancewars.jpg/256px-Songs_romancewars.jpg",
     "id": "romancewars",
     "name": "Romance Wars",
     "pack": "Ambivalent Vision",
@@ -1857,7 +1800,6 @@
   },
   {
     "bpm": "138",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/23/Songs_blossoms.jpg/256px-Songs_blossoms.jpg",
     "id": "blossoms",
     "name": "Blossoms",
     "pack": "Ambivalent Vision",
@@ -1892,7 +1834,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/12/Songs_moonheart.jpg/256px-Songs_moonheart.jpg",
     "id": "moonheart",
     "name": "Moonheart",
     "pack": "Ambivalent Vision",
@@ -1935,15 +1876,13 @@
         "songId": "moonheart",
         "plus": true,
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/d/d1/Songs_moonheart_byd.jpg/256px-Songs_moonheart_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "132",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/19/Songs_genesis.jpg/256px-Songs_genesis.jpg",
     "id": "genesis",
     "name": "Genesis",
     "pack": "Ambivalent Vision",
@@ -1980,7 +1919,6 @@
   },
   {
     "bpm": "185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/78/Songs_harutopia.jpg/256px-Songs_harutopia.jpg",
     "id": "harutopia",
     "name": "Harutopia ~Utopia of Spring~",
     "pack": "Arcaea",
@@ -2018,7 +1956,6 @@
   },
   {
     "bpm": "183",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/54/Songs_auxesia.jpg/256px-Songs_auxesia.jpg",
     "id": "auxesia",
     "name": "Auxesia",
     "pack": "Memory Archive",
@@ -2057,7 +1994,6 @@
   },
   {
     "bpm": "270",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/1c/Songs_rabbitintheblackroom.jpg/256px-Songs_rabbitintheblackroom.jpg",
     "id": "rabbitintheblackroom",
     "name": "Rabbit In The Black Room",
     "pack": "Arcaea",
@@ -2097,7 +2033,6 @@
   },
   {
     "bpm": "165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/7c/Songs_modelista.jpg/256px-Songs_modelista.jpg",
     "id": "modelista",
     "name": "Modelista",
     "pack": "Memory Archive",
@@ -2137,7 +2072,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/4b/Songs_soundwitch.jpg/256px-Songs_soundwitch.jpg",
     "id": "soundwitch",
     "name": "SOUNDWiTCH",
     "pack": "Vicious Labyrinth",
@@ -2175,7 +2109,6 @@
   },
   {
     "bpm": "190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a2/Songs_trappola.jpg/256px-Songs_trappola.jpg",
     "id": "trappola",
     "name": "trappola bewitching",
     "pack": "Vicious Labyrinth",
@@ -2216,15 +2149,13 @@
         "note": 1086,
         "songId": "trappola",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/8/8b/Songs_trappola_byd.jpg/256px-Songs_trappola_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "140",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/76/Songs_iconoclast.jpg/256px-Songs_iconoclast.jpg",
     "id": "iconoclast",
     "name": "Iconoclast",
     "pack": "Vicious Labyrinth",
@@ -2264,7 +2195,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/4e/Songs_conflict.jpg/256px-Songs_conflict.jpg",
     "id": "conflict",
     "name": "conflict",
     "pack": "Vicious Labyrinth",
@@ -2302,7 +2232,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/f3/Songs_axiumcrisis.jpg/256px-Songs_axiumcrisis.jpg",
     "id": "axiumcrisis",
     "name": "Axium Crisis",
     "pack": "Vicious Labyrinth",
@@ -2343,7 +2272,6 @@
   },
   {
     "bpm": "210",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/7b/Songs_grievouslady.jpg/256px-Songs_grievouslady.jpg",
     "id": "grievouslady",
     "name": "Grievous Lady",
     "pack": "Vicious Labyrinth",
@@ -2382,7 +2310,6 @@
   },
   {
     "bpm": "205",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/15/Songs_dreaminattraction.jpg/256px-Songs_dreaminattraction.jpg",
     "id": "dreaminattraction",
     "name": "Dreamin' Attraction!!",
     "pack": "Arcaea",
@@ -2419,7 +2346,6 @@
   },
   {
     "bpm": "150",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/ac/Songs_redandblue.jpg/256px-Songs_redandblue.jpg",
     "id": "redandblue",
     "name": "Red and Blue",
     "pack": "Arcaea",
@@ -2464,15 +2390,13 @@
         "songId": "redandblue",
         "override": {
           "cover": true,
-          "name": "Red and Blue and Green",
-          "url": "https://wiki.arcaea.cn/images/thumb/c/c9/Songs_redandblueandgreen.jpg/256px-Songs_redandblueandgreen.jpg"
+          "name": "Red and Blue and Green"
         }
       }
     ]
   },
   {
     "bpm": "154 - 175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a2/Songs_onelastdrive.jpg/256px-Songs_onelastdrive.jpg",
     "id": "onelastdrive",
     "name": "One Last Drive",
     "pack": "Arcaea",
@@ -2509,7 +2433,6 @@
   },
   {
     "bpm": "152",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/23/Songs_surrender.jpg/256px-Songs_surrender.jpg",
     "id": "surrender",
     "name": "Surrender",
     "pack": "Memory Archive",
@@ -2546,7 +2469,6 @@
   },
   {
     "bpm": "172",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/80/Songs_yozakurafubuki.jpg/256px-Songs_yozakurafubuki.jpg",
     "id": "yozakurafubuki",
     "name": "Yosakura Fubuki",
     "pack": "Memory Archive",
@@ -2586,7 +2508,6 @@
   },
   {
     "bpm": "182",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/3c/Songs_cyanine.jpg/256px-Songs_cyanine.jpg",
     "id": "cyanine",
     "name": "cyanine",
     "pack": "Lanota",
@@ -2626,7 +2547,6 @@
   },
   {
     "bpm": "174",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/90/Songs_dreamgoeson.jpg/256px-Songs_dreamgoeson.jpg",
     "id": "dreamgoeson",
     "name": "Dream goes on",
     "pack": "Lanota",
@@ -2665,7 +2585,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/5f/Songs_journey.jpg/256px-Songs_journey.jpg",
     "id": "journey",
     "name": "Journey",
     "pack": "Lanota",
@@ -2703,7 +2622,6 @@
   },
   {
     "bpm": "179",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/32/Songs_specta.jpg/256px-Songs_specta.jpg",
     "id": "specta",
     "name": "Specta",
     "pack": "Lanota",
@@ -2740,7 +2658,6 @@
   },
   {
     "bpm": "189",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/4a/Songs_quon.jpg/256px-Songs_quon.jpg",
     "id": "quon",
     "name": "Quon",
     "pack": "Lanota",
@@ -2775,7 +2692,6 @@
   },
   {
     "bpm": "178",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2b/Songs_syro.jpg/256px-Songs_syro.jpg",
     "id": "syro",
     "name": "Syro",
     "pack": "Arcaea",
@@ -2812,7 +2728,6 @@
   },
   {
     "bpm": "174",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8b/Songs_reinvent.jpg/256px-Songs_reinvent.jpg",
     "id": "reinvent",
     "name": "Reinvent",
     "pack": "Arcaea",
@@ -2850,7 +2765,6 @@
   },
   {
     "bpm": "158",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c0/Songs_silentrush.jpg/256px-Songs_silentrush.jpg",
     "id": "silentrush",
     "name": "Silent Rush",
     "pack": "Binary Enfold",
@@ -2888,7 +2802,6 @@
   },
   {
     "bpm": "175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/29/Songs_singularity.jpg/256px-Songs_singularity.jpg",
     "id": "singularity",
     "name": "Singularity",
     "pack": "Binary Enfold",
@@ -2933,15 +2846,13 @@
         "songId": "singularity",
         "override": {
           "cover": true,
-          "name": "Singularity VVVIP",
-          "url": "https://wiki.arcaea.cn/images/thumb/7/70/Songs_singularityvvvip.jpg/256px-Songs_singularityvvvip.jpg"
+          "name": "Singularity VVVIP"
         }
       }
     ]
   },
   {
     "bpm": "178",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/21/Songs_memoryforest.jpg/256px-Songs_memoryforest.jpg",
     "id": "memoryforest",
     "name": "Memory Forest",
     "pack": "Binary Enfold",
@@ -2979,7 +2890,6 @@
   },
   {
     "bpm": "105",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e7/Songs_strongholds.jpg/256px-Songs_strongholds.jpg",
     "id": "strongholds",
     "name": "Strongholds",
     "pack": "Binary Enfold",
@@ -3019,7 +2929,6 @@
   },
   {
     "bpm": "165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/f4/Songs_nexttoyou.jpg/256px-Songs_nexttoyou.jpg",
     "id": "nexttoyou",
     "name": "next to you",
     "pack": "Binary Enfold",
@@ -3060,15 +2969,13 @@
         "note": 954,
         "songId": "nexttoyou",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/1/12/Songs_nexttoyou_byd.jpg/256px-Songs_nexttoyou_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/41/Songs_metallicpunisher.jpg/256px-Songs_metallicpunisher.jpg",
     "id": "metallicpunisher",
     "name": "Metallic Punisher",
     "pack": "Memory Archive",
@@ -3108,7 +3015,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/51/Songs_blaster.jpg/256px-Songs_blaster.jpg",
     "id": "blaster",
     "name": "Blaster",
     "pack": "Arcaea",
@@ -3146,7 +3052,6 @@
   },
   {
     "bpm": "202",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d3/Songs_guardina.jpg/256px-Songs_guardina.jpg",
     "id": "guardina",
     "name": "γuarδina",
     "pack": "Memory Archive",
@@ -3184,7 +3089,6 @@
   },
   {
     "bpm": "165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/1d/Songs_carminescythe.jpg/256px-Songs_carminescythe.jpg",
     "id": "carminescythe",
     "name": "carmine:scythe",
     "pack": "Memory Archive",
@@ -3221,7 +3125,6 @@
   },
   {
     "bpm": "164",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/4a/Songs_bethere.jpg/256px-Songs_bethere.jpg",
     "id": "bethere",
     "name": "Be There",
     "pack": "Memory Archive",
@@ -3258,7 +3161,6 @@
   },
   {
     "bpm": "184",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/4f/Songs_cyberneciacatharsis.jpg/256px-Songs_cyberneciacatharsis.jpg",
     "id": "cyberneciacatharsis",
     "name": "Cybernecia Catharsis",
     "pack": "Arcaea",
@@ -3296,7 +3198,6 @@
   },
   {
     "bpm": "175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/cc/Songs_callmyname.jpg/256px-Songs_callmyname.jpg",
     "id": "callmyname",
     "name": "Call My Name feat. Yukacco",
     "pack": "Memory Archive",
@@ -3339,7 +3240,6 @@
   },
   {
     "bpm": "102",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d8/Songs_inkarusi.jpg/256px-Songs_inkarusi.jpg",
     "id": "inkarusi",
     "name": "inkar-usi",
     "pack": "Arcaea",
@@ -3374,7 +3274,6 @@
   },
   {
     "bpm": "159",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/44/Songs_mazenine.jpg/256px-Songs_mazenine.jpg",
     "id": "mazenine",
     "name": "Maze No.9",
     "pack": "Luminous Sky",
@@ -3417,7 +3316,6 @@
   },
   {
     "bpm": "202",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/35/Songs_themessage.jpg/256px-Songs_themessage.jpg",
     "id": "themessage",
     "name": "The Message",
     "pack": "Luminous Sky",
@@ -3458,7 +3356,6 @@
   },
   {
     "bpm": "182",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/00/Songs_sulfur.jpg/256px-Songs_sulfur.jpg",
     "id": "sulfur",
     "name": "Sulfur",
     "pack": "Luminous Sky",
@@ -3496,7 +3393,6 @@
   },
   {
     "bpm": "191",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/ba/Songs_halcyon.jpg/256px-Songs_halcyon.jpg",
     "id": "halcyon",
     "name": "Halcyon",
     "pack": "Luminous Sky",
@@ -3537,7 +3433,6 @@
   },
   {
     "bpm": "156",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b2/Songs_etherstrike.jpg/256px-Songs_etherstrike.jpg",
     "id": "etherstrike",
     "name": "Ether Strike",
     "pack": "Luminous Sky",
@@ -3580,7 +3475,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/1a/Songs_fractureray.jpg/256px-Songs_fractureray.jpg",
     "id": "fractureray",
     "name": "Fracture Ray",
     "pack": "Luminous Sky",
@@ -3627,7 +3521,6 @@
   },
   {
     "bpm": "125",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a0/Songs_suomi.jpg/256px-Songs_suomi.jpg",
     "id": "suomi",
     "name": "Suomi",
     "pack": "Arcaea",
@@ -3666,7 +3559,6 @@
   },
   {
     "bpm": "175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/67/Songs_bookmaker.jpg/256px-Songs_bookmaker.jpg",
     "id": "bookmaker",
     "name": "Bookmaker (2D Version)",
     "pack": "Arcaea",
@@ -3710,15 +3602,13 @@
         "note": 1287,
         "songId": "bookmaker",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/2/2f/Songs_bookmaker_byd.jpg/256px-Songs_bookmaker_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "168",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/1c/Songs_darakunosono.jpg/256px-Songs_darakunosono.jpg",
     "id": "darakunosono",
     "name": "Illegal Paradise",
     "pack": "Arcaea",
@@ -3757,7 +3647,6 @@
   },
   {
     "bpm": "50",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/de/Songs_dropdead.jpg/256px-Songs_dropdead.jpg",
     "id": "dropdead",
     "name": "dropdead",
     "pack": "Memory Archive",
@@ -3799,15 +3688,13 @@
         "songId": "dropdead",
         "override": {
           "cover": true,
-          "name": "overdead.",
-          "url": "https://wiki.arcaea.cn/images/thumb/d/d9/Songs_overdead.jpg/256px-Songs_overdead.jpg"
+          "name": "overdead."
         }
       }
     ]
   },
   {
     "bpm": "99",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e6/Songs_fallensquare.jpg/256px-Songs_fallensquare.jpg",
     "id": "fallensquare",
     "name": "Fallensquare",
     "pack": "Memory Archive",
@@ -3844,7 +3731,6 @@
   },
   {
     "bpm": "174.59",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/27/Songs_nhelv.jpg/256px-Songs_nhelv.jpg",
     "id": "nhelv",
     "name": "Nhelv",
     "pack": "Arcaea",
@@ -3885,7 +3771,6 @@
   },
   {
     "bpm": "192",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/6c/Songs_espebranch.jpg/256px-Songs_espebranch.jpg",
     "id": "espebranch",
     "name": "LunarOrbit -believe in the Espebranch road-",
     "pack": "Arcaea",
@@ -3923,7 +3808,6 @@
   },
   {
     "bpm": "150",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c2/Songs_purgatorium.jpg/256px-Songs_purgatorium.jpg",
     "id": "purgatorium",
     "name": "Purgatorium",
     "pack": "Arcaea",
@@ -3964,15 +3848,13 @@
         "note": 1051,
         "songId": "purgatorium",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/f/f6/Songs_purgatorium_byd.jpg/256px-Songs_purgatorium_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "130",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/17/Songs_hikari.jpg/256px-Songs_hikari.jpg",
     "id": "hikari",
     "name": "Hikari",
     "pack": "Tone Sphere",
@@ -4010,7 +3892,6 @@
   },
   {
     "bpm": "145",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/de/Songs_stager.jpg/256px-Songs_stager.jpg",
     "id": "stager",
     "name": "STAGER (ALL STAGE CLEAR)",
     "pack": "Tone Sphere",
@@ -4025,8 +3906,7 @@
         "note": 453,
         "songId": "stager",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/b/bb/Songs_stager_pst.jpg/256px-Songs_stager_pst.jpg"
+          "cover": true
         }
       },
       {
@@ -4037,8 +3917,7 @@
         "note": 559,
         "songId": "stager",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/a/a9/Songs_stager_prs.jpg/256px-Songs_stager_prs.jpg"
+          "cover": true
         }
       },
       {
@@ -4053,7 +3932,6 @@
   },
   {
     "bpm": "147",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e3/Songs_hallofmirrors.jpg/256px-Songs_hallofmirrors.jpg",
     "id": "hallofmirrors",
     "name": "Hall of Mirrors",
     "pack": "Tone Sphere",
@@ -4090,7 +3968,6 @@
   },
   {
     "bpm": "200 - 211.9",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/7f/Songs_linearaccelerator.jpg/256px-Songs_linearaccelerator.jpg",
     "id": "linearaccelerator",
     "name": "Linear Accelerator",
     "pack": "Tone Sphere",
@@ -4128,7 +4005,6 @@
   },
   {
     "bpm": "140?",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/f6/Songs_tiferet.jpg/256px-Songs_tiferet.jpg",
     "id": "tiferet",
     "name": "Tiferet",
     "pack": "Tone Sphere",
@@ -4165,7 +4041,6 @@
   },
   {
     "bpm": "146",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/7f/Songs_alexandrite.jpg/256px-Songs_alexandrite.jpg",
     "id": "alexandrite",
     "name": "Alexandrite",
     "pack": "Memory Archive",
@@ -4204,7 +4079,6 @@
   },
   {
     "bpm": "191",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/01/Songs_rugie.jpg/256px-Songs_rugie.jpg",
     "id": "rugie",
     "name": "Rugie",
     "pack": "Arcaea",
@@ -4242,7 +4116,6 @@
   },
   {
     "bpm": "134",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/27/Songs_astraltale.jpg/256px-Songs_astraltale.jpg",
     "id": "astraltale",
     "name": "Astral tale",
     "pack": "Memory Archive",
@@ -4283,7 +4156,6 @@
   },
   {
     "bpm": "153",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/79/Songs_phantasia.jpg/256px-Songs_phantasia.jpg",
     "id": "phantasia",
     "name": "Phantasia",
     "pack": "Memory Archive",
@@ -4322,7 +4194,6 @@
   },
   {
     "bpm": "175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/66/Songs_empireofwinter.jpg/256px-Songs_empireofwinter.jpg",
     "id": "empireofwinter",
     "name": "Empire of Winter",
     "pack": "Memory Archive",
@@ -4364,7 +4235,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/cb/Songs_merlin.jpg/256px-Songs_merlin.jpg",
     "id": "merlin",
     "name": "MERLIN",
     "pack": "Groove Coaster",
@@ -4409,7 +4279,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/fb/Songs_dxfullmetal.jpg/256px-Songs_dxfullmetal.jpg",
     "id": "dxfullmetal",
     "name": "DX Choseinou Full Metal Shojo",
     "pack": "Groove Coaster",
@@ -4449,7 +4318,6 @@
   },
   {
     "bpm": "240",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/bd/Songs_omakeno.jpg/256px-Songs_omakeno.jpg",
     "id": "omakeno",
     "name": "OMAKENO Stroke",
     "pack": "Groove Coaster",
@@ -4492,7 +4360,6 @@
   },
   {
     "bpm": "185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e0/Songs_scarletlance.jpg/256px-Songs_scarletlance.jpg",
     "id": "scarletlance",
     "name": "Scarlet Lance",
     "pack": "Groove Coaster",
@@ -4532,7 +4399,6 @@
   },
   {
     "bpm": "188",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/54/Songs_ouroboros.jpg/256px-Songs_ouroboros.jpg",
     "id": "ouroboros",
     "name": "ouroboros -twin stroke of the end-",
     "pack": "Groove Coaster",
@@ -4570,7 +4436,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/ad/Songs_libertas.jpg/256px-Songs_libertas.jpg",
     "id": "libertas",
     "name": "Libertas",
     "pack": "Memory Archive",
@@ -4607,7 +4472,6 @@
   },
   {
     "bpm": "162",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d8/Songs_solitarydream.jpg/256px-Songs_solitarydream.jpg",
     "id": "solitarydream",
     "name": "Solitary Dream",
     "pack": "Eternal Core",
@@ -4647,7 +4511,6 @@
   },
   {
     "bpm": "172",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/18/Songs_antithese.jpg/256px-Songs_antithese.jpg",
     "id": "antithese",
     "name": "Antithese",
     "pack": "Absolute Reason",
@@ -4688,15 +4551,13 @@
         "note": 968,
         "songId": "antithese",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/c/c8/Songs_antithese_byd.jpg/256px-Songs_antithese_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/18/Songs_corruption.jpg/256px-Songs_corruption.jpg",
     "id": "corruption",
     "name": "Corruption",
     "pack": "Absolute Reason",
@@ -4737,7 +4598,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/9d/Songs_blackterritory.jpg/256px-Songs_blackterritory.jpg",
     "id": "blackterritory",
     "name": "Black Territory",
     "pack": "Absolute Reason",
@@ -4777,7 +4637,6 @@
   },
   {
     "bpm": "256",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e9/Songs_viciousheroism.jpg/256px-Songs_viciousheroism.jpg",
     "id": "viciousheroism",
     "name": "Vicious Heroism",
     "pack": "Absolute Reason",
@@ -4815,7 +4674,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/93/Songs_cyaegha.jpg/256px-Songs_cyaegha.jpg",
     "id": "cyaegha",
     "name": "Cyaegha",
     "pack": "Absolute Reason",
@@ -4855,7 +4713,6 @@
   },
   {
     "bpm": "115-185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/50/Songs_revixy.jpg/256px-Songs_revixy.jpg",
     "id": "revixy",
     "name": "ReviXy",
     "pack": "Arcaea",
@@ -4896,7 +4753,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b6/Songs_grimheart.jpg/256px-Songs_grimheart.jpg",
     "id": "grimheart",
     "name": "Grimheart",
     "pack": "Arcaea",
@@ -4936,7 +4792,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b7/Songs_vector.jpg/256px-Songs_vector.jpg",
     "id": "vector",
     "name": "VECTOЯ",
     "pack": "Arcaea",
@@ -4975,7 +4830,6 @@
   },
   {
     "bpm": "150",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/99/Songs_supernova.jpg/256px-Songs_supernova.jpg",
     "id": "supernova",
     "name": "SUPERNOVA",
     "pack": "Arcaea",
@@ -5015,7 +4869,6 @@
   },
   {
     "bpm": "174",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2e/Songs_dottodot.jpg/256px-Songs_dottodot.jpg",
     "id": "dottodot",
     "name": "Dot to Dot feat. shully",
     "pack": "Memory Archive",
@@ -5055,7 +4908,6 @@
   },
   {
     "bpm": "256",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b5/Songs_garakuta.jpg/256px-Songs_garakuta.jpg",
     "id": "garakuta",
     "name": "Garakuta Doll Play",
     "pack": "CHUNITHM",
@@ -5096,7 +4948,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/6d/Songs_ikazuchi.jpg/256px-Songs_ikazuchi.jpg",
     "id": "ikazuchi",
     "name": "Ikazuchi",
     "pack": "CHUNITHM",
@@ -5135,7 +4986,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c4/Songs_worldvanquisher.jpg/256px-Songs_worldvanquisher.jpg",
     "id": "worldvanquisher",
     "name": "World Vanquisher",
     "pack": "CHUNITHM",
@@ -5176,7 +5026,6 @@
   },
   {
     "bpm": "96-384",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/18/Songs_dreadnought.jpg/256px-Songs_dreadnought.jpg",
     "id": "dreadnought",
     "name": "Dreadnought",
     "pack": "Memory Archive",
@@ -5217,7 +5066,6 @@
   },
   {
     "bpm": "162-175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c8/Songs_particlearts.jpg/256px-Songs_particlearts.jpg",
     "id": "particlearts",
     "name": "Particle Arts",
     "pack": "Adverse Prelude",
@@ -5256,7 +5104,6 @@
   },
   {
     "bpm": "174",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/4d/Songs_vindication.jpg/256px-Songs_vindication.jpg",
     "id": "vindication",
     "name": "Vindication",
     "pack": "Adverse Prelude",
@@ -5294,7 +5141,6 @@
   },
   {
     "bpm": "240",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/7e/Songs_heavensdoor.jpg/256px-Songs_heavensdoor.jpg",
     "id": "heavensdoor",
     "name": "Heavensdoor",
     "pack": "Adverse Prelude",
@@ -5339,15 +5185,13 @@
         "songId": "heavensdoor",
         "plus": true,
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/5/54/Songs_heavensdoor_byd.jpg/256px-Songs_heavensdoor_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/bd/Songs_ringedgenesis.jpg/256px-Songs_ringedgenesis.jpg",
     "id": "ringedgenesis",
     "name": "Ringed Genesis",
     "pack": "Adverse Prelude",
@@ -5386,7 +5230,6 @@
   },
   {
     "bpm": "174",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/f4/Songs_chelsea.jpg/256px-Songs_chelsea.jpg",
     "id": "chelsea",
     "name": "Chelsea",
     "pack": "Sunset Radiance",
@@ -5423,7 +5266,6 @@
   },
   {
     "bpm": "145",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a4/Songs_aiueoon.jpg/256px-Songs_aiueoon.jpg",
     "id": "aiueoon",
     "name": "AI[UE]OON",
     "pack": "Sunset Radiance",
@@ -5458,7 +5300,6 @@
   },
   {
     "bpm": "165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b4/Songs_melodyoflove.jpg/256px-Songs_melodyoflove.jpg",
     "id": "melodyoflove",
     "name": "A Wandering Melody of Love",
     "pack": "Sunset Radiance",
@@ -5498,7 +5339,6 @@
   },
   {
     "bpm": "191",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/fa/Songs_tiemedowngently.jpg/256px-Songs_tiemedowngently.jpg",
     "id": "tiemedowngently",
     "name": "Tie me down gently",
     "pack": "Sunset Radiance",
@@ -5537,7 +5377,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/95/Songs_valhallazero.jpg/256px-Songs_valhallazero.jpg",
     "id": "valhallazero",
     "name": "Valhalla:0",
     "pack": "Sunset Radiance",
@@ -5577,7 +5416,6 @@
   },
   {
     "bpm": "201",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a4/Songs_mirzam.jpg/256px-Songs_mirzam.jpg",
     "id": "mirzam",
     "name": "Mirzam",
     "pack": "Memory Archive",
@@ -5615,7 +5453,6 @@
   },
   {
     "bpm": "132",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b7/Songs_diode.jpg/256px-Songs_diode.jpg",
     "id": "diode",
     "name": "Diode",
     "pack": "Arcaea",
@@ -5654,7 +5491,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/39/Songs_freefall.jpg/256px-Songs_freefall.jpg",
     "id": "freefall",
     "name": "FREEF4LL",
     "pack": "Arcaea",
@@ -5696,15 +5532,13 @@
         "songId": "freefall",
         "plus": true,
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/d/da/Songs_freefall_byd.jpg/256px-Songs_freefall_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "250",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c2/Songs_gloryroad.jpg/256px-Songs_gloryroad.jpg",
     "id": "gloryroad",
     "name": "GLORY：ROAD",
     "pack": "Crimson Solace",
@@ -5745,7 +5579,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/65/Songs_monochromeprincess.jpg/256px-Songs_monochromeprincess.jpg",
     "id": "monochromeprincess",
     "name": "Monochrome Princess",
     "pack": "Arcaea",
@@ -5785,7 +5618,6 @@
   },
   {
     "bpm": "241",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/94/Songs_heavenlycaress.jpg/256px-Songs_heavenlycaress.jpg",
     "id": "heavenlycaress",
     "name": "Heavenly caress",
     "pack": "Memory Archive",
@@ -5823,7 +5655,6 @@
   },
   {
     "bpm": "90",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/7d/Songs_senkyou.jpg/256px-Songs_senkyou.jpg",
     "id": "senkyou",
     "name": "Senkyou",
     "pack": "Arcaea",
@@ -5862,7 +5693,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2e/Songs_filament.jpg/256px-Songs_filament.jpg",
     "id": "filament",
     "name": "Filament",
     "pack": "Memory Archive",
@@ -5901,7 +5731,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/19/Songs_avantraze.jpg/256px-Songs_avantraze.jpg",
     "id": "avantraze",
     "name": "Avant Raze",
     "pack": "Memory Archive",
@@ -5940,7 +5769,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/76/Songs_battlenoone.jpg/256px-Songs_battlenoone.jpg",
     "id": "battlenoone",
     "name": "BATTLE NO.1",
     "pack": "Memory Archive",
@@ -5979,7 +5807,6 @@
   },
   {
     "bpm": "168",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/43/Songs_laqryma.jpg/256px-Songs_laqryma.jpg",
     "id": "laqryma",
     "name": "La'qryma of the Wasteland",
     "pack": "Memory Archive",
@@ -6027,15 +5854,13 @@
         "songId": "laqryma",
         "plus": true,
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/0/0b/Songs_laqryma_byd.jpg/256px-Songs_laqryma_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "222",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/ef/Songs_einherjar.jpg/256px-Songs_einherjar.jpg",
     "id": "einherjar",
     "name": "Einherjar Joker",
     "pack": "Memory Archive",
@@ -6074,7 +5899,6 @@
   },
   {
     "bpm": "222",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/41/Songs_izana.jpg/256px-Songs_izana.jpg",
     "id": "izana",
     "name": "IZANA",
     "pack": "Memory Archive",
@@ -6111,7 +5935,6 @@
   },
   {
     "bpm": "205",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/7b/Songs_saikyostronger.jpg/256px-Songs_saikyostronger.jpg",
     "id": "saikyostronger",
     "name": "SAIKYO STRONGER",
     "pack": "Memory Archive",
@@ -6153,7 +5976,6 @@
   },
   {
     "bpm": "130",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/06/Songs_worldexecuteme.jpg/256px-Songs_worldexecuteme.jpg",
     "id": "worldexecuteme",
     "name": "world.execute(me);",
     "pack": "Arcaea",
@@ -6191,7 +6013,6 @@
   },
   {
     "bpm": "115",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e8/Songs_blrink.jpg/256px-Songs_blrink.jpg",
     "id": "blrink",
     "name": "BLRINK",
     "pack": "Adverse Prelude",
@@ -6233,7 +6054,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a3/Songs_oblivia.jpg/256px-Songs_oblivia.jpg",
     "id": "oblivia",
     "name": "Oblivia",
     "pack": "Arcaea",
@@ -6271,7 +6091,6 @@
   },
   {
     "bpm": "154",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/15/Songs_amygdata.jpg/256px-Songs_amygdata.jpg",
     "id": "amygdata",
     "name": "amygdata",
     "pack": "Memory Archive",
@@ -6311,7 +6130,6 @@
   },
   {
     "bpm": "105",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b1/Songs_corpssansorganes.jpg/256px-Songs_corpssansorganes.jpg",
     "id": "corpssansorganes",
     "name": "corps-sans-organes",
     "pack": "Ambivalent Vision",
@@ -6351,7 +6169,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b9/Songs_equilibrium.jpg/256px-Songs_equilibrium.jpg",
     "id": "equilibrium",
     "name": "Equilibrium",
     "pack": "Black Fate",
@@ -6391,7 +6208,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e5/Songs_antagonism.jpg/256px-Songs_antagonism.jpg",
     "id": "antagonism",
     "name": "Antagonism",
     "pack": "Black Fate",
@@ -6435,7 +6251,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/5b/Songs_lostdesire.jpg/256px-Songs_lostdesire.jpg",
     "id": "lostdesire",
     "name": "Lost Desire",
     "pack": "Black Fate",
@@ -6476,7 +6291,6 @@
   },
   {
     "bpm": "186",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/89/Songs_dantalion.jpg/256px-Songs_dantalion.jpg",
     "id": "dantalion",
     "name": "Dantalion",
     "pack": "Black Fate",
@@ -6519,7 +6333,6 @@
   },
   {
     "bpm": "181",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/be/Songs_ifi.jpg/256px-Songs_ifi.jpg",
     "id": "ifi",
     "name": "#1f1e33",
     "pack": "Black Fate",
@@ -6558,7 +6371,6 @@
   },
   {
     "bpm": "231",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c8/Songs_tempestissimo.jpg/256px-Songs_tempestissimo.jpg",
     "id": "tempestissimo",
     "name": "Tempestissimo",
     "pack": "Black Fate",
@@ -6608,15 +6420,13 @@
         "note": 1540,
         "songId": "tempestissimo",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/a/ab/Songs_tempestissimo_byd.jpg/256px-Songs_tempestissimo_byd.jpg"
+          "cover": true
         }
       }
     ]
   },
   {
     "bpm": "191",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b3/Songs_arcahv.jpg/256px-Songs_arcahv.jpg",
     "id": "arcahv",
     "name": "Arcahv",
     "pack": "Black Fate",
@@ -6655,7 +6465,6 @@
   },
   {
     "bpm": "83-90",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/73/Songs_altale.jpg/256px-Songs_altale.jpg",
     "id": "altale",
     "name": "Altale",
     "pack": "Memory Archive",
@@ -6693,7 +6502,6 @@
   },
   {
     "bpm": "95-190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/47/Songs_givemeanightmare.jpg/256px-Songs_givemeanightmare.jpg",
     "id": "givemeanightmare",
     "name": "Give Me a Nightmare",
     "pack": "Extend Archive",
@@ -6731,7 +6539,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/3a/Songs_blacklotus.jpg/256px-Songs_blacklotus.jpg",
     "id": "blacklotus",
     "name": "Black Lotus",
     "pack": "Extend Archive",
@@ -6769,7 +6576,6 @@
   },
   {
     "bpm": "132",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/42/Songs_gekka.jpg/256px-Songs_gekka.jpg",
     "id": "gekka",
     "name": "Gekka (Short Version)",
     "pack": "Extend Archive",
@@ -6806,7 +6612,6 @@
   },
   {
     "bpm": "178",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/33/Songs_vividtheory.jpg/256px-Songs_vividtheory.jpg",
     "id": "vividtheory",
     "name": "Vivid Theory",
     "pack": "Extend Archive",
@@ -6845,7 +6650,6 @@
   },
   {
     "bpm": "130",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/df/Songs_onefr.jpg/256px-Songs_onefr.jpg",
     "id": "onefr",
     "name": "1F√",
     "pack": "Extend Archive",
@@ -6884,7 +6688,6 @@
   },
   {
     "bpm": "166",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/15/Songs_scarletcage.jpg/256px-Songs_scarletcage.jpg",
     "id": "scarletcage",
     "name": "Scarlet Cage",
     "pack": "Memory Archive",
@@ -6924,7 +6727,6 @@
   },
   {
     "bpm": "133",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/9b/Songs_faintlight.jpg/256px-Songs_faintlight.jpg",
     "id": "faintlight",
     "name": "Faint Light (Arcaea Edit)",
     "pack": "Extend Archive",
@@ -6962,7 +6764,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/52/Songs_feelssoright.jpg/256px-Songs_feelssoright.jpg",
     "id": "feelssoright",
     "name": "Feels So Right feat. Renko",
     "pack": "Memory Archive",
@@ -7006,7 +6807,6 @@
   },
   {
     "bpm": "128",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/fc/Songs_teriqma.jpg/256px-Songs_teriqma.jpg",
     "id": "teriqma",
     "name": "Teriqma",
     "pack": "Memory Archive",
@@ -7052,7 +6852,6 @@
   },
   {
     "bpm": "195",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d1/Songs_mahoroba.jpg/256px-Songs_mahoroba.jpg",
     "id": "mahoroba",
     "name": "MAHOROBA",
     "pack": "Memory Archive",
@@ -7093,7 +6892,6 @@
   },
   {
     "bpm": "190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/95/Songs_badtek.jpg/256px-Songs_badtek.jpg",
     "id": "badtek",
     "name": "BADTEK",
     "pack": "Memory Archive",
@@ -7131,7 +6929,6 @@
   },
   {
     "bpm": "155",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d6/Songs_maliciousmischance.jpg/256px-Songs_maliciousmischance.jpg",
     "id": "maliciousmischance",
     "name": "Malicious Mischance",
     "pack": "Memory Archive",
@@ -7170,7 +6967,6 @@
   },
   {
     "bpm": "268",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/db/Songs_gothiveofra.jpg/256px-Songs_gothiveofra.jpg",
     "id": "gothiveofra",
     "name": "Got hive of Ra",
     "pack": "Groove Coaster",
@@ -7211,7 +7007,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d7/Songs_buchigireberserker.jpg/256px-Songs_buchigireberserker.jpg",
     "id": "buchigireberserker",
     "name": "BUCHiGiRE Berserker",
     "pack": "Memory Archive",
@@ -7249,7 +7044,6 @@
   },
   {
     "bpm": "300",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/59/Songs_galaxyfriends.jpg/256px-Songs_galaxyfriends.jpg",
     "id": "galaxyfriends",
     "name": "Galaxy Friends",
     "pack": "Memory Archive",
@@ -7289,7 +7083,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c2/Songs_crossover.jpg/256px-Songs_crossover.jpg",
     "id": "crossover",
     "name": "CROSS†OVER",
     "pack": "Extend Archive",
@@ -7327,7 +7120,6 @@
   },
   {
     "bpm": "146",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e9/Songs_xeraphinite.jpg/256px-Songs_xeraphinite.jpg",
     "id": "xeraphinite",
     "name": "Xeraphinite",
     "pack": "Memory Archive",
@@ -7368,7 +7160,6 @@
   },
   {
     "bpm": "146",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/ea/Songs_lapis.jpg/256px-Songs_lapis.jpg",
     "id": "lapis",
     "name": "Lapis",
     "pack": "Extend Archive",
@@ -7407,7 +7198,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/f2/Songs_xanatos.jpg/256px-Songs_xanatos.jpg",
     "id": "xanatos",
     "name": "Xanatos",
     "pack": "Memory Archive",
@@ -7448,7 +7238,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/f3/Songs_purpleverse.jpg/256px-Songs_purpleverse.jpg",
     "id": "purpleverse",
     "name": "Purple Verse",
     "pack": "Extend Archive",
@@ -7487,7 +7276,6 @@
   },
   {
     "bpm": "80-134",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2b/Songs_alicealamode.jpg/256px-Songs_alicealamode.jpg",
     "id": "alicealamode",
     "name": "Alice à la mode",
     "pack": "Ephemeral Page",
@@ -7525,7 +7313,6 @@
   },
   {
     "bpm": "132",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/69/Songs_eccentrictale.jpg/256px-Songs_eccentrictale.jpg",
     "id": "eccentrictale",
     "name": "Eccentric Tale",
     "pack": "Ephemeral Page",
@@ -7564,7 +7351,6 @@
   },
   {
     "bpm": "190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a8/Songs_alicessuitcase.jpg/256px-Songs_alicessuitcase.jpg",
     "id": "alicessuitcase",
     "name": "Alice's Suitcase",
     "pack": "Ephemeral Page",
@@ -7602,7 +7388,6 @@
   },
   {
     "bpm": "133",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/42/Songs_jump.jpg/256px-Songs_jump.jpg",
     "id": "jump",
     "name": "Jump",
     "pack": "Ephemeral Page",
@@ -7639,7 +7424,6 @@
   },
   {
     "bpm": "155",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/4b/Songs_felis.jpg/256px-Songs_felis.jpg",
     "id": "felis",
     "name": "Felis",
     "pack": "Ephemeral Page",
@@ -7679,7 +7463,6 @@
   },
   {
     "bpm": "181",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/ed/Songs_besideyou.jpg/256px-Songs_besideyou.jpg",
     "id": "besideyou",
     "name": "Beside You",
     "pack": "Ephemeral Page - The Journey Onwards",
@@ -7717,7 +7500,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/22/Songs_heartjackin.jpg/256px-Songs_heartjackin.jpg",
     "id": "heartjackin",
     "name": "Heart Jackin'",
     "pack": "Ephemeral Page - The Journey Onwards",
@@ -7756,7 +7538,6 @@
   },
   {
     "bpm": "222",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a8/Songs_toaliceliddell.jpg/256px-Songs_toaliceliddell.jpg",
     "id": "toaliceliddell",
     "name": "To: Alice Liddell",
     "pack": "Ephemeral Page - The Journey Onwards",
@@ -7793,7 +7574,6 @@
   },
   {
     "bpm": "185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b3/Songs_lazyaddiction.jpg/256px-Songs_lazyaddiction.jpg",
     "id": "lazyaddiction",
     "name": "Lazy Addiction",
     "pack": "O.N.G.E.K.I.",
@@ -7831,7 +7611,6 @@
   },
   {
     "bpm": "220",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/61/Songs_dazzlehop.jpg/256px-Songs_dazzlehop.jpg",
     "id": "dazzlehop",
     "name": "Dazzle hop",
     "pack": "O.N.G.E.K.I.",
@@ -7867,7 +7646,6 @@
   },
   {
     "bpm": "218",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8e/Songs_viyellastears.jpg/256px-Songs_viyellastears.jpg",
     "id": "viyellastears",
     "name": "Viyella's Tears",
     "pack": "O.N.G.E.K.I.",
@@ -7908,7 +7686,6 @@
   },
   {
     "bpm": "71-192",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/af/Songs_omegafour.jpg/256px-Songs_omegafour.jpg",
     "id": "omegafour",
     "name": "ω4",
     "pack": "O.N.G.E.K.I.",
@@ -7948,7 +7725,6 @@
   },
   {
     "bpm": "79",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8d/Songs_aprilshowers.jpg/256px-Songs_aprilshowers.jpg",
     "id": "aprilshowers",
     "name": "April showers",
     "pack": "maimai",
@@ -7986,7 +7762,6 @@
   },
   {
     "bpm": "150",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/fb/Songs_seventhsense.jpg/256px-Songs_seventhsense.jpg",
     "id": "seventhsense",
     "name": "7thSense",
     "pack": "maimai",
@@ -8025,7 +7800,6 @@
   },
   {
     "bpm": "190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/f4/Songs_oshamascramble.jpg/256px-Songs_oshamascramble.jpg",
     "id": "oshamascramble",
     "name": "Oshama Scramble!",
     "pack": "maimai",
@@ -8062,7 +7836,6 @@
   },
   {
     "bpm": "185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/16/Songs_amazingmightyyyy.jpg/256px-Songs_amazingmightyyyy.jpg",
     "id": "amazingmightyyyy",
     "name": "AMAZING MIGHTYYYY!!!!",
     "pack": "maimai",
@@ -8101,7 +7874,6 @@
   },
   {
     "bpm": "190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b5/Songs_climax.jpg/256px-Songs_climax.jpg",
     "id": "climax",
     "name": "Climax",
     "pack": "CHUNITHM - Collaboration Chapter 2",
@@ -8140,7 +7912,6 @@
   },
   {
     "bpm": "238",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/92/Songs_lastcelebration.jpg/256px-Songs_lastcelebration.jpg",
     "id": "lastcelebration",
     "name": "Last Celebration",
     "pack": "CHUNITHM - Collaboration Chapter 2",
@@ -8178,7 +7949,6 @@
   },
   {
     "bpm": "190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8d/Songs_gou.jpg/256px-Songs_gou.jpg",
     "id": "gou",
     "name": "Misdeed -la bonté de Dieu et l'origine du mal-",
     "pack": "CHUNITHM - Collaboration Chapter 2",
@@ -8216,7 +7986,6 @@
   },
   {
     "bpm": "165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/0c/Songs_glow.jpg/256px-Songs_glow.jpg",
     "id": "glow",
     "name": "Glow",
     "pack": "Extend Archive",
@@ -8251,7 +8020,6 @@
   },
   {
     "bpm": "202",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/02/Songs_attraqtia.jpg/256px-Songs_attraqtia.jpg",
     "id": "attraqtia",
     "name": "AttraqtiA",
     "pack": "Memory Archive",
@@ -8286,7 +8054,6 @@
   },
   {
     "bpm": "95",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/af/Songs_enchantedlove.jpg/256px-Songs_enchantedlove.jpg",
     "id": "enchantedlove",
     "name": "enchanted love",
     "pack": "Extend Archive",
@@ -8328,7 +8095,6 @@
   },
   {
     "bpm": "5-315",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/26/Songs_take.jpg/256px-Songs_take.jpg",
     "id": "take",
     "name": "Bamboo",
     "pack": "Extend Archive",
@@ -8366,7 +8132,6 @@
   },
   {
     "bpm": "87-110",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c9/Songs_gimmedablood.jpg/256px-Songs_gimmedablood.jpg",
     "id": "gimmedablood",
     "name": "GIMME DA BLOOD",
     "pack": "Memory Archive",
@@ -8407,7 +8172,6 @@
   },
   {
     "bpm": "128",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/36/Songs_bassline.jpg/256px-Songs_bassline.jpg",
     "id": "bassline",
     "name": "Can I Friend You on Bassbook? Lol",
     "pack": "Memory Archive",
@@ -8442,7 +8206,6 @@
   },
   {
     "bpm": "133",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/f4/Songs_lifeispiano.jpg/256px-Songs_lifeispiano.jpg",
     "id": "lifeispiano",
     "name": "Life is PIANO",
     "pack": "Extend Archive",
@@ -8479,7 +8242,6 @@
   },
   {
     "bpm": "130",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/5c/Songs_paperwitch.jpg/256px-Songs_paperwitch.jpg",
     "id": "paperwitch",
     "name": "Paper Witch",
     "pack": "Esoteric Order",
@@ -8517,7 +8279,6 @@
   },
   {
     "bpm": "178",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/71/Songs_crystalgravity.jpg/256px-Songs_crystalgravity.jpg",
     "id": "crystalgravity",
     "name": "Crystal Gravity",
     "pack": "Esoteric Order",
@@ -8556,7 +8317,6 @@
   },
   {
     "bpm": "180-216",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/01/Songs_farawaylight.jpg/256px-Songs_farawaylight.jpg",
     "id": "farawaylight",
     "name": "Far Away Light",
     "pack": "Esoteric Order",
@@ -8595,7 +8355,6 @@
   },
   {
     "bpm": "181",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/0b/Songs_loschen.jpg/256px-Songs_loschen.jpg",
     "id": "loschen",
     "name": "Löschen",
     "pack": "Esoteric Order",
@@ -8634,7 +8393,6 @@
   },
   {
     "bpm": "234",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/5a/Songs_aegleseeker.jpg/256px-Songs_aegleseeker.jpg",
     "id": "aegleseeker",
     "name": "Aegleseeker",
     "pack": "Esoteric Order",
@@ -8678,7 +8436,6 @@
   },
   {
     "bpm": "110",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/04/Songs_coastalhighway.jpg/256px-Songs_coastalhighway.jpg",
     "id": "coastalhighway",
     "name": "Coastal Highway",
     "pack": "Esoteric Order - Pale Tapestry",
@@ -8716,7 +8473,6 @@
   },
   {
     "bpm": "174",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b1/Songs_odysseia.jpg/256px-Songs_odysseia.jpg",
     "id": "odysseia",
     "name": "ΟΔΥΣΣΕΙΑ",
     "pack": "Esoteric Order - Pale Tapestry",
@@ -8754,7 +8510,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2a/Songs_overwhelm.jpg/256px-Songs_overwhelm.jpg",
     "id": "overwhelm",
     "name": "Overwhelm",
     "pack": "Esoteric Order - Pale Tapestry",
@@ -8793,7 +8548,6 @@
   },
   {
     "bpm": "194",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a6/Songs_vandalism.jpg/256px-Songs_vandalism.jpg",
     "id": "vandalism",
     "name": "Vandalism",
     "pack": "Extend Archive",
@@ -8833,7 +8587,6 @@
   },
   {
     "bpm": "128-170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/0f/Songs_turbocharger.jpg/256px-Songs_turbocharger.jpg",
     "id": "turbocharger",
     "name": "Turbocharger",
     "pack": "Extend Archive",
@@ -8868,7 +8621,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/9f/Songs_theultimacy.jpg/256px-Songs_theultimacy.jpg",
     "id": "theultimacy",
     "name": "THE ULTIMACY",
     "pack": "Memory Archive",
@@ -8908,7 +8660,6 @@
   },
   {
     "bpm": "240",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/cd/Songs_rekkaresonance.jpg/256px-Songs_rekkaresonance.jpg",
     "id": "rekkaresonance",
     "name": "REKKA RESONANCE",
     "pack": "Memory Archive",
@@ -8948,7 +8699,6 @@
   },
   {
     "bpm": "155",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/24/Songs_kyogenkigo.jpg/256px-Songs_kyogenkigo.jpg",
     "id": "kyogenkigo",
     "name": "False Embellishment",
     "pack": "Extend Archive",
@@ -8987,7 +8737,6 @@
   },
   {
     "bpm": "252",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a7/Songs_hivemind.jpg/256px-Songs_hivemind.jpg",
     "id": "hivemind",
     "name": "HIVEMIND",
     "pack": "Extend Archive",
@@ -9026,7 +8775,6 @@
   },
   {
     "bpm": "175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/79/Songs_seclusion.jpg/256px-Songs_seclusion.jpg",
     "id": "seclusion",
     "name": "Seclusion",
     "pack": "Esoteric Order",
@@ -9064,7 +8812,6 @@
   },
   {
     "bpm": "220",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d3/Songs_smallcloud.jpg/256px-Songs_smallcloud.jpg",
     "id": "smallcloud",
     "name": "Small Cloud Sugar Candy",
     "pack": "Esoteric Order - Light of Salvation",
@@ -9103,7 +8850,6 @@
   },
   {
     "bpm": "220-245",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b3/Songs_alterale.jpg/256px-Songs_alterale.jpg",
     "id": "alterale",
     "name": "AlterAle",
     "pack": "Esoteric Order - Light of Salvation",
@@ -9139,7 +8885,6 @@
   },
   {
     "bpm": "172",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/17/Songs_divinelight.jpg/256px-Songs_divinelight.jpg",
     "id": "divinelight",
     "name": "Divine Light of Myriad",
     "pack": "Esoteric Order - Light of Salvation",
@@ -9179,7 +8924,6 @@
   },
   {
     "bpm": "155",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/ac/Songs_mazymetroplex.jpg/256px-Songs_mazymetroplex.jpg",
     "id": "mazymetroplex",
     "name": "Mazy Metroplex",
     "pack": "WACCA",
@@ -9218,7 +8962,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/61/Songs_quonwacca.jpg/256px-Songs_quonwacca.jpg",
     "id": "quonwacca",
     "name": "Quon",
     "pack": "WACCA",
@@ -9265,7 +9008,6 @@
   },
   {
     "bpm": "155",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b0/Songs_withu.jpg/256px-Songs_withu.jpg",
     "id": "withu",
     "name": "with U",
     "pack": "WACCA",
@@ -9305,7 +9047,6 @@
   },
   {
     "bpm": "250-390",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/42/Songs_genocider.jpg/256px-Songs_genocider.jpg",
     "id": "genocider",
     "name": "GENOCIDER",
     "pack": "WACCA",
@@ -9344,7 +9085,6 @@
   },
   {
     "bpm": "185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d1/Songs_letyoudivermx.jpg/256px-Songs_letyoudivermx.jpg",
     "id": "letyoudivermx",
     "name": "Let you DIVE! (nitro rmx)",
     "pack": "WACCA",
@@ -9384,7 +9124,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/9b/Songs_sheriruthrmx.jpg/256px-Songs_sheriruthrmx.jpg",
     "id": "sheriruthrmx",
     "name": "Sheriruth (Laur Remix)",
     "pack": "Memory Archive",
@@ -9426,7 +9165,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/19/Songs_eveninginscarlet.jpg/256px-Songs_eveninginscarlet.jpg",
     "id": "eveninginscarlet",
     "name": "Evening in Scarlet",
     "pack": "Memory Archive",
@@ -9465,7 +9203,6 @@
   },
   {
     "bpm": "100-172",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/7a/Songs_bluecomet.jpg/256px-Songs_bluecomet.jpg",
     "id": "bluecomet",
     "name": "blue comet",
     "pack": "Extend Archive",
@@ -9503,7 +9240,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a5/Songs_energysynergymatrix.jpg/256px-Songs_energysynergymatrix.jpg",
     "id": "energysynergymatrix",
     "name": "ENERGY SYNERGY MATRIX",
     "pack": "Extend Archive",
@@ -9540,7 +9276,6 @@
   },
   {
     "bpm": "153",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a7/Songs_gengaozo.jpg/256px-Songs_gengaozo.jpg",
     "id": "gengaozo",
     "name": "G e n g a o z o",
     "pack": "Extend Archive",
@@ -9577,7 +9312,6 @@
   },
   {
     "bpm": "133",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/75/Songs_goldenslaughterer.jpg/256px-Songs_goldenslaughterer.jpg",
     "id": "goldenslaughterer",
     "name": "goldenslaughterer",
     "pack": "Memory Archive",
@@ -9613,7 +9347,6 @@
   },
   {
     "bpm": "139",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/25/Songs_lastendconductor.jpg/256px-Songs_lastendconductor.jpg",
     "id": "lastendconductor",
     "name": "lastendconductor",
     "pack": "Memory Archive",
@@ -9656,7 +9389,6 @@
   },
   {
     "bpm": "150",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/46/Songs_redolentshape.jpg/256px-Songs_redolentshape.jpg",
     "id": "redolentshape",
     "name": "Redolent Shape",
     "pack": "Memory Archive",
@@ -9691,7 +9423,6 @@
   },
   {
     "bpm": "110",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/dc/Songs_cosmica.jpg/256px-Songs_cosmica.jpg",
     "id": "cosmica",
     "name": "Cosmica",
     "pack": "Binary Enfold - Shared Time",
@@ -9729,7 +9460,6 @@
   },
   {
     "bpm": "145",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/7b/Songs_ascent.jpg/256px-Songs_ascent.jpg",
     "id": "ascent",
     "name": "Ascent",
     "pack": "Binary Enfold - Shared Time",
@@ -9769,7 +9499,6 @@
   },
   {
     "bpm": "153",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b1/Songs_livefastdieyoung.jpg/256px-Songs_livefastdieyoung.jpg",
     "id": "livefastdieyoung",
     "name": "Live Fast Die Young",
     "pack": "Binary Enfold - Shared Time",
@@ -9812,7 +9541,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/19/Songs_summerfireworks.jpg/256px-Songs_summerfireworks.jpg",
     "id": "summerfireworks",
     "name": "Summer Fireworks of Love",
     "pack": "Memory Archive",
@@ -9854,7 +9582,6 @@
   },
   {
     "bpm": "88",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/3a/Songs_firstsnow.jpg/256px-Songs_firstsnow.jpg",
     "id": "firstsnow",
     "name": "First Snow",
     "pack": "Divided Heart",
@@ -9891,7 +9618,6 @@
   },
   {
     "bpm": "250-295",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8c/Songs_bluerose.jpg/256px-Songs_bluerose.jpg",
     "id": "bluerose",
     "name": "Blue Rose",
     "pack": "Divided Heart",
@@ -9930,7 +9656,6 @@
   },
   {
     "bpm": "148",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/60/Songs_blockedlibrary.jpg/256px-Songs_blockedlibrary.jpg",
     "id": "blockedlibrary",
     "name": "Blocked Library",
     "pack": "Divided Heart",
@@ -9969,7 +9694,6 @@
   },
   {
     "bpm": "190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/cf/Songs_neokosmo.jpg/256px-Songs_neokosmo.jpg",
     "id": "neokosmo",
     "name": "nέο κόsmo",
     "pack": "Divided Heart",
@@ -10008,7 +9732,6 @@
   },
   {
     "bpm": "190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/31/Songs_lightningscrew.jpg/256px-Songs_lightningscrew.jpg",
     "id": "lightningscrew",
     "name": "Lightning Screw",
     "pack": "Divided Heart",
@@ -10046,7 +9769,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/00/Songs_lightsofmuse.jpg/256px-Songs_lightsofmuse.jpg",
     "id": "lightsofmuse",
     "name": "Lights of Muse",
     "pack": "Muse Dash",
@@ -10083,7 +9805,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/59/Songs_finalstep.jpg/256px-Songs_finalstep.jpg",
     "id": "finalstep",
     "name": "Final Step!",
     "pack": "Muse Dash",
@@ -10118,7 +9839,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/0b/Songs_akinokagerou.jpg/256px-Songs_akinokagerou.jpg",
     "id": "akinokagerou",
     "name": "Haze of Autumn",
     "pack": "Muse Dash",
@@ -10159,7 +9879,6 @@
   },
   {
     "bpm": "165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2b/Songs_medusa.jpg/256px-Songs_medusa.jpg",
     "id": "medusa",
     "name": "Medusa",
     "pack": "Muse Dash",
@@ -10196,7 +9915,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e6/Songs_init.jpg/256px-Songs_init.jpg",
     "id": "init",
     "name": "init()",
     "pack": "Memory Archive",
@@ -10232,7 +9950,6 @@
   },
   {
     "bpm": "163",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/bb/Songs_internetoverdose.jpg/256px-Songs_internetoverdose.jpg",
     "id": "internetoverdose",
     "name": "INTERNET OVERDOSE",
     "pack": "Memory Archive",
@@ -10271,7 +9988,6 @@
   },
   {
     "bpm": "175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d3/Songs_sakurafubuki.jpg/256px-Songs_sakurafubuki.jpg",
     "id": "sakurafubuki",
     "name": "Sakura Fubuki",
     "pack": "Arcaea",
@@ -10309,7 +10025,6 @@
   },
   {
     "bpm": "100",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/66/Songs_nulctrl.jpg/256px-Songs_nulctrl.jpg",
     "id": "nulctrl",
     "name": "NULCTRL",
     "pack": "Arcaea",
@@ -10344,7 +10059,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/3c/Songs_macromod.jpg/256px-Songs_macromod.jpg",
     "id": "macromod",
     "name": "Macrocosmic Modulation",
     "pack": "Memory Archive",
@@ -10380,7 +10094,6 @@
   },
   {
     "bpm": "168",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/34/Songs_neowings.jpg/256px-Songs_neowings.jpg",
     "id": "neowings",
     "name": "NEO WINGS",
     "pack": "Memory Archive",
@@ -10419,7 +10132,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/41/Songs_kissinglucifer.jpg/256px-Songs_kissinglucifer.jpg",
     "id": "kissinglucifer",
     "name": "Kissing Lucifer",
     "pack": "Memory Archive",
@@ -10458,7 +10170,6 @@
   },
   {
     "bpm": "130",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2b/Songs_avril.jpg/256px-Songs_avril.jpg",
     "id": "avril",
     "name": "Ävril -Flicka i krans-",
     "pack": "Arcaea",
@@ -10473,8 +10184,7 @@
         "note": 459,
         "songId": "avril",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/a/a9/Songs_avril_pst.jpg/256px-Songs_avril_pst.jpg"
+          "cover": true
         }
       },
       {
@@ -10485,8 +10195,7 @@
         "note": 607,
         "songId": "avril",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/1/17/Songs_avril_prs.jpg/256px-Songs_avril_prs.jpg"
+          "cover": true
         }
       },
       {
@@ -10501,7 +10210,6 @@
   },
   {
     "bpm": "122-230",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/df/Songs_aurgelmir.jpg/256px-Songs_aurgelmir.jpg",
     "id": "aurgelmir",
     "name": "Aurgelmir",
     "pack": "Memory Archive",
@@ -10538,7 +10246,6 @@
   },
   {
     "bpm": "132-165",
-    "cover": "https://wiki.arcaea.cn/images/8/84/Songs_headbonkache.jpg",
     "id": "headbonkache",
     "name": "Head BONK ache",
     "pack": "Memory Archive",
@@ -10579,7 +10286,6 @@
   },
   {
     "bpm": "138",
-    "cover": "https://wiki.arcaea.cn/images/c/ce/Songs_ddd.jpg",
     "id": "ddd",
     "name": "DDD",
     "pack": "Arcaea",
@@ -10619,7 +10325,6 @@
   },
   {
     "bpm": "107-109",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d0/Songs_prism.jpg/256px-Songs_prism.jpg",
     "id": "prism",
     "name": "Prism",
     "pack": "Lanota - Collaboration Chapter 2",
@@ -10634,8 +10339,7 @@
         "note": 476,
         "songId": "prism",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/1/1a/Songs_prism_pst.jpg/256px-Songs_prism_pst.jpg"
+          "cover": true
         }
       },
       {
@@ -10646,8 +10350,7 @@
         "note": 544,
         "songId": "prism",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/1/16/Songs_prism_prs.jpg/256px-Songs_prism_prs.jpg"
+          "cover": true
         }
       },
       {
@@ -10662,7 +10365,6 @@
   },
   {
     "bpm": "140",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/86/Songs_protoflicker.jpg/256px-Songs_protoflicker.jpg",
     "id": "protoflicker",
     "name": "Protoflicker",
     "pack": "Lanota - Collaboration Chapter 2",
@@ -10680,8 +10382,7 @@
         "note": 510,
         "songId": "protoflicker",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/d/d8/Songs_protoflicker_pst.jpg/256px-Songs_protoflicker_pst.jpg"
+          "cover": true
         }
       },
       {
@@ -10692,8 +10393,7 @@
         "note": 633,
         "songId": "protoflicker",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/3/3a/Songs_protoflicker_prs.jpg/256px-Songs_protoflicker_prs.jpg"
+          "cover": true
         }
       },
       {
@@ -10709,7 +10409,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/dd/Songs_stasis.jpg/256px-Songs_stasis.jpg",
     "id": "stasis",
     "name": "Stasis",
     "pack": "Lanota - Collaboration Chapter 2",
@@ -10727,8 +10426,7 @@
         "note": 848,
         "songId": "stasis",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/9/99/Songs_stasis_pst.jpg/256px-Songs_stasis_pst.jpg"
+          "cover": true
         }
       },
       {
@@ -10739,8 +10437,7 @@
         "note": 935,
         "songId": "stasis",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/3/3b/Songs_stasis_prs.jpg/256px-Songs_stasis_prs.jpg"
+          "cover": true
         }
       },
       {
@@ -10756,7 +10453,6 @@
   },
   {
     "bpm": "185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/23/Songs_picopicotranslation.jpg/256px-Songs_picopicotranslation.jpg",
     "id": "picopicotranslation",
     "name": "PICO-Pico-Translation!",
     "pack": "Memory Archive",
@@ -10793,7 +10489,6 @@
   },
   {
     "bpm": "148",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/37/Songs_nekonote.jpg/256px-Songs_nekonote.jpg",
     "id": "nekonote",
     "name": "Dancin' on a Cat's Paw",
     "pack": "Arcaea",
@@ -10828,7 +10523,6 @@
   },
   {
     "bpm": "140-190",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/02/Songs_mu.jpg/256px-Songs_mu.jpg",
     "id": "mu",
     "name": "μ",
     "pack": "Memory Archive",
@@ -10864,7 +10558,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/79/Songs_sanskia.jpg/256px-Songs_sanskia.jpg",
     "id": "sanskia",
     "name": "san skia",
     "pack": "Arcaea",
@@ -10903,7 +10596,6 @@
   },
   {
     "bpm": "170",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d2/Songs_altair.jpg/256px-Songs_altair.jpg",
     "id": "altair",
     "name": "Altair (feat. *spiLa*)",
     "pack": "Arcaea",
@@ -10942,7 +10634,6 @@
   },
   {
     "bpm": "155",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d5/Songs_mukishitsu.jpg/256px-Songs_mukishitsu.jpg",
     "id": "mukishitsu",
     "name": "Redraw the Colorless World",
     "pack": "Arcaea",
@@ -10985,7 +10676,6 @@
   },
   {
     "bpm": "80",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/bd/Songs_trapcrow.jpg/256px-Songs_trapcrow.jpg",
     "id": "trapcrow",
     "name": "Trap Crow",
     "pack": "Arcaea",
@@ -11029,7 +10719,6 @@
   },
   {
     "bpm": "202",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e2/Songs_pupa.jpg/256px-Songs_pupa.jpg",
     "id": "pupa",
     "name": "PUPA",
     "pack": "Memory Archive",
@@ -11070,7 +10759,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/6b/Songs_defection.jpg/256px-Songs_defection.jpg",
     "id": "defection",
     "name": "Defection",
     "pack": "Final Verdict",
@@ -11112,7 +10800,6 @@
   },
   {
     "bpm": "198",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d5/Songs_infinitestrife.jpg/256px-Songs_infinitestrife.jpg",
     "id": "infinitestrife",
     "name": "Infinite Strife,",
     "pack": "Final Verdict",
@@ -11161,7 +10848,6 @@
   },
   {
     "bpm": "190-280",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/43/Songs_worldender.jpg/256px-Songs_worldender.jpg",
     "id": "worldender",
     "name": "World Ender",
     "pack": "Final Verdict",
@@ -11210,7 +10896,6 @@
   },
   {
     "bpm": "200-222",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2d/Songs_pentiment.jpg/256px-Songs_pentiment.jpg",
     "id": "pentiment",
     "name": "Pentiment",
     "pack": "Final Verdict",
@@ -11261,7 +10946,6 @@
   },
   {
     "bpm": "211",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/5a/Songs_arcanaeden.jpg/256px-Songs_arcanaeden.jpg",
     "id": "arcanaeden",
     "name": "Arcana Eden",
     "pack": "Final Verdict",
@@ -11310,7 +10994,6 @@
   },
   {
     "bpm": "178",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/22/Songs_testify.jpg/256px-Songs_testify.jpg",
     "id": "testify",
     "name": "Testify",
     "pack": "Final Verdict",
@@ -11366,7 +11049,6 @@
   },
   {
     "bpm": "99",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2b/Songs_lovelessdress.jpg/256px-Songs_lovelessdress.jpg",
     "id": "lovelessdress",
     "name": "Loveless Dress",
     "pack": "Final Verdict - Silent Answer",
@@ -11406,10 +11088,9 @@
   },
   {
     "bpm": "175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a2/Songs_last.jpg/256px-Songs_last.jpg",
     "id": "last",
     "name": "Last",
-    "pack": "Silent Answer",
+    "pack": "Final Verdict - Silent Answer",
     "dl": true,
     "alias": [
       "终章",
@@ -11442,26 +11123,24 @@
         "songId": "last"
       },
       {
-        "id": "last@byd",
         "constant": 9.6,
         "difficulty": "byd",
+        "id": "last@byd",
         "level": 9,
         "note": 888,
         "songId": "last",
         "override": {
           "cover": true,
-          "name": "Last | Moment",
-          "url": "https://wiki.arcaea.cn/images/thumb/1/1e/Songs_last_byd.jpg/256px-Songs_last_byd.jpg"
+          "name": "Last | Moment"
         }
       }
     ]
   },
   {
     "bpm": "175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/92/Songs_lasteternity.jpg/256px-Songs_lasteternity.jpg",
     "id": "lasteternity",
     "name": "Last | Eternity",
-    "pack": "Silent Answer",
+    "pack": "Final Verdict - Silent Answer",
     "dl": true,
     "alias": [
       "Last永恒",
@@ -11469,19 +11148,18 @@
     ],
     "charts": [
       {
-        "id": "lasteternity@byd",
         "constant": 9.7,
         "difficulty": "byd",
+        "id": "lasteternity@byd",
         "level": 9,
-        "plus": true,
         "note": 790,
-        "songId": "lasteternity"
+        "songId": "lasteternity",
+        "plus": true
       }
     ]
   },
   {
     "bpm": "95",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b3/Songs_callimakarma.jpg/256px-Songs_callimakarma.jpg",
     "id": "callimakarma",
     "name": "Callima Karma",
     "pack": "Final Verdict - Silent Answer",
@@ -11521,7 +11199,6 @@
   },
   {
     "bpm": "80",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/df/Songs_kokoro.jpg/256px-Songs_kokoro.jpg",
     "id": "kokoro",
     "name": "Heart",
     "pack": "O.N.G.E.K.I. - Collaboration Chapter 2",
@@ -11556,7 +11233,6 @@
   },
   {
     "bpm": "175",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/ee/Songs_aidrew.jpg/256px-Songs_aidrew.jpg",
     "id": "aidrew",
     "name": "Ai Drew",
     "pack": "O.N.G.E.K.I. - Collaboration Chapter 2",
@@ -11592,7 +11268,6 @@
   },
   {
     "bpm": "252",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8a/Songs_fluffyflash.jpg/256px-Songs_fluffyflash.jpg",
     "id": "fluffyflash",
     "name": "FLUFFY FLASH",
     "pack": "O.N.G.E.K.I. - Collaboration Chapter 2",
@@ -11628,7 +11303,6 @@
   },
   {
     "bpm": "185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/41/Songs_goodbyemerry.jpg/256px-Songs_goodbyemerry.jpg",
     "id": "goodbyemerry",
     "name": "Good bye, Merry-Go-Round.",
     "pack": "O.N.G.E.K.I. - Collaboration Chapter 2",
@@ -11665,7 +11339,6 @@
   },
   {
     "bpm": "199",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/86/Songs_lamia.jpg/256px-Songs_lamia.jpg",
     "id": "lamia",
     "name": "LAMIA",
     "pack": "O.N.G.E.K.I. - Collaboration Chapter 2",
@@ -11704,7 +11377,6 @@
   },
   {
     "bpm": "153",
-    "cover": "https://wiki.arcaea.cn/images/b/ba/Songs_freemyself.jpg",
     "id": "freemyself",
     "name": "Free Myself",
     "pack": "Memory Archive",
@@ -11742,7 +11414,6 @@
   },
   {
     "bpm": "144",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/dc/Songs_cocorocosmetic.jpg/256px-Songs_cocorocosmetic.jpg",
     "id": "cocorocosmetic",
     "name": "cocoro*cosmetic",
     "pack": "Memory Archive",
@@ -11779,7 +11450,6 @@
   },
   {
     "bpm": "210",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/14/Songs_capella.jpg/256px-Songs_capella.jpg",
     "id": "capella",
     "name": "Capella",
     "pack": "Memory Archive",
@@ -11818,7 +11488,6 @@
   },
   {
     "bpm": "130",
-    "cover": "https://wiki.arcaea.cn/images/thumb/f/ff/Songs_dialnote.jpg/256px-Songs_dialnote.jpg",
     "id": "dialnote",
     "name": "Dialnote",
     "pack": "Arcaea",
@@ -11853,7 +11522,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c7/Songs_tsukinimurakumo.jpg/256px-Songs_tsukinimurakumo.jpg",
     "id": "tsukinimurakumo",
     "name": "Tsuki ni Murakumo, Hana ni Kaze",
     "pack": "World Extend",
@@ -11892,7 +11560,6 @@
   },
   {
     "bpm": "135",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b5/Songs_mantis.jpg/256px-Songs_mantis.jpg",
     "id": "mantis",
     "name": "MANTIS (Arcaea Ultra-Bloodrush VIP)",
     "pack": "World Extend",
@@ -11929,7 +11596,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/8d/Songs_worldfragments.jpg/256px-Songs_worldfragments.jpg",
     "id": "worldfragments",
     "name": "World Fragments III(radio edit)",
     "pack": "World Extend",
@@ -11967,7 +11633,6 @@
   },
   {
     "bpm": "225",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/4e/Songs_astrawalkthrough.jpg/256px-Songs_astrawalkthrough.jpg",
     "id": "astrawalkthrough",
     "name": "Astra walkthrough",
     "pack": "World Extend",
@@ -12005,7 +11670,6 @@
   },
   {
     "bpm": "221",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/7f/Songs_chronicle.jpg/256px-Songs_chronicle.jpg",
     "id": "chronicle",
     "name": "Chronicle",
     "pack": "World Extend",
@@ -12042,7 +11706,6 @@
   },
   {
     "bpm": "177",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/db/Songs_nullapophenia.jpg/256px-Songs_nullapophenia.jpg",
     "id": "nullapophenia",
     "name": "NULL APOPHENIA",
     "pack": "Memory Archive",
@@ -12079,7 +11742,6 @@
   },
   {
     "bpm": "210",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/bf/Songs_crimsonthrone.jpg/256px-Songs_crimsonthrone.jpg",
     "id": "crimsonthrone",
     "name": "Crimson Throne",
     "pack": "Memory Archive",
@@ -12114,7 +11776,6 @@
   },
   {
     "bpm": "195",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2b/Songs_manicjeer.jpg/256px-Songs_manicjeer.jpg",
     "id": "manicjeer",
     "name": "Manic Jeer",
     "pack": "Memory Archive",
@@ -12149,7 +11810,6 @@
   },
   {
     "bpm": "150",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2c/Songs_hiirogekka.jpg/256px-Songs_hiirogekka.jpg",
     "id": "hiirogekka",
     "name": "Hiiro Gekka, Kyoushou no Zetsu (nayuta 2017 ver.)",
     "pack": "Memory Archive",
@@ -12186,7 +11846,6 @@
   },
   {
     "bpm": "210",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c9/Songs_letsrock.jpg/256px-Songs_letsrock.jpg",
     "id": "letsrock",
     "name": "Let's Rock (Arcaea mix)",
     "pack": "World Extend",
@@ -12222,7 +11881,6 @@
   },
   {
     "bpm": "135",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/d0/Songs_cycles.jpg/256px-Songs_cycles.jpg",
     "id": "cycles",
     "name": "CYCLES",
     "pack": "maimai - Collaboration Chapter 2",
@@ -12257,7 +11915,6 @@
   },
   {
     "bpm": "222",
-    "cover": "https://wiki.arcaea.cn/images/thumb/b/b9/Songs_maxrage.jpg/256px-Songs_maxrage.jpg",
     "id": "maxrage",
     "name": "MAXRAGE",
     "pack": "maimai - Collaboration Chapter 2",
@@ -12293,7 +11950,6 @@
   },
   {
     "bpm": "162-180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/9/90/Songs_infinity.jpg/256px-Songs_infinity.jpg",
     "id": "infinity",
     "name": "[X]",
     "pack": "maimai - Collaboration Chapter 2",
@@ -12331,7 +11987,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c5/Songs_temptation.jpg/256px-Songs_temptation.jpg",
     "id": "temptation",
     "name": "TEmPTaTiON",
     "pack": "maimai - Collaboration Chapter 2",
@@ -12367,7 +12022,6 @@
   },
   {
     "bpm": "205",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c2/Songs_primitivelights.jpg/256px-Songs_primitivelights.jpg",
     "id": "primitivelights",
     "name": "PRIMITIVE LIGHTS",
     "pack": "Memory Archive",
@@ -12406,7 +12060,6 @@
   },
   {
     "bpm": "129",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/11/Songs_cosmopop.jpg/256px-Songs_cosmopop.jpg",
     "id": "cosmopop",
     "name": "Cosmo Pop Funclub",
     "pack": "CHUNITHM - Collaboration Chapter 3",
@@ -12444,7 +12097,6 @@
   },
   {
     "bpm": "210",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/6a/Songs_impact.jpg/256px-Songs_impact.jpg",
     "id": "impact",
     "name": "IMPACT",
     "pack": "CHUNITHM - Collaboration Chapter 3",
@@ -12489,7 +12141,6 @@
   },
   {
     "bpm": "150",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/cc/Songs_genesischunithm.jpg/256px-Songs_genesischunithm.jpg",
     "id": "genesischunithm",
     "name": "Genesis",
     "pack": "CHUNITHM - Collaboration Chapter 3",
@@ -12525,7 +12176,6 @@
   },
   {
     "bpm": "155",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/15/Songs_trrricksters.jpg/256px-Songs_trrricksters.jpg",
     "id": "trrricksters",
     "name": "Trrricksters!!",
     "pack": "CHUNITHM - Collaboration Chapter 3",
@@ -12560,7 +12210,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/39/Songs_spidersthread.jpg/256px-Songs_spidersthread.jpg",
     "id": "spidersthread",
     "name": "Spider's Thread",
     "pack": "CHUNITHM - Collaboration Chapter 3",
@@ -12600,7 +12249,6 @@
   },
   {
     "bpm": "172",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a1/Songs_lostemotion.jpg/256px-Songs_lostemotion.jpg",
     "id": "lostemotion",
     "name": "Lost Emotion feat. nomico",
     "pack": "World Extend",
@@ -12637,7 +12285,6 @@
   },
   {
     "bpm": "143",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a5/Songs_gimmick.jpg/256px-Songs_gimmick.jpg",
     "id": "gimmick",
     "name": "GIMMICK",
     "pack": "World Extend",
@@ -12672,7 +12319,6 @@
   },
   {
     "bpm": "132",
-    "cover": "https://wiki.arcaea.cn/images/thumb/1/1c/Songs_thesurvivor.jpg/256px-Songs_thesurvivor.jpg",
     "id": "thesurvivor",
     "name": "The Survivor (Game Edit)",
     "pack": "Memory Archive",
@@ -12710,7 +12356,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/a/a3/Songs_newyorkbackraise.jpg/256px-Songs_newyorkbackraise.jpg",
     "id": "newyorkbackraise",
     "name": "New York Back Raise",
     "pack": "Memory Archive",
@@ -12749,7 +12394,6 @@
   },
   {
     "bpm": "145",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/4b/Songs_galacticlove.jpg/256px-Songs_galacticlove.jpg",
     "id": "galacticlove",
     "name": "Galactic Love",
     "pack": "Memory Archive",
@@ -12786,7 +12430,6 @@
   },
   {
     "bpm": "148",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/72/Songs_lawlesspoint.jpg/256px-Songs_lawlesspoint.jpg",
     "id": "lawlesspoint",
     "name": "Lawless Point",
     "pack": "World Extend",
@@ -12823,7 +12466,6 @@
   },
   {
     "bpm": "183",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/69/Songs_lostintheabyss.jpg/256px-Songs_lostintheabyss.jpg",
     "id": "lostintheabyss",
     "name": "Lost in the Abyss",
     "pack": "Memory Archive",
@@ -12861,7 +12503,6 @@
   },
   {
     "bpm": "158",
-    "cover": "https://wiki.arcaea.cn/images/thumb/2/2f/Songs_hybris.jpg/256px-Songs_hybris.jpg",
     "id": "hybris",
     "name": "Hybris (The one who shattered)",
     "pack": "World Extend",
@@ -12899,7 +12540,6 @@
   },
   {
     "bpm": "186",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/5d/Songs_tothemilkyway.jpg/256px-Songs_tothemilkyway.jpg",
     "id": "tothemilkyway",
     "name": "To the Milky Way",
     "pack": "Memory Archive",
@@ -12937,7 +12577,6 @@
   },
   {
     "bpm": "185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/50/Songs_internetyamero.jpg/256px-Songs_internetyamero.jpg",
     "id": "internetyamero",
     "name": "INTERNET YAMERO",
     "pack": "Memory Archive",
@@ -12973,7 +12612,6 @@
   },
   {
     "bpm": "107",
-    "cover": "https://wiki.arcaea.cn/images/thumb/4/42/Songs_bulletwaiting.jpg/256px-Songs_bulletwaiting.jpg",
     "id": "bulletwaiting",
     "name": "Bullet Waiting for Me (James Landino remix)",
     "pack": "CYTUS II",
@@ -13008,7 +12646,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/37/Songs_devillicsphere.jpg/256px-Songs_devillicsphere.jpg",
     "id": "devillicsphere",
     "name": "Devillic Sphere",
     "pack": "CYTUS II",
@@ -13046,7 +12683,6 @@
   },
   {
     "bpm": "170-200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/ee/Songs_lucidtraveler.jpg/256px-Songs_lucidtraveler.jpg",
     "id": "lucidtraveler",
     "name": "Lucid Traveler",
     "pack": "CYTUS II",
@@ -13086,7 +12722,6 @@
   },
   {
     "bpm": "150",
-    "cover": "https://wiki.arcaea.cn/images/thumb/8/88/Songs_chaos.jpg/256px-Songs_chaos.jpg",
     "id": "chaos",
     "name": "CHAOS",
     "pack": "CYTUS II",
@@ -13124,7 +12759,6 @@
   },
   {
     "bpm": "140",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/08/Songs_usedtobe.jpg/256px-Songs_usedtobe.jpg",
     "id": "usedtobe",
     "name": "Used to be",
     "pack": "CYTUS II",
@@ -13162,7 +12796,6 @@
   },
   {
     "bpm": "200",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c5/Songs_ultimatetaste.jpg/256px-Songs_ultimatetaste.jpg",
     "id": "ultimatetaste",
     "name": "Ultimate taste",
     "pack": "World Extend",
@@ -13198,7 +12831,6 @@
   },
   {
     "bpm": "76-96",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/5d/Songs_syuten.jpg/256px-Songs_syuten.jpg",
     "id": "syuten",
     "name": "syūten",
     "pack": "CYTUS II - Collaboration Chapter 2",
@@ -13233,7 +12865,6 @@
   },
   {
     "bpm": "155",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/5c/Songs_drg.jpg/256px-Songs_drg.jpg",
     "id": "drg",
     "name": "DRG",
     "pack": "CYTUS II - Collaboration Chapter 2",
@@ -13271,7 +12902,6 @@
   },
   {
     "bpm": "185",
-    "cover": "https://wiki.arcaea.cn/images/thumb/c/c9/Songs_nnglooms.jpg/256px-Songs_nnglooms.jpg",
     "id": "nnglooms",
     "name": "99 Glooms",
     "pack": "CYTUS II - Collaboration Chapter 2",
@@ -13306,12 +12936,13 @@
   },
   {
     "bpm": "130-150",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/61/Songs_ii.jpg/256px-Songs_ii.jpg",
     "id": "ii",
-    "name": "͟͝͞Ⅱ́̕",
+    "name": " ͟͝͞Ⅱ́̕ ",
     "pack": "CYTUS II - Collaboration Chapter 2",
     "dl": true,
-    "alias": [],
+    "alias": [
+      "马拉松"
+    ],
     "charts": [
       {
         "constant": 5,
@@ -13321,8 +12952,7 @@
         "note": 690,
         "songId": "ii",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/a/a1/Songs_ii_pst.jpg/256px-Songs_ii_pst.jpg"
+          "cover": true
         }
       },
       {
@@ -13333,8 +12963,7 @@
         "note": 816,
         "songId": "ii",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/1/1b/Songs_ii_prs.jpg/256px-Songs_ii_prs.jpg"
+          "cover": true
         }
       },
       {
@@ -13350,7 +12979,6 @@
   },
   {
     "bpm": "160",
-    "cover": "https://wiki.arcaea.cn/images/thumb/3/3e/Songs_magnolia.jpg/256px-Songs_magnolia.jpg",
     "id": "magnolia",
     "name": "Magnolia",
     "pack": "CYTUS II - Collaboration Chapter 2",
@@ -13387,7 +13015,6 @@
   },
   {
     "bpm": "180",
-    "cover": "https://wiki.arcaea.cn/images/thumb/d/da/Songs_sacrifice.jpg/256px-Songs_sacrifice.jpg",
     "id": "sacrifice",
     "name": "SACRIFICE feat. ayame",
     "pack": "Memory Archive",
@@ -13423,7 +13050,6 @@
   },
   {
     "bpm": "163",
-    "cover": "https://wiki.arcaea.cn/images/thumb/0/09/Songs_rgb.jpg/256px-Songs_rgb.jpg",
     "id": "rgb",
     "name": "RGB",
     "pack": "World Extend",
@@ -13459,7 +13085,6 @@
   },
   {
     "bpm": "188",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/50/Songs_waitfordawn.jpg/256px-Songs_waitfordawn.jpg",
     "id": "waitfordawn",
     "name": "WAIT FOR DAWN",
     "pack": "Lasting Eden",
@@ -13494,7 +13119,6 @@
   },
   {
     "bpm": "165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e9/Songs_ravenspride.jpg/256px-Songs_ravenspride.jpg",
     "id": "ravenspride",
     "name": "Raven's Pride",
     "pack": "Lasting Eden",
@@ -13529,7 +13153,6 @@
   },
   {
     "bpm": "182-212",
-    "cover": "https://wiki.arcaea.cn/images/thumb/6/61/Songs_riseoftheworld.jpg/256px-Songs_riseoftheworld.jpg",
     "id": "riseoftheworld",
     "name": "Rise of the World",
     "pack": "Lasting Eden",
@@ -13564,7 +13187,6 @@
   },
   {
     "bpm": "110-165",
-    "cover": "https://wiki.arcaea.cn/images/thumb/e/e6/Songs_unknownlevels.jpg/256px-Songs_unknownlevels.jpg",
     "id": "unknownlevels",
     "name": "UNKNOWN LEVELS",
     "pack": "Lasting Eden",
@@ -13599,7 +13221,6 @@
   },
   {
     "bpm": "216",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/5a/Songs_abstrusedilemma.jpg/256px-Songs_abstrusedilemma.jpg",
     "id": "abstrusedilemma",
     "name": "Abstruse Dilemma",
     "pack": "Lasting Eden",
@@ -13634,7 +13255,6 @@
   },
   {
     "bpm": "178",
-    "cover": "https://wiki.arcaea.cn/images/thumb/5/53/Songs_matenrou.jpg/256px-Songs_matenrou.jpg",
     "id": "matenrou",
     "name": "Kanjou no Matenrou ～Arr.Demetori",
     "pack": "World Extend",
@@ -13670,7 +13290,6 @@
   },
   {
     "bpm": "183",
-    "cover": "https://wiki.arcaea.cn/images/thumb/7/75/Songs_tothefurthestdream.jpg/256px-Songs_tothefurthestdream.jpg",
     "id": "tothefurthestdream",
     "name": "To the Furthest Dream",
     "pack": "Memory Archive",
@@ -13685,8 +13304,7 @@
         "note": 836,
         "songId": "tothefurthestdream",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/2/26/Songs_tothefurthestdream_pst.jpg/256px-Songs_tothefurthestdream_pst.jpg"
+          "cover": true
         }
       },
       {
@@ -13697,8 +13315,7 @@
         "note": 994,
         "songId": "tothefurthestdream",
         "override": {
-          "cover": true,
-          "url": "https://wiki.arcaea.cn/images/thumb/d/d7/Songs_tothefurthestdream_prs.jpg/256px-Songs_tothefurthestdream_prs.jpg"
+          "cover": true
         }
       },
       {
@@ -13709,6 +13326,315 @@
         "note": 1102,
         "songId": "tothefurthestdream",
         "plus": true
+      }
+    ]
+  },
+  {
+    "bpm": "130",
+    "id": "remindthesouls",
+    "name": "Remind the Souls (Short Version)",
+    "pack": "Arcaea",
+    "dl": false,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "remindthesouls@pst",
+        "level": 3,
+        "note": 561,
+        "songId": "remindthesouls"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "remindthesouls@prs",
+        "level": 6,
+        "note": 756,
+        "songId": "remindthesouls"
+      },
+      {
+        "constant": 9.5,
+        "difficulty": "ftr",
+        "id": "remindthesouls@ftr",
+        "level": 9,
+        "note": 945,
+        "songId": "remindthesouls"
+      }
+    ]
+  },
+  {
+    "bpm": "180",
+    "id": "dynitikos",
+    "name": "Dynitikós",
+    "pack": "World Extend",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "dynitikos@pst",
+        "level": 4,
+        "note": 683,
+        "songId": "dynitikos"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "dynitikos@prs",
+        "level": 6,
+        "note": 894,
+        "songId": "dynitikos"
+      },
+      {
+        "constant": 9.5,
+        "difficulty": "ftr",
+        "id": "dynitikos@ftr",
+        "level": 9,
+        "note": 986,
+        "songId": "dynitikos"
+      }
+    ]
+  },
+  {
+    "bpm": "105",
+    "id": "amekagura",
+    "name": "Amekagura",
+    "pack": "World Extend",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "amekagura@pst",
+        "level": 4,
+        "note": 741,
+        "songId": "amekagura"
+      },
+      {
+        "constant": 7.5,
+        "difficulty": "prs",
+        "id": "amekagura@prs",
+        "level": 7,
+        "note": 851,
+        "songId": "amekagura"
+      },
+      {
+        "constant": 9.9,
+        "difficulty": "ftr",
+        "id": "amekagura@ftr",
+        "level": 9,
+        "note": 1076,
+        "songId": "amekagura",
+        "plus": true
+      }
+    ]
+  },
+  {
+    "bpm": "170",
+    "id": "bbkkbkk",
+    "name": "B.B.K.K.B.K.K.",
+    "pack": "Memory Archive",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 4.5,
+        "difficulty": "pst",
+        "id": "bbkkbkk@pst",
+        "level": 4,
+        "note": 669,
+        "songId": "bbkkbkk"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "bbkkbkk@prs",
+        "level": 7,
+        "note": 708,
+        "songId": "bbkkbkk"
+      },
+      {
+        "constant": 9.7,
+        "difficulty": "ftr",
+        "id": "bbkkbkk@ftr",
+        "level": 9,
+        "note": 976,
+        "songId": "bbkkbkk",
+        "plus": true
+      }
+    ]
+  },
+  {
+    "bpm": "120",
+    "id": "primevaltexture",
+    "name": "Primeval Texture",
+    "pack": "Lasting Eden - Lasting Eden Chapter 2",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "primevaltexture@pst",
+        "level": 3,
+        "note": 346,
+        "songId": "primevaltexture"
+      },
+      {
+        "constant": 6,
+        "difficulty": "prs",
+        "id": "primevaltexture@prs",
+        "level": 6,
+        "note": 525,
+        "songId": "primevaltexture"
+      },
+      {
+        "constant": 9,
+        "difficulty": "ftr",
+        "id": "primevaltexture@ftr",
+        "level": 9,
+        "note": 810,
+        "songId": "primevaltexture"
+      }
+    ]
+  },
+  {
+    "bpm": "175",
+    "id": "technicolour",
+    "name": "Technicolour",
+    "pack": "Lasting Eden - Lasting Eden Chapter 2",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 3.5,
+        "difficulty": "pst",
+        "id": "technicolour@pst",
+        "level": 3,
+        "note": 644,
+        "songId": "technicolour"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "technicolour@prs",
+        "level": 7,
+        "note": 812,
+        "songId": "technicolour"
+      },
+      {
+        "constant": 9.8,
+        "difficulty": "ftr",
+        "id": "technicolour@ftr",
+        "level": 9,
+        "note": 1140,
+        "songId": "technicolour",
+        "plus": true
+      }
+    ]
+  },
+  {
+    "bpm": "189",
+    "id": "logos",
+    "name": "Logos",
+    "pack": "Lasting Eden - Lasting Eden Chapter 2",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 4,
+        "difficulty": "pst",
+        "id": "logos@pst",
+        "level": 4,
+        "note": 697,
+        "songId": "logos"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "logos@prs",
+        "level": 7,
+        "note": 798,
+        "songId": "logos"
+      },
+      {
+        "constant": 10.1,
+        "difficulty": "ftr",
+        "id": "logos@ftr",
+        "level": 10,
+        "note": 1040,
+        "songId": "logos"
+      }
+    ]
+  },
+  {
+    "bpm": "178",
+    "id": "egoeimi",
+    "name": "Ego Eimi",
+    "pack": "Lasting Eden - Lasting Eden Chapter 2",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 5.5,
+        "difficulty": "pst",
+        "id": "egoeimi@pst",
+        "level": 5,
+        "note": 801,
+        "songId": "egoeimi"
+      },
+      {
+        "constant": 8.6,
+        "difficulty": "prs",
+        "id": "egoeimi@prs",
+        "level": 8,
+        "note": 937,
+        "songId": "egoeimi"
+      },
+      {
+        "constant": 10.5,
+        "difficulty": "ftr",
+        "id": "egoeimi@ftr",
+        "level": 10,
+        "note": 1223,
+        "songId": "egoeimi"
+      }
+    ]
+  },
+  {
+    "bpm": "185",
+    "id": "arghena",
+    "name": "Arghena",
+    "pack": "Lasting Eden - Lasting Eden Chapter 2",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 6,
+        "difficulty": "pst",
+        "id": "arghena@pst",
+        "level": 6,
+        "note": 883,
+        "songId": "arghena"
+      },
+      {
+        "constant": 9.4,
+        "difficulty": "prs",
+        "id": "arghena@prs",
+        "level": 9,
+        "note": 1082,
+        "songId": "arghena"
+      },
+      {
+        "constant": 11.3,
+        "difficulty": "ftr",
+        "id": "arghena@ftr",
+        "level": 11,
+        "note": 1444,
+        "songId": "arghena"
       }
     ]
   }

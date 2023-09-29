@@ -165,6 +165,7 @@ export interface ProfileService {
   removeResult(chartId: string): Promise<void>;
   deleteProfile(username: string): Promise<void>;
   b30(profile: Profile): Promise<B30Response>;
+  generateAlienProfile(): Promise<Profile>;
   getProfileStatistics(profile: Profile): Promise<ScoreStatistics>;
 }
 

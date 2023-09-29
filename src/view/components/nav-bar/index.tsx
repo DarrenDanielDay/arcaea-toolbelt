@@ -4,10 +4,18 @@ import { bootstrap } from "../../styles";
 import { Inject } from "../../../services/di";
 import { $Router, Router } from "../../pages/router";
 import { clickElsewhere } from "../../../utils/click-elsewhere";
-import { alert } from "../fancy-dialog";
+import { FancyDialog, alert } from "../fancy-dialog";
 import { Component, HyplateElement, computed, signal } from "hyplate";
-import { $ChartService, $MusicPlayService, ChartService, MusicPlayService } from "../../../services/declarations";
+import {
+  $ChartService,
+  $MusicPlayService,
+  $ProfileService,
+  ChartService,
+  MusicPlayService,
+  ProfileService,
+} from "../../../services/declarations";
 import meta from "../../../data/meta.json";
+import { Best30 } from "../b30";
 export
 @Component({
   tag: "nav-bar",
@@ -20,6 +28,8 @@ class NavBar extends HyplateElement {
   accessor chart!: ChartService;
   @Inject($MusicPlayService)
   accessor musicPlay!: MusicPlayService;
+  @Inject($ProfileService)
+  accessor profile!: ProfileService;
 
   showMenu = signal(false);
   activeRoute = signal("");
@@ -74,6 +84,7 @@ class NavBar extends HyplateElement {
     const chartStats = await this.chart.getStatistics();
     const musicPlayStats = await this.musicPlay.getStatistics();
     const COMMIT_SHA = process.env.COMMIT_SHA;
+    const dialog = new FancyDialog();
     alert(
       <div>
         <h2>Arcaea Toolbelt</h2>
@@ -92,7 +103,21 @@ class NavBar extends HyplateElement {
         </p>
         <h3>统计信息</h3>
         {/* 最大潜力值一定是0.1 / 40 = 0.0025的倍数，因此最多只有4位小数 */}
-        <p>最大潜力值: {musicPlayStats.maximumPotential.toFixed(4)}</p>
+        <p>
+          最大潜力值:
+          {musicPlayStats.maximumPotential.toFixed(4)}
+          <button
+            class="btn btn-secondary mx-3"
+            onClick={async () => {
+              const b30 = await this.profile.b30(await this.profile.generateAlienProfile());
+              const best30 = new Best30();
+              best30.b30.set(b30);
+              dialog.showAlert(<div>{best30}</div>);
+            }}
+          >
+            b30
+          </button>
+        </p>
         <h4>谱面统计</h4>
         <div>
           {Object.entries(chartStats.difficulties).map(([difficulty, { count, notes }]) => {
@@ -104,6 +129,7 @@ class NavBar extends HyplateElement {
             );
           })}
         </div>
+        {dialog}
       </div>
     );
   };

@@ -207,6 +207,30 @@ export class ProfileServiceImpl implements ProfileService {
       b30Average: b30Sum / ptt30.length,
     };
   }
+
+  async generateAlienProfile(): Promise<Profile> {
+    const songData = await this.chartService.getSongData();
+    const stats = await this.musicPlay.getStatistics();
+    const profile = this.createEmptyProfile("👽");
+    profile.potential = (Math.floor(stats.maximumPotential * 100) / 100).toFixed(2);
+    for (const song of songData) {
+      for (const chart of song.charts) {
+        profile.best[chart.id] = {
+          chartId: chart.id,
+          clear: ClearRank.Maximum,
+          type: "note",
+          result: {
+            far: 0,
+            lost: 0,
+            perfect: chart.note,
+            pure: chart.note,
+          },
+        };
+      }
+    }
+    return profile;
+  }
+
   async importDB(file: File, profile: Profile, report?: ReportProgress): Promise<ImportResult> {
     report?.("正在读取文件");
     const bytes = await readBinary(file);

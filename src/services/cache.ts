@@ -1,5 +1,8 @@
+import { getNow } from "../utils/time";
+
 export interface HttpGetCache {
   url: string;
+  time?: Date;
   blob: Blob;
 }
 
@@ -32,7 +35,8 @@ export class CachedHttpGetClient {
     return (this.db = db);
   }
 
-  async fetch(input: string | URL): Promise<Response> {
+  async fetch(input: string | URL, expireTime?: number): Promise<Response> {
+    const now = getNow();
     const db = await this.getDB();
     const url = getURL(input);
     const result = await new Promise<HttpGetCache | null>((resolve) => {
@@ -45,7 +49,7 @@ export class CachedHttpGetClient {
         resolve(null);
       };
     });
-    if (result) {
+    if (result && (!result.time || +result.time + (expireTime ?? Infinity) > +now)) {
       console.debug(`Found cached result for url: ${result.url}`);
       return new Response(result.blob);
     }
@@ -54,6 +58,7 @@ export class CachedHttpGetClient {
     const cache: HttpGetCache = {
       url,
       blob,
+      time: getNow(),
     };
     await new Promise<void>((resolve) => {
       const saveRequest = db.transaction([storeName], "readwrite").objectStore(storeName).put(cache);

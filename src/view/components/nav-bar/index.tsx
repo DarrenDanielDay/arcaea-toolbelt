@@ -4,18 +4,7 @@ import { bootstrap } from "../../styles";
 import { Inject } from "../../../services/di";
 import { $Router, Router } from "../../pages/router";
 import { clickElsewhere } from "../../../utils/click-elsewhere";
-import { FancyDialog, alert } from "../fancy-dialog";
 import { Component, HyplateElement, computed, signal } from "hyplate";
-import {
-  $ChartService,
-  $MusicPlayService,
-  $ProfileService,
-  ChartService,
-  MusicPlayService,
-  ProfileService,
-} from "../../../services/declarations";
-import meta from "../../../data/meta.json";
-import { Best30 } from "../b30";
 export
 @Component({
   tag: "nav-bar",
@@ -24,12 +13,6 @@ export
 class NavBar extends HyplateElement {
   @Inject($Router)
   accessor router!: Router;
-  @Inject($ChartService)
-  accessor chart!: ChartService;
-  @Inject($MusicPlayService)
-  accessor musicPlay!: MusicPlayService;
-  @Inject($ProfileService)
-  accessor profile!: ProfileService;
 
   showMenu = signal(false);
   activeRoute = signal("");
@@ -39,7 +22,7 @@ class NavBar extends HyplateElement {
     return (
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#" onClick={this.showVersion}>
+          <a class="navbar-brand" href="#" onClick={(e) => e.preventDefault()}>
             <img src={icon} alt="Logo" width="24" height="24" class="d-inline-block align-text-top" />
             {" Arcaea Toolbelt "}
           </a>
@@ -78,61 +61,6 @@ class NavBar extends HyplateElement {
       </nav>
     );
   }
-
-  showVersion = async (e: Event) => {
-    e.preventDefault();
-    const chartStats = await this.chart.getStatistics();
-    const musicPlayStats = await this.musicPlay.getStatistics();
-    const COMMIT_SHA = process.env.COMMIT_SHA;
-    const dialog = new FancyDialog();
-    alert(
-      <div>
-        <h2>Arcaea Toolbelt</h2>
-        <div style="display: flex; justify-content: center;">
-          <img src={icon}></img>
-        </div>
-        <p>
-          commit SHA: <span title={COMMIT_SHA}>{COMMIT_SHA?.slice(0, 8)}</span>
-        </p>
-        <p>数据更新时间：{new Date(meta.time).toLocaleString()}</p>
-        <p>
-          Arcaea版本: {meta.version}{" "}
-          <a target="_blank" href={meta.apk}>
-            下载链接
-          </a>
-        </p>
-        <h3>统计信息</h3>
-        {/* 最大潜力值一定是0.1 / 40 = 0.0025的倍数，因此最多只有4位小数 */}
-        <p>
-          最大潜力值:
-          {musicPlayStats.maximumPotential.toFixed(4)}
-          <button
-            class="btn btn-secondary mx-3"
-            onClick={async () => {
-              const b30 = await this.profile.b30(await this.profile.generateAlienProfile());
-              const best30 = new Best30();
-              best30.b30.set(b30);
-              dialog.showAlert(<div>{best30}</div>);
-            }}
-          >
-            b30
-          </button>
-        </p>
-        <h4>谱面统计</h4>
-        <div>
-          {Object.entries(chartStats.difficulties).map(([difficulty, { count, notes }]) => {
-            return (
-              <div>
-                <strong style:color={`var(--${difficulty})`}>{difficulty.toUpperCase()}</strong>:{count}个谱面，物量
-                {notes}
-              </div>
-            );
-          })}
-        </div>
-        {dialog}
-      </div>
-    );
-  };
 
   toggleMenu = () => {
     this.showMenu.update((show) => !show);

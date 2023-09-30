@@ -1,3 +1,4 @@
+import { AboutRoute } from "./about";
 import { AddResultRoute } from "./add-result";
 import { ConstantToolsRoute } from "./constant-tools";
 import { PlayerB30Route } from "./player-b39";
@@ -13,4 +14,5 @@ export const routes: Route[] = [
   ChartsRoute,
   WorldModeRoute,
   ConstantToolsRoute,
+  AboutRoute,
 ];

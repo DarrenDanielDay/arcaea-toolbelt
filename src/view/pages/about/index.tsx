@@ -63,6 +63,9 @@ class About extends HyplateElement {
           Arcaea版本: {meta.version}{" "}
           <a target="_blank" href={meta.apk}>
             下载链接
+          </a>{" "}
+          <a target="_blank" href="https://webapi.lowiro.com/webapi/serve/static/bin/arcaea/apk">
+            获取最新版本
           </a>
         </p>
         <h3>统计信息</h3>

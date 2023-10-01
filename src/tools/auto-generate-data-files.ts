@@ -135,6 +135,7 @@ export async function generateVersionMeta(apkInfo: APKResponse) {
 }
 
 async function patchMeta(meta: Partial<ArcaeaToolbeltMeta>) {
+  meta.time ??= Date.now();
   await patchJSON(await getProjectRootDirectory(), meta, "/src/data/meta.json");
 }
 

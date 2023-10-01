@@ -74,7 +74,7 @@ class PlayResultForm extends HyplateElement {
 
   override mount(attach?: AttachFunc | undefined): Rendered<this> {
     const rendered = super.mount(attach);
-    this.chartSelect.searchInput.placeholder = "输入搜素谱面，支持别称（例如：骨折光）";
+    this.chartSelect.searchInput.placeholder = "输入搜索谱面，支持别称（例如：骨折光）";
     addSheet(sheet, this.chartSelect.shadowRoot);
     return rendered;
   }

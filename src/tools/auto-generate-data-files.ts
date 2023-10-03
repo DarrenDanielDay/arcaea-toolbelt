@@ -20,6 +20,7 @@ import { getChartDataFromFandomWiki } from "./chart/fandom-wiki";
 import { mergeIntoSongData } from "./chart/merge";
 import { getAliasFromArcaeaInfinity } from "./chart/arcaea-infinity";
 import { Alias, AssetsInfo, ExtraSongData, mergeArray } from "./chart/shared";
+import { CharacterData } from "../models/world-mode";
 
 const resolver = new AssetsResolverImpl();
 
@@ -125,6 +126,14 @@ export async function generateMergedChartData() {
   const assetsInfo = await readProjectJSON<AssetsInfo[]>(assetsInfoPath);
   const newData = mergeIntoSongData(old, songList, packList, extraData, alias, assetsInfo);
   await saveProjectJSON(sortChartDataBySongListIdx(newData, songList), chartDataPath);
+}
+
+export async function generateWorldMapData() {
+  const songs = await readProjectJSON<SongData[]>(chartDataPath);
+  const characters = await readProjectJSON<CharacterData[]>(characterDataPath);
+  const { longterm, events } = await fetchWikiWorldMapData(songs, characters);
+  await saveProjectJSON(longterm, worldMapLongTermPath);
+  await saveProjectJSON(events, worldMapEventsPath);
 }
 
 export async function generateVersionMeta(apkInfo: APKResponse) {

@@ -26255,5 +26255,486 @@
         }
       }
     ]
+  },
+  {
+    "id": "限时：Dynitikós",
+    "platforms": [
+      {
+        "length": 15
+      },
+      {
+        "length": 15
+      },
+      {
+        "length": 20
+      },
+      {
+        "length": 20
+      },
+      {
+        "length": 15,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 200
+        }
+      },
+      {
+        "length": 15,
+        "special": {
+          "type": 2,
+          "range": [
+            "Dynitikós",
+            "Alice à la mode",
+            "Anökumene",
+            "Löschen",
+            "Misdeed -la bonté de Dieu et l'origine du mal-",
+            "nέο κόsmo",
+            "syūten",
+            "ΟΔΥΣΣΕΙΑ",
+            "αterlβus",
+            "γuarδina",
+            "μ",
+            "ω4",
+            "VECTOЯ",
+            "Ävril -Flicka i krans-"
+          ]
+        }
+      },
+      {
+        "length": 20
+      },
+      {
+        "length": 20
+      },
+      {
+        "length": 15
+      },
+      {
+        "length": 15
+      },
+      {
+        "length": 20,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 200
+        }
+      },
+      {
+        "length": 20,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 1
+        }
+      },
+      {
+        "length": 15
+      },
+      {
+        "length": 15
+      },
+      {
+        "length": 20,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 200
+        }
+      },
+      {
+        "length": 20,
+        "special": {
+          "type": 2,
+          "range": [
+            "Dynitikós",
+            "Alice à la mode",
+            "Anökumene",
+            "Löschen",
+            "Misdeed -la bonté de Dieu et l'origine du mal-",
+            "nέο κόsmo",
+            "syūten",
+            "ΟΔΥΣΣΕΙΑ",
+            "αterlβus",
+            "γuarδina",
+            "μ",
+            "ω4",
+            "VECTOЯ",
+            "Ävril -Flicka i krans-"
+          ]
+        }
+      },
+      {
+        "length": 15
+      },
+      {
+        "length": 15
+      },
+      {
+        "length": 20
+      },
+      {
+        "length": 20
+      },
+      {
+        "length": 15,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 200
+        }
+      },
+      {
+        "length": 15,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 2
+        }
+      },
+      {
+        "length": 20
+      },
+      {
+        "length": 20
+      },
+      {
+        "length": 15,
+        "reward": {
+          "type": 1,
+          "id": "dynitikos"
+        }
+      },
+      {
+        "length": 15,
+        "special": {
+          "type": 2,
+          "range": [
+            "Dynitikós",
+            "Alice à la mode",
+            "Anökumene",
+            "Löschen",
+            "Misdeed -la bonté de Dieu et l'origine du mal-",
+            "nέο κόsmo",
+            "syūten",
+            "ΟΔΥΣΣΕΙΑ",
+            "αterlβus",
+            "γuarδina",
+            "μ",
+            "ω4",
+            "VECTOЯ",
+            "Ävril -Flicka i krans-"
+          ]
+        }
+      },
+      {
+        "length": 20
+      },
+      {
+        "length": 20
+      },
+      {
+        "length": 25
+      },
+      {
+        "length": 25
+      },
+      {
+        "length": 30,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 200
+        }
+      },
+      {
+        "length": 30,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 1
+        }
+      },
+      {
+        "length": 35
+      },
+      {
+        "length": 35
+      },
+      {
+        "length": 40,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 200
+        }
+      },
+      {
+        "length": 40,
+        "special": {
+          "type": 2,
+          "range": [
+            "Dynitikós",
+            "Alice à la mode",
+            "Anökumene",
+            "Löschen",
+            "Misdeed -la bonté de Dieu et l'origine du mal-",
+            "nέο κόsmo",
+            "syūten",
+            "ΟΔΥΣΣΕΙΑ",
+            "αterlβus",
+            "γuarδina",
+            "μ",
+            "ω4",
+            "VECTOЯ",
+            "Ävril -Flicka i krans-"
+          ]
+        }
+      },
+      {
+        "length": 0,
+        "reward": {
+          "type": 0,
+          "name": "次元结晶",
+          "count": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "限时：Amekagura",
+    "platforms": [
+      {
+        "length": 41
+      },
+      {
+        "length": 40,
+        "special": {
+          "type": 2,
+          "range": [
+            "Amekagura",
+            "April showers",
+            "Hikari",
+            "Lawless Point",
+            "Heart",
+            "Kanagawa Cyber Culvert",
+            "Yosakura Fubuki",
+            "False Embellishment",
+            "Bamboo",
+            "Ikazuchi"
+          ]
+        }
+      },
+      {
+        "length": 39
+      },
+      {
+        "length": 38
+      },
+      {
+        "length": 37
+      },
+      {
+        "length": 36,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 333
+        }
+      },
+      {
+        "length": 35
+      },
+      {
+        "length": 34
+      },
+      {
+        "length": 33
+      },
+      {
+        "length": 32
+      },
+      {
+        "length": 31,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 333
+        }
+      },
+      {
+        "length": 30,
+        "special": {
+          "type": 2,
+          "range": [
+            "Amekagura",
+            "April showers",
+            "Hikari",
+            "Lawless Point",
+            "Heart",
+            "Kanagawa Cyber Culvert",
+            "Yosakura Fubuki",
+            "False Embellishment",
+            "Bamboo",
+            "Ikazuchi"
+          ]
+        }
+      },
+      {
+        "length": 29
+      },
+      {
+        "length": 28
+      },
+      {
+        "length": 27
+      },
+      {
+        "length": 26,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 1
+        }
+      },
+      {
+        "length": 25,
+        "reward": {
+          "type": 1,
+          "id": "amekagura"
+        }
+      },
+      {
+        "length": 24
+      },
+      {
+        "length": 23
+      },
+      {
+        "length": 22
+      },
+      {
+        "length": 21,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 2
+        }
+      },
+      {
+        "length": 20,
+        "special": {
+          "type": 2,
+          "range": [
+            "Amekagura",
+            "April showers",
+            "Hikari",
+            "Lawless Point",
+            "Heart",
+            "Kanagawa Cyber Culvert",
+            "Yosakura Fubuki",
+            "False Embellishment",
+            "Bamboo",
+            "Ikazuchi"
+          ]
+        }
+      },
+      {
+        "length": 19
+      },
+      {
+        "length": 18
+      },
+      {
+        "length": 17
+      },
+      {
+        "length": 16,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 1
+        }
+      },
+      {
+        "length": 15
+      },
+      {
+        "length": 14
+      },
+      {
+        "length": 13
+      },
+      {
+        "length": 12
+      },
+      {
+        "length": 11,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 333
+        }
+      },
+      {
+        "length": 10,
+        "special": {
+          "type": 2,
+          "range": [
+            "Amekagura",
+            "April showers",
+            "Hikari",
+            "Lawless Point",
+            "Heart",
+            "Kanagawa Cyber Culvert",
+            "Yosakura Fubuki",
+            "False Embellishment",
+            "Bamboo",
+            "Ikazuchi"
+          ]
+        }
+      },
+      {
+        "length": 9
+      },
+      {
+        "length": 8
+      },
+      {
+        "length": 7
+      },
+      {
+        "length": 6,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 333
+        }
+      },
+      {
+        "length": 5
+      },
+      {
+        "length": 4
+      },
+      {
+        "length": 3
+      },
+      {
+        "length": 2
+      },
+      {
+        "length": 1
+      },
+      {
+        "length": 0,
+        "reward": {
+          "type": 0,
+          "name": "次元结晶",
+          "count": 1
+        }
+      }
+    ]
   }
 ]

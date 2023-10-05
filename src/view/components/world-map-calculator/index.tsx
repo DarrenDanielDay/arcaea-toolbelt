@@ -16,9 +16,12 @@ import {
   type WorldModeService,
 } from "../../../services/declarations";
 import { FancyDialog, alert, confirm } from "../fancy-dialog";
-import { HyplateElement, Component, listen, signal, element, nil, computed, AutoRender, Future } from "hyplate";
+import { HyplateElement, Component, listen, signal, element, nil, computed, AutoRender, Future, noop } from "hyplate";
 import { ChartInfo } from "../chart-info";
 import { CharacterPicker, renderCharacterStepInput } from "../character-picker";
+import { $Router, Router } from "../../pages/router";
+
+export type WorldModeParams = "mapId";
 
 const NEW_MAP = "新版梯";
 const LEGACY_MAP = "遗产梯";
@@ -37,6 +40,8 @@ class WorldModeCalculator extends HyplateElement {
   accessor profile!: ProfileService;
   @Inject($ChartService)
   accessor chart!: ChartService;
+  @Inject($Router)
+  accessor router!: Router;
 
   select = new WorldMapSelect();
   worldMap = new WorldMapNormal();
@@ -86,6 +91,18 @@ class WorldModeCalculator extends HyplateElement {
         this.worldMap.setMap(selected);
       }
     });
+
+    this.effect(() => {
+      const params = this.router.parseQuery<WorldModeParams>();
+      const { mapId } = params;
+      this.select.setMapId(mapId || null);
+      return noop;
+    });
+
+    this.autorun(() => {
+      this.storeParams();
+    });
+
     this.effect(() =>
       listen(this.worldMap)<number>("click-cell", ({ detail: targetLevel }) => {
         const completed = this.completed(),
@@ -593,6 +610,13 @@ class WorldModeCalculator extends HyplateElement {
         </form>
       </>
     );
+  }
+
+  storeParams() {
+    const selected = this.select.selected();
+    this.router.updateQuery<WorldModeParams>({
+      mapId: selected?.id || null,
+    });
   }
 
   resetCalculation() {

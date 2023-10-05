@@ -3,7 +3,7 @@ import { bootstrap } from "../../styles";
 import { Inject } from "../../../services/di";
 import { $WorldModeService, WorldModeService } from "../../../services/declarations";
 import { Chapter, NormalWorldMap, RewardType } from "../../../models/world-mode";
-import { Component, For, HyplateElement, signal, watch } from "hyplate";
+import { Component, For, HyplateElement, noop, signal, watch } from "hyplate";
 import type { Mountable } from "hyplate/types";
 
 export
@@ -20,6 +20,9 @@ class WorldMapSelect extends HyplateElement {
   selected = signal<NormalWorldMap | null>(null);
   longtermSelected = signal("");
   eventSelected = signal("");
+
+  #dataFetched = false;
+  #initMapId: string | null = null;
 
   override render(): Mountable<any> {
     this.fetchMapData();
@@ -63,13 +66,25 @@ class WorldMapSelect extends HyplateElement {
     );
   }
 
-  fetchMapData(): void {
-    this.worldmode.getLongtermMaps().then((chapterData) => {
-      this.longtermMaps.set(chapterData);
-    });
-    this.worldmode.getEventMaps().then((maps) => {
-      this.eventMaps.set(maps);
-    });
+  async fetchMapData(): Promise<void> {
+    const [chapterData, maps] = await Promise.all([this.worldmode.getLongtermMaps(), this.worldmode.getEventMaps()]);
+    this.longtermMaps.set(chapterData);
+    this.eventMaps.set(maps);
+    this.#dataFetched = true;
+    const mapId = this.#initMapId;
+    if (mapId) {
+      this.updateSelectValue(chapterData, maps, mapId);
+    }
+  }
+
+  setMapId(mapId: string | null) {
+    if (this.#dataFetched) {
+      queueMicrotask(() => {
+        this.updateSelectValue(this.longtermMaps(), this.eventMaps(), mapId);
+      });
+    } else {
+      this.#initMapId = mapId;
+    }
   }
 
   private renderMapOption(map: NormalWorldMap) {
@@ -90,5 +105,28 @@ class WorldMapSelect extends HyplateElement {
         {buf.length ? ` (奖励：${buf.join(" ")})` : ""}
       </option>
     );
+  }
+
+  private updateSelectValue(longtermMaps: Chapter[], eventMaps: NormalWorldMap[], id: string | null) {
+    if (!id) {
+      this.clearSelectValues();
+      return;
+    }
+    const longtermMap = longtermMaps.flatMap((c) => c.maps).find((map) => map.id === id);
+    if (longtermMap) {
+      this.longtermSelected.set(id);
+      return;
+    }
+    const eventMap = eventMaps.find((map) => map.id === id);
+    if (eventMap) {
+      this.eventSelected.set(id);
+      return;
+    }
+    this.clearSelectValues();
+  }
+
+  private clearSelectValues() {
+    this.longtermSelected.set("");
+    this.eventSelected.set("");
   }
 }

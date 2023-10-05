@@ -19,12 +19,14 @@ import { ChartServiceImpl } from "./chart-data";
 import { PluginButton } from "../view/components/plugin-button";
 import { Container, Injectable } from "classic-di";
 import { provide } from "./di";
+import { AssetsResolverImpl } from "./assets-resolver";
 import { PluginAssetsServiceImpl } from "./plugin-assets";
 
 const ioc = new Container({ name: "cross-site-script-root" });
 ioc.register(ChartServiceImpl);
 ioc.register(MusicPlayServiceImpl);
 ioc.register(WorldModeServiceImpl);
+ioc.register(AssetsResolverImpl);
 ioc.register(PluginAssetsServiceImpl);
 const musicPlay = ioc.get($MusicPlayService);
 

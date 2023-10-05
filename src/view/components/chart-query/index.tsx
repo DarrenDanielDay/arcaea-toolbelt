@@ -36,12 +36,10 @@ class ChartQuery extends HyplateElement {
         }
       })
     );
-    return (
-      <Future promise={this.chartService.getStatistics()}>{(stats) => this._render(stats)}</Future>
-    );
+    return <Future promise={this.chartService.getStatistics()}>{(stats) => this._render(stats)}</Future>;
   }
 
-  _render({maximumConstant, minimumConstant}: ChartStatistics) {
+  _render({ maximumConstant, minimumConstant }: ChartStatistics) {
     return (
       <>
         <form
@@ -51,34 +49,30 @@ class ChartQuery extends HyplateElement {
             this.query();
           }}
         >
-          <div class="constants m-3">
-            <div class="input">
-              <input
-                name="min-constant"
-                type="number"
-                min={minimumConstant}
-                max={maximumConstant}
-                step="0.1"
-                placeholder={minimumConstant.toFixed(1)}
-                class="form-control"
-                h-model:number={this.min}
-                keypress-submit
-              />
-            </div>
-            <div class="txt">≤ 定数 ≤</div>
-            <div class="input">
-              <input
-                name="max-constant"
-                type="number"
-                min={minimumConstant}
-                max={maximumConstant}
-                step="0.1"
-                placeholder={maximumConstant.toFixed(1)}
-                class="form-control"
-                h-model:number={this.max}
-                keypress-submit
-              />
-            </div>
+          <div class="input-group m-3">
+            <input
+              name="min-constant"
+              type="number"
+              min={minimumConstant}
+              max={maximumConstant}
+              step="0.1"
+              placeholder={minimumConstant.toFixed(1)}
+              class="form-control input"
+              h-model:number={this.min}
+              keypress-submit
+            />
+            <div class="input-group-text">≤ 定数 ≤</div>
+            <input
+              name="max-constant"
+              type="number"
+              min={minimumConstant}
+              max={maximumConstant}
+              step="0.1"
+              placeholder={maximumConstant.toFixed(1)}
+              class="form-control input"
+              h-model:number={this.max}
+              keypress-submit
+            />
           </div>
           <div class="m-3">
             <button type="button" class="btn btn-primary query me-2" onClick={this.query}>

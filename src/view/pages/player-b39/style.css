@@ -1,0 +1,14 @@
+form {
+  max-width: 48em;
+}
+
+help-tip p {
+  max-width: 30em;
+  text-align: initial;
+  word-break: break-all;
+  white-space: initial;
+}
+
+.action {
+  margin: 0;
+}

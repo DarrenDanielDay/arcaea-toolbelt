@@ -12,7 +12,7 @@ import {
   SongData,
   SongIndex,
 } from "../models/music-play";
-import { B30Response, Profile } from "../models/profile";
+import { B30Response, BestResultItem, Profile } from "../models/profile";
 import { token } from "classic-di";
 import { Chapter, CurrentProgress, NormalWorldMap, RewardType } from "../models/world-mode";
 
@@ -59,6 +59,7 @@ export interface ChartStatistics {
 }
 
 export interface ChartService {
+  freePacks: Set<string>;
   getSongData(): Promise<SongData[]>;
   getSongIndex(): Promise<SongIndex>;
   getStatistics(): Promise<ChartStatistics>;
@@ -77,6 +78,7 @@ export interface MusicPlayStatistics {
 export interface MusicPlayService {
   readonly ex: number;
   readonly maxBase: number;
+  readonly grades: Grade[];
   getStatistics(): Promise<MusicPlayStatistics>;
   inferNoteResult(
     chart: Chart,
@@ -94,6 +96,7 @@ export interface MusicPlayService {
   inverseScore(potential: number, constant: number): number;
   inverseConstant(potential: number, score: number, raw?: boolean): number;
   computeFar(score: number, note: number, overflow: boolean): number;
+  compareGrade(a: Grade, b: Grade): number;
   mapClearType(clearType: number, shinyPerfectCount: number, chart: Chart): ClearRank;
   mapDifficulty(d: Difficulty): number;
 }
@@ -152,7 +155,13 @@ export interface BestStatistics {
 
 export type ReportProgress = (message: string) => void;
 
+export interface B30Options {
+  packs: string[];
+  filter: (result: BestResultItem) => boolean;
+}
+
 export interface ProfileService {
+  formatPotential(potential: number): string;
   getProfile(): Promise<Profile | null>;
   createOrUpdateProfile(username: string, potential: number): Promise<void>;
   getProfileList(): Promise<string[]>;
@@ -164,7 +173,7 @@ export interface ProfileService {
   addResult(playResult: PlayResult, replace?: boolean): Promise<void>;
   removeResult(chartId: string): Promise<void>;
   deleteProfile(username: string): Promise<void>;
-  b30(profile: Profile): Promise<B30Response>;
+  b30(profile: Profile, options?: Partial<B30Options>): Promise<B30Response>;
   generateAlienProfile(): Promise<Profile>;
   getProfileStatistics(profile: Profile): Promise<ScoreStatistics>;
 }

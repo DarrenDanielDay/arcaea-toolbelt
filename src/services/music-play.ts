@@ -12,14 +12,21 @@ const C_SCORE = 860_0000;
 
 const EX_RATIO = 20_0000;
 const AA_RATIO = 30_0000;
+
+// @ts-expect-error object entries type
+const GRADE_INDEX: Record<Grade, number> = Object.fromEntries(
+  Object.values(Grade).map((grade, i) => [grade, i] as const)
+);
+
 @Injectable({
   requires: [$ChartService],
   implements: $MusicPlayService,
 })
 export class MusicPlayServiceImpl implements MusicPlayService {
   ex = EX_SCORE;
+  grades = Object.values(Grade);
   maxBase = MAX_BASE_SCORE;
-
+  
   constructor(private readonly chart: ChartService) {}
 
   async getStatistics(): Promise<MusicPlayStatistics> {
@@ -184,6 +191,11 @@ export class MusicPlayServiceImpl implements MusicPlayService {
     const count = ((MAX_BASE_SCORE - score) * note * 2) / MAX_BASE_SCORE;
     return (overflow ? Math.floor : Math.ceil)(count);
   }
+
+  compareGrade(a: Grade, b: Grade): number {
+    return GRADE_INDEX[a] - GRADE_INDEX[b];
+  }
+
   mapClearType(clearType: number, shinyPerfectCount: number, chart: Chart): ClearRank {
     if (shinyPerfectCount === chart.note) {
       return ClearRank.Maximum;

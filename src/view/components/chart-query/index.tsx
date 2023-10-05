@@ -1,6 +1,6 @@
 import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
-import { $ChartService, ChartService, SearchResult } from "../../../services/declarations";
+import { $ChartService, ChartService, ChartStatistics, SearchResult } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
 import { alert } from "../fancy-dialog";
 import { ChartInfo } from "../chart-info";
@@ -37,11 +37,11 @@ class ChartQuery extends HyplateElement {
       })
     );
     return (
-      <Future promise={this.chartService.getStatistics()}>{(stats) => this._render(stats.maximumConstant)}</Future>
+      <Future promise={this.chartService.getStatistics()}>{(stats) => this._render(stats)}</Future>
     );
   }
 
-  _render(maximumConstant: number) {
+  _render({maximumConstant, minimumConstant}: ChartStatistics) {
     return (
       <>
         <form
@@ -56,10 +56,10 @@ class ChartQuery extends HyplateElement {
               <input
                 name="min-constant"
                 type="number"
-                min={1}
+                min={minimumConstant}
                 max={maximumConstant}
                 step="0.1"
-                placeholder="1.0"
+                placeholder={minimumConstant.toFixed(1)}
                 class="form-control"
                 h-model:number={this.min}
                 keypress-submit
@@ -70,7 +70,7 @@ class ChartQuery extends HyplateElement {
               <input
                 name="max-constant"
                 type="number"
-                min={1}
+                min={minimumConstant}
                 max={maximumConstant}
                 step="0.1"
                 placeholder={maximumConstant.toFixed(1)}

@@ -196,7 +196,7 @@ class ProfilePage extends HyplateElement {
                 type="number"
                 step="0.01"
                 min={0}
-                max={maximumPotential.toFixed(2)}
+                max={this.profileService.formatPotential(maximumPotential)}
                 required
               />
             </div>
@@ -218,7 +218,7 @@ class ProfilePage extends HyplateElement {
                 type="number"
                 step="0.01"
                 min={0}
-                max={maximumPotential.toFixed(2)}
+                max={this.profileService.formatPotential(maximumPotential)}
                 required
                 autofocus
               />

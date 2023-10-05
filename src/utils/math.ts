@@ -14,3 +14,5 @@ export const divide = (a: number, b: number) => {
   const remainder = a - quotient * b;
   return [quotient, remainder] as const;
 };
+
+export const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);

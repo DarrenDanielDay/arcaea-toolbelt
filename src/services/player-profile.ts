@@ -8,6 +8,7 @@ import {
   $ChartService,
   $MusicPlayService,
   $ProfileService,
+  B30Options,
   BestStatistics,
   ChartService,
   ImportResult,
@@ -19,7 +20,7 @@ import {
 import { Injectable } from "classic-di";
 import { groupBy, indexBy, mapProps } from "../utils/collections";
 import { delay } from "../utils/time";
-const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);
+import { sum } from "../utils/math";
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
 
@@ -57,6 +58,11 @@ export class ProfileServiceImpl implements ProfileService {
   currentUsername: string | null = this.getInitCurrentUsername();
   #SQL: SqlJsStatic | null = null;
   constructor(private readonly musicPlay: MusicPlayService, private readonly chartService: ChartService) {}
+
+  formatPotential(potential: number): string {
+    const rating = Math.floor(potential * 100);
+    return (rating / 100).toFixed(2);
+  }
 
   async getProfile(): Promise<Profile | null> {
     if (!this.currentUsername) {
@@ -154,7 +160,7 @@ export class ProfileServiceImpl implements ProfileService {
     localStorage.removeItem(username);
   }
 
-  async b30(profile: Profile): Promise<B30Response> {
+  async b30(profile: Profile, options?: Partial<B30Options>): Promise<B30Response> {
     const songs = await this.chartService.getSongData();
     const charts = Object.fromEntries(songs.flatMap((s) => s.charts.map((c) => [c.id, { chart: c, song: s }])));
     const playResults = Object.values(profile.best).map<BestResultItem>((r) => {
@@ -182,8 +188,21 @@ export class ProfileServiceImpl implements ProfileService {
         date: r.date,
       };
     });
-
+    let hasFilter = false;
+    const packs = new Set(options?.packs);
     const ordered = playResults
+      .filter((item) => {
+        const { song } = item;
+        if (packs.size && !packs.has(song.pack)) {
+          hasFilter = true;
+          return false;
+        }
+        const customFilter = options?.filter?.(item) ?? true;
+        if (!customFilter) {
+          hasFilter = true;
+        }
+        return customFilter;
+      })
       .sort((a, b) => b.score.potential - a.score.potential)
       .map((r, i) => ({ ...r, no: i + 1 }));
     const b30 = ordered.slice(0, 30);
@@ -192,13 +211,14 @@ export class ProfileServiceImpl implements ProfileService {
     const b10Sum = sum(ptt30.slice(0, 10));
     const maxPotential = (b10Sum + b30Sum) / 40;
     const minPotential = b30Sum / 40;
+    const potential = hasFilter ? this.formatPotential(maxPotential) : profile.potential;
     // 如果成绩少于10个，recent 10的平均值应当按照成绩个数取平均
-    const r10Average = (+profile.potential * 40 - b30Sum) / Math.min(playResults.length, 10);
+    const r10Average = (+potential * 40 - b30Sum) / Math.min(playResults.length, 10);
 
     return {
       queryTime: Date.now(),
       username: profile.username,
-      potential: profile.potential,
+      potential,
       b30: b30,
       b31_39: ordered.slice(30, 39),
       maxPotential,

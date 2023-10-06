@@ -26,6 +26,15 @@ export enum Difficulty {
   Beyond = "byd",
 }
 
+export const difficulties = [Difficulty.Past, Difficulty.Present, Difficulty.Future, Difficulty.Beyond];
+
+export const difficultyIndexes: Record<Difficulty, number> = {
+  [Difficulty.Past]: 0,
+  [Difficulty.Present]: 1,
+  [Difficulty.Future]: 2,
+  [Difficulty.Beyond]: 3,
+};
+
 export interface ChartOverride {
   url?: string;
   name?: string;

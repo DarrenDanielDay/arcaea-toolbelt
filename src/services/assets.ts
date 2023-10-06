@@ -1,5 +1,5 @@
 import { Injectable } from "classic-di";
-import { Song, Difficulty, ClearRank, Grade, Chart } from "../models/music-play";
+import { Song, ClearRank, Grade, Chart } from "../models/music-play";
 import { $AssetsResolver, $AssetsService, AssetsResolver, AssetsService } from "./declarations";
 import { CachedHttpGetClient } from "./cache";
 

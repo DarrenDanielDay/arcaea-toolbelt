@@ -1,6 +1,6 @@
 import { Injectable } from "classic-di";
 import { $AssetsResolver, AssetsResolver } from "./declarations";
-import { Chart, Song, ClearRank, Grade, Difficulty } from "../models/music-play";
+import { Chart, Song, ClearRank, Grade, difficultyIndexes } from "../models/music-play";
 const assetsRoot =
   "https://ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
 
@@ -8,12 +8,6 @@ const assetsRoot =
   implements: $AssetsResolver,
 })
 export class AssetsResolverImpl implements AssetsResolver {
-  #difficulty: Record<Difficulty, number> = {
-    [Difficulty.Past]: 0,
-    [Difficulty.Present]: 1,
-    [Difficulty.Future]: 2,
-    [Difficulty.Beyond]: 3,
-  };
   resolve(path: string): URL {
     return new URL(path, assetsRoot);
   }
@@ -21,7 +15,7 @@ export class AssetsResolverImpl implements AssetsResolver {
     const folder = !song.dl ? song.id : `dl_${song.id}`;
     const base = `songs/${folder}`;
     const suffix = hd ? ".jpg" : "_256.jpg";
-    const version = chart.override?.cover ? `${this.#difficulty[chart.difficulty]}` : "base";
+    const version = chart.override?.cover ? `${difficultyIndexes[chart.difficulty]}` : "base";
     const possible = ["", "1080_"].map((prefix) => `${prefix}${version}${suffix}`);
     const file = song.covers.find((cover) => possible.includes(cover));
     const path = `${base}/${file}`;

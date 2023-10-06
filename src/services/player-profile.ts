@@ -1,5 +1,5 @@
 import { SqlJsStatic } from "sql.js";
-import { ClearRank, Difficulty, NoteResult, PlayResult } from "../models/music-play";
+import { ClearRank, Difficulty, NoteResult, PlayResult, difficulties } from "../models/music-play";
 import { B30Response, BestResultItem, Profile, ProfileV1, ProfileV2 } from "../models/profile";
 import { download } from "../utils/download";
 import { readBinary, readFile } from "../utils/read-file";
@@ -19,7 +19,7 @@ import {
 } from "./declarations";
 import { Injectable } from "classic-di";
 import { groupBy, indexBy, mapProps } from "../utils/collections";
-import { delay } from "../utils/time";
+import { arcaeaReleaseTS, delay } from "../utils/time";
 import { sum } from "../utils/math";
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
@@ -295,11 +295,12 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       }, {} as unknown as ST3ScoreQuery)
     );
     const songIndex = await this.chartService.getSongIndex();
+    const now = Date.now();
     const { best } = profile;
     const result: ImportResult = {
       count: 0,
       difficulties: mapProps(
-        groupBy(Object.values(Difficulty), (d) => d),
+        groupBy(difficulties, (d) => d),
         () => 0
       ),
       skipped: [],
@@ -311,7 +312,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         result.skipped.push(`未知songId：${songId}`);
         continue;
       }
-      const chart = song.charts[songDifficulty];
+      const chart = song.charts.find((c) => c.difficulty === difficulties[songDifficulty]);
       if (!chart) {
         result.skipped.push(`曲目${song.name}的${Object.keys(Difficulty)[songDifficulty]}难度谱面未知`);
         continue;
@@ -327,7 +328,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         result: noteResult,
         chartId: chart.id,
         clear: this.musicPlay.mapClearType(clearType, shinyPerfectCount, chart),
-        date: this.normalizeDate(date),
+        date: this.normalizeDate(date, now),
       };
       result.difficulties[chart.difficulty]++;
       result.count++;
@@ -407,7 +408,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     );
     const all = Object.values(profile.best);
     const groupByDifficulty = groupBy(all, (res) => charts[res.chartId]!.difficulty);
-    for (const difficulty of Object.values(Difficulty)) {
+    for (const difficulty of difficulties) {
       groupByDifficulty[difficulty] ??= [];
     }
     return {
@@ -508,8 +509,14 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     });
   }
 
-  private normalizeDate(date: number): number {
-    return date * 1e6;
+  private normalizeDate(date: number, now: number): number | null {
+    if (!date) return null;
+    for (let time = date; time < now; time *= 1e3) {
+      if (time >= arcaeaReleaseTS) {
+        return time;
+      }
+    }
+    return null;
   }
 
   async #initSQLJS() {

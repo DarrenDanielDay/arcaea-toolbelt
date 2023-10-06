@@ -1,4 +1,4 @@
-import { Chart, ChartOverride, Difficulty, SongData } from "../../models/music-play";
+import { Chart, ChartOverride, Difficulty, SongData, difficulties } from "../../models/music-play";
 import { Indexed, indexBy } from "../../utils/collections";
 import { PackList, SongList, Song, Pack } from "../packed-data";
 import { Alias, AssetsInfo, ExtraSongData } from "./shared";
@@ -28,7 +28,6 @@ export function mergeIntoSongData(
   const aliasIndex = indexBy(alias, (a) => a.id);
   const extraIndex = indexBy(extraData, (extra) => extra.id);
   const assetsIndex = indexBy(assetsInfo, (a) => a.id);
-  const difficulties = Object.values(Difficulty);
   return songList.songs.map((song) => {
     const songId = song.id;
     // TODO 合并处理旧数据？

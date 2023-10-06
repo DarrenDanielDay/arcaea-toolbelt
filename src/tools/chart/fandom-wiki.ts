@@ -1,4 +1,4 @@
-import { Difficulty } from "../../models/music-play";
+import { Difficulty, difficulties } from "../../models/music-play";
 import { CachedHttpGetClient } from "../../services/cache";
 import { groupBy } from "../../utils/collections";
 import { concurrently } from "../../utils/concurrent";
@@ -97,7 +97,6 @@ export async function getChartDataFromFandomWiki(songList: SongList): Promise<Ex
     }
     return num;
   }
-  const difficulties = Object.values(Difficulty);
   function processPage(item: SongsTableItem, document: Document): ExtraSongData {
     const songListSong =
       matchDuplicatedName(enNameGroup[item.name] ?? [], item.difficulties) ||

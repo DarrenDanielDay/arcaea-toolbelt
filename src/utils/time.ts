@@ -31,3 +31,12 @@ export const setDateToDatetimeLocal = (input: HTMLInputElement, date: Date) => {
 };
 
 export const getNow = () => new Date(Date.now());
+
+const releaseDate = new Date();
+releaseDate.setFullYear(2017);
+releaseDate.setMonth(3);
+releaseDate.setDate(9);
+/**
+ * Arcaea移动端首次发布时间
+ */
+export const arcaeaReleaseTS = +releaseDate;

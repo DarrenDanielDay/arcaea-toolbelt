@@ -256,10 +256,10 @@ class ProfilePage extends HyplateElement {
                 <input type="file" class="form-control" name="file" />
               </div>
             </div>
-            <div class="row">
+            <div class="row my-3">
               <div class="col-auto">
                 <span class="form-text">
-                  已知的小问题：st3内只有谱面最高等级的通关类型信息，没有最佳成绩当次的通关类型信息。通关类型从高到低的顺序是：
+                  已知问题1：st3内只有谱面最高等级的通关类型信息，没有最佳成绩当次的通关类型信息。通关类型从高到低的顺序是：
                 </span>
               </div>
             </div>
@@ -288,6 +288,13 @@ class ProfilePage extends HyplateElement {
                   ），但先前曾经9980000分4-0全连过，st3存档内的数据将会是FR（
                   {this.renderInlineImg(clearImages.FR)}
                   ），从而可能导致b30里的通关显示存在一些小瑕疵。
+                </span>
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="col-auto">
+                <span class="form-text">
+                  已知问题2：st3内的成绩时间并非精确时间戳，而是除以了1000的若干次方的整数部分，和实际时间可能会有最多一百万秒（约11.57天）的差距。
                 </span>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { Chart, Difficulty, Song, SongData, SongIndex } from "../models/music-play";
+import { Chart, Difficulty, Song, SongData, SongIndex, difficulties } from "../models/music-play";
 import { searchMatch } from "../utils/string";
 import {
   $ChartService,
@@ -44,12 +44,7 @@ export class ChartServiceImpl implements ChartService {
 
   async getStatistics(): Promise<ChartStatistics> {
     const songs = await this.getSongData();
-    const statistics: ChartDifficultyStatistics = [
-      Difficulty.Past,
-      Difficulty.Present,
-      Difficulty.Future,
-      Difficulty.Beyond,
-    ].reduce<ChartDifficultyStatistics>((map, difficulty) => {
+    const statistics: ChartDifficultyStatistics = difficulties.reduce<ChartDifficultyStatistics>((map, difficulty) => {
       map[difficulty] = { count: 0, notes: 0 };
       return map;
     }, {} as ChartDifficultyStatistics);

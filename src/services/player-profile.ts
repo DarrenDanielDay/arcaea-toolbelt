@@ -228,7 +228,7 @@ export class ProfileServiceImpl implements ProfileService {
     };
   }
 
-  async generateAlienProfile(): Promise<Profile> {
+  async generateMaxProfile(): Promise<Profile> {
     const songData = await this.chartService.getSongData();
     const stats = await this.musicPlay.getStatistics();
     const profile = this.createEmptyProfile("👽");

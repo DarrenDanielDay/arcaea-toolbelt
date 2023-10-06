@@ -16,7 +16,10 @@ import {
 } from "../../../services/declarations";
 import { Best30 } from "../../components/b30";
 import { FancyDialog } from "../../components/fancy-dialog";
-
+import { B30Response } from "../../../models/profile";
+import { JSXChildNode } from "hyplate/types";
+import { HelpTip } from "../../components/help-tip";
+~HelpTip;
 export const AboutRoute: Route = {
   path: "/about",
   title: "关于",
@@ -38,17 +41,31 @@ class About extends HyplateElement {
   accessor profile!: ProfileService;
 
   b30Dialog = new FancyDialog();
+  b30Panel = new Best30();
 
   override render() {
-    return (
-      <Future promise={this.init()}>
-        {({ chartStats, musicPlayStats }) => this._render(chartStats, musicPlayStats)}
-      </Future>
-    );
+    return <Future promise={this.init()}>{(args) => this._render(...args)}</Future>;
   }
 
-  _render(chartStats: ChartStatistics, musicPlayStats: MusicPlayStatistics) {
+  _render(
+    chartStats: ChartStatistics,
+    musicPlayStats: MusicPlayStatistics,
+    maxB30: B30Response,
+    baseB30: B30Response,
+    freeB30: B30Response
+  ) {
     const COMMIT_SHA = process.env.COMMIT_SHA;
+    const maxPotentialStats: Parameters<About["renderMaxPtt"]>[] = [
+      ["理论最大潜力值", musicPlayStats.maximumPotential, maxB30],
+      ["仅基础包（Arcaea）最大潜力值", baseB30.maxPotential, baseB30],
+      [
+        <>
+          无氪<help-tip>仅考虑{this.chart.freePacks.join("、")}曲包</help-tip>最大潜力值
+        </>,
+        freeB30.maxPotential,
+        freeB30,
+      ],
+    ];
     return (
       <div class="m-3">
         <h2>关于 Arcaea Toolbelt</h2>
@@ -69,22 +86,8 @@ class About extends HyplateElement {
           </a>
         </p>
         <h3>统计信息</h3>
-        {/* 最大潜力值一定是0.1 / 40 = 0.0025的倍数，因此最多只有4位小数 */}
-        <p>
-          最大潜力值:
-          {musicPlayStats.maximumPotential.toFixed(4)}
-          <button
-            class="btn btn-secondary mx-3"
-            onClick={async () => {
-              const b30 = await this.profile.b30(await this.profile.generateAlienProfile());
-              const best30 = new Best30();
-              best30.b30.set(b30);
-              this.b30Dialog.showAlert(<div>{best30}</div>);
-            }}
-          >
-            b30
-          </button>
-        </p>
+        <h4>潜力值统计</h4>
+        {maxPotentialStats.map((args) => this.renderMaxPtt(...args))}
         <h4>谱面统计</h4>
         <div>
           {Object.entries(chartStats.difficulties).map(([difficulty, { count, notes }]) => {
@@ -104,9 +107,32 @@ class About extends HyplateElement {
   async init() {
     const chartStats = await this.chart.getStatistics();
     const musicPlayStats = await this.musicPlay.getStatistics();
-    return {
-      chartStats,
-      musicPlayStats,
-    };
+    const profile = await this.profile.generateMaxProfile();
+    const maxB30 = await this.profile.b30(profile);
+    const baseB30 = await this.profile.b30(profile, { packs: this.chart.freePacks.slice(0, 1) });
+    const freeB30 = await this.profile.b30(profile, { packs: this.chart.freePacks });
+    return [chartStats, musicPlayStats, maxB30, baseB30, freeB30] as const;
+  }
+
+  renderMaxPtt(info: JSXChildNode, potential: number, b30: B30Response) {
+    return (
+      <div>
+        <div>
+          {/* 最大潜力值一定是0.1 / 40 = 0.0025的倍数，因此最多只有4位小数 */}
+          {info}：{potential.toFixed(4)}
+        </div>
+        <div style="display: flex; align-items: center;">
+          <potential-badge potential={potential}></potential-badge>
+          <button class="btn btn-secondary mx-3" onClick={() => this.showB30(b30)}>
+            b30
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  showB30(b30: B30Response) {
+    this.b30Panel.b30.set(b30);
+    this.b30Dialog.showAlert(<div>{this.b30Panel}</div>);
   }
 }

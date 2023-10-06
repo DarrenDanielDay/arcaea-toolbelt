@@ -59,7 +59,7 @@ export interface ChartStatistics {
 }
 
 export interface ChartService {
-  freePacks: Set<string>;
+  freePacks: string[];
   getSongData(): Promise<SongData[]>;
   getSongIndex(): Promise<SongIndex>;
   getStatistics(): Promise<ChartStatistics>;
@@ -174,7 +174,7 @@ export interface ProfileService {
   removeResult(chartId: string): Promise<void>;
   deleteProfile(username: string): Promise<void>;
   b30(profile: Profile, options?: Partial<B30Options>): Promise<B30Response>;
-  generateAlienProfile(): Promise<Profile>;
+  generateMaxProfile(): Promise<Profile>;
   getProfileStatistics(profile: Profile): Promise<ScoreStatistics>;
 }
 

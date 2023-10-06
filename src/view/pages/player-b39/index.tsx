@@ -68,7 +68,7 @@ class PlayerB39 extends HyplateElement {
                 仅免费曲包
                 <help-tip>
                   <p>以下曲包内曲目均可直接/在世界模式常驻地图/限时地图免费获得：</p>
-                  {[...this.chart.freePacks].map((pack) => (
+                  {this.chart.freePacks.map((pack) => (
                     <p>{pack}</p>
                   ))}
                   <p>
@@ -79,7 +79,7 @@ class PlayerB39 extends HyplateElement {
               </label>
               <select ref={this.packs} class="form-select" size="4" multiple name="packs">
                 <option value="">无</option>
-                {[...this.chart.freePacks].map((pack) => (
+                {this.chart.freePacks.map((pack) => (
                   <option value={pack}>{pack}</option>
                 ))}
               </select>

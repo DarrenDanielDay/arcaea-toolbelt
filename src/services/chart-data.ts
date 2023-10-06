@@ -17,18 +17,18 @@ const getStaticSongData = async (): Promise<SongData[]> => import("../data/chart
 // 对于同个名称匹配系数，按照ftr，byd，prs，pst排序
 const difficultyOrder = [Difficulty.Future, Difficulty.Beyond, Difficulty.Present, Difficulty.Past];
 
-const FREE_PACKS = new Set([
+const FREE_PACKS = [
   "Arcaea", // 基础包
   "Extend Archive",
   "World Extend",
-]);
+];
 
 @Injectable({
   requires: [$AssetsResolver] as const,
   implements: $ChartService,
 })
 export class ChartServiceImpl implements ChartService {
-  freePacks = new Set(FREE_PACKS);
+  freePacks = FREE_PACKS;
 
   #songIndex: SongIndex | null = null;
 

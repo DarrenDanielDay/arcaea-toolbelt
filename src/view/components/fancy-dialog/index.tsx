@@ -1,7 +1,7 @@
 import { sheet } from "./style.css.js";
 import { bootstrap } from "../../styles";
 import { Component, HyplateElement, Show, element, listen, mount, nil, signal, unmount } from "hyplate";
-import type { JSXChildNode, Rendered } from "hyplate/types";
+import type { GlobalAttributes, JSXChildNode, Rendered } from "hyplate/types";
 
 type RenderedSlot = Rendered<any> | null;
 type RenderWithClose = (done: () => void, cancel: () => void) => JSXChildNode;
@@ -154,3 +154,11 @@ export const alert = (message: JSXChildNode) => {
   ensureInDocument();
   return globalMessage.showAlert(message);
 };
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "fancy-dialog": JSXAttributes<GlobalAttributes, FancyDialog>;
+    }
+  }
+}

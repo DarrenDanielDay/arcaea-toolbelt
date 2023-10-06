@@ -63,3 +63,8 @@ result-card {
   justify-content: center;
   align-items: flex-end;
 }
+
+.footer, time {
+  word-break: keep-all;
+  white-space: nowrap;
+}

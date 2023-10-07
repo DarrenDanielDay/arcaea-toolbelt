@@ -3,7 +3,7 @@ import { bootstrap } from "../../styles";
 import { Inject } from "../../../services/di";
 import { $WorldModeService, WorldModeService } from "../../../services/declarations";
 import { Chapter, NormalWorldMap, RewardType } from "../../../models/world-mode";
-import { Component, For, HyplateElement, noop, signal, watch } from "hyplate";
+import { Component, For, HyplateElement, computed, noop, signal, watch } from "hyplate";
 import type { Mountable } from "hyplate/types";
 
 export
@@ -20,6 +20,7 @@ class WorldMapSelect extends HyplateElement {
   selected = signal<NormalWorldMap | null>(null);
   longtermSelected = signal("");
   eventSelected = signal("");
+  showObsolete = signal(false);
 
   #dataFetched = false;
   #initMapId: string | null = null;
@@ -46,23 +47,53 @@ class WorldMapSelect extends HyplateElement {
         }
       })
     );
+    const eventMaps = computed(() => {
+      const showObsolete = this.showObsolete();
+      const now = Date.now();
+      return this.eventMaps().filter((e) => {
+        if (showObsolete) return true;
+        const expire = e.expire;
+        if (!expire) return false;
+        return expire > now;
+      });
+    });
     return (
-      <div class="row">
-        <div class="col">
-          <select class="form-select" name="longterm" h-model={this.longtermSelected}>
-            <option value="">--常驻地图--</option>
-            <For of={this.longtermMaps}>
-              {(item) => <optgroup label={item.chapter}>{item.maps.map((map) => this.renderMapOption(map))}</optgroup>}
-            </For>
-          </select>
+      <>
+        <div class="row">
+          <div class="col-auto">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                h-model:boolean={this.showObsolete}
+                name="show-obsolete"
+                id="show-obsolete"
+                class="form-check-input"
+              ></input>
+              <label for="show-obsolete" class="form-check-label">
+                显示已关闭的活动地图
+              </label>
+            </div>
+          </div>
         </div>
-        <div class="col">
-          <select class="form-select" name="event" h-model={this.eventSelected}>
-            <option value="">--活动地图--</option>
-            <For of={this.eventMaps}>{(item) => this.renderMapOption(item)}</For>
-          </select>
+        <div class="row">
+          <div class="col">
+            <select class="form-select" name="longterm" h-model={this.longtermSelected}>
+              <option value="">--常驻地图--</option>
+              <For of={this.longtermMaps}>
+                {(item) => (
+                  <optgroup label={item.chapter}>{item.maps.map((map) => this.renderMapOption(map))}</optgroup>
+                )}
+              </For>
+            </select>
+          </div>
+          <div class="col">
+            <select class="form-select" name="event" h-model={this.eventSelected}>
+              <option value="">--活动地图--</option>
+              <For of={eventMaps}>{(item) => this.renderMapOption(item)}</For>
+            </select>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 

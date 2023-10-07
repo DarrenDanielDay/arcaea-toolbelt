@@ -7,7 +7,7 @@ import {
   PlatformType,
   RewardType,
 } from "../models/world-mode";
-import { arcaeaCNClient, findNextElWhere, htmlDocument, initPageDocument, wikiURL } from "./wiki-util";
+import { arcaeaCNClient, findNextElWhere, findParentWhere, htmlDocument, initPageDocument, wikiURL } from "./wiki-util";
 
 const wikiLongtermWorldMapTable = wikiURL("世界模式地图详表 (移动版常驻)");
 const wikiEventWorldMapTable = wikiURL("世界模式地图详表_(移动版限时活动)");
@@ -69,6 +69,51 @@ async function getWikiEventWorldMapTable(): Promise<WikiWorldMapTableItem[]> {
   await initPageDocument(wikiEventWorldMapTable, arcaeaCNClient);
   const table = htmlDocument.querySelector("table.wikitable")!;
   return Array.from(table.querySelectorAll("td a"), (a) => getMapTableItem(a));
+}
+
+interface MainTableInfo {
+  currentEvents: { id: string; expire: number }[];
+}
+
+async function getMainTableInfo(): Promise<MainTableInfo> {
+  await initPageDocument(wikiURL("世界模式"), arcaeaCNClient);
+  const extra = htmlDocument.querySelector("#extra");
+  if (!extra) throw new Error("事件章节未找到");
+  const h3 = findParentWhere(extra, (el): el is HTMLHeadingElement => el instanceof HTMLHeadingElement);
+  if (!h3) throw new Error("事件章节h3标题未找到");
+  const table = findNextElWhere(
+    h3,
+    (el): el is HTMLTableElement => el instanceof HTMLTableElement && el.tBodies[0]?.rows[0]?.cells.length === 5
+  );
+  if (!table) throw new Error("当前事件表格未找到");
+  const currentEvents = Array.from(table.rows)
+    .slice(1)
+    .map<MainTableInfo["currentEvents"][number]>((row) => {
+      const [name, , , , time] = Array.from(row.cells);
+      if (!name || !time) throw new Error("表格格式改变");
+      const rawId = decodeURI(new URL(name.querySelector("a")!.href).hash.slice(1));
+      const id = rawId.includes('限时') ? rawId : `限时：${rawId}`;
+      const match = /(\d+)\/(\d+)\/(\d+)[^0-9\/]((\d+)\/)?(\d+)\/(\d+)/.exec(time.textContent!.trim());
+      if (!match) throw new Error("时间格式未匹配");
+      let [, startYear, , , , endYear, endMonth, endDay] = match;
+      endYear ??= startYear;
+      if (!endYear || !endMonth || !endDay) throw new Error("时间格式未匹配");
+      const expireDate = new Date();
+      expireDate.setFullYear(+endYear);
+      expireDate.setMonth(+endMonth - 1);
+      expireDate.setDate(+endDay);
+      expireDate.setHours(23);
+      expireDate.setMinutes(0);
+      expireDate.setSeconds(0);
+      expireDate.setMilliseconds(0);
+      return {
+        id,
+        expire: +expireDate,
+      };
+    });
+  return {
+    currentEvents,
+  };
 }
 
 function getWorldMap(
@@ -223,7 +268,9 @@ async function getBackgounds(): Promise<Backgrounds> {
   const map: Backgrounds = {};
   await initPageDocument(wikiURL("背景列表"), arcaeaCNClient);
   const anchor = htmlDocument.querySelector("#场景")!;
-  const table = findNextElWhere(anchor.parentElement!, (el) => el.matches("table")) as HTMLTableElement;
+  const table = findNextElWhere(anchor.parentElement!, (el): el is HTMLTableElement =>
+    el.matches("table")
+  ) as HTMLTableElement;
   for (const tbody of Array.from(table.tBodies)) {
     for (const row of Array.from(tbody.rows).slice(1)) {
       const name = row.cells[2]!.textContent!;
@@ -274,5 +321,11 @@ export async function fetchWikiWorldMapData(songs: SongData[], characters: Chara
   }
   const eventTableItems = await getWikiEventWorldMapTable();
   const events = eventTableItems.map((map) => getWorldMap(htmlDocument, map, backgrounds, songs, characters));
+  const { currentEvents } = await getMainTableInfo();
+  for (const event of currentEvents) {
+    const map = events.find(e =>e.id === event.id);
+    if (!map) throw new Error(`活动地图 ${event.id} 未找到`);
+    map.expire = event.expire;
+  }
   return { longterm, events };
 }

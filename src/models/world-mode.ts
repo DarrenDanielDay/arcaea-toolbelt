@@ -105,6 +105,10 @@ export interface NormalWorldMapData {
    */
   id: string;
   legacy?: boolean;
+  /**
+   * 仅活动地图有过期时间，无过期时间的是已经过去的活动
+   */
+  expire?: number;
   platforms: { [level: number]: MapPlatformData | undefined | null; };
 }
 

@@ -29,6 +29,8 @@ export const pathName = (path: string): string => new URL(path, location.href).p
 
 export const wikiURL = (path: string) => new URL(pathName(path), wikiBaseURL);
 
+export function findNextElWhere<T extends Element>(start: Element, where: (el: Element) => el is T): T | null;
+export function findNextElWhere(start: Element, where: (el: Element) => boolean): Element | null;
 export function findNextElWhere(start: Element, where: (el: Element) => boolean): Element | null {
   let node: Element | null = start;
   for (; node && !where(node); node = node.nextElementSibling);

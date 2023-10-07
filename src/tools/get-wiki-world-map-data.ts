@@ -240,6 +240,38 @@ export async function fetchWikiWorldMapData(songs: SongData[], characters: Chara
     chapter: d.name,
     maps: d.maps.map((map) => getWorldMap(htmlDocument, map, backgrounds, songs, characters)),
   }));
+  const legacyMaps = new Set([
+    // chapter 1
+    "1-1",
+    "1-2",
+    "1-3",
+    "1-4",
+    "1-5",
+    "1-6",
+    "1-7",
+    // chapter 2
+    "2-1",
+    // chapter 3
+    "3-1",
+    "3-2",
+    "3-5",
+    "3-6",
+    "3-7",
+    // chapter 4
+    "4-2",
+    "4-3",
+    "4-7",
+    // chapter 5
+    "5-4",
+    "5-7",
+  ]);
+  for (const chapter of longterm) {
+    for (const map of chapter.maps) {
+      if (legacyMaps.has(map.id)) {
+        map.legacy = true;
+      }
+    }
+  }
   const eventTableItems = await getWikiEventWorldMapTable();
   const events = eventTableItems.map((map) => getWorldMap(htmlDocument, map, backgrounds, songs, characters));
   return { longterm, events };

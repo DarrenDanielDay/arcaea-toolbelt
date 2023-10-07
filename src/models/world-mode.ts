@@ -104,7 +104,7 @@ export interface NormalWorldMapData {
    * 暂时就用wiki上的id，同时也用作显示名称
    */
   id: string;
-  legacy?: true;
+  legacy?: boolean;
   platforms: { [level: number]: MapPlatformData | undefined | null; };
 }
 

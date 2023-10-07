@@ -89,6 +89,9 @@ class WorldModeCalculator extends HyplateElement {
       this.worldMap.setCurrentPlatform(null);
       if (selected) {
         this.worldMap.setMap(selected);
+        const worldType = selected.legacy ? "legacy" : "new";
+        this.worldType.set(worldType);
+        this.worldType2.set(worldType);
       }
     });
 

@@ -1,6 +1,5 @@
 import {
   Chapter,
-  ChapterData,
   CharacterData,
   CurrentProgress,
   MapPlatform,
@@ -28,7 +27,7 @@ import {
 } from "./declarations";
 import characters from "../data/character-data.json";
 import items from "../data/item-data.json";
-import { SongData, SongIndex } from "../models/music-play";
+import { SongIndex } from "../models/music-play";
 import { Indexed, indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
 import { inferRange } from "../utils/math";

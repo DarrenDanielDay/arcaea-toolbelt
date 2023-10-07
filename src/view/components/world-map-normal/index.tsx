@@ -4,6 +4,8 @@ import { CurrentProgress, MapPlatform, NormalWorldMap, PlatformType, RewardType 
 import { alert } from "../fancy-dialog";
 import { Component, For, HyplateElement, computed, element, nil, signal } from "hyplate";
 import type { CleanUpFunc, WritableSignal } from "hyplate/types";
+import { Inject } from "../../../services/di.js";
+import { $AssetsResolver, AssetsResolver } from "../../../services/declarations.js";
 
 const specialPlatformImages: Record<
   PlatformType,
@@ -48,8 +50,12 @@ export
   styles: [bootstrap, sheet],
 })
 class WorldMapNormal extends HyplateElement {
+  @Inject($AssetsResolver)
+  accessor resolver!: AssetsResolver;
   platformsContainer = element("div");
 
+  bg = signal("");
+  bgY = signal("");
   currentMap = signal<NormalWorldMap | null>(null);
   platforms = signal<PlatformContext[]>([]);
   currentProgress = signal<CurrentProgress | null>(null);
@@ -57,7 +63,17 @@ class WorldMapNormal extends HyplateElement {
   override render() {
     return (
       <div class="panel-root">
-        <div ref={this.platformsContainer} class="platforms">
+        <div class="bg" style:background-image={this.bg} style:background-position-y={this.bgY}></div>
+        <div
+          ref={this.platformsContainer}
+          class="platforms"
+          onScroll={() => {
+            requestAnimationFrame(() => {
+              const { scrollTop, scrollHeight, clientHeight } = this.platformsContainer;
+              this.bgY.set(`${(scrollTop / (scrollHeight - clientHeight)) * 100}%`);
+            });
+          }}
+        >
           <For of={this.platforms}>
             {({ cell, highlighted, level, platform }) => {
               const offset = 5 - Math.abs(((level - 1) % 10) - 5);
@@ -213,6 +229,8 @@ class WorldMapNormal extends HyplateElement {
         return result;
       }, []);
     this.platforms.set(platformsContext);
+    const chapter = +map.id[0]! || 0;
+    this.bg.set(`url(${JSON.stringify(this.resolver.resolve(`img/world/${chapter}.jpg`).href)})`);
     this.platformsContainer.lastElementChild!.scrollIntoView({ behavior: "smooth" });
   }
 

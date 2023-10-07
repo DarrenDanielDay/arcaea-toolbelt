@@ -1,6 +1,18 @@
 .panel-root {
   max-width: 100%;
   overflow-x: auto;
+  position: relative;
+  --text-mask: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.53125) 50%, transparent 100%);
+}
+
+.bg {
+  min-width: 600px;
+  max-width: 800px;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  position: absolute;
+  z-index: -1;
 }
 
 .platforms {
@@ -9,6 +21,7 @@
   max-height: 500px;
   overflow-y: auto;
   padding: 32px;
+  backdrop-filter: blur(1px);
 }
 
 .level {
@@ -39,7 +52,7 @@
 }
 
 .text-banner {
-  background-image: linear-gradient(90deg, #ffffff, rgba(0, 0, 0, 0.53125) 50%, #ffffff 100%);
+  background-image: var(--text-mask);
 }
 
 .length {
@@ -126,5 +139,5 @@ svg.fragment {
   width: 100%;
   display: inline-block;
   text-align: center;
-  background-image: linear-gradient(90deg, #ffffff, rgba(22, 72, 100, 0.53125) 50%, #ffffff 100%);
+  background-image: var(--text-mask);
 }

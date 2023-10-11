@@ -133,6 +133,6 @@ class About extends HyplateElement {
 
   showB30(b30: B30Response) {
     this.b30Panel.b30.set(b30);
-    this.b30Dialog.showAlert(<div>{this.b30Panel}</div>);
+    this.b30Dialog.showAlert(<div var:inner-width="800px">{this.b30Panel}</div>);
   }
 }

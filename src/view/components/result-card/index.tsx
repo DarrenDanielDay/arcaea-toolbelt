@@ -58,6 +58,8 @@ class ResultCard extends HyplateElement {
       this.resizeCard();
       const ob = new ResizeObserver(() => {
         this.resizeCard();
+        // Resize only once.
+        ob.disconnect();
       });
       ob.observe(this);
       return () => {
@@ -218,7 +220,8 @@ class ResultCard extends HyplateElement {
   }
 
   private resizeCard() {
-    cssVar(this, "card-scale", `${this.offsetWidth / 1000}`);
-    this.style.height = `${this.offsetWidth * 0.32}px`;
+    const width = this.offsetWidth;
+    cssVar(this, "card-scale", `${width / 1000}`);
+    this.style.height = `${width * 0.32}px`;
   }
 }

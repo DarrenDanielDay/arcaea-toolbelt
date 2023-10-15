@@ -99,6 +99,16 @@ class About extends HyplateElement {
             );
           })}
         </div>
+        <h3>问题反馈</h3>
+        <div>
+          <p>
+            如果您在使用本工具时遇到问题，欢迎提交
+            <a href="https://github.com/DarrenDanielDay/arcaea-toolbelt/issues" target="_blank">
+              issues
+            </a>
+            进行反馈。
+          </p>
+        </div>
         {this.b30Dialog}
       </div>
     );

@@ -18,7 +18,7 @@ import { download } from "../../../utils/download";
 import { bootstrap } from "../../styles/index";
 import { loading } from "../../components/loading";
 import { future } from "../../../utils/future";
-import { Grade } from "../../../models/music-play";
+import { ClearRank, Grade } from "../../../models/music-play";
 import { HelpTip } from "../../components/help-tip";
 ~HelpTip;
 @Component({
@@ -37,7 +37,7 @@ class PlayerB39 extends HyplateElement {
   best30 = new Best30();
 
   packs = element("select");
-  gradeFilter = signal<Grade | "">("");
+  gradeFilter = signal<Grade | ClearRank.PureMemory | ClearRank.Maximum | "">("");
   minConstant = signal(NaN);
   maxConstant = signal(NaN);
 
@@ -90,6 +90,8 @@ class PlayerB39 extends HyplateElement {
               </label>
               <select h-model={this.gradeFilter} class="form-select" id="grade" name="grade">
                 <option value="">无</option>
+                <option value={ClearRank.Maximum}>理论值</option>
+                <option value={ClearRank.PureMemory}>PM</option>
                 {this.musicPlay.grades.map((grade) => (
                   <option value={grade}>{grade}</option>
                 ))}
@@ -164,8 +166,19 @@ class PlayerB39 extends HyplateElement {
         const {
           score: { grade },
           chart: { constant },
+          clear,
         } = result;
         if (rankFilter) {
+          if (rankFilter === ClearRank.PureMemory || rankFilter === ClearRank.Maximum) {
+            switch (rankFilter) {
+              // @ts-ignore fall through case by design
+              case ClearRank.PureMemory:
+                if (clear === ClearRank.PureMemory) return true;
+              case ClearRank.Maximum:
+                if (clear === ClearRank.Maximum) return true;
+                return false;
+            }
+          }
           if (this.musicPlay.compareGrade(grade, rankFilter) > 0) {
             return false;
           }

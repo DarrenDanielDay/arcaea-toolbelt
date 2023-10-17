@@ -27,6 +27,14 @@ export class AssetsServiceImpl implements AssetsService {
     return this.#cachedFetch(this.resolver.resolveGradeImg(scoreRank));
   }
 
+  cacheUsage(): Promise<number> {
+    return this.#client.cacheUsage();  
+  }
+
+  async clearCache(): Promise<void> {
+    await this.#client.clear();
+  }
+
   async #cachedFetch(url: string | URL) {
     const cache = this.#cache;
     const key = url.toString();

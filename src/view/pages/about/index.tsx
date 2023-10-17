@@ -13,12 +13,15 @@ import {
   ProfileService,
   ChartStatistics,
   MusicPlayStatistics,
+  $AssetsService,
+  AssetsService,
 } from "../../../services/declarations";
 import { Best30 } from "../../components/b30";
-import { FancyDialog } from "../../components/fancy-dialog";
+import { FancyDialog, alert, confirm } from "../../components/fancy-dialog";
 import { B30Response } from "../../../models/profile";
 import { JSXChildNode } from "hyplate/types";
 import { HelpTip } from "../../components/help-tip";
+import { formatSize } from "../../../utils/format";
 ~HelpTip;
 export const AboutRoute: Route = {
   path: "/about",
@@ -33,6 +36,8 @@ export const AboutRoute: Route = {
   styles: [bootstrap],
 })
 class About extends HyplateElement {
+  @Inject($AssetsService)
+  accessor assets!: AssetsService;
   @Inject($ChartService)
   accessor chart!: ChartService;
   @Inject($MusicPlayService)
@@ -98,6 +103,25 @@ class About extends HyplateElement {
               </div>
             );
           })}
+        </div>
+        <h3>杂项</h3>
+        <div>
+          <button
+            class="btn btn-outline-danger"
+            onClick={async () => {
+              const byteSize = await this.assets.cacheUsage();
+              if (await confirm(<div>当前图片缓存占用空间为{formatSize(byteSize)}，是否确认全部清除？</div>)) {
+                await this.assets.clearCache();
+                alert("图片缓存清除完毕。");
+              }
+            }}
+          >
+            清除图片缓存
+          </button>
+          <help-tip class="mx-2">
+            <p>为了减少重复的图片下载带来的体验不佳问题，一些图片（主要是曲绘）会在下载后缓存在浏览器内。</p>
+            <p>如果这些图片占用了过多的存储空间，您可以在此清空他们。本工具再次需要这些图片时，将会重新下载他们。</p>
+          </help-tip>
         </div>
         <h3>问题反馈</h3>
         <div>

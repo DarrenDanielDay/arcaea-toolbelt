@@ -1,3 +1,4 @@
+import { sum } from "../utils/math";
 import { getNow } from "../utils/time";
 
 export interface HttpGetCache {
@@ -80,6 +81,28 @@ export class CachedHttpGetClient {
       const deleteRequest = db.transaction([storeName], "readwrite").objectStore(storeName).delete(url);
       deleteRequest.onsuccess = resolve;
       deleteRequest.onerror = reject;
+    });
+  }
+
+  async cacheUsage() {
+    const db = await this.getDB();
+    const query = db.transaction([storeName]).objectStore(storeName).getAll();
+    return new Promise<number>((resolve, reject) => {
+      query.onsuccess = () => {
+        const httpGetCaches: HttpGetCache[] = query.result;
+        const byteSize = sum(httpGetCaches.map((cache) => cache.blob.size));
+        resolve(byteSize);
+      };
+      query.onerror = reject;
+    });
+  }
+
+  async clear() {
+    const db = await this.getDB();
+    const request = db.transaction([storeName], "readwrite").objectStore(storeName).clear();
+    return new Promise<any>((resolve, reject) => {
+      request.onsuccess = resolve;
+      request.onerror = reject;
     });
   }
 }

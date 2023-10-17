@@ -27,6 +27,8 @@ export interface AssetsService {
   getCover(chart: Chart, song: Song, hd: boolean): Promise<string>;
   getClearImg(clearType: ClearRank): Promise<string>;
   getGradeImg(scoreRank: Grade): Promise<string>;
+  cacheUsage(): Promise<number>;
+  clearCache(): Promise<void>;
 }
 
 export interface SearchResult {

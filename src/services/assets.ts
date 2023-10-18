@@ -19,6 +19,10 @@ export class AssetsServiceImpl implements AssetsService {
     return this.#cachedFetch(this.resolver.resolveCover(chart, song, hd));
   }
 
+  async getUnknownCover(): Promise<string> {
+    return this.#cachedFetch(this.resolver.resolveUnknownCover());
+  }
+
   async getClearImg(clearType: ClearRank): Promise<string> {
     return this.#cachedFetch(this.resolver.resolveClearImg(clearType));
   }

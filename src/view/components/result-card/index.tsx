@@ -95,7 +95,7 @@ class ResultCard extends HyplateElement {
           src={computed(() => {
             const info = this.chartInfo();
             const hd = this.hd();
-            if (!info) return Promise.resolve("");
+            if (!info) return this.assets.getUnknownCover();
             const { chart, song } = info;
             return this.assets.getCover(chart, song, hd);
           })}

@@ -32,12 +32,14 @@ export interface PreferenceService {
 export interface AssetsResolver {
   resolve(path: string): URL;
   resolveCover(chart: Chart, song: Song, hd: boolean): URL;
+  resolveUnknownCover(): URL;
   resolveClearImg(clearType: ClearRank): URL;
   resolveGradeImg(scoreRank: Grade): URL;
 }
 
 export interface AssetsService {
   getCover(chart: Chart, song: Song, hd: boolean): Promise<string>;
+  getUnknownCover(): Promise<string>;
   getClearImg(clearType: ClearRank): Promise<string>;
   getGradeImg(scoreRank: Grade): Promise<string>;
   cacheUsage(): Promise<number>;

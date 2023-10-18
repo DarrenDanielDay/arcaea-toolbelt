@@ -17,4 +17,16 @@ export class PluginAssetsServiceImpl implements AssetsService {
   async getGradeImg(scoreRank: Grade): Promise<string> {
     return this.resolver.resolveGradeImg(scoreRank).toString();
   }
+
+  async getUnknownCover(): Promise<string> {
+    return this.resolver.resolveUnknownCover().toString();
+  }
+
+  cacheUsage(): Promise<number> {
+    throw new Error("No implemented.");
+  }
+
+  clearCache(): Promise<void> {
+    throw new Error("No implemented.");
+  }
 }

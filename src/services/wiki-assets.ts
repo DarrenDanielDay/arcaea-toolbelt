@@ -6,7 +6,9 @@ import { $AssetsService, AssetsService } from "./declarations";
 /**
  * @deprecated
  */
+// @ts-ignore
 @Injectable({ implements: $AssetsService })
+// @ts-ignore
 export class WikiAssetsService implements AssetsService {
   async getCover(chart: Chart, song: Song, hd?: boolean | undefined): Promise<string> {
     // @ts-ignore

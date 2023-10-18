@@ -21,6 +21,9 @@ export class AssetsResolverImpl implements AssetsResolver {
     const path = `${base}/${file}`;
     return this.resolve(path);
   }
+  resolveUnknownCover(): URL {
+    return this.resolve("img/song_jacket_back_colorless.png");
+  }
   resolveClearImg(clearType: ClearRank): URL {
     return this.resolve(`img/clear_type/${this.#getClearAssetsImgName(clearType)}.png`);
   }

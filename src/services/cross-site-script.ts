@@ -11,7 +11,7 @@ import {
 import { MusicPlayServiceImpl } from "./music-play";
 import * as lowiro from "./web-api";
 import { addSheet } from "sheetly";
-import { bootstrap } from "../view/styles";
+import { bootstrapLocal } from "../view/styles";
 import { sheet as dialogSheet } from "../view/components/fancy-dialog/style.css.js";
 import { element } from "hyplate";
 import { WorldModeServiceImpl } from "./world-mode";
@@ -306,7 +306,7 @@ const createOrGetDialog = (() => {
       provide(container, ioc);
       document.body.appendChild(container);
       const wrapper = container.attachShadow({ mode: "open" });
-      addSheet(bootstrap, wrapper);
+      addSheet(bootstrapLocal, wrapper);
       addSheet(dialogSheet, wrapper);
       panel = new ToolPanel();
       panel.addEventListener("panel-close", () => {

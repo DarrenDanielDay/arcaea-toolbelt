@@ -1,0 +1,9 @@
+button.nav-link {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+button.nav-link img {
+  width: 1em;
+  height: 1em;
+}

@@ -12,9 +12,11 @@ import { element } from "hyplate";
 import { Container } from "classic-di";
 import { AssetsServiceImpl } from "../services/assets";
 import { AssetsResolverImpl } from "../services/assets-resolver";
+import { PreferenceServiceImpl } from "../services/preference.js";
 document.adoptedStyleSheets = [bootstrap, sheet];
 
 const ioc = new Container();
+ioc.register(PreferenceServiceImpl);
 ioc.register(AssetsResolverImpl);
 ioc.register(AssetsServiceImpl);
 ioc.register(ChartServiceImpl);

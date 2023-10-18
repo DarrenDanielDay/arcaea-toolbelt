@@ -15,6 +15,19 @@ import {
 import { B30Response, BestResultItem, Profile } from "../models/profile";
 import { token } from "classic-di";
 import { Chapter, CurrentProgress, NormalWorldMap, RewardType } from "../models/world-mode";
+import type { Signal } from "hyplate/types";
+
+export type ColorTheme = "dark" | "light";
+
+export interface Preference {
+  theme: ColorTheme;
+}
+
+export interface PreferenceService {
+  get(): Promise<Preference>;
+  update(patch: Partial<Preference>): Promise<void>;
+  signal<K extends keyof Preference>(name: K): Signal<Preference[K]>;
+}
 
 export interface AssetsResolver {
   resolve(path: string): URL;
@@ -247,6 +260,7 @@ export interface CrossSiteScriptPluginService {
   syncMe(profile: lowiro.UserProfile): Promise<void>;
 }
 
+export const $PreferenceService = token<PreferenceService>("preference");
 export const $AssetsResolver = token<AssetsResolver>("assets-resolver");
 export const $AssetsService = token<AssetsService>("assets");
 export const $ChartService = token<ChartService>("chart");

@@ -143,7 +143,7 @@ class PlayerB39 extends HyplateElement {
             </div>
           </div>
         </form>
-        <div style="display: flex; overflow: auto;">{this.best30}</div>
+        <div class="b30-container">{this.best30}</div>
       </div>
     );
   }

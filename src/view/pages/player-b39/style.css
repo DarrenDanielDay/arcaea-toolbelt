@@ -12,3 +12,8 @@ help-tip p {
 .action {
   margin: 0;
 }
+
+.b30-container {
+  display: flex;
+  overflow: auto;
+}

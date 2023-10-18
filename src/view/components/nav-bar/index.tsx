@@ -7,7 +7,7 @@ import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
 import { $Router, Router } from "../../pages/router";
 import { clickElsewhere } from "../../../utils/click-elsewhere";
-import { Component, HyplateElement, computed, signal, subscribe } from "hyplate";
+import { Component, HyplateElement, attr, computed, signal, subscribe } from "hyplate";
 import { $PreferenceService, ColorTheme, Preference, PreferenceService } from "../../../services/declarations";
 export
 @Component({
@@ -26,8 +26,9 @@ class NavBar extends HyplateElement {
   override render() {
     this.effect(() =>
       subscribe(this.preference.signal("theme"), (theme) => {
-        document.documentElement.dataset["bsTheme"] = theme;
-        document.documentElement.dataset["theme"] = theme;
+        const documentElement = document.documentElement;
+        attr(documentElement, 'data-bs-theme', theme);
+        attr(documentElement, 'data-theme', theme);
         this.theme.set(theme);
       })
     );

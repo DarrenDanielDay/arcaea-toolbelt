@@ -73,6 +73,7 @@ class ResultCard extends HyplateElement {
       const { difficulty } = chart;
       cssVar(this, "potential-color", `var(--${difficulty}-light)`);
       cssVar(this, "constant-color", `var(--${difficulty})`);
+      cssVar(this, "badge-border", `var(--${difficulty}-border)`);
       const title = this.chart.getName(chart, song);
       content(this.songTitle, title);
       const length = measureSongTitle(title);

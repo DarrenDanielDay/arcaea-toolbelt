@@ -9,6 +9,10 @@ help-tip p {
   white-space: initial;
 }
 
+.input-group-text:has(input#hd) {
+  gap: 0.25em;
+}
+
 .action {
   margin: 0;
 }

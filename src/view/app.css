@@ -1,18 +1,27 @@
 /* styles here */
-:root, :host {
+:root,
+:host {
   --1: #f8c507;
   --2: #d1d4e2;
   --3: #f39b77;
-  --no-color: #dddddd;
+  --no-color: var(--bs-secondary-bg);
   --pst: #5cbad3;
-  --pst-light: #5cbad3dd;
+  --pst-light: #6ad6f3;
+  --pst-border-color: #61a8c1;
   --prs: #b5c76f;
-  --prs-light: #b5c76f99;
+  --prs-light: #d0e580;
+  --prs-border-color: #a7c276;
   --ftr: #913a79;
-  --ftr-light: #913a79dd;
+  --ftr-light: #a7428b;
+  --ftr-border-color: #8f5a7f;
   --byd: #bf0d25;
-  --byd-light: #bf0d25dd;
+  --byd-light: #dc0f2a;
+  --byd-border-color: #b64356;
+  --pure: #cc22ee;
+  --far: #ffaa11;
+  --lost: #dd4444;
 }
+
 @font-face {
   font-family: Exo;
   src: url("https://fonts.gstatic.com/s/exo/v20/4UaZrEtFpBI4f1ZSIK9d4LjJ4rQwOwRmOw.woff2") format("woff2");

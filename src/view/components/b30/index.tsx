@@ -3,7 +3,15 @@ import { ResultCard } from "../result-card";
 import { B30Response, BestResultItem } from "../../../models/profile";
 import { Component, HyplateElement, Show, cssVar, signal } from "hyplate";
 import { Inject } from "../../../services/di";
-import { $AssetsService, $ChartService, AssetsService, ChartService } from "../../../services/declarations.js";
+import {
+  $AssetsService,
+  $ChartService,
+  $PreferenceService,
+  AssetsService,
+  ChartService,
+  ColorTheme,
+  PreferenceService,
+} from "../../../services/declarations.js";
 
 const renderB30 = (response: B30Response) => {
   const { queryTime, b30, b31_39, b30Average, maxPotential, minPotential, potential, r10Average, username } = response;
@@ -67,15 +75,19 @@ class Best30 extends HyplateElement {
   accessor chart!: ChartService;
   @Inject($AssetsService)
   accessor assets!: AssetsService;
+  @Inject($PreferenceService)
+  accessor preference!: PreferenceService;
+
   b30 = signal<B30Response | null>(null);
   hd = signal(false);
   override render() {
     this.autorun(() => {
       const b30 = this.b30();
       const hd = this.hd();
+      const theme = this.preference.signal("theme")();
       if (b30) {
-        this.#updateBg(hd);
-        this.#updateSize(hd);
+        this.#updateBg(hd, theme);
+        this.#updateResultCards(hd, theme);
       }
     });
     return <Show when={this.b30}>{(response) => renderB30(response)}</Show>;
@@ -86,18 +98,19 @@ class Best30 extends HyplateElement {
     return node instanceof HTMLElement ? node : null;
   }
 
-  #updateSize(hd: boolean) {
+  #updateResultCards(hd: boolean, theme: ColorTheme) {
     const node = this.getExportNode();
     if (!node) return;
     cssVar(node, "inner-width", hd ? `${(800 * 1000) / 240}` : null);
     node.querySelectorAll<ResultCard>("result-card").forEach((card) => {
       card.setHD(hd);
+      card.dataset['theme'] = theme;
     });
   }
 
-  async #updateBg(hd: boolean) {
+  async #updateBg(hd: boolean, theme: ColorTheme) {
     const index = await this.chart.getSongIndex();
-    const song = index["lovelessdress"]!;
+    const song = theme === "dark" ? index["odysseia"]! : index["lovelessdress"]!;
     const chart = song.charts[2]!;
     const url = await this.assets.getCover(chart, song, hd);
     const card = this.getExportNode();

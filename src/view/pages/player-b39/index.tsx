@@ -170,16 +170,9 @@ class PlayerB39 extends HyplateElement {
         } = result;
         if (rankFilter) {
           if (rankFilter === ClearRank.PureMemory || rankFilter === ClearRank.Maximum) {
-            switch (rankFilter) {
-              // @ts-ignore fall through case by design
-              case ClearRank.PureMemory:
-                if (clear === ClearRank.PureMemory) return true;
-              case ClearRank.Maximum:
-                if (clear === ClearRank.Maximum) return true;
-                return false;
-            }
-          }
-          if (this.musicPlay.compareGrade(grade, rankFilter) > 0) {
+            const levels = [ClearRank.PureMemory, ClearRank.Maximum];
+            if (levels.indexOf(rankFilter) > levels.indexOf(clear!)) return false;
+          } else if (this.musicPlay.compareGrade(grade, rankFilter) > 0) {
             return false;
           }
         }

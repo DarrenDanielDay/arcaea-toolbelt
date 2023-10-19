@@ -8,7 +8,7 @@ import { Inject } from "../../../services/di";
 import { $Router, Router } from "../../pages/router";
 import { clickElsewhere } from "../../../utils/click-elsewhere";
 import { Component, HyplateElement, attr, computed, signal, subscribe } from "hyplate";
-import { $PreferenceService, ColorTheme, Preference, PreferenceService } from "../../../services/declarations";
+import { $PreferenceService, ColorTheme, PreferenceService } from "../../../services/declarations";
 export
 @Component({
   tag: "nav-bar",
@@ -34,6 +34,7 @@ class NavBar extends HyplateElement {
     );
     this.effect(() => clickElsewhere(this, () => this.showMenu.set(false)));
     this.effect(() => this.router.subscribe((newRoute) => this.activeRoute.set(newRoute.path)));
+    const toggleThemeText = computed(() => `切换${this.theme() === "light" ? "纷争" : "光芒"}侧`);
     return (
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -66,9 +67,9 @@ class NavBar extends HyplateElement {
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <button class="btn btn-link nav-link" onClick={this.toggleTheme}>
+                <button class="btn btn-link nav-link" title={toggleThemeText} onClick={this.toggleTheme}>
                   <img src={computed(() => (this.theme() === "light" ? sun : moon))} alt="theme-icon.svg"></img>
-                  <span class="d-lg-none">{computed(() => `切换${this.theme() === "light" ? "暗" : "亮"}色主题`)}</span>
+                  <span class="d-lg-none">{toggleThemeText}</span>
                 </button>
               </li>
               <li class="nav-item">

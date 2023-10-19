@@ -2,12 +2,20 @@ import { Injectable } from "classic-di";
 import { $PreferenceService, Preference, PreferenceService } from "./declarations";
 import type { Signal } from "hyplate/types";
 import { computed, signal } from "hyplate";
-import { clone } from "../utils/misc";
+import { clone, once } from "../utils/misc";
+import { openDB, requestToPromise, transactionToPromise } from "../utils/indexed-db";
 
 const defaultPreference: Preference = {
   // 默认跟随系统的偏好主题
   theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
 };
+
+interface PreferenceConfig {
+  key: string;
+  value: any;
+}
+
+const configStore = "configs";
 
 type PreferenceKey = keyof Preference;
 
@@ -17,29 +25,39 @@ type PreferenceKey = keyof Preference;
 export class PreferenceServiceImpl implements PreferenceService {
   #preference = signal<Preference>(clone(defaultPreference));
   #computed: { [K in PreferenceKey]?: Signal<Preference[K]> } = {};
-  #preferenceKey = "PREFERENCE";
+  #getDB = once(() => this.#openDB());
   constructor() {
-    this.#notify();
+    this.get().then((latest) => this.#notify(latest));
   }
 
   async get(): Promise<Preference> {
-    // Store in session temporarily.
+    const db = await this.#getDB();
+    const stored =
+      (await requestToPromise<PreferenceConfig[]>(db.transaction([configStore]).objectStore(configStore).getAll())) ??
+      [];
+    const partialConfig = Object.fromEntries(stored.map(({ key, value }) => [key, value]));
     return {
       ...defaultPreference,
-      ...JSON.parse(sessionStorage.getItem(this.#preferenceKey) || "{}"),
+      ...partialConfig,
     };
   }
 
   async update(patch: Partial<Preference>): Promise<void> {
     const current = await this.get();
-    sessionStorage.setItem(
-      this.#preferenceKey,
-      JSON.stringify({
-        ...current,
-        ...patch,
-      })
-    );
-    await this.#notify();
+    const newPreference = {
+      ...current,
+      ...patch,
+    };
+    const db = await this.#getDB();
+    const transaction = db.transaction([configStore], "readwrite");
+    const store = transaction.objectStore(configStore);
+    for (const key in patch) {
+      const value = Reflect.get(patch, key);
+      const config: PreferenceConfig = { key, value };
+      store.put(config);
+    }
+    await transactionToPromise(transaction);
+    this.#notify(newPreference);
   }
 
   signal<K extends keyof Preference>(name: K): Signal<Preference[K]> {
@@ -47,7 +65,14 @@ export class PreferenceServiceImpl implements PreferenceService {
     return signal;
   }
 
-  async #notify() {
-    this.#preference.set(await this.get());
+  #openDB() {
+    return openDB("preference", 1, (_, request) => {
+      const db = request.result;
+      db.createObjectStore(configStore, { keyPath: "key" });
+    });
+  }
+
+  #notify(latest: Preference) {
+    this.#preference.set(latest);
   }
 }

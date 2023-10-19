@@ -35,3 +35,10 @@ export const requestToPromise = <T>(query: IDBRequest<T>, options?: IDBOptions) 
       }
     };
   });
+
+export const transactionToPromise = (transaction: IDBTransaction, options?: IDBOptions) =>
+  new Promise<void>((resolve, reject) => {
+    transaction.onerror = reject;
+    transaction.onabort = reject;
+    transaction.oncomplete = () => resolve();
+  });

@@ -105,7 +105,7 @@ class About extends HyplateElement {
           })}
         </div>
         <h3>杂项</h3>
-        <div>
+        <div class="my-3">
           <button
             class="btn btn-outline-danger"
             onClick={async () => {

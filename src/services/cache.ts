@@ -1,3 +1,4 @@
+import { openDB, requestToPromise } from "../utils/indexed-db";
 import { sum } from "../utils/math";
 import { getNow } from "../utils/time";
 
@@ -17,21 +18,9 @@ export class CachedHttpGetClient {
     if (this.db) {
       return this.db;
     }
-    const db = await new Promise<IDBDatabase>((resolve, reject) => {
-      const openRequest = indexedDB.open(this.cacheDbName, this.version);
-      openRequest.onerror = reject;
-      openRequest.onupgradeneeded = (event) => {
-        const target = event.target;
-        if (!(target instanceof IDBOpenDBRequest)) {
-          return;
-        }
-        const db = target.result;
-        db.createObjectStore(storeName, { keyPath: "url" });
-      };
-
-      openRequest.onsuccess = () => {
-        resolve(openRequest.result);
-      };
+    const db = await openDB(this.cacheDbName, this.version, (_, request) => {
+      const db = request.result;
+      db.createObjectStore(storeName, { keyPath: "url" });
     });
     return (this.db = db);
   }
@@ -40,16 +29,8 @@ export class CachedHttpGetClient {
     const now = getNow();
     const db = await this.getDB();
     const url = getURL(input);
-    const result = await new Promise<HttpGetCache | null>((resolve) => {
-      const queryRequest = db.transaction([storeName]).objectStore(storeName).get(url);
-      queryRequest.onsuccess = () => {
-        resolve(queryRequest.result);
-      };
-      queryRequest.onerror = (e) => {
-        console.error(e);
-        resolve(null);
-      };
-    });
+    const queryRequest: IDBRequest<HttpGetCache | null> = db.transaction([storeName]).objectStore(storeName).get(url);
+    const result = await requestToPromise(queryRequest);
     if (result && (!result.time || +result.time + (expireTime ?? Infinity) > +now)) {
       console.debug(`Found cached result for url: ${result.url}`);
       return new Response(result.blob);
@@ -61,49 +42,33 @@ export class CachedHttpGetClient {
       blob,
       time: getNow(),
     };
-    await new Promise<void>((resolve) => {
-      const saveRequest = db.transaction([storeName], "readwrite").objectStore(storeName).put(cache);
-      saveRequest.onsuccess = () => {
-        console.debug(`Cached request URL: ${saveRequest.result}`);
-        resolve();
-      };
-      saveRequest.onerror = () => {
-        resolve();
-      };
-    });
+    const saveRequest = db.transaction([storeName], "readwrite").objectStore(storeName).put(cache);
+    const savedKey = await requestToPromise(saveRequest);
+    if (savedKey) {
+      console.debug(`Cached request URL: ${saveRequest.result}`);
+    }
     return new Response(blob);
   }
 
   async invalidateCache(input: string | URL): Promise<any> {
     const db = await this.getDB();
     const url = getURL(input);
-    return new Promise((resolve, reject) => {
-      const deleteRequest = db.transaction([storeName], "readwrite").objectStore(storeName).delete(url);
-      deleteRequest.onsuccess = resolve;
-      deleteRequest.onerror = reject;
-    });
+    const deleteRequest = db.transaction([storeName], "readwrite").objectStore(storeName).delete(url);
+    await requestToPromise(deleteRequest, { emitError: true });
   }
 
   async cacheUsage() {
     const db = await this.getDB();
-    const query = db.transaction([storeName]).objectStore(storeName).getAll();
-    return new Promise<number>((resolve, reject) => {
-      query.onsuccess = () => {
-        const httpGetCaches: HttpGetCache[] = query.result;
-        const byteSize = sum(httpGetCaches.map((cache) => cache.blob.size));
-        resolve(byteSize);
-      };
-      query.onerror = reject;
-    });
+    const query: IDBRequest<HttpGetCache[]> = db.transaction([storeName]).objectStore(storeName).getAll();
+    const httpGetCaches = (await requestToPromise(query, { emitError: true })) ?? [];
+    const byteSize = sum(httpGetCaches.map((cache) => cache.blob.size));
+    return byteSize;
   }
 
   async clear() {
     const db = await this.getDB();
     const request = db.transaction([storeName], "readwrite").objectStore(storeName).clear();
-    return new Promise<any>((resolve, reject) => {
-      request.onsuccess = resolve;
-      request.onerror = reject;
-    });
+    await requestToPromise(request, { emitError: true });
   }
 }
 

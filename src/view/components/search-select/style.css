@@ -17,7 +17,7 @@
 }
 
 .search-item:hover, .search-item:focus-within {
-  background-color: #dedede;
+  background-color: var(--bs-secondary-bg);
 }
 
 .search-panel {
@@ -28,7 +28,7 @@
   box-sizing: border-box;
   padding: 8px;
   position: absolute;
-  background-color: white;
+  background-color: var(--bs-body-bg);
   border-radius: 8px;
   box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.12);
   width: 100%;

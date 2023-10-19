@@ -7,8 +7,9 @@ import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
 import { $Router, Router } from "../../pages/router";
 import { clickElsewhere } from "../../../utils/click-elsewhere";
-import { Component, HyplateElement, attr, computed, signal, subscribe } from "hyplate";
+import { AutoRender, Component, HyplateElement, attr, computed, signal, subscribe } from "hyplate";
 import { $PreferenceService, ColorTheme, PreferenceService } from "../../../services/declarations";
+import { SVGIcon } from "../svg-icon";
 export
 @Component({
   tag: "nav-bar",
@@ -27,14 +28,13 @@ class NavBar extends HyplateElement {
     this.effect(() =>
       subscribe(this.preference.signal("theme"), (theme) => {
         const documentElement = document.documentElement;
-        attr(documentElement, 'data-bs-theme', theme);
-        attr(documentElement, 'data-theme', theme);
+        attr(documentElement, "data-bs-theme", theme);
+        attr(documentElement, "data-theme", theme);
         this.theme.set(theme);
       })
     );
     this.effect(() => clickElsewhere(this, () => this.showMenu.set(false)));
     this.effect(() => this.router.subscribe((newRoute) => this.activeRoute.set(newRoute.path)));
-    const toggleThemeText = computed(() => `切换${this.theme() === "light" ? "纷争" : "光芒"}侧`);
     return (
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -67,14 +67,23 @@ class NavBar extends HyplateElement {
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <button class="btn btn-link nav-link" title={toggleThemeText} onClick={this.toggleTheme}>
-                  <img src={computed(() => (this.theme() === "light" ? sun : moon))} alt="theme-icon.svg"></img>
-                  <span class="d-lg-none">{toggleThemeText}</span>
-                </button>
+                <AutoRender>
+                  {() => {
+                    const theme = this.theme();
+                    const src = theme === "light" ? sun : moon;
+                    const toggleThemeText = `切换${theme === "light" ? "纷争" : "光芒"}侧`;
+                    return (
+                      <button class="btn btn-link nav-link" title={toggleThemeText} onClick={this.toggleTheme}>
+                        <SVGIcon src={src} role="img"></SVGIcon>
+                        <span class="d-lg-none">{toggleThemeText}</span>
+                      </button>
+                    );
+                  }}
+                </AutoRender>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="https://github.com/DarrenDanielDay/arcaea-toolbelt" target="_blank">
-                  <img src={github} width="24" height="24" />
+                  <SVGIcon src={github} class="github-link" role="img" />
                 </a>
               </li>
             </ul>

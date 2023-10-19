@@ -4,7 +4,13 @@ button.nav-link {
   align-items: center;
   gap: 0.25em;
 }
-button.nav-link img {
+svg {
   width: 1em;
   height: 1em;
+  fill: var(--bs-body-color);
+}
+
+svg.github-link {
+  width: 1.5em;
+  height: 1.5em;
 }

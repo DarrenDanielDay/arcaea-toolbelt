@@ -27,6 +27,7 @@
     "start:tools": "parcel --target tools --dist-dir dist-tools --port 1236",
     "start:parcel": "parcel --target default --hmr-host localhost --hmr-port 1235",
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
+    "dev": "run-p --print-label \"start:parcel\" \"start:sheetly\"",
     "start": "run-p --print-label \"start:**\"",
     "purge": "node ./scripts/purge.js",
     "build:parcel": "parcel build --target default --no-optimize --public-url /arcaea-toolbelt --reporter @parcel/reporter-bundle-analyzer",

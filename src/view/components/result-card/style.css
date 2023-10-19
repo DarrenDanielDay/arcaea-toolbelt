@@ -4,21 +4,6 @@
   --title-length: 664;
 }
 
-:host([data-theme="light"]) {
-  --pst-border: none;
-  --prs-border: none;
-  --ftr-border: none;
-  --byd-border: none;
-}
-
-:host([data-theme="dark"]) {
-  --pst-border: 4px solid var(--pst-border-color);
-  --prs-border: 4px solid var(--prs-border-color);
-  --ftr-border: 4px solid var(--ftr-border-color);
-  --byd-border: 4px solid var(--byd-border-color);
-}
-
-
 .card {
   background-color: var(--bs-body-bg);
   transform: scale(var(--card-scale, 1));

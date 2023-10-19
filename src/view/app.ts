@@ -1,5 +1,5 @@
 import { sheet } from "./app.css.js";
-import { bootstrap } from "./styles";
+import { bootstrap, theme } from "./styles";
 import { provide } from "../services/di";
 import { NavBar } from "./components/nav-bar";
 import { ChartServiceImpl } from "../services/chart-data";
@@ -13,7 +13,7 @@ import { Container } from "classic-di";
 import { AssetsServiceImpl } from "../services/assets";
 import { AssetsResolverImpl } from "../services/assets-resolver";
 import { PreferenceServiceImpl } from "../services/preference.js";
-document.adoptedStyleSheets = [bootstrap, sheet];
+document.adoptedStyleSheets = [bootstrap, theme, sheet];
 
 const ioc = new Container();
 ioc.register(PreferenceServiceImpl);

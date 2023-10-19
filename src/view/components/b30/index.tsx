@@ -87,7 +87,7 @@ class Best30 extends HyplateElement {
       const theme = this.preference.signal("theme")();
       if (b30) {
         this.#updateBg(hd, theme);
-        this.#updateResultCards(hd, theme);
+        this.#updateResultCards(hd);
       }
     });
     return <Show when={this.b30}>{(response) => renderB30(response)}</Show>;
@@ -98,13 +98,12 @@ class Best30 extends HyplateElement {
     return node instanceof HTMLElement ? node : null;
   }
 
-  #updateResultCards(hd: boolean, theme: ColorTheme) {
+  #updateResultCards(hd: boolean) {
     const node = this.getExportNode();
     if (!node) return;
     cssVar(node, "inner-width", hd ? `${(800 * 1000) / 240}` : null);
     node.querySelectorAll<ResultCard>("result-card").forEach((card) => {
       card.setHD(hd);
-      card.dataset['theme'] = theme;
     });
   }
 

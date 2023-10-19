@@ -1,0 +1,13 @@
+:root[data-theme="light"] {
+  --pst-border: none;
+  --prs-border: none;
+  --ftr-border: none;
+  --byd-border: none;
+}
+
+:root[data-theme="dark"] {
+  --pst-border: 4px solid var(--pst-border-color);
+  --prs-border: 4px solid var(--prs-border-color);
+  --ftr-border: 4px solid var(--ftr-border-color);
+  --byd-border: 4px solid var(--byd-border-color);
+}

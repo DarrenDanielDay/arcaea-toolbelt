@@ -28,14 +28,6 @@ class ChartQuery extends HyplateElement {
         }
       })
     );
-    this.effect(() =>
-      watch(this.max, (max) => {
-        // 包括NaN的情况
-        if (!(this.min() <= max)) {
-          this.min.set(max);
-        }
-      })
-    );
     return <Future promise={this.chartService.getStatistics()}>{(stats) => this._render(stats)}</Future>;
   }
 

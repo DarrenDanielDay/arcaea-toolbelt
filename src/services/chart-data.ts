@@ -14,9 +14,6 @@ import { Injectable } from "classic-di";
 // @ts-expect-error string as enum
 const getStaticSongData = async (): Promise<SongData[]> => import("../data/chart-data.json");
 
-// 对于同个名称匹配系数，按照ftr，byd，prs，pst排序
-const difficultyOrder = [Difficulty.Future, Difficulty.Beyond, Difficulty.Present, Difficulty.Past];
-
 const FREE_PACKS = [
   "Arcaea", // 基础包
   "Extend Archive",
@@ -95,7 +92,7 @@ export class ChartServiceImpl implements ChartService {
       if (a.sort !== b.sort) {
         return a.sort - b.sort;
       }
-      return difficultyOrder.indexOf(a.difficulty) - difficultyOrder.indexOf(b.difficulty);
+      return difficulties.indexOf(a.difficulty) - difficulties.indexOf(b.difficulty);
     });
   }
   async queryChartsByConstant(min: number, max: number): Promise<SearchResult[]> {

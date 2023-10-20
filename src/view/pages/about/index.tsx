@@ -16,7 +16,7 @@ import {
   $AssetsService,
   AssetsService,
 } from "../../../services/declarations";
-import { Best30 } from "../../components/b30";
+import { Best30YukiChan } from "../../components/b30-yukichan";
 import { FancyDialog, alert, confirm } from "../../components/fancy-dialog";
 import { B30Response } from "../../../models/profile";
 import { JSXChildNode } from "hyplate/types";
@@ -46,7 +46,7 @@ class About extends HyplateElement {
   accessor profile!: ProfileService;
 
   b30Dialog = new FancyDialog();
-  b30Panel = new Best30();
+  b30Panel = new Best30YukiChan();
 
   override render() {
     return <Future promise={this.init()}>{(args) => this._render(...args)}</Future>;

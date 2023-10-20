@@ -11,7 +11,7 @@ import {
   ProfileService,
 } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
-import { Best30 } from "../../components/b30";
+import { Best30YukiChan } from "../../components/b30-yukichan";
 import { alert } from "../../components/fancy-dialog";
 import { Route } from "../router";
 import { download } from "../../../utils/download";
@@ -34,7 +34,7 @@ class PlayerB39 extends HyplateElement {
   @Inject($ChartService)
   accessor chart!: ChartService;
 
-  best30 = new Best30();
+  best30 = new Best30YukiChan();
 
   packs = element("select");
   gradeFilter = signal<Grade | ClearRank.PureMemory | ClearRank.Maximum | "">("");

@@ -12,10 +12,25 @@ import {
   SongData,
   SongIndex,
 } from "../models/music-play";
-import { B30Response, BestResultItem, Profile } from "../models/profile";
+import { B30Response, BestResultItem, Profile, ProfileUpdatePayload } from "../models/profile";
 import { token } from "classic-di";
 import { Chapter, CurrentProgress, NormalWorldMap, RewardType } from "../models/world-mode";
 import type { Signal } from "hyplate/types";
+
+export interface DatabaseContext {
+  getDB(): Promise<IDBDatabase>;
+  transaction(stores: string[], mode?: IDBTransactionMode): Promise<IDBTransaction>;
+  objectStore(store: string, mode?: IDBTransactionMode): Promise<IDBObjectStore>;
+}
+
+export interface CacheDBContext extends DatabaseContext {
+  readonly caches: string;
+}
+
+export interface AppDatabaseContext extends CacheDBContext {
+  readonly preference: string;
+  readonly profiles: string;
+}
 
 export type ColorTheme = "dark" | "light";
 
@@ -178,11 +193,12 @@ export interface B30Options {
 }
 
 export interface ProfileService {
+  checkMigration(): Promise<null | (() => Promise<void>)>;
   formatPotential(potential: number): string;
   getProfile(): Promise<Profile | null>;
   createOrUpdateProfile(username: string, potential: number): Promise<void>;
   getProfileList(): Promise<string[]>;
-  syncProfiles(data: Partial<Profile>[]): Promise<void>;
+  syncProfiles(data: ProfileUpdatePayload[]): Promise<void>;
   importProfile(file: File): Promise<void>;
   importDB(file: File, profile: Profile, report?: ReportProgress): Promise<ImportResult>;
   exportProfile(profile: Profile): Promise<void>;
@@ -262,6 +278,7 @@ export interface CrossSiteScriptPluginService {
   syncMe(profile: lowiro.UserProfile): Promise<void>;
 }
 
+export const $Database = token<AppDatabaseContext>("database");
 export const $PreferenceService = token<PreferenceService>("preference");
 export const $AssetsResolver = token<AssetsResolver>("assets-resolver");
 export const $AssetsService = token<AssetsService>("assets");

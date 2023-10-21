@@ -1,19 +1,32 @@
 import { Injectable } from "classic-di";
 import { Song, ClearRank, Grade, Chart } from "../models/music-play";
-import { $AssetsResolver, $AssetsService, AssetsResolver, AssetsService } from "./declarations";
-import { CachedHttpGetClient } from "./cache";
+import {
+  $AssetsResolver,
+  $AssetsService,
+  $Database,
+  AppDatabaseContext,
+  AssetsResolver,
+  AssetsService,
+} from "./declarations";
+import { CachedHttpGetClient, migrateOldCaches } from "./cache";
+import { future } from "../utils/future";
 
 @Injectable({
-  requires: [$AssetsResolver] as const,
+  requires: [$AssetsResolver, $Database] as const,
   implements: $AssetsService,
 })
 export class AssetsServiceImpl implements AssetsService {
   /** Memory cache: raw URL -> blob URL */
   #cache: { [url: string]: string } = {};
 
-  #client = new CachedHttpGetClient("assets-image-cache", 1);
+  #client;
 
-  constructor(private resolver: AssetsResolver) {}
+  #migrated = future();
+
+  constructor(private resolver: AssetsResolver, private database: AppDatabaseContext) {
+    this.#client = new CachedHttpGetClient(database);
+    this.#migrate();
+  }
 
   async getCover(chart: Chart, song: Song, hd: boolean): Promise<string> {
     return this.#cachedFetch(this.resolver.resolveCover(chart, song, hd));
@@ -32,7 +45,7 @@ export class AssetsServiceImpl implements AssetsService {
   }
 
   cacheUsage(): Promise<number> {
-    return this.#client.cacheUsage();  
+    return this.#client.cacheUsage();
   }
 
   async clearCache(): Promise<void> {
@@ -40,6 +53,7 @@ export class AssetsServiceImpl implements AssetsService {
   }
 
   async #cachedFetch(url: string | URL) {
+    await this.#migrated.promise;
     const cache = this.#cache;
     const key = url.toString();
     const cached = cache[key];
@@ -47,5 +61,10 @@ export class AssetsServiceImpl implements AssetsService {
     const req = await this.#client.fetch(url);
     const blob = await req.blob();
     return (cache[key] = URL.createObjectURL(blob));
+  }
+
+  async #migrate() {
+    await migrateOldCaches("assets-image-cache", this.database);
+    this.#migrated.done();
   }
 }

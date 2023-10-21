@@ -21,8 +21,10 @@ import { Container, Injectable } from "classic-di";
 import { provide } from "./di";
 import { AssetsResolverImpl } from "./assets-resolver";
 import { PluginAssetsServiceImpl } from "./plugin-assets";
+import { ArcaeaToolbeltDatabaseContext } from "./database";
 
 const ioc = new Container({ name: "cross-site-script-root" });
+ioc.register(ArcaeaToolbeltDatabaseContext);
 ioc.register(ChartServiceImpl);
 ioc.register(MusicPlayServiceImpl);
 ioc.register(WorldModeServiceImpl);

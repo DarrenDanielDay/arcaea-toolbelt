@@ -2,9 +2,12 @@ import "classic-di/polyfill";
 import { ChartServiceImpl } from "./chart-data";
 import { MusicPlayServiceImpl } from "./music-play";
 import { ProfileServiceImpl } from "./player-profile";
+import { AssetsResolverImpl } from "./assets-resolver";
+import { ArcaeaToolbeltDatabaseContext } from "./database";
 
-const chart = new ChartServiceImpl();
-const profile = new ProfileServiceImpl(new MusicPlayServiceImpl(chart), chart);
+const database = new ArcaeaToolbeltDatabaseContext();
+const chart = new ChartServiceImpl(new AssetsResolverImpl());
+const profile = new ProfileServiceImpl(database, new MusicPlayServiceImpl(chart), chart);
 
 window.addEventListener("message", async (e) => {
   const parent = window.parent;

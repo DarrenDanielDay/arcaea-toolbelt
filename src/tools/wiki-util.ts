@@ -43,5 +43,5 @@ export function findParentWhere<T extends Element>(start: Element, where: (el: E
   return node;
 }
 
-export const arcaeaCNClient = new CachedHttpGetClient("arcaea-cn-cache", 1);
+export const arcaeaCNClient = new CachedHttpGetClient("arcaea-cn-cache");
 Object.assign(window, { arcaeaCNClient });

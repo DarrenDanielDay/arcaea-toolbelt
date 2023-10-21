@@ -548,6 +548,8 @@ class ProfilePage extends HyplateElement {
   }
 
   private async updateGreet() {
+    const migrate = await this.profileService.checkMigration();
+    if (migrate) await migrate();
     const profile = await this.profileService.getProfile();
     this.greet.set(profile);
   }

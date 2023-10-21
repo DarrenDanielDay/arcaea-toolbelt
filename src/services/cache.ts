@@ -1,6 +1,8 @@
-import { openDB, requestToPromise } from "../utils/indexed-db";
+import { moveData, openDB, requestToPromise } from "../utils/indexed-db";
 import { sum } from "../utils/math";
+import { once } from "../utils/misc";
 import { getNow } from "../utils/time";
+import { CacheDBContext } from "./declarations";
 
 export interface HttpGetCache {
   url: string;
@@ -8,28 +10,41 @@ export interface HttpGetCache {
   blob: Blob;
 }
 
-const storeName = "caches";
+export type CreateClientInit = string | CacheDBContext;
+
+export class DefaultCacheDBContext implements CacheDBContext {
+  constructor(private readonly name: string) {}
+  caches = "caches";
+  getDB = once(() => this.#createDB());
+
+  async transaction(stores: string[], mode?: IDBTransactionMode | undefined): Promise<IDBTransaction> {
+    const db = await this.getDB();
+    return db.transaction(stores, mode);
+  }
+  async objectStore(store: string, mode?: IDBTransactionMode | undefined): Promise<IDBObjectStore> {
+    const transaction = await this.transaction([store], mode);
+    return transaction.objectStore(store);
+  }
+
+  #createDB() {
+    return openDB(this.name, 1, (_, request) => {
+      const db = request.result;
+      db.createObjectStore(this.caches, { keyPath: "url" });
+    });
+  }
+}
 
 export class CachedHttpGetClient {
-  db: IDBDatabase | null = null;
-  constructor(public cacheDbName: string, public version: number) {}
-
-  async getDB(): Promise<IDBDatabase> {
-    if (this.db) {
-      return this.db;
-    }
-    const db = await openDB(this.cacheDbName, this.version, (_, request) => {
-      const db = request.result;
-      db.createObjectStore(storeName, { keyPath: "url" });
-    });
-    return (this.db = db);
+  dbContext: CacheDBContext;
+  constructor(init: CreateClientInit) {
+    this.dbContext = typeof init === "string" ? new DefaultCacheDBContext(init) : init;
   }
 
   async fetch(input: string | URL, expireTime?: number): Promise<Response> {
     const now = getNow();
-    const db = await this.getDB();
+    const store = await this.#cacheStore();
     const url = getURL(input);
-    const queryRequest: IDBRequest<HttpGetCache | null> = db.transaction([storeName]).objectStore(storeName).get(url);
+    const queryRequest: IDBRequest<HttpGetCache | null> = store.get(url);
     const result = await requestToPromise(queryRequest);
     if (result && (!result.time || +result.time + (expireTime ?? Infinity) > +now)) {
       console.debug(`Found cached result for url: ${result.url}`);
@@ -42,7 +57,7 @@ export class CachedHttpGetClient {
       blob,
       time: getNow(),
     };
-    const saveRequest = db.transaction([storeName], "readwrite").objectStore(storeName).put(cache);
+    const saveRequest = (await this.#cacheStore("readwrite")).put(cache);
     const savedKey = await requestToPromise(saveRequest);
     if (savedKey) {
       console.debug(`Cached request URL: ${saveRequest.result}`);
@@ -51,26 +66,51 @@ export class CachedHttpGetClient {
   }
 
   async invalidateCache(input: string | URL): Promise<any> {
-    const db = await this.getDB();
+    const store = await this.#cacheStore("readwrite");
     const url = getURL(input);
-    const deleteRequest = db.transaction([storeName], "readwrite").objectStore(storeName).delete(url);
+    const deleteRequest = store.delete(url);
     await requestToPromise(deleteRequest, { emitError: true });
   }
 
   async cacheUsage() {
-    const db = await this.getDB();
-    const query: IDBRequest<HttpGetCache[]> = db.transaction([storeName]).objectStore(storeName).getAll();
+    const query: IDBRequest<HttpGetCache[]> = (await this.#cacheStore()).getAll();
     const httpGetCaches = (await requestToPromise(query, { emitError: true })) ?? [];
     const byteSize = sum(httpGetCaches.map((cache) => cache.blob.size));
     return byteSize;
   }
 
   async clear() {
-    const db = await this.getDB();
-    const request = db.transaction([storeName], "readwrite").objectStore(storeName).clear();
+    const store = await this.#cacheStore("readwrite");
+    const request = store.clear();
     await requestToPromise(request, { emitError: true });
   }
+
+  #cacheStore(mode?: IDBTransactionMode) {
+    return this.dbContext.objectStore(this.dbContext.caches, mode);
+  }
 }
+
+export const migrateOldCaches = async (oldName: string, to: CacheDBContext) => {
+  const databases = await indexedDB.databases();
+  const old = databases.find((d) => d.name === oldName);
+  if (!old) {
+    return;
+  }
+  const oldClient = new DefaultCacheDBContext(oldName);
+  const oldDB = await oldClient.getDB();
+  await moveData(
+    {
+      db: oldDB,
+      store: oldClient.caches,
+    },
+    {
+      db: await to.getDB(),
+      store: to.caches,
+    }
+  );
+  oldDB.close();
+  await requestToPromise(indexedDB.deleteDatabase(oldName));
+};
 
 function getURL(input: string | URL) {
   return input instanceof URL ? input.href : input;

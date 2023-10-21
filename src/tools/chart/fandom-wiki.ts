@@ -6,7 +6,7 @@ import { SongList } from "../packed-data";
 import { findParentWhere, htmlDocument, initPageDocument } from "../wiki-util";
 import { ChartNotesAndConstant, ExtraSongData, getLastNotesAndConstantsData, matchDuplicatedName } from "./shared";
 
-const fandomClient = new CachedHttpGetClient("fandom-wiki-cache", 1);
+const fandomClient = new CachedHttpGetClient("fandom-wiki-cache");
 
 function fatal(msg: string, ...data: any[]): never {
   const error = new Error(`Fandom Wiki spider: ${msg}`);

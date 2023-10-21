@@ -1,13 +1,15 @@
 import { SqlJsStatic } from "sql.js";
 import { ClearRank, Difficulty, NoteResult, PlayResult, difficulties } from "../models/music-play";
-import { B30Response, BestResultItem, Profile, ProfileV1, ProfileV2 } from "../models/profile";
+import { B30Response, BestResultItem, Profile, ProfileUpdatePayload, ProfileV1, ProfileV2 } from "../models/profile";
 import { download } from "../utils/download";
 import { readBinary, readFile } from "../utils/read-file";
 import { alert, confirm } from "../view/components/fancy-dialog";
 import {
   $ChartService,
+  $Database,
   $MusicPlayService,
   $ProfileService,
+  AppDatabaseContext,
   B30Options,
   BestStatistics,
   ChartService,
@@ -21,6 +23,8 @@ import { Injectable } from "classic-di";
 import { groupBy, indexBy, mapProps } from "../utils/collections";
 import { arcaeaReleaseTS, delay } from "../utils/time";
 import { sum } from "../utils/math";
+import { requestToPromise } from "../utils/indexed-db";
+import { isString } from "../utils/misc";
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
 
@@ -51,13 +55,32 @@ const isValidProfileV2 = (input: any): input is ProfileV2 => {
 };
 
 @Injectable({
-  requires: [$MusicPlayService, $ChartService] as const,
+  requires: [$Database, $MusicPlayService, $ChartService] as const,
   implements: $ProfileService,
 })
 export class ProfileServiceImpl implements ProfileService {
-  currentUsername: string | null = this.getInitCurrentUsername();
+  #currentUsername: string | null = this.#getInitCurrentUsername();
   #SQL: SqlJsStatic | null = null;
-  constructor(private readonly musicPlay: MusicPlayService, private readonly chartService: ChartService) {}
+  constructor(
+    private readonly database: AppDatabaseContext,
+    private readonly musicPlay: MusicPlayService,
+    private readonly chartService: ChartService
+  ) {}
+
+  async checkMigration(): Promise<null | (() => Promise<void>)> {
+    const legacyProfiles = this.#getLegacyProfileListSync();
+    if (!legacyProfiles.length) return null;
+    return async () => {
+      const upgradedProfiles = await Promise.all(
+        legacyProfiles.map(async (profile) => {
+          if (isValidProfileV1(profile)) return this.#upgradeV1(profile);
+          return profile;
+        })
+      );
+      await this.syncProfiles(upgradedProfiles);
+      this.#removeLegacyProfilesSync(upgradedProfiles.map((p) => p.username));
+    };
+  }
 
   formatPotential(potential: number): string {
     const rating = Math.floor(potential * 100);
@@ -65,10 +88,11 @@ export class ProfileServiceImpl implements ProfileService {
   }
 
   async getProfile(): Promise<Profile | null> {
-    if (!this.currentUsername) {
+    const username = this.#currentUsername;
+    if (!username) {
       return null;
     }
-    const profile = this.getProfileAsync(this.currentUsername);
+    const profile = await this.#getProfileAsync(username);
     if (!profile) {
       sessionStorage.removeItem(KEY_CURRENT_USERNAME);
     }
@@ -76,19 +100,20 @@ export class ProfileServiceImpl implements ProfileService {
   }
 
   async createOrUpdateProfile(username: string, potential: number): Promise<void> {
-    const profile: Profile = (await this.getProfileAsync(username)) ?? this.createEmptyProfile(username);
+    const profile: Profile = (await this.#getProfileAsync(username)) ?? this.createEmptyProfile(username);
     profile.potential = potential.toFixed(2);
     profile.username = username;
-    await this.saveProfile(profile, username);
+    await this.#saveProfile(profile);
   }
 
   async getProfileList(): Promise<string[]> {
-    return this.getProfileListSync();
+    const usernames = await requestToPromise((await this.#store()).getAllKeys());
+    return usernames?.filter(isString) ?? [];
   }
 
-  async syncProfiles(data: Partial<Profile>[]): Promise<void> {
+  async syncProfiles(data: ProfileUpdatePayload[]): Promise<void> {
     for (const profile of data) {
-      this.saveProfile(profile, profile.username);
+      this.#saveProfile(profile);
     }
   }
 
@@ -96,15 +121,19 @@ export class ProfileServiceImpl implements ProfileService {
     const content = await readFile(file);
     try {
       const json = JSON.parse(content);
-      // TODO 检查json内容，版本兼容
-      const username: string = json.username;
-      const oldProfile = localStorage.getItem(username);
+      const profile = isValidProfileV1(json) ? await this.#upgradeV1(json) : isValidProfileV2(json) ? json : null;
+      if (!profile) {
+        alert(`存档格式错误`);
+        return;
+      }
+      const username = profile.username;
+      const oldProfile = await this.#getProfileAsync(username);
       if (oldProfile != null) {
         if (!(await confirm("已存在同名存档，是否覆盖？"))) {
           return;
         }
       }
-      await this.saveProfile(json, username);
+      await this.#saveProfile(profile);
       alert("导入成功");
     } catch (error) {
       alert(`寄！${error}`);
@@ -139,11 +168,11 @@ export class ProfileServiceImpl implements ProfileService {
       }
     }
     p.best[playResult.chartId] = playResult;
-    await this.saveProfile(p);
+    await this.#saveProfile(p);
   }
 
   async useProfile(username: string): Promise<void> {
-    this.currentUsername = username;
+    this.#currentUsername = username;
     sessionStorage.setItem(KEY_CURRENT_USERNAME, username);
   }
 
@@ -153,11 +182,12 @@ export class ProfileServiceImpl implements ProfileService {
       return;
     }
     delete p.best[chartId];
-    await this.saveProfile(p);
+    await this.#saveProfile(p);
   }
 
   async deleteProfile(username: string): Promise<void> {
-    localStorage.removeItem(username);
+    const store = await this.#store("readwrite");
+    await requestToPromise(store.delete(username));
   }
 
   async b30(profile: Profile, options?: Partial<B30Options>): Promise<B30Response> {
@@ -328,13 +358,13 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         result: noteResult,
         chartId: chart.id,
         clear: this.musicPlay.mapClearType(clearType, shinyPerfectCount, chart),
-        date: this.normalizeDate(date, now),
+        date: this.#normalizeDate(date, now),
       };
       result.difficulties[chart.difficulty]++;
       result.count++;
     }
 
-    await this.saveProfile({ best });
+    await this.#saveProfile({ username: profile.username, best });
     return result;
   }
 
@@ -426,7 +456,10 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     };
   }
 
-  private getJSONSync(username: string): object | null {
+  /**
+   * @deprecated
+   */
+  #getLegacyJSONSync(username: string): object | null {
     try {
       return JSON.parse(localStorage.getItem(username)!);
     } catch {
@@ -434,27 +467,13 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     }
   }
 
-  /**
-   * 获取存档时自动升级一次
-   */
-  private async getProfileAsync(username: string): Promise<Profile | null> {
-    try {
-      const profile = this.getJSONSync(username);
-      if (isValidProfileV1(profile)) {
-        const newProfile = await this.upgradeV1(profile);
-        await this.saveProfileDirectly(newProfile, username);
-        return newProfile;
-      } else if (isValidProfileV2(profile)) {
-        return profile;
-      }
-      return null;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
+  async #getProfileAsync(username: string) {
+    const store = await this.#store();
+    const profile = await requestToPromise<Profile>(store.get(username));
+    return profile;
   }
 
-  private async upgradeV1(v1: ProfileV1): Promise<ProfileV2> {
+  async #upgradeV1(v1: ProfileV1): Promise<ProfileV2> {
     const indexed = await this.#getV1Map();
     return {
       ...v1,
@@ -477,39 +496,47 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     };
   }
 
-  private async saveProfile(profile: Partial<Profile>, key = this.currentUsername!) {
-    const original = (await this.getProfileAsync(key)) ?? this.createEmptyProfile(key);
+  async #saveProfile(profile: ProfileUpdatePayload) {
+    const key = profile.username;
+    const original = (await this.#getProfileAsync(key)) ?? this.createEmptyProfile(key);
     const newProfile = Object.assign({}, original, profile);
-    await this.saveProfileDirectly(newProfile, key);
+    await this.#saveProfileDirectly(newProfile);
   }
 
-  private async saveProfileDirectly(profile: Profile, key: string) {
-    localStorage.setItem(key, JSON.stringify(profile));
+  async #saveProfileDirectly(profile: Profile) {
+    const store = await this.#store("readwrite");
+    await requestToPromise(store.put(profile));
   }
 
-  private getInitCurrentUsername(): string | null {
+  #getInitCurrentUsername(): string | null {
     const sessionUsername = sessionStorage.getItem(KEY_CURRENT_USERNAME);
     if (sessionUsername) {
       return sessionUsername;
     }
-    const profiles = this.getProfileListSync();
-    if (profiles.length === 1) {
-      return profiles[0]!;
-    }
     return null;
   }
 
-  private getProfileListSync(): string[] {
-    return Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i)!).filter((key) => {
-      const profile = this.getJSONSync(key);
-      if (!profile) {
-        return false;
-      }
-      return isValidProfileV1(profile) || isValidProfileV2(profile);
-    });
+  /**
+   * @deprecated
+   */
+  #getLegacyProfileListSync(): (ProfileV1 | ProfileV2)[] {
+    return Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i)!)
+      .map((key) => this.#getLegacyJSONSync(key))
+      .filter((profile): profile is ProfileV1 | ProfileV2 => {
+        return isValidProfileV1(profile) || isValidProfileV2(profile);
+      });
   }
 
-  private normalizeDate(date: number, now: number): number | null {
+  /**
+   * @deprecated
+   */
+  #removeLegacyProfilesSync(keys: string[]) {
+    for (const key of keys) {
+      localStorage.removeItem(key);
+    }
+  }
+
+  #normalizeDate(date: number, now: number): number | null {
     if (!date) return null;
     for (let time = date; time < now; time *= 1e3) {
       if (time >= arcaeaReleaseTS) {
@@ -517,6 +544,16 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       }
     }
     return null;
+  }
+
+  async #transaction(mode?: IDBTransactionMode) {
+    const db = await this.database.getDB();
+    return db.transaction([this.database.profiles], mode);
+  }
+
+  async #store(mode?: IDBTransactionMode) {
+    const transaction = await this.#transaction(mode);
+    return transaction.objectStore(this.database.profiles);
   }
 
   async #initSQLJS() {

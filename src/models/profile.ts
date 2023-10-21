@@ -1,3 +1,4 @@
+import { UpdatePayload } from "./misc";
 import { Chart, ClearRank, NoteResult, PlayResult, ScoreResult, Song } from "./music-play";
 import { CharacterInstanceData } from "./world-mode";
 
@@ -21,6 +22,8 @@ export interface ProfileV2 {
 }
 
 export { type ProfileV2 as Profile };
+
+export type ProfileUpdatePayload = UpdatePayload<ProfileV2, "username">;
 
 export interface BestResultItem {
   no: number;

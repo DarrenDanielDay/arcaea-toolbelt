@@ -12,10 +12,12 @@ import { element } from "hyplate";
 import { Container } from "classic-di";
 import { AssetsServiceImpl } from "../services/assets";
 import { AssetsResolverImpl } from "../services/assets-resolver";
-import { PreferenceServiceImpl } from "../services/preference.js";
+import { PreferenceServiceImpl } from "../services/preference";
+import { ArcaeaToolbeltDatabaseContext } from "../services/database";
 document.adoptedStyleSheets = [bootstrap, theme, sheet];
 
 const ioc = new Container();
+ioc.register(ArcaeaToolbeltDatabaseContext);
 ioc.register(PreferenceServiceImpl);
 ioc.register(AssetsResolverImpl);
 ioc.register(AssetsServiceImpl);

@@ -1,5 +1,5 @@
 import { Injectable } from "classic-di";
-import { $PreferenceService, Preference, PreferenceService } from "./declarations";
+import { $Database, $PreferenceService, AppDatabaseContext, Preference, PreferenceService } from "./declarations";
 import type { Signal } from "hyplate/types";
 import { computed, signal } from "hyplate";
 import { clone, once } from "../utils/misc";
@@ -15,23 +15,22 @@ interface PreferenceConfig {
   value: any;
 }
 
-const configStore = "configs";
-
 type PreferenceKey = keyof Preference;
 
 @Injectable({
   implements: $PreferenceService,
+  requires: [$Database]
 })
 export class PreferenceServiceImpl implements PreferenceService {
   #preference = signal<Preference>(clone(defaultPreference));
   #computed: { [K in PreferenceKey]?: Signal<Preference[K]> } = {};
-  #getDB = once(() => this.#openDB());
-  constructor() {
+  constructor(private readonly database: AppDatabaseContext) {
     this.get().then((latest) => this.#notify(latest));
   }
 
   async get(): Promise<Preference> {
-    const db = await this.#getDB();
+    const db = await this.database.getDB();
+    const configStore = this.database.preference;
     const stored =
       (await requestToPromise<PreferenceConfig[]>(db.transaction([configStore]).objectStore(configStore).getAll())) ??
       [];
@@ -48,7 +47,8 @@ export class PreferenceServiceImpl implements PreferenceService {
       ...current,
       ...patch,
     };
-    const db = await this.#getDB();
+    const db = await this.database.getDB();
+    const configStore = this.database.preference;
     const transaction = db.transaction([configStore], "readwrite");
     const store = transaction.objectStore(configStore);
     for (const key in patch) {
@@ -63,13 +63,6 @@ export class PreferenceServiceImpl implements PreferenceService {
   signal<K extends keyof Preference>(name: K): Signal<Preference[K]> {
     const signal = (this.#computed[name] ??= computed(() => this.#preference()[name]));
     return signal;
-  }
-
-  #openDB() {
-    return openDB("preference", 1, (_, request) => {
-      const db = request.result;
-      db.createObjectStore(configStore, { keyPath: "key" });
-    });
   }
 
   #notify(latest: Preference) {

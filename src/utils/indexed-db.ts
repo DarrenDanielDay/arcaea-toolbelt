@@ -42,3 +42,22 @@ export const transactionToPromise = (transaction: IDBTransaction, options?: IDBO
     transaction.onabort = reject;
     transaction.oncomplete = () => resolve();
   });
+
+export interface DBStore {
+  db: IDBDatabase;
+  store: string;
+}
+
+export const moveData = async (from: DBStore, to: DBStore) => {
+  const oldObjects = await requestToPromise(from.db.transaction([from.store]).objectStore(from.store).getAll());
+  if (oldObjects) {
+    const transaction = to.db.transaction([to.store], "readwrite");
+    const store = transaction.objectStore(to.store);
+    for (const old of oldObjects) {
+      store.put(old);
+    }
+    await transactionToPromise(transaction);
+  }
+};
+
+export const dropDatabase = (name: string) => requestToPromise(indexedDB.deleteDatabase(name), { emitError: true });

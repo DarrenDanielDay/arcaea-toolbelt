@@ -88,9 +88,12 @@ export class ProfileServiceImpl implements ProfileService {
   }
 
   async getProfile(): Promise<Profile | null> {
-    const username = this.#currentUsername;
+    const username = this.#currentUsername ?? (await this.#getPossibleOnlyUsername());
     if (!username) {
       return null;
+    }
+    if (username !== this.#currentUsername) {
+      this.useProfile(username);
     }
     const profile = await this.#getProfileAsync(username);
     if (!profile) {
@@ -514,6 +517,11 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       return sessionUsername;
     }
     return null;
+  }
+
+  async #getPossibleOnlyUsername() {
+    const profiles = await this.getProfileList();
+    return profiles.length === 1 ? profiles[0] : null;
   }
 
   /**

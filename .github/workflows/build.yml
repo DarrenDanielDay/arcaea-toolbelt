@@ -31,11 +31,11 @@ jobs:
       - name: Setup Environment
         run: echo "COMMIT_SHA=${{ github.sha }}" > .env
 
-      - name: Check TypeScript Types
-        run: npx tsc --noEmit
-
       - name: Build Project
         run: npm run build
+
+      - name: Check TypeScript Types
+        run: npx tsc --noEmit
 
       - name: Deploy Github Pages
         uses: crazy-max/ghaction-github-pages@v2.5.0

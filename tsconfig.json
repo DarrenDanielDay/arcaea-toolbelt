@@ -23,7 +23,7 @@
     "resolveJsonModule": true,
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
-    "useDefineForClassFields": false,
+    "useDefineForClassFields": true,
     "jsx": "react-jsx",
     "jsxImportSource": "hyplate",
     "resolvePackageJsonExports": true,

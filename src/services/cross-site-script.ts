@@ -1,7 +1,7 @@
 import data from "../data/chart-data.json";
 import { ToolPanel } from "../view/components/plugin-panel";
 import { PlayResult, SongData } from "../models/music-play";
-import { Profile } from "../models/profile";
+import { Profile, ProfileUpdatePayload } from "../models/profile";
 import {
   $ChartService,
   $CrossSiteScriptPluginService,
@@ -22,6 +22,7 @@ import { provide } from "./di";
 import { AssetsResolverImpl } from "./assets-resolver";
 import { PluginAssetsServiceImpl } from "./plugin-assets";
 import { ArcaeaToolbeltDatabaseContext } from "./database";
+import { CrossSiteProtocol } from "./cross-site-protocol";
 
 const ioc = new Container({ name: "cross-site-script-root" });
 ioc.register(ArcaeaToolbeltDatabaseContext);
@@ -233,7 +234,7 @@ class CrossSiteScriptPluginServiceImpl implements CrossSiteScriptPluginService {
       });
     return controller;
   }
-
+  /* 旧版iframe通信
   private createOrGetIFrame(): Promise<HTMLIFrameElement> {
     return new Promise<HTMLIFrameElement>((resolve, reject) => {
       if (this.iframe) {
@@ -253,8 +254,10 @@ class CrossSiteScriptPluginServiceImpl implements CrossSiteScriptPluginService {
       };
     });
   }
+  */
 
-  private async postMessage(type: string, payload: unknown): Promise<void> {
+  private async postMessage<P extends keyof CrossSiteProtocol>(type: P, payload: CrossSiteProtocol[P]): Promise<void> {
+    /* 旧版iframe通信
     const iframe = await this.createOrGetIFrame();
     return new Promise<void>((resolve, reject) => {
       const win = iframe.contentWindow!;
@@ -273,13 +276,41 @@ class CrossSiteScriptPluginServiceImpl implements CrossSiteScriptPluginService {
       });
       iframe.onerror = reject;
     });
+    */
+    const baseURI = process.env.BASE_URI;
+    const targetURL = new URL("services/cross-site-frame.html", baseURI);
+    targetURL.hash = btoa(
+      JSON.stringify({
+        type,
+        payload,
+      })
+    );
+    const openedWindow = window.open(targetURL, "_blank", "popup=true,left=100,top=100,width=320,height=320");
+    if (!openedWindow) {
+      throw new Error(`无法打开用于通信的窗口。可能是您的浏览器阻止了弹出窗口，这会导致本脚本与主站的通信失败。`);
+    }
+    return new Promise<void>((resolve, reject) => {
+      window.addEventListener("message", function handler(e) {
+        if (e.origin !== targetURL.origin) return;
+        const message = e.data;
+        switch (message.type) {
+          case `${type}-success`:
+            resolve();
+            break;
+          case `${type}-error`:
+            reject(message.error);
+            break;
+        }
+        window.removeEventListener("message", handler);
+      });
+    });
   }
 
   syncProfiles(profiles: Profile[]): Promise<void> {
     return this.postMessage("sync-profiles", profiles);
   }
   syncMe(profile: lowiro.UserProfile): Promise<void> {
-    const myProfile: Partial<Profile> = {
+    const myProfile: ProfileUpdatePayload = {
       username: profile.display_name,
       potential: (profile.rating / 100).toFixed(2),
       characters: profile.character_stats.map((c) => ({

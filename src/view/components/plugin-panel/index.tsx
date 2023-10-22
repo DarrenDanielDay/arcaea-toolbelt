@@ -21,6 +21,7 @@ import { computed, signal, Show, HyplateElement, Component, element } from "hypl
 import { ResultCard } from "../result-card";
 import { NoteResult } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
+import { formatError } from "../../../utils/format";
 
 export
 @Component({
@@ -58,6 +59,13 @@ class ToolPanel extends HyplateElement {
         true
       );
     };
+    const withErrorHandle =  (handler: () => Promise<void>) => async () => {
+      try {
+        await handler();
+      } catch (error) {
+        alert(formatError(error));
+      }
+    }
     const refresh = () => {
       initProfile();
     };
@@ -148,7 +156,7 @@ class ToolPanel extends HyplateElement {
                         type="button"
                         class="btn btn-primary"
                         name="sync-characters"
-                        onClick={() => syncMe(profile)}
+                        onClick={withErrorHandle(() => syncMe(profile))}
                       >
                         同步
                       </button>
@@ -284,7 +292,7 @@ class ToolPanel extends HyplateElement {
                           class="btn btn-primary sync-control"
                           name="sync-control"
                           disabled={computed(() => !profiles$().length)}
-                          onClick={syncBests}
+                          onClick={withErrorHandle(syncBests)}
                         >
                           同步
                         </button>

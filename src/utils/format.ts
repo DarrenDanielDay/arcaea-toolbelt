@@ -10,3 +10,10 @@ export const formatSize = (byteSize: number) => {
   }
   return `${size.toFixed(2)}${sizes[i]}`;
 };
+
+export const formatError = (error: unknown)=> {
+  if (error instanceof Error) {
+    return error.message;
+  }
+  return `Unexpected thrown: ${JSON.stringify(error)}`;
+}

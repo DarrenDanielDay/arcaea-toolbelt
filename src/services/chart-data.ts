@@ -92,7 +92,7 @@ export class ChartServiceImpl implements ChartService {
       if (a.sort !== b.sort) {
         return a.sort - b.sort;
       }
-      return difficulties.indexOf(a.difficulty) - difficulties.indexOf(b.difficulty);
+      return difficulties.indexOf(b.difficulty) - difficulties.indexOf(a.difficulty);
     });
   }
   async queryChartsByConstant(min: number, max: number): Promise<SearchResult[]> {

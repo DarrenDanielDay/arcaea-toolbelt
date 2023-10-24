@@ -164,7 +164,7 @@ class CharacterPicker extends HyplateElement {
                       nil
                     )}
                     {hasStepModifier ? (
-                      <div class="col-auto" style:color="red">
+                      <div class="col-auto" style:color="var(--bs-danger)">
                         注意：此角色有step加成的因子，静态数据不包括加成的值。
                       </div>
                     ) : (

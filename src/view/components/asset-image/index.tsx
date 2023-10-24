@@ -11,11 +11,11 @@ type AssetImageProps = JSX.JSXAttributes<Omit<HTMLImageElementAttributes, "src">
 };
 
 export const AssetImage = ({ src, noLoading, ...props }: AssetImageProps) => {
-  const $src = signal<string | null>("");
+  const $src = signal<string | null>(null);
   let resolveingPromise: Promise<string | null> | null = null;
   const handleSource = (source: ImageSource) => {
     if (!source || isString(source)) {
-      $src.set(source);
+      $src.set(source || null);
       return;
     }
     resolveingPromise = source;

@@ -1,5 +1,5 @@
 import { sheet } from "./style.css.js";
-import { bootstrapLocal } from "../../styles";
+import { bootstrap } from "../../styles";
 import { Component, HyplateElement, Show, element, listen, mount, nil, signal, unmount } from "hyplate";
 import type { GlobalAttributes, JSXChildNode, Rendered } from "hyplate/types";
 
@@ -10,7 +10,7 @@ type RenderWithAction<T> = (done: (result: T) => void, cancel: () => void) => JS
 export
 @Component({
   tag: "fancy-dialog",
-  styles: [sheet, bootstrapLocal],
+  styles: [sheet, bootstrap],
 })
 class FancyDialog extends HyplateElement {
   dialog = element("dialog");

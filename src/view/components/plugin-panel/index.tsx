@@ -15,7 +15,7 @@ import {
 } from "../../../services/declarations";
 import * as lowiro from "../../../services/web-api";
 import type { Profile } from "../../../models/profile";
-import { FancyDialog, alert } from "../fancy-dialog";
+import { FancyDialog } from "../fancy-dialog";
 import type { FC } from "hyplate/types";
 import { computed, signal, Show, HyplateElement, Component, element } from "hyplate";
 import { ResultCard } from "../result-card";
@@ -40,6 +40,7 @@ class ToolPanel extends HyplateElement {
 
   characterList = new FancyDialog();
   recentList = new FancyDialog();
+  message = new FancyDialog();
 
   override render(): JSX.Element {
     const profile$ = signal<lowiro.UserProfile | null>(null);
@@ -63,7 +64,7 @@ class ToolPanel extends HyplateElement {
       try {
         await handler();
       } catch (error) {
-        alert(formatError(error));
+        this.message.showAlert(formatError(error));
       }
     }
     const refresh = () => {
@@ -71,7 +72,7 @@ class ToolPanel extends HyplateElement {
     };
     const syncMe = async (profile: lowiro.UserProfile) => {
       await this.service.syncMe(profile);
-      alert("同步成功");
+      this.message.showAlert("同步成功");
     };
     const go = async (profile: lowiro.UserProfile) => {
       const querying = !querying$();
@@ -107,7 +108,7 @@ class ToolPanel extends HyplateElement {
       const profiles = profiles$();
       await this.service.syncProfiles(profiles);
       logging$.set("");
-      alert(`存档${profiles.map((p) => p.username).join("，")}同步成功`);
+      this.message.showAlert(`存档${profiles.map((p) => p.username).join("，")}同步成功`);
     };
     queueMicrotask(initProfile);
     return (
@@ -365,6 +366,7 @@ class ToolPanel extends HyplateElement {
         </div>
         <fancy-dialog ref={this.characterList} id="character-list"></fancy-dialog>
         <fancy-dialog ref={this.recentList} id="recent-list"></fancy-dialog>
+        <fancy-dialog ref={this.message} id="plugin-message"></fancy-dialog>
       </div>
     );
   }

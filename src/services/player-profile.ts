@@ -93,7 +93,7 @@ export class ProfileServiceImpl implements ProfileService {
       return null;
     }
     if (username !== this.#currentUsername) {
-      this.useProfile(username);
+      await this.useProfile(username);
     }
     const profile = await this.#getProfileAsync(username);
     if (!profile) {

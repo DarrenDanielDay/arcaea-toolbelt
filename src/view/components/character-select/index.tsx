@@ -45,10 +45,7 @@ export class CharacterSelect extends SearchSelect<CharacterData> {
                 width={64}
                 height={64}
               ></AssetImage>
-            ) : (
-              nil
-            )}
-            {lost ? (
+            ) : lost ? (
               <AssetImage
                 src={this.assets.getAssets(
                   this.resolver.resoveCharacterImage({

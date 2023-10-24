@@ -14,9 +14,11 @@ import { AssetsServiceImpl } from "../services/assets";
 import { AssetsResolverImpl } from "../services/assets-resolver";
 import { PreferenceServiceImpl } from "../services/preference";
 import { ArcaeaToolbeltDatabaseContext } from "../services/database";
+import { CharacterServiceImpl } from "../services/character";
 document.adoptedStyleSheets = [bootstrap, theme, sheet];
 
 const ioc = new Container();
+ioc.register(CharacterServiceImpl);
 ioc.register(ArcaeaToolbeltDatabaseContext);
 ioc.register(PreferenceServiceImpl);
 ioc.register(AssetsResolverImpl);

@@ -4,7 +4,7 @@ import { Chart, Song } from "../../../models/music-play";
 import { element, mount } from "hyplate";
 import type { FC } from "hyplate/types";
 import { addSheet } from "sheetly";
-import { ChartService } from "../../../services/declarations.js";
+import { ChartService } from "../../../services/declarations";
 
 export const ChartInfo: FC<{ song: Song; chart: Chart; chartService: ChartService }> = ({
   chart,

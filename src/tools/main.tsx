@@ -9,6 +9,7 @@ import {
   generateMergedChartData,
   generateAlias,
   generateWorldMapData,
+  generateCharacterData,
 } from "./auto-generate-data-files";
 import { APKResponse, downloadToLocal, getLatestVersion } from "./get-latest-version";
 import type { FC, JSXChildNode, Signal } from "hyplate/types";
@@ -209,6 +210,7 @@ mount(
       <Action handler={updateNotesAndConstantsFileViaFandomWiki}>通过Fandom Wiki更新定数物量</Action>
       <Action handler={generateMergedChartData}>生成合并谱面数据</Action>
       <Action handler={generateWorldMapData}>生成地图数据</Action>
+      <Action handler={generateCharacterData}>生成搭档数据</Action>
     </div>
     {latest}
     {progress}

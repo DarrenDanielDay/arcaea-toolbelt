@@ -5,4 +5,12 @@ export const once = <T>(factory: () => T) => {
   return (): T => (value ??= factory());
 };
 
-export const isString = (value: unknown): value is string => typeof value === 'string';
+export const isString = (value: unknown): value is string => typeof value === "string";
+
+export const jsonModule = <T>(imports: Promise<{ default: T }>): Promise<T> =>
+  // @ts-expect-error parcel json module is using common js and module.exports = JSON.parse(...)
+  imports;
+
+export const esModule = jsonModule;
+
+export type PromiseOr<T> = T | Promise<T>;

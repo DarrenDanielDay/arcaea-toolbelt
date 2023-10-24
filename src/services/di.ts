@@ -1,5 +1,7 @@
 import type { Container, Token } from "classic-di";
 
+let globalContainer: Container | null = null;
+
 export const Inject =
   <T>(token: Token<T>) =>
   <E extends Node>(
@@ -18,6 +20,13 @@ export const Inject =
             if (!resolution.circular) {
               return container.create(resolution.path);
             }
+          }
+        }
+        const container = globalContainer;
+        if (container) {
+          const resolution = container.resolve(token);
+          if (!resolution.circular) {
+            return container.create(resolution.path);
           }
         }
         throw new Error(`Cannot find implementation for token "${token.key.description}"`);
@@ -41,5 +50,6 @@ declare global {
 }
 
 export const provide = (at: Node, container: Container) => {
+  if (!globalContainer) globalContainer = container;
   at[$$provider] = container;
 };

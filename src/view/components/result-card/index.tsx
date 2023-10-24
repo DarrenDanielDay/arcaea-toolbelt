@@ -3,9 +3,11 @@ import { Chart, ScoreResult, Song, ClearRank, NoteResult, PlayResult } from "../
 import { Component, HyplateElement, computed, content, element, signal, cssVar } from "hyplate";
 import { Inject } from "../../../services/di";
 import {
+  $AssetsResolver,
   $AssetsService,
   $ChartService,
   $MusicPlayService,
+  AssetsResolver,
   AssetsService,
   ChartService,
   MusicPlayService,
@@ -41,6 +43,8 @@ class ResultCard extends HyplateElement {
   accessor chart!: ChartService;
   @Inject($MusicPlayService)
   accessor musicPlay!: MusicPlayService;
+  @Inject($AssetsResolver)
+  accessor resolver!: AssetsResolver;
   @Inject($AssetsService)
   accessor assets!: AssetsService;
 
@@ -95,9 +99,9 @@ class ResultCard extends HyplateElement {
           src={computed(() => {
             const info = this.chartInfo();
             const hd = this.hd();
-            if (!info) return this.assets.getUnknownCover();
+            if (!info) return this.assets.getAssets(this.resolver.resolveUnknownCover());
             const { chart, song } = info;
-            return this.assets.getCover(chart, song, hd);
+            return this.assets.getAssets(this.resolver.resolveCover(chart, song, hd));
           })}
           width="288"
           height="288"
@@ -111,7 +115,7 @@ class ResultCard extends HyplateElement {
                 class="grade"
                 src={computed(() => {
                   const grade = this.scoreResult()?.grade;
-                  return grade ? this.assets.getGradeImg(grade) : Promise.resolve(null);
+                  return grade ? this.assets.getAssets(this.resolver.resolveGradeImg(grade)) : Promise.resolve(null);
                 })}
                 class:hidden={computed(() => !this.scoreResult())}
               />
@@ -119,7 +123,7 @@ class ResultCard extends HyplateElement {
                 class="clear"
                 src={computed(() => {
                   const clear = this.clearRank();
-                  return clear ? this.assets.getClearImg(clear) : Promise.resolve(null);
+                  return clear ? this.assets.getAssets(this.resolver.resolveClearImg(clear)) : Promise.resolve(null);
                 })}
                 class:hidden={computed(() => !this.clearRank())}
               />

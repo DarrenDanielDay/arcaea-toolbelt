@@ -20,6 +20,7 @@ import { loading } from "../../components/loading";
 import { future } from "../../../utils/future";
 import { ClearRank, Grade } from "../../../models/music-play";
 import { HelpTip } from "../../components/help-tip";
+import { esModule } from "../../../utils/misc";
 ~HelpTip;
 @Component({
   tag: "player-b30",
@@ -200,8 +201,7 @@ class PlayerB39 extends HyplateElement {
     await loading(
       (async () => {
         progress.set("正在加载模块");
-        // @ts-expect-error parcel ESM default
-        const html2canvas: typeof import("html2canvas").default = await import("html2canvas");
+        const html2canvas = await esModule(import("html2canvas"));
         progress.set("正在绘制图片");
         const canvas = await html2canvas(exportNode);
         progress.set("正在导出图片");

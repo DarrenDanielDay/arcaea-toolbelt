@@ -1,13 +1,14 @@
-import characters from "../../../data/character-data.json";
 import { sheet } from "./style.css.js";
 import { sheet as app } from "../../app.css.js";
 import { bootstrap } from "../../styles";
 import { Inject } from "../../../services/di";
 import {
+  $AssetsResolver,
   $ChartService,
   $CrossSiteScriptPluginService,
   $MusicPlayService,
   $WorldModeService,
+  AssetsResolver,
   ChartService,
   CrossSiteScriptPluginService,
   MusicPlayService,
@@ -22,6 +23,7 @@ import { ResultCard } from "../result-card";
 import { NoteResult } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
 import { formatError } from "../../../utils/format";
+import { CharacterImageKind, CharacterStatus } from "../../../models/character";
 
 export
 @Component({
@@ -29,6 +31,8 @@ export
   styles: [bootstrap, sheet, app],
 })
 class ToolPanel extends HyplateElement {
+  @Inject($AssetsResolver)
+  accessor resolver!: AssetsResolver;
   @Inject($CrossSiteScriptPluginService)
   accessor service!: CrossSiteScriptPluginService;
   @Inject($WorldModeService)
@@ -55,18 +59,18 @@ class ToolPanel extends HyplateElement {
     const openCharacterStatus = (profile: lowiro.UserProfile) => {
       this.characterList.showAlert(
         <div slot="content">
-          <CharacterList stats={profile.character_stats}></CharacterList>
+          <CharacterList resolver={this.resolver} stats={profile.character_stats}></CharacterList>
         </div>,
         true
       );
     };
-    const withErrorHandle =  (handler: () => Promise<void>) => async () => {
+    const withErrorHandle = (handler: () => Promise<void>) => async () => {
       try {
         await handler();
       } catch (error) {
         this.message.showAlert(formatError(error));
       }
-    }
+    };
     const refresh = () => {
       initProfile();
     };
@@ -182,7 +186,6 @@ class ToolPanel extends HyplateElement {
                                   ): p is lowiro.UserProfile["recent_score"][number] => isProfile(player);
                                   const { difficulty, song_id, time_played, score } = recent;
                                   const { character, rating } = player;
-                                  const characterData = characters.find((c) => c.id === character);
                                   const status = isProfile(player)
                                     ? player.character_stats.find((s) => s.character_id === character)!
                                     : {
@@ -193,11 +196,7 @@ class ToolPanel extends HyplateElement {
                                   return (
                                     <>
                                       <div class="user">
-                                        {characterData ? (
-                                          <Avatar character={characterData} status={status}></Avatar>
-                                        ) : (
-                                          <div>未知角色</div>
-                                        )}
+                                        <Avatar resolver={this.resolver} id={character} status={status}></Avatar>
                                         <PotentialBadge potential={rating / 100}></PotentialBadge>
                                         <div class="username">{player.name}</div>
                                         <div class="play-time">{new Date(time_played).toLocaleString()}</div>
@@ -372,20 +371,10 @@ class ToolPanel extends HyplateElement {
   }
 }
 
-const characterMap: Record<number, (typeof characters)[number]> = Object.fromEntries(characters.map((c) => [c.id, c]));
-
 const CharacterList: FC<{
+  resolver: AssetsResolver;
   stats: lowiro.UserProfile["character_stats"];
-}> = ({ stats }) => {
-  const notFound = stats.find((s) => !characterMap[s.character_id]);
-  if (notFound) {
-    return (
-      <p>
-        搭档 {notFound.display_name["zh-Hans"]}（id为{notFound.character_id}） 未找到，可能是Arcaea
-        Toolbelt暂无数据的新搭档
-      </p>
-    );
-  }
+}> = ({ resolver, stats }) => {
   const renderNumber = (value: number) => {
     const rawValue = value.toString();
     const fixedValue = value.toFixed(4);
@@ -413,14 +402,13 @@ const CharacterList: FC<{
         </thead>
         <tbody>
           {stats.map((status) => {
-            const character = characterMap[status.character_id]!;
             return (
               <tr>
                 <td>{status.character_id}</td>
                 <td>
-                  <Avatar status={status} character={character}></Avatar>
+                  <Avatar resolver={resolver} status={status} id={status.character_id}></Avatar>
                 </td>
-                <td>{character.name.zh}</td>
+                <td>{status.display_name["zh-Hans"]}</td>
                 <td>{renderNumber(status.level)}</td>
                 <td>{renderNumber(status.exp)}</td>
                 <td>{renderNumber(status.frag)}</td>
@@ -437,17 +425,32 @@ const CharacterList: FC<{
 };
 
 const Avatar: FC<{
+  resolver: AssetsResolver;
   status: Pick<lowiro.UserProfile["character_stats"][number], "is_uncapped" | "is_uncapped_override">;
-  character: (typeof characters)[number];
-}> = ({ status, character }) => {
+  id: number;
+}> = ({ status, id, resolver }) => {
+  const charStatus = status.is_uncapped
+    ? status.is_uncapped_override
+      ? CharacterStatus.Initial
+      : CharacterStatus.Awaken
+    : CharacterStatus.Initial;
   return (
     <img
+      class="avatar"
+      onError={function () {
+        const unknown = resolver.resoveCharacterImage({
+          id: -1,
+          kind: CharacterImageKind.Icon,
+          status: CharacterStatus.Initial,
+        }).href;
+        if (this.src !== unknown) this.src = unknown;
+      }}
       src={
-        status.is_uncapped // 觉醒
-          ? status.is_uncapped_override // 觉醒了但切换回觉醒前立绘
-            ? character.image
-            : character.awakenImage ?? character.image // 光&对立觉醒立绘和初始立绘一样
-          : character.image
+        resolver.resoveCharacterImage({
+          id,
+          status: charStatus,
+          kind: CharacterImageKind.Icon,
+        }).href
       }
     ></img>
   );

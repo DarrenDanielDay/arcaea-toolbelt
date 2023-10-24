@@ -1,8 +1,6 @@
 [
   {
     "id": 0,
-    "image": "https://wiki.arcaea.cn/images/thumb/0/03/Partner_icon_hikari.png/95px-Partner_icon_hikari.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/b/b6/Partner_icon_hikari_awaken.png/95px-Partner_icon_hikari_awaken.png",
     "name": {
       "en": "Hikari",
       "zh": "光"
@@ -159,12 +157,13 @@
         "over": 71,
         "step": 71
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 1,
-    "image": "https://wiki.arcaea.cn/images/thumb/8/83/Partner_icon_tairitsu.png/95px-Partner_icon_tairitsu.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/c/cd/Partner_icon_tairitsu_awaken.png/95px-Partner_icon_tairitsu_awaken.png",
     "name": {
       "en": "Tairitsu",
       "zh": "对立"
@@ -321,12 +320,14 @@
         "over": 90,
         "step": 90
       }
-    ]
+    ],
+    "can": {
+      "awake": true,
+      "lost": true
+    }
   },
   {
     "id": 2,
-    "image": "https://wiki.arcaea.cn/images/thumb/8/84/Partner_kou_icon.png/95px-Partner_kou_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/b/b3/Partner_kou_awaken_icon.png/95px-Partner_kou_awaken_icon.png",
     "name": {
       "en": "Kou",
       "zh": "红"
@@ -483,12 +484,13 @@
         "over": 57,
         "step": 80
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 3,
-    "image": "https://wiki.arcaea.cn/images/thumb/f/f8/Partner_sapphire_icon.png/95px-Partner_sapphire_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Sapphire",
       "zh": "萨菲亚"
@@ -599,8 +601,6 @@
   },
   {
     "id": 4,
-    "image": "https://wiki.arcaea.cn/images/thumb/c/c4/Partner_lethe_icon.png/95px-Partner_lethe_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/4/4e/Partner_lethe_awaken_icon.png/95px-Partner_lethe_awaken_icon.png",
     "name": {
       "en": "Lethe",
       "zh": "忘却"
@@ -757,12 +757,13 @@
         "over": 80,
         "step": 100
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 5,
-    "image": "https://wiki.arcaea.cn/images/thumb/8/86/Partner_hikari_%26_tairitsu_reunion_icon.png/95px-Partner_hikari_%26_tairitsu_reunion_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Hikari & Tairitsu (Reunion)",
       "zh": "光 & 对立（Reunion）"
@@ -847,8 +848,6 @@
   },
   {
     "id": 6,
-    "image": "https://wiki.arcaea.cn/images/thumb/4/4f/Partner_tairitsu_axium_icon.png/95px-Partner_tairitsu_axium_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Tairitsu (Axium)",
       "zh": "对立（Axium）"
@@ -959,8 +958,6 @@
   },
   {
     "id": 7,
-    "image": "https://wiki.arcaea.cn/images/thumb/1/15/Partner_tairitsu_grievous_lady_icon.png/95px-Partner_tairitsu_grievous_lady_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Tairitsu (Grievous Lady)",
       "zh": "对立（Grievous Lady）"
@@ -1071,8 +1068,6 @@
   },
   {
     "id": 8,
-    "image": "https://wiki.arcaea.cn/images/thumb/6/61/Partner_stella_icon.png/95px-Partner_stella_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Stella",
       "zh": "星"
@@ -1183,8 +1178,6 @@
   },
   {
     "id": 9,
-    "image": "https://wiki.arcaea.cn/images/thumb/0/0e/Partner_hikari_%26_fisica_icon.png/95px-Partner_hikari_%26_fisica_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Hikari & Fisica",
       "zh": "光 & 菲希卡"
@@ -1295,8 +1288,6 @@
   },
   {
     "id": 10,
-    "image": "https://wiki.arcaea.cn/images/thumb/4/4d/Partner_ilith_icon.png/95px-Partner_ilith_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/d/d0/Partner_ilith_awaken_icon.png/95px-Partner_ilith_awaken_icon.png",
     "name": {
       "en": "Ilith",
       "zh": "依莉丝"
@@ -1453,12 +1444,13 @@
         "over": 50,
         "step": 110
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 11,
-    "image": "https://wiki.arcaea.cn/images/thumb/d/d8/Partner_eto_icon.png/95px-Partner_eto_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/5/5c/Partner_eto_awaken_icon.png/95px-Partner_eto_awaken_icon.png",
     "name": {
       "en": "Eto",
       "zh": "爱托"
@@ -1615,12 +1607,13 @@
         "over": 69,
         "step": 77
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 12,
-    "image": "https://wiki.arcaea.cn/images/thumb/1/1e/Partner_luna_icon.png/95px-Partner_luna_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/8/86/Partner_luna_awaken_icon.png/95px-Partner_luna_awaken_icon.png",
     "name": {
       "en": "Luna",
       "zh": "露娜"
@@ -1777,12 +1770,13 @@
         "over": 100,
         "step": 73
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 13,
-    "image": "https://wiki.arcaea.cn/images/thumb/1/1a/Partner_shirabe_icon.png/95px-Partner_shirabe_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/4/4a/Partner_shirabe_awaken_icon.png/95px-Partner_shirabe_awaken_icon.png",
     "name": {
       "en": "Shirabe",
       "zh": "调"
@@ -1939,12 +1933,13 @@
         "over": 68,
         "step": 78
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 14,
-    "image": "https://wiki.arcaea.cn/images/thumb/f/f9/Partner_hikari_zero_icon.png/95px-Partner_hikari_zero_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Hikari (Zero)",
       "zh": "光（Zero）"
@@ -2055,8 +2050,6 @@
   },
   {
     "id": 15,
-    "image": "https://wiki.arcaea.cn/images/thumb/1/1b/Partner_hikari_fracture_icon.png/95px-Partner_hikari_fracture_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Hikari (Fracture)",
       "zh": "光（Fracture）"
@@ -2167,8 +2160,6 @@
   },
   {
     "id": 16,
-    "image": "https://wiki.arcaea.cn/images/thumb/3/3c/Partner_hikari_summer_icon.png/95px-Partner_hikari_summer_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Hikari (Summer)",
       "zh": "光（夏日）"
@@ -2279,8 +2270,6 @@
   },
   {
     "id": 17,
-    "image": "https://wiki.arcaea.cn/images/thumb/2/29/Partner_tairitsu_summer_icon.png/95px-Partner_tairitsu_summer_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Tairitsu (Summer)",
       "zh": "对立（夏日）"
@@ -2391,8 +2380,6 @@
   },
   {
     "id": 18,
-    "image": "https://wiki.arcaea.cn/images/thumb/a/a1/Partner_tairitsu_%26_trin_icon.png/95px-Partner_tairitsu_%26_trin_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Tairitsu & Trin",
       "zh": "对立 & 托凛"
@@ -2503,8 +2490,6 @@
   },
   {
     "id": 19,
-    "image": "https://wiki.arcaea.cn/images/thumb/9/9f/Partner_ayu_icon.png/95px-Partner_ayu_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/4/48/Partner_ayu_awaken_icon.png/95px-Partner_ayu_awaken_icon.png",
     "name": {
       "en": "Ayu",
       "zh": "彩梦"
@@ -2661,12 +2646,13 @@
         "over": 59,
         "step": 93
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 20,
-    "image": "https://wiki.arcaea.cn/images/thumb/8/82/Partner_eto_%26_luna_winter_icon.png/95px-Partner_eto_%26_luna_winter_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Eto & Luna (Winter)",
       "zh": "爱托 & 露娜（冬日）"
@@ -2777,8 +2763,6 @@
   },
   {
     "id": 21,
-    "image": "https://wiki.arcaea.cn/images/thumb/7/79/Partner_yume_icon.png/95px-Partner_yume_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/6/66/Partner_yume_awaken_icon.png/95px-Partner_yume_awaken_icon.png",
     "name": {
       "en": "Yume",
       "zh": "柚梅"
@@ -2935,12 +2919,13 @@
         "over": 56,
         "step": 83
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 22,
-    "image": "https://wiki.arcaea.cn/images/thumb/2/23/Partner_hikari_%26_seine_icon.png/95px-Partner_hikari_%26_seine_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Hikari & Seine",
       "zh": "光 & 赛依娜"
@@ -3051,8 +3036,6 @@
   },
   {
     "id": 23,
-    "image": "https://wiki.arcaea.cn/images/thumb/1/1d/Partner_saya_icon.png/95px-Partner_saya_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Saya",
       "zh": "咲弥"
@@ -3163,8 +3146,6 @@
   },
   {
     "id": 24,
-    "image": "https://wiki.arcaea.cn/images/thumb/6/6b/Partner_tairitsu_%26_chuni_penguin_icon.png/95px-Partner_tairitsu_%26_chuni_penguin_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Tairitsu & Chuni Penguin (Grievous Lady)",
       "zh": "对立 & 中二企鹅（Grievous Lady）"
@@ -3275,8 +3256,6 @@
   },
   {
     "id": 25,
-    "image": "https://wiki.arcaea.cn/images/thumb/6/67/Partner_chuni_penguin_icon.png/95px-Partner_chuni_penguin_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Chuni Penguin",
       "zh": "中二企鹅"
@@ -3387,8 +3366,6 @@
   },
   {
     "id": 26,
-    "image": "https://wiki.arcaea.cn/images/thumb/5/50/Partner_haruna_icon.png/95px-Partner_haruna_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/d/d4/Partner_haruna_awaken_icon.png/95px-Partner_haruna_awaken_icon.png",
     "name": {
       "en": "Haruna",
       "zh": "榛名"
@@ -3545,12 +3522,13 @@
         "over": 80,
         "step": 96
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 27,
-    "image": "https://wiki.arcaea.cn/images/thumb/2/26/Partner_nono_icon.png/95px-Partner_nono_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/5/56/Partner_nono_awaken_icon.png/95px-Partner_nono_awaken_icon.png",
     "name": {
       "en": "Nono",
       "zh": "诺诺"
@@ -3707,12 +3685,13 @@
         "over": 88,
         "step": 88
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 28,
-    "image": "https://wiki.arcaea.cn/images/thumb/b/b9/Partner_pandora_nemesis_icon.png/95px-Partner_pandora_nemesis_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/7/76/Partner_pandora_nemesis_awaken_icon.png/95px-Partner_pandora_nemesis_awaken_icon.png",
     "name": {
       "en": "Pandora Nemesis (MTA-XXX)",
       "zh": "潘多拉涅墨西斯（MTA-XXX）"
@@ -3869,12 +3848,13 @@
         "over": 79,
         "step": 99
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 29,
-    "image": "https://wiki.arcaea.cn/images/thumb/9/99/Partner_regulus_icon.png/95px-Partner_regulus_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/2/26/Partner_regulus_awaken_icon.png/95px-Partner_regulus_awaken_icon.png",
     "name": {
       "en": "Regulus (MDA-21)",
       "zh": "轩辕十四（MDA-21）"
@@ -4031,12 +4011,13 @@
         "over": 80,
         "step": 108
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 30,
-    "image": "https://wiki.arcaea.cn/images/thumb/8/80/Partner_kanae_icon.png/95px-Partner_kanae_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Kanae",
       "zh": "群愿"
@@ -4147,8 +4128,6 @@
   },
   {
     "id": 31,
-    "image": "https://wiki.arcaea.cn/images/thumb/0/0b/Partner_hikari_fantasia_icon.png/95px-Partner_hikari_fantasia_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Hikari (Fantasia)",
       "zh": "光（Fantasia）"
@@ -4259,8 +4238,6 @@
   },
   {
     "id": 32,
-    "image": "https://wiki.arcaea.cn/images/thumb/7/76/Partner_tairitsu_sonata_icon.png/95px-Partner_tairitsu_sonata_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Tairitsu (Sonata)",
       "zh": "对立（Sonata）"
@@ -4371,8 +4348,6 @@
   },
   {
     "id": 33,
-    "image": "https://wiki.arcaea.cn/images/thumb/f/fa/Partner_sia_icon.png/95px-Partner_sia_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Sia",
       "zh": "兮娅"
@@ -4483,8 +4458,6 @@
   },
   {
     "id": 34,
-    "image": "https://wiki.arcaea.cn/images/thumb/c/c3/Partner_doroc_icon.png/95px-Partner_doroc_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "DORO*C",
       "zh": "DORO*C"
@@ -4595,8 +4568,6 @@
   },
   {
     "id": 35,
-    "image": "https://wiki.arcaea.cn/images/thumb/0/0f/Partner_tairitsu_tempest_icon.png/95px-Partner_tairitsu_tempest_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Tairitsu (Tempest)",
       "zh": "对立（Tempest）"
@@ -4707,8 +4678,6 @@
   },
   {
     "id": 36,
-    "image": "https://wiki.arcaea.cn/images/thumb/1/14/Partner_brillante_icon.png/95px-Partner_brillante_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/0/0a/Partner_brillante_awaken_icon.png/95px-Partner_brillante_awaken_icon.png",
     "name": {
       "en": "Brillante (E/S Primera)",
       "zh": "布丽兰特"
@@ -4865,12 +4834,13 @@
         "over": 82,
         "step": 100
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 37,
-    "image": "https://wiki.arcaea.cn/images/thumb/6/67/Partner_ilith_summer_icon.png/95px-Partner_ilith_summer_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Ilith (Summer)",
       "zh": "依莉丝（夏日）"
@@ -4981,8 +4951,6 @@
   },
   {
     "id": 38,
-    "image": "https://wiki.arcaea.cn/images/thumb/3/33/Partner_saya_etude_icon.png/95px-Partner_saya_etude_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Saya (Etude)",
       "zh": "咲弥（Etude）"
@@ -5093,8 +5061,6 @@
   },
   {
     "id": 39,
-    "image": "https://wiki.arcaea.cn/images/thumb/8/84/Partner_alice_%26_tenniel_icon.png/95px-Partner_alice_%26_tenniel_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Alice & Tenniel",
       "zh": "爱丽丝 & 坦尼尔"
@@ -5205,8 +5171,6 @@
   },
   {
     "id": 40,
-    "image": "https://wiki.arcaea.cn/images/thumb/0/0b/Partner_luna_%26_mia_icon.png/95px-Partner_luna_%26_mia_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Luna & Mia",
       "zh": "露娜 & 美亚"
@@ -5317,8 +5281,6 @@
   },
   {
     "id": 41,
-    "image": "https://wiki.arcaea.cn/images/thumb/3/3f/Partner_areus_icon.png/95px-Partner_areus_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Areus",
       "zh": "阿莱乌斯"
@@ -5429,8 +5391,6 @@
   },
   {
     "id": 42,
-    "image": "https://wiki.arcaea.cn/images/thumb/2/2c/Partner_seele_haze_icon.png/95px-Partner_seele_haze_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/1/11/Partner_seele_haze_awaken_icon.png/95px-Partner_seele_haze_awaken_icon.png",
     "name": {
       "en": "Seele",
       "zh": "希尔"
@@ -5587,12 +5547,13 @@
         "over": 100,
         "step": 80
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 43,
-    "image": "https://wiki.arcaea.cn/images/thumb/a/a1/Partner_isabelle_yagrush_icon.png/95px-Partner_isabelle_yagrush_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/a/a4/Partner_isabelle_yagrush_awaken_icon.png/95px-Partner_isabelle_yagrush_awaken_icon.png",
     "name": {
       "en": "Isabelle",
       "zh": "伊莎贝尔"
@@ -5749,12 +5710,13 @@
         "over": 80,
         "step": 80
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 44,
-    "image": "https://wiki.arcaea.cn/images/thumb/f/f3/Partner_mir_icon.png/95px-Partner_mir_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Mir",
       "zh": "迷尔"
@@ -5865,8 +5827,6 @@
   },
   {
     "id": 45,
-    "image": "https://wiki.arcaea.cn/images/thumb/7/7d/Partner_lagrange_icon.png/95px-Partner_lagrange_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Lagrange",
       "zh": "拉格兰"
@@ -5977,8 +5937,6 @@
   },
   {
     "id": 46,
-    "image": "https://wiki.arcaea.cn/images/thumb/5/5c/Partner_linka_icon.png/95px-Partner_linka_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Linka",
       "zh": "凛可"
@@ -6089,8 +6047,6 @@
   },
   {
     "id": 47,
-    "image": "https://wiki.arcaea.cn/images/thumb/7/74/Partner_nami_icon.png/95px-Partner_nami_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Nami",
       "zh": "奈美"
@@ -6201,8 +6157,6 @@
   },
   {
     "id": 48,
-    "image": "https://wiki.arcaea.cn/images/thumb/4/47/Partner_saya_%26_elizabeth_icon.png/95px-Partner_saya_%26_elizabeth_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Saya & Elizabeth",
       "zh": "咲弥 & 伊莉莎白"
@@ -6313,8 +6267,6 @@
   },
   {
     "id": 49,
-    "image": "https://wiki.arcaea.cn/images/thumb/7/74/Partner_lily_icon.png/95px-Partner_lily_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Lily",
       "zh": "莉莉"
@@ -6425,8 +6377,6 @@
   },
   {
     "id": 50,
-    "image": "https://wiki.arcaea.cn/images/thumb/c/c2/Partner_kanae_midsummer_icon.png/95px-Partner_kanae_midsummer_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Kanae (Midsummer)",
       "zh": "群愿（盛夏）"
@@ -6537,8 +6487,6 @@
   },
   {
     "id": 51,
-    "image": "https://wiki.arcaea.cn/images/thumb/8/8b/Partner_alice_%26_tenniel_minuet_icon.png/95px-Partner_alice_%26_tenniel_minuet_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Alice & Tenniel (Minuet)",
       "zh": "爱丽丝 & 坦尼尔（Minuet）"
@@ -6649,8 +6597,6 @@
   },
   {
     "id": 52,
-    "image": "https://wiki.arcaea.cn/images/thumb/1/18/Partner_tairitsu_elegy_icon.png/95px-Partner_tairitsu_elegy_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Tairitsu (Elegy)",
       "zh": "对立（Elegy）"
@@ -6761,8 +6707,6 @@
   },
   {
     "id": 53,
-    "image": "https://wiki.arcaea.cn/images/thumb/5/52/Partner_marija_icon.png/95px-Partner_marija_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Marija",
       "zh": "玛莉嘉"
@@ -6873,8 +6817,6 @@
   },
   {
     "id": 54,
-    "image": "https://wiki.arcaea.cn/images/thumb/7/7f/Partner_vita_icon.png/95px-Partner_vita_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Vita",
       "zh": "维塔"
@@ -6985,8 +6927,6 @@
   },
   {
     "id": 55,
-    "image": "https://wiki.arcaea.cn/images/thumb/5/5b/Partner_hikari_fatalis_icon.png/95px-Partner_hikari_fatalis_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Hikari (Fatalis)",
       "zh": "光（Fatalis）"
@@ -7097,8 +7037,6 @@
   },
   {
     "id": 56,
-    "image": "https://wiki.arcaea.cn/images/thumb/a/a7/Partner_saki_icon.png/95px-Partner_saki_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Saki",
       "zh": "咲姬"
@@ -7209,8 +7147,6 @@
   },
   {
     "id": 57,
-    "image": "https://wiki.arcaea.cn/images/thumb/4/48/Partner_setsuna_icon.png/95px-Partner_setsuna_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Setsuna",
       "zh": "刹那"
@@ -7321,8 +7257,6 @@
   },
   {
     "id": 58,
-    "image": "https://wiki.arcaea.cn/images/thumb/f/f7/Partner_amane_icon.png/95px-Partner_amane_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Amane",
       "zh": "天音"
@@ -7433,8 +7367,6 @@
   },
   {
     "id": 59,
-    "image": "https://wiki.arcaea.cn/images/thumb/5/5e/Partner_Kou%28Winter%29_icon.png/95px-Partner_Kou%28Winter%29_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Kou (Winter)",
       "zh": "红（冬日）"
@@ -7545,8 +7477,6 @@
   },
   {
     "id": 60,
-    "image": "https://wiki.arcaea.cn/images/thumb/1/1f/Partner_Lagrange%28Aria%29_icon.png/95px-Partner_Lagrange%28Aria%29_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Lagrange (Aria)",
       "zh": "拉格兰（Aria）"
@@ -7657,8 +7587,6 @@
   },
   {
     "id": 61,
-    "image": "https://wiki.arcaea.cn/images/thumb/b/bb/Partner_Lethe%28Apophenia%29_icon.png/95px-Partner_Lethe%28Apophenia%29_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Lethe (Apophenia)",
       "zh": "忘却（Apophenia）"
@@ -7769,8 +7697,6 @@
   },
   {
     "id": 62,
-    "image": "https://wiki.arcaea.cn/images/thumb/3/3d/Partner_shama_universe_icon.png/95px-Partner_shama_universe_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Shama (UNiVERSE)",
       "zh": "霞玛（大～宇～宙）"
@@ -7881,8 +7807,6 @@
   },
   {
     "id": 63,
-    "image": "https://wiki.arcaea.cn/images/thumb/2/21/Partner_milk_universe_icon.png/95px-Partner_milk_universe_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Milk (UNiVERSE)",
       "zh": "米露可（大～宇～宙）"
@@ -7993,8 +7917,6 @@
   },
   {
     "id": 64,
-    "image": "https://wiki.arcaea.cn/images/thumb/7/70/Partner_Shikoku_icon.png/95px-Partner_Shikoku_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Shikoku",
       "zh": "紫黑"
@@ -8105,8 +8027,6 @@
   },
   {
     "id": 65,
-    "image": "https://wiki.arcaea.cn/images/thumb/e/e6/Partner_Mika_Yurisaki_icon.png/95px-Partner_Mika_Yurisaki_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Mika Yurisaki",
       "zh": "百合咲美香"
@@ -8217,8 +8137,6 @@
   },
   {
     "id": 66,
-    "image": "https://wiki.arcaea.cn/images/thumb/b/bf/Partner_mithra_tercera_icon.png/95px-Partner_mithra_tercera_icon.png",
-    "awakenImage": "https://wiki.arcaea.cn/images/thumb/2/2c/Partner_mithra_tercera_awaken_icon.png/95px-Partner_mithra_tercera_awaken_icon.png",
     "name": {
       "en": "Mithra Tercera",
       "zh": "密特拉·泰尔塞拉"
@@ -8375,12 +8293,13 @@
         "over": 64,
         "step": 60
       }
-    ]
+    ],
+    "can": {
+      "awake": true
+    }
   },
   {
     "id": 67,
-    "image": "https://wiki.arcaea.cn/images/thumb/3/3e/Partner_toa_kozukata_icon.png/95px-Partner_toa_kozukata_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Toa Kozukata",
       "zh": "不来方永爱"
@@ -8491,8 +8410,6 @@
   },
   {
     "id": 68,
-    "image": "https://wiki.arcaea.cn/images/thumb/c/c3/Partner_nami_twilight_icon.png/95px-Partner_nami_twilight_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Nami (Twilight)",
       "zh": "奈美（暮光）"
@@ -8603,8 +8520,6 @@
   },
   {
     "id": 69,
-    "image": "https://wiki.arcaea.cn/images/thumb/c/c1/Partner_ilith_%26_ivy_icon.png/95px-Partner_ilith_%26_ivy_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Ilith & Ivy",
       "zh": "Ilith & Ivy"
@@ -8715,8 +8630,6 @@
   },
   {
     "id": 70,
-    "image": "https://wiki.arcaea.cn/images/thumb/3/35/Partner_hikari_%26_vanessa_icon.png/95px-Partner_hikari_%26_vanessa_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Hikari & Vanessa",
       "zh": "Hikari & Vanessa"
@@ -8827,8 +8740,6 @@
   },
   {
     "id": 71,
-    "image": "https://wiki.arcaea.cn/images/thumb/e/e9/Partner_maya_icon.png/95px-Partner_maya_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Maya",
       "zh": "摩耶"
@@ -8935,12 +8846,21 @@
         "over": 47,
         "step": 47
       }
-    ]
+    ],
+    "can": {
+      "lost": true
+    }
+  },
+  {
+    "id": 72,
+    "name": {
+      "en": "Insight (Ascendant - 8th Seeker)",
+      "zh": "洞烛（至高：第八探索者）"
+    },
+    "levels": []
   },
   {
     "id": 99,
-    "image": "https://wiki.arcaea.cn/images/thumb/7/7f/Partner_shirahime_icon.png/95px-Partner_shirahime_icon.png",
-    "awakenImage": null,
     "name": {
       "en": "Shirahime",
       "zh": "白姬"

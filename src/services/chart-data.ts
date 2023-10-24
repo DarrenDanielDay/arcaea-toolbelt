@@ -11,8 +11,9 @@ import {
 } from "./declarations";
 import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
+import { jsonModule } from "../utils/misc";
 // @ts-expect-error string as enum
-const getStaticSongData = async (): Promise<SongData[]> => import("../data/chart-data.json");
+const getStaticSongData = async (): Promise<SongData[]> => jsonModule(import("../data/chart-data.json"));
 
 const FREE_PACKS = [
   "Arcaea", // 基础包

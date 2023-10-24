@@ -20,7 +20,7 @@ import { getChartDataFromFandomWiki } from "./chart/fandom-wiki";
 import { mergeIntoSongData } from "./chart/merge";
 import { getAliasFromArcaeaInfinity } from "./chart/arcaea-infinity";
 import { Alias, AssetsInfo, ExtraSongData, mergeArray } from "./chart/shared";
-import { CharacterData } from "../models/world-mode";
+import { CharacterData } from "../models/character";
 
 const resolver = new AssetsResolverImpl();
 
@@ -100,6 +100,12 @@ export async function updateNotesAndConstantsFileViaFandomWiki() {
     ),
     extraDataPath
   );
+}
+
+export async function generateCharacterData() {
+  const { characters, items } = await getCharacterData();
+  await saveProjectJSON(characters, characterDataPath);
+  await saveProjectJSON(items, itemDataPath);
 }
 
 export async function generateAlias() {

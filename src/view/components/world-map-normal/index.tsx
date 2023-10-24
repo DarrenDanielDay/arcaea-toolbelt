@@ -4,8 +4,8 @@ import { CurrentProgress, MapPlatform, NormalWorldMap, PlatformType, RewardType 
 import { alert } from "../fancy-dialog";
 import { Component, For, HyplateElement, computed, element, nil, signal } from "hyplate";
 import type { CleanUpFunc, WritableSignal } from "hyplate/types";
-import { Inject } from "../../../services/di.js";
-import { $AssetsResolver, AssetsResolver } from "../../../services/declarations.js";
+import { Inject } from "../../../services/di";
+import { $AssetsResolver, AssetsResolver } from "../../../services/declarations";
 
 const specialPlatformImages: Record<
   PlatformType,

@@ -1,30 +1,44 @@
 import loading from "../../../assets/loading.gif";
-import { signal, useAutoRun } from "hyplate";
-import type { Signal, HTMLImageElementAttributes } from "hyplate/types";
+import { isSubscribable, signal, useAutoRun } from "hyplate";
+import type { HTMLImageElementAttributes, BindingPattern } from "hyplate/types";
+import { PromiseOr, isString } from "../../../utils/misc";
+
+type ImageSource = PromiseOr<string | null>;
 
 type AssetImageProps = JSX.JSXAttributes<Omit<HTMLImageElementAttributes, "src">, HTMLImageElement> & {
-  src: Signal<Promise<string | null>>;
+  src: BindingPattern<ImageSource>;
+  noLoading?: boolean;
 };
 
-export const AssetImage = ({ src, ...props }: AssetImageProps) => {
+export const AssetImage = ({ src, noLoading, ...props }: AssetImageProps) => {
   const $src = signal<string | null>("");
   let resolveingPromise: Promise<string | null> | null = null;
-  useAutoRun(() => {
-    const promise = src();
-    resolveingPromise = promise;
-    $src.set(loading);
-    promise
+  const handleSource = (source: ImageSource) => {
+    if (!source || isString(source)) {
+      $src.set(source);
+      return;
+    }
+    resolveingPromise = source;
+    if (!noLoading) {
+      $src.set(loading);
+    }
+    source
       .then((url) => {
         // Only the last resolved promise apply.
-        if (resolveingPromise === promise) {
+        if (resolveingPromise === source) {
           $src.set(url);
         }
       })
       .catch(() => {
-        if (resolveingPromise === promise) {
+        if (resolveingPromise === source) {
           $src.set(null);
         }
       });
-  });
+  };
+  isSubscribable(src)
+    ? useAutoRun(() => {
+        handleSource(src());
+      })
+    : handleSource(src);
   return <img src={$src} {...props}></img>;
 };

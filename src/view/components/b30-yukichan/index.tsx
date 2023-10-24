@@ -1,17 +1,19 @@
 import { sheet } from "./style.css.js";
-import { ResultCard } from "../result-card/index.js";
-import { B30Response, BestResultItem } from "../../../models/profile.js";
+import { ResultCard } from "../result-card";
+import { B30Response, BestResultItem } from "../../../models/profile";
 import { Component, HyplateElement, Show, cssVar, signal } from "hyplate";
-import { Inject } from "../../../services/di.js";
+import { Inject } from "../../../services/di";
 import {
+  $AssetsResolver,
   $AssetsService,
   $ChartService,
   $PreferenceService,
+  AssetsResolver,
   AssetsService,
   ChartService,
   ColorTheme,
   PreferenceService,
-} from "../../../services/declarations.js";
+} from "../../../services/declarations";
 
 const renderB30 = (response: B30Response) => {
   const { queryTime, b30, b31_39, b30Average, maxPotential, minPotential, potential, r10Average, username } = response;
@@ -73,6 +75,8 @@ export
 class Best30YukiChan extends HyplateElement {
   @Inject($ChartService)
   accessor chart!: ChartService;
+  @Inject($AssetsResolver)
+  accessor resolver!: AssetsResolver;
   @Inject($AssetsService)
   accessor assets!: AssetsService;
   @Inject($PreferenceService)
@@ -111,7 +115,7 @@ class Best30YukiChan extends HyplateElement {
     const index = await this.chart.getSongIndex();
     const song = theme === "dark" ? index["odysseia"]! : index["lovelessdress"]!;
     const chart = song.charts[2]!;
-    const url = await this.assets.getCover(chart, song, hd);
+    const url = await this.assets.getAssets(this.resolver.resolveCover(chart, song, hd));
     const card = this.getExportNode();
     card!.style.backgroundImage = `url("${url}")`;
   }

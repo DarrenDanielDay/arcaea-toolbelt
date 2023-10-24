@@ -1,6 +1,5 @@
 import {
   Chapter,
-  CharacterData,
   CurrentProgress,
   MapPlatform,
   NormalWorldMap,
@@ -8,12 +7,15 @@ import {
   NormalWorldMapPlatforms,
   RewardType,
 } from "../models/world-mode";
+import { CharacterData, CharacterImageKind, CharacterIndex, CharacterStatus } from "../models/character";
 import {
   $AssetsResolver,
+  $CharacterService,
   $ChartService,
   $MusicPlayService,
   $WorldModeService,
   AssetsResolver,
+  CharacterService,
   ChartService,
   ChartStatistics,
   InverseProgressSolution,
@@ -25,18 +27,18 @@ import {
   WorldMapBonus,
   WorldModeService,
 } from "./declarations";
-import characters from "../data/character-data.json";
 import items from "../data/item-data.json";
 import { SongIndex } from "../models/music-play";
 import { Indexed, indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
 import { inferRange } from "../utils/math";
+import { jsonModule } from "../utils/misc";
 const BASE_PROG = 2.5;
 const BASE_BOOST = 27;
 const POTENTIAL_FACTOR = 2.45;
 const CHARACTER_FACTOR_RATIO = 50;
 @Injectable({
-  requires: [$ChartService, $MusicPlayService, $AssetsResolver] as const,
+  requires: [$ChartService, $MusicPlayService, $AssetsResolver, $CharacterService] as const,
   implements: $WorldModeService,
 })
 export class WorldModeServiceImpl implements WorldModeService {
@@ -46,20 +48,23 @@ export class WorldModeServiceImpl implements WorldModeService {
   constructor(
     private readonly chart: ChartService,
     private readonly music: MusicPlayService,
-    private readonly resolver: AssetsResolver
+    private readonly resolver: AssetsResolver,
+    private readonly character: CharacterService
   ) {}
 
   async getLongtermMaps(): Promise<Chapter[]> {
-    const chapters = await import("../data/world-maps-longterm.json");
+    const chapters = await jsonModule(import("../data/world-maps-longterm.json"));
     const songIndex = await this.getSongIndex();
-    return chapters.map((c) => ({ ...c, maps: c.maps.map((m) => this.withRewardImgs(m, songIndex)) }));
+    const characterIndex = await this.character.getCharacterIndex();
+    return chapters.map((c) => ({ ...c, maps: c.maps.map((m) => this.withRewardImgs(m, songIndex, characterIndex)) }));
   }
 
   async getEventMaps(): Promise<NormalWorldMap[]> {
-    const maps = await import("../data/world-maps-events.json");
+    const maps = await jsonModule(import("../data/world-maps-events.json"));
     const songIndex = await this.getSongIndex();
+    const characterIndex = await this.character.getCharacterIndex();
     // TODO 只显示当前可用的活动图
-    return maps.map((m) => this.withRewardImgs(m, songIndex));
+    return maps.map((m) => this.withRewardImgs(m, songIndex, characterIndex));
   }
 
   getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, string[]>> {
@@ -78,7 +83,7 @@ export class WorldModeServiceImpl implements WorldModeService {
         reward.type === RewardType.Background || reward.type === RewardType.Item
           ? reward.name
           : reward.type === RewardType.Character
-          ? characters.find((c) => c.id === reward.id)!.name.zh
+          ? reward.name
           : reward.name
       );
     }
@@ -254,10 +259,6 @@ export class WorldModeServiceImpl implements WorldModeService {
     return possible;
   }
 
-  private getCharacterIndex() {
-    return (this.#characterIndex ??= indexBy(characters, (c) => c.id));
-  }
-
   private async getSongIndex() {
     return (this.#songIndex ??= indexBy(await this.chart.getSongData(), (s) => s.id));
   }
@@ -299,8 +300,11 @@ export class WorldModeServiceImpl implements WorldModeService {
     return result || "";
   }
 
-  private withRewardImgs(map: NormalWorldMapData, songIndex: SongIndex): NormalWorldMap {
-    const characterIndex = this.getCharacterIndex();
+  private withRewardImgs(
+    map: NormalWorldMapData,
+    songIndex: SongIndex,
+    characterIndex: CharacterIndex
+  ): NormalWorldMap {
     return {
       ...map,
       platforms: Object.entries(map.platforms)
@@ -323,7 +327,15 @@ export class WorldModeServiceImpl implements WorldModeService {
                   case RewardType.Background:
                     return reward;
                   case RewardType.Character:
-                    return { ...reward, img: characterIndex[reward.id]!.image };
+                    return {
+                      ...reward,
+                      img: this.resolver.resoveCharacterImage({
+                        id: reward.id,
+                        kind: CharacterImageKind.Icon,
+                        status: CharacterStatus.Initial,
+                      }).href,
+                      name: characterIndex[reward.id]!.name.zh,
+                    };
                   case RewardType.Item:
                     return {
                       type: RewardType.Item,

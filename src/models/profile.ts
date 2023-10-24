@@ -1,6 +1,6 @@
 import { UpdatePayload } from "./misc";
 import { Chart, ClearRank, NoteResult, PlayResult, ScoreResult, Song } from "./music-play";
-import { CharacterInstanceData } from "./world-mode";
+import { CharacterInstanceData } from "./character";
 
 export interface ProfileV1 {
   version: 1;

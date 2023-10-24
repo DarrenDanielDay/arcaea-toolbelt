@@ -1,6 +1,7 @@
 import { Injectable } from "classic-di";
 import { $AssetsResolver, AssetsResolver } from "./declarations";
 import { Chart, Song, ClearRank, Grade, difficultyIndexes } from "../models/music-play";
+import { CharacterImage, CharacterImageKind, CharacterStatus } from "../models/character";
 const assetsRoot =
   "https://ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
 
@@ -11,6 +12,34 @@ export class AssetsResolverImpl implements AssetsResolver {
   resolve(path: string): URL {
     return new URL(path, assetsRoot);
   }
+
+  resoveCharacterImage({ id, status, kind }: CharacterImage): URL {
+    if (id === -1) {
+      switch (kind) {
+        case CharacterImageKind.Icon:
+          return this.resolve(`char/unknown_icon.png`);
+        case CharacterImageKind.Full:
+        default:
+          return this.resolve(`char/-1_mp.png`);
+      }
+    }
+    // 光 & 对立觉醒前后完全一致
+    if (id === 5) status = CharacterStatus.Initial;
+    switch (kind) {
+      case CharacterImageKind.Icon: {
+        return this.resolve(`char/${id}${status}_icon.png`);
+      }
+      case CharacterImageKind.Full:
+      default: {
+        return this.resolve(`char/1080/${id}${status}.png`);
+      }
+    }
+  }
+
+  resolvePotentialBadge(level: number): URL {
+    return this.resolve(`img/rating_${level >= 0 ? level : "off"}.png`);
+  }
+
   resolveCover(chart: Chart, song: Song, hd: boolean): URL {
     const folder = !song.dl ? song.id : `dl_${song.id}`;
     const base = `songs/${folder}`;

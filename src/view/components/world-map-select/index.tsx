@@ -122,10 +122,10 @@ class WorldMapSelect extends HyplateElement {
     const rewards = this.worldmode.getMapRewards(map);
     const buf: string[] = [];
     if (RewardType.Character in rewards) {
-      buf.push(`搭档 ${rewards[RewardType.Character]!}`);
+      buf.push(`搭档 ${rewards[RewardType.Character]!.join('，')}`);
     }
     if (RewardType.Song in rewards) {
-      buf.push(`曲目 ${rewards[RewardType.Song]!}`);
+      buf.push(`曲目 ${rewards[RewardType.Song]!.join('，')}`);
     }
     if (RewardType.Background in rewards) {
       buf.push(`背景 ${rewards[RewardType.Background]!}`);

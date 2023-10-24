@@ -2555,36 +2555,77 @@
     },
     {
         "skill_id_text": {
-          "en": "",
-          "ja": "",
-          "ko": "",
-          "zh-Hans": "",
-          "zh-Hant": ""
+            "en": "Ignore Random Restriction Steps\nAfter World progress, this skill changes",
+            "ja": "ランダム選曲マスの効果を無視\nWorldを進行後、スキルが変化",
+            "ko": "랜덤 제한 스텝을 무시하며\n월드 진행 후, 스킬이 변화합니다",
+            "zh-Hans": "不会触发随机限制格\n世界模式下技能将在曲目结算后改变",
+            "zh-Hant": "不會觸發隨機限制格\n世界模式下技能將在曲目結算後改變"
         },
         "display_name": {
-          "en": "Maya",
-          "ja": "",
-          "ko": "",
-          "zh-Hans": "摩耶",
-          "zh-Hant": ""
+            "en": "Maya",
+            "ja": "マヤ",
+            "ko": "마야",
+            "zh-Hans": "摩耶",
+            "zh-Hant": "摩耶"
+        },
+        "skill_state": "add_random",
+        "base_character": false,
+        "is_uncapped_override": false,
+        "is_uncapped": false,
+        "uncap_cores": [],
+        "char_type": 0,
+        "skill_id_uncap": "",
+        "skill_requires_uncap": false,
+        "skill_unlock_level": 0,
+        "skill_id": "skill_maya",
+        "overdrive": 47,
+        "prog": 47,
+        "frag": 40,
+        "level_exp": 10000,
+        "exp": 10000,
+        "level": 20,
+        "name": "maya",
+        "character_id": 71
+    },
+    {
+        "skill_id_text": {
+            "en": "",
+            "ja": "",
+            "ko": "",
+            "zh-Hans": "",
+            "zh-Hant": ""
+        },
+        "variant": {
+            "en": "Ascendant - 8th Seeker",
+            "ja": "天賦第八究明者",
+            "ko": "초월자 - 여덟번째 추적자",
+            "zh-Hans": "至高：第八探索者",
+            "zh-Hant": "至高：第八探索者"
+        },
+        "display_name": {
+            "en": "Insight",
+            "ja": "識眼",
+            "ko": "혜안",
+            "zh-Hans": "洞烛",
+            "zh-Hant": "洞燭"
         },
         "base_character": false,
         "is_uncapped_override": false,
         "is_uncapped": false,
         "uncap_cores": [],
-        "char_type": 2,
+        "char_type": 0,
         "skill_id_uncap": "",
         "skill_requires_uncap": false,
         "skill_unlock_level": 0,
-        "skill_id": "",
-        "overdrive": 0,
-        "prog": 0,
-        "frag": 0,
+        "skill_id": "???",
+        "overdrive": -1,
+        "prog": -1,
+        "frag": -1,
         "level_exp": 0,
         "exp": 0,
         "level": 1,
-        "name": "maya",
-        "character_id": 71
+        "name": "intruder",
+        "character_id": 72
     },
     {
         "skill_id_text": {

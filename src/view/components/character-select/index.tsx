@@ -1,25 +1,74 @@
 import { Component, nil } from "hyplate";
-import { CharacterData } from "../../../models/world-mode";
+import { CharacterData, CharacterImageKind, CharacterStatus } from "../../../models/character";
 import { SearchSelect } from "../search-select";
 import { sheet } from "./style.css.js";
+import { Inject } from "../../../services/di";
+import { $AssetsResolver, $AssetsService, AssetsResolver, AssetsService } from "../../../services/declarations";
+import { AssetImage } from "../asset-image";
+import type { GlobalAttributes } from "hyplate/types";
+import { jsonModule } from "../../../utils/misc";
 @Component({
   tag: "character-select",
   styles: [...SearchSelect.styles, sheet],
 })
 export class CharacterSelect extends SearchSelect<CharacterData> {
+  @Inject($AssetsResolver)
+  accessor resolver!: AssetsResolver;
+  @Inject($AssetsService)
+  accessor assets!: AssetsService;
+
   constructor() {
     super(
-      ({ awakenImage, image, name }) => (
+      ({ id, can: { awake, lost } = {}, name }) => (
         <div class="container">
           <div class="images">
-            <img src={image} width={64} height={64} title={name.en}></img>
-            {awakenImage ? <img src={awakenImage} width={64} height={64} title={name.en}></img> : nil}
+            <AssetImage
+              src={this.assets.getAssets(
+                this.resolver.resoveCharacterImage({
+                  id,
+                  kind: CharacterImageKind.Icon,
+                  status: CharacterStatus.Initial,
+                })
+              )}
+              width={64}
+              height={64}
+            ></AssetImage>
+            {awake ? (
+              <AssetImage
+                src={this.assets.getAssets(
+                  this.resolver.resoveCharacterImage({
+                    id,
+                    status: CharacterStatus.Awaken,
+                    kind: CharacterImageKind.Icon,
+                  })
+                )}
+                width={64}
+                height={64}
+              ></AssetImage>
+            ) : (
+              nil
+            )}
+            {lost ? (
+              <AssetImage
+                src={this.assets.getAssets(
+                  this.resolver.resoveCharacterImage({
+                    id,
+                    status: CharacterStatus.Lost,
+                    kind: CharacterImageKind.Icon,
+                  })
+                )}
+                width={64}
+                height={64}
+              ></AssetImage>
+            ) : (
+              nil
+            )}
           </div>
           <div class="info">{name.zh}</div>
         </div>
       ),
       async (text) => {
-        const data = await import("../../../data/character-data.json");
+        const data = await jsonModule(import("../../../data/character-data.json"));
         return data.filter(
           (d) =>
             d.name.zh.toLowerCase().includes(text.toLowerCase()) || d.name.en.toLowerCase().includes(text.toLowerCase())
@@ -27,5 +76,13 @@ export class CharacterSelect extends SearchSelect<CharacterData> {
       },
       (character) => character.name.zh
     );
+  }
+}
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "character-select": JSXAttributes<GlobalAttributes, CharacterSelect>;
+    }
   }
 }

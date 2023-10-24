@@ -2,25 +2,31 @@ import { sheet } from "./style.css.js";
 import {
   AutoRender,
   Component,
-  Future,
   HyplateElement,
   Show,
   computed,
   effect,
   element,
   nil,
-  noop,
   signal,
   watch,
 } from "hyplate";
 import { bootstrap } from "../../styles";
-import { CharacterInstanceData } from "../../../models/world-mode";
+import { CharacterImageKind, CharacterInstanceData, CharacterStatus } from "../../../models/character";
 import { pageInto } from "../../../utils/paging";
 import { CharacterSelect } from "../character-select";
 import { Inject } from "../../../services/di";
-import { $ProfileService, ProfileService } from "../../../services/declarations";
+import {
+  $AssetsResolver,
+  $AssetsService,
+  $ProfileService,
+  AssetsResolver,
+  AssetsService,
+  ProfileService,
+} from "../../../services/declarations";
 import { FancyDialog } from "../fancy-dialog";
 import type { WritableSignal } from "hyplate/types";
+import { AssetImage } from "../asset-image";
 
 export
 @Component({
@@ -30,6 +36,10 @@ export
 class CharacterPicker extends HyplateElement {
   @Inject($ProfileService)
   accessor profile!: ProfileService;
+  @Inject($AssetsResolver)
+  accessor resolver!: AssetsResolver;
+  @Inject($AssetsService)
+  accessor assets!: AssetsService;
 
   modal = new FancyDialog();
   characterSelect = new CharacterSelect();
@@ -124,11 +134,31 @@ class CharacterPicker extends HyplateElement {
                 <>
                   <div class="row my-3">
                     <div class="col-auto">
-                      <img src={character.image} width={64} height={64}></img>
+                      <AssetImage
+                        src={this.assets.getAssets(
+                          this.resolver.resoveCharacterImage({
+                            id: character.id,
+                            kind: CharacterImageKind.Icon,
+                            status: CharacterStatus.Initial,
+                          })
+                        )}
+                        width={64}
+                        height={64}
+                      />
                     </div>
-                    {character.awakenImage ? (
+                    {character.can?.awake ? (
                       <div class="col-auto">
-                        <img src={character.awakenImage} width={64} height={64}></img>
+                        <AssetImage
+                          src={this.assets.getAssets(
+                            this.resolver.resoveCharacterImage({
+                              id: character.id,
+                              status: CharacterStatus.Awaken,
+                              kind: CharacterImageKind.Icon,
+                            })
+                          )}
+                          width={64}
+                          height={64}
+                        />
                       </div>
                     ) : (
                       nil

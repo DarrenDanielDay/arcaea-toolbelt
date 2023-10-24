@@ -16,6 +16,12 @@ import { B30Response, BestResultItem, Profile, ProfileUpdatePayload } from "../m
 import { token } from "classic-di";
 import { Chapter, CurrentProgress, NormalWorldMap, RewardType } from "../models/world-mode";
 import type { Signal } from "hyplate/types";
+import {
+  CharacterData,
+  CharacterImage,
+  CharacterIndex,
+} from "../models/character";
+import { PromiseOr } from "../utils/misc";
 
 export interface DatabaseContext {
   getDB(): Promise<IDBDatabase>;
@@ -46,6 +52,8 @@ export interface PreferenceService {
 
 export interface AssetsResolver {
   resolve(path: string): URL;
+  resoveCharacterImage(image: CharacterImage): URL;
+  resolvePotentialBadge(rating: number): URL;
   resolveCover(chart: Chart, song: Song, hd: boolean): URL;
   resolveUnknownCover(): URL;
   resolveClearImg(clearType: ClearRank): URL;
@@ -53,10 +61,11 @@ export interface AssetsResolver {
 }
 
 export interface AssetsService {
-  getCover(chart: Chart, song: Song, hd: boolean): Promise<string>;
-  getUnknownCover(): Promise<string>;
-  getClearImg(clearType: ClearRank): Promise<string>;
-  getGradeImg(scoreRank: Grade): Promise<string>;
+  /**
+   * @param url 资源地址
+   * @param noCache 使用强缓存
+   */
+  getAssets(url: URL | string, noCache?: boolean): PromiseOr<string>;
   cacheUsage(): Promise<number>;
   clearCache(): Promise<void>;
 }
@@ -100,6 +109,11 @@ export interface ChartService {
   roll(min: number, max: number): Promise<SearchResult | null>;
   getName(chart: Chart, song: Song): string;
   getCover(chart: Chart, song: Song): string;
+}
+
+export interface CharacterService {
+  getCharacterIndex(): Promise<CharacterIndex>;
+  getAllCharacters(): Promise<CharacterData[]>;
 }
 
 export interface MusicPlayStatistics {
@@ -282,6 +296,7 @@ export const $Database = token<AppDatabaseContext>("database");
 export const $PreferenceService = token<PreferenceService>("preference");
 export const $AssetsResolver = token<AssetsResolver>("assets-resolver");
 export const $AssetsService = token<AssetsService>("assets");
+export const $CharacterService = token<CharacterService>("character");
 export const $ChartService = token<ChartService>("chart");
 export const $MusicPlayService = token<MusicPlayService>("music-play");
 export const $ProfileService = token<ProfileService>("profile");

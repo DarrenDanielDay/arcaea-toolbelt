@@ -46,3 +46,8 @@ header {
   right: 0.5em;
   bottom: 2.5em;
 }
+
+.avatar {
+  width: 95px;
+  height: 95px;
+}

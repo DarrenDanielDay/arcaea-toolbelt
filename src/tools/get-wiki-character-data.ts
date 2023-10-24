@@ -1,6 +1,8 @@
 import { findNextElWhere, htmlDocument, initPageDocument, prepareDocument, wikiURL, arcaeaCNClient } from "./wiki-util";
 import characters from "../data/characters.json";
-import { CharacterData, CharacterFactors, ItemData } from "../models/world-mode";
+import { ItemData } from "../models/world-mode";
+import { CharacterFactors } from "../models/character";
+import { CharacterData } from "../models/character";
 import { concurrently } from "../utils/concurrent";
 
 const wikiCharacterTable = wikiURL("搭档");
@@ -85,7 +87,7 @@ export async function fetchWikiCharacterAndCharacterCoreItemData(): Promise<{
     };
   });
 
-  const getOneCharacter = async (item: CharacterTableData) => {
+  const getOneCharacter = async (item: CharacterTableData): Promise<CharacterData> => {
     const { ref, imgs, link } = item;
     const html = await arcaeaCNClient.fetch(link).then((res) => res.text());
     prepareDocument(html, link);
@@ -95,10 +97,10 @@ export async function fetchWikiCharacterAndCharacterCoreItemData(): Promise<{
         ? findNextElWhere(characterDataSpan.parentElement!, (node) => node.matches("table.wikitable"))
         : htmlDocument.querySelector("table.wikitable");
     if (!(table instanceof HTMLTableElement)) {
-      throw new Error("表格元素未找到");
+      console.warn(`${ref.display_name["zh-Hans"]} id =${ref.character_id} 的能力值因子表格元素未找到`);
     }
     const levels: CharacterFactors[] = [];
-    const sections = Array.from(table.tBodies);
+    const sections = Array.from(table instanceof HTMLTableElement ? table.tBodies : []);
 
     for (const section of sections) {
       const rows = section.rows;
@@ -134,16 +136,26 @@ export async function fetchWikiCharacterAndCharacterCoreItemData(): Promise<{
     }
     const variantEn = ref.variant?.en.trim();
     const variantZh = ref.variant?.["zh-Hans"].trim();
-    return {
+    const data: CharacterData = {
       id: ref.character_id,
-      image: imgs.at(0)!,
-      awakenImage: imgs.at(1) || null,
       name: {
         en: ref.display_name.en + (variantEn ? ` (${variantEn})` : ""),
         zh: ref.display_name["zh-Hans"] + (variantZh ? `（${variantZh}）` : ""),
       },
       levels,
     };
+    const can: CharacterData["can"] = {};
+    if (imgs[1]) {
+      can.awake = true;
+    }
+    // 对立和摩耶存在lost状态
+    if (ref.character_id === 1 || ref.character_id === 71) {
+      can.lost = true;
+    }
+    if (Object.keys(can).length) {
+      data.can = can;
+    }
+    return data;
   };
   const charactersData: CharacterData[] = await concurrently(tableData, getOneCharacter, 6);
   return {

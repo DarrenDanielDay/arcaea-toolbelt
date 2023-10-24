@@ -1,12 +1,12 @@
 import { SongData } from "../models/music-play";
 import {
   ChapterData,
-  CharacterData,
   MapPlatformData,
   NormalWorldMapData,
   PlatformType,
   RewardType,
 } from "../models/world-mode";
+import { CharacterData } from "../models/character";
 import { arcaeaCNClient, findNextElWhere, findParentWhere, htmlDocument, initPageDocument, wikiURL } from "./wiki-util";
 
 const wikiLongtermWorldMapTable = wikiURL("世界模式地图详表 (移动版常驻)");

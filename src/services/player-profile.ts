@@ -24,7 +24,7 @@ import { groupBy, indexBy, mapProps } from "../utils/collections";
 import { arcaeaReleaseTS, delay } from "../utils/time";
 import { sum } from "../utils/math";
 import { requestToPromise } from "../utils/indexed-db";
-import { isString } from "../utils/misc";
+import { isString, jsonModule } from "../utils/misc";
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
 
@@ -582,7 +582,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
 
   async #getV1Map() {
     if (!this.#v1Map) {
-      const v1Data = await import("../data/chart-data-legacy-1.json");
+      const v1Data = await jsonModule(import("../data/chart-data-legacy-1.json"));
       const v2Data = await this.chartService.getSongData();
       const validV2ChartIds = new Set(v2Data.flatMap((song) => song.charts.map((chart) => chart.id)));
       Object.assign({ validV2ChartIds });

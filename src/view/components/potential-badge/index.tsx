@@ -2,9 +2,9 @@ import { Attribute, AutoRender, Component, HyplateElement } from "hyplate";
 import type { GlobalAttributes, Signal } from "hyplate/types";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
-import { $AssetsService, AssetsService } from "../../../services/declarations";
-import { wikiPotientialBadges } from "../../../assets/potential-rating";
+import { $AssetsResolver, $AssetsService, AssetsResolver, AssetsService } from "../../../services/declarations";
 import { syncProps } from "../../../utils/component";
+import { AssetImage } from "../asset-image";
 
 export interface PotentialBadgeProps {
   potential?: number;
@@ -18,6 +18,8 @@ export
 class PotentialBadge extends HyplateElement<PotentialBadgeProps> {
   @Attribute("potential", Number)
   accessor potential!: Signal<number | undefined | null>;
+  @Inject($AssetsResolver)
+  accessor resolver!: AssetsResolver;
   @Inject($AssetsService)
   accessor assets!: AssetsService;
 
@@ -27,10 +29,10 @@ class PotentialBadge extends HyplateElement<PotentialBadgeProps> {
       <AutoRender>
         {() => {
           const potential = this.potential();
-          const index = this.#getPotentialIndex(potential);
+          const rating = this.#getPotentialRating(potential);
           return (
             <>
-              <img src={wikiPotientialBadges.at(index)}></img>
+              <AssetImage noLoading src={this.assets.getAssets(this.resolver.resolvePotentialBadge(rating))}></AssetImage>
               <div class="potential">
                 {potential == null || potential < 0 ? (
                   <span class="off">-</span>
@@ -50,7 +52,7 @@ class PotentialBadge extends HyplateElement<PotentialBadgeProps> {
     );
   }
 
-  #getPotentialIndex(potential: number | undefined | null): number {
+  #getPotentialRating(potential: number | undefined | null): number {
     if (potential == null || potential < 0) {
       return -1;
     }

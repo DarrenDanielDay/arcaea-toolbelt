@@ -1,5 +1,4 @@
 import { Injectable } from "classic-di";
-import { Song, ClearRank, Grade, Chart } from "../models/music-play";
 import {
   $AssetsResolver,
   $AssetsService,
@@ -28,20 +27,15 @@ export class AssetsServiceImpl implements AssetsService {
     this.#migrate();
   }
 
-  async getCover(chart: Chart, song: Song, hd: boolean): Promise<string> {
-    return this.#cachedFetch(this.resolver.resolveCover(chart, song, hd));
-  }
-
-  async getUnknownCover(): Promise<string> {
-    return this.#cachedFetch(this.resolver.resolveUnknownCover());
-  }
-
-  async getClearImg(clearType: ClearRank): Promise<string> {
-    return this.#cachedFetch(this.resolver.resolveClearImg(clearType));
-  }
-
-  async getGradeImg(scoreRank: Grade): Promise<string> {
-    return this.#cachedFetch(this.resolver.resolveGradeImg(scoreRank));
+  async getAssets(url: string | URL, noCache?: boolean): Promise<string> {
+    await this.#migrated.promise;
+    const memoryCache = this.#cache;
+    const key = url.toString();
+    const cached = memoryCache[key];
+    if (cached) return cached;
+    const req = await (noCache ? fetch(url) : this.#client.fetch(url));
+    const blob = await req.blob();
+    return (memoryCache[key] = URL.createObjectURL(blob));
   }
 
   cacheUsage(): Promise<number> {
@@ -50,17 +44,12 @@ export class AssetsServiceImpl implements AssetsService {
 
   async clearCache(): Promise<void> {
     await this.#client.clear();
-  }
-
-  async #cachedFetch(url: string | URL) {
-    await this.#migrated.promise;
-    const cache = this.#cache;
-    const key = url.toString();
-    const cached = cache[key];
-    if (cached) return cached;
-    const req = await this.#client.fetch(url);
-    const blob = await req.blob();
-    return (cache[key] = URL.createObjectURL(blob));
+    const memoryCache = this.#cache;
+    for (const url of Object.keys(memoryCache)) {
+      const objURL = memoryCache[url]!;
+      URL.revokeObjectURL(objURL);
+      delete memoryCache[url];
+    }
   }
 
   async #migrate() {

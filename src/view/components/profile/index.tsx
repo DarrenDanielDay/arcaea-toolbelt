@@ -311,10 +311,8 @@ class ProfilePage extends HyplateElement {
       const ptt = +data.get("potential")!;
       if (!isNaN(ptt)) {
         await this.profileService.createOrUpdateProfile(username, ptt);
-        if (!(await this.profileService.getProfile())) {
-          await this.profileService.useProfile(username);
-          this.updateGreet();
-        }
+        await this.profileService.useProfile(username);
+        await this.updateGreet();
       }
     });
   };

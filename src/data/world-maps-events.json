@@ -458,6 +458,7 @@
   },
   {
     "id": "限时：Metallic_Punisher",
+    "expire": 1699282800000,
     "platforms": [
       {
         "length": 27
@@ -23177,6 +23178,7 @@
   },
   {
     "id": "限时：Crimson_Throne",
+    "expire": 1699282800000,
     "platforms": [
       {
         "length": 20

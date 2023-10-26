@@ -4,10 +4,11 @@ import type { Signal } from "hyplate/types";
 import { computed, signal } from "hyplate";
 import { clone, once } from "../utils/misc";
 import { openDB, requestToPromise, transactionToPromise } from "../utils/indexed-db";
+import { getUserTheme } from "../utils/theme";
 
 const defaultPreference: Preference = {
   // 默认跟随系统的偏好主题
-  theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
+  theme: getUserTheme(),
 };
 
 interface PreferenceConfig {

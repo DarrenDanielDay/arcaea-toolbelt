@@ -86,7 +86,11 @@ class About extends HyplateElement {
           <a target="_blank" href={meta.apk}>
             下载链接
           </a>{" "}
-          <a target="_blank" href="https://webapi.lowiro.com/webapi/serve/static/bin/arcaea/apk">
+          <a
+            target="_blank"
+            href="https://webapi.lowiro.com/webapi/serve/static/bin/arcaea/apk"
+            referrerpolicy="no-referrer"
+          >
             获取最新版本
           </a>
         </p>

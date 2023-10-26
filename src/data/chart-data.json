@@ -2791,8 +2791,8 @@
     "id": "cyanine",
     "name": "cyanine",
     "covers": [
-      "base.jpg",
-      "base_256.jpg"
+      "1080_base.jpg",
+      "1080_base_256.jpg"
     ],
     "pack": "Lanota",
     "dl": true,
@@ -2834,8 +2834,8 @@
     "id": "dreamgoeson",
     "name": "Dream goes on",
     "covers": [
-      "base.jpg",
-      "base_256.jpg"
+      "1080_base.jpg",
+      "1080_base_256.jpg"
     ],
     "pack": "Lanota",
     "dl": true,
@@ -2876,8 +2876,8 @@
     "id": "journey",
     "name": "Journey",
     "covers": [
-      "base.jpg",
-      "base_256.jpg"
+      "1080_base.jpg",
+      "1080_base_256.jpg"
     ],
     "pack": "Lanota",
     "dl": true,
@@ -2917,8 +2917,8 @@
     "id": "specta",
     "name": "Specta",
     "covers": [
-      "base.jpg",
-      "base_256.jpg"
+      "1080_base.jpg",
+      "1080_base_256.jpg"
     ],
     "pack": "Lanota",
     "dl": true,
@@ -15135,6 +15135,160 @@
         "level": 11,
         "note": 1444,
         "songId": "arghena"
+      }
+    ]
+  },
+  {
+    "bpm": "170",
+    "id": "fantasy",
+    "name": "FANTA5Y",
+    "covers": [
+      "1080_base.jpg",
+      "1080_base_256.jpg"
+    ],
+    "pack": "World Extend",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "fantasy@pst",
+        "level": 3,
+        "note": 536,
+        "songId": "fantasy"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "fantasy@prs",
+        "level": 6,
+        "note": 715,
+        "songId": "fantasy"
+      },
+      {
+        "constant": 9.4,
+        "difficulty": "ftr",
+        "id": "fantasy@ftr",
+        "level": 9,
+        "note": 965,
+        "songId": "fantasy"
+      }
+    ]
+  },
+  {
+    "bpm": "115-132",
+    "id": "transientspace",
+    "name": "Transient Space",
+    "covers": [
+      "1080_base.jpg",
+      "1080_base_256.jpg"
+    ],
+    "pack": "Lasting Eden - Shifting Veil",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 2.5,
+        "difficulty": "pst",
+        "id": "transientspace@pst",
+        "level": 2,
+        "note": 419,
+        "songId": "transientspace"
+      },
+      {
+        "constant": 6.5,
+        "difficulty": "prs",
+        "id": "transientspace@prs",
+        "level": 6,
+        "note": 607,
+        "songId": "transientspace"
+      },
+      {
+        "constant": 9.5,
+        "difficulty": "ftr",
+        "id": "transientspace@ftr",
+        "level": 9,
+        "note": 805,
+        "songId": "transientspace"
+      }
+    ]
+  },
+  {
+    "bpm": "200",
+    "id": "namelesspassion",
+    "name": "Nameless Passion",
+    "covers": [
+      "1080_base.jpg",
+      "1080_base_256.jpg"
+    ],
+    "pack": "Lasting Eden - Shifting Veil",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 3,
+        "difficulty": "pst",
+        "id": "namelesspassion@pst",
+        "level": 3,
+        "note": 681,
+        "songId": "namelesspassion"
+      },
+      {
+        "constant": 7,
+        "difficulty": "prs",
+        "id": "namelesspassion@prs",
+        "level": 7,
+        "note": 890,
+        "songId": "namelesspassion"
+      },
+      {
+        "constant": 9.9,
+        "difficulty": "ftr",
+        "id": "namelesspassion@ftr",
+        "level": 9,
+        "note": 1223,
+        "songId": "namelesspassion",
+        "plus": true
+      }
+    ]
+  },
+  {
+    "bpm": "154",
+    "id": "teravolt",
+    "name": "TeraVolt",
+    "covers": [
+      "1080_base.jpg",
+      "1080_base_256.jpg"
+    ],
+    "pack": "Lasting Eden - Shifting Veil",
+    "dl": true,
+    "alias": [],
+    "charts": [
+      {
+        "constant": 5,
+        "difficulty": "pst",
+        "id": "teravolt@pst",
+        "level": 5,
+        "note": 675,
+        "songId": "teravolt"
+      },
+      {
+        "constant": 8.4,
+        "difficulty": "prs",
+        "id": "teravolt@prs",
+        "level": 8,
+        "note": 804,
+        "songId": "teravolt"
+      },
+      {
+        "constant": 10.9,
+        "difficulty": "ftr",
+        "id": "teravolt@ftr",
+        "level": 10,
+        "note": 1008,
+        "songId": "teravolt",
+        "plus": true
       }
     ]
   }

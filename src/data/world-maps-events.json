@@ -458,7 +458,6 @@
   },
   {
     "id": "限时：Metallic_Punisher",
-    "expire": 1699282800000,
     "platforms": [
       {
         "length": 27
@@ -1243,7 +1242,8 @@
           "count": 4
         }
       }
-    ]
+    ],
+    "expire": 1699282800000
   },
   {
     "id": "限时：carmine:scythe",
@@ -23178,7 +23178,6 @@
   },
   {
     "id": "限时：Crimson_Throne",
-    "expire": 1699282800000,
     "platforms": [
       {
         "length": 20
@@ -23577,7 +23576,8 @@
           "count": 20
         }
       }
-    ]
+    ],
+    "expire": 1699282800000
   },
   {
     "id": "限时：CHUNITHM_7",
@@ -26740,5 +26740,211 @@
       }
     ],
     "expire": 1697036400000
+  },
+  {
+    "id": "限时：FANTA5Y",
+    "platforms": [
+      {
+        "length": 5
+      },
+      {
+        "length": 15,
+        "special": {
+          "type": 2,
+          "range": [
+            "FANTA5Y",
+            "FREEF4LL",
+            "DataErr0r",
+            "Dream goes on",
+            "Dreamin' Attraction!!",
+            "Solitary Dream",
+            "To the Furthest Dream"
+          ]
+        }
+      },
+      {
+        "length": 25
+      },
+      {
+        "length": 35
+      },
+      {
+        "length": 5,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 555
+        }
+      },
+      {
+        "length": 15
+      },
+      {
+        "length": 25
+      },
+      {
+        "length": 35
+      },
+      {
+        "length": 5
+      },
+      {
+        "length": 15,
+        "special": {
+          "type": 2,
+          "range": [
+            "FANTA5Y",
+            "FREEF4LL",
+            "DataErr0r",
+            "Dream goes on",
+            "Dreamin' Attraction!!",
+            "Solitary Dream",
+            "To the Furthest Dream"
+          ]
+        }
+      },
+      {
+        "length": 25
+      },
+      {
+        "length": 35
+      },
+      {
+        "length": 5,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 3
+        }
+      },
+      {
+        "length": 15
+      },
+      {
+        "length": 25
+      },
+      {
+        "length": 35
+      },
+      {
+        "length": 5
+      },
+      {
+        "length": 15,
+        "special": {
+          "type": 2,
+          "range": [
+            "FANTA5Y",
+            "FREEF4LL",
+            "DataErr0r",
+            "Dream goes on",
+            "Dreamin' Attraction!!",
+            "Solitary Dream",
+            "To the Furthest Dream"
+          ]
+        }
+      },
+      {
+        "length": 25
+      },
+      {
+        "length": 35
+      },
+      {
+        "length": 5,
+        "reward": {
+          "type": 1,
+          "id": "fantasy"
+        }
+      },
+      {
+        "length": 15,
+        "special": {
+          "type": 2,
+          "range": [
+            "FANTA5Y",
+            "FREEF4LL",
+            "DataErr0r",
+            "Dream goes on",
+            "Dreamin' Attraction!!",
+            "Solitary Dream",
+            "To the Furthest Dream"
+          ]
+        }
+      },
+      {
+        "length": 25
+      },
+      {
+        "length": 35
+      },
+      {
+        "length": 45
+      },
+      {
+        "length": 55,
+        "reward": {
+          "type": 0,
+          "name": "残片",
+          "count": 555
+        }
+      },
+      {
+        "length": 55,
+        "reward": {
+          "type": 0,
+          "name": "以太之滴",
+          "count": 1
+        }
+      },
+      {
+        "length": 45
+      },
+      {
+        "length": 35
+      },
+      {
+        "length": 25
+      },
+      {
+        "length": 15,
+        "special": {
+          "type": 2,
+          "range": [
+            "FANTA5Y",
+            "FREEF4LL",
+            "DataErr0r",
+            "Dream goes on",
+            "Dreamin' Attraction!!",
+            "Solitary Dream",
+            "To the Furthest Dream"
+          ]
+        }
+      },
+      {
+        "length": 5,
+        "special": {
+          "type": 3,
+          "range": [
+            "FANTA5Y",
+            "FREEF4LL",
+            "DataErr0r",
+            "Dream goes on",
+            "Dreamin' Attraction!!",
+            "Solitary Dream",
+            "To the Furthest Dream"
+          ]
+        }
+      },
+      {
+        "length": 0,
+        "reward": {
+          "type": 0,
+          "name": "次元结晶",
+          "count": 1
+        }
+      }
+    ],
+    "expire": 1699542000000
   }
 ]

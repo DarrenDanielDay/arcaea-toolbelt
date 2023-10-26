@@ -6460,5 +6460,77 @@
       },
       null
     ]
+  },
+  {
+    "id": "fantasy",
+    "charts": [
+      {
+        "notes": 536,
+        "constant": 3
+      },
+      {
+        "notes": 715,
+        "constant": 6.5
+      },
+      {
+        "notes": 965,
+        "constant": 9.4
+      },
+      null
+    ]
+  },
+  {
+    "id": "transientspace",
+    "charts": [
+      {
+        "notes": 419,
+        "constant": 2.5
+      },
+      {
+        "notes": 607,
+        "constant": 6.5
+      },
+      {
+        "notes": 805,
+        "constant": 9.5
+      },
+      null
+    ]
+  },
+  {
+    "id": "namelesspassion",
+    "charts": [
+      {
+        "notes": 681,
+        "constant": 3
+      },
+      {
+        "notes": 890,
+        "constant": 7
+      },
+      {
+        "notes": 1223,
+        "constant": 9.9
+      },
+      null
+    ]
+  },
+  {
+    "id": "teravolt",
+    "charts": [
+      {
+        "notes": 675,
+        "constant": 5
+      },
+      {
+        "notes": 804,
+        "constant": 8.4
+      },
+      {
+        "notes": 1008,
+        "constant": 10.9
+      },
+      null
+    ]
   }
 ]

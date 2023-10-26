@@ -468,29 +468,29 @@
   {
     "id": "cyanine",
     "covers": [
-      "base.jpg",
-      "base_256.jpg"
+      "1080_base.jpg",
+      "1080_base_256.jpg"
     ]
   },
   {
     "id": "dreamgoeson",
     "covers": [
-      "base.jpg",
-      "base_256.jpg"
+      "1080_base.jpg",
+      "1080_base_256.jpg"
     ]
   },
   {
     "id": "journey",
     "covers": [
-      "base.jpg",
-      "base_256.jpg"
+      "1080_base.jpg",
+      "1080_base_256.jpg"
     ]
   },
   {
     "id": "specta",
     "covers": [
-      "base.jpg",
-      "base_256.jpg"
+      "1080_base.jpg",
+      "1080_base_256.jpg"
     ]
   },
   {
@@ -2553,6 +2553,34 @@
   },
   {
     "id": "arghena",
+    "covers": [
+      "1080_base.jpg",
+      "1080_base_256.jpg"
+    ]
+  },
+  {
+    "id": "fantasy",
+    "covers": [
+      "1080_base.jpg",
+      "1080_base_256.jpg"
+    ]
+  },
+  {
+    "id": "transientspace",
+    "covers": [
+      "1080_base.jpg",
+      "1080_base_256.jpg"
+    ]
+  },
+  {
+    "id": "namelesspassion",
+    "covers": [
+      "1080_base.jpg",
+      "1080_base_256.jpg"
+    ]
+  },
+  {
+    "id": "teravolt",
     "covers": [
       "1080_base.jpg",
       "1080_base_256.jpg"

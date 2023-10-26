@@ -61,7 +61,7 @@
     "bootstrap-icons": "^1.11.1",
     "classic-di": "^0.3.0",
     "html2canvas": "^1.4.1",
-    "hyplate": "^0.19.3",
+    "hyplate": "^0.19.4",
     "sheetly": "^0.5.0",
     "sql.js": "^1.8.0",
     "tslib": "^2.6.2"

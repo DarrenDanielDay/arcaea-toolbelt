@@ -50,6 +50,27 @@
     <p>
       其实这才是用模拟器最主要的点，一般安卓设备出厂都是没有Root的，如果有刷过Root的手机，不用模拟器也可以用同样的方法拿到存档文件。
     </p>
+    <p>
+      开启了Root权限以后，你可以使用任何能够管理根目录的文件管理类App找到<code>st3</code>文件，位置是<code>/data/data/moe.low.arc/files/st3</code>，然后将它复制到MuMu共享文件夹，从而在电脑上拿到它。具体可参考官方说明：
+      <a target="_blank" referrerpolicy="no-referrer" href="https://mumu.163.com/2017/06/20/25905_696022.html">
+        https://mumu.163.com/2017/06/20/25905_696022.html
+      </a>
+      。
+    </p>
+    <p>
+      这里也推荐一个开源免费的文件管理App：质感文件
+      <a
+        target="_blank"
+        href="https://blog.dun.im/anonymous/materiai-fiies-material-design-file-manager-for-android.html"
+        referrerpolicy="no-referrer"
+      >
+        https://blog.dun.im/anonymous/materiai-fiies-material-design-file-manager-for-android.html
+      </a>
+      。
+    </p>
+    <p>
+      后面的操作步骤都是为了将复制文件的操作用批处理脚本自动化，方便以后拉取最新的<code>st3</code>的操作。如果在后面的自动化步骤碰到不好解决的问题，可以手动复制<code>st3</code>文件。
+    </p>
     <h3 id="confirm-port">5. 确认端口</h3>
     <p>打开MuMu多开器，记一下模拟器用的adb端口号（这里是16384）。</p>
     <div class="imgs">
@@ -57,7 +78,7 @@
     </div>
     <h3 id="exec">6. 执行adb命令</h3>
     <p>
-      做安卓的同学应该比较熟悉adb，这里用的是MuMu模拟器安装后自带的adb。以root权限使用adb能够直接导出安卓文件系统内部的文件，我们需要的存档文件位置是<code>/data/data/moe.low.arc/files/st3</code>。这里提供两种操作方法。
+      做安卓的同学应该比较熟悉adb，这里用的是MuMu模拟器安装后自带的adb。以root权限使用adb能够直接导出安卓文件系统内部的文件。这里提供两种操作方法。
     </p>
     <p>
       方法一：输入以下参数来直接生成带有完整命令的bat脚本，下载后直接双击运行即可，运行成功后即可在导出文件夹内找到st3存档文件。可以多次执行脚本，每次执行都会导出并覆盖原有文件。
@@ -119,7 +140,8 @@
       >支持通过<code>st3</code>存档导入成绩并计算<code>b30</code>。
     </p>
     <p>
-      此外还推荐一个<code>sqlite</code>数据库可视化工具<a href="https://www.sqlitestudio.pl/" target="_blank">SQLiteStudio</a
+      此外还推荐一个<code>sqlite</code>数据库可视化工具<a href="https://www.sqlitestudio.pl/" target="_blank"
+        >SQLiteStudio</a
       >，有兴趣可以尝试一下。
     </p>
   </main>

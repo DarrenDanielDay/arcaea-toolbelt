@@ -81,3 +81,4 @@ export function apkName(version: string) {
 export const CACHE_EXPIRE_TIME = 24 * 60 * 60 * 1000;
 
 export const miscDataClient = new CachedHttpGetClient("misc-data");
+Object.assign(window, { miscDataClient });

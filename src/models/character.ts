@@ -17,17 +17,17 @@ export interface CharacterData {
   can?: {
     awake?: boolean;
     lost?: boolean;
-  }
-  levels: { [level: number]: CharacterFactors | undefined | null; };
+  };
+  levels: { [level: number]: CharacterFactors | undefined | null };
 }
 
 export enum CharacterStatus {
-  Initial = '',
-  Awaken = 'u',
+  Initial = "",
+  Awaken = "u",
   /**
    * 对立、摩耶丢失的特殊状态
    */
-  Lost = 'l',
+  Lost = "l",
 }
 
 export interface CharacterIndex {

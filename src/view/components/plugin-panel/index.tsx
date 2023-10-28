@@ -168,7 +168,7 @@ class ToolPanel extends HyplateElement {
                     </div>
                   </div>
                   <header>
-                    <h2>最近游玩</h2>
+                    <h2>好友最近游玩</h2>
                   </header>
                   <div class="my-1">
                     <button
@@ -267,8 +267,14 @@ class ToolPanel extends HyplateElement {
                     </button>
                   </div>
                   <header>
-                    <h2>查分</h2>
+                    <h2>查分（需订阅）</h2>
                   </header>
+                  <div>
+                    <p style:color="var(--bs-danger)">
+                      注意！此查分功能的原理和查分bot一样，是遍历查询好友榜，需要大量调用Web
+                      API，可能导致被shadowban甚至封号，请谨慎使用（如想尝试建议用小号）！
+                    </p>
+                  </div>
                   <div>
                     <form>
                       <div class="row">

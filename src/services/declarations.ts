@@ -7,6 +7,7 @@ import {
   NoteResult,
   PartnerClearRank,
   PlayResult,
+  Rating,
   ScoreResult,
   Song,
   SongData,
@@ -95,6 +96,7 @@ export type ChartDifficultyStatistics = Record<Difficulty, DifficultyStatistics>
 
 export interface ChartStatistics {
   difficulties: ChartDifficultyStatistics;
+  ratings: Rating[];
   maximumConstant: number;
   minimumConstant: number;
 }
@@ -153,15 +155,15 @@ export interface ImportResult {
   skipped: string[];
 }
 
-export interface ScoreStatistics {
+export interface BestStatisticsQuery {
   /**
-   * 各个难度分层的统计信息
+   * 标级
    */
-  difficulties: Record<Difficulty, BestStatistics>;
+  rating?: Rating;
   /**
-   * 整体统计信息
+   * 难度
    */
-  general: BestStatistics;
+  difficulty?: Difficulty;
 }
 
 export interface BestStatistics {
@@ -222,7 +224,7 @@ export interface ProfileService {
   deleteProfile(username: string): Promise<void>;
   b30(profile: Profile, options?: Partial<B30Options>): Promise<B30Response>;
   generateMaxProfile(): Promise<Profile>;
-  getProfileStatistics(profile: Profile): Promise<ScoreStatistics>;
+  getProfileStatistics(profile: Profile, query?: BestStatisticsQuery): Promise<BestStatistics>;
 }
 
 export interface MapDistance {

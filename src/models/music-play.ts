@@ -41,16 +41,31 @@ export interface ChartOverride {
   cover?: boolean;
 }
 
-export interface Chart {
+export interface Rating {
+  level: number;
+  plus?: boolean;
+}
+
+export interface Chart extends Rating {
   // 原来的基于wiki链接的id改为游戏内id
   id: string;
   songId: string;
   difficulty: Difficulty;
   constant: number;
-  level: number;
-  plus?: boolean;
   note: number;
   override?: ChartOverride;
+}
+
+export const formatRating = (rating: Rating): string => `${rating.level}${rating.plus ? "+" : ""}`;
+
+export const parseRating = (text: string): Rating => ({
+  level: parseInt(text),
+  plus: text.includes("+"),
+});
+
+export const compareRating = (a: Rating, b: Rating) => {
+  if (a.level !== b.level) return a.level - b.level;
+  return (+!!a.plus - +!!b.plus);
 }
 
 export interface SongData extends Song {

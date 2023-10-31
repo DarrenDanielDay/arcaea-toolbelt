@@ -1,4 +1,4 @@
-import { Chart, Difficulty, Song, SongData, SongIndex, difficulties } from "../models/music-play";
+import { Chart, Difficulty, Song, SongData, SongIndex, compareRating, difficulties } from "../models/music-play";
 import { searchMatch } from "../utils/string";
 import {
   $ChartService,
@@ -48,8 +48,11 @@ export class ChartServiceImpl implements ChartService {
     }, {} as ChartDifficultyStatistics);
     let maximumConstant = -Infinity,
       minimumConstant = Infinity;
+    const levels = new Map<number, Set<boolean>>();
     for (const song of songs) {
       for (const chart of song.charts) {
+        const { level, plus } = chart;
+        levels.set(level, (levels.get(level) ?? new Set()).add(!!plus));
         const stat = statistics[chart.difficulty];
         stat.count++;
         stat.notes += chart.note;
@@ -59,6 +62,9 @@ export class ChartServiceImpl implements ChartService {
     }
     return {
       difficulties: statistics,
+      ratings: [...levels]
+        .flatMap(([level, plusSet]) => [...plusSet].map((plus) => ({ level, plus })))
+        .sort(compareRating),
       maximumConstant,
       minimumConstant,
     };

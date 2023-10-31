@@ -2,20 +2,22 @@ import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
 import {
+  $ChartService,
   $MusicPlayService,
   $ProfileService,
   BestStatistics,
+  ChartService,
   MusicPlayService,
   ProfileService,
 } from "../../../services/declarations";
 import { FancyDialog, alert, confirm } from "../fancy-dialog";
-import { AutoRender, Component, Future, HyplateElement, computed, element, nil, signal } from "hyplate";
+import { AutoRender, Component, Future, HyplateElement, computed, effect, element, nil, signal } from "hyplate";
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/time";
 import { clearImages } from "../../../assets/play-result";
 import type { FC } from "hyplate/types";
-import { Difficulty } from "../../../models/music-play";
+import { Difficulty, formatRating, parseRating } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
 import { RouteLink } from "../route-link";
 ~RouteLink;
@@ -27,6 +29,8 @@ export
 class ProfilePage extends HyplateElement {
   @Inject($ProfileService)
   accessor profileService!: ProfileService;
+  @Inject($ChartService)
+  accessor chart!: ChartService;
   @Inject($MusicPlayService)
   accessor musicPlay!: MusicPlayService;
 
@@ -402,7 +406,7 @@ class ProfilePage extends HyplateElement {
   }
 
   async showProfileStats(profile: Profile) {
-    const stats = await this.profileService.getProfileStatistics(profile);
+    const { ratings } = await this.chart.getStatistics();
     const Desc: FC<{ label: string; content: string | number; style?: string }> = ({ label, content, style }) => {
       return (
         <div class="row" style={style ?? null}>
@@ -455,9 +459,23 @@ class ProfilePage extends HyplateElement {
       );
     };
     const currentDifficulty = signal<TabDifficulty>(Difficulty.Future);
+    const currentRating = signal("");
+    const currentStats = signal<BestStatistics | null>(null);
     const showPotential = signal(true);
+    const cleanup = effect(() => {
+      const difficulty = currentDifficulty() || undefined;
+      const rating = currentRating();
+      this.profileService
+        .getProfileStatistics(profile, {
+          difficulty,
+          rating: rating ? parseRating(rating) : void 0,
+        })
+        .then((stas) => {
+          currentStats.set(stas);
+        });
+    });
     const { potential, username } = profile;
-    this.profileStats.showAlert(
+    await this.profileStats.showAlert(
       <div slot="content">
         <h2>存档统计</h2>
         <div class="user">
@@ -473,14 +491,25 @@ class ProfilePage extends HyplateElement {
             <Tab difficulty={difficulty}></Tab>
           ))}
         </div>
+        <div class="input-group mb-3">
+          <label for="rating" class="input-group-text">
+            等级
+          </label>
+          <select h-model={currentRating} class="form-select" name="rating" id="rating">
+            <option value="">全部</option>
+            {ratings.map((rating) => {
+              const ratingText = formatRating(rating);
+              return <option value={ratingText}>{ratingText}</option>;
+            })}
+          </select>
+        </div>
         <div style="height: 200px; width: 300px;">
           <AutoRender>
             {() => {
-              const difficulty = currentDifficulty();
-              if (!difficulty) {
-                return <Stat stat={stats.general}></Stat>;
+              const stat = currentStats();
+              if (!stat) {
+                return nil;
               }
-              const stat = stats.difficulties[difficulty];
               return <Stat stat={stat}></Stat>;
             }}
           </AutoRender>
@@ -488,6 +517,7 @@ class ProfilePage extends HyplateElement {
       </div>,
       true
     );
+    cleanup();
   }
 
   async deleteProfile(profile: Profile) {

@@ -12,12 +12,12 @@ import {
   AppDatabaseContext,
   B30Options,
   BestStatistics,
+  BestStatisticsQuery,
   ChartService,
   ImportResult,
   MusicPlayService,
   ProfileService,
   ReportProgress,
-  ScoreStatistics,
 } from "./declarations";
 import { Injectable } from "classic-di";
 import { groupBy, indexBy, mapProps } from "../utils/collections";
@@ -371,7 +371,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     return result;
   }
 
-  async getProfileStatistics(profile: Profile): Promise<ScoreStatistics> {
+  async getProfileStatistics(profile: Profile, query?: BestStatisticsQuery): Promise<BestStatistics> {
     const byRecords = (records: PlayResult[]): BestStatistics => {
       let total = records.length,
         clear = 0,
@@ -440,14 +440,25 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       (chart) => chart.id
     );
     const all = Object.values(profile.best);
-    const groupByDifficulty = groupBy(all, (res) => charts[res.chartId]!.difficulty);
-    for (const difficulty of difficulties) {
-      groupByDifficulty[difficulty] ??= [];
-    }
-    return {
-      difficulties: mapProps(groupByDifficulty, byRecords),
-      general: byRecords(all),
-    };
+    const filteredResults = all.filter(result => {
+      if (!query) {
+        return true;
+      }
+      const chart = charts[result.chartId]!;
+      const { rating, difficulty } = query;
+      if (difficulty) {
+        if (chart.difficulty !== difficulty) {
+          return false;
+        }
+      }
+      if (rating) {
+        if (chart.level !== rating.level || !!chart.plus !== !!rating.plus) {
+          return false
+        }
+      }
+      return true;
+    });
+    return byRecords(filteredResults);
   }
 
   private createEmptyProfile(username: string): Profile {

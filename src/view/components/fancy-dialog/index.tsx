@@ -34,17 +34,22 @@ class FancyDialog extends HyplateElement {
     if (useSlot) {
       this.#renderedSlot = mount(<>{message}</>, this);
     }
-    this.content.set(
-      <div class="modal-root" part="modal-root">
-        <div class="modal-content mb-3">{useSlot ? <slot name="content"></slot> : message}</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onClick={() => this.dialog.close()}>
-            确认
-          </button>
+    return new Promise<void>((resolve) => {
+      this.content.set(
+        <div class="modal-root" part="modal-root">
+          <div class="modal-content mb-3">{useSlot ? <slot name="content"></slot> : message}</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onClick={() => {
+              this.dialog.close();
+              resolve();
+            }}>
+              确认
+            </button>
+          </div>
         </div>
-      </div>
-    );
-    this.dialog.showModal();
+      );
+      this.dialog.showModal();
+    });
   }
 
   done = () => this.dialog.close("confirm");

@@ -11,14 +11,30 @@ import { Chart, Song, ClearRank, Grade, difficultyIndexes } from "../models/musi
 import { CharacterImage, CharacterImageKind, CharacterStatus } from "../models/character";
 import { Signal } from "hyplate/types";
 import { subscribe } from "hyplate";
+const proxyBase = "https://ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
+const directBase = "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/";
+@Injectable({
+  implements: $AssetsResolverStrategy,
+  requires: [$PreferenceService],
+})
+export class DefaultAssetsResolverStrategy implements AssetsResolverStrategy {
+  base(): string {
+    return directBase;
+  }
+  get usingProxy(): Signal<boolean> {
+    throw new Error("Method not implemented.");
+  };
+  useProxy(proxy: boolean): void {
+    throw new Error("Method not implemented.");
+  }
+
+}
 
 @Injectable({
   implements: $AssetsResolverStrategy,
   requires: [$PreferenceService],
 })
 export class AssetsResolverStrategyImpl implements AssetsResolverStrategy {
-  proxyBase = "https://ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
-  directBase = "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/";
   usingProxy: Signal<boolean>;
   deferredUsingProxy = false;
   constructor(private readonly preference: PreferenceService) {
@@ -28,7 +44,7 @@ export class AssetsResolverStrategyImpl implements AssetsResolverStrategy {
     })
   }
   base(): string {
-    return this.deferredUsingProxy ? this.proxyBase : this.directBase;
+    return this.deferredUsingProxy ? proxyBase : directBase;
   }
   useProxy(proxy: boolean): void {
     this.preference.update({

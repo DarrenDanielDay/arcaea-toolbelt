@@ -5,7 +5,7 @@ type SVGIconProps = JSX.JSXAttributes<SVGSVGElementAttributes, SVGSVGElement> & 
   src: string;
 };
 
-const memorySVGCache = new Map<string, SVGSVGElement>();
+const memorySVGCache = new Map<string, Promise<SVGSVGElement>>();
 
 const fetchSVG = async (src: string) => {
   const response = await fetch(src);
@@ -21,10 +21,11 @@ const fetchSVG = async (src: string) => {
 const getSVG = async (src: string) => {
   const cached = memorySVGCache.get(src);
   if (cached) {
-    return clone(cached);
+    return clone(await cached);
   }
-  const newEl = await fetchSVG(src);
-  memorySVGCache.set(src, newEl);
+  const promise = fetchSVG(src);
+  memorySVGCache.set(src, promise);
+  const newEl = await promise;
   return newEl;
 };
 

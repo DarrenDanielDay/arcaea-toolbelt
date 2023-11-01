@@ -83,6 +83,7 @@ export class ChartServiceImpl implements ChartService {
           if (match != null) {
             matches.push({
               song,
+              bpm: this.getBPM(chart, song),
               constant: chart.constant,
               cover: this.getCover(chart, song),
               difficulty: chart.difficulty,
@@ -115,6 +116,7 @@ export class ChartServiceImpl implements ChartService {
       });
     return items.map((item) => ({
       song: item.song,
+      bpm: this.getBPM(item.chart, item.song),
       chart: item.chart,
       constant: item.chart.constant,
       cover: this.getCover(item.chart, item.song),
@@ -134,6 +136,10 @@ export class ChartServiceImpl implements ChartService {
 
   getName(chart: Chart, song: Song): string {
     return chart.override?.name ?? song.name;
+  }
+  
+  getBPM(chart: Chart, song: Song): string {
+    return chart.override?.bpm ?? song.bpm;
   }
 
   getCover(chart: Chart, song: Song): string {

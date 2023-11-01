@@ -2658,7 +2658,8 @@
         "songId": "redandblue",
         "override": {
           "cover": true,
-          "name": "Red and Blue and Green"
+          "name": "Red and Blue and Green",
+          "bpm": "160"
         }
       }
     ]
@@ -4096,7 +4097,8 @@
         "songId": "dropdead",
         "override": {
           "cover": true,
-          "name": "overdead."
+          "name": "overdead.",
+          "bpm": "500"
         }
       }
     ]

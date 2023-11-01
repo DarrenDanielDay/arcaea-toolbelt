@@ -37,7 +37,7 @@ export const ChartInfo: FC<{ song: Song; chart: Chart; chartService: ChartServic
             曲包：<span class="pack">{song.pack}</span>
           </div>
           <div>
-            bpm：<span class="bpm">{song.bpm}</span>
+            bpm：<span class="bpm">{chartService.getBPM(chart, song)}</span>
           </div>
           <div>
             note数：<span class="notes">{chart.note}</span>

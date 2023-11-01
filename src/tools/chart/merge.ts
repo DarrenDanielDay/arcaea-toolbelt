@@ -39,7 +39,7 @@ export function mergeIntoSongData(
         // Last | Eternity PST/PRS/FTR
         continue;
       }
-      const { ratingClass, rating, ratingPlus, jacketOverride, title_localized } = difficulty;
+      const { ratingClass, rating, ratingPlus, jacketOverride, title_localized, bpm } = difficulty;
       const extraData = extra?.charts[ratingClass];
       const chart: Chart = {
         constant: extraData?.constant ?? -1,
@@ -58,6 +58,9 @@ export function mergeIntoSongData(
       }
       if (title_localized) {
         override.name = title_localized.en;
+      }
+      if (bpm) {
+        override.bpm = bpm;
       }
       if (Object.keys(override).length) {
         chart.override = override;

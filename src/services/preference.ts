@@ -2,13 +2,14 @@ import { Injectable } from "classic-di";
 import { $Database, $PreferenceService, AppDatabaseContext, Preference, PreferenceService } from "./declarations";
 import type { Signal } from "hyplate/types";
 import { computed, signal } from "hyplate";
-import { clone, once } from "../utils/misc";
-import { openDB, requestToPromise, transactionToPromise } from "../utils/indexed-db";
+import { clone } from "../utils/misc";
+import { requestToPromise, transactionToPromise } from "../utils/indexed-db";
 import { getUserTheme } from "../utils/theme";
 
 const defaultPreference: Preference = {
   // 默认跟随系统的偏好主题
   theme: getUserTheme(),
+  ghproxy: false,
 };
 
 interface PreferenceConfig {
@@ -62,6 +63,7 @@ export class PreferenceServiceImpl implements PreferenceService {
   }
 
   signal<K extends keyof Preference>(name: K): Signal<Preference[K]> {
+    // @ts-expect-error key access does not match value
     const signal = (this.#computed[name] ??= computed(() => this.#preference()[name]));
     return signal;
   }

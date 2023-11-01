@@ -22,7 +22,17 @@ import { getAliasFromArcaeaInfinity } from "./chart/arcaea-infinity";
 import { Alias, AssetsInfo, ExtraSongData, mergeArray } from "./chart/shared";
 import { CharacterData } from "../models/character";
 
-const resolver = new AssetsResolverImpl();
+const resolver = new AssetsResolverImpl({
+  useProxy(proxy) {
+    throw new Error("should not use this");
+  },
+  base() {
+    return "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/";
+  },
+  get usingProxy(): never {
+    throw new Error("should not use this");
+  },
+});
 
 async function getSongList(): Promise<SongList> {
   const res = await miscDataClient.fetch(resolver.resolve(`songs/songlist`), CACHE_EXPIRE_TIME);

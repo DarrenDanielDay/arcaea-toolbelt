@@ -9,12 +9,18 @@
   flex-direction: column;
 }
 
-.pack-name, .notes {
+.pack-name,
+.notes {
   font-size: 8px;
 }
 
-.song-name, .constant {
+.song-name,
+.constant {
   font-weight: 600;
+}
+
+.alias {
+  font-size: 12px;
 }
 
 .notes {
@@ -34,6 +40,11 @@
   padding: 4px 8px;
   border-radius: 4px;
   text-align: left;
+}
+
+.bpm {
+  font-size: 10px;
+  text-align: center;
 }
 
 .cover {

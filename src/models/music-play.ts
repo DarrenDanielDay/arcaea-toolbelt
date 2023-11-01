@@ -39,6 +39,7 @@ export interface ChartOverride {
   url?: string;
   name?: string;
   cover?: boolean;
+  bpm?: string;
 }
 
 export interface Rating {

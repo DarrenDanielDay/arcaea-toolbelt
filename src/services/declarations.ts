@@ -43,12 +43,19 @@ export type ColorTheme = "dark" | "light";
 
 export interface Preference {
   theme: ColorTheme;
+  ghproxy: boolean;
 }
 
 export interface PreferenceService {
   get(): Promise<Preference>;
   update(patch: Partial<Preference>): Promise<void>;
   signal<K extends keyof Preference>(name: K): Signal<Preference[K]>;
+}
+
+export interface AssetsResolverStrategy {
+  base(): string;
+  readonly usingProxy: Signal<boolean>;
+  useProxy(proxy: boolean): void;
 }
 
 export interface AssetsResolver {
@@ -74,6 +81,7 @@ export interface AssetsService {
 export interface SearchResult {
   chart: Chart;
   song: Song;
+  bpm: string;
   sort: number;
   title: string;
   cover: string;
@@ -110,6 +118,7 @@ export interface ChartService {
   queryChartsByConstant(min: number, max: number): Promise<SearchResult[]>;
   roll(min: number, max: number): Promise<SearchResult | null>;
   getName(chart: Chart, song: Song): string;
+  getBPM(chart: Chart, song: Song): string;
   getCover(chart: Chart, song: Song): string;
 }
 
@@ -296,6 +305,7 @@ export interface CrossSiteScriptPluginService {
 
 export const $Database = token<AppDatabaseContext>("database");
 export const $PreferenceService = token<PreferenceService>("preference");
+export const $AssetsResolverStrategy = token<AssetsResolverStrategy>("assets-resolver-strategy");
 export const $AssetsResolver = token<AssetsResolver>("assets-resolver");
 export const $AssetsService = token<AssetsService>("assets");
 export const $CharacterService = token<CharacterService>("character");

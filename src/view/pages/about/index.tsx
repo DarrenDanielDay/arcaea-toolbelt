@@ -1,6 +1,6 @@
 import icon from "../../../favicon.ico";
 import meta from "../../../data/meta.json";
-import { Component, Future, HyplateElement } from "hyplate";
+import { Component, Future, HyplateElement, signal } from "hyplate";
 import { bootstrap } from "../../styles";
 import { Route } from "../router";
 import { Inject } from "../../../services/di";
@@ -15,6 +15,8 @@ import {
   MusicPlayStatistics,
   $AssetsService,
   AssetsService,
+  $AssetsResolverStrategy,
+  AssetsResolverStrategy,
 } from "../../../services/declarations";
 import { Best30YukiChan } from "../../components/b30-yukichan";
 import { FancyDialog, alert, confirm } from "../../components/fancy-dialog";
@@ -36,6 +38,8 @@ export const AboutRoute: Route = {
   styles: [bootstrap],
 })
 class About extends HyplateElement {
+  @Inject($AssetsResolverStrategy)
+  accessor assetsResolverStrategy!: AssetsResolverStrategy;
   @Inject($AssetsService)
   accessor assets!: AssetsService;
   @Inject($ChartService)
@@ -126,6 +130,24 @@ class About extends HyplateElement {
             <p>为了减少重复的图片下载带来的体验不佳问题，一些图片（主要是曲绘）会在下载后缓存在浏览器内。</p>
             <p>如果这些图片占用了过多的存储空间，您可以在此清空他们。本工具再次需要这些图片时，将会重新下载他们。</p>
           </help-tip>
+        </div>
+        <div class="form-check form-switch my-3">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="use-gh-proxy"
+            onChange={() => {
+              this.assetsResolverStrategy.useProxy(!this.assetsResolverStrategy.usingProxy());
+            }}
+            checked={this.assetsResolverStrategy.usingProxy}
+          />
+          <label class="form-check-label" for="use-gh-proxy">
+            使用ghproxy加速
+            <help-tip class="mx-2">
+              <p>代理内容主要是Arcaea相关图片资源，ghproxy代理不一定稳定，目前默认是github.io直接访问。</p>
+            </help-tip>
+          </label>
         </div>
         <h3>问题反馈</h3>
         <div>

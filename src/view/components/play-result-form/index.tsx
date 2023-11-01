@@ -1,3 +1,4 @@
+import beat from "bootstrap-icons/icons/music-note.svg";
 import { input } from "../../../utils/component";
 import { ResultCard } from "../result-card";
 import { SearchSelect } from "../search-select";
@@ -23,6 +24,7 @@ import { addSheet } from "sheetly";
 import { sheet } from "./style.css.js";
 import type { AttachFunc, Rendered } from "hyplate/types";
 import { getDateFromDatetimeLocal, getNow, setDateToDatetimeLocal } from "../../../utils/time";
+import { SVGIcon } from "../svg-icon";
 
 export
 @Component({
@@ -44,23 +46,38 @@ class PlayResultForm extends HyplateElement {
   playTime = input();
   card = new ResultCard();
   chartSelect = new SearchSelect<SearchResult>(
-    (result) => (
-      <>
-        <img class="cover" src={result.cover} loading="lazy" />
-        <div class="details">
-          <div class="column">
-            <span class="notes">{result.chart.note}</span>
-            <span class="constant" style={`background-color: var(--${result.difficulty})`}>
-              {result.constant.toFixed(1)}
-            </span>
+    (result) => {
+      const {
+        song: { alias, pack },
+        cover,
+        chart: { note },
+        constant,
+        bpm,
+        difficulty,
+        title,
+      } = result;
+      return (
+        <>
+          <img class="cover" src={cover} loading="lazy" />
+          <div class="details">
+            <div class="column">
+              <span class="notes">{note}</span>
+              <span class="constant" style={`background-color: var(--${difficulty})`}>
+                {constant.toFixed(1)}
+              </span>
+              <span class="bpm">
+                <SVGIcon src={beat} width="10" height="10" /> = {bpm}
+              </span>
+            </div>
+            <div class="column">
+              <span class="pack-name">{pack}</span>
+              <span class="song-name">{title}</span>
+              <span class="alias">{alias.join(" ")}</span>
+            </div>
           </div>
-          <div class="column">
-            <span class="pack-name">{result.song.pack}</span>
-            <span class="song-name">{result.title}</span>
-          </div>
-        </div>
-      </>
-    ),
+        </>
+      );
+    },
     async (text) => {
       const results = await this.chartService.searchChart(text);
       // 避免一次性加载过多图片

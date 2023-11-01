@@ -438,7 +438,7 @@ class ProfilePage extends HyplateElement {
         <Desc label="EX以上P率" content={percentage(stat.acc)}></Desc>,
         <Desc label="大P准度" content={percentage(stat.pacc)}></Desc>
       );
-      if (stat.rest <= 1e5) {
+      if (stat.rest <= 1e5 && stat.clear) {
         descriptsions.push(<Desc label="距游玩谱面全理论" content={stat.rest}></Desc>);
       }
       return <div>{descriptsions}</div>;

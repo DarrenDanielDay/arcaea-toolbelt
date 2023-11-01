@@ -16,26 +16,26 @@ const specialPlatformImages: Record<
 > = {
   [PlatformType.FixedSpeed]: {
     banner:
-      "https://wiki.arcaea.cn/images/thumb/a/ad/Step_banner_speedrestrict.png/125px-Step_banner_speedrestrict.png",
-    main: "https://wiki.arcaea.cn/images/thumb/8/8b/Step_tile_speedrestrict.png/81px-Step_tile_speedrestrict.png",
+      "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_banner_speedrestrict.png",
+    main: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile_speedrestrict.png",
   },
   [PlatformType.Random]: {
-    banner: "https://wiki.arcaea.cn/images/thumb/d/d2/Step_banner_random.png/125px-Step_banner_random.png",
-    main: "https://wiki.arcaea.cn/images/thumb/0/01/Step_tile_random.png/81px-Step_tile_random.png",
+    banner: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_banner_random.png",
+    main: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile_random.png",
   },
   [PlatformType.Restriction]: {
-    banner: "https://wiki.arcaea.cn/images/thumb/2/27/Step_banner_restrict.png/125px-Step_banner_restrict.png",
-    main: "https://wiki.arcaea.cn/images/thumb/4/41/Step_tile_restrict.png/81px-Step_tile_restrict.png",
+    banner: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_banner_restrict.png",
+    main: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile_restrict.png",
   },
   [PlatformType.Stamina]: {
-    banner: "https://wiki.arcaea.cn/images/thumb/8/8e/Step_banner_plusstamina.png/125px-Step_banner_plusstamina.png",
-    main: "https://wiki.arcaea.cn/images/thumb/b/bf/Step_tile_plusstamina.png/81px-Step_tile_plusstamina.png",
+    banner: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_banner_plusstamina.png",
+    main: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile_plusstamina.png",
   },
 };
 
-const defaultPlatformImage = "https://wiki.arcaea.cn/images/thumb/0/01/Step_tile.png/81px-Step_tile.png";
+const defaultPlatformImage = "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile.png";
 const currentPlatformImage =
-  "https://wiki.arcaea.cn/images/thumb/f/f7/Step_tile_current.png/81px-Step_tile_current.png";
+  "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile_current.png";
 
 interface PlatformContext {
   cell: HTMLDivElement;

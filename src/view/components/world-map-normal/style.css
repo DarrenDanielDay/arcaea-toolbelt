@@ -70,9 +70,11 @@
 
 .banner {
   position: absolute;
+  width: 120px;
   top: 0;
   left: 0;
   transform: translate(-16%, -70%);
+  cursor: help;
 }
 
 .stamina-count {

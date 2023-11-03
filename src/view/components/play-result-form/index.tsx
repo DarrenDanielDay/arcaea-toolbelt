@@ -1,4 +1,3 @@
-import beat from "bootstrap-icons/icons/music-note.svg";
 import { input } from "../../../utils/component";
 import { ResultCard } from "../result-card";
 import { SearchSelect } from "../search-select";
@@ -24,7 +23,6 @@ import { addSheet } from "sheetly";
 import { sheet } from "./style.css.js";
 import type { AttachFunc, Rendered } from "hyplate/types";
 import { getDateFromDatetimeLocal, getNow, setDateToDatetimeLocal } from "../../../utils/time";
-import { SVGIcon } from "../svg-icon";
 
 export
 @Component({
@@ -66,7 +64,7 @@ class PlayResultForm extends HyplateElement {
                 {constant.toFixed(1)}
               </span>
               <span class="bpm">
-                <SVGIcon src={beat} width="10" height="10" /> = {bpm}
+              ♩ = {bpm}
               </span>
             </div>
             <div class="column">

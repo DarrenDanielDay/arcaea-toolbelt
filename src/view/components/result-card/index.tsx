@@ -26,9 +26,8 @@ function formatScore(score: number) {
 
 const canvas = element("canvas");
 const ctx = canvas.getContext("2d")!;
-ctx.font = `600 48px / 80px ${getComputedStyle(document.body).fontFamily}`;
-
-const measureSongTitle = (name: string): number => {
+const measureSongTitle = (name: string, fontFamily: string): number => {
+  ctx.font = `600 48px / 80px ${fontFamily}`;
   const measure = ctx.measureText(name);
   return measure.width;
 };
@@ -80,7 +79,8 @@ class ResultCard extends HyplateElement {
       cssVar(this, "badge-border", `var(--${difficulty}-border)`);
       const title = this.chart.getName(chart, song);
       content(this.songTitle, title);
-      const length = measureSongTitle(title);
+      const fontFamily = getComputedStyle(this.shadowRoot.querySelector('.song-title')!).fontFamily;
+      const length = measureSongTitle(title, fontFamily);
       const titleLength = length < 664 ? 664 : length;
       cssVar(this, "title-length", `${titleLength}`);
     });

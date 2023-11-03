@@ -189,7 +189,7 @@ class ProfilePage extends HyplateElement {
               <label for="username" class="form-label">
                 用户名（仅用于区分存档和b30生成）
               </label>
-              <input class="form-control" id="username" name="username" required autofocus />
+              <input class="form-control" id="username" name="username" required />
             </div>
             <div class="mb-3">
               <label for="potential" class="form-label">
@@ -226,7 +226,6 @@ class ProfilePage extends HyplateElement {
                 min={0}
                 max={this.profileService.formatPotential(maximumPotential)}
                 required
-                autofocus
               />
             </div>
             {this.renderFooter()}

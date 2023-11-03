@@ -16,11 +16,13 @@ import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/time";
 import { clearImages } from "../../../assets/play-result";
-import type { FC } from "hyplate/types";
+import type { FC, JSXChildNode } from "hyplate/types";
 import { Difficulty, formatRating, parseRating } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
 import { RouteLink } from "../route-link";
+import { HelpTip } from "../help-tip";
 ~RouteLink;
+~HelpTip;
 export
 @Component({
   tag: "profile-page",
@@ -407,7 +409,7 @@ class ProfilePage extends HyplateElement {
 
   async showProfileStats(profile: Profile) {
     const { ratings } = await this.chart.getStatistics();
-    const Desc: FC<{ label: string; content: string | number; style?: string }> = ({ label, content, style }) => {
+    const Desc: FC<{ label: JSXChildNode; content: string | number; style?: string }> = ({ label, content, style }) => {
       return (
         <div class="row" style={style ?? null}>
           <div class="col">{label}</div>
@@ -435,11 +437,48 @@ class ProfilePage extends HyplateElement {
       }
       const percentage = (rate: number) => (isNaN(rate) ? "-" : `${(rate * 100).toFixed(4)}%`);
       descriptsions.push(
-        <Desc label="EX以上P率" content={percentage(stat.acc)}></Desc>,
-        <Desc label="大P准度" content={percentage(stat.pacc)}></Desc>
+        <Desc
+          label={
+            <span>
+              EX以上P率<help-tip>EX以上的总分数（PM按照1000W算）/谱面数量*1000W</help-tip>
+            </span>
+          }
+          content={percentage(stat.acc)}
+        ></Desc>
       );
-      if (stat.rest <= 1e5 && stat.clear) {
-        descriptsions.push(<Desc label="距游玩谱面全理论" content={stat.rest}></Desc>);
+      if (stat.detailed) {
+        const hideNoNoteResult = "手动录入的无判定信息的成绩不会计入";
+        descriptsions.push(
+          <Desc
+            label={
+              <span>
+                大P总数
+                <help-tip>{hideNoNoteResult}</help-tip>
+              </span>
+            }
+            content={stat.perfect}
+          ></Desc>,
+          <Desc
+            label={
+              <span>
+                小P总数
+                <help-tip>{hideNoNoteResult}</help-tip>
+              </span>
+            }
+            content={stat.great}
+          ></Desc>,
+          <Desc
+            label={
+              <span>
+                大P准度<help-tip>大P数占总物量数的比例，{hideNoNoteResult}</help-tip>
+              </span>
+            }
+            content={percentage(stat.pacc)}
+          ></Desc>
+        );
+        if (stat.rest <= 1e5) {
+          descriptsions.push(<Desc label="距游玩谱面全理论" content={stat.rest}></Desc>);
+        }
       }
       return <div>{descriptsions}</div>;
     };
@@ -503,7 +542,7 @@ class ProfilePage extends HyplateElement {
             })}
           </select>
         </div>
-        <div style="height: 200px; width: 300px;">
+        <div class="stats">
           <AutoRender>
             {() => {
               const stat = currentStats();

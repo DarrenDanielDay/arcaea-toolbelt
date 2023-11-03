@@ -201,7 +201,23 @@ export interface BestStatistics {
    */
   acc: number;
   /**
-   * 大P准度，计算方法：大P总数/总Pure数，仅计算有判定信息的成绩
+   * 有判定信息的总谱面数
+   */
+  detailed: number;
+  /**
+   * 有判定信息的大P总数
+   */
+  perfect: number;
+  /**
+   * 小P总数
+   */
+  great: number;
+  /**
+   * 有判定信息的游玩谱面总物量数
+   */
+  notes: number;
+  /**
+   * 大P准度，计算方法：{@link perfect} / {@link notes}
    */
   pacc: number;
   /**

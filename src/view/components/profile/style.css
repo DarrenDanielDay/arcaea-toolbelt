@@ -42,3 +42,8 @@ blockquote {
 .user potential-badge {
   cursor: pointer;
 }
+
+.stats {
+  width: 300px;
+  height: 250px;
+}

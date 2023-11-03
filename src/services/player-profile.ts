@@ -380,7 +380,9 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         max = 0,
         totalAccScore = 0,
         totalAccChartCount = 0,
+        totalDetailed = 0,
         totalPerfect = 0,
+        totalGreat = 0,
         totalNotes = 0,
         totalScore = 0,
         totalNoteResultNotes = 0;
@@ -391,9 +393,11 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         let score = 0;
         if (record.type === "note") {
           const { result } = record;
-          const { perfect } = result;
+          const { perfect, pure } = result;
+          totalDetailed++;
           totalNoteResultNotes += note;
           totalPerfect += perfect;
+          totalGreat += pure - perfect;
           switch (record.clear) {
             // @ts-ignore
             case ClearRank.Maximum:
@@ -430,6 +434,10 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         fr,
         max,
         acc,
+        detailed: totalDetailed,
+        perfect: totalPerfect,
+        great: totalGreat,
+        notes: totalNoteResultNotes,
         pacc,
         rest,
       };

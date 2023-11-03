@@ -8,6 +8,7 @@ import { ResultCard } from "../../components/result-card";
 import { PlayResult } from "../../../models/music-play";
 import { confirm } from "../../components/fancy-dialog";
 import { getNow } from "../../../utils/time";
+import { isSafari } from "../../../utils/browser";
 
 @Component({
   tag: "chart-potential",
@@ -78,6 +79,9 @@ class ChartPotentialPage extends HyplateElement {
       this.currentResult.set(res);
       this.existingResultCard.setPlayResult(res);
       this.existingResultCard.setNow(getNow());
+      if (isSafari) {
+        return;
+      }
       this.form.chartSelect.searchInput.focus();
     }
   };
@@ -88,6 +92,9 @@ class ChartPotentialPage extends HyplateElement {
     }
     await this.profileService.removeResult(result.chartId);
     this.currentResult.set(null);
+    if (isSafari) {
+      return;
+    }
     this.form.chartSelect.searchInput.focus();
   };
 }

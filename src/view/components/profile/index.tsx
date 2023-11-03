@@ -485,11 +485,9 @@ class ProfilePage extends HyplateElement {
       return (
         <span
           role="tab"
-          style="cursor: pointer; margin-right: 0.25em"
-          style:color={difficulty && `var(--${difficulty})`}
-          style:border-bottom={computed(() =>
-            difficulty === currentDifficulty() ? `0.125em solid ${difficulty ? `var(--${difficulty})` : "#000"}` : null
-          )}
+          class="tab"
+          class:active={computed(() => difficulty === currentDifficulty())}
+          var:difficulty-color={difficulty && `var(--${difficulty})`}
           onClick={() => currentDifficulty.set(difficulty)}
         >
           {difficulty ? difficulty.toUpperCase() : "全部"}

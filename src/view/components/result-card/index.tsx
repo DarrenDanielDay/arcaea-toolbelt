@@ -7,10 +7,12 @@ import {
   $AssetsService,
   $ChartService,
   $MusicPlayService,
+  $PreferenceService,
   AssetsResolver,
   AssetsService,
   ChartService,
   MusicPlayService,
+  PreferenceService,
 } from "../../../services/declarations";
 import { AssetImage } from "../asset-image";
 import { duration } from "../../../utils/time";
@@ -46,6 +48,8 @@ class ResultCard extends HyplateElement {
   accessor resolver!: AssetsResolver;
   @Inject($AssetsService)
   accessor assets!: AssetsService;
+  @Inject($PreferenceService)
+  accessor preference!: PreferenceService;
 
   songTitle = element("div");
   chartInfo = signal<{ song: Song; chart: Chart } | null>(null);
@@ -57,6 +61,7 @@ class ResultCard extends HyplateElement {
   now = signal<Date | null>(null);
   hd = signal(false);
   override render() {
+    const showMaxMinus = this.preference.signal("showMaxMinus");
     this.effect(() => {
       this.resizeCard();
       const ob = new ResizeObserver(() => {
@@ -79,7 +84,7 @@ class ResultCard extends HyplateElement {
       cssVar(this, "badge-border", `var(--${difficulty}-border)`);
       const title = this.chart.getName(chart, song);
       content(this.songTitle, title);
-      const fontFamily = getComputedStyle(this.shadowRoot.querySelector('.song-title')!).fontFamily;
+      const fontFamily = getComputedStyle(this.shadowRoot.querySelector(".song-title")!).fontFamily;
       const length = measureSongTitle(title, fontFamily);
       const titleLength = length < 664 ? 664 : length;
       cssVar(this, "title-length", `${titleLength}`);
@@ -143,8 +148,21 @@ class ResultCard extends HyplateElement {
           </div>
           <div class="play-result">
             <div class="pure">
-              Pure/<span class="count">{computed(() => this.noteResult().pure ?? "?")}</span>(+
-              <span class="perfect">{computed(() => this.noteResult().perfect ?? "?")}</span>)
+              Pure/<span class="count">{computed(() => this.noteResult().pure ?? "?")}</span>(
+              <span class="perfect">
+                {computed(() => {
+                  const { perfect, pure } = this.noteResult();
+                  if (perfect == null || pure == null) {
+                    return "?";
+                  }
+                  if (showMaxMinus()) {
+                    const count = pure - perfect;
+                    return count ? `-${count}` : "max";
+                  }
+                  return `+${perfect}`;
+                })}
+              </span>
+              )
             </div>
             <div class="far">
               Far/<span class="count">{computed(() => this.noteResult().far ?? "?")}</span>

@@ -44,6 +44,10 @@ export type ColorTheme = "dark" | "light";
 export interface Preference {
   theme: ColorTheme;
   ghproxy: boolean;
+  /**
+   * 在成绩结果卡里是否将大P数转换为负小P数
+   */
+  showMaxMinus: boolean;
 }
 
 export interface PreferenceService {

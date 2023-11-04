@@ -17,6 +17,8 @@ import {
   AssetsService,
   $AssetsResolverStrategy,
   AssetsResolverStrategy,
+  PreferenceService,
+  $PreferenceService,
 } from "../../../services/declarations";
 import { Best30YukiChan } from "../../components/b30-yukichan";
 import { FancyDialog, alert, confirm } from "../../components/fancy-dialog";
@@ -48,6 +50,8 @@ class About extends HyplateElement {
   accessor musicPlay!: MusicPlayService;
   @Inject($ProfileService)
   accessor profile!: ProfileService;
+  @Inject($PreferenceService)
+  accessor preference!: PreferenceService;
 
   b30Dialog = new FancyDialog();
   b30Panel = new Best30YukiChan();
@@ -146,6 +150,29 @@ class About extends HyplateElement {
             使用ghproxy加速
             <help-tip class="mx-2">
               <p>代理内容主要是Arcaea相关图片资源，ghproxy代理不一定稳定，目前默认是github.io直接访问。</p>
+              <p>此设置与跨站脚本工具不互通。</p>
+            </help-tip>
+          </label>
+        </div>
+        <div class="form-check form-switch my-3">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="show-max-minus"
+            onChange={async () => {
+              const { showMaxMinus } = await this.preference.get();
+              await this.preference.update({ showMaxMinus: !showMaxMinus });
+            }}
+            checked={this.preference.signal("showMaxMinus")}
+          />
+          <label class="form-check-label" for="use-gh-proxy">
+            显示小P
+            <help-tip class="mx-2">
+              <p>
+                开启后，在成绩卡片内，若成绩有判定信息，在Pure数量后将会显示小P数量（-小P数，不开启时是+大P数）。如果所有的Pure都是大P，则会显示Max（但不一定是理论值）。
+              </p>
+              <p>此设置与跨站脚本工具不互通。</p>
             </help-tip>
           </label>
         </div>

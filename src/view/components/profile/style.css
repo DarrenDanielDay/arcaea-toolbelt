@@ -50,7 +50,7 @@ blockquote {
 }
 
 .tab.active {
-  border-bottom: 0.125em solid var(--difficulty-color);
+  border-bottom: 0.125em solid var(--difficulty-color, var(--bs-body-color));
 }
 
 .stats {

@@ -10,6 +10,7 @@ const defaultPreference: Preference = {
   // 默认跟随系统的偏好主题
   theme: getUserTheme(),
   ghproxy: false,
+  showMaxMinus: false,
 };
 
 interface PreferenceConfig {

@@ -2,11 +2,12 @@ import "classic-di/polyfill";
 import { ChartServiceImpl } from "./chart-data";
 import { MusicPlayServiceImpl } from "./music-play";
 import { ProfileServiceImpl } from "./player-profile";
-import { AssetsResolverImpl, DefaultAssetsResolverStrategy } from "./assets-resolver";
+import { AssetsResolverImpl } from "./assets-resolver";
 import { ArcaeaToolbeltDatabaseContext } from "./database";
 import { CrossSiteMessageData } from "./cross-site-protocol";
 import { alert } from "../view/components/fancy-dialog";
 import { noop } from "hyplate";
+import { DefaultAssetsResolverStrategy } from "./cross-site-defaults";
 
 const database = new ArcaeaToolbeltDatabaseContext();
 const chart = new ChartServiceImpl(new AssetsResolverImpl(new DefaultAssetsResolverStrategy()));

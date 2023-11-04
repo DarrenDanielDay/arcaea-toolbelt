@@ -13,22 +13,6 @@ import { Signal } from "hyplate/types";
 import { subscribe } from "hyplate";
 const proxyBase = "https://ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
 const directBase = "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/";
-@Injectable({
-  implements: $AssetsResolverStrategy,
-  requires: [$PreferenceService],
-})
-export class DefaultAssetsResolverStrategy implements AssetsResolverStrategy {
-  base(): string {
-    return directBase;
-  }
-  get usingProxy(): Signal<boolean> {
-    throw new Error("Method not implemented.");
-  };
-  useProxy(proxy: boolean): void {
-    throw new Error("Method not implemented.");
-  }
-
-}
 
 @Injectable({
   implements: $AssetsResolverStrategy,

@@ -15,12 +15,13 @@ import {
 } from "./shared";
 import { APKResponse, getLatestVersion } from "./get-latest-version";
 import { ArcaeaToolbeltMeta } from "../models/misc";
-import { AssetsResolverImpl, DefaultAssetsResolverStrategy } from "../services/assets-resolver";
+import { AssetsResolverImpl } from "../services/assets-resolver";
 import { getChartDataFromFandomWiki } from "./chart/fandom-wiki";
 import { mergeIntoSongData } from "./chart/merge";
 import { getAliasFromArcaeaInfinity } from "./chart/arcaea-infinity";
 import { Alias, AssetsInfo, ExtraSongData, mergeArray } from "./chart/shared";
 import { CharacterData } from "../models/character";
+import { DefaultAssetsResolverStrategy } from "../services/cross-site-defaults";
 
 const resolver = new AssetsResolverImpl(new DefaultAssetsResolverStrategy());
 

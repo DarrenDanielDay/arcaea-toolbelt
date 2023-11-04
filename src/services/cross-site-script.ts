@@ -23,7 +23,7 @@ import { AssetsResolverImpl } from "./assets-resolver";
 import { PluginAssetsServiceImpl } from "./plugin-assets";
 import { ArcaeaToolbeltDatabaseContext } from "./database";
 import { CrossSiteProtocol } from "./cross-site-protocol";
-import { DefaultPreferenceService } from "./cross-site-defaults";
+import { DefaultAssetsResolverStrategy, DefaultPreferenceService } from "./cross-site-defaults";
 
 const ioc = new Container({ name: "cross-site-script-root" });
 ioc.register(ArcaeaToolbeltDatabaseContext);
@@ -32,6 +32,7 @@ ioc.register(MusicPlayServiceImpl);
 ioc.register(WorldModeServiceImpl);
 ioc.register(AssetsResolverImpl);
 ioc.register(PluginAssetsServiceImpl);
+ioc.register(DefaultAssetsResolverStrategy);
 ioc.register(DefaultPreferenceService);
 const musicPlay = ioc.get($MusicPlayService);
 

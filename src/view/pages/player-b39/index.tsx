@@ -135,7 +135,10 @@ class PlayerB39 extends HyplateElement {
                   高清
                 </label>
                 <help-tip>
-                  <p>高清选项可导出更清晰的曲绘和文字的b30图，但同时也比较大（约10M），导出较慢，也会消耗更多流量。</p>
+                  <p>
+                    高清选项可导出更清晰的曲绘和文字的b30图，但同时也比较大（约10M），导出较慢，也会消耗更多流量。
+                    <span class="ios-issue">iOS设备有Safari的内存限制，可能无法导出高清图片。</span>
+                  </p>
                 </help-tip>
               </div>
               <button class="btn btn-primary" onClick={() => this.exportImg()} type="button">

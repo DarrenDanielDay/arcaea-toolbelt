@@ -2,6 +2,8 @@ import { bootstrap } from "../../styles";
 import { Component, HyplateElement, element } from "hyplate";
 import { sheet } from "../fancy-dialog/style.css.js";
 import type { JSXChildNode } from "hyplate/types";
+import { alert } from "../fancy-dialog";
+import { formatError } from "../../../utils/format";
 
 @Component({
   tag: "loading-message",
@@ -27,6 +29,9 @@ export const loading = async <T extends unknown>(promise: PromiseLike<T>, messag
   try {
     const result = await promise;
     return result;
+  } catch (error) {
+    await alert(<p>出现错误：{formatError(error)}</p>);
+    throw error;
   } finally {
     loading.dialog.close();
     document.body.removeChild(loading);

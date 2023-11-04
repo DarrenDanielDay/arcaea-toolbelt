@@ -21,3 +21,7 @@ help-tip p {
   display: flex;
   overflow: auto;
 }
+
+.ios-issue {
+  color: var(--bs-danger);
+}

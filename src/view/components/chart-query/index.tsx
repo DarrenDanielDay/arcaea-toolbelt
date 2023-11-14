@@ -2,9 +2,10 @@ import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
 import { $ChartService, ChartService, ChartStatistics, SearchResult } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
-import { alert } from "../fancy-dialog";
+import { FancyDialog, alert } from "../fancy-dialog";
 import { ChartInfo } from "../chart-info";
-import { Component, For, Future, HyplateElement, signal, watch } from "hyplate";
+import { Component, For, Future, HyplateElement, signal, style, watch } from "hyplate";
+import { TransitionToggle, startViewTransition } from "../../../utils/experimental";
 
 export
 @Component({
@@ -14,6 +15,8 @@ export
 class ChartQuery extends HyplateElement {
   @Inject($ChartService)
   accessor chartService!: ChartService;
+
+  info = new FancyDialog();
 
   min = signal(NaN);
   max = signal(NaN);
@@ -32,16 +35,18 @@ class ChartQuery extends HyplateElement {
   }
 
   _render({ maximumConstant, minimumConstant }: ChartStatistics) {
+    const component = this;
     return (
       <>
+        {this.info}
         <form
-          class="chart-query-form"
+          class="chart-query-form m-3"
           onSubmit={(e) => {
             e.preventDefault();
             this.query();
           }}
         >
-          <div class="input-group m-3">
+          <div class="input-group my-3">
             <input
               name="min-constant"
               type="number"
@@ -66,7 +71,7 @@ class ChartQuery extends HyplateElement {
               keypress-submit
             />
           </div>
-          <div class="m-3">
+          <div class="my-3">
             <button type="button" class="btn btn-primary query me-2" onClick={this.query}>
               查询
             </button>
@@ -84,17 +89,39 @@ class ChartQuery extends HyplateElement {
                     <div class="constant col-2">{constant}</div>
                     <div class="charts col-10">
                       {results.map((result) => (
-                        <div class="cover-container" style={`--difficulty: var(--${result.difficulty})`}>
-                          <img
-                            class="cover"
-                            loading="lazy"
-                            src={result.cover}
-                            onClick={() =>
-                              alert(
-                                <ChartInfo chart={result.chart} song={result.song} chartService={this.chartService} />
-                              )
-                            }
-                          />
+                        <div
+                          class="cover-container"
+                          var:difficulty={`var(--${result.difficulty})`}
+                          onClick={async function () {
+                            const toggle = new TransitionToggle({
+                              name: "song-cover",
+                              main: this,
+                              show: async (hide) => {
+                                component.info.showConfirm(
+                                  <ChartInfo
+                                    chart={result.chart}
+                                    song={result.song}
+                                    chartService={component.chartService}
+                                  />,
+                                  (done) => (
+                                    <button
+                                      class="btn btn-primary"
+                                      onClick={async () => {
+                                        await hide(() => {
+                                          done();
+                                        });
+                                      }}
+                                    >
+                                      确认
+                                    </button>
+                                  )
+                                );
+                              },
+                            });
+                            toggle.startViewTransition();
+                          }}
+                        >
+                          <img class="cover" loading="lazy" src={result.cover} />
                         </div>
                       ))}
                     </div>

@@ -16,8 +16,10 @@ export const ChartInfo: FC<{ song: Song; chart: Chart; chartService: ChartServic
   addSheet([bootstrap, sheet], shadow);
   mount(
     <>
-      <div class="cover-container">
-        <img class="cover" src={chartService.getCover(chart, song)} />
+      <div class="cover-layout">
+        <div class="cover-container">
+          <img class="cover" src={chartService.getCover(chart, song)} />
+        </div>
       </div>
       <div class="row my-3">
         <div class="col">

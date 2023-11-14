@@ -20,6 +20,26 @@ declare global {
       types?: FilePickerType[];
     }): Promise<FileSystemFileHandle[]>;
   }
+
+  interface ViewTransition {
+    finished: Promise<void>;
+    ready: Promise<void>;
+    updateCallbackDone: Promise<void>;
+    skipTransition(): void;
+  }
+  type ViewTransitionCallback = () => void | Promise<void>;
+
+  interface Document {
+    startViewTransition?(callback: ViewTransitionCallback): ViewTransition;
+  }
+
+  interface CSSStyleDeclaration {
+    viewTimeline: string;
+    viewTimelineAxis: string;
+    viewTimelineInset: string;
+    viewTimelineName: string;
+    viewTransitionName: string;
+  }
 }
 
 export {};

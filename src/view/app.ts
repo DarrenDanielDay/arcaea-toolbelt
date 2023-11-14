@@ -1,5 +1,5 @@
 import { sheet } from "./app.css.js";
-import { bootstrap, theme } from "./styles";
+import { bootstrap, theme, viewTransition } from "./styles";
 import { provide } from "../services/di";
 import { NavBar } from "./components/nav-bar";
 import { ChartServiceImpl } from "../services/chart-data";
@@ -15,7 +15,7 @@ import { AssetsResolverImpl, AssetsResolverStrategyImpl } from "../services/asse
 import { PreferenceServiceImpl } from "../services/preference";
 import { ArcaeaToolbeltDatabaseContext } from "../services/database";
 import { CharacterServiceImpl } from "../services/character";
-document.adoptedStyleSheets = [bootstrap, theme, sheet];
+document.adoptedStyleSheets = [bootstrap, theme, viewTransition, sheet];
 
 const ioc = new Container();
 ioc.register(CharacterServiceImpl);

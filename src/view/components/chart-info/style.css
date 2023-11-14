@@ -1,11 +1,14 @@
-.cover-container {
+.cover-layout {
   display: flex;
   justify-content: center;
 }
 
+.cover-container {
+  view-transition-name: song-cover;
+  border: 8px solid var(--difficulty);
+}
+
 .cover {
-  box-sizing: content-box;
   width: 128px;
   height: 128px;
-  border: 8px solid var(--difficulty);
 }

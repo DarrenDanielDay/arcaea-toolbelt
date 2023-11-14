@@ -11,7 +11,7 @@ import { Chart, Song, ClearRank, Grade, difficultyIndexes } from "../models/musi
 import { CharacterImage, CharacterImageKind, CharacterStatus } from "../models/character";
 import { Signal } from "hyplate/types";
 import { subscribe } from "hyplate";
-const proxyBase = "https://ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
+const proxyBase = "https://mirror.ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
 const directBase = "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/";
 
 @Injectable({

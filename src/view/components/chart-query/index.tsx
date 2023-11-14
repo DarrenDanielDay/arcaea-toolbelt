@@ -2,10 +2,13 @@ import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
 import { $ChartService, ChartService, ChartStatistics, SearchResult } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
-import { FancyDialog, alert } from "../fancy-dialog";
+import { FancyDialog } from "../fancy-dialog";
 import { ChartInfo } from "../chart-info";
-import { Component, For, Future, HyplateElement, signal, style, watch } from "hyplate";
-import { TransitionToggle, startViewTransition } from "../../../utils/experimental";
+import { Component, For, Future, HyplateElement, noop, signal, watch } from "hyplate";
+import { TransitionToggle } from "../../../utils/experimental";
+import { $Router, Router } from "../../pages/router";
+
+export type ChartQueryParams = "min" | "max";
 
 export
 @Component({
@@ -15,6 +18,8 @@ export
 class ChartQuery extends HyplateElement {
   @Inject($ChartService)
   accessor chartService!: ChartService;
+  @Inject($Router)
+  accessor router!: Router;
 
   info = new FancyDialog();
 
@@ -23,6 +28,20 @@ class ChartQuery extends HyplateElement {
   results = signal<[string, SearchResult[]][]>([]);
 
   override render() {
+    this.effect(() => {
+      const { max: _max, min: _min } = this.router.parseQuery<ChartQueryParams>();
+      const max = +_max!,
+        min = +_min!;
+      if (min >= 0) {
+        this.min.set(min);
+        if (max >= min) {
+          this.max.set(max);
+          this.query();
+        }
+      }
+      return noop;
+    });
+
     this.effect(() =>
       watch(this.min, (min) => {
         // 包括NaN的情况
@@ -31,6 +50,7 @@ class ChartQuery extends HyplateElement {
         }
       })
     );
+
     return <Future promise={this.chartService.getStatistics()}>{(stats) => this._render(stats)}</Future>;
   }
 
@@ -144,6 +164,10 @@ class ChartQuery extends HyplateElement {
   };
   query = async () => {
     const { min, max } = this.getFormModel();
+    this.router.updateQuery<ChartQueryParams>({
+      min: min.toFixed(1),
+      max: max.toFixed(1),
+    });
     const charts = await this.chartService.queryChartsByConstant(min, max);
     this.setResults(charts);
   };

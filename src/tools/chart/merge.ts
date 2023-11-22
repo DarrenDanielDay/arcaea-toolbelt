@@ -69,6 +69,7 @@ export function mergeIntoSongData(
     }
     const songData: SongData = {
       bpm: song.bpm,
+      side: song.side,
       id: songId,
       name: song.title_localized.en,
       covers: assetsIndex[songId]!.covers,

@@ -1,5 +1,21 @@
+export enum Side {
+  /**
+   * 光芒侧
+   */
+  Light,
+  /**
+   * 纷争侧
+   */
+  Conflict,
+  /**
+   * 消色侧
+   */
+  Colorless,
+}
+
 export interface Song {
   id: string;
+  side: Side;
   alias: string[];
   /**
    * 直接使用游戏内id作为id，不再需要两个id
@@ -66,8 +82,8 @@ export const parseRating = (text: string): Rating => ({
 
 export const compareRating = (a: Rating, b: Rating) => {
   if (a.level !== b.level) return a.level - b.level;
-  return (+!!a.plus - +!!b.plus);
-}
+  return +!!a.plus - +!!b.plus;
+};
 
 export interface SongData extends Song {
   charts: Chart[];

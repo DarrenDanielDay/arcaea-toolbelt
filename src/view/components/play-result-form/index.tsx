@@ -17,6 +17,7 @@ import {
   PlayResult,
   PlayerInputType,
   ScoreResult,
+  Side,
 } from "../../../models/music-play";
 import { Component, HyplateElement, cssVar, element, listen } from "hyplate";
 import { addSheet } from "sheetly";
@@ -46,7 +47,7 @@ class PlayResultForm extends HyplateElement {
   chartSelect = new SearchSelect<SearchResult>(
     (result) => {
       const {
-        song: { alias, pack },
+        song: { alias, pack, side },
         cover,
         chart: { note },
         constant,
@@ -56,16 +57,14 @@ class PlayResultForm extends HyplateElement {
       } = result;
       return (
         <>
-          <img class="cover" src={cover} loading="lazy" />
+          <img class="cover" src={cover} loading="lazy" var:color-side={`var(--side-${Side[side].toLowerCase()})`} />
           <div class="details">
             <div class="column">
               <span class="notes">{note}</span>
               <span class="constant" style={`background-color: var(--${difficulty})`}>
                 {constant.toFixed(1)}
               </span>
-              <span class="bpm">
-              ♩ = {bpm}
-              </span>
+              <span class="bpm">♩ = {bpm}</span>
             </div>
             <div class="column">
               <span class="pack-name">{pack}</span>

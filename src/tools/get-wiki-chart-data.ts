@@ -1,4 +1,4 @@
-import { Chart, ChartOverride, Difficulty, SongData } from "../models/music-play";
+import { Chart, ChartOverride, Difficulty, Side, SongData } from "../models/music-play";
 import { groupBy, indexBy } from "../utils/collections";
 import { concurrently } from "../utils/concurrent";
 import { Pack, PackList, Song, SongList } from "./packed-data";
@@ -260,6 +260,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     */
     const songData: SongData = {
       bpm,
+      side: songListSong.side,
       // cover,
       id: songId,
       name,
@@ -297,6 +298,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     const pack = "Silent Answer";
     songsData.push({
       bpm: "175",
+      side: Side.Colorless,
       // cover: wikiURL("/images/thumb/a/a2/Songs_last.jpg/256px-Songs_last.jpg").toString(),
       id: last,
       name: "Last",
@@ -331,6 +333,7 @@ export async function getSongData(songList: SongList, packList: PackList): Promi
     });
     songsData.push({
       bpm: "175",
+      side: Side.Colorless,
       // cover: wikiURL("/images/thumb/9/92/Songs_lasteternity.jpg/256px-Songs_lasteternity.jpg").toString(),
       id: lasteternity,
       name: "Last | Eternity",

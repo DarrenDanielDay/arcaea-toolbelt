@@ -1,19 +1,13 @@
 import { Injectable } from "classic-di";
 import { $AssetsService, AssetsService } from "./declarations";
 import { PromiseOr, isString } from "../utils/misc";
+import { DirectGateway } from "./gateway";
 
 @Injectable({
   implements: $AssetsService,
 })
 export class PluginAssetsServiceImpl implements AssetsService {
-  getAssets(url: string | URL): PromiseOr<string> {
-    return isString(url) ? url : url.href;
-  }
-
-  async cacheUsage(): Promise<number> {
-    return 0;
-  }
-
-  async clearCache(): Promise<void> {
+  getAssets(url: URL): PromiseOr<string> {
+    return new DirectGateway().proxyPass(url).toString();
   }
 }

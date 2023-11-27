@@ -19,6 +19,7 @@ declare module "*.gif" {
 declare namespace NodeJS {
   interface ProcessEnv {
     BASE_URI: string;
+    ARCAEA_TOOLBELT_DATA: string;
     COMMIT_SHA: string;
     NODE_ENV: "production" | "development";
   }

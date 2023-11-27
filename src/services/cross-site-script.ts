@@ -1,4 +1,3 @@
-import data from "../data/chart-data.json";
 import { ToolPanel } from "../view/components/plugin-panel";
 import { PlayResult, SongData } from "../models/music-play";
 import { Profile, ProfileUpdatePayload } from "../models/profile";
@@ -19,24 +18,23 @@ import { ChartServiceImpl } from "./chart-data";
 import { PluginButton } from "../view/components/plugin-button";
 import { Container, Injectable } from "classic-di";
 import { provide } from "./di";
-import { AssetsResolverImpl } from "./assets-resolver";
 import { PluginAssetsServiceImpl } from "./plugin-assets";
 import { ArcaeaToolbeltDatabaseContext } from "./database";
 import { CrossSiteProtocol } from "./cross-site-protocol";
-import { DefaultAssetsResolverStrategy, DefaultPreferenceService } from "./cross-site-defaults";
+import { DefaultPreferenceService, PluginAssetsResolverImpl, PluginCoreData } from "./cross-site-defaults";
 
 const ioc = new Container({ name: "cross-site-script-root" });
 ioc.register(ArcaeaToolbeltDatabaseContext);
 ioc.register(ChartServiceImpl);
 ioc.register(MusicPlayServiceImpl);
 ioc.register(WorldModeServiceImpl);
-ioc.register(AssetsResolverImpl);
+ioc.register(PluginAssetsResolverImpl);
+ioc.register(PluginCoreData);
 ioc.register(PluginAssetsServiceImpl);
-ioc.register(DefaultAssetsResolverStrategy);
 ioc.register(DefaultPreferenceService);
 const musicPlay = ioc.get($MusicPlayService);
 
-const flattenData = (data as SongData[])
+const flattenData = (await ioc.get($ChartService).getSongData())
   .flatMap((song) =>
     song.charts.map((chart) => ({
       song,

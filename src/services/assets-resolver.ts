@@ -1,51 +1,15 @@
 import { Injectable } from "classic-di";
-import {
-  $AssetsResolver,
-  $AssetsResolverStrategy,
-  $PreferenceService,
-  AssetsResolver,
-  AssetsResolverStrategy,
-  PreferenceService,
-} from "./declarations";
+import { $AssetsResolver, AssetsResolver } from "./declarations";
 import { Chart, Song, ClearRank, Grade, difficultyIndexes } from "../models/music-play";
 import { CharacterImage, CharacterImageKind, CharacterStatus } from "../models/character";
-import { Signal } from "hyplate/types";
-import { subscribe } from "hyplate";
-const proxyBase = "https://mirror.ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
-const directBase = "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/";
-
-@Injectable({
-  implements: $AssetsResolverStrategy,
-  requires: [$PreferenceService],
-})
-export class AssetsResolverStrategyImpl implements AssetsResolverStrategy {
-  usingProxy: Signal<boolean>;
-  deferredUsingProxy = false;
-  constructor(private readonly preference: PreferenceService) {
-    this.usingProxy = preference.signal("ghproxy");
-    subscribe(this.usingProxy, (usingProxy) => {
-      this.deferredUsingProxy = usingProxy;
-    })
-  }
-  base(): string {
-    return this.deferredUsingProxy ? proxyBase : directBase;
-  }
-  useProxy(proxy: boolean): void {
-    this.preference.update({
-      ghproxy: proxy,
-    });
-  }
-}
+import { toolbelt } from "../models/data";
 
 @Injectable({
   implements: $AssetsResolver,
-  requires: [$AssetsResolverStrategy],
 })
 export class AssetsResolverImpl implements AssetsResolver {
-  constructor(private readonly strategy: AssetsResolverStrategy) {}
-
   resolve(path: string): URL {
-    return new URL(path, this.strategy.base());
+    return toolbelt.assets(path);
   }
 
   resoveCharacterImage({ id, status, kind }: CharacterImage): URL {

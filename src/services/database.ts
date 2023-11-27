@@ -1,6 +1,6 @@
 import { Injectable } from "classic-di";
 import { $Database, AppDatabaseContext } from "./declarations";
-import { openDB } from "../utils/indexed-db";
+import { DBVersionManager } from "../utils/indexed-db";
 import { once } from "../utils/misc";
 
 @Injectable({
@@ -10,6 +10,7 @@ export class ArcaeaToolbeltDatabaseContext implements AppDatabaseContext {
   caches: string = "caches";
   preference: string = "preference";
   profiles: string = "profiles";
+  core: string = "core";
 
   getDB = once(() => this.#create());
   async transaction(stores: string[], mode?: IDBTransactionMode | undefined): Promise<IDBTransaction> {
@@ -22,11 +23,15 @@ export class ArcaeaToolbeltDatabaseContext implements AppDatabaseContext {
   }
 
   #create() {
-    return openDB("arcaea-toolbelt", 1, (_, request) => {
-      const db = request.result;
-      db.createObjectStore(this.caches, { keyPath: "url" });
-      db.createObjectStore(this.preference, { keyPath: "key" });
-      db.createObjectStore(this.profiles, { keyPath: "username" });
-    });
+    const manager = new DBVersionManager()
+      .version(1, (db) => {
+        db.createObjectStore(this.caches, { keyPath: "url" });
+        db.createObjectStore(this.preference, { keyPath: "key" });
+        db.createObjectStore(this.profiles, { keyPath: "username" });
+      })
+      .version(2, (db) => {
+        db.createObjectStore(this.core, { keyPath: "path" });
+      });
+    return manager.open("arcaea-toolbelt", 2);
   }
 }

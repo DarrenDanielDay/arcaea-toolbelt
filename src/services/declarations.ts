@@ -15,14 +15,19 @@ import {
 } from "../models/music-play";
 import { B30Response, BestResultItem, Profile, ProfileUpdatePayload } from "../models/profile";
 import { token } from "classic-di";
-import { Chapter, CurrentProgress, NormalWorldMap, RewardType } from "../models/world-mode";
-import type { Signal } from "hyplate/types";
 import {
-  CharacterData,
-  CharacterImage,
-  CharacterIndex,
-} from "../models/character";
+  Chapter,
+  ChapterData,
+  CurrentProgress,
+  ItemData,
+  NormalWorldMap,
+  NormalWorldMapData,
+  RewardType,
+} from "../models/world-mode";
+import type { Signal } from "hyplate/types";
+import { CharacterData, CharacterImage, CharacterIndex } from "../models/character";
 import { PromiseOr } from "../utils/misc";
+import { ArcaeaToolbeltMeta } from "../models/misc";
 
 export interface DatabaseContext {
   getDB(): Promise<IDBDatabase>;
@@ -37,6 +42,7 @@ export interface CacheDBContext extends DatabaseContext {
 export interface AppDatabaseContext extends CacheDBContext {
   readonly preference: string;
   readonly profiles: string;
+  readonly core: string;
 }
 
 export type ColorTheme = "dark" | "light";
@@ -56,10 +62,21 @@ export interface PreferenceService {
   signal<K extends keyof Preference>(name: K): Signal<Preference[K]>;
 }
 
-export interface AssetsResolverStrategy {
-  base(): string;
-  readonly usingProxy: Signal<boolean>;
-  useProxy(proxy: boolean): void;
+export interface Gateway {
+  proxyPass(url: URL): PromiseOr<URL>;
+}
+
+export interface CoreDataService {
+  getMetaData(): Promise<ArcaeaToolbeltMeta>
+  getChartData(): Promise<SongData[]>;
+  getCharacterData(): Promise<CharacterData[]>;
+  getItemsData(): Promise<ItemData[]>
+  getWorldMapLongTerm(): Promise<ChapterData[]>;
+  getWorldMapEvents(): Promise<NormalWorldMapData[]>;
+}
+
+export interface CoreDataProvider {
+  get<T>(path: string): Promise<T>;
 }
 
 export interface AssetsResolver {
@@ -75,9 +92,17 @@ export interface AssetsResolver {
 export interface AssetsService {
   /**
    * @param url 资源地址
-   * @param noCache 使用强缓存
+   * @param init 请求参数，主要是为了传AbortSignal
+   * @returns 实际资源地址/blob url
    */
-  getAssets(url: URL | string, noCache?: boolean): PromiseOr<string>;
+  getAssets(url: URL, init?: RequestInit): PromiseOr<string>;
+}
+
+/**
+ * 本质是在CachedHttpClient上面套一层作为一个可注入的服务
+ */
+export interface AssetsCacheService {
+  cachedGet(url: URL, init?: RequestInit): Promise<string>;
   cacheUsage(): Promise<number>;
   clearCache(): Promise<void>;
 }
@@ -325,9 +350,12 @@ export interface CrossSiteScriptPluginService {
 
 export const $Database = token<AppDatabaseContext>("database");
 export const $PreferenceService = token<PreferenceService>("preference");
-export const $AssetsResolverStrategy = token<AssetsResolverStrategy>("assets-resolver-strategy");
+export const $CoreDataService = token<CoreDataService>("core-data");
+export const $CoreDataProvider = token<CoreDataProvider>("core-data-provider");
 export const $AssetsResolver = token<AssetsResolver>("assets-resolver");
 export const $AssetsService = token<AssetsService>("assets");
+export const $AssetsCacheService = token<AssetsCacheService>("assets-cache");
+export const $Gateway = token<Gateway>("gateway");
 export const $CharacterService = token<CharacterService>("character");
 export const $ChartService = token<ChartService>("chart");
 export const $MusicPlayService = token<MusicPlayService>("music-play");

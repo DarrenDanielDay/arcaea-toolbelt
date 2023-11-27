@@ -1,13 +1,14 @@
 import { Injectable } from "classic-di";
-import {
-  $AssetsResolverStrategy,
-  $PreferenceService,
-  AssetsResolverStrategy,
-  Preference,
-  PreferenceService,
-} from "./declarations";
+import { $CoreDataService, $PreferenceService, CoreDataService, Preference, PreferenceService } from "./declarations";
 import { Signal } from "hyplate/types";
 import { signal } from "hyplate";
+import { AssetsResolverImpl } from "./assets-resolver";
+import { DirectGateway } from "./gateway";
+import { CharacterData } from "../models/character";
+import { SongData } from "../models/music-play";
+import { ChapterData, ItemData, NormalWorldMapData } from "../models/world-mode";
+import { characterData, chartData, itemsData } from "../data/file-list";
+import { ArcaeaToolbeltMeta } from "../models/misc";
 
 const defaultPreference: Preference = {
   ghproxy: false,
@@ -32,18 +33,41 @@ export class DefaultPreferenceService implements PreferenceService {
   }
 }
 
-@Injectable({
-  implements: $AssetsResolverStrategy,
-  requires: [$PreferenceService],
-})
-export class DefaultAssetsResolverStrategy implements AssetsResolverStrategy {
-  base(): string {
-    return "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/";
+export class PluginAssetsResolverImpl extends AssetsResolverImpl {
+  override resolve(path: string): URL {
+    const url = new DirectGateway().proxyPass(super.resolve(path));
+    if (!(url instanceof URL)) throw new Error("Direct gateway should always be synchronous.");
+    return url;
   }
-  get usingProxy(): Signal<boolean> {
+}
+
+@Injectable({
+  implements: $CoreDataService,
+})
+export class PluginCoreData implements CoreDataService {
+  async import(file: string) {
+    const url = `${process.env.ARCAEA_TOOLBELT_DATA}${file}`;
+    // Using eval to keep ES Module Dynamic Import semantic.
+    // TODO: switch to ESM only bundler.
+    const module = await eval(`import(${JSON.stringify(url)}, { assert: { type: "json" } })`);
+    return module.default;
+  }
+  getMetaData(): Promise<ArcaeaToolbeltMeta> {
     throw new Error("Method not implemented.");
   }
-  useProxy(proxy: boolean): void {
+  getChartData(): Promise<SongData[]> {
+    return this.import(chartData);
+  }
+  getCharacterData(): Promise<CharacterData[]> {
+    return this.import(characterData);
+  }
+  getItemsData(): Promise<ItemData[]> {
+    return this.import(itemsData);
+  }
+  getWorldMapLongTerm(): Promise<ChapterData[]> {
+    throw new Error("Method not implemented.");
+  }
+  getWorldMapEvents(): Promise<NormalWorldMapData[]> {
     throw new Error("Method not implemented.");
   }
 }

@@ -1,3 +1,55 @@
+import { PromiseOr } from "./misc";
+
+export type DataMigration = (db: IDBDatabase) => PromiseOr<void>;
+
+export type VersionMigrate = (db: IDBDatabase, migrate: (apply: DataMigration) => void) => void;
+
+export class DBVersionManager {
+  #versions = new Map<number, VersionMigrate>();
+  version(version: number, migrate: VersionMigrate) {
+    this.#versions.set(version, migrate);
+    return this;
+  }
+
+  async open(name: string, version: number): Promise<IDBDatabase> {
+    let oldVersion = 0,
+      newVersion = version;
+    let db: IDBDatabase | null = null;
+    const dbs = await indexedDB.databases();
+    const targetDB = dbs.find((db) => db.name === name);
+    oldVersion = targetDB?.version ?? 0;
+    const upgradeRange = [...this.#versions.entries()]
+      .filter(([version]) => oldVersion <= version && version <= newVersion)
+      .sort(([a], [b]) => a - b);
+    let currentVersion = oldVersion;
+    for (const [nextVersion, upgrade] of upgradeRange) {
+      let migrations: DataMigration[] = [];
+      db?.close();
+      const currentDB = await openDB(name, nextVersion, (event, request) => {
+        const { oldVersion, newVersion } = event;
+        if (newVersion == null) throw new Error(`Unexpected Error: DB ${name} is being deleted.`);
+        console.assert(oldVersion === currentVersion, `old version does not match: ${oldVersion} != ${currentVersion}`);
+        console.assert(newVersion === nextVersion, `new version does not match: ${newVersion} != ${nextVersion}`);
+        const db = request.result;
+        upgrade(db, (apply) => {
+          migrations.push(apply);
+        });
+      });
+      if (migrations.length) {
+        console.debug(`Migrating data of ${name} from v${currentVersion} to v${nextVersion}...`);
+        await Promise.all(migrations.map((migrate) => migrate(currentDB)));
+      }
+      db = currentDB;
+      currentVersion = nextVersion;
+    }
+
+    if (!db) {
+      throw new Error(`Version ${version} of database "${name}" not defined.`);
+    }
+    return db;
+  }
+}
+
 export const openDB = (
   name: string,
   version: number,

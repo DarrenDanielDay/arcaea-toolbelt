@@ -3,14 +3,8 @@
   "version": "0.0.0",
   "type": "module",
   "targets": {
-    "tools": {
-      "source": [
-        "src/tools/index.html"
-      ]
-    },
     "default": {
       "context": "browser",
-      "scopeHoist": false,
       "source": [
         "src/index.html",
         "src/docs/plugin-usage.html",
@@ -22,12 +16,12 @@
       "outputFormat": "esmodule"
     }
   },
-  "browserslist": "Chrome 100",
+  "browserslist": "last 2 Chrome versions",
   "scripts": {
-    "start:tools": "parcel --target tools --dist-dir dist-tools --port 1236",
     "start:parcel": "parcel --target default --hmr-host localhost --hmr-port 1235",
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
     "dev": "run-p --print-label \"start:parcel\" \"start:sheetly\"",
+    "clean": "rimraf dist dist-tools arcaea-toolbelt parcel-bundle-reports .parcel-cache",
     "start": "run-p --print-label \"start:**\"",
     "purge": "node ./scripts/purge.js",
     "build:parcel": "parcel build --target default --no-optimize --public-url /arcaea-toolbelt --reporter @parcel/reporter-bundle-analyzer",
@@ -52,6 +46,7 @@
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "purgecss": "^5.0.0",
+    "rimraf": "^5.0.5",
     "stream-browserify": "^3.0.0",
     "typed-query-selector": "^2.11.0",
     "typescript": "^5.2.2"

@@ -1,17 +1,27 @@
 import "classic-di/polyfill";
 import { ChartServiceImpl } from "./chart-data";
-import { MusicPlayServiceImpl } from "./music-play";
-import { ProfileServiceImpl } from "./player-profile";
 import { AssetsResolverImpl } from "./assets-resolver";
 import { ArcaeaToolbeltDatabaseContext } from "./database";
 import { CrossSiteMessageData } from "./cross-site-protocol";
 import { alert } from "../view/components/fancy-dialog";
 import { noop } from "hyplate";
-import { DefaultAssetsResolverStrategy } from "./cross-site-defaults";
+import { CoreDataServiceImpl } from "./core-data";
+import { CoreDataProviderImpl } from "./core-data-provider";
+import { ProxyGateway } from "./gateway";
+import { PreferenceServiceImpl } from "./preference";
+import { Container } from "classic-di";
+import { $ProfileService } from "./declarations";
 
-const database = new ArcaeaToolbeltDatabaseContext();
-const chart = new ChartServiceImpl(new AssetsResolverImpl(new DefaultAssetsResolverStrategy()));
-const profile = new ProfileServiceImpl(database, new MusicPlayServiceImpl(chart), chart);
+const container = new Container();
+container.register(ArcaeaToolbeltDatabaseContext);
+container.register(ChartServiceImpl);
+container.register(AssetsResolverImpl);
+container.register(CoreDataServiceImpl);
+container.register(CoreDataProviderImpl);
+container.register(ProxyGateway);
+container.register(PreferenceServiceImpl);
+
+const profile = container.get($ProfileService);
 //#region Legacy <iframe>
 /* localStorage和indexedDB均被标记为“第三方”，因为顶级网站不同源。目前此实现已无法工作。
 window.addEventListener("message", async (e) => {

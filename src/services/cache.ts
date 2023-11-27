@@ -40,7 +40,7 @@ export class CachedHttpGetClient {
     this.dbContext = typeof init === "string" ? new DefaultCacheDBContext(init) : init;
   }
 
-  async fetch(input: string | URL, expireTime?: number): Promise<Response> {
+  async fetch(input: string | URL, init?: RequestInit, expireTime?: number): Promise<Response> {
     const now = getNow();
     const store = await this.#cacheStore();
     const url = getURL(input);
@@ -50,7 +50,7 @@ export class CachedHttpGetClient {
       console.debug(`Found cached result for url: ${result.url}`);
       return new Response(result.blob);
     }
-    const response = await fetch(url);
+    const response = await fetch(url, init);
     const blob = await response.blob();
     const cache: HttpGetCache = {
       url,

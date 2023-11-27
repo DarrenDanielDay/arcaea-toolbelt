@@ -1,4 +1,4 @@
-import { Chart, Difficulty, Song, SongData, SongIndex, compareRating, difficulties } from "../models/music-play";
+import { Chart, Song, SongData, SongIndex, compareRating, difficulties } from "../models/music-play";
 import { searchMatch } from "../utils/string";
 import {
   $ChartService,
@@ -8,12 +8,11 @@ import {
   ChartStatistics,
   $AssetsResolver,
   AssetsResolver,
+  CoreDataService,
+  $CoreDataService,
 } from "./declarations";
 import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
-import { jsonModule } from "../utils/misc";
-// @ts-expect-error string as enum
-const getStaticSongData = async (): Promise<SongData[]> => jsonModule(import("../data/chart-data.json"));
 
 const FREE_PACKS = [
   "Arcaea", // 基础包
@@ -22,7 +21,7 @@ const FREE_PACKS = [
 ];
 
 @Injectable({
-  requires: [$AssetsResolver] as const,
+  requires: [$AssetsResolver, $CoreDataService] as const,
   implements: $ChartService,
 })
 export class ChartServiceImpl implements ChartService {
@@ -30,10 +29,10 @@ export class ChartServiceImpl implements ChartService {
 
   #songIndex: SongIndex | null = null;
 
-  constructor(private resolver: AssetsResolver) {}
+  constructor(private resolver: AssetsResolver, private readonly core: CoreDataService) {}
 
   getSongData(): Promise<SongData[]> {
-    return getStaticSongData();
+    return this.core.getChartData();
   }
 
   async getSongIndex(): Promise<SongIndex> {
@@ -137,7 +136,7 @@ export class ChartServiceImpl implements ChartService {
   getName(chart: Chart, song: Song): string {
     return chart.override?.name ?? song.name;
   }
-  
+
   getBPM(chart: Chart, song: Song): string {
     return chart.override?.bpm ?? song.bpm;
   }

@@ -1,5 +1,4 @@
 import icon from "../../../favicon.ico";
-import meta from "../../../data/meta.json";
 import { Component, Future, HyplateElement, signal } from "hyplate";
 import { bootstrap } from "../../styles";
 import { Route } from "../router";
@@ -15,10 +14,12 @@ import {
   MusicPlayStatistics,
   $AssetsService,
   AssetsService,
-  $AssetsResolverStrategy,
-  AssetsResolverStrategy,
   PreferenceService,
   $PreferenceService,
+  AssetsCacheService,
+  $AssetsCacheService,
+  $CoreDataService,
+  CoreDataService,
 } from "../../../services/declarations";
 import { Best30YukiChan } from "../../components/b30-yukichan";
 import { FancyDialog, alert, confirm } from "../../components/fancy-dialog";
@@ -26,6 +27,7 @@ import { B30Response } from "../../../models/profile";
 import { JSXChildNode } from "hyplate/types";
 import { HelpTip } from "../../components/help-tip";
 import { formatSize } from "../../../utils/format";
+import { ArcaeaToolbeltMeta } from "../../../models/misc";
 ~HelpTip;
 export const AboutRoute: Route = {
   path: "/about",
@@ -40,8 +42,10 @@ export const AboutRoute: Route = {
   styles: [bootstrap],
 })
 class About extends HyplateElement {
-  @Inject($AssetsResolverStrategy)
-  accessor assetsResolverStrategy!: AssetsResolverStrategy;
+  @Inject($CoreDataService)
+  accessor core!: CoreDataService;
+  @Inject($AssetsCacheService)
+  accessor assetsCache!: AssetsCacheService;
   @Inject($AssetsService)
   accessor assets!: AssetsService;
   @Inject($ChartService)
@@ -61,6 +65,7 @@ class About extends HyplateElement {
   }
 
   _render(
+    meta: ArcaeaToolbeltMeta,
     chartStats: ChartStatistics,
     musicPlayStats: MusicPlayStatistics,
     maxB30: B30Response,
@@ -121,9 +126,9 @@ class About extends HyplateElement {
           <button
             class="btn btn-outline-danger"
             onClick={async () => {
-              const byteSize = await this.assets.cacheUsage();
+              const byteSize = await this.assetsCache.cacheUsage();
               if (await confirm(<div>当前图片缓存占用空间为{formatSize(byteSize)}，是否确认全部清除？</div>)) {
-                await this.assets.clearCache();
+                await this.assetsCache.clearCache();
                 alert("图片缓存清除完毕。");
               }
             }}
@@ -141,15 +146,17 @@ class About extends HyplateElement {
             type="checkbox"
             role="switch"
             id="use-gh-proxy"
-            onChange={() => {
-              this.assetsResolverStrategy.useProxy(!this.assetsResolverStrategy.usingProxy());
+            onChange={async () => {
+              this.preference.update({ ghproxy: !(await this.preference.get()).ghproxy });
             }}
-            checked={this.assetsResolverStrategy.usingProxy}
+            checked={this.preference.signal("ghproxy")}
           />
           <label class="form-check-label" for="use-gh-proxy">
             使用ghproxy加速
             <help-tip class="mx-2">
-              <p>代理内容主要是Arcaea相关图片资源，ghproxy代理不一定稳定，目前默认是github.io直接访问。</p>
+              <p>
+                代理内容主要是Arcaea相关图片资源，以及本工具所必须的数据，ghproxy代理不一定稳定，目前默认是github.io直接访问。
+              </p>
               <p>此设置与跨站脚本工具不互通。</p>
             </help-tip>
           </label>
@@ -192,13 +199,14 @@ class About extends HyplateElement {
   }
 
   async init() {
+    const meta = await this.core.getMetaData();
     const chartStats = await this.chart.getStatistics();
     const musicPlayStats = await this.musicPlay.getStatistics();
     const profile = await this.profile.generateMaxProfile();
     const maxB30 = await this.profile.b30(profile);
     const baseB30 = await this.profile.b30(profile, { packs: this.chart.freePacks.slice(0, 1) });
     const freeB30 = await this.profile.b30(profile, { packs: this.chart.freePacks });
-    return [chartStats, musicPlayStats, maxB30, baseB30, freeB30] as const;
+    return [meta, chartStats, musicPlayStats, maxB30, baseB30, freeB30] as const;
   }
 
   renderMaxPtt(info: JSXChildNode, potential: number, b30: B30Response) {

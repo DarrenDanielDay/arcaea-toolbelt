@@ -7,17 +7,19 @@ import {
   NormalWorldMapPlatforms,
   RewardType,
 } from "../models/world-mode";
-import { CharacterData, CharacterImageKind, CharacterIndex, CharacterStatus } from "../models/character";
+import { CharacterImageKind, CharacterIndex, CharacterStatus } from "../models/character";
 import {
   $AssetsResolver,
   $CharacterService,
   $ChartService,
+  $CoreDataService,
   $MusicPlayService,
   $WorldModeService,
   AssetsResolver,
   CharacterService,
   ChartService,
   ChartStatistics,
+  CoreDataService,
   InverseProgressSolution,
   MapDistance,
   MusicPlayService,
@@ -27,25 +29,27 @@ import {
   WorldMapBonus,
   WorldModeService,
 } from "./declarations";
-import items from "../data/item-data.json";
 import { SongIndex } from "../models/music-play";
-import { Indexed, indexBy } from "../utils/collections";
+import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
 import { inferRange } from "../utils/math";
-import { jsonModule } from "../utils/misc";
+import { once } from "../utils/misc";
 const BASE_PROG = 2.5;
 const BASE_BOOST = 27;
 const POTENTIAL_FACTOR = 2.45;
 const CHARACTER_FACTOR_RATIO = 50;
 @Injectable({
-  requires: [$ChartService, $MusicPlayService, $AssetsResolver, $CharacterService] as const,
+  requires: [$CoreDataService, $ChartService, $MusicPlayService, $AssetsResolver, $CharacterService] as const,
   implements: $WorldModeService,
 })
 export class WorldModeServiceImpl implements WorldModeService {
-  itemImages = Object.fromEntries(items.map((item) => [item.name, item.img]));
-  #characterIndex: Indexed<CharacterData> | null = null;
+  itemImages = once(async () => {
+    const items = await this.core.getItemsData();
+    return Object.fromEntries(items.map((item) => [item.name, item.img]));
+  });
   #songIndex: SongIndex | null = null;
   constructor(
+    private readonly core: CoreDataService,
     private readonly chart: ChartService,
     private readonly music: MusicPlayService,
     private readonly resolver: AssetsResolver,
@@ -53,18 +57,23 @@ export class WorldModeServiceImpl implements WorldModeService {
   ) {}
 
   async getLongtermMaps(): Promise<Chapter[]> {
-    const chapters = await jsonModule(import("../data/world-maps-longterm.json"));
+    const chapters = await this.core.getWorldMapLongTerm();
     const songIndex = await this.getSongIndex();
     const characterIndex = await this.character.getCharacterIndex();
-    return chapters.map((c) => ({ ...c, maps: c.maps.map((m) => this.withRewardImgs(m, songIndex, characterIndex)) }));
+    const items = await this.itemImages();
+    return chapters.map((c) => ({
+      ...c,
+      maps: c.maps.map((m) => this.withRewardImgs(items, m, songIndex, characterIndex)),
+    }));
   }
 
   async getEventMaps(): Promise<NormalWorldMap[]> {
-    const maps = await jsonModule(import("../data/world-maps-events.json"));
+    const maps = await this.core.getWorldMapEvents();
+    const items = await this.itemImages();
     const songIndex = await this.getSongIndex();
     const characterIndex = await this.character.getCharacterIndex();
     // TODO 只显示当前可用的活动图
-    return maps.map((m) => this.withRewardImgs(m, songIndex, characterIndex));
+    return maps.map((m) => this.withRewardImgs(items, m, songIndex, characterIndex));
   }
 
   getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, string[]>> {
@@ -295,12 +304,13 @@ export class WorldModeServiceImpl implements WorldModeService {
     return solution;
   }
 
-  private findItemImage(name: string): string {
-    const result = this.itemImages[name];
+  private findItemImage(name: string, itemImages: Record<string, string>): string {
+    const result = itemImages[name];
     return result || "";
   }
 
   private withRewardImgs(
+    items: Record<string, string>,
     map: NormalWorldMapData,
     songIndex: SongIndex,
     characterIndex: CharacterIndex
@@ -341,7 +351,7 @@ export class WorldModeServiceImpl implements WorldModeService {
                       type: RewardType.Item,
                       count: reward.count,
                       name: reward.name,
-                      img: this.findItemImage(reward.name)!,
+                      img: this.findItemImage(reward.name, items)!,
                     };
                   case RewardType.Song:
                     const song = songIndex[reward.id]!;

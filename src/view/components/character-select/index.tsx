@@ -3,10 +3,16 @@ import { CharacterData, CharacterImageKind, CharacterStatus } from "../../../mod
 import { SearchSelect } from "../search-select";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
-import { $AssetsResolver, $AssetsService, AssetsResolver, AssetsService } from "../../../services/declarations";
+import {
+  $AssetsResolver,
+  $AssetsService,
+  $CharacterService,
+  AssetsResolver,
+  AssetsService,
+  CharacterService,
+} from "../../../services/declarations";
 import { AssetImage } from "../asset-image";
 import type { GlobalAttributes } from "hyplate/types";
-import { jsonModule } from "../../../utils/misc";
 @Component({
   tag: "character-select",
   styles: [...SearchSelect.styles, sheet],
@@ -16,6 +22,8 @@ export class CharacterSelect extends SearchSelect<CharacterData> {
   accessor resolver!: AssetsResolver;
   @Inject($AssetsService)
   accessor assets!: AssetsService;
+  @Inject($CharacterService)
+  accessor characters!: CharacterService;
 
   constructor() {
     super(
@@ -65,7 +73,7 @@ export class CharacterSelect extends SearchSelect<CharacterData> {
         </div>
       ),
       async (text) => {
-        const data = await jsonModule(import("../../../data/character-data.json"));
+        const data = await this.characters.getAllCharacters();
         return data.filter(
           (d) =>
             d.name.zh.toLowerCase().includes(text.toLowerCase()) || d.name.en.toLowerCase().includes(text.toLowerCase())

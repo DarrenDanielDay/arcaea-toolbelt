@@ -45,7 +45,7 @@ export class DirectGateway implements Gateway {
   }
 
   protected proxyCustomProtocol(url: URL, mapping: ProxyMapping) {
-    const { pathname } = url;
+    const pathname = url.toString().slice(protocol.length);
     const pair = Object.entries(mapping).find(([key]) => pathname.startsWith(key));
     if (pair) {
       const [prefix, base] = pair;

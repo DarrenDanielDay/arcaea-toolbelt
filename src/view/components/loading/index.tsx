@@ -2,7 +2,7 @@ import { bootstrap } from "../../styles";
 import { Component, HyplateElement, element } from "hyplate";
 import { sheet } from "../fancy-dialog/style.css.js";
 import type { JSXChildNode } from "hyplate/types";
-import { alert } from "../fancy-dialog";
+import { FancyDialog, alert } from "../fancy-dialog";
 import { formatError } from "../../../utils/format";
 
 @Component({
@@ -12,11 +12,15 @@ import { formatError } from "../../../utils/format";
 class Loading extends HyplateElement {
   dialog = element("dialog");
   content: JSXChildNode | null = null;
+  error = new FancyDialog();
   override render() {
     return (
-      <dialog ref={this.dialog} onCancel={(e) => e.preventDefault()}>
-        {this.content}
-      </dialog>
+      <>
+        {this.error}
+        <dialog ref={this.dialog} onCancel={(e) => e.preventDefault()}>
+          {this.content}
+        </dialog>
+      </>
     );
   }
 }
@@ -30,7 +34,7 @@ export const loading = async <T extends unknown>(promise: PromiseLike<T>, messag
     const result = await promise;
     return result;
   } catch (error) {
-    await alert(<p>出现错误：{formatError(error)}</p>);
+    await loading.error.showAlert(<p>出现错误：{formatError(error)}</p>);
     throw error;
   } finally {
     loading.dialog.close();

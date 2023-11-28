@@ -371,37 +371,33 @@ class ProfilePage extends HyplateElement {
     this.openFormModal(this.importSt3Dialog, async (data) => {
       const file = data.get("file");
       if (file instanceof File) {
-        try {
-          const message = signal("");
-          const result = await loading(
-            (async () => {
-              const result = await this.profileService.importDB(file, profile, (msg) => message.set(msg));
-              await delay(300);
-              return result;
-            })(),
-            <div>{message}</div>
-          );
-          const { count, difficulties, skipped } = result;
-          alert(
-            <div>
-              <p>
-                成功导入：
-                {Object.entries(difficulties).map(([key, value]) => (
-                  <>
-                    {value}个<span style:color={`var(--${key})`}>{key.toUpperCase()}</span>{" "}
-                  </>
-                ))}
-              </p>
-              {skipped.length ? <p>跳过：</p> : nil}
-              {skipped.map((msg) => (
-                <p>{msg}</p>
+        const message = signal("");
+        const result = await loading(
+          (async () => {
+            const result = await this.profileService.importDB(file, profile, (msg) => message.set(msg));
+            await delay(300);
+            return result;
+          })(),
+          <div>{message}</div>
+        );
+        const { count, difficulties, skipped } = result;
+        alert(
+          <div>
+            <p>
+              成功导入：
+              {Object.entries(difficulties).map(([key, value]) => (
+                <>
+                  {value}个<span style:color={`var(--${key})`}>{key.toUpperCase()}</span>{" "}
+                </>
               ))}
-              <p>共{count}个成绩</p>
-            </div>
-          );
-        } catch (error) {
-          alert(`${error}`);
-        }
+            </p>
+            {skipped.length ? <p>跳过：</p> : nil}
+            {skipped.map((msg) => (
+              <p>{msg}</p>
+            ))}
+            <p>共{count}个成绩</p>
+          </div>
+        );
       }
     });
   }

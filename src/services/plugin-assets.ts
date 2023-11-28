@@ -8,6 +8,6 @@ import { DirectGateway } from "./gateway";
 })
 export class PluginAssetsServiceImpl implements AssetsService {
   getAssets(url: URL): PromiseOr<string> {
-    return new DirectGateway().proxyPass(url).toString();
+    return new DirectGateway().dynamicProxy(url).toString();
   }
 }

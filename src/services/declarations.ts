@@ -68,7 +68,16 @@ export interface Gateway {
    * @param url 自定义URL
    */
   direct(url: URL): URL;
-  proxyPass(url: URL): PromiseOr<URL>;
+  /**
+   * 默认代理
+   * @param url 
+   */
+  proxy(url: URL): URL;
+  /**
+   * 动态代理
+   * @param url 
+   */
+  dynamicProxy(url: URL): PromiseOr<URL>;
 }
 
 export interface CoreDataService {

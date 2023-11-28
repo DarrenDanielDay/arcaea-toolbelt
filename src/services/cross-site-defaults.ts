@@ -35,7 +35,7 @@ export class DefaultPreferenceService implements PreferenceService {
 
 export class PluginAssetsResolverImpl extends AssetsResolverImpl {
   override resolve(path: string): URL {
-    const url = new DirectGateway().proxyPass(super.resolve(path));
+    const url = new DirectGateway().proxy(super.resolve(path));
     if (!(url instanceof URL)) throw new Error("Direct gateway should always be synchronous.");
     return url;
   }

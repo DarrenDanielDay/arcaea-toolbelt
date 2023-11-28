@@ -16,7 +16,7 @@ export class AssetsServiceImpl implements AssetsService {
   constructor(private readonly gateway: Gateway, private readonly cache: AssetsCacheService) {}
 
   async getAssets(url: URL, init?: RequestInit): Promise<string> {
-    const dist = await this.gateway.proxyPass(url);
+    const dist = await this.gateway.dynamicProxy(url);
     const distUrl = await this.cache.cachedGet(dist, init);
     return distUrl;
   }

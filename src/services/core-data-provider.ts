@@ -60,7 +60,7 @@ export class CoreDataProviderImpl implements CoreDataProvider, DataProvider<[pat
 
   protected async tryFetch(url: URL) {
     try {
-      const dist = await this.gateway.proxyPass(url);
+      const dist = await this.gateway.dynamicProxy(url);
       const response = await fetch(dist);
       if (!response.ok) throw new Error(`Failed to request proxy ${dist}`);
       return response;

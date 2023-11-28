@@ -3,9 +3,11 @@ import { protocol } from "../models/data";
 import { PromiseOr } from "../utils/misc";
 import { $Gateway, $PreferenceService, Gateway, PreferenceService } from "./declarations";
 
-const proxyBase =
-  "https://mirror.ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
 const assetsBase = "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/";
+const assetsProxyBase =
+  "https://mirror.ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
+const dataProxyBase =
+  "https://mirror.ghproxy.com/raw.githubusercontent.com/DarrenDanielDay/arcaea-toolbelt/main/src/data/";
 
 type ProxyMapping = Record<string, string>;
 
@@ -50,8 +52,8 @@ export class DirectGateway implements Gateway {
 })
 export class ProxyGateway extends DirectGateway {
   #proxyMapping: ProxyMapping = {
-    "//assets/": proxyBase,
-    "//data/": process.env.ARCAEA_TOOLBELT_DATA,
+    "//assets/": assetsProxyBase,
+    "//data/": dataProxyBase,
   };
   protected ghproxy = false;
 

@@ -9,7 +9,8 @@ import { getUserTheme } from "../utils/theme";
 const defaultPreference: Preference = {
   // 默认跟随系统的偏好主题
   theme: getUserTheme(),
-  ghproxy: false,
+  // 默认开启代理
+  ghproxy: true,
   showMaxMinus: false,
 };
 

@@ -11,6 +11,7 @@ import { ProxyGateway } from "./gateway";
 import { PreferenceServiceImpl } from "./preference";
 import { Container } from "classic-di";
 import { $ProfileService } from "./declarations";
+import { ProfileServiceImpl } from "./player-profile";
 
 const container = new Container();
 container.register(ArcaeaToolbeltDatabaseContext);
@@ -20,6 +21,7 @@ container.register(CoreDataServiceImpl);
 container.register(CoreDataProviderImpl);
 container.register(ProxyGateway);
 container.register(PreferenceServiceImpl);
+container.register(ProfileServiceImpl);
 
 const profile = container.get($ProfileService);
 //#region Legacy <iframe>

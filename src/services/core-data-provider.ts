@@ -13,10 +13,8 @@ import { requestToPromise } from "../utils/indexed-db";
 export class CoreDataProviderImpl implements CoreDataProvider, DataProvider<[path: string], any> {
   #memoryCache = new MemoryCache<[string], any>(this);
   #metaCache = new MemoryCache<[], ArcaeaToolbeltMeta>({
-    key() {
-      return "meta";
-    },
-    alloc: async () => this.fetchJSON(await this.gateway.proxyPass(toolbelt.data(meta))),
+    key: () => "meta",
+    alloc: async () => await this.fetchJSON(toolbelt.data(meta)),
   });
 
   constructor(private readonly database: AppDatabaseContext, private readonly gateway: Gateway) {}
@@ -34,7 +32,7 @@ export class CoreDataProviderImpl implements CoreDataProvider, DataProvider<[pat
     if (cache?.hash === item.hash) {
       return cache.content;
     }
-    const fetched = await this.fetchJSON(await this.gateway.proxyPass(toolbelt.data(path)));
+    const fetched = await this.fetchJSON(toolbelt.data(path));
     // check hash?
     const newData: ToolbeltCoreData = {
       hash: item.hash,
@@ -56,8 +54,19 @@ export class CoreDataProviderImpl implements CoreDataProvider, DataProvider<[pat
   }
 
   protected async fetchJSON(url: URL) {
-    const target = await this.gateway.proxyPass(url);
-    const response = await fetch(target);
+    const response = await this.tryFetch(url);
     return response.json();
+  }
+
+  protected async tryFetch(url: URL) {
+    try {
+      const dist = await this.gateway.proxyPass(url);
+      const response = await fetch(dist);
+      if (!response.ok) throw new Error(`Failed to request proxy ${dist}`);
+      return response;
+    } catch (error) {
+      console.error(error);
+      return await fetch(this.gateway.direct(url));
+    }
   }
 }

@@ -63,6 +63,11 @@ export interface PreferenceService {
 }
 
 export interface Gateway {
+  /**
+   * 兜底无代理URL
+   * @param url 自定义URL
+   */
+  direct(url: URL): URL;
   proxyPass(url: URL): PromiseOr<URL>;
 }
 

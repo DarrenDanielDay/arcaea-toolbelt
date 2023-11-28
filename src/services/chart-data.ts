@@ -10,6 +10,8 @@ import {
   AssetsResolver,
   CoreDataService,
   $CoreDataService,
+  Gateway,
+  $Gateway,
 } from "./declarations";
 import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
@@ -21,7 +23,7 @@ const FREE_PACKS = [
 ];
 
 @Injectable({
-  requires: [$AssetsResolver, $CoreDataService] as const,
+  requires: [$AssetsResolver, $Gateway, $CoreDataService] as const,
   implements: $ChartService,
 })
 export class ChartServiceImpl implements ChartService {
@@ -29,7 +31,11 @@ export class ChartServiceImpl implements ChartService {
 
   #songIndex: SongIndex | null = null;
 
-  constructor(private resolver: AssetsResolver, private readonly core: CoreDataService) {}
+  constructor(
+    private resolver: AssetsResolver,
+    private readonly gateway: Gateway,
+    private readonly core: CoreDataService
+  ) {}
 
   getSongData(): Promise<SongData[]> {
     return this.core.getChartData();
@@ -142,7 +148,7 @@ export class ChartServiceImpl implements ChartService {
   }
 
   getCover(chart: Chart, song: Song): string {
-    return this.resolver.resolveCover(chart, song, true).toString();
+    return this.gateway.direct(this.resolver.resolveCover(chart, song, true)).toString();
   }
 
   async #initSongIndex() {

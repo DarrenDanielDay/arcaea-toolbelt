@@ -15,6 +15,15 @@ type ProxyMapping = Record<string, string>;
   implements: $Gateway,
 })
 export class DirectGateway implements Gateway {
+  readonly #direct = {
+    "//assets/": assetsBase,
+    "//data/": process.env.ARCAEA_TOOLBELT_DATA,
+  };
+
+  direct(url: URL): URL {
+    return this.proxyByMapping(url.pathname, this.#direct);
+  }
+
   proxyPass(url: URL): PromiseOr<URL> {
     if (url.protocol === protocol) {
       return this.proxyCustomProtocol(url);
@@ -23,10 +32,7 @@ export class DirectGateway implements Gateway {
   }
 
   protected proxyCustomProtocol(url: URL) {
-    const { pathname } = url;
-    const mapped = this.proxyByMapping(pathname, this.getPrefixMapping());
-    if (mapped) return mapped;
-    throw new Error(`Unknown path: ${pathname}`);
+    return this.proxyByMapping(url.pathname, this.getPrefixMapping());
   }
 
   protected proxyByMapping(pathname: string, mapping: ProxyMapping) {
@@ -35,14 +41,11 @@ export class DirectGateway implements Gateway {
       const [prefix, base] = pair;
       return new URL(pathname.slice(prefix.length), base);
     }
-    return null;
+    throw new Error(`Unknown path: ${pathname}`);
   }
 
   protected getPrefixMapping(): ProxyMapping {
-    return {
-      "//assets/": assetsBase,
-      "//data/": process.env.ARCAEA_TOOLBELT_DATA,
-    };
+    return this.#direct;
   }
 }
 

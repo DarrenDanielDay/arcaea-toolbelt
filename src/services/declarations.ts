@@ -346,6 +346,7 @@ export interface WorldModeService {
   inverseProgress(step: number, progressRange: [low: number, high: number]): Promise<InverseProgressSolution[]>;
   inverseConstantRange(playResult: number, score: number, step: number, progress: number): [number, number] | null;
   inverseBeyondBoost(difference: number, score: number, raw?: boolean): number;
+  inverseCharacterExp(difference: number, score: number, raw?: boolean): number;
   inferConstant(min: number, max: number): number[];
 }
 

@@ -23,6 +23,7 @@ import { ArcaeaToolbeltDatabaseContext } from "./database";
 import { CrossSiteProtocol } from "./cross-site-protocol";
 import { DefaultPreferenceService, PluginAssetsResolverImpl, PluginCoreData } from "./cross-site-defaults";
 import { DirectGateway } from "./gateway";
+import { CharacterServiceImpl } from "./character";
 
 const ioc = new Container({ name: "cross-site-script-root" });
 ioc.register(ArcaeaToolbeltDatabaseContext);
@@ -34,6 +35,7 @@ ioc.register(PluginCoreData);
 ioc.register(PluginAssetsServiceImpl);
 ioc.register(DefaultPreferenceService);
 ioc.register(DirectGateway);
+ioc.register(CharacterServiceImpl);
 const musicPlay = ioc.get($MusicPlayService);
 
 let cookie = "";

@@ -24,6 +24,7 @@ import { NoteResult } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
 import { formatError } from "../../../utils/format";
 import { CharacterImageKind, CharacterStatus } from "../../../models/character";
+import { indexBy } from "../../../utils/collections.js";
 
 export
 @Component({
@@ -45,6 +46,7 @@ class ToolPanel extends HyplateElement {
   characterList = new FancyDialog();
   recentList = new FancyDialog();
   message = new FancyDialog();
+  lastProfile: lowiro.UserProfile | null = null;
 
   override render(): JSX.Element {
     const profile$ = signal<lowiro.UserProfile | null>(null);
@@ -114,6 +116,24 @@ class ToolPanel extends HyplateElement {
       logging$.set("");
       this.message.showAlert(`存档${profiles.map((p) => p.username).join("，")}同步成功`);
     };
+    const findExpChangedCharacter = (lastProfile: lowiro.UserProfile | null, profile: lowiro.UserProfile) => {
+      if (!lastProfile) return null;
+      const previousIndex = indexBy(lastProfile.character_stats, (char) => char.character_id);
+      for (const character of profile.character_stats) {
+        const previous = previousIndex[character.character_id];
+        if (!previous) {
+          continue;
+        }
+        const expDiff = character.exp - previous.exp;
+        if (expDiff) {
+          return {
+            expDiff,
+            character,
+          };
+        }
+      }
+      return null;
+    };
     queueMicrotask(initProfile);
     return (
       <div class="modal-root m-3">
@@ -126,15 +146,59 @@ class ToolPanel extends HyplateElement {
               const { display_name, rating, join_date, beyond_boost_gauge, recent_score } = profile;
               const chart = recent_score[0];
               const { score = 0, difficulty = -1, song_id = "-" } = chart ?? {};
-              const key = "arcaea_toolbelt_last_beyond_boost_gauge";
-              const stored = sessionStorage.getItem(key);
-              const lastGauge = stored ? +stored : NaN;
-              const difference = beyond_boost_gauge - lastGauge;
-              if (isNaN(lastGauge) || difference) {
-                sessionStorage.setItem(key, `${beyond_boost_gauge}`);
-              }
+              const { lastProfile } = this;
+              this.lastProfile = structuredClone(profile);
               const players = [profile, ...profile.friends];
               const isProfile = (p: unknown): p is lowiro.UserProfile => p === profile;
+              const renderExpInferredConstant = () => {
+                const expChange = findExpChangedCharacter(lastProfile, profile);
+                const { expDiff, character } = expChange ?? {};
+                return (
+                  <>
+                    <div class="row">
+                      <div class="col">
+                        经验值变化角色：
+                        {character
+                          ? `${character.display_name["zh-Hans"]}${
+                              character.variant ? `（${character.variant["zh-Hans"]}）` : ""
+                            }`
+                          : "-"}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">变化量：{expDiff ?? "-"}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        经验值变化推测定数：{expDiff ? this.world.inverseCharacterExp(expDiff, score) : "-"}
+                      </div>
+                    </div>
+                  </>
+                );
+              };
+              const renderBeyondGaugeConstant = () => {
+                const lastGauge = lastProfile ? +lastProfile.beyond_boost_gauge : NaN;
+                const beyondGaugeDiff = beyond_boost_gauge - lastGauge;
+                return (
+                  <>
+                    <div class="row">
+                      <div class="col-auto">上一次beyond能量：{isNaN(lastGauge) ? "-" : lastGauge}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-auto">当前beyond能量：{beyond_boost_gauge}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-auto">差值：{beyondGaugeDiff || "-"}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-auto">
+                        beyond能量推测定数：
+                        {beyondGaugeDiff ? this.world.inverseBeyondBoost(beyondGaugeDiff, score) : "-"}
+                      </div>
+                    </div>
+                  </>
+                );
+              };
 
               return (
                 <main>
@@ -319,7 +383,14 @@ class ToolPanel extends HyplateElement {
                   <div>
                     <details>
                       <summary>原理和用法</summary>
-                      <div>参考中文Wiki上的公式，beyond能量槽的填充进度为</div>
+                      <div>参考中文Wiki上的公式，游玩世界模式时角色获得的经验值公式为</div>
+                      <math display="block">
+                        <mfrac>
+                          <ms>单曲潜力值</ms>
+                          <mn>6</mn>
+                        </mfrac>
+                      </math>
+                      <div>beyond能量槽的填充进度为</div>
                       <math display="block">
                         <mn>27</mn>
                         <mo>+</mo>
@@ -336,15 +407,6 @@ class ToolPanel extends HyplateElement {
                       <div>如果打完谱面后能量溢出（超过200%），测定结果可能会不准确。</div>
                     </details>
                     <div class="row">
-                      <div class="col-auto">上一次beyond能量：{isNaN(lastGauge) ? "-" : lastGauge}</div>
-                    </div>
-                    <div class="row">
-                      <div class="col-auto">当前beyond能量：{beyond_boost_gauge}</div>
-                    </div>
-                    <div class="row">
-                      <div class="col-auto">差值：{difference || "-"}</div>
-                    </div>
-                    <div class="row">
                       <div class="col-auto">最近游玩曲目Id：{song_id}</div>
                     </div>
                     <div class="row">
@@ -353,11 +415,8 @@ class ToolPanel extends HyplateElement {
                     <div class="row">
                       <div class="col-auto">分数：{score || "-"}</div>
                     </div>
-                    <div class="row">
-                      <div class="col-auto">
-                        推测定数：{difference ? this.world.inverseBeyondBoost(difference, score) : "-"}
-                      </div>
-                    </div>
+                    {renderExpInferredConstant()}
+                    {renderBeyondGaugeConstant()}
                   </div>
                 </main>
               );

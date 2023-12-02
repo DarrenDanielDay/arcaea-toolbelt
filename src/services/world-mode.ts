@@ -255,6 +255,11 @@ export class WorldModeServiceImpl implements WorldModeService {
     return this.music.inverseConstant(potential, score, raw);
   }
 
+  inverseCharacterExp(difference: number, score: number, raw?: boolean): number {
+    const potential = difference / 6;
+    return this.music.inverseConstant(potential, score, raw);
+  }
+
   inferConstant(min: number, max: number): number[] {
     const possible: number[] = [];
     const min10 = Math.ceil(min * 10);

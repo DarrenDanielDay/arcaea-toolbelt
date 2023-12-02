@@ -399,7 +399,7 @@ class ToolPanel extends HyplateElement {
                           <ms>单曲潜力值</ms>
                         </msqrt>
                       </math>
-                      <div>根据接口返回的beyond能量变化值可逆算单曲潜力值，结合最近游玩的分数可逆算出定数。</div>
+                      <div>根据接口返回的角色经验/beyond能量的变化值可逆算单曲潜力值，结合最近游玩的分数可逆算出定数。</div>
                       <div>
                         使用方法：先打开此面板获取一次当前beyond能量值，然后去游戏内爬梯打待测谱面。打完结算后再点击
                         <code>账号信息</code>的<code>重新获取</code>按钮即可自动测算。

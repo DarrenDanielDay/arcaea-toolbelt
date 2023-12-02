@@ -12,6 +12,7 @@ import { PreferenceServiceImpl } from "./preference";
 import { Container } from "classic-di";
 import { $ProfileService } from "./declarations";
 import { ProfileServiceImpl } from "./player-profile";
+import { MusicPlayServiceImpl } from "./music-play";
 
 const container = new Container();
 container.register(ArcaeaToolbeltDatabaseContext);
@@ -22,6 +23,7 @@ container.register(CoreDataProviderImpl);
 container.register(ProxyGateway);
 container.register(PreferenceServiceImpl);
 container.register(ProfileServiceImpl);
+container.register(MusicPlayServiceImpl);
 
 const profile = container.get($ProfileService);
 //#region Legacy <iframe>

@@ -22,6 +22,7 @@ import { PluginAssetsServiceImpl } from "./plugin-assets";
 import { ArcaeaToolbeltDatabaseContext } from "./database";
 import { CrossSiteProtocol } from "./cross-site-protocol";
 import { DefaultPreferenceService, PluginAssetsResolverImpl, PluginCoreData } from "./cross-site-defaults";
+import { DirectGateway } from "./gateway";
 
 const ioc = new Container({ name: "cross-site-script-root" });
 ioc.register(ArcaeaToolbeltDatabaseContext);
@@ -32,16 +33,8 @@ ioc.register(PluginAssetsResolverImpl);
 ioc.register(PluginCoreData);
 ioc.register(PluginAssetsServiceImpl);
 ioc.register(DefaultPreferenceService);
+ioc.register(DirectGateway);
 const musicPlay = ioc.get($MusicPlayService);
-
-const flattenData = (await ioc.get($ChartService).getSongData())
-  .flatMap((song) =>
-    song.charts.map((chart) => ({
-      song,
-      chart,
-    }))
-  )
-  .sort((a, b) => b.chart.constant - a.chart.constant);
 
 let cookie = "";
 
@@ -112,6 +105,14 @@ async function queryBest(
   limit: number = 39
 ): Promise<Profile[]> {
   const chartService = ioc.get($ChartService);
+  const flattenData = (await chartService.getSongData())
+  .flatMap((song) =>
+    song.charts.map((chart) => ({
+      song,
+      chart,
+    }))
+  )
+  .sort((a, b) => b.chart.constant - a.chart.constant);
   const friends = profile.friends;
   const names = new Set(usernames);
   const queryPlayers = [...friends, profile].filter((p) => names.has(p.name));

@@ -47,10 +47,9 @@ export class PluginAssetsResolverImpl extends AssetsResolverImpl {
 export class PluginCoreData implements CoreDataService {
   async import(file: string) {
     const url = `${process.env.ARCAEA_TOOLBELT_DATA}${file}`;
-    // Using eval to keep ES Module Dynamic Import semantic.
-    // TODO: switch to ESM only bundler.
-    const module = await eval(`import(${JSON.stringify(url)}, { assert: { type: "json" } })`);
-    return module.default;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
   }
   getMetaData(): Promise<ArcaeaToolbeltMeta> {
     throw new Error("Method not implemented.");

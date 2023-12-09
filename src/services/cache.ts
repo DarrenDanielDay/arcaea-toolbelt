@@ -91,7 +91,7 @@ export class CachedHttpGetClient {
 }
 
 export const migrateOldCaches = async (oldName: string, to: CacheDBContext) => {
-  const databases = await indexedDB.databases();
+  const databases = (await indexedDB.databases?.()) ?? [];
   const old = databases.find((d) => d.name === oldName);
   if (!old) {
     return;

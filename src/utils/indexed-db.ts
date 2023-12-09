@@ -15,12 +15,24 @@ export class DBVersionManager {
     let oldVersion = 0,
       newVersion = version;
     let db: IDBDatabase | null = null;
-    const dbs = await indexedDB.databases();
+    const dbs = (await indexedDB.databases?.()) ?? [];
     const targetDB = dbs.find((db) => db.name === name);
     oldVersion = targetDB?.version ?? 0;
-    const upgradeRange = [...this.#versions.entries()]
-      .filter(([version]) => oldVersion <= version && version <= newVersion)
-      .sort(([a], [b]) => a - b);
+    if (!oldVersion) {
+      // 除了首次访问，还有可能是Firefox 不支持indexedDB.databses方法，无法获取当前数据库的版本
+      return openDB(name, version, (event, request) => {
+        const db = request.result;
+        const { oldVersion, newVersion } = event;
+        if (newVersion == null) throw new Error(`Unexpected Error: DB ${name} is being deleted.`);
+        const upgradeRange = this.#getUpgradeRange(oldVersion, newVersion);
+        for (const [, upgrade] of upgradeRange) {
+          upgrade(db, () => {
+            // 在Firefox支持indexedDB.databases之前只能放弃所有数据迁移步骤
+          });
+        }
+      });
+    }
+    const upgradeRange = this.#getUpgradeRange(oldVersion, newVersion);
     let currentVersion = oldVersion;
     for (const [nextVersion, upgrade] of upgradeRange) {
       let migrations: DataMigration[] = [];
@@ -47,6 +59,12 @@ export class DBVersionManager {
       throw new Error(`Version ${version} of database "${name}" not defined.`);
     }
     return db;
+  }
+
+  #getUpgradeRange(oldVersion: number, newVersion: number) {
+    return [...this.#versions.entries()]
+      .filter(([version]) => oldVersion <= version && version <= newVersion)
+      .sort(([a], [b]) => a - b);
   }
 }
 

@@ -17,7 +17,7 @@ export class AssetsServiceImpl implements AssetsService {
 
   async getAssets(url: URL, init?: RequestInit): Promise<string> {
     const dist = await this.gateway.dynamicProxy(url);
-    const distUrl = await this.cache.cachedGet(dist, init);
-    return distUrl;
+    const imageCache = await this.cache.cachedGet(dist, init);
+    return imageCache.blobURL;
   }
 }

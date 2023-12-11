@@ -39,6 +39,7 @@ export interface B30Response {
   queryTime: number;
   username: string;
   potential: string;
+  rating: number;
   maxPotential: number;
   minPotential: number;
   b30: BestResultItem[];

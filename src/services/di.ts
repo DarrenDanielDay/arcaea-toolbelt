@@ -3,7 +3,7 @@ import type { Container, Token } from "classic-di";
 let globalContainer: Container | null = null;
 
 export const Inject =
-  <T>(token: Token<T>) =>
+  <T>(token: Token<T> | (new (...args: any[]) => T), options?: { once?: boolean }) =>
   <E extends Node>(
     _target: ClassAccessorDecoratorTarget<E, T>,
     context: ClassAccessorDecoratorContext<E, T>
@@ -11,14 +11,18 @@ export const Inject =
     if (context.static) {
       throw new Error("Cannot inject for static property.");
     }
+    let injected: any = null;
     return {
       get() {
+        if (options?.once && injected) {
+          return injected;
+        }
         for (let node: Node | null = this; node; node = getParentContext(node)) {
           const container = node[$$provider];
           if (container) {
             const resolution = container.resolve(token);
             if (!resolution.circular) {
-              return container.create(resolution.path);
+              return (injected = container.create(resolution.path));
             }
           }
         }
@@ -26,8 +30,11 @@ export const Inject =
         if (container) {
           const resolution = container.resolve(token);
           if (!resolution.circular) {
-            return container.create(resolution.path);
+            return (injected = container.create(resolution.path));
           }
+        }
+        if (typeof token === "function") {
+          throw new Error(`Cannot create implementation for constructor "${token.name}"`);
         }
         throw new Error(`Cannot find implementation for token "${token.key.description}"`);
       },

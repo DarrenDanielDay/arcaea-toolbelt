@@ -51,6 +51,12 @@ export class PluginCoreData implements CoreDataService {
     const data = await response.json();
     return data;
   }
+  getSongList(): Promise<any> {
+    throw new Error("Method not implemented.");
+  }
+  getPackList(): Promise<any> {
+    throw new Error("Method not implemented.");
+  }
   getMetaData(): Promise<ArcaeaToolbeltMeta> {
     throw new Error("Method not implemented.");
   }

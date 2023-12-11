@@ -2,7 +2,16 @@ import { Injectable } from "classic-di";
 import { $CoreDataProvider, $CoreDataService, CoreDataProvider, CoreDataService } from "./declarations";
 import { SongData } from "../models/music-play";
 import { CharacterData } from "../models/character";
-import { characterData, chartData, itemsData, meta, worldMapsEvents, worldMapsLongterm } from "../data/file-list";
+import {
+  characterData,
+  chartData,
+  itemsData,
+  meta,
+  packList,
+  songList,
+  worldMapsEvents,
+  worldMapsLongterm,
+} from "../data/file-list";
 import { ChapterData, ItemData, NormalWorldMapData } from "../models/world-mode";
 import { ArcaeaToolbeltMeta } from "../models/misc";
 
@@ -17,6 +26,13 @@ export class CoreDataServiceImpl implements CoreDataService {
     return this.provider.get(path);
   }
 
+  getSongList(): Promise<any> {
+    return this.fetch(songList);
+  }
+  getPackList(): Promise<any> {
+    return this.fetch(packList);
+  }
+
   getMetaData(): Promise<ArcaeaToolbeltMeta> {
     return this.fetch(meta);
   }
@@ -24,7 +40,7 @@ export class CoreDataServiceImpl implements CoreDataService {
   getChartData(): Promise<SongData[]> {
     return this.fetch(chartData);
   }
-  
+
   getCharacterData(): Promise<CharacterData[]> {
     return this.fetch(characterData);
   }

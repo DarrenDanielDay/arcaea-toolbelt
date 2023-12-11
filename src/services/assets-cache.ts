@@ -1,5 +1,12 @@
 import { Injectable } from "classic-di";
-import { $AssetsCacheService, $Database, AppDatabaseContext, AssetsCacheService, Gateway } from "./declarations";
+import {
+  $AssetsCacheService,
+  $Database,
+  AppDatabaseContext,
+  AssetsCacheService,
+  Gateway,
+  ImageMemoryCache,
+} from "./declarations";
 import { CachedHttpGetClient, migrateOldCaches } from "./cache";
 import { future } from "../utils/future";
 import { DataProvider, MemoryCache } from "../utils/memory-cache";
@@ -9,7 +16,7 @@ import { PromiseOr } from "../utils/misc";
   requires: [$Database],
   implements: $AssetsCacheService,
 })
-export class AssetsCacheServiceImpl implements AssetsCacheService, DataProvider<[URL, RequestInit], string> {
+export class AssetsCacheServiceImpl implements AssetsCacheService, DataProvider<[URL, RequestInit], ImageMemoryCache> {
   #cache = new MemoryCache(this);
   #client: CachedHttpGetClient;
   #migrated = future();
@@ -22,18 +29,19 @@ export class AssetsCacheServiceImpl implements AssetsCacheService, DataProvider<
   key(input: URL, init?: RequestInit | undefined): string {
     return input.toString();
   }
-  async alloc(input: URL, init?: RequestInit | undefined): Promise<string> {
+  async alloc(input: URL, init?: RequestInit | undefined): Promise<ImageMemoryCache> {
     const res = await this.#client.fetch(input, init);
     const blob = await res.blob();
-    return URL.createObjectURL(blob);
+    return { blob, blobURL: URL.createObjectURL(blob) };
   }
 
-  free(data: string): PromiseOr<void> {
-    URL.revokeObjectURL(data);
+  free(data: ImageMemoryCache): PromiseOr<void> {
+    URL.revokeObjectURL(data.blobURL);
   }
 
-  async cachedGet(url: URL, init?: RequestInit | undefined): Promise<string> {
-    return this.#cache.get(url, init);
+  async cachedGet(url: URL, init?: RequestInit | undefined): Promise<ImageMemoryCache> {
+    const imageCache = await this.#cache.get(url, init);
+    return imageCache;
   }
 
   cacheUsage(): Promise<number> {

@@ -2,7 +2,7 @@ import { Attribute, AutoRender, Component, HyplateElement } from "hyplate";
 import type { GlobalAttributes, Signal } from "hyplate/types";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
-import { $AssetsResolver, $AssetsService, AssetsResolver, AssetsService } from "../../../services/declarations";
+import { $AssetsResolver, $AssetsService, $ProfileService, AssetsResolver, AssetsService, ProfileService } from "../../../services/declarations";
 import { syncProps } from "../../../utils/component";
 import { AssetImage } from "../asset-image";
 
@@ -18,6 +18,8 @@ export
 class PotentialBadge extends HyplateElement<PotentialBadgeProps> {
   @Attribute("potential", Number)
   accessor potential!: Signal<number | undefined | null>;
+  @Inject($ProfileService)
+  accessor profile!: ProfileService;
   @Inject($AssetsResolver)
   accessor resolver!: AssetsResolver;
   @Inject($AssetsService)
@@ -53,10 +55,10 @@ class PotentialBadge extends HyplateElement<PotentialBadgeProps> {
   }
 
   #getPotentialRating(potential: number | undefined | null): number {
-    if (potential == null || potential < 0) {
+    if (potential == null) {
       return -1;
     }
-    return [3.5, 7.0, 10.0, 11.0, 12.0, 12.5, 13.0, Infinity].findIndex((bound) => potential < bound);
+    return this.profile.getPotentialRating(potential);
   }
 }
 

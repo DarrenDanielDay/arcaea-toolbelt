@@ -25,3 +25,41 @@ help-tip p {
 .ios-issue {
   color: var(--bs-danger);
 }
+
+iframe {
+  width: 100vw;
+  height: 100vh;
+}
+
+.image-picker {
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.cells {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), var(--item-width));
+  gap: 0.5em;
+}
+
+.item {
+  box-sizing: content-box;
+  border: 0.125em transparent solid;
+  user-select: none;
+}
+
+.item img {
+  width: var(--item-width);
+  height: var(--item-height);
+  object-fit: cover;
+}
+
+.item.selected {
+  border-color: var(--bs-primary);
+  width: var(--item-width);
+  height: var(--item-height);
+}
+
+[slot="footer"] button {
+  margin-left: 0.5em;
+}

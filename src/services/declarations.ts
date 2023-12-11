@@ -70,21 +70,23 @@ export interface Gateway {
   direct(url: URL): URL;
   /**
    * 默认代理
-   * @param url 
+   * @param url
    */
   proxy(url: URL): URL;
   /**
    * 动态代理
-   * @param url 
+   * @param url
    */
   dynamicProxy(url: URL): PromiseOr<URL>;
 }
 
 export interface CoreDataService {
-  getMetaData(): Promise<ArcaeaToolbeltMeta>
+  getSongList(): Promise<any>;
+  getPackList(): Promise<any>;
+  getMetaData(): Promise<ArcaeaToolbeltMeta>;
   getChartData(): Promise<SongData[]>;
   getCharacterData(): Promise<CharacterData[]>;
-  getItemsData(): Promise<ItemData[]>
+  getItemsData(): Promise<ItemData[]>;
   getWorldMapLongTerm(): Promise<ChapterData[]>;
   getWorldMapEvents(): Promise<NormalWorldMapData[]>;
 }
@@ -112,11 +114,16 @@ export interface AssetsService {
   getAssets(url: URL, init?: RequestInit): PromiseOr<string>;
 }
 
+export interface ImageMemoryCache {
+  blobURL: string;
+  blob: Blob;
+}
+
 /**
  * 本质是在CachedHttpClient上面套一层作为一个可注入的服务
  */
 export interface AssetsCacheService {
-  cachedGet(url: URL, init?: RequestInit): Promise<string>;
+  cachedGet(url: URL, init?: RequestInit): Promise<ImageMemoryCache>;
   cacheUsage(): Promise<number>;
   clearCache(): Promise<void>;
 }
@@ -279,6 +286,7 @@ export interface B30Options {
 export interface ProfileService {
   checkMigration(): Promise<null | (() => Promise<void>)>;
   formatPotential(potential: number): string;
+  getPotentialRating(potential: number): number;
   getProfile(): Promise<Profile | null>;
   createOrUpdateProfile(username: string, potential: number): Promise<void>;
   getProfileList(): Promise<string[]>;

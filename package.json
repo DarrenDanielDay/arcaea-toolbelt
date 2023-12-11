@@ -3,6 +3,13 @@
   "version": "0.0.0",
   "type": "module",
   "targets": {
+    "api": {
+      "context": "browser",
+      "isLibrary": true,
+      "source": "src/services/generator-api.ts",
+      "optimize": true,
+      "outputFormat": "esmodule"
+    },
     "default": {
       "context": "browser",
       "source": [
@@ -18,15 +25,17 @@
   },
   "browserslist": "last 2 Chrome versions",
   "scripts": {
+    "start:api": "parcel watch --target api --no-hmr",
     "start:parcel": "parcel --target default --hmr-host localhost --hmr-port 1235",
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
     "dev": "run-p --print-label \"start:parcel\" \"start:sheetly\"",
     "clean": "rimraf dist dist-tools arcaea-toolbelt parcel-bundle-reports .parcel-cache",
     "start": "run-p --print-label \"start:**\"",
     "purge": "node ./scripts/purge.js",
+    "build:api": "parcel build --target api --public-url /arcaea-toolbelt --dist-dir ./arcaea-toolbelt",
     "build:parcel": "parcel build --target default --no-optimize --public-url /arcaea-toolbelt --reporter @parcel/reporter-bundle-analyzer",
     "build:sheetly": "sheetly build --dir src",
-    "build": "run-s purge build:sheetly build:parcel"
+    "build": "run-s purge build:sheetly build:parcel build:api"
   },
   "private": true,
   "@parcel/resolver-default": {

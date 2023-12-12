@@ -408,14 +408,13 @@ class PlayerB39 extends HyplateElement {
     let site: string;
     if (custom) {
       try {
-        new URL(custom);
-        site = custom;
+        site = new URL(custom).href;
       } catch {
         alert("地址格式不正确");
         return;
       }
     } else {
-      site = process.env.ARCAEA_TOOLBELT_AOL_B30;
+      site = new URL(process.env.ARCAEA_TOOLBELT_AOL_B30, document.baseURI).href;
     }
     this.customTemplateIframe = element("iframe");
     this.customTemplateStarted.set(true);

@@ -34,7 +34,7 @@ import {
 import { SongIndex } from "../models/music-play";
 import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
-import { inferRange } from "../utils/math";
+import { inferRange, isInt } from "../utils/math";
 import { once } from "../utils/misc";
 const BASE_PROG = 2.5;
 const BASE_BOOST = 27;
@@ -239,8 +239,9 @@ export class WorldModeServiceImpl implements WorldModeService {
     if (step && progress) {
       // TODO 验证实际显示的progress是截尾还是舍入
       const [minProgress, maxProgress] = inferRange(progress, 1, false);
-      const minPlayResult = this.inversePlayResult(minProgress, step);
-      const maxPlayResult = this.inversePlayResult(maxProgress, step);
+      const [minStep, maxStep] = isInt(step) ? inferRange(step, 1, false) : [step, step]
+      const minPlayResult = this.inversePlayResult(minProgress, maxStep);
+      const maxPlayResult = this.inversePlayResult(maxProgress, minStep);
       // 缩小范围
       min = Math.max(min, minPlayResult);
       max = Math.min(max, maxPlayResult);

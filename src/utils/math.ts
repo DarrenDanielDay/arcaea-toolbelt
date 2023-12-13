@@ -7,7 +7,7 @@ export const inferRange = (value: number, digit: number, round: boolean): [numbe
   return [min / base, max / base];
 };
 
-export const isInt = (value: number) => value === Math.floor(value);
+export const isInt = Number.isInteger;
 
 export const divide = (a: number, b: number) => {
   const quotient = Math.floor(a / b);

@@ -20,6 +20,7 @@ import { HyplateElement, Component, listen, signal, element, nil, computed, Auto
 import { ChartInfo } from "../chart-info";
 import { CharacterPicker, renderCharacterStepInput } from "../character-picker";
 import { $Router, Router } from "../../pages/router";
+import { CurrentProgress, NormalWorldMap } from "../../../models/world-mode.js";
 
 export type WorldModeParams = "mapId";
 
@@ -176,7 +177,7 @@ class WorldModeCalculator extends HyplateElement {
         <div class="title mx-3">选择地图</div>
         {this.select}
         {this.worldMap}
-        <div class="title mx-3">设置当前地图进度</div>
+        <div class="title mx-3">设置地图当前进度</div>
         <form ref={this.jumpForm} id="jump-platform" class="mx-3">
           <div class="row">
             <div class="col-auto">
@@ -229,17 +230,21 @@ class WorldModeCalculator extends HyplateElement {
           {() => {
             const currentProgress = this.worldMap.currentProgress();
             const currentMap = this.worldMap.currentMap();
-            if (!currentProgress || !currentMap) {
+            if (!currentMap) {
               return nil;
             }
-            const { nextReward, total } = this.worldMode.computeRemainingProgress(currentMap, currentProgress);
+            const { nextReward, total } = this.worldMode.computeRemainingProgress(
+              currentMap,
+              this.#getCalcProgress(currentMap, currentProgress)
+            );
             return (
               <div class="mx-3">
                 <div class="row">
                   <div class="col-auto">
                     {nextReward ? (
                       <>
-                        距离下个主要奖励<img src={nextReward.img} width="32" height="32"></img>还剩
+                        {this.#renderHint(currentProgress)}距离下个主要奖励
+                        <img src={nextReward.img} width="32" height="32"></img>还剩
                         {nextReward.remaining.distance}进度，
                       </>
                     ) : (
@@ -388,14 +393,17 @@ class WorldModeCalculator extends HyplateElement {
               const progress = this.progress();
               const currentProgress = this.worldMap.currentProgress();
               const currentMap = this.worldMap.currentMap();
-              if (isNaN(progress) || !currentProgress || !currentMap) {
+              if (isNaN(progress) || !currentMap) {
                 return nil;
               }
-              const { nextReward, total } = this.worldMode.computeRemainingProgress(currentMap, currentProgress);
+              const { nextReward, total } = this.worldMode.computeRemainingProgress(
+                currentMap,
+                this.#getCalcProgress(currentMap, currentProgress)
+              );
               return (
                 <div class="row">
                   <div class="col-auto">
-                    以此进度结算，
+                    {this.#renderHint(currentProgress)}以此进度结算，
                     {nextReward ? (
                       <>
                         到下个主要奖励<img src={nextReward.img} width="32" height="32"></img>还需要打
@@ -737,5 +745,16 @@ class WorldModeCalculator extends HyplateElement {
    */
   #getMapCurrentPlatformContexts() {
     return [...this.worldMap.platforms()].reverse();
+  }
+
+  #renderHint(currentProgress: CurrentProgress | null) {
+    if (currentProgress) {
+      return "";
+    }
+    return "未设置地图当前进度。若从头开始爬梯，";
+  }
+
+  #getCalcProgress(worldMap: NormalWorldMap, currentProgress: CurrentProgress | null) {
+    return currentProgress ?? { level: 1, progress: worldMap.platforms[1]!.length };
   }
 }

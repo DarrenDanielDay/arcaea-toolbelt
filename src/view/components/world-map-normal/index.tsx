@@ -5,7 +5,7 @@ import { alert } from "../fancy-dialog";
 import { Component, For, HyplateElement, computed, element, nil, signal } from "hyplate";
 import type { CleanUpFunc, WritableSignal } from "hyplate/types";
 import { Inject } from "../../../services/di";
-import { $AssetsResolver, AssetsResolver } from "../../../services/declarations";
+import { $AssetsResolver, $Gateway, AssetsResolver, Gateway } from "../../../services/declarations";
 
 const specialPlatformImages: Record<
   PlatformType,
@@ -15,27 +15,25 @@ const specialPlatformImages: Record<
   }
 > = {
   [PlatformType.FixedSpeed]: {
-    banner:
-      "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_banner_speedrestrict.png",
-    main: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile_speedrestrict.png",
+    banner: "img/step_banner_speedrestrict.png",
+    main: "img/step_tile_speedrestrict.png",
   },
   [PlatformType.Random]: {
-    banner: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_banner_random.png",
-    main: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile_random.png",
+    banner: "img/step_banner_random.png",
+    main: "img/step_tile_random.png",
   },
   [PlatformType.Restriction]: {
-    banner: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_banner_restrict.png",
-    main: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile_restrict.png",
+    banner: "img/step_banner_restrict.png",
+    main: "img/step_tile_restrict.png",
   },
   [PlatformType.Stamina]: {
-    banner: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_banner_plusstamina.png",
-    main: "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile_plusstamina.png",
+    banner: "img/step_banner_plusstamina.png",
+    main: "img/step_tile_plusstamina.png",
   },
 };
 
-const defaultPlatformImage = "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile.png";
-const currentPlatformImage =
-  "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/img/step_tile_current.png";
+const defaultPlatformImage = "img/step_tile.png";
+const currentPlatformImage = "img/step_tile_current.png";
 
 interface PlatformContext {
   cell: HTMLDivElement;
@@ -52,6 +50,8 @@ export
 class WorldMapNormal extends HyplateElement {
   @Inject($AssetsResolver)
   accessor resolver!: AssetsResolver;
+  @Inject($Gateway)
+  accessor gateway!: Gateway;
   platformsContainer = element("div");
 
   bg = signal("");
@@ -95,9 +95,9 @@ class WorldMapNormal extends HyplateElement {
                       src={computed(() => {
                         const currentProgress = this.currentProgress();
                         if (currentProgress?.level === level) {
-                          return currentPlatformImage;
+                          return this.assets(currentPlatformImage);
                         }
-                        return special ? specialPlatformImages[special.type]!.main : defaultPlatformImage;
+                        return this.assets(special ? specialPlatformImages[special.type]!.main : defaultPlatformImage);
                       })}
                     />
                     <span class="length text-banner">
@@ -112,7 +112,7 @@ class WorldMapNormal extends HyplateElement {
                     {special ? (
                       <img
                         class="banner"
-                        src={specialPlatformImages[special.type].banner}
+                        src={this.assets(specialPlatformImages[special.type].banner)}
                         onClick={(e) => {
                           e.stopPropagation();
                           const { type } = special;
@@ -230,7 +230,7 @@ class WorldMapNormal extends HyplateElement {
       }, []);
     this.platforms.set(platformsContext);
     const chapter = +map.id[0]! || 0;
-    this.bg.set(`url(${JSON.stringify(this.resolver.resolve(`img/world/${chapter}.jpg`).href)})`);
+    this.bg.set(`url(${JSON.stringify(this.assets(`img/world/${chapter}.jpg`))})`);
     this.platformsContainer.lastElementChild!.scrollIntoView({ behavior: "smooth" });
   }
 
@@ -266,5 +266,9 @@ class WorldMapNormal extends HyplateElement {
   private findPlatform(level: number) {
     const platforms = this.platforms();
     return platforms[platforms.length - level];
+  }
+
+  private assets(path: string) {
+    return this.gateway.direct(this.resolver.resolve(path)).href;
   }
 }

@@ -13,6 +13,7 @@ import {
   $CharacterService,
   $ChartService,
   $CoreDataService,
+  $Gateway,
   $MusicPlayService,
   $WorldModeService,
   AssetsResolver,
@@ -20,6 +21,7 @@ import {
   ChartService,
   ChartStatistics,
   CoreDataService,
+  Gateway,
   InverseProgressSolution,
   MapDistance,
   MusicPlayService,
@@ -39,7 +41,7 @@ const BASE_BOOST = 27;
 const POTENTIAL_FACTOR = 2.45;
 const CHARACTER_FACTOR_RATIO = 50;
 @Injectable({
-  requires: [$CoreDataService, $ChartService, $MusicPlayService, $AssetsResolver, $CharacterService] as const,
+  requires: [$CoreDataService, $ChartService, $MusicPlayService, $AssetsResolver, $Gateway, $CharacterService] as const,
   implements: $WorldModeService,
 })
 export class WorldModeServiceImpl implements WorldModeService {
@@ -53,6 +55,7 @@ export class WorldModeServiceImpl implements WorldModeService {
     private readonly chart: ChartService,
     private readonly music: MusicPlayService,
     private readonly resolver: AssetsResolver,
+    private readonly gateway: Gateway,
     private readonly character: CharacterService
   ) {}
 
@@ -311,7 +314,10 @@ export class WorldModeServiceImpl implements WorldModeService {
 
   private findItemImage(name: string, itemImages: Record<string, string>): string {
     const result = itemImages[name];
-    return result || "";
+    if (!result) {
+      return "";
+    }
+    return this.assets(new URL(result));
   }
 
   private withRewardImgs(
@@ -344,11 +350,13 @@ export class WorldModeServiceImpl implements WorldModeService {
                   case RewardType.Character:
                     return {
                       ...reward,
-                      img: this.resolver.resoveCharacterImage({
-                        id: reward.id,
-                        kind: CharacterImageKind.Icon,
-                        status: CharacterStatus.Initial,
-                      }).href,
+                      img: this.assets(
+                        this.resolver.resoveCharacterImage({
+                          id: reward.id,
+                          kind: CharacterImageKind.Icon,
+                          status: CharacterStatus.Initial,
+                        })
+                      ),
                       name: characterIndex[reward.id]!.name.zh,
                     };
                   case RewardType.Item:
@@ -365,7 +373,7 @@ export class WorldModeServiceImpl implements WorldModeService {
                     }
                     return {
                       ...reward,
-                      img: this.resolver.resolveCover(song.charts[2]!, song, false).href,
+                      img: this.assets(this.resolver.resolveCover(song.charts[2]!, song, false)),
                       name: song.name,
                     };
                   default:
@@ -410,5 +418,9 @@ export class WorldModeServiceImpl implements WorldModeService {
     const potentialRoot = (playResult - BASE_PROG) / POTENTIAL_FACTOR;
     if (potentialRoot < 0) return NaN;
     return this.music.inverseConstant(potentialRoot ** 2, score, true);
+  }
+
+  private assets(url: URL): string {
+    return this.gateway.direct(url).href;
   }
 }

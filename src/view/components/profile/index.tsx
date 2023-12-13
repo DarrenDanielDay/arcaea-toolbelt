@@ -2,11 +2,15 @@ import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
 import {
+  $AssetsResolver,
   $ChartService,
+  $Gateway,
   $MusicPlayService,
   $ProfileService,
+  AssetsResolver,
   BestStatistics,
   ChartService,
+  Gateway,
   MusicPlayService,
   ProfileService,
 } from "../../../services/declarations";
@@ -15,9 +19,8 @@ import { AutoRender, Component, Future, HyplateElement, computed, effect, elemen
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/time";
-import { clearImages } from "../../../assets/play-result";
 import type { FC, JSXChildNode } from "hyplate/types";
-import { Difficulty, formatRating, parseRating } from "../../../models/music-play";
+import { ClearRank, Difficulty, formatRating, parseRating } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
 import { RouteLink } from "../route-link";
 import { HelpTip } from "../help-tip";
@@ -29,6 +32,10 @@ export
   styles: [bootstrap, sheet],
 })
 class ProfilePage extends HyplateElement {
+  @Inject($AssetsResolver)
+  accessor resolver!: AssetsResolver;
+  @Inject($Gateway)
+  accessor gateway!: Gateway;
   @Inject($ProfileService)
   accessor profileService!: ProfileService;
   @Inject($ChartService)
@@ -271,17 +278,17 @@ class ProfilePage extends HyplateElement {
             <div class="row">
               <div class="col">
                 <span class="form-text">
-                  {this.renderInlineImg(clearImages.PM)}
+                  {this.renderClearImg(ClearRank.PureMemory)}
                   {">"}
-                  {this.renderInlineImg(clearImages.FR)}
+                  {this.renderClearImg(ClearRank.FullRecall)}
                   {">"}
-                  {this.renderInlineImg(clearImages.HC)}
+                  {this.renderClearImg(ClearRank.HardClear)}
                   {">"}
-                  {this.renderInlineImg(clearImages.NC)}
+                  {this.renderClearImg(ClearRank.NormalClear)}
                   {">"}
-                  {this.renderInlineImg(clearImages.EC)}
+                  {this.renderClearImg(ClearRank.EasyClear)}
                   {">"}
-                  {this.renderInlineImg(clearImages.TL)}
+                  {this.renderClearImg(ClearRank.TrackLost)}
                 </span>
               </div>
             </div>
@@ -289,9 +296,9 @@ class ProfilePage extends HyplateElement {
               <div class="col-auto">
                 <span class="form-text">
                   例如有一个谱面最佳成绩是9990000分0-1，实际通关类型应当为NC（
-                  {this.renderInlineImg(clearImages.NC)}
+                  {this.renderClearImg(ClearRank.NormalClear)}
                   ），但先前曾经9980000分4-0全连过，st3存档内的数据将会是FR（
-                  {this.renderInlineImg(clearImages.FR)}
+                  {this.renderClearImg(ClearRank.FullRecall)}
                   ），从而可能导致b30里的通关显示存在一些小瑕疵。
                 </span>
               </div>
@@ -560,8 +567,8 @@ class ProfilePage extends HyplateElement {
     await this.updateGreet();
   }
 
-  private renderInlineImg(url: string) {
-    return <img src={url} class="inline-img"></img>;
+  private renderClearImg(clear: ClearRank) {
+    return <img src={this.gateway.direct(this.resolver.resolveClearImg(clear)).href} class="inline-img"></img>;
   }
 
   private renderArcaeaOfficialLink() {

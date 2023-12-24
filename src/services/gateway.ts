@@ -8,7 +8,9 @@ const assetsBase = "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea
 const assetsProxyBase =
   "https://mirror.ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
 const dataProxyBase =
-  "https://mirror.ghproxy.com/raw.githubusercontent.com/DarrenDanielDay/arcaea-toolbelt-data/main/src/data/";
+  process.env.NODE_ENV === "production"
+    ? "https://mirror.ghproxy.com/raw.githubusercontent.com/DarrenDanielDay/arcaea-toolbelt-data/main/src/data/"
+    : process.env.ARCAEA_TOOLBELT_DATA;
 
 type ProxyMapping = Record<string, string>;
 

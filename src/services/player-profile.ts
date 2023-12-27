@@ -87,10 +87,6 @@ export class ProfileServiceImpl implements ProfileService {
     return (rating / 100).toFixed(2);
   }
 
-  getPotentialRating(potential: number): number {
-    return [3.5, 7.0, 10.0, 11.0, 12.0, 12.5, 13.0, Infinity].findIndex((bound) => potential < bound)
-  }
-
   async getProfile(): Promise<Profile | null> {
     const username = this.#currentUsername ?? (await this.#getPossibleOnlyUsername());
     if (!username) {
@@ -256,7 +252,7 @@ export class ProfileServiceImpl implements ProfileService {
       queryTime: Date.now(),
       username: profile.username,
       potential,
-      rating: this.getPotentialRating(+potential),
+      rating: this.musicPlay.getPotentialRating(+potential),
       b30: b30,
       b31_39: ordered.slice(30, 39),
       maxPotential,
@@ -453,7 +449,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       (chart) => chart.id
     );
     const all = Object.values(profile.best);
-    const filteredResults = all.filter(result => {
+    const filteredResults = all.filter((result) => {
       if (!query) {
         return true;
       }
@@ -466,7 +462,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       }
       if (rating) {
         if (chart.level !== rating.level || !!chart.plus !== !!rating.plus) {
-          return false
+          return false;
         }
       }
       return true;

@@ -213,6 +213,7 @@ export interface MusicPlayService {
   inverseConstant(potential: number, score: number, raw?: boolean): number;
   computeFar(score: number, note: number, overflow: boolean): number;
   compareGrade(a: Grade, b: Grade): number;
+  getPotentialRating(potential: number): number;
   mapClearType(clearType: number, shinyPerfectCount: number, chart: Chart): ClearRank;
   mapDifficulty(d: Difficulty): number;
 }
@@ -295,7 +296,6 @@ export interface B30Options {
 export interface ProfileService {
   checkMigration(): Promise<null | (() => Promise<void>)>;
   formatPotential(potential: number): string;
-  getPotentialRating(potential: number): number;
   getProfile(): Promise<Profile | null>;
   createOrUpdateProfile(username: string, potential: number): Promise<void>;
   getProfileList(): Promise<string[]>;

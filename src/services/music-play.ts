@@ -1,5 +1,14 @@
 import { Injectable } from "classic-di";
-import { Chart, ClearRank, Difficulty, Grade, NoteResult, PartnerClearRank, ScoreResult, difficultyIndexes } from "../models/music-play";
+import {
+  Chart,
+  ClearRank,
+  Difficulty,
+  Grade,
+  NoteResult,
+  PartnerClearRank,
+  ScoreResult,
+  difficultyIndexes,
+} from "../models/music-play";
 import { $ChartService, $MusicPlayService, ChartService, MusicPlayService, MusicPlayStatistics } from "./declarations";
 
 const MAX_BASE_SCORE = 1000_0000;
@@ -26,7 +35,7 @@ export class MusicPlayServiceImpl implements MusicPlayService {
   ex = EX_SCORE;
   grades = Object.values(Grade);
   maxBase = MAX_BASE_SCORE;
-  
+
   constructor(private readonly chart: ChartService) {}
 
   async getStatistics(): Promise<MusicPlayStatistics> {
@@ -194,6 +203,10 @@ export class MusicPlayServiceImpl implements MusicPlayService {
 
   compareGrade(a: Grade, b: Grade): number {
     return GRADE_INDEX[a] - GRADE_INDEX[b];
+  }
+
+  getPotentialRating(potential: number): number {
+    return [3.5, 7.0, 10.0, 11.0, 12.0, 12.5, 13.0, Infinity].findIndex((bound) => potential < bound);
   }
 
   mapClearType(clearType: number, shinyPerfectCount: number, chart: Chart): ClearRank {

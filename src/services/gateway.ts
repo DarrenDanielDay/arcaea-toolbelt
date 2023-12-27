@@ -51,7 +51,7 @@ export class DirectGateway implements Gateway {
     const pair = Object.entries(mapping).find(([key]) => pathname.startsWith(key));
     if (pair) {
       const [prefix, base] = pair;
-      const baseURL = base.startsWith("/") ? new URL(base, document.baseURI) : base;
+      const baseURL = base.startsWith("/") ? new URL(base, process.env.BASE_URI) : base;
       return new URL(pathname.slice(prefix.length), baseURL);
     }
     throw new Error(`Unknown path: ${pathname}`);

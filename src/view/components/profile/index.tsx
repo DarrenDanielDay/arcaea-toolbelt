@@ -174,7 +174,7 @@ class ProfilePage extends HyplateElement {
           </p>
           <div>
             <blockquote id="the-script">
-              import("{new URL("services/cross-site-script.js", document.baseURI).href}");
+              import("{new URL("services/cross-site-script.js", process.env.BASE_URI).href}");
             </blockquote>
           </div>
           <p>

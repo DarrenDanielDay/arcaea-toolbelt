@@ -46,7 +46,8 @@ export class PluginAssetsResolverImpl extends AssetsResolverImpl {
 })
 export class PluginCoreData implements CoreDataService {
   async import(file: string) {
-    const url = `${process.env.ARCAEA_TOOLBELT_DATA}${file}`;
+    const site = new URL(process.env.ARCAEA_TOOLBELT_DATA, process.env.BASE_URI);
+    const url = new URL(file, site);
     const response = await fetch(url);
     const data = await response.json();
     return data;

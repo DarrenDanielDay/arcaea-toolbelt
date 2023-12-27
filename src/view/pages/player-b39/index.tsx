@@ -431,7 +431,7 @@ class PlayerB39 extends HyplateElement {
         return;
       }
     } else {
-      siteURL = new URL(process.env.ARCAEA_TOOLBELT_AOL_B30, document.baseURI);
+      siteURL = new URL(process.env.ARCAEA_TOOLBELT_AOL_B30, process.env.BASE_URI);
     }
     this.currentSite = siteURL;
     const site = siteURL.href;

@@ -3,5 +3,11 @@ div.actions {
   flex-direction: row-reverse;
 }
 dialog {
-  width: 100%;
+  width: fit-content;
+}
+
+div.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -17,12 +17,14 @@ class ImageClipper extends HyplateElement {
   override render() {
     return (
       <dialog ref={this.dialog} onCancel={(e) => e.preventDefault()}>
-        <canvas ref={this.canvas}></canvas>
-        <p>电脑操作：鼠标拖动可移动图片，按住Ctrl+鼠标拖动可放缩，也可滚轮放缩</p>
-        <div class="actions">
-          <button type="button" class="btn btn-primary" onClick={() => this.dialog.close()}>
-            裁剪
-          </button>
+        <div class="modal-content">
+          <canvas ref={this.canvas}></canvas>
+          <p>电脑操作：鼠标拖动可移动图片，按住Ctrl+鼠标拖动可放缩，也可滚轮放缩</p>
+          <div class="actions">
+            <button type="button" class="btn btn-primary" onClick={() => this.dialog.close()}>
+              裁剪
+            </button>
+          </div>
         </div>
       </dialog>
     );
@@ -41,10 +43,17 @@ class ImageClipper extends HyplateElement {
         resolve(blob);
       };
       this.dialog.showModal();
-      const { width } = this.dialog.getBoundingClientRect();
-      const x = width - 32;
-      this.canvas.style.width = `${x}px`;
-      this.canvas.style.height = `${(canvasSize.height * x) / canvasSize.width}px`;
+      const rect = this.dialog.getBoundingClientRect();
+      const renderWidth = rect.width - 32,
+        renderHeight = rect.height - 32;
+      const widthZoom = renderWidth / canvasSize.width,
+        heightZoom = renderHeight / canvasSize.height;
+      const canvaseStyleSize: Size =
+        widthZoom < heightZoom
+          ? { width: renderWidth, height: canvasSize.height * widthZoom }
+          : { width: canvasSize.width * heightZoom, height: renderHeight };
+      this.canvas.style.width = `${canvaseStyleSize.width}px`;
+      this.canvas.style.height = `${canvaseStyleSize.height}px`;
     });
   }
 }

@@ -1,12 +1,20 @@
 import { Injectable } from "classic-di";
 import { CharacterData, CharacterImage } from "../models/character";
-import { FileExportOptions, HostAPI, ImageFile, PickImageOptions } from "./generator-api";
+import {
+  FileExportOptions,
+  HostAPI,
+  ImageCandidate,
+  ImageFile,
+  PickImageOptions,
+  PickImageResult,
+} from "./generator-api";
 import {
   $AssetsCacheService,
   $AssetsResolver,
   $CharacterService,
   $ChartService,
   $CoreDataService,
+  $FileStorage,
   $Gateway,
   $PreferenceService,
   AssetsCacheService,
@@ -14,10 +22,13 @@ import {
   CharacterService,
   ChartService,
   CoreDataService,
+  FileStorageService,
   Gateway,
   PreferenceService,
 } from "./declarations";
 import { Grade, difficulties } from "../models/music-play";
+import { managedBlobURL } from "../utils/url";
+import { protocol } from "../models/data";
 
 @Injectable({
   requires: [
@@ -27,6 +38,7 @@ import { Grade, difficulties } from "../models/music-play";
     $ChartService,
     $AssetsCacheService,
     $PreferenceService,
+    $FileStorage,
     $Gateway,
   ] as const,
 })
@@ -40,6 +52,7 @@ export class HostAPIImpl implements HostAPI {
     private readonly chart: ChartService,
     private readonly cache: AssetsCacheService,
     private readonly preference: PreferenceService,
+    private readonly fs: FileStorageService,
     private readonly gateway: Gateway
   ) {}
 
@@ -84,7 +97,7 @@ export class HostAPIImpl implements HostAPI {
     return this.resolver.resolvePotentialBadge(rating);
   }
   async resolveGradeImgs(grades: Grade[]): Promise<URL[]> {
-    return grades.map(grade => this.resolver.resolveGradeImg(grade));
+    return grades.map((grade) => this.resolver.resolveGradeImg(grade));
   }
   async resolveBackgrounds(): Promise<URL[]> {
     return [
@@ -96,7 +109,23 @@ export class HostAPIImpl implements HostAPI {
   async getImages(resources: URL[]): Promise<ImageFile[]> {
     return Promise.all(
       resources.map(async (resourceURL): Promise<ImageFile> => {
-        const filename = resourceURL.pathname.split("/").findLast((fragment) => !!fragment)!;
+        const pathname = resourceURL.toString().slice(protocol.length);
+        const fragments = pathname.split("/");
+        if (fragments[2] === "vfs") {
+          const file = await this.fs.read(resourceURL);
+          if (!file) {
+            throw new Error(`Resource ${resourceURL.href} not found.`);
+          }
+          const { blob, url } = file;
+          return {
+            blob: blob,
+            blobURL: managedBlobURL(blob),
+            distURL: url,
+            filename: blob.name,
+            resourceURL,
+          };
+        }
+        const filename = fragments.findLast((fragment) => !!fragment)!;
         const dist = await this.gateway.dynamicProxy(resourceURL);
         const imageCache = await this.cache.cachedGet(dist);
         return {
@@ -109,7 +138,7 @@ export class HostAPIImpl implements HostAPI {
       })
     );
   }
-  pickImage(resources: URL[], options: PickImageOptions): Promise<URL | null> {
+  pickImage<T extends ImageCandidate>(candidates: T[], options: PickImageOptions): Promise<PickImageResult<T> | null> {
     throw new Error("Method not implemented.");
   }
   exportAsImage(file: Blob, options: FileExportOptions): Promise<void> {

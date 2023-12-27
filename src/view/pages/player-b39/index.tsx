@@ -5,6 +5,7 @@ import {
   Component,
   Future,
   HyplateElement,
+  Show,
   computed,
   cssVar,
   effect,
@@ -15,11 +16,13 @@ import {
 } from "hyplate";
 import {
   $ChartService,
+  $FileStorage,
   $Gateway,
   $MusicPlayService,
   $ProfileService,
   ChartService,
   ChartStatistics,
+  FileStorageService,
   Gateway,
   MusicPlayService,
   ProfileService,
@@ -35,8 +38,20 @@ import { ClearRank, Grade } from "../../../models/music-play";
 import { HelpTip } from "../../components/help-tip";
 import { esModule } from "../../../utils/misc";
 import { RPC, RPCConnection, WindowMessageHub } from "../../../utils/rpc";
-import type { ClientAPI, HostAPI, ImageFile } from "../../../services/generator-api";
-import { HostAPIImpl } from "../../../services/generator-api-impl.js";
+import type {
+  CandidateResult,
+  ClientAPI,
+  CustomImageOptions,
+  CustomImageResult,
+  HostAPI,
+  ImageCandidate,
+  ImageFile,
+  PickImageOptions,
+  PickImageResult,
+} from "../../../services/generator-api";
+import { HostAPIImpl } from "../../../services/generator-api-impl";
+import { CleanUpFunc } from "hyplate/types";
+import { ImageClipper } from "../../components/image-clipper";
 
 ~HelpTip;
 
@@ -55,6 +70,8 @@ class PlayerB39 extends HyplateElement {
   accessor gateway!: Gateway;
   @Inject($Router)
   accessor router!: Router;
+  @Inject($FileStorage)
+  accessor fs!: FileStorageService;
 
   @Inject($ChartService)
   accessor chart!: ChartService;
@@ -73,7 +90,7 @@ class PlayerB39 extends HyplateElement {
   template = signal("yuki-chan");
   custom = signal("");
   customTemplateStarted = signal(false);
-
+  currentSite: URL | null = null;
   rpc = new RPC<HostAPI, ClientAPI>({
     hub: new WindowMessageHub(() => {
       const targetWindow = this.customTemplateIframe!.contentWindow!;
@@ -405,17 +422,19 @@ class PlayerB39 extends HyplateElement {
 
   async startConnection() {
     const custom = this.custom();
-    let site: string;
+    let siteURL: URL;
     if (custom) {
       try {
-        site = new URL(custom).href;
+        siteURL = new URL(custom);
       } catch {
         alert("地址格式不正确");
         return;
       }
     } else {
-      site = new URL(process.env.ARCAEA_TOOLBELT_AOL_B30, document.baseURI).href;
+      siteURL = new URL(process.env.ARCAEA_TOOLBELT_AOL_B30, document.baseURI);
     }
+    this.currentSite = siteURL;
+    const site = siteURL.href;
     this.customTemplateIframe = element("iframe");
     this.customTemplateStarted.set(true);
     this.customTemplateIframe.src = site;
@@ -428,69 +447,196 @@ class PlayerB39 extends HyplateElement {
     this.customTemplateStarted.set(false);
     this.#connection?.stop();
     this.customTemplateIframe = null;
+    this.currentSite = null;
   }
 
-  pickImage: HostAPI["pickImage"] = async (urls, options) => {
-    const { display, title } = options;
-    const images = await loading(this.host.getImages(urls), <div>正在下载图片……</div>);
-    const selected = signal(images.find((image) => image.resourceURL.href === options.defaultSelected?.href));
-    const renderImages = () => {
-      const items = images.map((image) => (
+  pickImage = async <T extends ImageCandidate>(candidates: T[], options: PickImageOptions) => {
+    const { currentSite } = this;
+    if (!currentSite) {
+      throw new Error("Site not connected");
+    }
+    const { display, title, custom, defaultSelected } = options;
+    const { height, columns, width } = display;
+    const cleanups: CleanUpFunc[] = [];
+    const objURL = (blob: Blob) => {
+      const url = URL.createObjectURL(blob);
+      cleanups.push(() => URL.revokeObjectURL(url));
+      return url;
+    };
+
+    try {
+      const customImage = signal<CustomImageResult | null>(null);
+      const getCustomImage = async () => {
+        if (custom) {
+          const single = custom.single;
+          if (single != null) {
+            const url = this.fs.createURL(currentSite, single);
+            const uploadedFile = await this.fs.read(url);
+            if (uploadedFile) {
+              const { blob } = uploadedFile;
+              const blobURL = objURL(blob);
+              const image: ImageFile = {
+                blob: uploadedFile.blob,
+                blobURL,
+                // TODO 自定义图片的 dist URL 处理
+                distURL: url.toString(),
+                filename: blob.name,
+                resourceURL: url,
+              };
+              customImage.set({
+                type: "custom",
+                image,
+              });
+              return image;
+            }
+          }
+        }
+        customImage.set(null);
+        return null;
+      };
+
+      const candidateImages = await loading(
+        (async () => {
+          const imageFiles = await this.host.getImages(candidates.map((candidate) => candidate.url));
+          return imageFiles.map<CandidateResult<T>>((file, i) => ({
+            type: "basic",
+            candidate: candidates[i]!,
+            image: file,
+          }));
+        })(),
+        <div>正在下载图片……</div>
+      );
+      await getCustomImage();
+      const savedCustomImage = customImage();
+      const selectedBasicImage =
+        candidateImages.find((item) => item.candidate.url.href === defaultSelected?.href) ?? null;
+      const selectedURL = defaultSelected?.href;
+      const selected = signal<PickImageResult<T> | null>(
+        selectedURL
+          ? savedCustomImage?.image?.resourceURL.href === selectedURL
+            ? savedCustomImage
+            : selectedBasicImage
+          : null
+      );
+
+      const renderPickImageItem = (pickResult: PickImageResult<T>) => (
         <div
           class="item"
-          class:selected={computed(() => selected() === image)}
+          class:selected={computed(() => selected() === pickResult)}
           onClick={() => {
-            selected.set(image);
+            selected.set(pickResult);
           }}
         >
-          <img src={image.blobURL}></img>
-        </div>
-      ));
-      const { height, columns, width } = display;
-      return (
-        <div
-          class="image-picker cells"
-          var:item-height={`${height}px`}
-          var:grid-columns={`${columns}`}
-          var:item-width={`${width}px`}
-        >
-          {items}
+          <img src={pickResult.image.blobURL}></img>
         </div>
       );
-    };
-    const imageFile = await this.imagePicker.showPicker<ImageFile>((done, cancel) => {
-      return [
-        <div slot="content">
-          <h2>{title}</h2>
-          {renderImages()}
-        </div>,
-        <div slot="footer">
-          <button
-            class="btn btn-primary"
-            disabled={computed(() => !selected())}
-            onClick={() => {
-              const selectedImage = selected();
-              if (selectedImage) {
-                done(selectedImage);
-              } else {
+      const renderCustomPicker = (custom: CustomImageOptions) => {
+        const clipper = new ImageClipper();
+        const { single, clip } = custom;
+        const renderSinglePicker = (path: string) => {
+          const input = element("input");
+          const handleChange = async () => {
+            let file: Blob | null | undefined = input.files?.item(0);
+            if (!file) {
+              return;
+            }
+            if (clip) {
+              const bitmap = await createImageBitmap(file);
+              file = await clipper.clip(bitmap, clip.config, clip.canvas);
+              bitmap.close();
+            }
+            const url = this.fs.createURL(currentSite, path);
+            await this.fs.upload(file, url);
+            await getCustomImage();
+            selected.set(customImage());
+          };
+          return (
+            <div>
+              <h3>自定义图片</h3>
+              {clipper}
+              <div class="row">
+                <div class="col">
+                  <input type="file" ref={input} class="form-control" accept="image/*" onChange={handleChange}></input>
+                </div>
+              </div>
+              <div
+                class="custom-image cells"
+                var:item-height={`${height}px`}
+                var:grid-columns={`${columns}`}
+                var:item-width={`${width}px`}
+              >
+                <Show when={customImage} fallback={() => <div>（在上面选择文件添加自定义图片）</div>}>
+                  {renderPickImageItem}
+                </Show>
+              </div>
+            </div>
+          );
+        };
+
+        if (single) {
+          return renderSinglePicker(single);
+        }
+        return nil;
+      };
+
+      const renderImages = () => {
+        const items = candidateImages.map(renderPickImageItem);
+        return (
+          <div
+            class="image-picker cells"
+            var:item-height={`${height}px`}
+            var:grid-columns={`${columns}`}
+            var:item-width={`${width}px`}
+          >
+            {items}
+          </div>
+        );
+      };
+
+      const imageFile = await this.imagePicker.showPicker<PickImageResult<T>>((done, cancel) => {
+        return [
+          <div slot="content">
+            <h2>{title}</h2>
+            {custom ? (
+              <>
+                {renderCustomPicker(custom)}
+                <h3>基本图片</h3>
+              </>
+            ) : (
+              nil
+            )}
+            {renderImages()}
+          </div>,
+          <div slot="footer">
+            <button
+              class="btn btn-primary"
+              disabled={computed(() => !selected())}
+              onClick={() => {
+                const selectedImage = selected();
+                if (selectedImage) {
+                  done(selectedImage);
+                } else {
+                  cancel();
+                }
+              }}
+            >
+              选择
+            </button>
+            <button
+              class="btn btn-secondary"
+              onClick={() => {
                 cancel();
-              }
-            }}
-          >
-            选择
-          </button>
-          <button
-            class="btn btn-secondary"
-            onClick={() => {
-              cancel();
-            }}
-          >
-            取消
-          </button>
-        </div>,
-      ];
-    });
-    return imageFile?.resourceURL ?? null;
+              }}
+            >
+              取消
+            </button>
+          </div>,
+        ];
+      });
+      return imageFile;
+    } finally {
+      cleanups.forEach((clean) => clean());
+    }
   };
 
   exportAsImageFile: HostAPI["exportAsImage"] = async (data, options) => {

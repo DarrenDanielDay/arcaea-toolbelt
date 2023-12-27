@@ -28,6 +28,7 @@ import type { Signal } from "hyplate/types";
 import { CharacterData, CharacterImage, CharacterIndex } from "../models/character";
 import { PromiseOr } from "../utils/misc";
 import { ArcaeaToolbeltMeta } from "../models/misc";
+import { UploadedFile } from "../models/file";
 
 export interface DatabaseContext {
   getDB(): Promise<IDBDatabase>;
@@ -43,6 +44,7 @@ export interface AppDatabaseContext extends CacheDBContext {
   readonly preference: string;
   readonly profiles: string;
   readonly core: string;
+  readonly files: string;
 }
 
 export type ColorTheme = "dark" | "light";
@@ -60,6 +62,13 @@ export interface PreferenceService {
   get(): Promise<Preference>;
   update(patch: Partial<Preference>): Promise<void>;
   signal<K extends keyof Preference>(name: K): Signal<Preference[K]>;
+}
+
+export interface FileStorageService {
+  createURL(site: URL, path: string): URL;
+  upload(file: Blob, path: URL): Promise<void>;
+  list(path: URL): Promise<URL[]>;
+  read(path: URL): Promise<UploadedFile | null>;
 }
 
 export interface Gateway {
@@ -378,6 +387,7 @@ export const $CoreDataProvider = token<CoreDataProvider>("core-data-provider");
 export const $AssetsResolver = token<AssetsResolver>("assets-resolver");
 export const $AssetsService = token<AssetsService>("assets");
 export const $AssetsCacheService = token<AssetsCacheService>("assets-cache");
+export const $FileStorage = token<FileStorageService>("file-storage");
 export const $Gateway = token<Gateway>("gateway");
 export const $CharacterService = token<CharacterService>("character");
 export const $ChartService = token<ChartService>("chart");

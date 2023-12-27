@@ -1,0 +1,7 @@
+div.actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+dialog {
+  width: 100%;
+}

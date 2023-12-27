@@ -19,6 +19,7 @@ import { ProxyGateway } from "../services/gateway";
 import { AssetsCacheServiceImpl } from "../services/assets-cache";
 import { CoreDataServiceImpl } from "../services/core-data";
 import { CoreDataProviderImpl } from "../services/core-data-provider.js";
+import { FileStorageServiceImpl } from "../services/file-storage.js";
 document.adoptedStyleSheets = [bootstrap, theme, viewTransition, sheet];
 
 const ioc = new Container();
@@ -26,6 +27,7 @@ ioc.register(CharacterServiceImpl);
 ioc.register(ArcaeaToolbeltDatabaseContext);
 ioc.register(PreferenceServiceImpl);
 ioc.register(AssetsCacheServiceImpl);
+ioc.register(FileStorageServiceImpl);
 ioc.register(ProxyGateway);
 ioc.register(CoreDataServiceImpl);
 ioc.register(CoreDataProviderImpl);
@@ -35,7 +37,6 @@ ioc.register(ChartServiceImpl);
 ioc.register(MusicPlayServiceImpl);
 ioc.register(ProfileServiceImpl);
 ioc.register(WorldModeServiceImpl);
-
 const main = element("main");
 const router = new Router(main, routes, routes[0]!);
 ioc.add($Router, router);

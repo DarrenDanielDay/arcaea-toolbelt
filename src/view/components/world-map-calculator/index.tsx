@@ -20,7 +20,7 @@ import { HyplateElement, Component, listen, signal, element, nil, computed, Auto
 import { ChartInfo } from "../chart-info";
 import { CharacterPicker, renderCharacterStepInput } from "../character-picker";
 import { $Router, Router } from "../../pages/router";
-import { CurrentProgress, NormalWorldMap } from "../../../models/world-mode.js";
+import { CurrentProgress, NormalWorldMap } from "../../../models/world-mode";
 
 export type WorldModeParams = "mapId";
 

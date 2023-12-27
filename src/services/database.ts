@@ -11,6 +11,7 @@ export class ArcaeaToolbeltDatabaseContext implements AppDatabaseContext {
   preference: string = "preference";
   profiles: string = "profiles";
   core: string = "core";
+  files: string = "files";
 
   getDB = once(() => this.#create());
   async transaction(stores: string[], mode?: IDBTransactionMode | undefined): Promise<IDBTransaction> {
@@ -31,7 +32,10 @@ export class ArcaeaToolbeltDatabaseContext implements AppDatabaseContext {
       })
       .version(2, (db) => {
         db.createObjectStore(this.core, { keyPath: "path" });
+      })
+      .version(3, (db) => {
+        db.createObjectStore(this.files, { keyPath: "url" });
       });
-    return manager.open("arcaea-toolbelt", 2);
+    return manager.open("arcaea-toolbelt", 3);
   }
 }

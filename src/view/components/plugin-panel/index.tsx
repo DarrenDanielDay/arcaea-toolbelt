@@ -24,7 +24,7 @@ import { NoteResult } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
 import { formatError } from "../../../utils/format";
 import { CharacterImageKind, CharacterStatus } from "../../../models/character";
-import { indexBy } from "../../../utils/collections.js";
+import { indexBy } from "../../../utils/collections";
 
 export
 @Component({

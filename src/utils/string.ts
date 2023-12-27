@@ -11,3 +11,12 @@ export const searchMatch = (searchText: string, candidate: string): number | nul
   }
   return 1 + index + Math.log(candidate.length);
 };
+
+export const trimSlash = (str: string): string => {
+  let i = str.length - 1;
+  for (let char = str[i]; char === "/"; ) {
+    i--;
+    char = str[i];
+  }
+  return str.slice(0, i);
+};

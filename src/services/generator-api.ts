@@ -2,6 +2,7 @@ import { RPC, WindowMessageHub } from "../utils/rpc";
 import { CharacterData, CharacterImage } from "../models/character";
 import { B30Response } from "../models/profile";
 import { Grade } from "../models/music-play";
+import { ClipConfig, Size } from "../utils/image-clip";
 
 export { CharacterImageKind, CharacterStatus } from "../models/character";
 
@@ -15,6 +16,33 @@ export interface ImageFile {
   blobURL: string;
 }
 
+export interface ImageCandidate {
+  url: URL;
+}
+
+export interface CandidateResult<T extends ImageCandidate> {
+  type: "basic";
+  image: ImageFile;
+  candidate: T;
+}
+
+export interface CustomImageResult {
+  type: "custom";
+  image: ImageFile;
+}
+
+export type PickImageResult<T extends ImageCandidate> =
+  | CandidateResult<T>
+  | CustomImageResult;
+
+export interface CustomImageOptions {
+  single?: string;
+  clip?: {
+    config: ClipConfig;
+    canvas: Size;
+  };
+}
+
 export interface PickImageOptions {
   title: string;
   defaultSelected?: URL;
@@ -23,6 +51,7 @@ export interface PickImageOptions {
     height: number;
     columns: number;
   };
+  custom?: CustomImageOptions;
 }
 
 export interface FileExportOptions {
@@ -56,7 +85,7 @@ export type HostAPI = {
    * 用户选择图片后resolve
    * 用户取消后resolve为null
    */
-  pickImage(resources: URL[], options: PickImageOptions): Promise<URL | null>;
+  pickImage<T extends ImageCandidate>(candidates: T[], options: PickImageOptions): Promise<PickImageResult<T> | null>;
   /**
    * 用户点击完成以后resolve
    */

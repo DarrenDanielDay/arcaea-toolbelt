@@ -87,6 +87,11 @@ export const openDB = (
     };
   });
 
+export const prefixWith = (prefix: string) => {
+  const upperBound = prefix.slice(0, -1) + String.fromCharCode(prefix.at(-1)!.charCodeAt(0));
+  return IDBKeyRange.bound(prefix, upperBound, false, true);
+};
+
 export interface IDBOptions {
   emitError?: boolean;
 }

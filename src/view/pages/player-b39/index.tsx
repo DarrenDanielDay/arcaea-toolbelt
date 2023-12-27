@@ -559,16 +559,20 @@ class PlayerB39 extends HyplateElement {
                   <input type="file" ref={input} class="form-control" accept="image/*" onChange={handleChange}></input>
                 </div>
               </div>
-              <div
-                class="custom-image cells"
-                var:item-height={`${height}px`}
-                var:grid-columns={`${columns}`}
-                var:item-width={`${width}px`}
-              >
-                <Show when={customImage} fallback={() => <div>（在上面选择文件添加自定义图片）</div>}>
-                  {renderPickImageItem}
-                </Show>
-              </div>
+              <Show when={customImage} fallback={() => <div>（在上面选择文件添加自定义图片）</div>}>
+                {(result) => {
+                  return (
+                    <div
+                      class="custom-image cells"
+                      var:item-height={`${height}px`}
+                      var:grid-columns={`${columns}`}
+                      var:item-width={`${width}px`}
+                    >
+                      {renderPickImageItem(result)}
+                    </div>
+                  );
+                }}
+              </Show>
             </div>
           );
         };

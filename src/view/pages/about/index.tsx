@@ -210,14 +210,15 @@ class About extends HyplateElement {
   }
 
   renderMaxPtt(info: JSXChildNode, potential: number, b30: B30Response) {
+    const normalizedPotential = potential.toFixed(4);
     return (
       <div>
         <div>
           {/* 最大潜力值一定是0.1 / 40 = 0.0025的倍数，因此最多只有4位小数 */}
-          {info}：{potential.toFixed(4)}
+          {info}：{normalizedPotential}
         </div>
         <div style="display: flex; align-items: center;">
-          <potential-badge potential={potential}></potential-badge>
+          <potential-badge potential={+normalizedPotential}></potential-badge>
           <button class="btn btn-secondary mx-3" onClick={() => this.showB30(b30)}>
             b30
           </button>

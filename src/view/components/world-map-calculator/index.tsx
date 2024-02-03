@@ -21,6 +21,7 @@ import { ChartInfo } from "../chart-info";
 import { CharacterPicker, renderCharacterStepInput } from "../character-picker";
 import { $Router, Router } from "../../pages/router";
 import { CurrentProgress, NormalWorldMap } from "../../../models/world-mode";
+import { truncate } from "../../../utils/math";
 
 export type WorldModeParams = "mapId";
 
@@ -291,7 +292,7 @@ class WorldModeCalculator extends HyplateElement {
                 const playResult = this.worldMode.computePlayResult(potential);
                 return (
                   <div class="col-auto col-form-label">
-                    游玩结果：{playResult.toFixed(1)}（{playResult}）
+                    游玩结果：{truncate(playResult, 1)}（{playResult}）
                   </div>
                 );
               }}
@@ -374,9 +375,11 @@ class WorldModeCalculator extends HyplateElement {
                   if (isNaN(progress)) {
                     return "-";
                   }
-                  return progress.toFixed(4);
+                  return `${truncate(progress, 1)}（${progress}）`;
                 })}
               </span>
+            </div>
+            <div class="col-auto">
               <button
                 type="button"
                 name="calc"

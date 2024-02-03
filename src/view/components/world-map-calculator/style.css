@@ -11,11 +11,6 @@ world-map-select {
   margin: 1em 1em;
 }
 
-.calc-result {
-  display: inline-block;
-  width: 8em;
-}
-
 input[type="number"] {
   max-width: 6em;
 }

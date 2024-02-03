@@ -16,3 +16,9 @@ export const divide = (a: number, b: number) => {
 };
 
 export const sum = (arr: number[]) => arr.reduce((s, curr) => s + curr, 0);
+
+export const truncate = (num: number, digit: number) => {
+  const zoom = 10 ** digit;
+  const integer = Math.floor(num * zoom);
+  return (integer / zoom).toFixed(digit);
+};

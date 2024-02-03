@@ -33,7 +33,7 @@
     "start": "run-p --print-label \"start:**\"",
     "purge": "node ./scripts/purge.js",
     "build:api": "parcel build --target api --public-url /arcaea-toolbelt --dist-dir ./arcaea-toolbelt",
-    "build:parcel": "parcel build --target default --no-optimize --public-url /arcaea-toolbelt --reporter @parcel/reporter-bundle-analyzer",
+    "build:parcel": "parcel build --target default --public-url /arcaea-toolbelt --reporter @parcel/reporter-bundle-analyzer",
     "build:sheetly": "sheetly build --dir src",
     "build": "run-s purge build:sheetly build:parcel build:api"
   },
@@ -42,32 +42,32 @@
     "packageExports": true
   },
   "devDependencies": {
-    "@parcel/reporter-bundle-analyzer": "^2.9.3",
-    "@parcel/transformer-inline-string": "^2.9.3",
-    "@parcel/transformer-typescript-tsc": "^2.9.3",
-    "@types/bootstrap": "^5.2.6",
-    "@types/sql.js": "^1.4.4",
+    "@parcel/reporter-bundle-analyzer": "^2.11.0",
+    "@parcel/transformer-inline-string": "^2.11.0",
+    "@parcel/transformer-typescript-tsc": "^2.11.0",
+    "@types/bootstrap": "^5.2.10",
+    "@types/sql.js": "^1.4.9",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "events": "^3.3.0",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.9.3",
+    "parcel": "^2.11.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "purgecss": "^5.0.0",
     "rimraf": "^5.0.5",
     "stream-browserify": "^3.0.0",
     "typed-query-selector": "^2.11.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
-    "bootstrap": "^5.3.1",
-    "bootstrap-icons": "^1.11.1",
+    "bootstrap": "^5.3.2",
+    "bootstrap-icons": "^1.11.3",
     "classic-di": "^0.3.0",
     "html2canvas": "^1.4.1",
     "hyplate": "^0.19.4",
     "sheetly": "^0.5.0",
-    "sql.js": "^1.8.0",
+    "sql.js": "^1.10.2",
     "tslib": "^2.6.2"
   }
 }

@@ -480,7 +480,7 @@ class PlayerB39 extends HyplateElement {
                 blobURL,
                 // TODO 自定义图片的 dist URL 处理
                 distURL: url.toString(),
-                filename: blob.name,
+                filename: single,
                 resourceURL: url,
               };
               customImage.set({

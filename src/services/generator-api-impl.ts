@@ -121,7 +121,7 @@ export class HostAPIImpl implements HostAPI {
             blob: blob,
             blobURL: managedBlobURL(blob),
             distURL: url,
-            filename: blob.name,
+            filename: fragments.at(-1)!,
             resourceURL,
           };
         }

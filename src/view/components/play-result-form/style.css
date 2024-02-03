@@ -9,9 +9,13 @@
   flex-direction: column;
 }
 
-.pack-name,
+.info-row,
 .notes {
   font-size: 8px;
+}
+
+.info-row :not(:last-child) {
+  margin-right: 1em;
 }
 
 .song-name,

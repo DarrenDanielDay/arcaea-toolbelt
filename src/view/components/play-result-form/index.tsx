@@ -49,7 +49,7 @@ class PlayResultForm extends HyplateElement {
       const {
         song: { alias, pack, side },
         cover,
-        chart: { note },
+        chart: { note, designer },
         constant,
         bpm,
         difficulty,
@@ -67,7 +67,10 @@ class PlayResultForm extends HyplateElement {
               <span class="bpm">♩ = {bpm}</span>
             </div>
             <div class="column">
-              <span class="pack-name">{pack}</span>
+              <div class="info-row">
+                <span class="pack-name">曲包：{pack}</span>
+                <span class="chart-designer">谱面设计：{designer}</span>
+              </div>
               <span class="song-name">{title}</span>
               <span class="alias">{alias.join(" ")}</span>
             </div>

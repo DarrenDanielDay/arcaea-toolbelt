@@ -68,6 +68,7 @@ export interface Chart extends Rating {
   id: string;
   songId: string;
   difficulty: Difficulty;
+  designer: string;
   constant: number;
   note: number;
   override?: ChartOverride;

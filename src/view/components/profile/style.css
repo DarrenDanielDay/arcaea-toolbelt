@@ -33,6 +33,7 @@ blockquote {
 #the-script {
   overflow-x: auto;
   white-space: pre;
+  user-select: all;
 }
 
 .user {

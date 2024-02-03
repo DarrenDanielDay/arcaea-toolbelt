@@ -13,12 +13,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - name: Pull Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -38,7 +38,7 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Deploy Github Pages
-        uses: crazy-max/ghaction-github-pages@v2.5.0
+        uses: crazy-max/ghaction-github-pages@v4.0.0
         with:
           build_dir: arcaea-toolbelt
           commit_message: "deploy: Deployed by Github Actions"

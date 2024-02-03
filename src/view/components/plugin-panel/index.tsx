@@ -218,7 +218,7 @@ class ToolPanel extends HyplateElement {
                       >
                         查看搭档数据
                       </button>
-                      <button type="button" class="btn btn-outline-secondary" name="refresh" onClick={refresh}>
+                      <button type="button" class="btn btn-secondary" name="refresh" onClick={refresh}>
                         重新获取
                       </button>
                       <button
@@ -399,13 +399,22 @@ class ToolPanel extends HyplateElement {
                           <ms>单曲潜力值</ms>
                         </msqrt>
                       </math>
-                      <div>根据接口返回的角色经验/beyond能量的变化值可逆算单曲潜力值，结合最近游玩的分数可逆算出定数。</div>
+                      <div>
+                        根据接口返回的角色经验/beyond能量的变化值可逆算单曲潜力值，结合最近游玩的分数可逆算出定数。
+                      </div>
                       <div>
                         使用方法：先打开此面板获取一次当前beyond能量值，然后去游戏内爬梯打待测谱面。打完结算后再点击
-                        <code>账号信息</code>的<code>重新获取</code>按钮即可自动测算。
+                        <code>重新获取</code>按钮即可自动测算。
                       </div>
                       <div>如果打完谱面后能量溢出（超过200%），测定结果可能会不准确。</div>
                     </details>
+                    <div class="row">
+                      <div class="col-auto">
+                        <button class="btn btn-secondary" onClick={refresh}>
+                          重新获取
+                        </button>
+                      </div>
+                    </div>
                     <div class="row">
                       <div class="col-auto">最近游玩曲目Id：{song_id}</div>
                     </div>

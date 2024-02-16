@@ -2,7 +2,18 @@
 
 [Arcaea](https://arcaea.lowiro.com/)相关在线工具
 
+工具主体：
+
 <https://darrendanielday.github.io/arcaea-toolbelt>
+
+定数、搭档、地图等数据 & 数据维护工具：
+
+<https://github.com/DarrenDanielDay/arcaea-toolbelt-data>
+
+Arcaea Online 高仿 Best 30 图生成器
+
+<https://github.com/DarrenDanielDay/arcaea-toolbelt-aol-b30>
+
 
 ---
 

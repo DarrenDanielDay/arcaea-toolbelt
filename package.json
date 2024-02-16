@@ -25,6 +25,7 @@
   },
   "browserslist": "last 2 Chrome versions",
   "scripts": {
+    "postinstall": "patch-package",
     "start:api": "parcel watch --target api --no-hmr",
     "start:parcel": "parcel --target default --hmr-host localhost --hmr-port 1235",
     "start:sheetly": "sheetly watch --dir src --hmr parcel",
@@ -52,6 +53,7 @@
     "events": "^3.3.0",
     "npm-run-all": "^4.1.5",
     "parcel": "^2.11.0",
+    "patch-package": "^8.0.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "purgecss": "^5.0.0",

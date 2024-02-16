@@ -1,0 +1,135 @@
+diff --git a/node_modules/hyplate/dist/internal-876a2f1d.js b/node_modules/hyplate/dist/internal-876a2f1d.js
+index f38b872..16a6be3 100644
+--- a/node_modules/hyplate/dist/internal-876a2f1d.js
++++ b/node_modules/hyplate/dist/internal-876a2f1d.js
+@@ -1 +1,129 @@
+-const e=Object.assign,t=e=>{let t,s=!1;return()=>s?t:(s=!0,t=e())},s=()=>{const e=[];return[t=>n(e,t),()=>{o(e)},()=>e.at(-1)]},a=Array.from,n=(e,t)=>e.push(t),o=e=>e.pop(),r=()=>{},c=e=>{for(let t=e.length-1;t>=0;t--)e[t]()},l=e=>e.length?()=>c(e):r,i=e=>"string"==typeof e,m=e=>"function"==typeof e,d=e=>null!=e&&"object"==typeof e,y=Array.isArray,f=e=>t=>t instanceof e,p=Object.is,g=Object.defineProperty,h=Object.is,u=(e,t)=>{for(let s=0,a=e.length;s<a;s++)t(e[s])},$=document,b=e=>$.createComment(""),E=e=>{const t=b(),s=b();return[t,s,()=>{const e=new Range;e.setStart(t,t.length),e.setEnd(s,0),e.deleteContents(),e.detach()}]},j=(e,t)=>{t!==r&&n(e,t)},O=(e,t,s,a)=>(e.addEventListener(t,s,a),()=>{e.removeEventListener(t,s,a)}),v=(e,t,s)=>{const a=e.ownerDocument,n=a.$$delegates??=new Set;n.has(t)||(n.add(t),a.addEventListener(t,w));const o=`_$${t}`;return e[o]=s,()=>{delete e[o]}},w=e=>{const t=`_$${e.type}`,s=e.composedPath();u(s,(s=>{const a=s[t];if(null!=a)try{a.call(s,e)}catch(e){(e=>{const t=e instanceof Error?`stack trace: \n${e.stack}`:JSON.stringify(e);console.error(`[ERROR]: ${t}`)})(e)}}))},S=f(Node),x=f(DocumentFragment),A=f(HTMLTemplateElement),L=f(Text),R=f(Element),k=e=>L(e)||R(e),C=new Proxy({},{get:(e,t)=>t}),D=Symbol.for("hyplate-signal"),P=Symbol.for("hyplate-element-meta"),T=e=>e[P]??={};export{P as $,A,t as B,k as C,p as D,O as _,a,v as b,b as c,$ as d,i as e,u as f,m as g,l as h,R as i,S as j,j as k,T as l,d as m,r as n,y as o,n as p,x as q,h as r,s,f as t,g as u,e as v,E as w,C as x,c as y,D as z};
++const e = Object.assign,
++  t = (e) => {
++    let t,
++      s = !1;
++    return () => (s ? t : ((s = !0), (t = e())));
++  },
++  s = () => {
++    const e = [];
++    return [
++      (t) => n(e, t),
++      () => {
++        o(e);
++      },
++      () => e.at(-1),
++    ];
++  },
++  a = Array.from,
++  n = (e, t) => e.push(t),
++  o = (e) => e.pop(),
++  r = () => {},
++  c = (e) => {
++    for (let t = e.length - 1; t >= 0; t--) e[t]();
++  },
++  l = (e) => (e.length ? () => c(e) : r),
++  i = (e) => "string" == typeof e,
++  m = (e) => "function" == typeof e,
++  d = (e) => null != e && "object" == typeof e,
++  y = Array.isArray,
++  f = (e) => (t) => t instanceof e,
++  p = Object.is,
++  g = Object.defineProperty,
++  h = Object.is,
++  u = (e, t) => {
++    for (let s = 0, a = e.length; s < a; s++) t(e[s]);
++  },
++  $ = document,
++  b = (e) => $.createComment(""),
++  E = (e) => {
++    const t = b(),
++      s = b();
++    return [
++      t,
++      s,
++      () => {
++        for (let n = t.nextSibling; n && n != s; n = n.nextSibling) n.parentNode.removeChild(n);
++      },
++    ];
++  },
++  j = (e, t) => {
++    t !== r && n(e, t);
++  },
++  O = (e, t, s, a) => (
++    e.addEventListener(t, s, a),
++    () => {
++      e.removeEventListener(t, s, a);
++    }
++  ),
++  v = (e, t, s) => {
++    const a = e.ownerDocument,
++      n = (a.$$delegates ??= new Set());
++    n.has(t) || (n.add(t), a.addEventListener(t, w));
++    const o = `_$${t}`;
++    return (
++      (e[o] = s),
++      () => {
++        delete e[o];
++      }
++    );
++  },
++  w = (e) => {
++    const t = `_$${e.type}`,
++      s = e.composedPath();
++    u(s, (s) => {
++      const a = s[t];
++      if (null != a)
++        try {
++          a.call(s, e);
++        } catch (e) {
++          ((e) => {
++            const t = e instanceof Error ? `stack trace: \n${e.stack}` : JSON.stringify(e);
++            console.error(`[ERROR]: ${t}`);
++          })(e);
++        }
++    });
++  },
++  S = f(Node),
++  x = f(DocumentFragment),
++  A = f(HTMLTemplateElement),
++  L = f(Text),
++  R = f(Element),
++  k = (e) => L(e) || R(e),
++  C = new Proxy({}, { get: (e, t) => t }),
++  D = Symbol.for("hyplate-signal"),
++  P = Symbol.for("hyplate-element-meta"),
++  T = (e) => (e[P] ??= {});
++export {
++  P as $,
++  A,
++  t as B,
++  k as C,
++  p as D,
++  O as _,
++  a,
++  v as b,
++  b as c,
++  $ as d,
++  i as e,
++  u as f,
++  m as g,
++  l as h,
++  R as i,
++  S as j,
++  j as k,
++  T as l,
++  d as m,
++  r as n,
++  y as o,
++  n as p,
++  x as q,
++  h as r,
++  s,
++  f as t,
++  g as u,
++  e as v,
++  E as w,
++  C as x,
++  c as y,
++  D as z,
++};

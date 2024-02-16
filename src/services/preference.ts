@@ -12,6 +12,7 @@ const defaultPreference: Preference = {
   // 默认开启代理
   ghproxy: true,
   showMaxMinus: false,
+  template: {}
 };
 
 interface PreferenceConfig {

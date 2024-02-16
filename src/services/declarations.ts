@@ -56,6 +56,16 @@ export interface Preference {
    * 在成绩结果卡里是否将大P数转换为负小P数
    */
   showMaxMinus: boolean;
+  template: {
+    /**
+     * 最后一次使用的模板地址
+     */
+    url?: string | undefined;
+    /**
+     * 上一次是否使用了自定义模板
+     */
+    custom?: boolean;
+  }
 }
 
 export interface PreferenceService {

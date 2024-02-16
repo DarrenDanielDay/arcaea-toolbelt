@@ -8,7 +8,6 @@ import {
   Show,
   computed,
   cssVar,
-  effect,
   element,
   listen,
   nil,
@@ -19,12 +18,14 @@ import {
   $FileStorage,
   $Gateway,
   $MusicPlayService,
+  $PreferenceService,
   $ProfileService,
   ChartService,
   ChartStatistics,
   FileStorageService,
   Gateway,
   MusicPlayService,
+  PreferenceService,
   ProfileService,
 } from "../../../services/declarations";
 import { Inject } from "../../../services/di";
@@ -56,6 +57,7 @@ import { ImageClipper } from "../../components/image-clipper";
 ~HelpTip;
 
 export type B30Params = "template" | "url";
+export type TemplateKind = "yuki-chan" | "custom-template";
 
 @Component({
   tag: "player-b30",
@@ -72,7 +74,8 @@ class PlayerB39 extends HyplateElement {
   accessor router!: Router;
   @Inject($FileStorage)
   accessor fs!: FileStorageService;
-
+  @Inject($PreferenceService)
+  accessor preference!: PreferenceService;
   @Inject($ChartService)
   accessor chart!: ChartService;
   @Inject(HostAPIImpl, { once: true })
@@ -87,7 +90,7 @@ class PlayerB39 extends HyplateElement {
   gradeFilter = signal<Grade | ClearRank.PureMemory | ClearRank.Maximum | "">("");
   minConstant = signal(NaN);
   maxConstant = signal(NaN);
-  template = signal("yuki-chan");
+  template = signal<TemplateKind>("yuki-chan");
   custom = signal("");
   customTemplateStarted = signal(false);
   currentSite: URL | null = null;
@@ -117,19 +120,10 @@ class PlayerB39 extends HyplateElement {
     },
   });
   #connection: RPCConnection<ClientAPI> | null = null;
+  #autoStart = false;
 
   override render() {
     this.effect(() => {
-      const { template, url } = this.router.parseQuery<B30Params>();
-      if (template === "custom-template") {
-        this.template.set(template);
-      }
-      if (url) {
-        this.custom.set(url);
-      }
-
-      const cleanupParams = effect(() => {});
-      queueMicrotask(this.computeConditionalB30);
       const events = listen(this.best30 as HTMLElement);
       const unsubscribe = events("dblclick", () => {
         this.best30.requestFullscreen({
@@ -139,7 +133,6 @@ class PlayerB39 extends HyplateElement {
       return () => {
         unsubscribe();
         this.stopConnection();
-        cleanupParams();
       };
     });
     this.autorun(() => {
@@ -151,12 +144,18 @@ class PlayerB39 extends HyplateElement {
           this.stopConnection();
         });
       }
+      this.preference.update({
+        template: {
+          custom: isCustomTemplate,
+          url: url || undefined,
+        },
+      });
       this.router.updateQuery<B30Params>({
         template: isCustomTemplate ? template : null,
         url: url || null,
       });
     });
-    return <Future promise={this.chart.getStatistics()}>{(chartStats) => this._render(chartStats)}</Future>;
+    return <Future promise={this.#init()}>{(chartStats) => this._render(chartStats)}</Future>;
   }
 
   _render({ minimumConstant, maximumConstant }: ChartStatistics) {
@@ -312,6 +311,10 @@ class PlayerB39 extends HyplateElement {
         <div class="b30-container">
           <AutoRender>
             {() => {
+              if (this.#autoStart) {
+                this.#autoStart = false;
+                queueMicrotask(() => this.startConnection());
+              }
               if (this.template() === "yuki-chan") {
                 return <>{this.best30}</>;
               }
@@ -693,6 +696,24 @@ class PlayerB39 extends HyplateElement {
       URL.revokeObjectURL(url);
     }
   };
+
+  async #init() {
+    let { template, url } = this.router.parseQuery<B30Params>();
+    const {
+      template: { url: templateURL, custom },
+    } = await this.preference.get();
+    url ??= templateURL;
+    if (template === "custom-template" || custom) {
+      this.template.set("custom-template");
+      this.#autoStart = true;
+    }
+    if (url) {
+      this.custom.set(url);
+    }
+    queueMicrotask(this.computeConditionalB30);
+    const stats = await this.chart.getStatistics();
+    return stats;
+  }
 }
 
 export const PlayerB30Route: Route = {

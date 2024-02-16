@@ -14,6 +14,7 @@ const defaultPreference: Preference = {
   ghproxy: false,
   theme: "light",
   showMaxMinus: false,
+  template: {},
 };
 
 @Injectable({

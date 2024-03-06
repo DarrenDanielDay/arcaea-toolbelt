@@ -108,7 +108,7 @@ class ConstantTools extends HyplateElement {
             <a href="docs/plugin-usage.html" target="_blank">
               跨站脚本插件
             </a>
-            集成了beyond boost测算定数功能，此处的手动录入仅作为不使用该脚本的备选工具。
+            集成了beyond boost测算定数功能，此处的手动输入计算仅作为不使用该脚本的备选工具。
           </div>
           <div class="row my-3">
             <div class="col-auto">

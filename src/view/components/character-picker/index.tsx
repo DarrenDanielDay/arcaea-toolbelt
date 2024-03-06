@@ -1,16 +1,5 @@
 import { sheet } from "./style.css.js";
-import {
-  AutoRender,
-  Component,
-  HyplateElement,
-  Show,
-  computed,
-  effect,
-  element,
-  nil,
-  signal,
-  watch,
-} from "hyplate";
+import { AutoRender, Component, HyplateElement, Show, computed, effect, element, nil, signal, watch } from "hyplate";
 import { bootstrap } from "../../styles";
 import { CharacterImageKind, CharacterInstanceData, CharacterStatus } from "../../../models/character";
 import { pageInto } from "../../../utils/paging";
@@ -198,7 +187,7 @@ class CharacterPicker extends HyplateElement {
                           id="use-static"
                         ></input>
                         <label class="form-check-label" for="use-static">
-                          使用静态等级数据
+                          使用静态等级数据（拟合值）
                         </label>
                       </div>
                     </div>
@@ -225,7 +214,12 @@ class CharacterPicker extends HyplateElement {
                                       <tr>
                                         <td>step</td>
                                         {characterLevels.map(([, factors]) => (
-                                          <td onClick={() => resultStep.set(factors.step)}>{factors.step}</td>
+                                          <td
+                                            title={`拟合值：${factors.step}`}
+                                            onClick={() => resultStep.set(factors.step)}
+                                          >
+                                            {Math.floor(factors.step)}
+                                          </td>
                                         ))}
                                       </tr>
                                     </>

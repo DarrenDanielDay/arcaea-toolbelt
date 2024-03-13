@@ -20,7 +20,7 @@ import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/time";
 import type { FC, JSXChildNode } from "hyplate/types";
-import { ClearRank, Difficulty, formatRating, parseRating } from "../../../models/music-play";
+import { ClearRank, Difficulty, difficulties, formatRating, parseRating } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
 import { RouteLink } from "../route-link";
 import { HelpTip } from "../help-tip";
@@ -421,10 +421,7 @@ class ProfilePage extends HyplateElement {
     };
     type TabDifficulty = Difficulty | null;
     const displayOrder: TabDifficulty[] = [
-      Difficulty.Past,
-      Difficulty.Present,
-      Difficulty.Future,
-      Difficulty.Beyond,
+      ...difficulties,
       null,
     ];
     const Stat: FC<{ stat: BestStatistics }> = ({ stat }) => {

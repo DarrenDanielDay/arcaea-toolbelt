@@ -1,5 +1,5 @@
 import { SqlJsStatic } from "sql.js";
-import { ClearRank, Difficulty, NoteResult, PlayResult, difficulties } from "../models/music-play";
+import { ClearRank, NoteResult, PlayResult, difficulties } from "../models/music-play";
 import { B30Response, BestResultItem, Profile, ProfileUpdatePayload, ProfileV1, ProfileV2 } from "../models/profile";
 import { download } from "../utils/download";
 import { readBinary, readFile } from "../utils/read-file";
@@ -348,7 +348,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       }
       const chart = song.charts.find((c) => c.difficulty === difficulties[songDifficulty]);
       if (!chart) {
-        result.skipped.push(`曲目${song.name}的${Object.keys(Difficulty)[songDifficulty]}难度谱面未知`);
+        result.skipped.push(`曲目${song.name}的${difficulties[songDifficulty]}难度谱面未知`);
         continue;
       }
       const noteResult: NoteResult = {

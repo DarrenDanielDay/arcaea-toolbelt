@@ -206,6 +206,9 @@ export class MusicPlayServiceImpl implements MusicPlayService {
   }
 
   getPotentialRating(potential: number): number {
+    if (potential < 0) {
+      return -1;
+    }
     return [3.5, 7.0, 10.0, 11.0, 12.0, 12.5, 13.0, Infinity].findIndex((bound) => potential < bound);
   }
 

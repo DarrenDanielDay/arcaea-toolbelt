@@ -58,10 +58,11 @@ result-card {
 }
 
 .footer {
-  height: 32px;
+  height: 4em;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .footer, time {

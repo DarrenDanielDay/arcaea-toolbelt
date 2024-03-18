@@ -69,7 +69,25 @@
       。
     </p>
     <p>
-      后面的操作步骤都是为了将复制文件的操作用批处理脚本自动化，方便以后拉取最新的<code>st3</code>的操作。如果在后面的自动化步骤碰到不好解决的问题，可以手动复制<code>st3</code>文件。
+      安装后如图所示找到<code>st3</code>文件，并复制到MuMu共享文件夹即可从模拟器内拿出来。访问根目录时App会申请root权限，勾选“永久记住选择”并允许即可。
+    </p>
+    <div class="imgs">
+      <img src="../img/allow-root-access.png" />
+      <img src="../img/find-st3.png" />
+      <img src="../img/copy-st3.png" />
+      <img src="../img/paste-st3.png" />
+      <img src="../img/find-st3-on-pc.png" />
+    </div>
+    <p>
+      你也可以将文件夹<code>/data/data/moe.low.arc/files</code>和<code>MuMu共享文件夹</code>设置为书签，方便找到文件夹。
+    </p>
+    <div class="imgs">
+      <img src="../img/add-quick-link.png" />
+    </div>
+    <p>
+      如果你经常做这些重复的操作，自然会容易感到厌烦。
+      <strong>后面的操作步骤都是为了将复制文件的操作用批处理脚本自动化</strong
+      >，方便后续拉取最新的<code>st3</code>的操作。如果在后面的自动化步骤碰到不好解决的问题，可以使用上面的App手动复制<code>st3</code>文件。
     </p>
     <h3 id="confirm-port">5. 确认端口</h3>
     <p>打开MuMu多开器，记一下模拟器用的adb端口号（这里是16384）。</p>
@@ -86,7 +104,7 @@
     <p>
       下载脚本时，浏览器可能会报告安全问题，因为恶意的脚本可能会窃取信息或损坏计算机。此生成的脚本没有这样的恶意代码，可以放心下载并保留。
     </p>
-    <form class="mx-2">
+    <form class="mx-2" autocomplete="on">
       <div class="my-2">
         <label class="form-label" for="install-path">MuMu模拟器安装路径或shell路径</label>
         <input class="form-control" id="install-path" />
@@ -105,6 +123,10 @@
         <button type="button" class="btn btn-primary" id="download-script">下载脚本</button>
       </p>
     </form>
+    <p>在第一次执行脚本的时候可能会弹出需要授予root权限的对话框，同样勾选“永久记住选择”并允许即可。</p>
+    <div class="imgs">
+      <img src="../img/allow-root-access.png" />
+    </div>
     <p>方案二：手动执行adb命令。找到模拟器的安装目录下的shell文件夹，以此路径打开命令行工具。</p>
     <p>可通过空白处右键菜单-&gt;在终端打开：</p>
     <div class="imgs">
@@ -115,14 +137,15 @@
       <img src="../img/open-powershell.gif" loading="lazy" />
     </div>
     <p>再在命令行内手动依次输入并回车执行以下几个命令，即可将模拟器内的本地存档复制到目标位置。</p>
-    <pre><code><code><div>.\adb.exe kill-server
+    <pre><code><code><div>.\adb.exe root
+.\adb.exe kill-server
 .\adb.exe start-server
 .\adb.exe connect 127.0.0.1:端口号
 .\adb.exe -s 127.0.0.1:端口号 pull /data/data/moe.low.arc/files/st3 导出st3的文件夹</div></code></code></pre>
     <p>
       如下图所示，先在E盘创建<code>E:\temp\616sb</code>文件夹，然后用adb将
       <code>/data/data/moe.low.arc/files/st3</code>
-      文件抽取到<code>616sb</code>文件夹下。
+      文件抽取到<code>616sb</code>文件夹下。初次执行可能需要授权，同样在模拟器内界面上点击允许即可。
     </p>
     <div class="imgs">
       <img src="../img/adb-pull.png" loading="lazy" />

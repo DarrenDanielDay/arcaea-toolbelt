@@ -48,6 +48,7 @@ function generateScriptContent(
     `\
 ${root}
 cd "${shellPath}"
+.\\adb.exe root
 .\\adb.exe kill-server
 .\\adb.exe start-server
 .\\adb.exe connect 127.0.0.1:${port}

@@ -60,6 +60,7 @@
   }
   html {
     scroll-padding-top: 4em;
+    --img-width: 400px;
   }
 }
 
@@ -77,8 +78,8 @@ pre {
 }
 
 .imgs > img {
-  object-fit: scale-down;
-  max-width: 400px;
+  object-fit: contain;
+  max-width: var(--img-width, 60%);
   margin: 8px 0;
   cursor: zoom-in;
 }

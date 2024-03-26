@@ -18,8 +18,9 @@ import { Injectable } from "classic-di";
 
 const FREE_PACKS = [
   "Arcaea", // 基础包
-  "Extend Archive",
-  "World Extend",
+  "Extend Archive 1",
+  "Extend Archive 2",
+  "World Extend 3",
 ];
 
 @Injectable({

@@ -16,23 +16,23 @@ const specialPlatformImages: Record<
 > = {
   [PlatformType.FixedSpeed]: {
     banner: "img/step_banner_speedrestrict.png",
-    main: "img/step_tile_speedrestrict.png",
+    main: "img/1080/step_tile_speedrestrict.png",
   },
   [PlatformType.Random]: {
     banner: "img/step_banner_random.png",
-    main: "img/step_tile_random.png",
+    main: "img/1080/step_tile_random.png",
   },
   [PlatformType.Restriction]: {
     banner: "img/step_banner_restrict.png",
-    main: "img/step_tile_restrict.png",
+    main: "img/1080/step_tile_restrict.png",
   },
   [PlatformType.Stamina]: {
     banner: "img/step_banner_plusstamina.png",
-    main: "img/step_tile_plusstamina.png",
+    main: "img/1080/step_tile_plusstamina.png",
   },
 };
 
-const defaultPlatformImage = "img/step_tile.png";
+const defaultPlatformImage = "img/1080/step_tile.png";
 const currentPlatformImage = "img/step_tile_current.png";
 
 interface PlatformContext {
@@ -230,7 +230,7 @@ class WorldMapNormal extends HyplateElement {
       }, []);
     this.platforms.set(platformsContext);
     const chapter = +map.id[0]! || 0;
-    this.bg.set(`url(${JSON.stringify(this.assets(`img/world/${chapter}.jpg`))})`);
+    this.bg.set(`url(${JSON.stringify(this.assets(`img/world/1080/${chapter}.jpg`))})`);
     this.platformsContainer.lastElementChild!.scrollIntoView({ behavior: "smooth" });
   }
 

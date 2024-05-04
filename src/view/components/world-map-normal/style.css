@@ -51,10 +51,6 @@
   }
 }
 
-.text-banner {
-  background-image: var(--text-mask);
-}
-
 .length {
   position: absolute;
   display: inline-block;

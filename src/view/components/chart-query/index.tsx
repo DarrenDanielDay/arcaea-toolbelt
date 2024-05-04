@@ -1,12 +1,23 @@
 import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
-import { $ChartService, ChartService, ChartStatistics, SearchResult } from "../../../services/declarations";
+import {
+  $AssetsResolver,
+  $ChartService,
+  $CoreDataService,
+  ChartService,
+  ChartStatistics,
+  CoreDataService,
+  SearchResult,
+} from "../../../services/declarations";
 import { Inject } from "../../../services/di";
 import { FancyDialog } from "../fancy-dialog";
 import { ChartInfo } from "../chart-info";
 import { Component, For, Future, HyplateElement, noop, signal, watch } from "hyplate";
 import { TransitionToggle } from "../../../utils/experimental";
 import { $Router, Router } from "../../pages/router";
+import { FC } from "hyplate/types";
+import { ChartExpressInfo } from "../../../models/misc";
+import { Difficulty, difficulties } from "../../../models/music-play";
 
 export type ChartQueryParams = "min" | "max";
 
@@ -18,10 +29,13 @@ export
 class ChartQuery extends HyplateElement {
   @Inject($ChartService)
   accessor chartService!: ChartService;
+  @Inject($CoreDataService)
+  accessor coreData!: CoreDataService;
   @Inject($Router)
   accessor router!: Router;
 
   info = new FancyDialog();
+  express = new FancyDialog();
 
   min = signal(NaN);
   max = signal(NaN);
@@ -59,6 +73,7 @@ class ChartQuery extends HyplateElement {
     return (
       <>
         {this.info}
+        {this.express}
         <form
           class="chart-query-form m-3"
           onSubmit={(e) => {
@@ -95,8 +110,11 @@ class ChartQuery extends HyplateElement {
             <button type="button" class="btn btn-primary query me-2" onClick={this.query}>
               查询
             </button>
-            <button type="button" class="btn btn-secondary roll" onClick={this.roll}>
+            <button type="button" class="btn btn-secondary roll me-2" onClick={this.roll}>
               roll一个
+            </button>
+            <button type="button" class="btn btn-secondary chart-express" onClick={this.showChartExpress}>
+              新谱速递
             </button>
           </div>
         </form>
@@ -180,6 +198,31 @@ class ChartQuery extends HyplateElement {
       this.setResults([]);
     }
   };
+  showChartExpress = async () => {
+    const items = await this.coreData.getChartExpress();
+    const songIndex = await this.chartService.getSongIndex();
+    const displayItems: DisplayItem[] = [];
+    for (const [i, item] of items.entries()) {
+      const songId = item.songId;
+      const song = songIndex[songId];
+      if (!song) {
+        continue;
+      }
+      const chart = song.charts.find((chart) => chart.difficulty === Difficulty.Future);
+      if (!chart) {
+        continue;
+      }
+      const displayItem: DisplayItem = {
+        songId,
+        charts: item.charts,
+        cover: this.chartService.getCover(chart, song),
+        name: this.chartService.getName(chart, song),
+      };
+      displayItems.push(displayItem);
+    }
+    await this.express.showAlert(<ChartExpressList displayItems={displayItems} />);
+  };
+
   setResults = (charts: SearchResult[]) => {
     const groups = charts.reduce<Record<string, SearchResult[]>>((map, result) => {
       (map[result.constant.toFixed(1)] ??= []).push(result);
@@ -188,3 +231,32 @@ class ChartQuery extends HyplateElement {
     this.results.set(Object.entries(groups));
   };
 }
+
+interface DisplayItem {
+  songId: string;
+  cover: string;
+  name: string;
+  charts: (ChartExpressInfo | null)[];
+}
+
+const ChartExpressList: FC<{ displayItems: DisplayItem[] }> = ({ displayItems }) => {
+  return (
+    <div>
+      {displayItems.map((item) => (
+        <div class="chart-express-item">
+          <div>
+            <img src={item.cover} style:max-width="12em"></img>
+          </div>
+          <div>曲目ID：{item.songId}</div>
+          <div>曲目标题：{item.name}</div>
+          {difficulties.map((diff, i) => (
+            <div>
+              <span style:color={`var(--${diff})`}>{diff.toUpperCase()}</span>定数：
+              {item.charts[i]?.constant ?? "-"}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};

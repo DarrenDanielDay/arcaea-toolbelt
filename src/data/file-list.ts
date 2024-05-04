@@ -3,6 +3,7 @@ export const assetsInfo = "assets-info.json";
 export const characterData = "character-data.json";
 export const characters = "characters.json";
 export const chartData = "chart-data.json";
+export const chartExpress = "chart-express.json";
 export const itemsData = "item-data.json";
 export const meta = "meta.json";
 export const notesAndConstants = "notes-and-constants.json";

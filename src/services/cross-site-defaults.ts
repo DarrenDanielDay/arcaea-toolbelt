@@ -8,7 +8,7 @@ import { CharacterData } from "../models/character";
 import { SongData } from "../models/music-play";
 import { ChapterData, ItemData, NormalWorldMapData } from "../models/world-mode";
 import { characterData, chartData, itemsData } from "../data/file-list";
-import { ArcaeaToolbeltMeta } from "../models/misc";
+import { ArcaeaToolbeltMeta, ChartExpress } from "../models/misc";
 
 const defaultPreference: Preference = {
   ghproxy: false,
@@ -60,6 +60,9 @@ export class PluginCoreData implements CoreDataService {
     throw new Error("Method not implemented.");
   }
   getMetaData(): Promise<ArcaeaToolbeltMeta> {
+    throw new Error("Method not implemented.");
+  }
+  getChartExpress(): Promise<ChartExpress[]> {
     throw new Error("Method not implemented.");
   }
   getChartData(): Promise<SongData[]> {

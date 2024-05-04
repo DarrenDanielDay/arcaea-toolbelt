@@ -27,7 +27,7 @@ import {
 import type { Signal } from "hyplate/types";
 import { CharacterData, CharacterImage, CharacterIndex } from "../models/character";
 import { PromiseOr } from "../utils/misc";
-import { ArcaeaToolbeltMeta } from "../models/misc";
+import { ArcaeaToolbeltMeta, ChartExpress } from "../models/misc";
 import { UploadedFile } from "../models/file";
 
 export interface DatabaseContext {
@@ -103,6 +103,7 @@ export interface CoreDataService {
   getSongList(): Promise<any>;
   getPackList(): Promise<any>;
   getMetaData(): Promise<ArcaeaToolbeltMeta>;
+  getChartExpress(): Promise<ChartExpress[]>;
   getChartData(): Promise<SongData[]>;
   getCharacterData(): Promise<CharacterData[]>;
   getItemsData(): Promise<ItemData[]>;

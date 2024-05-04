@@ -252,7 +252,7 @@ const ChartExpressList: FC<{ displayItems: DisplayItem[] }> = ({ displayItems })
           {difficulties.map((diff, i) => (
             <div>
               <span style:color={`var(--${diff})`}>{diff.toUpperCase()}</span>定数：
-              {item.charts[i]?.constant ?? "-"}
+              {item.charts[i]?.constant.toFixed(1) ?? "-"}
             </div>
           ))}
         </div>

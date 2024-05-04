@@ -165,7 +165,13 @@ class PlayerB39 extends HyplateElement {
       <div>
         {this.imagePicker}
         {this.downloadModal}
-        <form class="m-3">
+        <form
+          class="m-3"
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.computeConditionalB30();
+          }}
+        >
           <details class="mb-3">
             <summary>高级查询</summary>
             <div class="input-group">
@@ -216,7 +222,7 @@ class PlayerB39 extends HyplateElement {
               <input
                 name="max-constant"
                 type="number"
-                min={maximumConstant}
+                min={minimumConstant}
                 max={maximumConstant}
                 step="0.1"
                 placeholder={maximumConstant.toFixed(1)}

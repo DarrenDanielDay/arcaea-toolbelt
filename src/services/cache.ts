@@ -51,6 +51,9 @@ export class CachedHttpGetClient {
       return new Response(result.blob);
     }
     const response = await fetch(url, init);
+    if (response.status.toString().match(/^4|5/)) {
+      throw new Error("Request failed.");
+    }
     const blob = await response.blob();
     const cache: HttpGetCache = {
       url,

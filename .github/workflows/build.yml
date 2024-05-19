@@ -7,6 +7,17 @@ on:
   push:
     branches: [main]
 
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     environment:
@@ -43,12 +54,12 @@ jobs:
       - name: Check TypeScript Types
         run: npx tsc --noEmit
 
-      - name: Deploy Github Pages
-        uses: crazy-max/ghaction-github-pages@v4.0.0
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          build_dir: arcaea-toolbelt
-          commit_message: "deploy: Deployed by Github Actions"
-          jekyll: false
-          verbose: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: "./arcaea-toolbelt"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

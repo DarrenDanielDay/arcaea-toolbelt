@@ -9,6 +9,10 @@ on:
 
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: windows-latest
 
     strategy:
@@ -29,11 +33,13 @@ jobs:
         run: npm ci
 
       - name: Setup Environment
-        run: echo "COMMIT_SHA=${{ github.sha }}" > .env
+        run: |
+          echo "COMMIT_SHA=${{ github.sha }}" > .env
+          echo "ASSETS_VENDOR=${{ secrets.ASSETS_VENDOR }}" >> .env
+          echo "ASSETS_VENDOR_PROXY=${{ secrets.ASSETS_VENDOR_PROXY }}" >> .env
 
       - name: Build Project
         run: npm run build
-
       - name: Check TypeScript Types
         run: npx tsc --noEmit
 

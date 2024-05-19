@@ -4,9 +4,8 @@ import { PromiseOr } from "../utils/misc";
 import { $Gateway, $PreferenceService, Gateway, PreferenceService } from "./declarations";
 import { subscribe } from "hyplate";
 
-const assetsBase = "https://moyoez.github.io/ArcaeaResource-ActionUpdater/arcaea/assets/";
-const assetsProxyBase =
-  "https://mirror.ghproxy.com/raw.githubusercontent.com/MoYoez/ArcaeaResource-ActionUpdater/main/arcaea/assets/";
+const assetsBase = process.env.ASSETS_VENDOR;
+const assetsProxyBase = process.env.ASSETS_VENDOR_PROXY;
 const dataProxyBase =
   process.env.NODE_ENV === "production"
     ? "https://mirror.ghproxy.com/raw.githubusercontent.com/DarrenDanielDay/arcaea-toolbelt-data/main/src/data/"

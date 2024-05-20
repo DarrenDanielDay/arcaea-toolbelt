@@ -149,7 +149,7 @@ export class ChartServiceImpl implements ChartService {
   }
 
   getCover(chart: Chart, song: Song): string {
-    return this.gateway.proxy(this.resolver.resolveCover(chart, song, true)).toString();
+    return this.gateway.proxy(this.resolver.resolveCover(chart, song, false)).toString();
   }
 
   async #initSongIndex() {

@@ -14,7 +14,6 @@ Arcaea Online 高仿 Best 30 图生成器
 
 <https://github.com/DarrenDanielDay/arcaea-toolbelt-aol-b30>
 
-
 ---
 
 ```txt
@@ -41,7 +40,7 @@ Arcaea Online 高仿 Best 30 图生成器
 - [x] 世界模式剩余进度计算
 - [x] 世界模式步数正算
 - [x] 世界模式控步数逆算
-- [ ] Beyond绳子相关计算
+- [ ] Beyond 绳子相关计算
 
 配套脚本工具功能：
 
@@ -53,8 +52,34 @@ Arcaea Online 高仿 Best 30 图生成器
 
 ## For developers
 
+1. Clone all repos in same directory:
+
+```sh
+mkdir DarrenDanielDay     # You can use any other directory name.
+cd DarrenDanielDay
+git clone https://darrendanielday.github.io/arcaea-toolbelt
+git clone https://github.com/DarrenDanielDay/arcaea-toolbelt-data
+git clone https://github.com/DarrenDanielDay/arcaea-toolbelt-aol-b30
+```
+
+2. Install dependencies for all repos ([Node.JS](https://nodejs.org) >= 18 is required):
+
 ```sh
 # install dependencies & start dev mode
+# should be run in different terminal
+
+# terminal 1 the main site
+cd DarrenDanielDay/arcaea-toolbelt
+npm install
+npm run start
+
+# terminal 2 the data site
+cd DarrenDanielDay/arcaea-toolbelt-data
+npm install
+npm run start
+
+# terminal 3 the player b30 generator template site (optional)
+cd DarrenDanielDay/arcaea-toolbelt-aol-b30
 npm install
 npm run start
 ```
@@ -77,7 +102,6 @@ You'll see `JSX` code in components, but this project is **NOT** using [`react`]
 - [Arcaea 中文 Wiki](https://wiki.arcaea.cn/)
 - [Arcaea-Infinity](Arcaea-Infinity)
 - [YukiChan](https://github.com/bsdayo/YukiChan/)
-- [ArcaeaResource-ActionUpdater](https://github.com/MoYoez/ArcaeaResource-ActionUpdater)
 
 ## License
 

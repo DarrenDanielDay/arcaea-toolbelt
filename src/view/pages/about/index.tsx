@@ -28,6 +28,7 @@ import { JSXChildNode } from "hyplate/types";
 import { HelpTip } from "../../components/help-tip";
 import { formatSize } from "../../../utils/format";
 import { ArcaeaToolbeltMeta } from "../../../models/misc";
+import { Difficulty } from "../../../models/music-play";
 ~HelpTip;
 export const AboutRoute: Route = {
   path: "/about",
@@ -120,6 +121,17 @@ class About extends HyplateElement {
               </div>
             );
           })}
+          {(() => {
+            const difficulties = chartStats.difficulties;
+            const ftr = difficulties[Difficulty.Future],
+              etr = difficulties[Difficulty.Eternal];
+            return (
+              <div>
+                <strong>FTR/ETR</strong>:{ftr.count + etr.count}
+                个谱面，总物量{ftr.notes + etr.notes}
+              </div>
+            );
+          })()}
         </div>
         <h3>杂项</h3>
         <div class="my-3">

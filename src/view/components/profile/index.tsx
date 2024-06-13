@@ -562,7 +562,7 @@ class ProfilePage extends HyplateElement {
           ></Desc>
         );
         if (stat.rest <= 1e5) {
-          descriptsions.push(<Desc label="距游玩谱面全理论" content={stat.rest}></Desc>);
+          descriptsions.push(<Desc label="距游玩全理论" content={stat.rest}></Desc>);
         }
       }
       return <div>{descriptsions}</div>;

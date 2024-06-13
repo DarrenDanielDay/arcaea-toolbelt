@@ -65,7 +65,7 @@ export interface Preference {
      * 上一次是否使用了自定义模板
      */
     custom?: boolean;
-  }
+  };
 }
 
 export interface PreferenceService {
@@ -219,6 +219,7 @@ export interface MusicPlayService {
   computeGrade(score: number): Grade;
   computeClearRank(play: NoteResult, chart: Chart, clear: PartnerClearRank | null): ClearRank | null;
   computeScoreResult(score: number, chart: Chart): ScoreResult;
+  computeRankingLoseScore(play: NoteResult, chart: Chart): number;
   computePMConstant(potential: number, overflow: boolean): number;
   inverseScore(potential: number, constant: number): number;
   inverseConstant(potential: number, score: number, raw?: boolean): number;
@@ -291,6 +292,14 @@ export interface BestStatistics {
    * 大P准度，计算方法：{@link perfect} / {@link notes}
    */
   pacc: number;
+  /**
+   * 排名失分
+   */
+  rkls: number;
+  /**
+   * 总排名失分
+   */
+  frkls: number;
   /**
    * 有成绩的谱面距离全部理论相差的分数
    */

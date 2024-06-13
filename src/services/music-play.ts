@@ -169,6 +169,7 @@ export class MusicPlayServiceImpl implements MusicPlayService {
     const modifier = this.computePotentialModifier(score);
     return Math.max(0, constant + modifier);
   }
+
   computeScoreResult(score: number, chart: Chart): ScoreResult {
     return {
       grade: this.computeGrade(score),
@@ -177,6 +178,17 @@ export class MusicPlayServiceImpl implements MusicPlayService {
       potential: this.computePotential(score, chart),
     };
   }
+
+  computeRankingLoseScore(play: NoteResult, chart: Chart): number {
+    if (![Difficulty.Future, Difficulty.Beyond, Difficulty.Eternal].includes(chart.difficulty)) {
+      return 0;
+    }
+    const score = this.computeScore(chart, play);
+    const perfectLosePoint = Math.max(0, Math.min(0.995 - play.perfect / chart.note, 0.095));
+    const scoreLosePoint = 28.5 * Math.max(0, Math.min(1 - score / MAX_BASE_SCORE, 0.01));
+    return -100 * (chart.constant * (perfectLosePoint + scoreLosePoint));
+  }
+
   computePMConstant(potential: number, overflow: boolean): number {
     const target = potential - 2;
     const gapFactor = target >= 8 ? 10 : 2;

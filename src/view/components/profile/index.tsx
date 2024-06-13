@@ -140,13 +140,13 @@ class ProfilePage extends HyplateElement {
             <a href="docs/mumu-adb.html" target="_blank">
               使用MuMu模拟器和adb获取存档
             </a>
-            ，或者
-            <a href="https://space.bilibili.com/171403897" target="_blank">
-              RTE
-            </a>
-            的视频
+            ，或者视频
             <a href="https://www.bilibili.com/video/BV1kp4y1F7Jw/" target="_blank">
               BV1kp4y1F7Jw
+            </a>
+            @
+            <a href="https://space.bilibili.com/171403897" target="_blank">
+              RTE
             </a>
             。
           </p>
@@ -411,19 +411,16 @@ class ProfilePage extends HyplateElement {
 
   async showProfileStats(profile: Profile) {
     const { ratings } = await this.chart.getStatistics();
-    const Desc: FC<{ label: JSXChildNode; content: string | number; style?: string }> = ({ label, content, style }) => {
+    const Desc: FC<{ label: JSXChildNode; content: JSXChildNode; style?: string }> = ({ label, content, style }) => {
       return (
         <div class="row" style={style ?? null}>
-          <div class="col">{label}</div>
-          <div class="col">{content}</div>
+          <div class="col-5">{label}</div>
+          <div class="col-7">{content}</div>
         </div>
       );
     };
     type TabDifficulty = Difficulty | null;
-    const displayOrder: TabDifficulty[] = [
-      ...difficulties,
-      null,
-    ];
+    const displayOrder: TabDifficulty[] = [...difficulties, null];
     const Stat: FC<{ stat: BestStatistics }> = ({ stat }) => {
       const descriptsions = [
         <Desc label="游玩总数" content={stat.total}></Desc>,
@@ -473,6 +470,95 @@ class ProfilePage extends HyplateElement {
               </span>
             }
             content={percentage(stat.pacc)}
+          ></Desc>,
+          <Desc
+            label={
+              <span>
+                排名失分
+                <help-tip>
+                  <p>计算公式：</p>
+                  <div>
+                    <math display="block">
+                      <mrow>
+                        <mo>∑</mo>
+                        <mi>k</mi>
+                        <mo>×</mo>
+                        <mi>c</mi>
+                        <mo>{"{"}</mo>
+                        <mi>max</mi>
+                        <mo>[</mo>
+                        <mn>0</mn>
+                        <mo>,</mo>
+                        <mi>min</mi>
+                        <mo>(</mo>
+                        <mn>0.995</mn>
+                        <mo>-</mo>
+                        <mfrac>
+                          <mi>p</mi>
+                          <mi>n</mi>
+                        </mfrac>
+                        <mo>,</mo>
+                        <mn>0.095</mn>
+                        <mo>)</mo>
+                        <mo>]</mo>
+                        <mo>+</mo>
+                        <mn>28.5</mn>
+                        <mo>×</mo>
+                        <mi>max</mi>
+                        <mo>[</mo>
+                        <mn>0</mn>
+                        <mo>,</mo>
+                        <mi>min</mi>
+                        <mo>(</mo>
+                        <mn>1</mn>
+                        <mo>-</mo>
+                        <mfrac>
+                          <mi>s</mi>
+                          <mn>10,000,000</mn>
+                        </mfrac>
+                        <mo>,</mo>
+                        <mn>0.01</mn>
+                        <mo>)</mo>
+                        <mo>]</mo>
+                        <mo>{"}"}</mo>
+                      </mrow>
+                    </math>
+                    <math display="block" class="my-3">
+                      <mrow>
+                        <ms>其中</ms>
+                        <mi>k</mi>
+                        <ms>为常数，本工具计算取</ms>
+                        <mn>100</mn>
+                        <ms>，</ms>
+                        <mi>c</mi>
+                        <ms>为谱面定数，</ms>
+                        <mi>p</mi>
+                        <ms>为大P数量，</ms>
+                        <mi>n</mi>
+                        <ms>为物量。</ms>
+                      </mrow>
+                    </math>
+                  </div>
+                  <p>
+                    公式来源：
+                    <a href="https://www.bilibili.com/video/BV1ys421u7BY" target="_blank">
+                      BV1ys421u7BY
+                    </a>
+                    @
+                    <a href="https://space.bilibili.com/354869623" target="_blank">
+                      石原坂奈
+                    </a>
+                  </p>
+                </help-tip>
+              </span>
+            }
+            content={
+              <div>
+                已游玩：{stat.rkls.toFixed(3)}
+                <br />
+                总失分：{stat.frkls.toFixed(3)}
+              </div>
+            }
           ></Desc>
         );
         if (stat.rest <= 1e5) {

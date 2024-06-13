@@ -1,5 +1,5 @@
 import { SqlJsStatic } from "sql.js";
-import { ClearRank, NoteResult, PlayResult, difficulties } from "../models/music-play";
+import { Chart, ClearRank, NoteResult, PlayResult, difficulties } from "../models/music-play";
 import { B30Response, BestResultItem, Profile, ProfileUpdatePayload, ProfileV1, ProfileV2 } from "../models/profile";
 import { download } from "../utils/download";
 import { readBinary, readFile } from "../utils/read-file";
@@ -379,6 +379,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         fr = 0,
         pm = 0,
         max = 0,
+        rkls = 0,
         totalAccScore = 0,
         totalAccChartCount = 0,
         totalDetailed = 0,
@@ -387,6 +388,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         totalNotes = 0,
         totalScore = 0,
         totalNoteResultNotes = 0;
+      const arksNotComputedCharts = new Set<string>(Object.keys(filteredCharts));
       for (const record of records) {
         const chart = charts[record.chartId]!;
         const { note } = chart;
@@ -415,6 +417,8 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
               clear++;
           }
           score = this.musicPlay.computeScore(chart, result);
+          rkls += this.musicPlay.computeRankingLoseScore(record.result, chart);
+          arksNotComputedCharts.delete(record.chartId);
         } else if (record.type === "score") {
           score = record.score;
         }
@@ -425,6 +429,22 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
           totalAccChartCount++;
         }
       }
+      const frkls =
+        rkls +
+        sum(
+          [...arksNotComputedCharts].map((chartId) => {
+            const chart = charts[chartId]!;
+            return this.musicPlay.computeRankingLoseScore(
+              {
+                far: 0,
+                lost: chart.note,
+                pure: 0,
+                perfect: 0,
+              },
+              chart
+            );
+          })
+        );
       const acc = totalAccScore / totalAccChartCount / this.musicPlay.maxBase;
       const pacc = totalPerfect / totalNoteResultNotes;
       const rest = totalNotes + total * this.musicPlay.maxBase - totalScore;
@@ -440,6 +460,8 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         great: totalGreat,
         notes: totalNoteResultNotes,
         pacc,
+        rkls,
+        frkls,
         rest,
       };
     };
@@ -449,11 +471,10 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       (chart) => chart.id
     );
     const all = Object.values(profile.best);
-    const filteredResults = all.filter((result) => {
+    const filterChart = (chart: Chart): boolean => {
       if (!query) {
         return true;
       }
-      const chart = charts[result.chartId]!;
       const { rating, difficulty } = query;
       if (difficulty) {
         if (chart.difficulty !== difficulty) {
@@ -466,7 +487,13 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
         }
       }
       return true;
-    });
+    };
+    const filteredResults = all.filter((result) => filterChart(charts[result.chartId]!));
+    const filteredCharts = Object.fromEntries(
+      Object.entries(charts).filter(([, value]) => {
+        return filterChart(value);
+      })
+    );
     return byRecords(filteredResults);
   }
 

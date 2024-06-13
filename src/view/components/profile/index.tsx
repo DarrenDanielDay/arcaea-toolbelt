@@ -535,7 +535,9 @@ class ProfilePage extends HyplateElement {
                         <mi>p</mi>
                         <ms>为大P数量，</ms>
                         <mi>n</mi>
-                        <ms>为物量。</ms>
+                        <ms>为物量，</ms>
+                        <mi>s</mi>
+                        <ms>为谱面得分。</ms>
                       </mrow>
                     </math>
                   </div>

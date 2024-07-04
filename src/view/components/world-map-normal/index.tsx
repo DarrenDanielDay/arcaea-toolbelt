@@ -33,7 +33,7 @@ const specialPlatformImages: Record<
 };
 
 const defaultPlatformImage = "img/1080/step_tile.png";
-const currentPlatformImage = "img/step_tile_current.png";
+const currentPlatformImage = "img/1080/step_tile_current.png";
 
 interface PlatformContext {
   cell: HTMLDivElement;

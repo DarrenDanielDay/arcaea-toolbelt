@@ -3,6 +3,7 @@ import { $CoreDataProvider, $CoreDataService, CoreDataProvider, CoreDataService 
 import { SongData } from "../models/music-play";
 import { CharacterData } from "../models/character";
 import {
+  assetsInfo,
   characterData,
   chartData,
   chartExpress,
@@ -15,6 +16,7 @@ import {
 } from "../data/file-list";
 import { ChapterData, ItemData, NormalWorldMapData } from "../models/world-mode";
 import { ArcaeaToolbeltMeta, ChartExpress } from "../models/misc";
+import { AssetsInfo } from "../models/file";
 
 @Injectable({
   requires: [$CoreDataProvider] as const,
@@ -25,6 +27,10 @@ export class CoreDataServiceImpl implements CoreDataService {
 
   protected fetch<T>(path: string): Promise<T> {
     return this.provider.get(path);
+  }
+
+  getAssetsInfo(): Promise<AssetsInfo> {
+    return this.fetch(assetsInfo);
   }
 
   getSongList(): Promise<any> {

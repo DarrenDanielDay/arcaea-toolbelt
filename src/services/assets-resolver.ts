@@ -3,6 +3,8 @@ import { $AssetsResolver, AssetsResolver } from "./declarations";
 import { Chart, Song, ClearRank, Grade, difficultyIndexes } from "../models/music-play";
 import { CharacterImage, CharacterImageKind, CharacterStatus } from "../models/character";
 import { toolbelt } from "../models/data";
+import { Banner, BannerType } from "../models/assets";
+import { pad2 } from "../utils/string";
 
 @Injectable({
   implements: $AssetsResolver,
@@ -57,6 +59,15 @@ export class AssetsResolverImpl implements AssetsResolver {
   }
   resolveGradeImg(scoreRank: Grade): URL {
     return this.resolve(`img/grade/mini/${this.#getGradeAssetsImgName(scoreRank)}.png`);
+  }
+  resolveBanner(banner: Banner): URL {
+    switch (banner.type) {
+      case BannerType.ArcaeaOnline:
+        return this.resolve(`img/course/banner/${banner.file}`);
+      default:
+        const file = banner.file ?? `course_banner_${banner.level}.png`;
+        return this.resolve(`img/course/banner/${file}`);
+    }
   }
 
   #getClearAssetsImgName(clearType: ClearRank) {

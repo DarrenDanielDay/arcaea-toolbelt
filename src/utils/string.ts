@@ -20,3 +20,5 @@ export const trimSlash = (str: string): string => {
   }
   return str.slice(0, i);
 };
+
+export const pad2 = (n: number) => `${n}`.padStart(2, "0");

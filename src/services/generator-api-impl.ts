@@ -29,6 +29,8 @@ import {
 import { Grade, difficulties } from "../models/music-play";
 import { managedBlobURL } from "../utils/url";
 import { protocol } from "../models/data";
+import { AssetsInfo } from "../models/file";
+import { Banner } from "../models/assets";
 
 @Injectable({
   requires: [
@@ -55,7 +57,9 @@ export class HostAPIImpl implements HostAPI {
     private readonly fs: FileStorageService,
     private readonly gateway: Gateway
   ) {}
-
+  getAssetsInfo(): Promise<AssetsInfo> {
+    return this.core.getAssetsInfo();
+  }
   getSongList(): Promise<any> {
     return this.core.getSongList();
   }
@@ -105,6 +109,9 @@ export class HostAPIImpl implements HostAPI {
       ...Array.from({ length: 9 }, (_, i) => this.resolver.resolve(`img/world/1080/${i}.jpg`)),
       this.resolver.resolve("img/world/1080/1001.jpg"),
     ];
+  }
+  async resolveBanners(banners: Banner[]): Promise<URL[]> {
+    return banners.map((banner) => this.resolver.resolveBanner(banner));
   }
   async getImages(resources: URL[]): Promise<ImageFile[]> {
     return Promise.all(

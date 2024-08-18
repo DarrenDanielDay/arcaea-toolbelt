@@ -28,7 +28,8 @@ import type { Signal } from "hyplate/types";
 import { CharacterData, CharacterImage, CharacterIndex } from "../models/character";
 import { PromiseOr } from "../utils/misc";
 import { ArcaeaToolbeltMeta, ChartExpress } from "../models/misc";
-import { UploadedFile } from "../models/file";
+import { AssetsInfo, UploadedFile } from "../models/file";
+import { Banner } from "../models/assets";
 
 export interface DatabaseContext {
   getDB(): Promise<IDBDatabase>;
@@ -100,6 +101,7 @@ export interface Gateway {
 }
 
 export interface CoreDataService {
+  getAssetsInfo(): Promise<AssetsInfo>
   getSongList(): Promise<any>;
   getPackList(): Promise<any>;
   getMetaData(): Promise<ArcaeaToolbeltMeta>;
@@ -123,6 +125,7 @@ export interface AssetsResolver {
   resolveUnknownCover(): URL;
   resolveClearImg(clearType: ClearRank): URL;
   resolveGradeImg(scoreRank: Grade): URL;
+  resolveBanner(banner: Banner): URL;
 }
 
 export interface AssetsService {

@@ -7,8 +7,9 @@ import { DirectGateway } from "./gateway";
 import { CharacterData } from "../models/character";
 import { SongData } from "../models/music-play";
 import { ChapterData, ItemData, NormalWorldMapData } from "../models/world-mode";
-import { characterData, chartData, itemsData } from "../data/file-list";
+import { assetsInfo, characterData, chartData, itemsData } from "../data/file-list";
 import { ArcaeaToolbeltMeta, ChartExpress } from "../models/misc";
+import { AssetsInfo } from "../models/file";
 
 const defaultPreference: Preference = {
   ghproxy: false,
@@ -52,6 +53,9 @@ export class PluginCoreData implements CoreDataService {
     const response = await fetch(url);
     const data = await response.json();
     return data;
+  }
+  getAssetsInfo(): Promise<AssetsInfo> {
+    return this.import(assetsInfo);
   }
   getSongList(): Promise<any> {
     throw new Error("Method not implemented.");

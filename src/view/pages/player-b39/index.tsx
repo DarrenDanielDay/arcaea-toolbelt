@@ -53,6 +53,7 @@ import type {
 import { HostAPIImpl } from "../../../services/generator-api-impl";
 import { CleanUpFunc } from "hyplate/types";
 import { ImageClipper } from "../../components/image-clipper";
+import { pad2 } from "../../../utils/string.js";
 
 ~HelpTip;
 
@@ -104,6 +105,7 @@ class PlayerB39 extends HyplateElement {
     }),
     impl: {
       exportAsImage: (...args) => this.exportAsImageFile(...args),
+      getAssetsInfo: (...args) => this.host.getAssetsInfo(...args),
       getAllCharacters: (...args) => this.host.getAllCharacters(...args),
       getImages: (...args) => this.host.getImages(...args),
       getPackList: (...args) => this.host.getPackList(...args),
@@ -112,6 +114,7 @@ class PlayerB39 extends HyplateElement {
       resolveAssets: (...args) => this.host.resolveAssets(...args),
       pickImage: (...args) => this.pickImage(...args),
       resolveBackgrounds: (...args) => this.host.resolveBackgrounds(...args),
+      resolveBanners: (...args) => this.host.resolveBanners(...args),
       resolveCharacterImages: (...args) => this.host.resolveCharacterImages(...args),
       resolveCovers: (...args) => this.host.resolveCovers(...args),
       resolveGradeImgs: (...args) => this.host.resolveGradeImgs(...args),
@@ -400,7 +403,6 @@ class PlayerB39 extends HyplateElement {
           }, "image/jpeg");
         });
         const now = new Date(b30.queryTime);
-        const pad2 = (n: number) => `${n}`.padStart(2, "0");
         const filename = `b30 ${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())} ${pad2(
           now.getHours()
         )}-${pad2(now.getMinutes())}-${pad2(now.getSeconds())}.jpg`;

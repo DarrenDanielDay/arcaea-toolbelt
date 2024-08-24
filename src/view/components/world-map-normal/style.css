@@ -51,10 +51,14 @@
   }
 }
 
+.text-banner {
+  background-image: var(--text-mask);
+}
+
 .length {
   position: absolute;
   display: inline-block;
-  bottom: 0;
+  top: 38px;
   left: 0;
   width: 100%;
   text-align: center;

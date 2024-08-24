@@ -5,7 +5,9 @@ import {
   NormalWorldMap,
   NormalWorldMapData,
   NormalWorldMapPlatforms,
+  RewardSummary,
   RewardType,
+  WorldMapReward,
 } from "../models/world-mode";
 import { CharacterImageKind, CharacterIndex, CharacterStatus } from "../models/character";
 import {
@@ -90,8 +92,8 @@ export class WorldModeServiceImpl implements WorldModeService {
     return maps.map((m) => this.withRewardImgs(items, m, songIndex, characterIndex));
   }
 
-  getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, string[]>> {
-    const res: Partial<Record<RewardType, string[]>> = {};
+  getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, RewardSummary>> {
+    const res: Partial<Record<RewardType, RewardSummary>> = {};
     const { platforms } = map;
     for (const key in platforms) {
       const platform = platforms[key];
@@ -102,13 +104,19 @@ export class WorldModeServiceImpl implements WorldModeService {
       if (!reward) {
         continue;
       }
-      (res[reward.type] ??= []).push(
-        reward.type === RewardType.Background || reward.type === RewardType.Item
-          ? reward.name
-          : reward.type === RewardType.Character
-          ? reward.name
-          : reward.name
-      );
+      const summary = (res[reward.type] ??= {});
+      const summaryItem = (summary[reward.name] ??= {
+        count: 0,
+        show: reward.name !== "残片",
+      });
+      switch (reward.type) {
+        case RewardType.Item:
+          summaryItem.count += reward.count;
+          break;
+        default:
+          summaryItem.count += 1;
+          break;
+      }
     }
     return res;
   }
@@ -160,16 +168,12 @@ export class WorldModeServiceImpl implements WorldModeService {
     loop: for (let currentLevel = reachedLevel; currentLevel <= platforms.length; currentLevel++) {
       const platform = platforms[currentLevel]!;
       const { reward } = platform;
-      if (reward) {
-        switch (reward.type) {
-          case RewardType.Character:
-          case RewardType.Song:
-            nextRewardData = {
-              img: reward.img,
-              level: currentLevel,
-            };
-            break loop;
-        }
+      if (reward && this.isPrimaryReward(reward)) {
+        nextRewardData = {
+          img: reward.img,
+          level: currentLevel,
+        };
+        break loop;
       }
     }
     let nextReward: NextRewardInfo | null = null;
@@ -326,6 +330,23 @@ export class WorldModeServiceImpl implements WorldModeService {
       }
     }
     return solution;
+  }
+
+  private isPrimaryReward(reward: WorldMapReward) {
+    switch (reward.type) {
+      case RewardType.Character:
+      case RewardType.Song:
+        return true;
+      case RewardType.Item:
+        if (reward.name === "以太之滴") {
+          return false;
+        }
+        if (reward.name === "残片") {
+          return false;
+        }
+        return true;
+    }
+    return false;
   }
 
   private findItemImage(name: string, itemImages: Record<string, string>): string {

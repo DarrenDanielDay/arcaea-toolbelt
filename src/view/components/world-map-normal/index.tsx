@@ -100,7 +100,7 @@ class WorldMapNormal extends HyplateElement {
                         return this.assets(special ? specialPlatformImages[special.type]!.main : defaultPlatformImage);
                       })}
                     />
-                    <span class="length text-banner">
+                    <span class="length">
                       {computed(() => {
                         const currentProgress = this.currentProgress();
                         if (currentProgress?.level === level) {

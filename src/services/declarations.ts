@@ -22,6 +22,7 @@ import {
   ItemData,
   NormalWorldMap,
   NormalWorldMapData,
+  RewardSummary,
   RewardType,
 } from "../models/world-mode";
 import type { Signal } from "hyplate/types";
@@ -380,7 +381,7 @@ export interface InverseProgressSolution {
 export interface WorldModeService {
   getLongtermMaps(): Promise<Chapter[]>;
   getEventMaps(): Promise<NormalWorldMap[]>;
-  getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, string[]>>;
+  getMapRewards(map: NormalWorldMap): Partial<Record<RewardType, RewardSummary>>;
   computePlayResult(potential: number): number;
   computeBasicProgress(step: number, potential: number): number;
   computeProgress(step: number, potential: number, bonus: WorldMapBonus | null): number;

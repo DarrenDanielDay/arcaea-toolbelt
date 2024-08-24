@@ -6,6 +6,16 @@ export interface ItemData {
   img: string;
 }
 
+export interface RewardSummaryItem {
+  count: number;
+  show: boolean;
+}
+
+/**
+ * 键为名称，值为个数
+ */
+export type RewardSummary = Record<string, RewardSummaryItem>
+
 export enum RewardType {
   Item,
   Song,

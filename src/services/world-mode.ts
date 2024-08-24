@@ -15,6 +15,7 @@ import {
   $CoreDataService,
   $Gateway,
   $MusicPlayService,
+  $PreferenceService,
   $WorldModeService,
   AssetsResolver,
   CharacterService,
@@ -27,6 +28,7 @@ import {
   MusicPlayService,
   MusicPlayStatistics,
   NextRewardInfo,
+  PreferenceService,
   RemainingProgress,
   WorldMapBonus,
   WorldModeService,
@@ -41,7 +43,15 @@ const BASE_BOOST = 27;
 const POTENTIAL_FACTOR = 2.45;
 const CHARACTER_FACTOR_RATIO = 50;
 @Injectable({
-  requires: [$CoreDataService, $ChartService, $MusicPlayService, $AssetsResolver, $Gateway, $CharacterService] as const,
+  requires: [
+    $PreferenceService,
+    $CoreDataService,
+    $ChartService,
+    $MusicPlayService,
+    $AssetsResolver,
+    $Gateway,
+    $CharacterService,
+  ] as const,
   implements: $WorldModeService,
 })
 export class WorldModeServiceImpl implements WorldModeService {
@@ -51,6 +61,7 @@ export class WorldModeServiceImpl implements WorldModeService {
   });
   #songIndex: SongIndex | null = null;
   constructor(
+    private readonly preference: PreferenceService,
     private readonly core: CoreDataService,
     private readonly chart: ChartService,
     private readonly music: MusicPlayService,
@@ -119,6 +130,7 @@ export class WorldModeServiceImpl implements WorldModeService {
       } else if (bonus.type === "new") {
         if (bonus.x4) result *= 4;
       }
+      result *= bonus.aol;
     }
     return result;
   }
@@ -196,8 +208,9 @@ export class WorldModeServiceImpl implements WorldModeService {
   async inverseProgress(step: number, range: [low: number, high: number]): Promise<InverseProgressSolution[]> {
     const chartStats = await this.chart.getStatistics();
     const musicStats = await this.music.getStatistics();
+    const { aolWorldBoost: aol } = await this.preference.get();
     const solutions: InverseProgressSolution[] = [];
-    const [low, high] = range;
+    const [low, high] = [range[0] / aol, range[1] / aol];
     // 无加成
     solutions.push(this.solveProgressRange(step, range, chartStats, musicStats));
     // 新图
@@ -206,6 +219,7 @@ export class WorldModeServiceImpl implements WorldModeService {
       solution.world = {
         type: "new",
         x4: true,
+        aol,
       };
       solutions.push(solution);
     }
@@ -220,6 +234,7 @@ export class WorldModeServiceImpl implements WorldModeService {
           type: "legacy",
           fragment,
           stamina,
+          aol,
         };
         solutions.push(solution);
       }
@@ -239,7 +254,7 @@ export class WorldModeServiceImpl implements WorldModeService {
     if (step && progress) {
       // TODO 验证实际显示的progress是截尾还是舍入
       const [minProgress, maxProgress] = inferRange(progress, 1, false);
-      const [minStep, maxStep] = isInt(step) ? inferRange(step, 1, false) : [step, step]
+      const [minStep, maxStep] = isInt(step) ? inferRange(step, 1, false) : [step, step];
       const minPlayResult = this.inversePlayResult(minProgress, maxStep);
       const maxPlayResult = this.inversePlayResult(maxProgress, minStep);
       // 缩小范围

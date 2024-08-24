@@ -1,5 +1,5 @@
 import { Injectable } from "classic-di";
-import { $Database, $PreferenceService, AppDatabaseContext, Preference, PreferenceService } from "./declarations";
+import { $Database, $PreferenceService, AppDatabaseContext, Preference, PreferenceKey, PreferenceService } from "./declarations";
 import type { Signal } from "hyplate/types";
 import { computed, signal } from "hyplate";
 import { clone } from "../utils/misc";
@@ -12,7 +12,8 @@ const defaultPreference: Preference = {
   // 默认开启代理
   ghproxy: true,
   showMaxMinus: false,
-  template: {}
+  template: {},
+  aolWorldBoost: 1,
 };
 
 interface PreferenceConfig {
@@ -20,7 +21,6 @@ interface PreferenceConfig {
   value: any;
 }
 
-type PreferenceKey = keyof Preference;
 
 @Injectable({
   implements: $PreferenceService,
@@ -65,7 +65,7 @@ export class PreferenceServiceImpl implements PreferenceService {
     this.#notify(newPreference);
   }
 
-  signal<K extends keyof Preference>(name: K): Signal<Preference[K]> {
+  signal<K extends PreferenceKey>(name: K): Signal<Preference[K]> {
     // @ts-expect-error key access does not match value
     const signal = (this.#computed[name] ??= computed(() => this.#preference()[name]));
     return signal;

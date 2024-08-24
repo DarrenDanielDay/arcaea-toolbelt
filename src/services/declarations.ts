@@ -67,7 +67,13 @@ export interface Preference {
      */
     custom?: boolean;
   };
+  /**
+   * 订阅AOL的世界模式倍率
+   */
+  aolWorldBoost: number;
 }
+
+export type PreferenceKey = keyof Preference;
 
 export interface PreferenceService {
   get(): Promise<Preference>;
@@ -101,7 +107,7 @@ export interface Gateway {
 }
 
 export interface CoreDataService {
-  getAssetsInfo(): Promise<AssetsInfo>
+  getAssetsInfo(): Promise<AssetsInfo>;
   getSongList(): Promise<any>;
   getPackList(): Promise<any>;
   getMetaData(): Promise<ArcaeaToolbeltMeta>;
@@ -355,10 +361,12 @@ export type WorldMapBonus =
       type: "legacy";
       fragment: number;
       stamina: number;
+      aol: number;
     }
   | {
       type: "new";
       x4: boolean;
+      aol: number;
     };
 
 export interface InverseProgressSolution {

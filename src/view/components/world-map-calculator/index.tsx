@@ -6,22 +6,37 @@ import { Inject } from "../../../services/di";
 import {
   $ChartService,
   $MusicPlayService,
+  $PreferenceService,
   $ProfileService,
   $WorldModeService,
   ChartService,
   InverseProgressSolution,
   MusicPlayService,
+  PreferenceService,
   ProfileService,
   WorldMapBonus,
   type WorldModeService,
 } from "../../../services/declarations";
 import { FancyDialog, alert, confirm } from "../fancy-dialog";
-import { HyplateElement, Component, listen, signal, element, nil, computed, AutoRender, Future, noop } from "hyplate";
+import {
+  HyplateElement,
+  Component,
+  listen,
+  signal,
+  element,
+  nil,
+  computed,
+  AutoRender,
+  Future,
+  noop,
+  watch,
+} from "hyplate";
 import { ChartInfo } from "../chart-info";
 import { CharacterPicker, renderCharacterStepInput } from "../character-picker";
 import { $Router, Router } from "../../pages/router";
 import { CurrentProgress, NormalWorldMap } from "../../../models/world-mode";
 import { truncate } from "../../../utils/math";
+import { WorldBoostSelect } from "../world-boost-select/index.js";
 
 export type WorldModeParams = "mapId";
 
@@ -44,6 +59,8 @@ class WorldModeCalculator extends HyplateElement {
   accessor chart!: ChartService;
   @Inject($Router)
   accessor router!: Router;
+  @Inject($PreferenceService)
+  accessor preference!: PreferenceService;
 
   select = new WorldMapSelect();
   worldMap = new WorldMapNormal();
@@ -164,6 +181,16 @@ class WorldModeCalculator extends HyplateElement {
     );
     this.effect(() => listen(this.calcForm)("change", this.calculateProgress));
     this.effect(() => listen(this.inverseProgressForm)("change", this.inverseProgress));
+    this.effect(() =>
+      watch(this.preference.signal("aolWorldBoost"), () => {
+        if (this.calcForm.checkValidity()) {
+          this.calculateProgress();
+        }
+        if (this.inverseProgressForm.checkValidity()) {
+          this.inverseProgress();
+        }
+      })
+    );
     return (
       <Future promise={this.musicPlay.getStatistics()}>{(stats) => this._render(stats.maximumSinglePotential)}</Future>
     );
@@ -260,6 +287,7 @@ class WorldModeCalculator extends HyplateElement {
         </AutoRender>
         <div class="title mx-3">正算步数（可计算打歌次数）</div>
         <form ref={this.calcForm} id="calc-progress" name="calc" class="mx-3">
+          {this.renderArcaeaOnlineBoost()}
           <div class="row">
             <div class="col-auto">
               <label for="step" class="col-form-label">
@@ -424,6 +452,7 @@ class WorldModeCalculator extends HyplateElement {
         </form>
         <div class="title mx-3">逆算潜力值（控分精准降落）</div>
         <form ref={this.inverseProgressForm} id="anti-progress" class="mx-3">
+          {this.renderArcaeaOnlineBoost()}
           <div>
             <div class="row">
               <div class="col-auto">地图类型</div>
@@ -626,6 +655,17 @@ class WorldModeCalculator extends HyplateElement {
     );
   }
 
+  renderArcaeaOnlineBoost() {
+    return (
+      <div class="row">
+        <div class="col-auto">Arcaea Online 加成</div>
+        <div class="col-auto">
+          <WorldBoostSelect />
+        </div>
+      </div>
+    );
+  }
+
   storeParams() {
     const selected = this.select.selected();
     this.router.updateQuery<WorldModeParams>({
@@ -679,16 +719,18 @@ class WorldModeCalculator extends HyplateElement {
       step = this.step(),
       x4 = this.memoryx4(),
       worldType = this.worldType(),
+      aol = this.preference.signal("aolWorldBoost")(),
       stamina = +this.stamina();
     try {
       const bonus: WorldMapBonus | null =
         worldType === "new"
-          ? { type: "new", x4 }
+          ? { type: "new", x4, aol }
           : worldType === "legacy"
           ? {
               type: "legacy",
               fragment,
               stamina,
+              aol,
             }
           : null;
       const result = this.worldMode.computeProgress(step, potential, bonus);

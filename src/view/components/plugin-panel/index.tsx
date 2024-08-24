@@ -7,11 +7,13 @@ import {
   $ChartService,
   $CrossSiteScriptPluginService,
   $MusicPlayService,
+  $PreferenceService,
   $WorldModeService,
   AssetsResolver,
   ChartService,
   CrossSiteScriptPluginService,
   MusicPlayService,
+  PreferenceService,
   WorldModeService,
 } from "../../../services/declarations";
 import * as lowiro from "../../../services/web-api";
@@ -42,6 +44,8 @@ class ToolPanel extends HyplateElement {
   accessor chart!: ChartService;
   @Inject($MusicPlayService)
   accessor music!: MusicPlayService;
+  @Inject($PreferenceService)
+  accessor preference!: PreferenceService;
 
   characterList = new FancyDialog();
   recentList = new FancyDialog();
@@ -56,7 +60,11 @@ class ToolPanel extends HyplateElement {
     const selectRef = element("select");
     let controller = new AbortController();
     const initProfile = async () => {
-      profile$.set(await this.service.getProfile());
+      const profile = await this.service.getProfile();
+      this.preference.update({
+        aolWorldBoost: profile.subscription_multiplier / 100,
+      });
+      profile$.set(profile);
     };
     const openCharacterStatus = (profile: lowiro.UserProfile) => {
       this.characterList.showAlert(
@@ -208,6 +216,7 @@ class ToolPanel extends HyplateElement {
                   <div class="my-1">玩家名：{display_name}</div>
                   <div class="my-1">潜力值：{rating > 0 ? (rating / 100).toFixed(2) : "-"}</div>
                   <div class="my-1">注册时间：{new Date(join_date).toLocaleString()}</div>
+                  <div class="my-1">世界模式加成：{Math.round((profile.subscription_multiplier ?? 100) - 100)}%</div>
                   <div>
                     <div class="my-1 actions">
                       <button

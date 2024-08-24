@@ -1,11 +1,16 @@
 // 直接通过JSON 2 TS插件生成的，懒得详细研究字段含义了，能用就行
 export interface UserProfile {
+  subscription_multiplier: number;
   is_aprilfools: boolean;
   locked_char_ids: any[];
+  user_missions: Usermission[];
   curr_available_maps: Curravailablemap[];
   character_stats: Characterstat[];
   friends: Friend[];
   settings: Settings;
+  banners: Banner[];
+  is_banner_present_claimed: boolean;
+  is_subscription_present_claimed: boolean;
   is_cancelled: boolean;
   is_renewed: boolean;
   arcaea_online_expire_ts: number;
@@ -19,11 +24,15 @@ export interface UserProfile {
   email: string;
   ticket: number;
   character: number;
+  custom_banner: string;
+  subscription_streak: number;
+  kanae_stored_prog: number;
   beyond_boost_gauge: number;
   is_beyond_unlocked: boolean;
   country: string;
-  course_banners: string[];
   world_mode_locked_end_ts: number;
+  memory_boost_tickets: any[];
+  pick_ticket: number;
   is_locked_name_duplicate: boolean;
   is_skill_sealed: boolean;
   current_map: string;
@@ -60,6 +69,11 @@ interface Recentscore2 {
   modifier: number;
 }
 
+interface Banner {
+  resource: string;
+  id: string;
+}
+
 interface Settings {
   is_hide_rating: boolean;
   favorite_character: number;
@@ -67,6 +81,7 @@ interface Settings {
 }
 
 interface Friend {
+  icon: string;
   character: number;
   recent_score: Recentscore[];
   rating: number;
@@ -93,6 +108,7 @@ interface Title {
 interface Characterstat {
   skill_id_text?: Skillidtext;
   display_name: Skillidtext;
+  icon: string;
   base_character: boolean;
   is_uncapped_override: boolean;
   is_uncapped: boolean;
@@ -113,9 +129,11 @@ interface Characterstat {
   base_character_id?: number;
   skill_id_uncap_text?: Skillidtext;
   variant?: Skillidtext;
+  voice?: number[];
   prog_tempest?: number;
   fatalis_is_limited?: boolean;
   fatalis_boost_value?: number;
+  skill_state?: string;
 }
 
 interface Uncapcore {
@@ -145,6 +163,12 @@ interface Curravailablemap {
   chapter: number;
   is_legacy: boolean;
   map_id: string;
+}
+
+interface Usermission {
+  status: string;
+  mission_id: string;
+  _id: string;
 }
 
 

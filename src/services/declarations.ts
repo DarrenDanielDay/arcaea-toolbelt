@@ -202,9 +202,17 @@ export interface ChartService {
   getCover(chart: Chart, song: Song): string;
 }
 
+export interface LevelData {
+  level: number;
+  value: number;
+}
+
 export interface CharacterService {
   getCharacterIndex(): Promise<CharacterIndex>;
   getAllCharacters(): Promise<CharacterData[]>;
+  computeL1L20Factor(levelA: LevelData, levelB: LevelData): [number, number];
+  interpolateL1L20Factor(level: number, f1: number, f20: number): number;
+  interpolateL1L20Factors(f1: number, f20: number): number[];
 }
 
 export interface MusicPlayStatistics {

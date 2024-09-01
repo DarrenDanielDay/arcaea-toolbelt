@@ -1,15 +1,17 @@
 import { sheet } from "./style.css.js";
 import { sheet as app } from "../../app.css.js";
-import { bootstrap } from "../../styles";
+import { bootstrap, table } from "../../styles";
 import { Inject } from "../../../services/di";
 import {
   $AssetsResolver,
+  $CharacterService,
   $ChartService,
   $CrossSiteScriptPluginService,
   $MusicPlayService,
   $PreferenceService,
   $WorldModeService,
   AssetsResolver,
+  CharacterService,
   ChartService,
   CrossSiteScriptPluginService,
   MusicPlayService,
@@ -20,7 +22,7 @@ import * as lowiro from "../../../services/web-api";
 import type { Profile } from "../../../models/profile";
 import { FancyDialog } from "../fancy-dialog";
 import type { FC } from "hyplate/types";
-import { computed, signal, Show, HyplateElement, Component, element } from "hyplate";
+import { computed, signal, Show, HyplateElement, Component, element, nil } from "hyplate";
 import { ResultCard } from "../result-card";
 import { NoteResult } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
@@ -28,10 +30,18 @@ import { formatError } from "../../../utils/format";
 import { CharacterImageKind, CharacterStatus } from "../../../models/character";
 import { indexBy } from "../../../utils/collections";
 
+type APICharacter = NonNullable<lowiro.UserProfile["character_stats"]>[number];
+
+type APIFactorNames = NonNullable<
+  {
+    [K in keyof APICharacter]: APICharacter[K] extends number ? K : never;
+  }[keyof APICharacter]
+>;
+const factorNames = ["frag", "prog", "overdrive"] satisfies APIFactorNames[];
 export
 @Component({
   tag: "arcaea-toolbelt-plugin-panel",
-  styles: [bootstrap, sheet, app],
+  styles: [bootstrap, table, sheet, app],
 })
 class ToolPanel extends HyplateElement {
   @Inject($AssetsResolver)
@@ -46,6 +56,8 @@ class ToolPanel extends HyplateElement {
   accessor music!: MusicPlayService;
   @Inject($PreferenceService)
   accessor preference!: PreferenceService;
+  @Inject($CharacterService)
+  accessor chars!: CharacterService;
 
   characterList = new FancyDialog();
   recentList = new FancyDialog();
@@ -137,6 +149,7 @@ class ToolPanel extends HyplateElement {
           return {
             expDiff,
             character,
+            previous,
           };
         }
       }
@@ -160,7 +173,51 @@ class ToolPanel extends HyplateElement {
               const isProfile = (p: unknown): p is lowiro.UserProfile => p === profile;
               const renderExpInferredConstant = () => {
                 const expChange = findExpChangedCharacter(lastProfile, profile);
-                const { expDiff, character } = expChange ?? {};
+                const { expDiff, character, previous } = expChange ?? {};
+                const renderBriefTable = (chars: (APICharacter | undefined)[]) => {
+                  const rowData = chars.filter((c) => !!c);
+                  if (!rowData.length) return <div>-</div>;
+                  return (
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>level</th>
+                          <th>frag</th>
+                          <th>step</th>
+                          <th>over</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rowData.map((c) => (
+                          <tr>
+                            <td>{c?.level || "-"}</td>
+                            <td>{c?.frag || "-"}</td>
+                            <td>{c?.prog || "-"}</td>
+                            <td>{c?.overdrive || "-"}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  );
+                };
+                const solveL1L20Factors = () => {
+                  if (!previous || !character) {
+                    return [];
+                  }
+                  const f1Stat = structuredClone(character);
+                  const f20Stat = structuredClone(character);
+                  for (const factorName of factorNames) {
+                    const [f1, f20] = this.chars.computeL1L20Factor(
+                      { level: previous.level, value: previous[factorName] },
+                      { level: character.level, value: character[factorName] }
+                    );
+                    f1Stat[factorName] = f1;
+                    f20Stat[factorName] = f20;
+                  }
+                  f1Stat.level = 1;
+                  f20Stat.level = 20;
+                  return [f1Stat, f20Stat];
+                };
                 return (
                   <>
                     <div class="row">
@@ -172,6 +229,12 @@ class ToolPanel extends HyplateElement {
                             }`
                           : "-"}
                       </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">变化角色的数值：</div>
+                    </div>
+                    <div class="row">
+                      <div class="col">{renderBriefTable([previous, character, ...solveL1L20Factors()])}</div>
                     </div>
                     <div class="row">
                       <div class="col">变化量：{expDiff ?? "-"}</div>

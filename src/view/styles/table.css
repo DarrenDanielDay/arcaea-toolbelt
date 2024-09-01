@@ -1,0 +1,8 @@
+table.table th,
+table.table td {
+  border: var(--bs-border-width) var(--bs-border-color) var(--bs-border-style);
+}
+
+table.table th {
+  background-color: var(--bs-table-striped-bg);
+}

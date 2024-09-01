@@ -1,18 +1,27 @@
 import { AutoRender, Component, HyplateElement, nil, signal } from "hyplate";
-import { bootstrap, title } from "../../styles";
+import { bootstrap, table, title } from "../../styles";
+import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
-import { $WorldModeService, WorldModeService } from "../../../services/declarations";
+import {
+  $CharacterService,
+  $WorldModeService,
+  CharacterService,
+  WorldModeService,
+} from "../../../services/declarations";
 import { CharacterPicker, renderCharacterStepInput } from "../character-picker";
 import { inferRange, isInt } from "../../../utils/math";
+import { WritableSignal } from "hyplate/types";
 
 export
 @Component({
   tag: "constant-tools",
-  styles: [bootstrap, title],
+  styles: [bootstrap, table, title, sheet],
 })
 class ConstantTools extends HyplateElement {
   @Inject($WorldModeService)
   accessor worldMode!: WorldModeService;
+  @Inject($CharacterService)
+  accessor characters!: CharacterService;
 
   characterPicker = new CharacterPicker();
 
@@ -25,11 +34,16 @@ class ConstantTools extends HyplateElement {
   beyondBoost1 = signal(NaN);
   beyondBoost2 = signal(NaN);
 
+  levelA = signal(NaN);
+  levelB = signal(NaN);
+  valueA = signal(NaN);
+  valueB = signal(NaN);
+
   override render() {
     return (
       <div>
         {this.characterPicker}
-        <div class="title">Step法</div>
+        <div class="title">Step法测定数</div>
         <div class="mx-3">
           <div class="row my-3">
             <div class="col-auto">
@@ -100,7 +114,7 @@ class ConstantTools extends HyplateElement {
             }}
           </AutoRender>
         </div>
-        <div class="title">Beyond Boost法</div>
+        <div class="title">Beyond Boost法测定数</div>
         <div class="mx-3">
           <div class="form-text">
             注：虽然游戏内只能看到beyond boost的整数值，但官网接口返回的是比较精确的数据，接口路径为
@@ -184,6 +198,55 @@ class ConstantTools extends HyplateElement {
             }}
           </AutoRender>
         </div>
+        <div class="title">搭档属性值计算</div>
+        <div class="mx-3">
+          <div class="form-text">
+            注：只包含 level 1 ~ level 20 的三次函数拟合。请填入接口返回的精确数据，否则可能不精确。
+          </div>
+          {this.#renderCharacterFactorRow("level-a", "等级A", this.levelA, this.valueA)}
+          {this.#renderCharacterFactorRow("level-b", "等级B", this.levelB, this.valueB)}
+          <AutoRender>
+            {() => {
+              const la = this.levelA();
+              const lb = this.levelB();
+              const va = this.valueA();
+              const vb = this.valueB();
+              if ([la, lb, va, vb].some((v) => isNaN(v))) {
+                return nil;
+              }
+              const [f1, f20] = this.characters.computeL1L20Factor({ level: la, value: va }, { level: lb, value: vb });
+              const levelData = this.characters.interpolateL1L20Factors(f1, f20);
+              return (
+                <div class="factor-table">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>等级</th>
+                        {levelData.map((_, i) => (
+                          <th>{i + 1}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>能力值（整数）</td>
+                        {levelData.map((v) => (
+                          <td>{Math.floor(v)}</td>
+                        ))}
+                      </tr>
+                      <tr>
+                        <td>能力值（精确）</td>
+                        {levelData.map((v) => (
+                          <td title={`${v}`}>{v.toFixed(4)}</td>
+                        ))}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              );
+            }}
+          </AutoRender>
+        </div>
       </div>
     );
   }
@@ -192,6 +255,29 @@ class ConstantTools extends HyplateElement {
     return (
       <div class="row">
         <div class="col-auto">{text}</div>
+      </div>
+    );
+  }
+
+  #renderCharacterFactorRow(id: string, label: string, level: WritableSignal<number>, value: WritableSignal<number>) {
+    return (
+      <div class="row my-3">
+        <div class="col-auto">
+          <label for={id} class="col-form-label">
+            {label}
+          </label>
+        </div>
+        <div class="col-auto">
+          <input type="number" h-model:number={level} class="form-control" id={id} min="1" max="20"></input>
+        </div>
+        <div class="col-auto">
+          <label for={`${id}-value`} class="col-form-label">
+            属性值
+          </label>
+        </div>
+        <div class="col-auto">
+          <input type="number" h-model:number={value} class="form-control" id={`${id}-value`}></input>
+        </div>
       </div>
     );
   }

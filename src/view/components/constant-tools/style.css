@@ -1,0 +1,7 @@
+.factor-table {
+  overflow: auto;
+}
+th,
+td {
+  padding: 0.25em !important;
+}

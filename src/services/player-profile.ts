@@ -83,8 +83,9 @@ export class ProfileServiceImpl implements ProfileService {
   }
 
   formatPotential(potential: number): string {
-    const rating = Math.floor(potential * 100);
-    return (rating / 100).toFixed(2);
+    const maxDivider = 600000;
+    const rating = Math.round(potential * maxDivider);
+    return (rating / maxDivider).toFixed(2);
   }
 
   async getProfile(): Promise<Profile | null> {
@@ -244,7 +245,7 @@ export class ProfileServiceImpl implements ProfileService {
     const b10Sum = sum(ptt30.slice(0, 10));
     const maxPotential = (b10Sum + b30Sum) / 40;
     const minPotential = b30Sum / 40;
-    const potential = hasFilter ? this.formatPotential(maxPotential) : profile.potential;
+    const potential = this.formatPotential(hasFilter ? maxPotential : +profile.potential);
     // 如果成绩少于10个，recent 10的平均值应当按照成绩个数取平均
     const r10Average = (+potential * 40 - b30Sum) / Math.min(playResults.length, 10);
 
@@ -266,7 +267,7 @@ export class ProfileServiceImpl implements ProfileService {
     const songData = await this.chartService.getSongData();
     const stats = await this.musicPlay.getStatistics();
     const profile = this.createEmptyProfile("👽");
-    profile.potential = (Math.floor(stats.maximumPotential * 100) / 100).toFixed(2);
+    profile.potential = this.formatPotential(stats.maximumPotential);
     for (const song of songData) {
       for (const chart of song.charts) {
         profile.best[chart.id] = {

@@ -113,35 +113,43 @@ export class HostAPIImpl implements HostAPI {
   async resolveBanners(banners: Banner[]): Promise<URL[]> {
     return banners.map((banner) => this.resolver.resolveBanner(banner));
   }
-  async getImages(resources: URL[]): Promise<ImageFile[]> {
+  private async fetchAsImage(resourceURL: URL): Promise<ImageFile> {
+    const pathname = resourceURL.toString().slice(protocol.length);
+    const fragments = pathname.split("/");
+    if (fragments[2] === "vfs") {
+      const file = await this.fs.read(resourceURL);
+      if (!file) {
+        throw new Error(`Resource ${resourceURL.href} not found.`);
+      }
+      const { blob, url } = file;
+      return {
+        blob: blob,
+        blobURL: managedBlobURL(blob),
+        distURL: url,
+        filename: fragments.at(-1)!,
+        resourceURL,
+      };
+    }
+    const filename = fragments.findLast((fragment) => !!fragment)!;
+    const dist = await this.gateway.dynamicProxy(resourceURL);
+    const imageCache = await this.cache.cachedGet(dist);
+    return {
+      filename,
+      resourceURL,
+      distURL: dist.href,
+      blob: imageCache.blob,
+      blobURL: imageCache.blobURL,
+    };
+  }
+  async getImages(resources: URL[]): Promise<(ImageFile | null)[]> {
     return Promise.all(
-      resources.map(async (resourceURL): Promise<ImageFile> => {
-        const pathname = resourceURL.toString().slice(protocol.length);
-        const fragments = pathname.split("/");
-        if (fragments[2] === "vfs") {
-          const file = await this.fs.read(resourceURL);
-          if (!file) {
-            throw new Error(`Resource ${resourceURL.href} not found.`);
-          }
-          const { blob, url } = file;
-          return {
-            blob: blob,
-            blobURL: managedBlobURL(blob),
-            distURL: url,
-            filename: fragments.at(-1)!,
-            resourceURL,
-          };
+      resources.map(async (resourceURL): Promise<ImageFile | null> => {
+        try {
+          return await this.fetchAsImage(resourceURL);
+        } catch (error) {
+          console.error(error);
+          return null;
         }
-        const filename = fragments.findLast((fragment) => !!fragment)!;
-        const dist = await this.gateway.dynamicProxy(resourceURL);
-        const imageCache = await this.cache.cachedGet(dist);
-        return {
-          filename,
-          resourceURL,
-          distURL: dist.href,
-          blob: imageCache.blob,
-          blobURL: imageCache.blobURL,
-        };
       })
     );
   }

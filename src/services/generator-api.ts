@@ -24,7 +24,7 @@ export interface ImageCandidate {
 
 export interface CandidateResult<T extends ImageCandidate> {
   type: "basic";
-  image: ImageFile;
+  image: ImageFile | null;
   candidate: T;
 }
 
@@ -82,7 +82,7 @@ export type HostAPI = {
   resolveGradeImgs(grades: Grade[]): Promise<URL[]>;
   resolveBackgrounds(): Promise<URL[]>;
   resolveBanners(banners: Banner[]): Promise<URL[]>
-  getImages(resources: URL[]): Promise<ImageFile[]>;
+  getImages(resources: URL[]): Promise<(ImageFile | null)[]>;
   /**
    * 用户选择图片后resolve
    * 用户取消后resolve为null

@@ -538,7 +538,7 @@ class PlayerB39 extends HyplateElement {
             selected.set(pickResult);
           }}
         >
-          <img src={pickResult.image.blobURL}></img>
+          <img src={pickResult.image?.blobURL}></img>
         </div>
       );
       const renderCustomPicker = (custom: CustomImageOptions) => {

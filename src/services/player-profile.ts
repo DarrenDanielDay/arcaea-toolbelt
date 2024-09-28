@@ -227,6 +227,10 @@ export class ProfileServiceImpl implements ProfileService {
     const ordered = playResults
       .filter((item) => {
         const { song } = item;
+        if (song.version.deleted) {
+          // TODO support version filter
+          return false;
+        }
         if (packs.size && !packs.has(song.pack)) {
           hasFilter = true;
           return false;

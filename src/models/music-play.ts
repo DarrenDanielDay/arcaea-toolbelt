@@ -33,6 +33,10 @@ export interface Song {
    * bpm不是数字，因为有会变节奏的曲子
    */
   bpm: string;
+  version: {
+    added: string;
+    deleted?: string;
+  };
 }
 
 export enum Difficulty {

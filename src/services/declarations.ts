@@ -169,7 +169,7 @@ export interface SearchResult {
   difficulty: Difficulty;
 }
 
-export interface DifficultyStatistics {
+export interface ChecksumStatistics {
   /**
    * 谱面个数
    */
@@ -178,6 +178,16 @@ export interface DifficultyStatistics {
    * 物量总和
    */
   notes: number;
+}
+
+/**
+ * 数据不包含被删除的
+ */
+export interface DifficultyStatistics extends ChecksumStatistics {
+  /**
+   * 被删除的谱面相应信息
+   */
+  deleted: ChecksumStatistics;
 }
 
 export type ChartDifficultyStatistics = Record<Difficulty, DifficultyStatistics>;

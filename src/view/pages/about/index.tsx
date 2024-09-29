@@ -20,6 +20,7 @@ import {
   $AssetsCacheService,
   $CoreDataService,
   CoreDataService,
+  DifficultyStatistics,
 } from "../../../services/declarations";
 import { Best30YukiChan } from "../../components/b30-yukichan";
 import { FancyDialog, alert, confirm } from "../../components/fancy-dialog";
@@ -29,6 +30,7 @@ import { HelpTip } from "../../components/help-tip";
 import { formatSize } from "../../../utils/format";
 import { ArcaeaToolbeltMeta } from "../../../models/misc";
 import { Difficulty } from "../../../models/music-play";
+import { add, apply } from "../../../utils/collections";
 ~HelpTip;
 export const AboutRoute: Route = {
   path: "/about",
@@ -112,27 +114,27 @@ class About extends HyplateElement {
         <h4>潜力值统计</h4>
         {maxPotentialStats.map((args) => this.renderMaxPtt(...args))}
         <h4>谱面统计</h4>
-        <div>
-          {Object.entries(chartStats.difficulties).map(([difficulty, { count, notes }]) => {
-            return (
-              <div>
-                <strong style:color={`var(--${difficulty})`}>{difficulty.toUpperCase()}</strong>:{count}个谱面，总物量
-                {notes}
-              </div>
-            );
-          })}
-          {(() => {
-            const difficulties = chartStats.difficulties;
-            const ftr = difficulties[Difficulty.Future],
-              etr = difficulties[Difficulty.Eternal];
-            return (
-              <div>
-                <strong>FTR/ETR</strong>:{ftr.count + etr.count}
-                个谱面，总物量{ftr.notes + etr.notes}
-              </div>
-            );
-          })()}
-        </div>
+        {(() => {
+          const details = (label: string, { count, notes, deleted }: DifficultyStatistics, color?: string) => (
+            <div>
+              <strong style:color={color}>{label}</strong>:{count}谱面，物量
+              {notes}；已删除: {deleted.count}谱面，总物量{deleted.notes}
+            </div>
+          );
+          const difficulties = chartStats.difficulties;
+          const ftr = difficulties[Difficulty.Future],
+            etr = difficulties[Difficulty.Eternal];
+          const fetr = apply(ftr, etr, add);
+          return (
+            <div>
+              {Object.entries(chartStats.difficulties).map(([difficulty, stat]) =>
+                details(difficulty.toUpperCase(), stat, `var(--${difficulty})`)
+              )}
+              {details("FTR/ETR", fetr)}
+            </div>
+          );
+        })()}
+
         <h3>杂项</h3>
         <div class="my-3">
           <button

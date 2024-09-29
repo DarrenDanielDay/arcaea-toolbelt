@@ -12,6 +12,7 @@ import {
   $CoreDataService,
   Gateway,
   $Gateway,
+  ChecksumStatistics,
 } from "./declarations";
 import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
@@ -49,19 +50,26 @@ export class ChartServiceImpl implements ChartService {
   async getStatistics(): Promise<ChartStatistics> {
     const songs = await this.getSongData();
     const statistics: ChartDifficultyStatistics = difficulties.reduce<ChartDifficultyStatistics>((map, difficulty) => {
-      map[difficulty] = { count: 0, notes: 0 };
+      map[difficulty] = { count: 0, notes: 0, deleted: { count: 0, notes: 0 } };
       return map;
     }, {} as ChartDifficultyStatistics);
     let maximumConstant = -Infinity,
       minimumConstant = Infinity;
     const levels = new Map<number, Set<boolean>>();
+    const addChart = (chart: Chart, stat: ChecksumStatistics) => {
+      stat.count++;
+      stat.notes += chart.note;
+    };
     for (const song of songs) {
       for (const chart of song.charts) {
         const { level, plus } = chart;
-        levels.set(level, (levels.get(level) ?? new Set()).add(!!plus));
         const stat = statistics[chart.difficulty];
-        stat.count++;
-        stat.notes += chart.note;
+        if (song.version.deleted) {
+          addChart(chart, stat.deleted);
+          continue;
+        }
+        levels.set(level, (levels.get(level) ?? new Set()).add(!!plus));
+        addChart(chart, stat);
         maximumConstant = Math.max(maximumConstant, chart.constant);
         minimumConstant = Math.min(minimumConstant, chart.constant);
       }

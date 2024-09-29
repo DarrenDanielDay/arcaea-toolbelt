@@ -41,7 +41,7 @@ export class MusicPlayServiceImpl implements MusicPlayService {
   async getStatistics(): Promise<MusicPlayStatistics> {
     const songs = await this.chart.getSongData();
     const stats = await this.chart.getStatistics();
-    const constants = songs.flatMap((s) => s.charts.map((c) => c.constant));
+    const constants = songs.filter((s) => !s.version.deleted).flatMap((s) => s.charts.map((c) => c.constant));
     const maxs = [...constants].sort((a, b) => b - a).slice(0, 30);
     const maxptt = maxs.concat(maxs.slice(0, 10)).reduce((sum, curr) => sum + curr + 2, 0) / 40;
     return {

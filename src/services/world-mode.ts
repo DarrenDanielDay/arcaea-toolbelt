@@ -251,14 +251,11 @@ export class WorldModeServiceImpl implements WorldModeService {
     let min = -Infinity,
       max = Infinity;
     if (playResult) {
-      const base = Math.floor(playResult * 10);
-      min = (base * 10) / 100;
-      max = (base * 10 + 10) / 100;
+      [min, max] = inferRange(playResult, 1, false);
     }
     if (step && progress) {
-      // TODO 验证实际显示的progress是截尾还是舍入
       const [minProgress, maxProgress] = inferRange(progress, 1, false);
-      const [minStep, maxStep] = isInt(step) ? inferRange(step, 1, false) : [step, step];
+      const [minStep, maxStep] = isInt(step) ? inferRange(step, 0, false) : [step, step];
       const minPlayResult = this.inversePlayResult(minProgress, maxStep);
       const maxPlayResult = this.inversePlayResult(maxProgress, minStep);
       // 缩小范围

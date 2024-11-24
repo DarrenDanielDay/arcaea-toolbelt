@@ -3,7 +3,7 @@ export const inferRange = (value: number, digit: number, round: boolean): [numbe
   const padded = int * 10;
   const base = 10 ** (digit + 1);
   const min = padded - (round ? 5 : 0),
-    max = padded + (round ? 5 : 9);
+    max = padded + (round ? 5 : 10);
   return [min / base, max / base];
 };
 

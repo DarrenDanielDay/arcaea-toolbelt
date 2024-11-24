@@ -11,6 +11,7 @@ export enum Side {
    * 消色侧
    */
   Colorless,
+  Lephon,
 }
 
 export interface Song {

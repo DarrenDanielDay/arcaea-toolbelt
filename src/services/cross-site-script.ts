@@ -1,5 +1,5 @@
 import { ToolPanel } from "../view/components/plugin-panel";
-import { PlayResult, SongData } from "../models/music-play";
+import { PlayResult } from "../models/music-play";
 import { Profile, ProfileUpdatePayload } from "../models/profile";
 import {
   $ChartService,

@@ -8,7 +8,7 @@ import {
   PreferenceService,
 } from "./declarations";
 import { Signal } from "hyplate/types";
-import { signal } from "hyplate";
+import { computed, signal } from "hyplate";
 import { AssetsResolverImpl } from "./assets-resolver";
 import { DirectGateway } from "./gateway";
 import { CharacterData } from "../models/character";

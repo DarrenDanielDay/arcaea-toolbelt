@@ -176,6 +176,11 @@ class ToolPanel extends HyplateElement {
                 const { expDiff, character, previous } = expChange ?? {};
                 const renderBriefTable = (chars: (APICharacter | undefined)[]) => {
                   const rowData = chars.filter((c) => !!c);
+                  if (rowData.length > 2) {
+                    const [, , lv1, lv20] = rowData;
+                    const factor3 = (c: APICharacter | undefined) => [c?.frag, c?.prog, c?.overdrive];
+                    console.log("csv data", JSON.stringify([...factor3(lv1), ...factor3(lv20)]));
+                  }
                   if (!rowData.length) return <div>-</div>;
                   return (
                     <table class="table">
@@ -226,7 +231,7 @@ class ToolPanel extends HyplateElement {
                         {character
                           ? `${character.display_name["zh-Hans"]}${
                               character.variant ? `（${character.variant["zh-Hans"]}）` : ""
-                            }`
+                            } id = ${character.character_id}`
                           : "-"}
                       </div>
                     </div>
@@ -475,7 +480,7 @@ class ToolPanel extends HyplateElement {
                         根据接口返回的角色经验/beyond能量的变化值可逆算单曲潜力值，结合最近游玩的分数可逆算出定数。
                       </div>
                       <div>
-                        使用方法：先打开此面板获取一次当前beyond能量值，然后去游戏内爬梯打待测谱面。打完结算后再点击
+                        使用方法：先打开此面板获取一次当前角色经验值/beyond能量值，然后去游戏内爬梯打待测谱面。打完结算后再点击
                         <code>重新获取</code>按钮即可自动测算。
                       </div>
                       <div>如果打完谱面后能量溢出（超过200%），测定结果可能会不准确。</div>

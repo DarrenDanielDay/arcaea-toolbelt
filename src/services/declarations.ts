@@ -74,6 +74,45 @@ export interface Preference {
   aolWorldBoost: number;
 }
 
+export enum LogLevel {
+  Debug,
+  Info,
+  Warning,
+  Error,
+  Fatal,
+}
+
+export type Loggable =
+  | string
+  | number
+  | boolean
+  | Loggable[]
+  | {
+      [key: string]: Loggable;
+    };
+
+export interface LogFunction {
+  (...args: Loggable[]): void;
+  trace<T extends Loggable>(tag: string, value: T): T;
+}
+
+export interface Log {
+  timestamp: number;
+  level: LogLevel;
+  stack: string;
+  content: Loggable[];
+}
+
+export interface Logger {
+  debug: LogFunction;
+  info: LogFunction;
+  warn: LogFunction;
+  error: LogFunction;
+  fatal: LogFunction;
+  getHistory(): Promise<Log[]>;
+  clear(): Promise<void>;
+}
+
 export type PreferenceKey = keyof Preference;
 
 export interface PreferenceService {
@@ -430,6 +469,8 @@ export interface CrossSiteScriptPluginService {
   syncMe(profile: lowiro.UserProfile): Promise<void>;
 }
 
+export const $LowLevelStorage = token<Storage>("low-level-storage");
+export const $Logger = token<Logger>("logger");
 export const $Database = token<AppDatabaseContext>("database");
 export const $PreferenceService = token<PreferenceService>("preference");
 export const $CoreDataService = token<CoreDataService>("core-data");

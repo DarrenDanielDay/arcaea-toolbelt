@@ -10,11 +10,14 @@ import { CoreDataProviderImpl } from "./core-data-provider";
 import { ProxyGateway } from "./gateway";
 import { PreferenceServiceImpl } from "./preference";
 import { Container } from "classic-di";
-import { $ProfileService } from "./declarations";
+import { $LowLevelStorage, $ProfileService } from "./declarations";
 import { ProfileServiceImpl } from "./player-profile";
 import { MusicPlayServiceImpl } from "./music-play";
+import { StorageLogger } from "./log";
 
 const container = new Container();
+container.add($LowLevelStorage, sessionStorage);
+container.register(StorageLogger);
 container.register(ArcaeaToolbeltDatabaseContext);
 container.register(ChartServiceImpl);
 container.register(AssetsResolverImpl);

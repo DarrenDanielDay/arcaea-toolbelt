@@ -9,7 +9,15 @@ import {
   ScoreResult,
   difficultyIndexes,
 } from "../models/music-play";
-import { $ChartService, $MusicPlayService, ChartService, MusicPlayService, MusicPlayStatistics } from "./declarations";
+import {
+  $ChartService,
+  $Logger,
+  $MusicPlayService,
+  ChartService,
+  Logger,
+  MusicPlayService,
+  MusicPlayStatistics,
+} from "./declarations";
 
 const MAX_BASE_SCORE = 1000_0000;
 const EX_PLUS_SCORE = 990_0000;
@@ -28,7 +36,7 @@ const GRADE_INDEX: Record<Grade, number> = Object.fromEntries(
 );
 
 @Injectable({
-  requires: [$ChartService],
+  requires: [$Logger, $ChartService] as const,
   implements: $MusicPlayService,
 })
 export class MusicPlayServiceImpl implements MusicPlayService {
@@ -36,7 +44,7 @@ export class MusicPlayServiceImpl implements MusicPlayService {
   grades = Object.values(Grade);
   maxBase = MAX_BASE_SCORE;
 
-  constructor(private readonly chart: ChartService) {}
+  constructor(public readonly logger: Logger, private readonly chart: ChartService) {}
 
   async getStatistics(): Promise<MusicPlayStatistics> {
     const songs = await this.chart.getSongData();
@@ -203,7 +211,9 @@ export class MusicPlayServiceImpl implements MusicPlayService {
 
   inverseConstant(potential: number, score: number, raw?: boolean): number {
     const modifier = this.computePotentialModifier(score);
+    this.logger.info(`分数 => 修正值（单曲潜力值-定数）`, score, modifier);
     const rawConstant = potential - modifier;
+    this.logger.info(`公式推算定数`, rawConstant);
     if (raw) return rawConstant;
     return Math.round(rawConstant * 10) / 10;
   }

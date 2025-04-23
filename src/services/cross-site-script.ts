@@ -4,6 +4,7 @@ import { Profile, ProfileUpdatePayload } from "../models/profile";
 import {
   $ChartService,
   $CrossSiteScriptPluginService,
+  $LowLevelStorage,
   $MusicPlayService,
   CrossSiteScriptPluginService,
 } from "./declarations";
@@ -24,8 +25,11 @@ import { CrossSiteProtocol } from "./cross-site-protocol";
 import { DefaultPreferenceService, PluginAssetsResolverImpl, PluginCoreData } from "./cross-site-defaults";
 import { DirectGateway } from "./gateway";
 import { CharacterServiceImpl } from "./character";
+import { StorageLogger } from "./log";
 
 const ioc = new Container({ name: "cross-site-script-root" });
+ioc.add($LowLevelStorage, sessionStorage);
+ioc.register(StorageLogger);
 ioc.register(ArcaeaToolbeltDatabaseContext);
 ioc.register(ChartServiceImpl);
 ioc.register(MusicPlayServiceImpl);
@@ -108,13 +112,13 @@ async function queryBest(
 ): Promise<Profile[]> {
   const chartService = ioc.get($ChartService);
   const flattenData = (await chartService.getSongData())
-  .flatMap((song) =>
-    song.charts.map((chart) => ({
-      song,
-      chart,
-    }))
-  )
-  .sort((a, b) => b.chart.constant - a.chart.constant);
+    .flatMap((song) =>
+      song.charts.map((chart) => ({
+        song,
+        chart,
+      }))
+    )
+    .sort((a, b) => b.chart.constant - a.chart.constant);
   const friends = profile.friends;
   const names = new Set(usernames);
   const queryPlayers = [...friends, profile].filter((p) => names.has(p.name));

@@ -32,3 +32,12 @@ export const abbr = (s: string) =>
     .map((part) => part.trim().at(0))
     .filter((c) => !!c)
     .join("");
+
+export const formatDateTime = (date: Date) =>
+  `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())} ` + formatTime(date);
+
+export const formatTime = (date: Date) =>
+  `${pad2(date.getHours())}:${pad2(date.getMinutes())}:${pad2(date.getSeconds())}.${date
+    .getMilliseconds()
+    .toString()
+    .padStart(3, "0")}`;

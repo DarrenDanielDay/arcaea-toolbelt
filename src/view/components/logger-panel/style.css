@@ -1,0 +1,29 @@
+:host {
+  --log-level-0: var(--bs-info);
+  --log-level-1: var(--bs-teal);
+  --log-level-2: var(--bs-warning);
+  --log-level-3: var(--bs-orange);
+  --log-level-4: var(--bs-danger);
+}
+
+.log-item {
+  display: grid;
+  grid-template-columns: 6em 3em 1fr;
+  gap: 0.5em;
+}
+
+.time {
+  width: 6em;
+  color: var(--bs-secondary);
+}
+
+.level {
+  color: var(--log-level);
+}
+
+.log-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5em;
+}
+

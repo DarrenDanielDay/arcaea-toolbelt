@@ -11,6 +11,7 @@ import {
 import { CharacterPicker, renderCharacterStepInput } from "../character-picker";
 import { inferRange, isInt } from "../../../utils/math";
 import { WritableSignal } from "hyplate/types";
+import { LoggerButton } from "../logger-panel";
 
 export
 @Component({
@@ -113,6 +114,9 @@ class ConstantTools extends HyplateElement {
               return this.#renderTextRow(this.#inferRange(min, max));
             }}
           </AutoRender>
+          <div class="my-3">
+            <LoggerButton title="查看计算过程日志" />
+          </div>
         </div>
         <div class="title">Beyond Boost法测定数</div>
         <div class="mx-3">

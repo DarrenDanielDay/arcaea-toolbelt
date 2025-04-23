@@ -31,6 +31,7 @@ import { formatSize } from "../../../utils/format";
 import { ArcaeaToolbeltMeta } from "../../../models/misc";
 import { Difficulty } from "../../../models/music-play";
 import { add, apply } from "../../../utils/collections";
+import { LoggerButton, LoggerPanel } from "../../components/logger-panel";
 ~HelpTip;
 export const AboutRoute: Route = {
   path: "/about",
@@ -136,6 +137,9 @@ class About extends HyplateElement {
         })()}
 
         <h3>杂项</h3>
+        <div class="my-3">
+          <LoggerButton />
+        </div>
         <div class="my-3">
           <button
             class="btn btn-outline-danger"

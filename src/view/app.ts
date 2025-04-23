@@ -20,9 +20,13 @@ import { AssetsCacheServiceImpl } from "../services/assets-cache";
 import { CoreDataServiceImpl } from "../services/core-data";
 import { CoreDataProviderImpl } from "../services/core-data-provider.js";
 import { FileStorageServiceImpl } from "../services/file-storage.js";
+import { StorageLogger } from "../services/log.js";
+import { $LowLevelStorage } from "../services/declarations.js";
 document.adoptedStyleSheets = [bootstrap, theme, viewTransition, sheet];
 
 const ioc = new Container();
+ioc.add($LowLevelStorage, sessionStorage);
+ioc.register(StorageLogger);
 ioc.register(CharacterServiceImpl);
 ioc.register(ArcaeaToolbeltDatabaseContext);
 ioc.register(PreferenceServiceImpl);

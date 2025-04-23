@@ -7,6 +7,7 @@ import {
   $CharacterService,
   $ChartService,
   $CrossSiteScriptPluginService,
+  $Logger,
   $MusicPlayService,
   $PreferenceService,
   $WorldModeService,
@@ -14,6 +15,7 @@ import {
   CharacterService,
   ChartService,
   CrossSiteScriptPluginService,
+  Logger,
   MusicPlayService,
   PreferenceService,
   WorldModeService,
@@ -29,6 +31,7 @@ import { PotentialBadge } from "../potential-badge";
 import { formatError } from "../../../utils/format";
 import { CharacterImageKind, CharacterStatus } from "../../../models/character";
 import { indexBy } from "../../../utils/collections";
+import { LoggerButton } from "../logger-panel/index.js";
 
 type APICharacter = NonNullable<lowiro.UserProfile["character_stats"]>[number];
 
@@ -44,6 +47,8 @@ export
   styles: [bootstrap, table, sheet, app],
 })
 class ToolPanel extends HyplateElement {
+  @Inject($Logger)
+  accessor logger!: Logger;
   @Inject($AssetsResolver)
   accessor resolver!: AssetsResolver;
   @Inject($CrossSiteScriptPluginService)
@@ -66,11 +71,7 @@ class ToolPanel extends HyplateElement {
 
   override render(): JSX.Element {
     const profile$ = signal<lowiro.UserProfile | null>(null);
-    const querying$ = signal(false);
-    const logging$ = signal("");
-    const profiles$ = signal<Profile[]>([]);
-    const selectRef = element("select");
-    let controller = new AbortController();
+
     const initProfile = async () => {
       const profile = await this.service.getProfile();
       this.preference.update({
@@ -86,13 +87,6 @@ class ToolPanel extends HyplateElement {
         true
       );
     };
-    const withErrorHandle = (handler: () => Promise<void>) => async () => {
-      try {
-        await handler();
-      } catch (error) {
-        this.message.showAlert(formatError(error));
-      }
-    };
     const refresh = () => {
       initProfile();
     };
@@ -100,42 +94,11 @@ class ToolPanel extends HyplateElement {
       await this.service.syncMe(profile);
       this.message.showAlert("同步成功");
     };
-    const go = async (profile: lowiro.UserProfile) => {
-      const querying = !querying$();
-      querying$.set(querying);
-      if (querying) {
-        const targets = Array.from(selectRef.querySelectorAll("option"))
-          .filter((o) => o.selected)
-          .map((o) => o.value);
-        controller = this.service.startQueryBests(
-          profile,
-          targets,
-          (msg) => {
-            logging$.set(msg);
-          },
-          (profiles) => {
-            querying$.set(false);
-            profiles$.set(profiles);
-            logging$.set("查询完毕");
-          },
-          (err) => {
-            logging$.set(err);
-            querying$.set(false);
-          }
-        );
-      } else {
-        controller.abort();
-      }
-    };
+
     const close = () => {
       this.dispatchEvent(new CustomEvent("panel-close", { bubbles: true, cancelable: false }));
     };
-    const syncBests = async () => {
-      const profiles = profiles$();
-      await this.service.syncProfiles(profiles);
-      logging$.set("");
-      this.message.showAlert(`存档${profiles.map((p) => p.username).join("，")}同步成功`);
-    };
+
     const findExpChangedCharacter = (lastProfile: lowiro.UserProfile | null, profile: lowiro.UserProfile) => {
       if (!lastProfile) return null;
       const previousIndex = indexBy(lastProfile.character_stats, (char) => char.character_id);
@@ -146,6 +109,10 @@ class ToolPanel extends HyplateElement {
         }
         const expDiff = character.exp - previous.exp;
         if (expDiff) {
+          this.logger.info(
+            `经验值变化：角色ID = ${character.character_id} 名称 = ${character.display_name["zh-Hans"]} ` +
+              `差值：${previous.exp} - ${character.exp} = ${expDiff}`
+          );
           return {
             expDiff,
             character,
@@ -153,6 +120,7 @@ class ToolPanel extends HyplateElement {
           };
         }
       }
+      this.logger.debug("没有经验值变化的角色");
       return null;
     };
     queueMicrotask(initProfile);
@@ -302,7 +270,7 @@ class ToolPanel extends HyplateElement {
                         type="button"
                         class="btn btn-primary"
                         name="sync-characters"
-                        onClick={withErrorHandle(() => syncMe(profile))}
+                        onClick={this.#withErrorHandle(() => syncMe(profile))}
                       >
                         同步
                       </button>
@@ -407,53 +375,7 @@ class ToolPanel extends HyplateElement {
                       查看
                     </button>
                   </div>
-                  <header>
-                    <h2>查分（需订阅）</h2>
-                  </header>
-                  <div>
-                    <p style:color="var(--bs-danger)">
-                      注意！此查分功能的原理和查分bot一样，是遍历查询好友榜，需要大量调用Web
-                      API，可能导致被shadowban甚至封号，请谨慎使用（如想尝试建议用小号）！
-                    </p>
-                  </div>
-                  <div>
-                    <form>
-                      <div class="row">
-                        <label for="query-targets" class="form-label">
-                          选择要查的玩家（可多选，电脑是按住ctrl选）：
-                        </label>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <select id="query-targets" name="query-targets" multiple class="form-select" ref={selectRef}>
-                            {players.map((friend) => (
-                              <option value={friend.name}>{friend.name}</option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                      <div class="my-3 logging">{logging$}</div>
-                      <div class="my-3 actions">
-                        <button
-                          type="button"
-                          class="btn btn-primary sync-control"
-                          name="sync-control"
-                          disabled={computed(() => !profiles$().length)}
-                          onClick={withErrorHandle(syncBests)}
-                        >
-                          同步
-                        </button>
-                        <button
-                          type="button"
-                          class={computed(() => `btn query-control ${querying$() ? "btn-danger" : "btn-primary"}`)}
-                          name="query-control"
-                          onClick={() => go(profile)}
-                        >
-                          {computed(() => (querying$() ? "停止" : "开查"))}
-                        </button>
-                      </div>
-                    </form>
-                  </div>
+                  {this.#renderLegacyBestsQuery(players, profile)}
                   <header>
                     <h2>定数测算</h2>
                   </header>
@@ -487,9 +409,10 @@ class ToolPanel extends HyplateElement {
                     </details>
                     <div class="row">
                       <div class="col-auto">
-                        <button class="btn btn-secondary" onClick={refresh}>
+                        <button class="btn btn-secondary mx-3" onClick={refresh}>
                           重新获取
                         </button>
+                        <LoggerButton title="查看计算过程日志" />
                       </div>
                     </div>
                     <div class="row">
@@ -518,6 +441,116 @@ class ToolPanel extends HyplateElement {
         <fancy-dialog ref={this.recentList} id="recent-list"></fancy-dialog>
         <fancy-dialog ref={this.message} id="plugin-message"></fancy-dialog>
       </div>
+    );
+  }
+
+  #withErrorHandle(handler: () => Promise<void>) {
+    return async () => {
+      try {
+        await handler();
+      } catch (error) {
+        this.message.showAlert(formatError(error));
+      }
+    };
+  }
+
+  #renderLegacyBestsQuery(
+    players: (lowiro.UserProfile | lowiro.UserProfile["friends"][number])[],
+    profile: lowiro.UserProfile
+  ) {
+    const querying$ = signal(false);
+    const logging$ = signal("");
+    const profiles$ = signal<Profile[]>([]);
+    const selectRef = element("select");
+    let controller = new AbortController();
+    const go = async (profile: lowiro.UserProfile) => {
+      const querying = !querying$();
+      querying$.set(querying);
+      if (querying) {
+        const targets = Array.from(selectRef.querySelectorAll("option"))
+          .filter((o) => o.selected)
+          .map((o) => o.value);
+        controller = this.service.startQueryBests(
+          profile,
+          targets,
+          (msg) => {
+            logging$.set(msg);
+          },
+          (profiles) => {
+            querying$.set(false);
+            profiles$.set(profiles);
+            logging$.set("查询完毕");
+          },
+          (err) => {
+            logging$.set(err);
+            querying$.set(false);
+          }
+        );
+      } else {
+        controller.abort();
+      }
+    };
+    const syncBests = async () => {
+      const profiles = profiles$();
+      await this.service.syncProfiles(profiles);
+      logging$.set("");
+      this.message.showAlert(`存档${profiles.map((p) => p.username).join("，")}同步成功`);
+    };
+    return (
+      <>
+        <header>
+          <h2>
+            <s>查分（需订阅，仅作为保留遗留功能，请谨慎使用）</s>
+          </h2>
+        </header>
+        <details>
+          <summary>点击展开</summary>
+          <div>
+            <p style:color="var(--bs-danger)">
+              注意！此查分功能的原理和查分bot一样，是遍历查询好友榜，需要大量调用Web
+              API，可能导致被shadowban甚至封号，请谨慎使用（如想尝试建议用小号）！
+            </p>
+          </div>
+          <div>
+            <form>
+              <div class="row">
+                <label for="query-targets" class="form-label">
+                  选择要查的玩家（可多选，电脑是按住ctrl选）：
+                </label>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <select id="query-targets" name="query-targets" multiple class="form-select" ref={selectRef}>
+                    {players.map((friend) => (
+                      <option value={friend.name}>{friend.name}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div class="my-3 logging">{logging$}</div>
+              <div class="my-3 actions">
+                <button
+                  type="button"
+                  class="btn btn-primary sync-control"
+                  name="sync-control"
+                  disabled={computed(() => !profiles$().length)}
+                  onClick={this.#withErrorHandle(syncBests)}
+                >
+                  同步
+                </button>
+                <button
+                  type="button"
+                  class={computed(() => `btn query-control ${querying$() ? "btn-danger" : "btn-primary"}`)}
+                  name="query-control"
+                  onClick={() => go(profile)}
+                >
+                  {computed(() => (querying$() ? "停止" : "开查"))}
+                </button>
+              </div>
+            </form>
+          </div>
+        </details>
+      </>
     );
   }
 }

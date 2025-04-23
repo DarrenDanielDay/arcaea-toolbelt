@@ -16,6 +16,7 @@ import {
   $ChartService,
   $CoreDataService,
   $Gateway,
+  $Logger,
   $MusicPlayService,
   $PreferenceService,
   $WorldModeService,
@@ -26,6 +27,7 @@ import {
   CoreDataService,
   Gateway,
   InverseProgressSolution,
+  Logger,
   MapDistance,
   MusicPlayService,
   MusicPlayStatistics,
@@ -46,6 +48,7 @@ const POTENTIAL_FACTOR = 2.45;
 const CHARACTER_FACTOR_RATIO = 50;
 @Injectable({
   requires: [
+    $Logger,
     $PreferenceService,
     $CoreDataService,
     $ChartService,
@@ -63,6 +66,7 @@ export class WorldModeServiceImpl implements WorldModeService {
   });
   #songIndex: SongIndex | null = null;
   constructor(
+    private readonly logger: Logger,
     private readonly preference: PreferenceService,
     private readonly core: CoreDataService,
     private readonly chart: ChartService,
@@ -252,6 +256,7 @@ export class WorldModeServiceImpl implements WorldModeService {
       max = Infinity;
     if (playResult) {
       [min, max] = inferRange(playResult, 1, false);
+      this.logger.info(`1位小数+截尾机制推测游玩结果范围： ${playResult} => [${min}, ${max}]`);
     }
     if (step && progress) {
       const [minProgress, maxProgress] = inferRange(progress, 1, false);
@@ -261,6 +266,7 @@ export class WorldModeServiceImpl implements WorldModeService {
       // 缩小范围
       min = Math.max(min, minPlayResult);
       max = Math.min(max, maxPlayResult);
+      this.logger.info("根据进度缩小后游玩结果范围", [min, max]);
     }
     if (!(isFinite(min) && isFinite(max))) return null;
     return [this.inverseConstant(min, score), this.inverseConstant(max, score)];
@@ -277,10 +283,12 @@ export class WorldModeServiceImpl implements WorldModeService {
 
   inverseCharacterExp(difference: number, score: number, raw?: boolean): number {
     const potential = difference / 6;
+    this.logger.info(`经验值变化量 = ${difference} => 单曲潜力值 = ${potential}`);
     return this.music.inverseConstant(potential, score, raw);
   }
 
   inferConstant(min: number, max: number): number[] {
+    this.logger.info(`定数范围：[${min}, ${max}]`);
     const possible: number[] = [];
     const min10 = Math.ceil(min * 10);
     const max10 = Math.floor(max * 10);
@@ -450,8 +458,13 @@ export class WorldModeServiceImpl implements WorldModeService {
 
   private inverseConstant(playResult: number, score: number) {
     const potentialRoot = (playResult - BASE_PROG) / POTENTIAL_FACTOR;
-    if (potentialRoot < 0) return NaN;
-    return this.music.inverseConstant(potentialRoot ** 2, score, true);
+    if (potentialRoot < 0) {
+      this.logger.error("潜力值平方根为负值", potentialRoot);
+      return NaN;
+    }
+    const potential = potentialRoot ** 2;
+    this.logger.info("分数/游玩结果/潜力值", score, playResult, potential);
+    return this.music.inverseConstant(potential, score, true);
   }
 
   private assets(url: URL): string {

@@ -57,7 +57,7 @@ Arcaea Online 高仿 Best 30 图生成器
 ```sh
 mkdir DarrenDanielDay     # You can use any other directory name.
 cd DarrenDanielDay
-git clone https://darrendanielday.github.io/arcaea-toolbelt
+git clone https://github.com/DarrenDanielDay/arcaea-toolbelt
 git clone https://github.com/DarrenDanielDay/arcaea-toolbelt-data
 git clone https://github.com/DarrenDanielDay/arcaea-toolbelt-aol-b30
 ```

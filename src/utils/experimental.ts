@@ -2,7 +2,7 @@ import { style } from "hyplate";
 import { PromiseOr } from "./misc";
 import { future } from "./future";
 
-export const startViewTransition = (callback: ViewTransitionCallback, document = window.document): ViewTransition => {
+export const startViewTransition = (callback: ViewTransitionCallback, document = window.document): Omit<ViewTransition, "types"> => {
   if (document.startViewTransition) {
     return document.startViewTransition(callback);
   } else {

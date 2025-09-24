@@ -387,6 +387,7 @@ export interface ProfileService {
   createOrUpdateProfile(username: string, potential: number): Promise<void>;
   getProfileList(): Promise<string[]>;
   syncProfiles(data: ProfileUpdatePayload[]): Promise<void>;
+  importBest(best: Profile["best"]): Promise<void>;
   importProfile(file: File): Promise<void>;
   importDB(file: File, profile: Profile, report?: ReportProgress): Promise<ImportResult>;
   exportProfile(profile: Profile): Promise<void>;

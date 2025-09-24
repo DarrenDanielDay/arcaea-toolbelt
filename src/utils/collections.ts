@@ -1,6 +1,6 @@
 import { isNumber, isObject } from "./misc";
 
-export function groupBy<T, K extends string | number>(arr: T[], selector: (item: T) => K) {
+export function groupBy<T, K extends string | number>(arr: readonly T[], selector: (item: T) => K) {
   return arr.reduce<Record<K, T[]>>((index, item) => {
     (index[selector(item)] ??= []).push(item);
     return index;

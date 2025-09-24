@@ -24,7 +24,7 @@ import { groupBy, indexBy, mapProps } from "../utils/collections";
 import { arcaeaReleaseTS, delay } from "../utils/time";
 import { sum } from "../utils/math";
 import { requestToPromise } from "../utils/indexed-db";
-import { isString, jsonModule } from "../utils/misc";
+import { clone, esModule, isString, jsonModule } from "../utils/misc";
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
 
@@ -119,6 +119,13 @@ export class ProfileServiceImpl implements ProfileService {
     for (const profile of data) {
       this.#saveProfile(profile);
     }
+  }
+
+  async importBest(best: Profile["best"]): Promise<void> {
+    const profile = clone(await this.getProfile());
+    if (!profile) throw new Error("No current profile.");
+    Object.assign(profile.best, best);
+    await this.#saveProfile(profile);
   }
 
   async importProfile(file: File): Promise<void> {
@@ -617,7 +624,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
   }
 
   async #initSQLJS() {
-    const { default: initSQLJS } = await import("sql.js");
+    const initSQLJS = await esModule(import("sql.js"));
     return initSQLJS({
       locateFile(url, scriptDirectory) {
         if (url === "sql-wasm.wasm") {

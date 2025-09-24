@@ -4,7 +4,6 @@ import { Chart, Song, ClearRank, Grade, difficultyIndexes } from "../models/musi
 import { CharacterImage, CharacterImageKind, CharacterStatus } from "../models/character";
 import { toolbelt } from "../models/data";
 import { Banner, BannerType } from "../models/assets";
-import { pad2 } from "../utils/string";
 
 @Injectable({
   implements: $AssetsResolver,

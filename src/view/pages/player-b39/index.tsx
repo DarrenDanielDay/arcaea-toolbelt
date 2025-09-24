@@ -139,6 +139,7 @@ class PlayerB39 extends HyplateElement {
       };
     });
     this.autorun(() => {
+      ~import("html2canvas");
       const template = this.template();
       const url = this.custom();
       const isCustomTemplate = template === "custom-template";

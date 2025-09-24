@@ -11,6 +11,7 @@ import {
   BestStatistics,
   ChartService,
   Gateway,
+  ImportResult,
   MusicPlayService,
   ProfileService,
 } from "../../../services/declarations";
@@ -19,11 +20,12 @@ import { AutoRender, Component, Future, HyplateElement, computed, effect, elemen
 import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/time";
-import type { FC, JSXChildNode } from "hyplate/types";
+import type { FC, JSXChildNode, WritableSignal } from "hyplate/types";
 import { ClearRank, Difficulty, difficulties, formatRating, parseRating } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
 import { RouteLink } from "../route-link";
 import { HelpTip } from "../help-tip";
+import { YurisakiService } from "../../../services/yurisaki-service";
 ~RouteLink;
 ~HelpTip;
 export
@@ -42,12 +44,15 @@ class ProfilePage extends HyplateElement {
   accessor chart!: ChartService;
   @Inject($MusicPlayService)
   accessor musicPlay!: MusicPlayService;
+  @Inject(YurisakiService)
+  accessor yurisaki!: YurisakiService;
 
   createProfileDialog = element("dialog");
   editProfileDialog = element("dialog");
   switchProfileDialog = element("dialog");
   importProfileDialog = element("dialog");
   importSt3Dialog = element("dialog");
+  importYurisakiDialog = element("dialog");
   editPtt = element("input");
   profileStats = new FancyDialog();
 
@@ -101,6 +106,13 @@ class ProfilePage extends HyplateElement {
                           onClick={() => this.importSt3(profile)}
                         >
                           导入st3
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-outline-secondary import-yurisaki"
+                          onClick={() => this.importYurisaki()}
+                        >
+                          从Yurisaki Bot导入成绩
                         </button>
                         <button
                           type="button"
@@ -313,6 +325,40 @@ class ProfilePage extends HyplateElement {
             {this.renderFooter()}
           </form>
         </dialog>
+        <dialog ref={this.importYurisakiDialog} id="import-yurisaki">
+          <form>
+            <div class="h4">从Yurisaki Bot导出数据导入成绩</div>
+            <div class="row">
+              <div class="col">
+                <input
+                  type="file"
+                  class="form-control"
+                  name="file"
+                  placeholder="导出的.zip文件或.csv文件"
+                  accept=".zip,.csv"
+                />
+              </div>
+            </div>
+            <div class="row my-3">
+              <p>
+                如果您使用过Yurisaki Bot查分，您可以使用命令<code>/a export</code>
+                导出个人成绩数据（该命令目前仅非QQ官方版bot可用）。
+              </p>
+              <p>
+                导出后您将获得一个<code>.zip</code>
+                压缩文件的下载链接。下载压缩文件后，您可以解压后使用
+                <code>best_scores.csv</code>文件进行导入，也可以直接使用
+                <code>.zip</code>文件进行导入。
+              </p>
+              <p>
+                此外，您也可以通过手动编写与
+                <code>best_scores.csv</code>
+                一样格式的文件来实现使用表格批量导入成绩。
+              </p>
+            </div>
+            {this.renderFooter()}
+          </form>
+        </dialog>
       </>
     );
   }
@@ -374,14 +420,14 @@ class ProfilePage extends HyplateElement {
     });
   };
 
-  async importSt3(profile: Profile) {
-    this.openFormModal(this.importSt3Dialog, async (data) => {
+  handleImportFile(importer: (file: File, status: WritableSignal<string>) => Promise<ImportResult>) {
+    return async (data: FormData) => {
       const file = data.get("file");
       if (file instanceof File) {
         const message = signal("");
         const result = await loading(
           (async () => {
-            const result = await this.profileService.importDB(file, profile, (msg) => message.set(msg));
+            const result = await importer(file, message);
             await delay(300);
             return result;
           })(),
@@ -406,7 +452,31 @@ class ProfilePage extends HyplateElement {
           </div>
         );
       }
-    });
+    };
+  }
+
+  async importSt3(profile: Profile) {
+    ~import("sql.js");
+    this.openFormModal(
+      this.importSt3Dialog,
+      this.handleImportFile((file, message) => {
+        return this.profileService.importDB(file, profile, (msg) => message.set(msg));
+      })
+    );
+  }
+
+  async importYurisaki() {
+    ~import("jszip");
+    ~import("csv-parse/sync");
+    this.openFormModal(
+      this.importYurisakiDialog,
+      this.handleImportFile(async (file, message) => {
+        message.set("正在导入中");
+        if (file.name.endsWith(".csv")) return this.yurisaki.importCSV(await file.text());
+        if (file.name.endsWith(".zip")) return this.yurisaki.importZip(file);
+        throw new Error(`不支持的文件格式`);
+      })
+    );
   }
 
   async showProfileStats(profile: Profile) {

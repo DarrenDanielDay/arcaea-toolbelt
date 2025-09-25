@@ -5,16 +5,19 @@ import { formatJSON } from "pragmatism/core";
 import {
   $ChartService,
   $Logger,
+  $MusicPlayService,
   $ProfileService,
   ChartService,
   ImportResult,
   Logger,
+  MusicPlayService,
   ProfileService,
 } from "./declarations";
 import { Profile } from "../models/profile";
 import { groupBy, mapProps } from "../utils/collections";
-import { Chart } from "../models/music-play";
+import { Chart, NoteResult } from "../models/music-play";
 import { esModule } from "../utils/misc";
+import { $616 } from "arcaea-toolbelt-core/models";
 
 namespace Yurisaki {
   export interface Score {
@@ -28,19 +31,20 @@ namespace Yurisaki {
     Pure: number;
     Far: number;
     Lost: number;
+    ClearType: number;
     Timestamp: number;
     DateTime: string;
   }
 }
 
 @Injectable({
-  requires: [$ProfileService, $ChartService, $Logger] as const,
+  requires: [$ProfileService, $ChartService, $MusicPlayService] as const,
 })
 export class YurisakiService {
   constructor(
     private readonly profile: ProfileService,
     private readonly chart: ChartService,
-    private readonly logger: Logger
+    private readonly musicPlay: MusicPlayService
   ) {}
 
   async importCSV(text: string): Promise<ImportResult> {
@@ -81,23 +85,29 @@ export class YurisakiService {
         continue;
       }
       chartIndex[chartId] = chart;
+      const old = best[chartId];
+      const noteResult: NoteResult = {
+        perfect: record.MaxPure,
+        pure: record.Pure,
+        far: record.Far,
+        lost: record.Lost,
+      };
+      if (old) {
+        const currentScore = this.musicPlay.computeScore(chart, noteResult);
+        const oldBestScore = old.type === "note" ? this.musicPlay.computeScore(chart, old.result) : old.score;
+        if (currentScore < oldBestScore) {
+          continue;
+        }
+      }
       best[chartId] = {
         type: "note",
         chartId,
-        clear: null,
-        result: {
-          perfect: record.MaxPure,
-          pure: record.Pure,
-          far: record.Far,
-          lost: record.Lost,
-        },
+        clear: this.musicPlay.mapClearType(record.ClearType, record.MaxPure, chart),
+        result: noteResult,
         date: record.Timestamp,
       };
     }
     await this.profile.importBest(best);
-    this.logger.info(
-      `已忽略未知或非法谱面成绩 ${skipped.length} 个（如忽略个数太多最多显示5条）:${formatJSON(skipped.slice(0, 5))}`
-    );
     for (const chartId in best) {
       const chart = chartIndex[chartId];
       if (!chart) continue;
@@ -126,7 +136,7 @@ export class YurisakiService {
       return num;
     }
     return (records as Record<keyof Yurisaki.Score, string>[]).map<
-      Pick<Yurisaki.Score, "SongId" | "Difficulty" | "MaxPure" | "Pure" | "Far" | "Lost" | "Timestamp">
+      Pick<Yurisaki.Score, "SongId" | "Difficulty" | "MaxPure" | "Pure" | "Far" | "Lost" | "ClearType" | "Timestamp">
     >((score) => ({
       SongId: score.SongId,
       Difficulty: assertNumber(score.Difficulty),
@@ -134,6 +144,7 @@ export class YurisakiService {
       Pure: assertNumber(score.Pure),
       Far: assertNumber(score.Far),
       Lost: assertNumber(score.Lost),
+      ClearType: assertNumber(score.ClearType),
       Timestamp: assertNumber(score.Timestamp),
     }));
   }

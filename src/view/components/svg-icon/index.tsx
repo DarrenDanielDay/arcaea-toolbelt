@@ -2,7 +2,7 @@ import { Future, clone, element } from "hyplate";
 import { SVGSVGElementAttributes } from "hyplate/types";
 
 type SVGIconProps = JSX.JSXAttributes<SVGSVGElementAttributes, SVGSVGElement> & {
-  src: string;
+  src: string | URL;
 };
 
 const memorySVGCache = new Map<string, Promise<SVGSVGElement>>();
@@ -34,7 +34,7 @@ export const SVGIcon = ({ src, ...props }: SVGIconProps) => {
   const fallback =
     width && height ? <div style={`display: inline-block; width: ${width}px; height: ${height}px;`}></div> : undefined;
   return (
-    <Future promise={getSVG(src)} fallback={fallback}>
+    <Future promise={getSVG(src.toString())} fallback={fallback}>
       {(el) => {
         return <svg ref={el} {...props}></svg>;
       }}

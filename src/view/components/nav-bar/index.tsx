@@ -1,7 +1,4 @@
 import icon from "../../../favicon.ico";
-import moon from "bootstrap-icons/icons/moon-fill.svg";
-import sun from "bootstrap-icons/icons/sun.svg";
-import github from "../../../assets/github.svg";
 import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
 import { Inject } from "../../../services/di";
@@ -10,6 +7,10 @@ import { clickElsewhere } from "../../../utils/click-elsewhere";
 import { AutoRender, Component, HyplateElement, attr, computed, signal, subscribe } from "hyplate";
 import { $PreferenceService, ColorTheme, PreferenceService } from "../../../services/declarations";
 import { SVGIcon } from "../svg-icon";
+
+const moon = new URL("../../../../node_modules/bootstrap-icons/icons/moon-fill.svg", import.meta.url);
+const sun = new URL("../../../../node_modules/bootstrap-icons/icons/sun.svg", import.meta.url);
+const github = new URL("../../../assets/github.svg", import.meta.url);
 export
 @Component({
   tag: "nav-bar",

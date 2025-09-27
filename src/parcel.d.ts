@@ -3,11 +3,6 @@ declare module "bundle-text:*" {
   export default text;
 }
 
-declare module "*.svg" {
-  const url: string;
-  export default url;
-}
-
 declare module "*.ico" {
   const url: string;
   export default url;

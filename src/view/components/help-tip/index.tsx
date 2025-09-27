@@ -1,10 +1,11 @@
-import help from "../../../assets/help.svg";
 import { sheet } from "./style.css.js";
 import { sheet as dialogSheet } from "../fancy-dialog/style.css.js";
 import { Component, HyplateElement, element } from "hyplate";
 import type { GlobalAttributes } from "hyplate/types";
 import { bootstrap } from "../../styles";
 import { SVGIcon } from "../svg-icon";
+
+const help = new URL("../../../assets/help.svg", import.meta.url);
 
 export interface HelpTipProps {}
 

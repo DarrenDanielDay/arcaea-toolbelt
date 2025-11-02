@@ -26,6 +26,7 @@ import { PotentialBadge } from "../potential-badge";
 import { RouteLink } from "../route-link";
 import { HelpTip } from "../help-tip";
 import { YurisakiService } from "../../../services/yurisaki-service";
+import { randomString } from "../../../utils/string";
 ~RouteLink;
 ~HelpTip;
 export
@@ -57,6 +58,8 @@ class ProfilePage extends HyplateElement {
   profileStats = new FancyDialog();
 
   greet = signal<Profile | null>(null);
+  exampleKey = randomString(4);
+  yurisakiExportKey = signal("");
 
   override render() {
     this.updateGreet();
@@ -328,6 +331,64 @@ class ProfilePage extends HyplateElement {
         <dialog ref={this.importYurisakiDialog} id="import-yurisaki">
           <form>
             <div class="h4">从Yurisaki Bot导出数据导入成绩</div>
+            <div class="row my-3">
+              <p>
+                如果您使用过Yurisaki Bot查分，您可以使用命令<code>/a export</code>
+                导出个人成绩数据。
+              </p>
+              <p>
+                使用非QQ官方Bot导出时，Bot将会回复一个导出数据文件的下载链接。使用QQ官方Bot导出时，Bot将回复类似如下的信息：
+              </p>
+              <pre>
+                @你的QQ昵称 [Arcaea Data Export] 数据已导出，地址：
+                <br />
+                {this.exampleKey}
+                <br />
+              </pre>
+              <p>或者类似这样的消息：</p>
+              <pre>
+                @你的QQ昵称 [Arcaea Export] 半小时内只能导出一次数据。
+                <br />
+                上次导出时间：2025-09-27 00:00:00
+                <br />
+                上次导出地址：{this.exampleKey}
+                <br />
+              </pre>
+              <p>
+                将Bot的消息完全复制，或仅复制下载路径<code>{this.exampleKey}</code>到下面的输入框：
+              </p>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <textarea
+                  class="form-control"
+                  onInput={(() => {
+                    const instantce = this;
+                    return function () {
+                      instantce.yurisakiExportKey.set(this.value);
+                    };
+                  })()}
+                ></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p>
+                  若输入的格式正确，则可得到下载的链接为：
+                  <AutoRender>
+                    {() => {
+                      const input = this.yurisakiExportKey();
+                      const url = this.yurisaki.resolveExportAddress(input);
+                      return url ? <a href={url}>{url}</a> : <span>（未成功匹配）</span>;
+                    }}
+                  </AutoRender>
+                </p>
+                <p>
+                  点击链接下载后您将获得一个<code>.zip</code>压缩文件。您可以解压后使用<code>best_scores.csv</code>
+                  文件在下方进行导入，也可以直接使用<code>.zip</code>文件在下方进行导入。
+                </p>
+              </div>
+            </div>
             <div class="row">
               <div class="col">
                 <input
@@ -340,21 +401,13 @@ class ProfilePage extends HyplateElement {
               </div>
             </div>
             <div class="row my-3">
-              <p>
-                如果您使用过Yurisaki Bot查分，您可以使用命令<code>/a export</code>
-                导出个人成绩数据（该命令目前仅非QQ官方版bot可用）。
-              </p>
-              <p>
-                导出后您将获得一个<code>.zip</code>
-                压缩文件的下载链接。下载压缩文件后，您可以解压后使用
-                <code>best_scores.csv</code>文件进行导入，也可以直接使用
-                <code>.zip</code>文件进行导入。
-              </p>
-              <p>
-                此外，您也可以通过手动编写与
-                <code>best_scores.csv</code>
-                一样格式的文件来实现使用表格批量导入成绩。
-              </p>
+              <div class="col">
+                <p>
+                  此外，您也可以通过手动编写与
+                  <code>best_scores.csv</code>
+                  一样格式的文件来实现使用表格批量导入成绩。
+                </p>
+              </div>
             </div>
             {this.renderFooter()}
           </form>

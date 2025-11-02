@@ -127,6 +127,18 @@ export class YurisakiService {
     return this.importCSV(await bestcsv.async("text"));
   }
 
+  resolveExportAddress(input: string) {
+    if (input && [...input].every((c) => /[a-zA-Z0-9]/.test(c))) {
+      return this.#exportUrl(input);
+    }
+    const key = input.trim().match(/([a-zA-Z0-9]+)$/)?.[1] || null;
+    return key && this.#exportUrl(key);
+  }
+
+  #exportUrl(key: string) {
+    return `https://u.yurisaki.top/${key}`;
+  }
+
   async #loadCSVAsTable(text: string) {
     const { parse } = await import("csv-parse/sync");
     const records = parse(text, { columns: true, skip_empty_lines: true });

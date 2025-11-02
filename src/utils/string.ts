@@ -41,3 +41,9 @@ export const formatTime = (date: Date) =>
     .getMilliseconds()
     .toString()
     .padStart(3, "0")}`;
+
+const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const charset = upper + upper.toLowerCase() + "0123456789";
+
+export const randomString = (length: number) =>
+  Array.from({ length }, () => charset[Math.floor(Math.random() * charset.length)]);

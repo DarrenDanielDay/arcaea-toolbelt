@@ -236,10 +236,10 @@ export interface ChartStatistics {
   ratings: Rating[];
   maximumConstant: number;
   minimumConstant: number;
+  freePacks: string[];
 }
 
 export interface ChartService {
-  freePacks: string[];
   getSongData(): Promise<SongData[]>;
   getSongIndex(): Promise<SongIndex>;
   getStatistics(): Promise<ChartStatistics>;

@@ -17,20 +17,11 @@ import {
 import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
 
-const FREE_PACKS = [
-  "Arcaea", // 基础包
-  "Extend Archive 1",
-  "Extend Archive 2",
-  "World Extend 3",
-];
-
 @Injectable({
   requires: [$AssetsResolver, $Gateway, $CoreDataService] as const,
   implements: $ChartService,
 })
 export class ChartServiceImpl implements ChartService {
-  freePacks = FREE_PACKS;
-
   #songIndex: SongIndex | null = null;
 
   constructor(
@@ -74,6 +65,14 @@ export class ChartServiceImpl implements ChartService {
         minimumConstant = Math.min(minimumConstant, chart.constant);
       }
     }
+    const packs = [...new Set(songs.map((s) => s.pack))];
+    const archives = packs.filter((p) => p.startsWith("Extend Archive"));
+    const extend = packs.filter((p) => p.startsWith("World Extend"));
+    const freePacks = [
+      "Arcaea", // Basic
+      ...archives, // Archived World Extend
+      ...extend, // Current World Extend
+    ].sort();
     return {
       difficulties: statistics,
       ratings: [...levels]
@@ -81,6 +80,7 @@ export class ChartServiceImpl implements ChartService {
         .sort(compareRating),
       maximumConstant,
       minimumConstant,
+      freePacks,
     };
   }
 

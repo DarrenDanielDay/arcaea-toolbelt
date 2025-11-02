@@ -82,7 +82,7 @@ class About extends HyplateElement {
       ["仅基础包（Arcaea）最大潜力值", baseB30.maxPotential, baseB30],
       [
         <>
-          无氪<help-tip>仅考虑{this.chart.freePacks.join("、")}曲包</help-tip>最大潜力值
+          无氪<help-tip>仅考虑{chartStats.freePacks.join("、")}曲包</help-tip>最大潜力值
         </>,
         freeB30.maxPotential,
         freeB30,
@@ -222,8 +222,8 @@ class About extends HyplateElement {
     const musicPlayStats = await this.musicPlay.getStatistics();
     const profile = await this.profile.generateMaxProfile();
     const maxB30 = await this.profile.b30(profile);
-    const baseB30 = await this.profile.b30(profile, { packs: this.chart.freePacks.slice(0, 1) });
-    const freeB30 = await this.profile.b30(profile, { packs: this.chart.freePacks });
+    const baseB30 = await this.profile.b30(profile, { packs: chartStats.freePacks.slice(0, 1) });
+    const freeB30 = await this.profile.b30(profile, { packs: chartStats.freePacks });
     return [meta, chartStats, musicPlayStats, maxB30, baseB30, freeB30] as const;
   }
 

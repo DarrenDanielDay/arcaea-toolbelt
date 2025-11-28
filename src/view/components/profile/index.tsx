@@ -21,12 +21,13 @@ import { Profile } from "../../../models/profile";
 import { loading } from "../loading";
 import { delay } from "../../../utils/time";
 import type { FC, JSXChildNode, WritableSignal } from "hyplate/types";
-import { ClearRank, Difficulty, difficulties, formatRating, parseRating } from "../../../models/music-play";
+import { ClearRank, formatRating, parseRating } from "../../../models/music-play";
 import { PotentialBadge } from "../potential-badge";
 import { RouteLink } from "../route-link";
 import { HelpTip } from "../help-tip";
 import { YurisakiService } from "../../../services/yurisaki-service";
 import { randomString } from "../../../utils/string";
+import { difficulties, Difficulty } from "arcaea-toolbelt-core/constants";
 ~RouteLink;
 ~HelpTip;
 export

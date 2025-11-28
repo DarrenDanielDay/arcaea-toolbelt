@@ -2,7 +2,6 @@ import * as lowiro from "./web-api";
 import {
   Chart,
   ClearRank,
-  Difficulty,
   Grade,
   NoteResult,
   PartnerClearRank,
@@ -31,6 +30,7 @@ import { PromiseOr } from "../utils/misc";
 import { ArcaeaToolbeltMeta, ChartExpress } from "../models/misc";
 import { AssetsInfo, UploadedFile } from "../models/file";
 import { Banner } from "../models/assets";
+import { Difficulty } from "arcaea-toolbelt-core/constants";
 
 export interface DatabaseContext {
   getDB(): Promise<IDBDatabase>;

@@ -1,3 +1,5 @@
+import { Difficulty } from "arcaea-toolbelt-core/constants";
+
 export enum Side {
   /**
    * 光芒侧
@@ -39,16 +41,6 @@ export interface Song {
     deleted?: string;
   };
 }
-
-export enum Difficulty {
-  Past = "pst",
-  Present = "prs",
-  Future = "ftr",
-  Beyond = "byd",
-  Eternal = 'etr',
-}
-
-export const difficulties = [Difficulty.Past, Difficulty.Present, Difficulty.Future, Difficulty.Beyond, Difficulty.Eternal];
 
 export const difficultyIndexes: Record<Difficulty, number> = {
   [Difficulty.Past]: 0,

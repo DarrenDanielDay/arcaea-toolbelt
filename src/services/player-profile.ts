@@ -1,5 +1,5 @@
 import { SqlJsStatic } from "sql.js";
-import { Chart, ClearRank, NoteResult, PlayResult, difficulties } from "../models/music-play";
+import { Chart, ClearRank, NoteResult, PlayResult } from "../models/music-play";
 import { B30Response, BestResultItem, Profile, ProfileUpdatePayload, ProfileV1, ProfileV2 } from "../models/profile";
 import { download } from "../utils/download";
 import { readBinary, readFile } from "../utils/read-file";
@@ -25,6 +25,7 @@ import { arcaeaReleaseTS, delay } from "../utils/time";
 import { sum } from "../utils/math";
 import { requestToPromise } from "../utils/indexed-db";
 import { clone, esModule, isString, jsonModule } from "../utils/misc";
+import { difficulties } from "arcaea-toolbelt-core/constants";
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
 

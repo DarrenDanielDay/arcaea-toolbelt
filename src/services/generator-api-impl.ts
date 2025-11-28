@@ -26,11 +26,12 @@ import {
   Gateway,
   PreferenceService,
 } from "./declarations";
-import { Grade, difficulties } from "../models/music-play";
+import { Grade } from "../models/music-play";
 import { managedBlobURL } from "../utils/url";
 import { protocol } from "../models/data";
 import { AssetsInfo } from "../models/file";
 import { Banner } from "../models/assets";
+import { difficulties } from "arcaea-toolbelt-core/constants";
 
 @Injectable({
   requires: [

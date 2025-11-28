@@ -32,6 +32,7 @@ import { formatError } from "../../../utils/format";
 import { CharacterImageKind, CharacterStatus } from "../../../models/character";
 import { indexBy } from "../../../utils/collections";
 import { LoggerButton } from "../logger-panel/index.js";
+import { difficulties } from "arcaea-toolbelt-core/constants";
 
 type APICharacter = NonNullable<lowiro.UserProfile["character_stats"]>[number];
 
@@ -419,7 +420,7 @@ class ToolPanel extends HyplateElement {
                       <div class="col-auto">最近游玩曲目Id：{song_id}</div>
                     </div>
                     <div class="row">
-                      <div class="col-auto">难度：{["pst", "prs", "ftr", "byd"][difficulty] ?? "-"}</div>
+                      <div class="col-auto">难度：{difficulties[difficulty] ?? "-"}</div>
                     </div>
                     <div class="row">
                       <div class="col-auto">分数：{score || "-"}</div>

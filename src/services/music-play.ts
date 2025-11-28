@@ -2,7 +2,6 @@ import { Injectable } from "classic-di";
 import {
   Chart,
   ClearRank,
-  Difficulty,
   Grade,
   NoteResult,
   PartnerClearRank,
@@ -18,6 +17,7 @@ import {
   MusicPlayService,
   MusicPlayStatistics,
 } from "./declarations";
+import { Difficulty } from "arcaea-toolbelt-core/constants";
 
 const MAX_BASE_SCORE = 1000_0000;
 const EX_PLUS_SCORE = 990_0000;

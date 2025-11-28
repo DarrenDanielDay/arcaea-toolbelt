@@ -1,7 +1,6 @@
 import { bootstrap } from "../../styles";
 import { sheet } from "./style.css.js";
 import {
-  $AssetsResolver,
   $ChartService,
   $CoreDataService,
   ChartService,
@@ -17,7 +16,7 @@ import { TransitionToggle } from "../../../utils/experimental";
 import { $Router, Router } from "../../pages/router";
 import { FC } from "hyplate/types";
 import { ChartExpressInfo } from "../../../models/misc";
-import { Difficulty, difficulties } from "../../../models/music-play";
+import { difficulties, Difficulty } from "arcaea-toolbelt-core/constants";
 
 export type ChartQueryParams = "min" | "max";
 

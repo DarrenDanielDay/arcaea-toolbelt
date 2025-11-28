@@ -29,9 +29,9 @@ import { JSXChildNode } from "hyplate/types";
 import { HelpTip } from "../../components/help-tip";
 import { formatSize } from "../../../utils/format";
 import { ArcaeaToolbeltMeta } from "../../../models/misc";
-import { Difficulty } from "../../../models/music-play";
 import { add, apply } from "../../../utils/collections";
-import { LoggerButton, LoggerPanel } from "../../components/logger-panel";
+import { LoggerButton } from "../../components/logger-panel";
+import { Difficulty } from "arcaea-toolbelt-core/constants";
 ~HelpTip;
 export const AboutRoute: Route = {
   path: "/about",

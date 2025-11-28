@@ -1,4 +1,4 @@
-import { Chart, Song, SongData, SongIndex, compareRating, difficulties } from "../models/music-play";
+import { Chart, Song, SongData, SongIndex, compareRating } from "../models/music-play";
 import { searchMatch } from "../utils/string";
 import {
   $ChartService,
@@ -16,6 +16,7 @@ import {
 } from "./declarations";
 import { indexBy } from "../utils/collections";
 import { Injectable } from "classic-di";
+import { difficulties } from "arcaea-toolbelt-core/constants";
 
 @Injectable({
   requires: [$AssetsResolver, $Gateway, $CoreDataService] as const,

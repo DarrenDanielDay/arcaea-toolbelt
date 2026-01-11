@@ -8,7 +8,7 @@ import { Banner } from "../models/assets";
 
 export { BannerType } from "../models/assets";
 export { CharacterImageKind, CharacterStatus } from "../models/character";
-export { Grade, Side, ClearRank } from "../models/music-play";
+export { Grade, Side, ClearRank, Difficulty } from "../models/music-play";
 
 export interface ImageFile {
   filename: string;

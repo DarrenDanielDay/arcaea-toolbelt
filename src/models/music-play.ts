@@ -1,20 +1,6 @@
-import { Difficulty } from "arcaea-toolbelt-core/constants";
+import { Difficulty, Side } from "arcaea-toolbelt-core/constants";
 
-export enum Side {
-  /**
-   * 光芒侧
-   */
-  Light,
-  /**
-   * 纷争侧
-   */
-  Conflict,
-  /**
-   * 消色侧
-   */
-  Colorless,
-  Lephon,
-}
+export { Difficulty, Side };
 
 export interface Song {
   id: string;

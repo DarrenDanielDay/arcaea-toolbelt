@@ -48,7 +48,7 @@ Arcaea Online 高仿 Best 30 图生成器
 - [x] ~~Web API 查分~~
 - [x] 获取角色精确数据
 - [x] 基于 Beyond 能量槽的谱面定数测算
-- [x] 好友最近游玩记录一览
+- [x] ~~好友最近游玩记录一览~~ 个人最近游玩记录
 
 ## For developers
 

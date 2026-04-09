@@ -138,7 +138,7 @@ class ToolPanel extends HyplateElement {
               const { score = 0, difficulty = -1, song_id = "-" } = chart ?? {};
               const { lastProfile } = this;
               this.lastProfile = structuredClone(profile);
-              const players = [profile, ...profile.friends];
+              const players = [profile, ...(profile.friends ?? [])];
               const isProfile = (p: unknown): p is lowiro.UserProfile => p === profile;
               const renderExpInferredConstant = () => {
                 const expChange = findExpChangedCharacter(lastProfile, profile);
@@ -278,7 +278,7 @@ class ToolPanel extends HyplateElement {
                     </div>
                   </div>
                   <header>
-                    <h2>好友最近游玩</h2>
+                    <h2><s>好友最近游玩</s>个人最近游玩</h2>
                   </header>
                   <div class="my-1">
                     <button
@@ -456,7 +456,7 @@ class ToolPanel extends HyplateElement {
   }
 
   #renderLegacyBestsQuery(
-    players: (lowiro.UserProfile | lowiro.UserProfile["friends"][number])[],
+    players: (lowiro.UserProfile | NonNullable<lowiro.UserProfile["friends"]>[number])[],
     profile: lowiro.UserProfile
   ) {
     const querying$ = signal(false);

@@ -6,7 +6,7 @@ export interface UserProfile {
   user_missions: Usermission[];
   curr_available_maps: Curravailablemap[];
   character_stats: Characterstat[];
-  friends: Friend[];
+  friends?: Friend[];
   settings: Settings;
   banners: Banner[];
   is_banner_present_claimed: boolean;

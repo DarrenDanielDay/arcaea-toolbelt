@@ -119,7 +119,7 @@ async function queryBest(
       }))
     )
     .sort((a, b) => b.chart.constant - a.chart.constant);
-  const friends = profile.friends;
+  const friends = profile.friends ?? [];
   const names = new Set(usernames);
   const queryPlayers = [...friends, profile].filter((p) => names.has(p.name));
   console.log(

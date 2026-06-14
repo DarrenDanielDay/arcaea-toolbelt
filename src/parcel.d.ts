@@ -3,6 +3,10 @@ declare module "bundle-text:*" {
   export default text;
 }
 
+declare module "*.css" {
+  const url: string;
+  export default url;
+}
 declare module "*.ico" {
   const url: string;
   export default url;

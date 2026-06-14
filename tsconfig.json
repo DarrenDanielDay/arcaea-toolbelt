@@ -15,7 +15,6 @@
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
     "noFallthroughCasesInSwitch": true,
-    "downlevelIteration": true,
     "moduleResolution": "bundler",
     "target": "ES2022",
     "module": "ESNext",

@@ -14,6 +14,7 @@ import {
   ColorTheme,
   PreferenceService,
 } from "../../../services/declarations";
+import { truncate } from "../../../utils/math.js";
 
 const renderB30 = (response: B30Response) => {
   const { queryTime, b30, b31_39, b30Average, maxPotential, minPotential, potential, r10Average, username } = response;
@@ -36,8 +37,8 @@ const renderB30 = (response: B30Response) => {
               {username} ({potential})
             </div>
             <div class="details">
-              B30Avg={b30Average.toFixed(4)} R10Avg={r10Average.toFixed(4)} Ptt Range [{minPotential.toFixed(4)},{" "}
-              {maxPotential.toFixed(4)}]
+              B30Avg={b30Average.toFixed(4)} R10Avg={r10Average.toFixed(4)} Ptt Range [{truncate(minPotential, 4)},{" "}
+              {truncate(maxPotential, 4)}]
             </div>
           </div>
           <div class="c4">

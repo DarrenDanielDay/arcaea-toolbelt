@@ -62,7 +62,10 @@ const CHARACTER_FACTOR_RATIO = 50;
 export class WorldModeServiceImpl implements WorldModeService {
   itemImages = once(async () => {
     const items = await this.core.getItemsData();
-    return Object.fromEntries(items.map((item) => [item.name, item.img]));
+
+    return Object.fromEntries(
+      items.map((item) => [item.name.zh, this.gateway.proxy(this.resolver.resolve(`img/${item.file}`)).href]),
+    );
   });
   #songIndex: SongIndex | null = null;
   constructor(
@@ -73,7 +76,7 @@ export class WorldModeServiceImpl implements WorldModeService {
     private readonly music: MusicPlayService,
     private readonly resolver: AssetsResolver,
     private readonly gateway: Gateway,
-    private readonly character: CharacterService
+    private readonly character: CharacterService,
   ) {}
 
   async getLongtermMaps(): Promise<Chapter[]> {
@@ -150,7 +153,7 @@ export class WorldModeServiceImpl implements WorldModeService {
   computeProgressRange(
     map: NormalWorldMap,
     currentProgress: CurrentProgress,
-    targetLevel: number
+    targetLevel: number,
   ): [min: number, max: number] {
     let min = this.computeDistance(map, currentProgress, targetLevel, false).distance,
       max = this.computeDistance(map, currentProgress, targetLevel, true).distance;
@@ -309,7 +312,7 @@ export class WorldModeServiceImpl implements WorldModeService {
     step: number,
     [low, high]: [number, number],
     chartStats: ChartStatistics,
-    musicStats: MusicPlayStatistics
+    musicStats: MusicPlayStatistics,
   ): InverseProgressSolution {
     const maximum = chartStats.maximumConstant;
     const minimum = chartStats.minimumConstant;
@@ -366,7 +369,7 @@ export class WorldModeServiceImpl implements WorldModeService {
     items: Record<string, string>,
     map: NormalWorldMapData,
     songIndex: SongIndex,
-    characterIndex: CharacterIndex
+    characterIndex: CharacterIndex,
   ): NormalWorldMap {
     return {
       ...map,
@@ -397,7 +400,7 @@ export class WorldModeServiceImpl implements WorldModeService {
                           id: reward.id,
                           kind: CharacterImageKind.Icon,
                           status: CharacterStatus.Initial,
-                        })
+                        }),
                       ),
                       name: characterIndex[reward.id]!.name.zh,
                     };
@@ -431,7 +434,7 @@ export class WorldModeServiceImpl implements WorldModeService {
             acc.length = i + 1;
             return acc;
           },
-          { length: 0 }
+          { length: 0 },
         ),
     };
   }
@@ -440,7 +443,7 @@ export class WorldModeServiceImpl implements WorldModeService {
     map: NormalWorldMap,
     currentProgress: CurrentProgress,
     targetLevel: number,
-    overflow: boolean
+    overflow: boolean,
   ): MapDistance {
     let distance = 0;
     let { level: reachedLevel, progress } = currentProgress;

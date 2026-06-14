@@ -13,11 +13,12 @@ import { AssetsResolverImpl } from "./assets-resolver";
 import { DirectGateway } from "./gateway";
 import { CharacterData } from "../models/character";
 import { SongData } from "../models/music-play";
-import { ChapterData, ItemData, NormalWorldMapData } from "../models/world-mode";
-import { assetsInfo, characterData, chartData, itemsData } from "../data/file-list";
+import { ChapterData, NormalWorldMapData } from "../models/world-mode";
+import { assetsInfo, characterData, chartData, items } from "../data/file-list";
 import { ArcaeaToolbeltMeta, ChartExpress } from "../models/misc";
 import { AssetsInfo } from "../models/file";
 import { clone } from "../utils/misc";
+import { ItemData } from "arcaea-toolbelt-core/models";
 
 const defaultPreference: Preference = {
   ghproxy: false,
@@ -92,7 +93,7 @@ export class PluginCoreData implements CoreDataService {
     return this.import(characterData);
   }
   getItemsData(): Promise<ItemData[]> {
-    return this.import(itemsData);
+    return this.import(items);
   }
   getWorldMapLongTerm(): Promise<ChapterData[]> {
     throw new Error("Method not implemented.");

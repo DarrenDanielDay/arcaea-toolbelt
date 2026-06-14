@@ -1,11 +1,3 @@
-/**
- * 道具
- */
-export interface ItemData {
-  name: string;
-  img: string;
-}
-
 export interface RewardSummaryItem {
   count: number;
   show: boolean;

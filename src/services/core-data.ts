@@ -7,16 +7,17 @@ import {
   characterData,
   chartData,
   chartExpress,
-  itemsData,
+  items,
   meta,
   packList,
   songList,
   worldMapsEvents,
   worldMapsLongterm,
 } from "../data/file-list";
-import { ChapterData, ItemData, NormalWorldMapData } from "../models/world-mode";
+import { ChapterData, NormalWorldMapData } from "../models/world-mode";
 import { ArcaeaToolbeltMeta, ChartExpress } from "../models/misc";
 import { AssetsInfo } from "../models/file";
+import { ItemData } from "arcaea-toolbelt-core/models";
 
 @Injectable({
   requires: [$CoreDataProvider] as const,
@@ -58,7 +59,7 @@ export class CoreDataServiceImpl implements CoreDataService {
   }
 
   getItemsData(): Promise<ItemData[]> {
-    return this.fetch(itemsData);
+    return this.fetch(items);
   }
 
   getWorldMapLongTerm(): Promise<ChapterData[]> {

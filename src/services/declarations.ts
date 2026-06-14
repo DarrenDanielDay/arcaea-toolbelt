@@ -18,7 +18,6 @@ import {
   Chapter,
   ChapterData,
   CurrentProgress,
-  ItemData,
   NormalWorldMap,
   NormalWorldMapData,
   RewardSummary,
@@ -31,6 +30,7 @@ import { ArcaeaToolbeltMeta, ChartExpress } from "../models/misc";
 import { AssetsInfo, UploadedFile } from "../models/file";
 import { Banner } from "../models/assets";
 import { Difficulty } from "arcaea-toolbelt-core/constants";
+import { ItemData } from "arcaea-toolbelt-core/models";
 
 export interface DatabaseContext {
   getDB(): Promise<IDBDatabase>;
@@ -279,7 +279,7 @@ export interface MusicPlayService {
     perfect: number | null,
     far: number | null,
     lost: number | null,
-    score: number | null
+    score: number | null,
   ): NoteResult | null;
   computeScore(chart: Chart, noteResult: NoteResult): number;
   computePotential(score: number, constant: Chart): number;
@@ -446,7 +446,7 @@ export interface WorldModeService {
   computeProgressRange(
     map: NormalWorldMap,
     currentProgress: CurrentProgress,
-    targetLevel: number
+    targetLevel: number,
   ): [low: number, high: number];
   computeRemainingProgress(map: NormalWorldMap, currentProgress: CurrentProgress): RemainingProgress;
   inversePlayResult(progress: number, step: number): number;
@@ -464,7 +464,7 @@ export interface CrossSiteScriptPluginService {
     targetPlayers: string[],
     onProgress: (message: string) => void,
     onResult: (profiles: Profile[]) => void,
-    onError?: (message: string) => void
+    onError?: (message: string) => void,
   ): AbortController;
   syncProfiles(profiles: Profile[]): Promise<void>;
   syncMe(profile: lowiro.UserProfile): Promise<void>;

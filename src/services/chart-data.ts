@@ -69,8 +69,11 @@ export class ChartServiceImpl implements ChartService {
     const packs = [...new Set(songs.map((s) => s.pack))];
     const archives = packs.filter((p) => p.startsWith("Extend Archive"));
     const extend = packs.filter((p) => p.startsWith("World Extend"));
-    const freePacks = [
+    const basePacks = [
       "Arcaea", // Basic
+    ];
+    const freePacks = [
+      ...basePacks,
       ...archives, // Archived World Extend
       ...extend, // Current World Extend
     ].sort();
@@ -82,6 +85,7 @@ export class ChartServiceImpl implements ChartService {
       maximumConstant,
       minimumConstant,
       freePacks,
+      basePacks,
     };
   }
 

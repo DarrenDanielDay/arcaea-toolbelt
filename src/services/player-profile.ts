@@ -26,6 +26,7 @@ import { sum } from "../utils/math";
 import { requestToPromise } from "../utils/indexed-db";
 import { clone, esModule, isString, jsonModule } from "../utils/misc";
 import { difficulties } from "arcaea-toolbelt-core/constants";
+import { isNullish } from "pragmatism";
 
 const KEY_CURRENT_USERNAME = "CURRENT_USERNAME";
 
@@ -65,7 +66,7 @@ export class ProfileServiceImpl implements ProfileService {
   constructor(
     private readonly database: AppDatabaseContext,
     private readonly musicPlay: MusicPlayService,
-    private readonly chartService: ChartService
+    private readonly chartService: ChartService,
   ) {}
 
   async checkMigration(): Promise<null | (() => Promise<void>)> {
@@ -76,7 +77,7 @@ export class ProfileServiceImpl implements ProfileService {
         legacyProfiles.map(async (profile) => {
           if (isValidProfileV1(profile)) return this.#upgradeV1(profile);
           return profile;
-        })
+        }),
       );
       await this.syncProfiles(upgradedProfiles);
       this.#removeLegacyProfilesSync(upgradedProfiles.map((p) => p.username));
@@ -230,24 +231,49 @@ export class ProfileServiceImpl implements ProfileService {
         date: r.date,
       };
     });
-    let hasFilter = false;
-    const packs = new Set(options?.packs);
+    let hasFilter = options && Object.values(options).some((v) => !isNullish(v));
     const ordered = playResults
       .filter((item) => {
-        const { song } = item;
+        if (!options) {
+          return true;
+        }
+        const {
+          score: { grade },
+          chart,
+          song,
+          clear,
+        } = item;
+        const { packs, difficulties, rank, constant } = options;
         if (song.version.deleted) {
           // TODO support version filter
           return false;
         }
-        if (packs.size && !packs.has(song.pack)) {
-          hasFilter = true;
-          return false;
+        if (packs) {
+          if (!packs.includes(song.pack)) {
+            return false;
+          }
         }
-        const customFilter = options?.filter?.(item) ?? true;
-        if (!customFilter) {
-          hasFilter = true;
+        if (rank) {
+          if (rank === ClearRank.PureMemory || rank === ClearRank.Maximum) {
+            const levels = [ClearRank.PureMemory, ClearRank.Maximum];
+            if (levels.indexOf(rank) > levels.indexOf(clear!)) {
+              return false;
+            }
+          } else if (this.musicPlay.compareGrade(grade, rank) > 0) {
+            return false;
+          }
         }
-        return customFilter;
+        if (constant) {
+          if (chart.constant < constant.min || chart.constant > constant.max) {
+            return false;
+          }
+        }
+        if (difficulties) {
+          if (!difficulties.includes(chart.difficulty)) {
+            return false;
+          }
+        }
+        return true;
       })
       .sort((a, b) => b.score.potential - a.score.potential)
       .map((r, i) => ({ ...r, no: i + 1 }));
@@ -336,10 +362,13 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     }
     const { columns, values } = scoreQueryResult;
     const scores = values.map((row) =>
-      row.reduce<ST3ScoreQuery>((st3Score, value, index) => {
-        Reflect.set(st3Score, columns[index]!, value);
-        return st3Score;
-      }, {} as unknown as ST3ScoreQuery)
+      row.reduce<ST3ScoreQuery>(
+        (st3Score, value, index) => {
+          Reflect.set(st3Score, columns[index]!, value);
+          return st3Score;
+        },
+        {} as unknown as ST3ScoreQuery,
+      ),
     );
     const songIndex = await this.chartService.getSongIndex();
     const now = Date.now();
@@ -348,7 +377,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
       count: 0,
       difficulties: mapProps(
         groupBy(difficulties, (d) => d),
-        () => 0
+        () => 0,
       ),
       skipped: [],
     };
@@ -454,9 +483,9 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
                 pure: 0,
                 perfect: 0,
               },
-              chart
+              chart,
             );
-          })
+          }),
         );
       const acc = totalAccScore / totalAccChartCount / this.musicPlay.maxBase;
       const pacc = totalPerfect / totalNoteResultNotes;
@@ -481,7 +510,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     const songs = await this.chartService.getSongData();
     const charts = indexBy(
       songs.flatMap((song) => song.charts),
-      (chart) => chart.id
+      (chart) => chart.id,
     );
     const all = Object.values(profile.best);
     const filterChart = (chart: Chart): boolean => {
@@ -505,7 +534,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
     const filteredCharts = Object.fromEntries(
       Object.entries(charts).filter(([, value]) => {
         return filterChart(value);
-      })
+      }),
     );
     return byRecords(filteredResults);
   }
@@ -554,7 +583,7 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
               chartId,
             },
           ] as const;
-        })
+        }),
       ),
     };
   }
@@ -655,8 +684,8 @@ ON scores.songId = cleartypes.songId AND scores.songDifficulty = cleartypes.song
             }
             const oldIdLower = chart.id.toLowerCase();
             return [oldIdLower, newId];
-          })
-        )
+          }),
+        ),
       );
     }
     return this.#v1Map;

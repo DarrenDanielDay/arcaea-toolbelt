@@ -11,6 +11,11 @@ export const isString = (value: unknown): value is string => typeof value === "s
 
 export const isObject = (value: unknown): value is object => typeof value === "object" && value != null;
 
+export type EnumValue = string | number;
+
+export const isEnumValueOf = <E extends EnumValue>(enumObject: Record<string, E>, value: EnumValue): value is E =>
+  Object.values(enumObject).some((e) => e === value) && isNaN(+Reflect.get(enumObject, value));
+
 export function shape<T extends object>(schema: { [K in keyof T]: (value: unknown) => value is T[K] }) {
   return (value: unknown): value is T =>
     isObject(value) &&

@@ -31,6 +31,7 @@ import { AssetsInfo, UploadedFile } from "../models/file";
 import { Banner } from "../models/assets";
 import { Difficulty } from "arcaea-toolbelt-core/constants";
 import { ItemData } from "arcaea-toolbelt-core/models";
+import { Nullable } from "pragmatism";
 
 export interface DatabaseContext {
   getDB(): Promise<IDBDatabase>;
@@ -237,6 +238,7 @@ export interface ChartStatistics {
   maximumConstant: number;
   minimumConstant: number;
   freePacks: string[];
+  basePacks: string[];
 }
 
 export interface ChartService {
@@ -375,9 +377,22 @@ export interface BestStatistics {
 
 export type ReportProgress = (message: string) => void;
 
-export interface B30Options {
+export type RankFilter = Grade | ClearRank.PureMemory | ClearRank.Maximum
+
+export interface RangeFilter {
+  min: number;
+  max: number;
+};
+
+export interface FullB30Options {
   packs: string[];
-  filter: (result: BestResultItem) => boolean;
+  rank: RankFilter;
+  constant: RangeFilter;
+  difficulties: Difficulty[];
+}
+
+export type B30Options = {
+  [K in keyof FullB30Options]?: Nullable<FullB30Options[K]>
 }
 
 export interface ProfileService {

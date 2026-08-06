@@ -15,6 +15,7 @@ import {
 } from "hyplate";
 import {
   $ChartService,
+  $CoreDataService,
   $FileStorage,
   $Gateway,
   $MusicPlayService,
@@ -22,6 +23,7 @@ import {
   $ProfileService,
   ChartService,
   ChartStatistics,
+  CoreDataService,
   FileStorageService,
   Gateway,
   MusicPlayService,
@@ -37,13 +39,14 @@ import { bootstrap } from "../../styles/index";
 import { loading } from "../../components/loading";
 import { ClearRank, Grade } from "../../../models/music-play";
 import { HelpTip } from "../../components/help-tip";
-import { esModule } from "../../../utils/misc";
+import { esModule, isEnumValueOf } from "../../../utils/misc";
 import { RPC, RPCConnection, WindowMessageHub } from "../../../utils/rpc";
-import type {
+import {
   CandidateResult,
   ClientAPI,
   CustomImageOptions,
   CustomImageResult,
+  Difficulty,
   HostAPI,
   ImageCandidate,
   ImageFile,
@@ -54,6 +57,9 @@ import { HostAPIImpl } from "../../../services/generator-api-impl";
 import { CleanUpFunc } from "hyplate/types";
 import { ImageClipper } from "../../components/image-clipper";
 import { pad2 } from "../../../utils/string.js";
+import type { Profile } from "../../../models/profile";
+import { difficulties } from "arcaea-toolbelt-core/constants";
+import { die } from "pragmatism";
 
 ~HelpTip;
 
@@ -65,6 +71,8 @@ export type TemplateKind = "yuki-chan" | "custom-template";
   styles: [bootstrap, sheet],
 })
 class PlayerB39 extends HyplateElement {
+  @Inject($CoreDataService)
+  accessor coreData!: CoreDataService;
   @Inject($ProfileService)
   accessor profileService!: ProfileService;
   @Inject($MusicPlayService)
@@ -88,6 +96,7 @@ class PlayerB39 extends HyplateElement {
   customTemplateIframe: HTMLIFrameElement | null = null;
 
   packs = element("select");
+  difficulties = element("select");
   gradeFilter = signal<Grade | ClearRank.PureMemory | ClearRank.Maximum | "">("");
   minConstant = signal(NaN);
   maxConstant = signal(NaN);
@@ -159,10 +168,10 @@ class PlayerB39 extends HyplateElement {
         url: url || null,
       });
     });
-    return <Future promise={this.#init()}>{(chartStats) => this._render(chartStats)}</Future>;
+    return <Future promise={this._init()}>{(data) => this._render(data)}</Future>;
   }
 
-  _render({ minimumConstant, maximumConstant, freePacks }: ChartStatistics) {
+  _render({ stats: { minimumConstant, maximumConstant, freePacks }, meta }: Awaited<ReturnType<typeof this._init>>) {
     const notUsingYukiChan = computed(() => this.template() !== "yuki-chan");
     const notUsingCustomTemplate = computed(() => this.template() !== "custom-template");
     return (
@@ -180,7 +189,7 @@ class PlayerB39 extends HyplateElement {
             <summary>高级查询</summary>
             <div class="input-group">
               <label for="packs" class="input-group-text">
-                仅免费曲包
+                免费曲包
                 <help-tip>
                   <p>以下曲包内曲目均可直接/在世界模式常驻地图/限时地图免费获得：</p>
                   {freePacks.map((pack) => (
@@ -189,22 +198,42 @@ class PlayerB39 extends HyplateElement {
                   <p>
                     可多选，电脑是按住<kbd>Ctrl</kbd>后点击进行多选。
                   </p>
-                  <p>若不选择任何曲包或仅选择“无”，视为无此过滤条件。</p>
+                  <p>若不选择任何曲包或仅选择“无限制”，视为无此过滤条件。</p>
                 </help-tip>
               </label>
               <select ref={this.packs} class="form-select" size="4" multiple name="packs">
-                <option value="">无</option>
+                <option value="">无限制</option>
                 {freePacks.map((pack) => (
                   <option value={pack}>{pack}</option>
                 ))}
               </select>
             </div>
             <div class="input-group">
+              <label for="difficulties" class="input-group-text">
+                谱面难度
+                <help-tip>
+                  <p>
+                    可多选，电脑是按住<kbd>Ctrl</kbd>后点击进行多选。
+                  </p>
+                  <p>若不选择任何难度或仅选择“无限制”，视为无此过滤条件。</p>
+                </help-tip>
+              </label>
+              <select ref={this.difficulties} class="form-select" size="4" multiple name="difficulties">
+                <option value="">无限制</option>
+                {difficulties.map((difficulty) => (
+                  <option value={difficulty}>{difficulty.toUpperCase()}</option>
+                ))}
+              </select>
+            </div>
+            <div class="input-group">
               <label class="input-group-text" for="grade">
-                评级≥
+                评级达到
+                <help-tip>
+                  <p>仅筛选达到选择的评级的成绩</p>
+                </help-tip>
               </label>
               <select h-model={this.gradeFilter} class="form-select" id="grade" name="grade">
-                <option value="">无</option>
+                <option value="">无限制</option>
                 <option value={ClearRank.Maximum}>理论值</option>
                 <option value={ClearRank.PureMemory}>PM</option>
                 {this.musicPlay.grades.map((grade) => (
@@ -238,6 +267,11 @@ class PlayerB39 extends HyplateElement {
             <div class="row action">
               <button type="button" class="btn btn-primary" onClick={this.computeConditionalB30}>
                 计算条件b30
+              </button>
+            </div>
+            <div class="row action">
+              <button type="button" class="btn btn-secondary" onClick={this.computeMaxConditionalB30}>
+                计算max条件b30
               </button>
             </div>
           </details>
@@ -345,33 +379,29 @@ class PlayerB39 extends HyplateElement {
       alert("未选择存档");
       return;
     }
+    await this.setConditionalB30(profile);
+  };
+
+  computeMaxConditionalB30 = async () => {
+    const profile = await this.profileService.generateMaxProfile();
+    await this.setConditionalB30(profile);
+  };
+
+  setConditionalB30 = async (profile: Profile) => {
     const packs = Array.from(this.packs.querySelectorAll("option"))
       .filter((o) => o.selected && o.value)
       .map((o) => o.value);
     const rankFilter = this.gradeFilter(),
       minConstant = this.minConstant(),
       maxConstant = this.maxConstant();
+    const diff = Array.from(this.difficulties.querySelectorAll("option"))
+      .filter((o) => o.selected && o.value)
+      .map((o) => (isEnumValueOf(Difficulty, o.value) ? o.value : die()));
     const b30 = await this.profileService.b30(profile, {
-      packs,
-      filter: (result) => {
-        const {
-          score: { grade },
-          chart: { constant },
-          clear,
-        } = result;
-        if (rankFilter) {
-          if (rankFilter === ClearRank.PureMemory || rankFilter === ClearRank.Maximum) {
-            const levels = [ClearRank.PureMemory, ClearRank.Maximum];
-            if (levels.indexOf(rankFilter) > levels.indexOf(clear!)) return false;
-          } else if (this.musicPlay.compareGrade(grade, rankFilter) > 0) {
-            return false;
-          }
-        }
-        if (constant < minConstant || constant > maxConstant) {
-          return false;
-        }
-        return true;
-      },
+      packs: packs.toString() ? packs : null,
+      rank: rankFilter || null,
+      constant: minConstant || maxConstant ? { min: minConstant, max: maxConstant } : null,
+      difficulties: diff.toString() ? diff : null,
     });
     this.best30.b30.set(b30);
     await this.#connection?.api.setB30(b30);
@@ -405,7 +435,7 @@ class PlayerB39 extends HyplateElement {
         });
         const now = new Date(b30.queryTime);
         const filename = `b30 ${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())} ${pad2(
-          now.getHours()
+          now.getHours(),
         )}-${pad2(now.getMinutes())}-${pad2(now.getSeconds())}.jpg`;
         return {
           blob,
@@ -415,7 +445,7 @@ class PlayerB39 extends HyplateElement {
       <div style="display: flex; flex-direction: column; align-items: center;">
         <p>{progress}</p>
         <img src={loadingImg} width="48" height="48"></img>
-      </div>
+      </div>,
     );
     await this.exportAsImageFile(blob, {
       filename,
@@ -516,7 +546,7 @@ class PlayerB39 extends HyplateElement {
             image: file,
           }));
         })(),
-        <div>正在下载图片……</div>
+        <div>正在下载图片……</div>,
       );
       await getCustomImage();
       const savedCustomImage = customImage();
@@ -528,7 +558,7 @@ class PlayerB39 extends HyplateElement {
           ? savedCustomImage?.image?.resourceURL.href === selectedURL
             ? savedCustomImage
             : selectedBasicImage
-          : null
+          : null,
       );
 
       const renderPickImageItem = (pickResult: PickImageResult<T>) => (
@@ -706,7 +736,7 @@ class PlayerB39 extends HyplateElement {
     }
   };
 
-  async #init() {
+  async _init() {
     let { template, url } = this.router.parseQuery<B30Params>();
     const {
       template: { url: templateURL, custom },
@@ -721,7 +751,8 @@ class PlayerB39 extends HyplateElement {
     }
     queueMicrotask(this.computeConditionalB30);
     const stats = await this.chart.getStatistics();
-    return stats;
+    const meta = await this.coreData.getMetaData();
+    return { stats, meta };
   }
 }
 

@@ -74,7 +74,7 @@ class About extends HyplateElement {
     musicPlayStats: MusicPlayStatistics,
     maxB30: B30Response,
     baseB30: B30Response,
-    freeB30: B30Response
+    freeB30: B30Response,
   ) {
     const COMMIT_SHA = process.env.COMMIT_SHA;
     const maxPotentialStats: Parameters<About["renderMaxPtt"]>[] = [
@@ -129,7 +129,7 @@ class About extends HyplateElement {
           return (
             <div>
               {Object.entries(chartStats.difficulties).map(([difficulty, stat]) =>
-                details(difficulty.toUpperCase(), stat, `var(--${difficulty})`)
+                details(difficulty.toUpperCase(), stat, `var(--${difficulty})`),
               )}
               {details("FTR/ETR", fetr)}
             </div>
@@ -222,7 +222,7 @@ class About extends HyplateElement {
     const musicPlayStats = await this.musicPlay.getStatistics();
     const profile = await this.profile.generateMaxProfile();
     const maxB30 = await this.profile.b30(profile);
-    const baseB30 = await this.profile.b30(profile, { packs: chartStats.freePacks.slice(0, 1) });
+    const baseB30 = await this.profile.b30(profile, { packs: chartStats.basePacks });
     const freeB30 = await this.profile.b30(profile, { packs: chartStats.freePacks });
     return [meta, chartStats, musicPlayStats, maxB30, baseB30, freeB30] as const;
   }
